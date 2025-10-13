@@ -1,0 +1,111 @@
+
+[2025-09-10 15:57:07] WARBLER ERROR:
+Starting analysis with debug info: 
+DEBUG INFO:
+- User Request: Create a Zork-like randomly generated Text-based adventure game powered by Warbler. The game should launch with Unity's 2D features, have buttons for standard movement controls, but a standard chat system for interacting with everything else. Well... except for known items and interactables... for instance, if we examine a room, search a room, anything that would make a character examine things... buttons would pop up for picking or interacting with these items. I think a standard UI inventory might be helpful... a minimap showing areas we've  explored using acsii characters. I think you get the idea. The theme can be anything the player  requests and you can prompt them for ideas. It's a choose your own adventure. 
+- Project Root: E:\Tiny_Walnut_Games\TWG-TLDA
+- Gemma Endpoint: http://localhost:8080
+- Python Version: 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
+- Working Directory: E:\Tiny_Walnut_Games\TWG-TLDA
+
+--------------------------------------------------
+
+[2025-09-10 15:57:12] WARBLER ERROR:
+Endpoint test failed for http://localhost:8080/v1/chat/completions: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F9E844B0E0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+--------------------------------------------------
+
+[2025-09-10 15:57:16] WARBLER ERROR:
+Endpoint test failed for http://localhost:9998/v1/completions: HTTPConnectionPool(host='localhost', port=9998): Max retries exceeded with url: /v1/completions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F9E85082B0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+--------------------------------------------------
+
+[2025-09-10 15:57:18] WARBLER ERROR:
+Endpoint test failed for http://127.0.0.1:8080/v1/chat/completions: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F9E8508640>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+--------------------------------------------------
+
+[2025-09-10 16:06:12] WARBLER ERROR:
+Starting analysis with debug info: 
+DEBUG INFO:
+- User Request: Create a simple 2D platformer game
+- Project Root: E:\Tiny_Walnut_Games\TWG-TLDA
+- Gemma Endpoint: http://localhost:8080
+- Python Version: 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
+- Working Directory: E:\Tiny_Walnut_Games\TWG-TLDA
+
+--------------------------------------------------
+
+[2025-09-10 16:06:16] WARBLER ERROR:
+Endpoint test failed for http://localhost:8080/v1/chat/completions: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001A93537AF90>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+--------------------------------------------------
+
+[2025-09-10 16:06:20] WARBLER ERROR:
+Endpoint test failed for http://localhost:9998/v1/completions: HTTPConnectionPool(host='localhost', port=9998): Max retries exceeded with url: /v1/completions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001A9354382B0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+--------------------------------------------------
+
+[2025-09-10 16:06:22] WARBLER ERROR:
+Endpoint test failed for http://127.0.0.1:8080/v1/chat/completions: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001A935438640>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+--------------------------------------------------
+
+[2025-09-10 16:07:10] WARBLER ERROR:
+Starting analysis with debug info: 
+DEBUG INFO:
+- User Request: Create a simple 2D platformer game
+- Project Root: E:\Tiny_Walnut_Games\TWG-TLDA
+- Gemma Endpoint: http://localhost:11434
+- Python Version: 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
+- Working Directory: E:\Tiny_Walnut_Games\TWG-TLDA
+
+--------------------------------------------------
+
+[2025-09-10 16:07:25] WARBLER ERROR:
+Connection timeout to http://localhost:11434/v1/chat/completions (30 seconds)
+--------------------------------------------------
+
+[2025-09-10 16:07:40] WARBLER ERROR:
+Connection timeout to http://localhost:11434/api/chat (30 seconds)
+--------------------------------------------------
+
+[2025-09-10 16:07:44] WARBLER ERROR:
+Endpoint test failed for http://localhost:9998/v1/completions: HTTPConnectionPool(host='localhost', port=9998): Max retries exceeded with url: /v1/completions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001601999FA80>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+--------------------------------------------------
+
+[2025-09-10 16:07:59] WARBLER ERROR:
+Connection timeout to http://127.0.0.1:11434/v1/chat/completions (30 seconds)
+--------------------------------------------------
+
+[2025-09-10 16:10:09] WARBLER ERROR:
+Starting analysis with debug info: 
+DEBUG INFO:
+- User Request: Create a simple 2D platformer game
+- Project Root: E:\Tiny_Walnut_Games\TWG-TLDA
+- Gemma Endpoint: http://localhost:11434
+- Python Version: 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
+- Working Directory: E:\Tiny_Walnut_Games\TWG-TLDA
+
+--------------------------------------------------
+
+[2025-09-10 16:10:39] WARBLER ERROR:
+Connection timeout to http://localhost:11434/api/generate (30 seconds)
+--------------------------------------------------
+
+[2025-09-10 16:11:09] WARBLER ERROR:
+Connection timeout to http://localhost:11434/v1/chat/completions (30 seconds)
+--------------------------------------------------
+
+[2025-09-10 16:15:17] WARBLER ERROR:
+Starting analysis with debug info: 
+DEBUG INFO:
+- User Request: Create a Zork-like randomly generated Text-based adventure game powered by Warbler. The game should launch with Unity's 2D features, have buttons for standard movement controls, but a standard chat system for interacting with everything else. Well... except for known items and interactables... for instance, if we examine a room, search a room, anything that would make a character examine things... buttons would pop up for picking or interacting with these items. I think a standard UI inventory might be helpful... a minimap showing areas we've  explored using acsii characters. I think you get the idea. The theme can be anything the player  requests and you can prompt them for ideas. It's a choose your own adventure. 
+- Project Root: E:\Tiny_Walnut_Games\TWG-TLDA
+- Gemma Endpoint: http://localhost:11434
+- Python Version: 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
+- Working Directory: E:\Tiny_Walnut_Games\TWG-TLDA
+
+--------------------------------------------------
+
+[2025-09-10 16:15:47] WARBLER ERROR:
+Connection timeout to http://localhost:11434/api/generate (30 seconds)
+--------------------------------------------------
+
+[2025-09-10 16:16:17] WARBLER ERROR:
+Connection timeout to http://localhost:11434/v1/chat/completions (30 seconds)
+--------------------------------------------------

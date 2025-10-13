@@ -1,0 +1,33 @@
+# Ignore node_modules directories
+node_modules/
+**/node_modules/
+
+# Ignore Unity-specific directories that can be large or problematic
+Library/
+Temp/
+Logs/
+obj/
+UserSettings/
+
+# Ignore build artifacts
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Ignore git files
+.git/
+.gitignore
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Ignore package manager files that get regenerated
+package-lock.json
+yarn.lock
+
+# Ignore Unity meta files for Docker (optional)
+*.meta

@@ -1,0 +1,62 @@
+{
+  "FacultySurfaces": [
+    {
+      "AssetType": "MonoScript",
+      "FileSize": 15420,
+      "Guid": "a1b2c3d4e5f6789012345678901234ab",
+      "LastModified": "2024-09-06T01:23:45.123Z",
+      "Path": "Assets/TWG/TLDA/Tools/SpriteForge/Editor/SpriteForgeEditor.cs",
+      "Tags": [
+        "EditorTool",
+        "Component"
+      ],
+      "Type": "Script"
+    },
+    {
+      "AssetType": "MonoScript",
+      "FileSize": 8375,
+      "Guid": "b2c3d4e5f6789012345678901234abc2",
+      "LastModified": "2024-09-06T01:23:45.123Z",
+      "Path": "Assets/MobileGameTemplate/Scripts/Systems/InventorySystem.cs",
+      "Tags": [
+        "Component"
+      ],
+      "Type": "Script"
+    },
+    {
+      "AssetType": "GameObject",
+      "FileSize": 2048,
+      "Guid": "c3d4e5f6789012345678901234abc3d4",
+      "LastModified": "2024-09-06T01:23:45.123Z",
+      "Path": "Assets/MobileGameTemplate/Prefabs/UI/MainMenu.prefab",
+      "Tags": [
+        "Components:5"
+      ],
+      "Type": "Prefab"
+    },
+    {
+      "AssetType": "MonoScript",
+      "FileSize": 3421,
+      "Guid": "d4e5f6789012345678901234abc3d4e5",
+      "LastModified": "2024-09-06T01:23:45.123Z",
+      "Path": "Assets/TWG/TLDA/Tools/SpriteForge/Core/SpriteForgeData.cs",
+      "Tags": [
+        "DataAsset"
+      ],
+      "Type": "Script"
+    },
+    {
+      "AssetType": "Material",
+      "FileSize": 1024,
+      "Guid": "e5f6789012345678901234abc3d4e5f6",
+      "LastModified": "2024-09-06T01:23:45.123Z",
+      "Path": "Assets/Resources/Materials/DefaultMaterial.mat",
+      "Tags": [],
+      "Type": "Material"
+    }
+  ],
+  "Hash": "d0865a96189ad5c3",
+  "ProjectPath": "/home/runner/work/TWG-TLDA/TWG-TLDA/Assets",
+  "Timestamp": "2025-09-06T01:29:05.966548Z",
+  "UnityVersion": "6000.2.0f1"
+}

@@ -1,0 +1,10 @@
+{
+  "RunId": "run_0002",
+  "ExperimentName": "experiment_e5f6g7h8-i9j0-1234-5678-901234efghij",
+  "HypothesisId": "unknown",
+  "ConfidenceScore": 0.6497999999999999,
+  "ClaimType": "hypothesis",
+  "ValidationTime": "2025-09-06T02:38:29.713073",
+  "Success": true,
+  "BaselineComparison": "pending"
+}

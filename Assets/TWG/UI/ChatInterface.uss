@@ -1,0 +1,192 @@
+/* TLDA Chat Interface Styles */
+
+.chat-container {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: rgb(25, 25, 35);
+    border-radius: 8px;
+}
+
+.chat-title {
+    font-size: 18px;
+    color: rgb(200, 200, 255);
+    margin-bottom: 10px;
+    text-align: center;
+    -unity-font-style: bold;
+}
+
+.chat-status {
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: rgb(35, 35, 45);
+    border-radius: 4px;
+}
+
+.status-indicator {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.warbler-status {
+    color: rgb(100, 150, 255);
+    background-color: rgb(20, 30, 60);
+}
+
+.ai-status {
+    color: rgb(100, 255, 150);
+    background-color: rgb(20, 60, 30);
+}
+
+.tldl-status {
+    color: rgb(255, 200, 100);
+    background-color: rgb(60, 45, 20);
+}
+
+.chat-messages {
+    flex-grow: 1;
+    background-color: rgb(30, 30, 40);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    max-height: 400px;
+}
+
+.message-container {
+    margin-bottom: 15px;
+    padding: 8px;
+    border-radius: 6px;
+    border-left-width: 3px;
+}
+
+.message-user {
+    background-color: rgb(40, 50, 70);
+    border-left-color: rgb(100, 150, 255);
+}
+
+.message-warbler {
+    background-color: rgb(50, 40, 70);
+    border-left-color: rgb(150, 100, 255);
+}
+
+.message-system {
+    background-color: rgb(50, 50, 40);
+    border-left-color: rgb(255, 200, 100);
+}
+
+.message-tldl {
+    background-color: rgb(40, 60, 40);
+    border-left-color: rgb(100, 255, 150);
+}
+
+.message-header {
+    font-size: 10px;
+    color: rgb(150, 150, 150);
+    margin-bottom: 4px;
+    -unity-font-style: italic;
+}
+
+.message-content {
+    color: rgb(220, 220, 220);
+    white-space: normal;
+}
+
+.code-block {
+    background-color: rgb(20, 20, 30);
+    padding: 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    color: rgb(100, 255, 100);
+}
+
+.warbler-decision {
+    background-color: rgb(40, 30, 60);
+    padding: 6px;
+    border-radius: 3px;
+    border: 1px solid rgb(150, 100, 255);
+}
+
+.system-message {
+    color: rgb(200, 200, 150);
+    -unity-font-style: italic;
+}
+
+.typing-indicator {
+    background-color: rgb(40, 40, 50);
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.typing-indicator Label {
+    color: rgb(150, 150, 200);
+    -unity-font-style: italic;
+    font-size: 12px;
+}
+
+.input-container {
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.message-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    background-color: rgb(40, 40, 50);
+    border-color: rgb(80, 80, 100);
+    color: rgb(220, 220, 220);
+    border-radius: 4px;
+    padding: 8px;
+    min-height: 24px;
+    max-height: 80px;
+}
+
+.send-button {
+    background-color: rgb(100, 150, 255);
+    color: white;
+    border-width: 0;
+    border-radius: 4px;
+    padding: 8px 16px;
+    -unity-font-style: bold;
+}
+
+.send-button:hover {
+    background-color: rgb(120, 170, 255);
+}
+
+.send-button:active {
+    background-color: rgb(80, 130, 235);
+}
+
+.chat-controls {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.control-button {
+    background-color: rgb(60, 60, 80);
+    color: rgb(200, 200, 220);
+    border-width: 1px;
+    border-color: rgb(100, 100, 120);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.control-button:hover {
+    background-color: rgb(80, 80, 100);
+}
+
+/* Animations */
+@keyframes typing-pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1.0; }
+    100% { opacity: 0.5; }
+}
+
+.typing-indicator {
+    animation: typing-pulse 1.5s infinite;
+}
