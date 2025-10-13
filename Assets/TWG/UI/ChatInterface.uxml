@@ -1,0 +1,28 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement class="chat-container">
+        <ui:Label text="TLDA/Warbler Chat Interface" class="chat-title" />
+        
+        <ui:VisualElement class="chat-status">
+            <ui:Label text="🧠 Warbler: Active" class="status-indicator warbler-status" />
+            <ui:Label text="🤖 Gemma3: Connected" class="status-indicator ai-status" />
+            <ui:Label text="📜 TLDL: Logging" class="status-indicator tldl-status" />
+        </ui:VisualElement>
+        
+        <ui:ScrollView name="chat-messages" class="chat-messages" />
+        
+        <ui:VisualElement name="typing-indicator" class="typing-indicator">
+            <ui:Label text="🧠 Warbler is thinking..." />
+        </ui:VisualElement>
+        
+        <ui:VisualElement class="input-container">
+            <ui:TextField name="message-input" class="message-input" placeholder-text="Ask Warbler for decisions, Gemma3 for assistance, or chat about development..." multiline="true" />
+            <ui:Button name="send-button" text="Send" class="send-button" />
+        </ui:VisualElement>
+        
+        <ui:VisualElement class="chat-controls">
+            <ui:Button text="Clear Chat" class="control-button" />
+            <ui:Button text="Export TLDL" class="control-button" />
+            <ui:Button text="View Mind Castle" class="control-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

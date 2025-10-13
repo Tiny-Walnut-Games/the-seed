@@ -1,0 +1,227 @@
+{
+  "version": "1.0",
+  "last_updated": "2025-09-02T08:35:38.054109",
+  "profiles": {
+    "Bellok": {
+      "developer_name": "Bellok",
+      "total_xp": 260,
+      "level": 1,
+      "title": "🌱 Seedling Coder",
+      "copilot_coins": 78,
+      "contributions": [
+        {
+          "contribution_id": "1b181028",
+          "developer_name": "Bellok",
+          "contribution_type": "architecture",
+          "quality_level": "epic",
+          "description": "Git commit: Add cross-platform XP system integration with Windows/macOS/Linux support and VS Code/Unity/Rider/Vi...",
+          "files_affected": [
+            "template/src/DeveloperExperience/cross_platform_integration.py"
+          ],
+          "timestamp": "2025-09-01T14:53:57.332448",
+          "base_xp": 100,
+          "quality_multiplier": 2.0,
+          "total_xp": 200,
+          "coins_earned": 60,
+          "metrics": {
+            "files_changed": 1,
+            "commit_hash": "132832d9",
+            "message_length": 123,
+            "lines_added": 874,
+            "lines_deleted": 0,
+            "net_lines": 874
+          }
+        },
+        {
+          "contribution_id": "4f3c9d0e",
+          "developer_name": "Bellok",
+          "contribution_type": "test_coverage",
+          "quality_level": "good",
+          "description": "Git commit: Test automatic XP tracking on Windows - should award XP for this commit...",
+          "files_affected": [],
+          "timestamp": "2025-09-01T14:54:55.784709",
+          "base_xp": 60,
+          "quality_multiplier": 1.0,
+          "total_xp": 60,
+          "coins_earned": 18,
+          "metrics": {
+            "files_changed": 0,
+            "commit_hash": "a03c1a35",
+            "message_length": 71
+          }
+        }
+      ],
+      "achievements": [
+        {
+          "achievement_id": "first_steps",
+          "name": "First Steps",
+          "description": "Made your first contribution to the codebase",
+          "emoji": "👶",
+          "badge_color": "green",
+          "date_earned": "2025-09-01T14:53:57.332680",
+          "contribution_id": "1b181028",
+          "faculty_signature": "🧙‍♂️ Bootstrap Sentinel"
+        },
+        {
+          "achievement_id": "system_architect",
+          "name": "System Architect",
+          "description": "Contributed to system architecture",
+          "emoji": "🏗️",
+          "badge_color": "silver",
+          "date_earned": "2025-09-01T14:53:57.332695",
+          "contribution_id": "1b181028",
+          "faculty_signature": "🏗️ System Design Oracle"
+        }
+      ],
+      "faculty_badges": [],
+      "badge_pets": [],
+      "created_date": "2025-09-01T14:53:57.332488",
+      "last_active": "2025-09-01T14:54:55.784734"
+    },
+    "TestDeveloper": {
+      "developer_name": "TestDeveloper",
+      "total_xp": 160,
+      "level": 2,
+      "title": "🌿 Growing Adept",
+      "copilot_coins": 185,
+      "contributions": [
+        {
+          "contribution_id": "2846c8c4",
+          "developer_name": "TestDeveloper",
+          "contribution_type": "documentation",
+          "quality_level": "excellent",
+          "description": "Created Faculty Standards validator system",
+          "files_affected": [
+            "faculty_standards_validator.py"
+          ],
+          "timestamp": "2025-09-02T08:31:37.719307",
+          "base_xp": 40,
+          "quality_multiplier": 1.5,
+          "total_xp": 60,
+          "coins_earned": 18,
+          "metrics": {
+            "refactoring_tools_created": 1,
+            "strategic_depth_added": 10
+          }
+        },
+        {
+          "contribution_id": "e2a1567f",
+          "developer_name": "TestDeveloper",
+          "contribution_type": "code_contribution",
+          "quality_level": "epic",
+          "description": "Implemented costly auto-refactoring system with XP mechanics",
+          "files_affected": [
+            "dev_experience.py",
+            "faculty_standards_validator.py"
+          ],
+          "timestamp": "2025-09-02T08:31:55.331601",
+          "base_xp": 50,
+          "quality_multiplier": 2.0,
+          "total_xp": 100,
+          "coins_earned": 30,
+          "metrics": {
+            "xp_system_enhanced": 1,
+            "strategic_mechanics_added": 1
+          }
+        },
+        {
+          "contribution_id": "8591ca71",
+          "developer_name": "TestDeveloper",
+          "contribution_type": "innovation",
+          "quality_level": "legendary",
+          "description": "Complete Faculty Standards refactoring system",
+          "files_affected": [
+            "evolution-formulas.md",
+            "faculty_standards_validator.py",
+            "dev_experience.py"
+          ],
+          "timestamp": "2025-09-02T08:32:19.330096",
+          "base_xp": 150,
+          "quality_multiplier": 2.5,
+          "total_xp": 375,
+          "coins_earned": 100,
+          "metrics": {
+            "system_complexity": 10,
+            "strategic_value": 10
+          }
+        },
+        {
+          "contribution_id": "refactor_1756802017",
+          "developer_name": "TestDeveloper",
+          "contribution_type": "refactoring",
+          "quality_level": "good",
+          "description": "📜 Faculty Standards Refactoring: Fix TLDL metadata and missing sections",
+          "files_affected": [],
+          "timestamp": "2025-09-02T08:33:37.944472",
+          "base_xp": 0,
+          "quality_multiplier": 1.0,
+          "total_xp": 0,
+          "coins_earned": 15,
+          "metrics": {
+            "refactoring_cost": 150,
+            "urgency": "normal"
+          }
+        },
+        {
+          "contribution_id": "refactor_1756802036",
+          "developer_name": "TestDeveloper",
+          "contribution_type": "refactoring",
+          "quality_level": "good",
+          "description": "📜 Faculty Standards Refactoring: Emergency fix for critical documentation failure",
+          "files_affected": [],
+          "timestamp": "2025-09-02T08:33:56.521797",
+          "base_xp": 0,
+          "quality_multiplier": 1.0,
+          "total_xp": 0,
+          "coins_earned": 20,
+          "metrics": {
+            "refactoring_cost": 200,
+            "urgency": "emergency"
+          }
+        },
+        {
+          "contribution_id": "refactor_1756802138",
+          "developer_name": "TestDeveloper",
+          "contribution_type": "refactoring",
+          "quality_level": "good",
+          "description": "📜 Faculty Standards Refactoring: Auto-refactoring 1 issues in TLDL-2025-08-18-AnotherScribeUpdate.md",
+          "files_affected": [],
+          "timestamp": "2025-09-02T08:35:38.054105",
+          "base_xp": 0,
+          "quality_multiplier": 1.0,
+          "total_xp": 0,
+          "coins_earned": 2,
+          "metrics": {
+            "refactoring_cost": 25,
+            "urgency": "normal"
+          }
+        }
+      ],
+      "achievements": [
+        {
+          "achievement_id": "first_steps",
+          "name": "First Steps",
+          "description": "🧙‍♂️ Apprentice Awakening - Cast your first spell in the codebase",
+          "emoji": "🏆",
+          "badge_color": "green",
+          "date_earned": "2025-09-02T08:31:37.719378",
+          "contribution_id": "2846c8c4",
+          "faculty_signature": "🧙‍♂️ Bootstrap Sentinel"
+        },
+        {
+          "achievement_id": "legendary_innovation",
+          "name": "Legendary Innovation",
+          "description": "⚡ Archmage Ascension - Achieved legendary magical prowess",
+          "emoji": "🌟",
+          "badge_color": "gold",
+          "date_earned": "2025-09-02T08:32:19.330184",
+          "contribution_id": "8591ca71",
+          "faculty_signature": "⚡ Quality Oracle"
+        }
+      ],
+      "faculty_badges": [],
+      "created_date": "2025-09-02T08:31:37.719314",
+      "last_active": "2025-09-02T08:35:38.054095"
+    }
+  }
+}
