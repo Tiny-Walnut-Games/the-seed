@@ -1,0 +1,32 @@
+{
+  "name": "com.twg.warbler-core",
+  "version": "0.1.0",
+  "displayName": "TWG Warbler Core",
+  "description": "Core runtime engine for Warbler NPC conversation and narration system",
+  "unity": "2022.3",
+  "keywords": [
+    "npc",
+    "conversation",
+    "narration",
+    "game",
+    "dialogue",
+    "warbler"
+  ],
+
+  "author": {
+    "name": "TWG Team"
+  },
+
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^9.34.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.1.0"
+  },
+
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/jmeyer1980/TWG-TLDA.git",
+      "directory": "packages/warbler-core"
+    }
+  }

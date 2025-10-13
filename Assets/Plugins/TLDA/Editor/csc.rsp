@@ -1,0 +1,14 @@
+-nowarn:CS0579
+-nowarn:CS0234
+-nowarn:CS0579 
+-nowarn:CS1503
+-nowarn:CS0029
+-nowarn:CS0162
+-nowarn:CS0219
+-nowarn:CS0234
+
+-define:UNITY_EDITOR
+-define:STANDALONE_COMPILATION
+-define:WARBLER_CORE_ACTIVE
+
+-langversion:latest
