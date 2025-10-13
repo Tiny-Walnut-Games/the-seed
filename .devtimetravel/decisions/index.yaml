@@ -1,0 +1,45 @@
+# DevTimeTravel Decisions Index
+# This file tracks architectural decisions and their evolution through the development timeline
+
+decisions: []
+
+# Schema for decision entries (future implementation):
+# - id: unique identifier for the decision
+# - title: brief description of the decision
+# - date: when the decision was made (ISO format)
+# - context: the situation that required a decision
+# - alternatives: list of options that were considered
+# - chosen: the selected option with rationale
+# - consequences: observed outcomes and impacts
+# - status: active | superseded | deprecated
+# - tags: categorization labels for filtering
+# - related_snapshots: references to DevTimeTravel snapshots
+# - tldl_references: links to relevant TLDL entries
+
+# Example structure (for reference):
+# decisions:
+#   - id: DEC-2025-001
+#     title: "Implement Giant-in-the-Well compression system"
+#     date: "2025-09-02T00:00:00Z"
+#     context: "DevTimeTravel snapshots growing without compaction strategy"
+#     alternatives:
+#       - "Manual cleanup processes"
+#       - "Simple time-based retention"
+#       - "Layered compression with semantic preservation"
+#     chosen: "Layered compression with semantic preservation"
+#     rationale: "Balances storage efficiency with context preservation"
+#     consequences: 
+#       - "Reduced storage overhead"
+#       - "Maintained historical context accessibility"
+#       - "Enabled automated pressure management"
+#     status: "active"
+#     tags: ["storage", "compression", "devtimetravel"]
+#     related_snapshots: []
+#     tldl_references: ["TLDL-2025-09-02-DevTimeTravelCompression"]
+
+# Future Integration:
+# - Decision capture during snapshot creation
+# - Automatic tagging based on file changes
+# - Cross-references with TLDL entries
+# - Decision impact analysis and tracking
+# - Semantic similarity grouping for related decisions

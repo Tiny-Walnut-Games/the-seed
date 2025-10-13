@@ -1,0 +1,19 @@
+Command: /usr/bin/python3 engine/experiment_harness.py run --manifest assets/experiments/school/outputs/runs/run_0001/harness_manifest.yaml
+Exit Code: 0
+
+STDOUT:
+Failed to save checkpoint: Object of type BatchStatus is not JSON serializable
+Failed to save checkpoint: Object of type BatchStatus is not JSON serializable
+Failed to save checkpoint: Object of type BatchStatus is not JSON serializable
+Failed to save checkpoint: Object of type BatchStatus is not JSON serializable
+Completed run: component_performance_optimization_20250906_021715_run_0000 - Status: completed
+Experiment completed: component_performance_optimization_20250906_021715
+Runs: 1/1 successful
+
+STDERR:
+2025-09-06 02:17:15,026 - ExperimentHarness - INFO - Loaded experiment manifest: Component Performance Optimization
+2025-09-06 02:17:15,026 - ExperimentHarness - INFO - Starting experiment: component_performance_optimization_20250906_021715
+2025-09-06 02:17:15,026 - ExperimentHarness - INFO - Generated 1 experiment runs
+2025-09-06 02:17:15,029 - ExperimentHarness - INFO - Experiment results saved to: experiments/results/component_performance_optimization_20250906_021715_20250906_021715.json
+2025-09-06 02:17:15,029 - ExperimentHarness - WARNING - Processed items below threshold: 1 < 14
+2025-09-06 02:17:15,029 - ExperimentHarness - INFO - Experiment component_performance_optimization_20250906_021715 completed successfully

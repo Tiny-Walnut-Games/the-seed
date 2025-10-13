@@ -1,0 +1,18 @@
+{
+    "name": "TWG.TLDA.TestSuite.Editor",
+    "rootNamespace": "TWG.TLDA.TestSuite.Editor",
+    "references": [
+        "GUID:33e003e7661db6744b4f137e3f203ec6"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-09-06T02:20:00Z",
+  "experiments_executed": 2,
+  "successful_experiments": 2,
+  "output_directory": "assets/experiments/school/outputs/runs",
+  "artifact_paths": [
+    "assets/experiments/school/outputs/runs/run_0002/run_metadata.json",
+    "assets/experiments/school/outputs/runs/run_0002/unity_manifest.yaml",
+    "assets/experiments/school/outputs/runs/run_0002/harness_manifest.yaml",
+    "assets/experiments/school/outputs/runs/run_0002/execution_logs.txt",
+    "assets/experiments/school/outputs/runs/run_0001/run_metadata.json",
+    "assets/experiments/school/outputs/runs/run_0001/unity_manifest.yaml",
+    "assets/experiments/school/outputs/runs/run_0001/harness_manifest.yaml",
+    "assets/experiments/school/outputs/runs/run_0001/execution_logs.txt"
+  ],
+  "stage": "3",
+  "workflow": "school"
+}
