@@ -1,0 +1,193 @@
+# 🧙‍♂️ Living Dev Agent Roadmap Configuration
+# Sacred scroll for RitualBot automation and self-care evolution
+
+metadata:
+  version: "1.0.0"
+  created: "2025-09-02"
+  last_updated: "2025-09-02"
+  template_origin: "TWG-TLDA"
+  managed_by: "RitualBot"
+
+# Decision Ledger (Defaults, Locked Unless Reopened)
+decision_ledger:
+  naming_layering:
+    decision: "Dual-layer (pragmatic + mythic)"
+    rationale: "Accessibility + Lore"
+    reopen_trigger: "Major refactor"
+    locked: true
+  
+  emoji_protocol:
+    decision: "📓 journal, 💡 idea"
+    rationale: "Visual + parsing"
+    reopen_trigger: "If collisions arise"
+    locked: true
+    
+  journal_dir_choice:
+    decision: "User-chosen at onboarding (default local)"
+    rationale: "Flexibility"
+    reopen_trigger: "Complaints about bland naming"
+    locked: true
+    
+  auto_merge_strategy:
+    decision: "ritual-auto label required"
+    rationale: "Safety"
+    reopen_trigger: "Trusted baseline established"
+    locked: true
+    
+  dependabot_cadence:
+    decision: "Weekly"
+    rationale: "Noise reduction"
+    reopen_trigger: "High CVE velocity"
+    locked: true
+    
+  melt_budget_default:
+    decision: 2
+    rationale: "Conservative pacing"
+    reopen_trigger: "Usage telemetry suggests raise"
+    locked: true
+    
+  future_encryption:
+    decision: "Defer to Phase 'Self-Care Hardening'"
+    rationale: "Avoid premature crypto"
+    reopen_trigger: "Privacy concern raised"
+    locked: true
+    
+  template_sync_ritualbot:
+    decision: "Disabled until Phase 1 PR/issue created"
+    rationale: "Avoid surprise PRs"
+    reopen_trigger: "Roadmap Phase 1 start"
+    locked: true
+
+# Active Phase Configuration
+active_phase:
+  id: "self_care_phase_1"
+  name: "Self-Care Phase 1 (Stabilize & Observe)"
+  description: "Foundation stabilization with telemetry and leak detection"
+  start_date: "2025-09-02"
+  status: "in_progress"
+  
+  exit_criteria:
+    - "Journal leakage scan validated on multiple dry runs"
+    - "Idea catalog holds ≥ 30 sparks without degradation"
+    - "Melt budget telemetry exported for 5 cycles"
+  
+  checklist:
+    - task: "Add tiny CLI: list ideas by tag"
+      status: "completed"
+      notes: "Implemented via --filter-tag option"
+    - task: "Add README pointer to self_care_engine doc"
+      status: "completed"
+      notes: "Added comprehensive Self-Care Engine section to README"
+      assigned_issue: null
+    - task: "Add test: leak detector catches staged stray 📓 file"
+      status: "completed"
+      notes: "Implemented in test_selfcare_system.py - detects journal emoji in staged files"
+      assigned_issue: null
+    - task: "Capture baseline metrics snapshot"
+      status: "completed"
+      notes: "scripts/capture_baseline_metrics.py created and executed - 52 ideas captured"
+      assigned_issue: null
+
+# Upcoming Phases (Parked)
+upcoming_phases:
+  - id: "ritualbot_phase_1"
+    name: "RitualBot Phase 1: Template drift engine"
+    description: "Auto-PR generator for internal sync"
+    dependencies: ["self_care_phase_1"]
+    priority: "high"
+    
+  - id: "semantic_clustering"
+    name: "Semantic clustering for duplicate ideas"
+    description: "CLIP-lite implementation for idea deduplication"
+    dependencies: ["self_care_phase_1"]
+    priority: "medium"
+    
+  - id: "sleep_adaptive_gating"
+    name: "Sleep-adaptive gating heuristics for governors"
+    description: "Cognitive load adaptation based on developer state"
+    dependencies: ["self_care_phase_1"]
+    priority: "medium"
+    
+  - id: "chronicle_encryption"
+    name: "Chronicle encryption layer (privacy hardening)"
+    description: "End-to-end encryption for sensitive development data"
+    dependencies: ["self_care_phase_1"]
+    priority: "low"
+    
+  - id: "ui_tui_navigator"
+    name: "UI/TUI navigator for Vault & Sluice"
+    description: "Interactive interface for idea management"
+    dependencies: ["self_care_phase_1"]
+    priority: "low"
+
+# Backlog Park (Stillness Meadow)
+backlog:
+  - task: "Label color scheme for all ritual labels"
+    priority: "low"
+    estimated_effort: "1h"
+    
+  - task: "Weekly ritual: review and promote max 2 ideas"
+    priority: "medium" 
+    estimated_effort: "30min"
+    recurring: "weekly"
+    
+  - task: "Add badge for Ritual Updates enabled"
+    priority: "low"
+    estimated_effort: "30min"
+    
+  - task: "Dry-run echo for auto-merge workflow"
+    priority: "medium"
+    estimated_effort: "2h"
+    
+  - task: "README badge snippet for RitualBot status"
+    priority: "low"
+    estimated_effort: "15min"
+
+# Auto-Issue Generation Configuration
+auto_issue:
+  enabled: true
+  schedule: "weekly"  # weekly, daily, or manual
+  max_issues_per_run: 1
+  title_template: "🧙‍♂️ [RitualBot] Weekly Focus: {phase_name} - {task_title}"
+  label_prefix: "ritual-auto"
+  assign_to_copilot: false  # Only if user explicitly enables
+  
+  issue_template: |
+    ## 🧙‍♂️ Weekly Ritual Focus
+    
+    **Phase**: {phase_name}
+    **Task**: {task_title}
+    **Generated**: {generation_date}
+    
+    ### 🎯 Context
+    {task_description}
+    
+    ### ✅ Definition of Done
+    {exit_criteria}
+    
+    ### 🔗 Related
+    - **Roadmap Phase**: {phase_id}
+    - **Previous Issues**: {related_issues}
+    
+    ---
+    *This is an auto-generated ritual scroll. Modify as needed for your quest.*
+
+# Changelog Integration
+changelog:
+  current_entries:
+    - "[WIP] Add Self-Care & Idea Catalog System (#26)"
+    - "[WIP] Add Dependabot & Ritual Auto-Update (RitualBot Phase 0) (#27)"
+  
+  next_entry_template: "[RitualBot] {phase_name} - {task_title} (#{issue_number})"
+
+# Reopen Protocol
+reopen_protocol:
+  trigger: "REOPEN: <reason>"
+  format: "Comment with trigger under Decision Ledger row"
+  requires_approval: true
+  
+# Intake Rules
+intake_rules:
+  new_sparks: "Add to Backlog Park"
+  triage_schedule: "Weekly ritual or phase review"
+  escalation_path: "Active phase if critical"

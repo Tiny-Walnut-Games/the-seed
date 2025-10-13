@@ -1,0 +1,213 @@
+{
+  "test_info": {
+    "name": "TWG-TLDA System Component Performance Test",
+    "description": "Actual performance measurements of real system components",
+    "start_time": 1757122632.633402,
+    "repository_root": "/home/runner/work/TWG-TLDA/TWG-TLDA",
+    "python_version": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "platform": "linux",
+    "end_time": 1757122632.6674154,
+    "total_duration": 0.03401327133178711
+  },
+  "discovery": {
+    "python_modules_found": 141,
+    "sample_modules": [
+      {
+        "name": "demo_plugin_system",
+        "path": "demo_plugin_system.py",
+        "full_path": "/home/runner/work/TWG-TLDA/TWG-TLDA/demo_plugin_system.py",
+        "size_bytes": 15701
+      },
+      {
+        "name": "governance",
+        "path": "engine/governance.py",
+        "full_path": "/home/runner/work/TWG-TLDA/TWG-TLDA/engine/governance.py",
+        "size_bytes": 4598
+      },
+      {
+        "name": "semantic_anchors",
+        "path": "engine/semantic_anchors.py",
+        "full_path": "/home/runner/work/TWG-TLDA/TWG-TLDA/engine/semantic_anchors.py",
+        "size_bytes": 15727
+      },
+      {
+        "name": "telemetry",
+        "path": "engine/telemetry.py",
+        "full_path": "/home/runner/work/TWG-TLDA/TWG-TLDA/engine/telemetry.py",
+        "size_bytes": 15244
+      },
+      {
+        "name": "redaction_transforms",
+        "path": "engine/redaction_transforms.py",
+        "full_path": "/home/runner/work/TWG-TLDA/TWG-TLDA/engine/redaction_transforms.py",
+        "size_bytes": 12205
+      }
+    ]
+  },
+  "test_results": {
+    "file_parsing": {
+      "test_name": "file_parsing_performance",
+      "description": "Actual timing of Python file parsing",
+      "measurements": [
+        {
+          "module_name": "demo_plugin_system",
+          "file_path": "demo_plugin_system.py",
+          "file_size_bytes": 15701,
+          "parsing_time_seconds": 0.0037219309999727557,
+          "lines_of_code": 361,
+          "parse_success": true,
+          "parse_error": null
+        },
+        {
+          "module_name": "governance",
+          "file_path": "engine/governance.py",
+          "file_size_bytes": 4598,
+          "parsing_time_seconds": 0.0008570170000439248,
+          "lines_of_code": 119,
+          "parse_success": true,
+          "parse_error": null
+        },
+        {
+          "module_name": "semantic_anchors",
+          "file_path": "engine/semantic_anchors.py",
+          "file_size_bytes": 15727,
+          "parsing_time_seconds": 0.002027052000016738,
+          "lines_of_code": 390,
+          "parse_success": true,
+          "parse_error": null
+        },
+        {
+          "module_name": "telemetry",
+          "file_path": "engine/telemetry.py",
+          "file_size_bytes": 15244,
+          "parsing_time_seconds": 0.0022694660000297517,
+          "lines_of_code": 401,
+          "parse_success": true,
+          "parse_error": null
+        },
+        {
+          "module_name": "redaction_transforms",
+          "file_path": "engine/redaction_transforms.py",
+          "file_size_bytes": 12205,
+          "parsing_time_seconds": 0.0014517729999852236,
+          "lines_of_code": 337,
+          "parse_success": true,
+          "parse_error": null
+        },
+        {
+          "module_name": "batch_evaluation",
+          "file_path": "engine/batch_evaluation.py",
+          "file_size_bytes": 23320,
+          "parsing_time_seconds": 0.0032800820000034037,
+          "lines_of_code": 591,
+          "parse_success": true,
+          "parse_error": null
+        },
+        {
+          "module_name": "anchor_data_classes",
+          "file_path": "engine/anchor_data_classes.py",
+          "file_size_bytes": 1698,
+          "parsing_time_seconds": 0.0004205590000196935,
+          "lines_of_code": 57,
+          "parse_success": true,
+          "parse_error": null
+        },
+        {
+          "module_name": "incremental_state_diff",
+          "file_path": "engine/incremental_state_diff.py",
+          "file_size_bytes": 16507,
+          "parsing_time_seconds": 0.002342442999974992,
+          "lines_of_code": 431,
+          "parse_success": true,
+          "parse_error": null
+        },
+        {
+          "module_name": "ab_evaluator",
+          "file_path": "engine/ab_evaluator.py",
+          "file_size_bytes": 37477,
+          "parsing_time_seconds": 0.005783066999981656,
+          "lines_of_code": 935,
+          "parse_success": true,
+          "parse_error": null
+        },
+        {
+          "module_name": "visual_overlays",
+          "file_path": "engine/visual_overlays.py",
+          "file_size_bytes": 16193,
+          "parsing_time_seconds": 0.0024702329999968242,
+          "lines_of_code": 412,
+          "parse_success": true,
+          "parse_error": null
+        }
+      ],
+      "timestamp": 1757122632.6377313
+    },
+    "directory_traversal": {
+      "test_name": "directory_traversal_performance",
+      "description": "Actual timing of filesystem operations",
+      "measurements": [
+        {
+          "operation": "list_root",
+          "execution_time_seconds": 8.443900003385352e-05,
+          "result_count": 65,
+          "success": true,
+          "error": null
+        },
+        {
+          "operation": "walk_tree",
+          "execution_time_seconds": 0.003105795000010403,
+          "result_count": 185,
+          "success": true,
+          "error": null
+        },
+        {
+          "operation": "stat_files",
+          "execution_time_seconds": 0.000431089000016982,
+          "result_count": 30,
+          "success": true,
+          "error": null
+        }
+      ],
+      "timestamp": 1757122632.663027
+    },
+    "tldl_processing": {
+      "test_name": "tldl_processing_performance",
+      "description": "Actual timing of TLDL file operations",
+      "measurements": [
+        {
+          "operation": "count_tldl_files",
+          "execution_time_seconds": 6.3799999963976e-05,
+          "file_count": 40,
+          "success": true
+        },
+        {
+          "operation": "read_sample_tldl_files",
+          "execution_time_seconds": 0.0002925499999832937,
+          "files_processed": 5,
+          "total_characters": 49193,
+          "total_lines": 1092,
+          "average_read_time_ms": 0.058509999996658735,
+          "success": true
+        }
+      ],
+      "timestamp": 1757122632.666753
+    }
+  },
+  "summary": {
+    "repository_characteristics": {
+      "total_python_files": 141,
+      "total_python_size_bytes": 2077959,
+      "average_file_size_bytes": 14737.297872340425,
+      "tldl_files_found": 40
+    },
+    "performance_characteristics": {
+      "average_parse_time_ms": 2.4623623000024963,
+      "max_parse_time_ms": 5.783066999981656,
+      "average_traversal_time_ms": 1.2071076666870795,
+      "tldl_average_read_time_ms": 0.058509999996658735
+    },
+    "system_health": {
+      "parse_success_rate": 100.0
+    }
+  }
+}

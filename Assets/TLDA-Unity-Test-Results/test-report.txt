@@ -1,0 +1,134 @@
+🧪 Unity Test Suite Report
+Generated: 2025-09-06 09:39:25
+Execution Time: 1.22s
+Passed: 5
+Failed: 4
+Warnings: 0
+Overall Status: FAILED
+
+=== Test Logs ===
+[09:39:18] 🧪 Starting Unity Test Suite execution...
+[09:39:18] 🎮 Running Unity-specific tests...
+[09:39:18] Unity Version: 6000.2.0f1
+[09:39:18] Build scenes configured: 0
+[09:39:18] ✅ Required directory found: Assets
+[09:39:18] ✅ Required directory found: Packages
+[09:39:18] ✅ Required directory found: ProjectSettings
+[09:39:18] 🧙‍♂️ Running Symbolic Linter...
+[09:39:18] ❌ Symbolic Linter failed: Traceback (most recent call last):
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\symbolic_linter.py", line 313, in main
+    success = linter.run_analysis()
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\symbolic_linter.py", line 236, in run_analysis
+    self.log_info(f"Starting symbolic analysis for: {self.path}", EMOJI_MAGIC)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\symbolic_linter.py", line 57, in log_info
+    print(f"{Colors.OKCYAN}{emoji} [INFO]{Colors.ENDC} {message}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 5-8: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\symbolic_linter.py", line 327, in <module>
+    main()
+    ~~~~^^
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\symbolic_linter.py", line 322, in main
+    print(f"{Colors.FAIL}{EMOJI_ERROR} Analysis failed with exception: {e}{Colors.ENDC}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 5: character maps to <undefined>
+
+[09:39:18] 📜 Running TLDL Documentation Validation...
+[09:39:18] ❌ TLDL Validation failed: Traceback (most recent call last):
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\validate_docs.py", line 363, in main
+    success = validator.run_validation()
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\validate_docs.py", line 288, in run_validation
+    self.log_info(f"Starting TLDL validation for: {self.tldl_path}", EMOJI_MAGIC)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\validate_docs.py", line 76, in log_info
+    print(f"{Colors.OKCYAN}{emoji} [INFO]{Colors.ENDC} {message}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 5-8: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\validate_docs.py", line 377, in <module>
+    main()
+    ~~~~^^
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\validate_docs.py", line 372, in main
+    print(f"{Colors.FAIL}{EMOJI_ERROR} Validation failed with exception: {e}{Colors.ENDC}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 5: character maps to <undefined>
+
+[09:39:18] 🐛 Running Debug Overlay Validation...
+[09:39:19] ❌ Debug Overlay Validation failed: Traceback (most recent call last):
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\DebugOverlayValidation\debug_overlay_validator.py", line 343, in main
+    success = validator.run_validation()
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\DebugOverlayValidation\debug_overlay_validator.py", line 242, in run_validation
+    self.log_info(f"Starting debug overlay validation for: {self.path}", EMOJI_MAGIC)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\DebugOverlayValidation\debug_overlay_validator.py", line 80, in log_info
+    print(f"{Colors.OKCYAN}{emoji} [INFO]{Colors.ENDC} {message}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 5-8: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\DebugOverlayValidation\debug_overlay_validator.py", line 357, in <module>
+    main()
+    ~~~~^^
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\DebugOverlayValidation\debug_overlay_validator.py", line 352, in main
+    print(f"{Colors.FAIL}{EMOJI_ERROR} Validation failed with exception: {e}{Colors.ENDC}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 5: character maps to <undefined>
+
+[09:39:19] 🏗️ Running System Architecture Linter...
+[09:39:19] ❌ System Linter failed: Traceback (most recent call last):
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\system_linter.py", line 315, in main
+    success = linter.run_system_analysis()
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\system_linter.py", line 229, in run_system_analysis
+    self.log_info(f"Starting system architecture analysis for: {self.path}", EMOJI_MAGIC)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\system_linter.py", line 74, in log_info
+    print(f"{Colors.OKCYAN}{emoji} [INFO]{Colors.ENDC} {message}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 5-8: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\system_linter.py", line 329, in <module>
+    main()
+    ~~~~^^
+  File "E:\Tiny_Walnut_Games\TWG-TLDA\src\SymbolicLinter\system_linter.py", line 324, in main
+    print(f"{Colors.FAIL}{EMOJI_ERROR} Analysis failed with exception: {e}{Colors.ENDC}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 5: character maps to <undefined>
+
+[09:39:19] 🎉 Test suite complete! Passed: 5, Failed: 4, Warnings: 0
+
