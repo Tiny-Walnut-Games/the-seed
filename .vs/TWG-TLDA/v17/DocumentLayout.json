@@ -1,0 +1,853 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\twg\\tlda\\tools\\school\\editor\\experimentrunner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\twg\\tlda\\tools\\school\\editor\\experimentrunner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TLDA-Unity-Test-Results\\Editor.log||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TLDA-Unity-Test-Results\\Editor.log||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|e:\\tiny_walnut_games\\twg-tlda\\assets\\tlda-unity-test-results\\test-report.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\tlda-unity-test-results\\test-report.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\harness_manifest.yaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\harness_manifest.yaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\unity_manifest.yaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\unity_manifest.yaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Tiny_Walnut_Games\\TWG-TLDA\\src\\SymbolicLinter\\SymbolResolutionLinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\SymbolicLinter\\SymbolResolutionLinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\chronastimeroverlay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\chronastimeroverlay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\twg\\tlda\\tools\\school\\editor\\resultvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\twg\\tlda\\tools\\school\\editor\\resultvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\twg\\tlda\\tools\\school\\editor\\reportsynthesizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\twg\\tlda\\tools\\school\\editor\\reportsynthesizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\twg\\tlda\\tools\\testsuite\\editor\\unitytestsuitemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\twg\\tlda\\tools\\testsuite\\editor\\unitytestsuitemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|e:\\tiny_walnut_games\\twg-tlda\\assets\\mobilegametemplate\\scripts\\systems\\shopsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\shopsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5840F43E-B173-BB87-F506-51DF2E82B865}|LivingDevAgent.Runtime.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\runtime\\companionwarblerintegration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5840F43E-B173-BB87-F506-51DF2E82B865}|LivingDevAgent.Runtime.csproj|solutionrelative:assets\\plugins\\tlda\\runtime\\companionwarblerintegration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\systems\\inventorysystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\inventorysystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\systems\\eventsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\eventsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\systems\\adssystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\adssystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\core\\mobileuimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\core\\mobileuimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\gameplay\\mobilegameplaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\gameplay\\mobilegameplaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\systems\\adsplatforms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\adsplatforms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\systems\\guildsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\guildsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\systems\\eventssystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\eventssystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5840F43E-B173-BB87-F506-51DF2E82B865}|LivingDevAgent.Runtime.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\runtime\\companionbattleui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5840F43E-B173-BB87-F506-51DF2E82B865}|LivingDevAgent.Runtime.csproj|solutionrelative:assets\\plugins\\tlda\\runtime\\companionbattleui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\scribecore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\scribecore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\ui\\levelcarousel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\ui\\levelcarousel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\systems\\herocollectionsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\herocollectionsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\twg\\tlda\\tools\\spriteforge\\editor\\spriteforgeeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\twg\\tlda\\tools\\spriteforge\\editor\\spriteforgeeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Tiny_Walnut_Games\\TWG-TLDA\\.github\\copilot-instructions.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\copilot-instructions.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\spellsmithcodewindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\spellsmithcodewindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Sacred Code Classification Protocol.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Sacred Code Classification Protocol.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5840F43E-B173-BB87-F506-51DF2E82B865}|LivingDevAgent.Runtime.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\runtime\\companionbattlecore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5840F43E-B173-BB87-F506-51DF2E82B865}|LivingDevAgent.Runtime.csproj|solutionrelative:assets\\plugins\\tlda\\runtime\\companionbattlecore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5840F43E-B173-BB87-F506-51DF2E82B865}|LivingDevAgent.Runtime.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\runtime\\companionbattlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5840F43E-B173-BB87-F506-51DF2E82B865}|LivingDevAgent.Runtime.csproj|solutionrelative:assets\\plugins\\tlda\\runtime\\companionbattlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\twg\\tlda\\tools\\spriteforge\\runtime\\tldanftbridge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\twg\\tlda\\tools\\spriteforge\\runtime\\tldanftbridge.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\systems\\inventorycomponents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\inventorycomponents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\systems\\herodetailsview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\herodetailsview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\mobilegametemplate\\scripts\\systems\\guildpanels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\mobilegametemplate\\scripts\\systems\\guildpanels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\twg\\tlda\\tools\\school\\editor\\inventorycollector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\twg\\tlda\\tools\\school\\editor\\inventorycollector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\terminusshellconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\terminusshellconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\scribetemplatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\scribetemplatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\scriberaweditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\scriberaweditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\scribepreviewrenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\scribepreviewrenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\scribenavigator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\scribenavigator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\scribeimagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\scribeimagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\scribegitwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\scribegitwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\scribeformbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\scribeformbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\plugins\\tlda\\editor\\scribecommitwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\plugins\\tlda\\editor\\scribecommitwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\twg\\tlda\\tools\\spriteforge\\core\\spriteforgeenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{621727FC-8245-CEB9-5AF1-FFCB92D87218}|Assembly-CSharp.csproj|solutionrelative:assets\\twg\\tlda\\tools\\spriteforge\\core\\spriteforgeenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Tiny_Walnut_Games\\TWG-TLDA\\src\\DebugOverlayValidation\\DebugOverlayValidation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\DebugOverlayValidation\\DebugOverlayValidation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\twg\\tlda\\tools\\alchemist\\editor\\alchemistmanifestgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\twg\\tlda\\tools\\alchemist\\editor\\alchemistmanifestgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\TestSuite\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TWG\\TLDA\\Tools\\TestSuite\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|E:\\Tiny_Walnut_Games\\TWG-TLDA\\assets\\twg\\tlda\\tools\\testsuite\\editor\\oneclickvalidationrunner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3CB13EA-B46D-ADC8-DDDF-4419B742709A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\twg\\tlda\\tools\\testsuite\\editor\\oneclickvalidationrunner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Tiny_Walnut_Games\\TWG-TLDA\\src\\DebugOverlayValidation\\debug_overlay_validator.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\DebugOverlayValidation\\debug_overlay_validator.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|e:\\tiny_walnut_games\\twg-tlda\\assets\\tlda-unity-test-results\\bug-fix-report.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{7AF63189-7F9D-7806-A54D-289463F964B1}|LivingDevAgent.Editor.csproj|solutionrelative:assets\\tlda-unity-test-results\\bug-fix-report.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 14,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "bug-fix-report.md",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TLDA-Unity-Test-Results\\bug-fix-report.md",
+              "RelativeDocumentMoniker": "Assets\\TLDA-Unity-Test-Results\\bug-fix-report.md",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TLDA-Unity-Test-Results\\bug-fix-report.md",
+              "RelativeToolTip": "Assets\\TLDA-Unity-Test-Results\\bug-fix-report.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-09-06T15:05:33.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "test-report.txt",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TLDA-Unity-Test-Results\\test-report.txt",
+              "RelativeDocumentMoniker": "Assets\\TLDA-Unity-Test-Results\\test-report.txt",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TLDA-Unity-Test-Results\\test-report.txt",
+              "RelativeToolTip": "Assets\\TLDA-Unity-Test-Results\\test-report.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-09-06T14:56:25.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Editor.log",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TLDA-Unity-Test-Results\\Editor.log",
+              "RelativeDocumentMoniker": "Assets\\TLDA-Unity-Test-Results\\Editor.log",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TLDA-Unity-Test-Results\\Editor.log",
+              "RelativeToolTip": "Assets\\TLDA-Unity-Test-Results\\Editor.log",
+              "ViewState": "AgIAAB6vAAAAAAAAAAAgwDWvAAAvAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF8SURBVDhPjVNLTgJBEG1lwpoFB3GNK9fieA48hD8iwT/ihwgSDAIHgAGXXsEV18CNzL/LquqZdsYM6kteXqcy3fWqpmpNRBgOhyABBEgpAFVKPIMUcYzUyOU\u002BXM/b2qtU3vkSfRjjZTCAMAw1A2LwzdFoBPP5HNqdzuL27n4juibWI\u002BUshBA1DIkhEx9iEorFotgslQqGYbxxAGFEqt1MxmPWJLbLZdZ\u002Bv89q5PMFPiTR6z2zdaxR0fXA0XTBcVywkb4fwHXjRteecIDNQ7UmExVYAdPcxYaqclN46na5WenMKjtlVnTYwcXlVYaDqImW9beD5N/TeGy32QHXm6hZ03ZgiSQHp2fnWQ4oBmJqWSqwAqZpZjt4aLXAD4J0VqyZsmoubfB8H2r1eoaD6NXZ9HcHO\u002BSA3f4AjifXl8rItOETM8ckB9WTWpYD9RdeZ1PWVWAHWXPQaDb59f/w8LiqHeh1pvGkCaP6qB8yXusoxmuNZ7XmII4O9vGuEF86osuDYRkpYQAAAABJRU5ErkJggg==",
+              "WhenOpened": "2025-09-06T14:56:25.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "unity_manifest.yaml",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\unity_manifest.yaml",
+              "RelativeDocumentMoniker": "Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\unity_manifest.yaml",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\unity_manifest.yaml",
+              "RelativeToolTip": "Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\unity_manifest.yaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-09-06T14:53:26.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "harness_manifest.yaml",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\harness_manifest.yaml",
+              "RelativeDocumentMoniker": "Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\harness_manifest.yaml",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\harness_manifest.yaml",
+              "RelativeToolTip": "Assets\\experiments\\school\\outputs\\runs\\run_40358b59_20250906_104406\\harness_manifest.yaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-09-06T14:53:26.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "debug_overlay_validator.py",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\src\\DebugOverlayValidation\\debug_overlay_validator.py",
+              "RelativeDocumentMoniker": "src\\DebugOverlayValidation\\debug_overlay_validator.py",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\src\\DebugOverlayValidation\\debug_overlay_validator.py",
+              "RelativeToolTip": "src\\DebugOverlayValidation\\debug_overlay_validator.py",
+              "ViewState": "AgIAAIoBAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-09-06T14:46:31.477Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ReportSynthesizer.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ReportSynthesizer.cs",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ReportSynthesizer.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ReportSynthesizer.cs",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ReportSynthesizer.cs",
+              "ViewState": "AgIAADgCAAAAAAAAAAApwAsCAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T13:00:18.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CompanionWarblerIntegration.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Runtime\\CompanionWarblerIntegration.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Runtime\\CompanionWarblerIntegration.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Runtime\\CompanionWarblerIntegration.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Runtime\\CompanionWarblerIntegration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T12:48:57.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "README.md",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\TestSuite\\README.md",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\TestSuite\\README.md",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\TestSuite\\README.md",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\TestSuite\\README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-09-06T12:47:57.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "OneClickValidationRunner.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\TestSuite\\Editor\\OneClickValidationRunner.cs",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\TestSuite\\Editor\\OneClickValidationRunner.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\TestSuite\\Editor\\OneClickValidationRunner.cs",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\TestSuite\\Editor\\OneClickValidationRunner.cs",
+              "ViewState": "AgIAABEBAAAAAAAAAIBZwBcBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T12:45:55.71Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UnityTestSuiteManager.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\TestSuite\\Editor\\UnityTestSuiteManager.cs",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\TestSuite\\Editor\\UnityTestSuiteManager.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\TestSuite\\Editor\\UnityTestSuiteManager.cs",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\TestSuite\\Editor\\UnityTestSuiteManager.cs",
+              "ViewState": "AgIAAFwDAAAAAAAAAAAowHUDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T12:45:15.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "copilot-instructions.md",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\.github\\copilot-instructions.md",
+              "RelativeDocumentMoniker": ".github\\copilot-instructions.md",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\.github\\copilot-instructions.md",
+              "RelativeToolTip": ".github\\copilot-instructions.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-09-06T11:09:59.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Sacred Code Classification Protocol.md",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Sacred Code Classification Protocol.md",
+              "RelativeDocumentMoniker": "Assets\\Sacred Code Classification Protocol.md",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Sacred Code Classification Protocol.md",
+              "RelativeToolTip": "Assets\\Sacred Code Classification Protocol.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-09-06T11:09:51.345Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ExperimentRunner.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ExperimentRunner.cs",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ExperimentRunner.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ExperimentRunner.cs",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ExperimentRunner.cs",
+              "ViewState": "AgIAALYBAAAAAAAAAAAewJ0BAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T11:03:41.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "AlchemistManifestGenerator.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\Alchemist\\Editor\\AlchemistManifestGenerator.cs",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\Alchemist\\Editor\\AlchemistManifestGenerator.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\Alchemist\\Editor\\AlchemistManifestGenerator.cs",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\Alchemist\\Editor\\AlchemistManifestGenerator.cs",
+              "ViewState": "AgIAADECAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T11:02:28.561Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "SpriteForgeEditor.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Editor\\SpriteForgeEditor.cs",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Editor\\SpriteForgeEditor.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Editor\\SpriteForgeEditor.cs",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Editor\\SpriteForgeEditor.cs",
+              "ViewState": "AgIAAG8BAAAAAAAAAAAqwH8BAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T11:01:38.682Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ResultValidator.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ResultValidator.cs",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ResultValidator.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ResultValidator.cs",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ResultValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T11:01:01.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "TLDANFTBridge.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Runtime\\TLDANFTBridge.cs",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Runtime\\TLDANFTBridge.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Runtime\\TLDANFTBridge.cs",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Runtime\\TLDANFTBridge.cs",
+              "ViewState": "AgIAABgCAAAAAAAAAAAhwG4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T10:29:15.213Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AdsSystem.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\AdsSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\AdsSystem.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\AdsSystem.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\AdsSystem.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:33.469Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AdsPlatforms.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\AdsPlatforms.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\AdsPlatforms.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\AdsPlatforms.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\AdsPlatforms.cs",
+              "ViewState": "AgIAANsBAAAAAAAAAAAQwO0BAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:33.281Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CompanionBattleUI.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleUI.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleUI.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleUI.cs",
+              "ViewState": "AgIAAIoBAAAAAAAAAAAAAJoBAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:33.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "CompanionBattleManager.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleManager.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleManager.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleManager.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAQwCAAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:32.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "CompanionBattleCore.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleCore.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleCore.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleCore.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleCore.cs",
+              "ViewState": "AgIAAKYAAAAAAAAAAAAUwLsAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:32.509Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MobileGameplayController.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Gameplay\\MobileGameplayController.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Gameplay\\MobileGameplayController.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Gameplay\\MobileGameplayController.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Gameplay\\MobileGameplayController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:32.288Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "InventoryCollector.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\School\\Editor\\InventoryCollector.cs",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\InventoryCollector.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\School\\Editor\\InventoryCollector.cs",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\InventoryCollector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:32.121Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "TerminusShellConsole.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\TerminusShellConsole.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\TerminusShellConsole.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\TerminusShellConsole.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\TerminusShellConsole.cs",
+              "ViewState": "AgIAAPIDAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:31.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "SpellsmithCodeWindow.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\SpellsmithCodeWindow.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\SpellsmithCodeWindow.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\SpellsmithCodeWindow.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\SpellsmithCodeWindow.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:31.739Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "ScribeTemplateManager.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeTemplateManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\ScribeTemplateManager.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeTemplateManager.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\ScribeTemplateManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:31.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "ScribeRawEditor.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeRawEditor.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\ScribeRawEditor.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeRawEditor.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\ScribeRawEditor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:31.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ScribePreviewRenderer.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribePreviewRenderer.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\ScribePreviewRenderer.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribePreviewRenderer.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\ScribePreviewRenderer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:31.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "ScribeNavigator.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeNavigator.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\ScribeNavigator.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeNavigator.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\ScribeNavigator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:30.98Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ScribeImageManager.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeImageManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\ScribeImageManager.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeImageManager.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\ScribeImageManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:30.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "ScribeGitWindow.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeGitWindow.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\ScribeGitWindow.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeGitWindow.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\ScribeGitWindow.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:30.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "ScribeFormBuilder.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeFormBuilder.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\ScribeFormBuilder.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeFormBuilder.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\ScribeFormBuilder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:30.422Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ScribeCore.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeCore.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\ScribeCore.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeCore.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\ScribeCore.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:30.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "ScribeCommitWindow.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeCommitWindow.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\ScribeCommitWindow.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ScribeCommitWindow.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\ScribeCommitWindow.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:29.92Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ChronasTimerOverlay.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ChronasTimerOverlay.cs",
+              "RelativeDocumentMoniker": "Assets\\Plugins\\TLDA\\Editor\\ChronasTimerOverlay.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\Plugins\\TLDA\\Editor\\ChronasTimerOverlay.cs",
+              "RelativeToolTip": "Assets\\Plugins\\TLDA\\Editor\\ChronasTimerOverlay.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAQwDUAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:29.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "SpriteForgeEnums.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Core\\SpriteForgeEnums.cs",
+              "RelativeDocumentMoniker": "Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Core\\SpriteForgeEnums.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Core\\SpriteForgeEnums.cs",
+              "RelativeToolTip": "Assets\\TWG\\TLDA\\Tools\\SpriteForge\\Core\\SpriteForgeEnums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:29.594Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "MobileUIManager.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Core\\MobileUIManager.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Core\\MobileUIManager.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Core\\MobileUIManager.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Core\\MobileUIManager.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAApwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:29.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "LevelCarousel.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\UI\\LevelCarousel.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\UI\\LevelCarousel.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\UI\\LevelCarousel.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\UI\\LevelCarousel.cs",
+              "ViewState": "AgIAAG0BAAAAAAAAAAAAAIcBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:29.223Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ShopSystem.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\ShopSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\ShopSystem.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\ShopSystem.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\ShopSystem.cs",
+              "ViewState": "AgIAAC4DAAAAAAAAAAAgwEYCAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:29.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "InventorySystem.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\InventorySystem.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\InventorySystem.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\InventorySystem.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\InventorySystem.cs",
+              "ViewState": "AgIAABoBAAAAAAAAAAApwDsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:28.845Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "InventoryComponents.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\InventoryComponents.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\InventoryComponents.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\InventoryComponents.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\InventoryComponents.cs",
+              "ViewState": "AgIAAMQAAAAAAAAAAAAqwNQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:28.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "HeroDetailsView.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\HeroDetailsView.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\HeroDetailsView.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\HeroDetailsView.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\HeroDetailsView.cs",
+              "ViewState": "AgIAACECAAAAAAAAAAAswDMCAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:28.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "HeroCollectionSystem.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\HeroCollectionSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\HeroCollectionSystem.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\HeroCollectionSystem.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\HeroCollectionSystem.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAQwDgAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:28.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "GuildSystem.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\GuildSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\GuildSystem.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\GuildSystem.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\GuildSystem.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAALMBAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:27.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "GuildPanels.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\GuildPanels.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\GuildPanels.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\GuildPanels.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\GuildPanels.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAD4v0ADAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:27.798Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "EventsSystem.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\EventsSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\EventsSystem.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\EventsSystem.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\EventsSystem.cs",
+              "ViewState": "AgIAAN4DAAAAAAAAAAAhwO8DAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:27.61Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "EventsData.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\EventsData.cs",
+              "RelativeDocumentMoniker": "Assets\\MobileGameTemplate\\Scripts\\Systems\\EventsData.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\Assets\\MobileGameTemplate\\Scripts\\Systems\\EventsData.cs",
+              "RelativeToolTip": "Assets\\MobileGameTemplate\\Scripts\\Systems\\EventsData.cs",
+              "ViewState": "AgIAAEcBAAAAAAAAAAAhwA0BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:13:27.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "DebugOverlayValidation.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\src\\DebugOverlayValidation\\DebugOverlayValidation.cs",
+              "RelativeDocumentMoniker": "src\\DebugOverlayValidation\\DebugOverlayValidation.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\src\\DebugOverlayValidation\\DebugOverlayValidation.cs",
+              "RelativeToolTip": "src\\DebugOverlayValidation\\DebugOverlayValidation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:11:06.783Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SymbolResolutionLinter.cs",
+              "DocumentMoniker": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\src\\SymbolicLinter\\SymbolResolutionLinter.cs",
+              "RelativeDocumentMoniker": "src\\SymbolicLinter\\SymbolResolutionLinter.cs",
+              "ToolTip": "E:\\Tiny_Walnut_Games\\TWG-TLDA\\src\\SymbolicLinter\\SymbolResolutionLinter.cs",
+              "RelativeToolTip": "src\\SymbolicLinter\\SymbolResolutionLinter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T09:11:06.68Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

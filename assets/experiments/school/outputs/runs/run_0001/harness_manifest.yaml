@@ -1,0 +1,68 @@
+metadata:
+  name: "Component Performance Optimization"
+  description: "MonoBehaviour component can be optimized for better runtime performance"
+  version: "1.0.0"
+  author: "School Experiment Framework"
+  tags: ["school", "hypothesis", "improvementtarget"]
+
+model:
+  type: "behavioral_governance"
+  instance_config:
+    enable_intervention_tracking: true
+  performance_profile: "experiment"
+
+conditions:
+  hypothesis_types:
+    - "ImprovementTarget"
+
+corpus:
+  type: "synthetic"
+  size: 20
+  shuffle: true
+  seed: 10876
+
+processing:
+  batch_size: 5
+  mode: "sequential"
+  max_workers: 1
+  timeout_seconds: 60
+
+metrics:
+  behavioral_metrics:
+    - "processing_time_ms"
+  performance_metrics:
+    - "throughput_items_per_sec"
+    - "success_rate_pct"
+
+output:
+  base_path: "assets/experiments/school/outputs"
+  formats: ["json"]
+  artifacts:
+    save_raw_results: true
+    save_processed_metrics: true
+
+execution:
+  random_seeds:
+    global_seed: 10876
+    corpus_seed: 10976
+  retry_policy:
+    max_retries: 1
+  resource_limits:
+    max_memory_mb: 256
+    max_duration_minutes: 2
+
+validation:
+  success_criteria:
+    min_processed_items: 14
+    max_error_rate: 0.2
+
+integration:
+  chronicle_integration:
+    enabled: true
+    auto_generate_tldl: false
+  pet_events:
+    enabled: false
+  telemetry:
+    enabled: true
+    track_developer_state: false
+    include_system_metrics: true
