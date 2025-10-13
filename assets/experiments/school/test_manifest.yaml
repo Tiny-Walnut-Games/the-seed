@@ -1,0 +1,41 @@
+metadata:
+  name: "School Experiment Test Report"
+  description: "Testing report synthesis CLI with existing school experiment data"
+  version: "1.0.0"
+  author: "Alchemist Faculty"
+  created: "2025-09-06T16:17:00Z"
+  tags: ["alchemist", "school", "test"]
+  experiment_id: "school_test_001"
+  source_issue: "https://github.com/jmeyer1980/TWG-TLDA/issues/86"
+
+origin:
+  type: "gu_pot"
+  issue_number: 86
+  issue_url: "https://github.com/jmeyer1980/TWG-TLDA/issues/86"
+  stage_at_evaluation: "distilled"
+  logline_hash: "sha256:test_logline_hash"
+  tension_hash: "sha256:test_tension_hash"
+  irreversible_shift_declared: true
+  extracted_on: "2025-09-06T16:17:00Z"
+  alchemist_version: "0.1.0"
+
+experimental_context:
+  experiment_id: "school_test_001"
+  manifest_version: "0.1.0"
+  baseline_metrics:
+    - "engagement_metric"
+    - "completion_metric"
+    - "satisfaction_metric"
+  hypothesis: "Implementation of Alchemist Faculty report synthesis will improve development workflow"
+  expected_outcomes:
+    - "engagement_metric"
+    - "completion_metric"
+    - "satisfaction_metric"
+  seed_configuration:
+    global_seed: 3612
+    corpus_seed: 3735
+    processing_seed: 4068
+  reproducibility_requirements:
+    deterministic_execution: true
+    environment_isolation: true
+    version_pinning: true

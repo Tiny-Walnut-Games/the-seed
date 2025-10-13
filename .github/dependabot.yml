@@ -1,0 +1,170 @@
+# Dependabot configuration for automated dependency updates
+# This addresses the CID Schoolhouse Report recommendation
+
+version: 2
+updates:
+  # Python dependencies
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "jmeyer1980"
+    labels:
+      - "dependencies"
+      - "security"
+      - "python"
+    commit-message:
+      prefix: "🔒"
+      include: "scope"
+    # Group minor and patch updates
+    groups:
+      python-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Python security updates (daily)
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "security"
+      - "python"
+      - "ritual-auto"
+    commit-message:
+      prefix: "🔒🚨"
+      include: "scope"
+    # Only security updates
+    allow:
+      - dependency-type: "direct:production"
+        update-type: "security"
+      - dependency-type: "indirect:production"
+        update-type: "security"
+
+  # GitHub Actions dependencies
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "jmeyer1980"
+    labels:
+      - "dependencies"
+      - "security"
+      - "github-actions"
+    commit-message:
+      prefix: "🔒"
+      include: "scope"
+
+  # GitHub Actions security updates (daily)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "security"
+      - "github-actions"
+      - "ritual-auto"
+    commit-message:
+      prefix: "🔒🚨"
+      include: "scope"
+    # Only security updates
+    allow:
+      - dependency-type: "direct:production"
+        update-type: "security"
+      - dependency-type: "indirect:production"
+        update-type: "security"
+
+  # Node.js dependencies (if package.json exists)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "jmeyer1980"
+    labels:
+      - "dependencies"
+      - "security"
+      - "javascript"
+      - "warbler"
+      - "ritual-auto"
+    commit-message:
+      prefix: "🔒"
+      include: "scope"
+    # Group warbler packages together
+    # Group minor and patch updates including devDependencies separately
+    groups:
+      warbler-ecosystem:
+        patterns:
+          - "warbler-core"
+          - "warbler-pack-*"
+        update-types:
+          - "minor"
+          - "patch"
+      npm-minor-patch:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "warbler-core"
+          - "warbler-pack-*"
+        update-types:
+          - "minor"
+          - "patch"
+      npm-dev-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+        dependency-type: "development"
+    # Ignore major warbler-core updates for auto-merge
+    ignore:
+      - dependency-name: "@playwright/mcp"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "warbler-core"
+        update-types: ["version-update:semver-major"]
+        dependency-type: "production"
+
+  # Node.js security updates (daily)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "security"
+      - "javascript"
+      - "ritual-auto"
+    commit-message:
+      prefix: "🔒🚨"
+      include: "scope"
+    # Only security updates
+    allow:
+      - dependency-type: "direct:production"
+        update-type: "security"
+      - dependency-type: "indirect:production"
+        update-type: "security"
+      - dependency-type: "direct:development"
+        update-type: "security"
+    # Still ignore major MCP updates even for security
+    ignore:
+      - dependency-name: "@playwright/mcp"
+        update-types: ["version-update:semver-major"]
