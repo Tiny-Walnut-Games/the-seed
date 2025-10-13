@@ -1,0 +1,222 @@
+{
+  "faculty": "perceptual",
+  "test_suite": "comprehensive_perceptual_analysis",
+  "total_tests": 4,
+  "execution_time": 0.0003209114074707031,
+  "results": [
+    {
+      "test_name": "intent_recognition_ambiguity",
+      "description": "Test intent processing with increasingly ambiguous inputs",
+      "test_cases": [
+        {
+          "input": "I want to help",
+          "expected_ambiguity": "help what/whom?",
+          "expected_confidence": "medium",
+          "actual_result": {
+            "intent_type": "help_request",
+            "confidence": 0.3,
+            "processing_time": 0.01,
+            "metadata": {
+              "word_count": 4,
+              "question_marks": 0
+            }
+          },
+          "passed": true
+        },
+        {
+          "input": "This is broken",
+          "expected_ambiguity": "what is broken?",
+          "expected_confidence": "low",
+          "actual_result": {
+            "intent_type": "general_inquiry",
+            "confidence": 0.3,
+            "processing_time": 0.01,
+            "metadata": {
+              "word_count": 3,
+              "question_marks": 0
+            }
+          },
+          "passed": true
+        },
+        {
+          "input": "Can you do something about the thing?",
+          "expected_ambiguity": "vague references to 'something' and 'thing'",
+          "expected_confidence": "very_low",
+          "actual_result": {
+            "intent_type": "general_inquiry",
+            "confidence": 0.3,
+            "processing_time": 0.01,
+            "metadata": {
+              "word_count": 7,
+              "question_marks": 1
+            }
+          },
+          "passed": false
+        },
+        {
+          "input": "The quick brown fox jumps over the lazy dog",
+          "expected_ambiguity": "unrelated to typical development context",
+          "expected_confidence": "low",
+          "actual_result": {
+            "intent_type": "general_inquiry",
+            "confidence": 0.9,
+            "processing_time": 0.01,
+            "metadata": {
+              "word_count": 9,
+              "question_marks": 0
+            }
+          },
+          "passed": false
+        }
+      ],
+      "timestamp": 1757119068.4790192
+    },
+    {
+      "test_name": "context_boundary_detection",
+      "description": "Test ability to identify scope and boundaries in requests",
+      "test_cases": [
+        {
+          "input": "Fix the login bug in the authentication module",
+          "expected_scope": "specific_module",
+          "expected_boundaries": [
+            "authentication",
+            "login"
+          ],
+          "actual_result": {
+            "scope": "specific_module",
+            "boundaries": [
+              "module"
+            ],
+            "complexity": 1
+          },
+          "passed": true
+        },
+        {
+          "input": "Improve the entire system",
+          "expected_scope": "system_wide",
+          "expected_boundaries": [
+            "system"
+          ],
+          "actual_result": {
+            "scope": "specific_module",
+            "boundaries": [
+              "system"
+            ],
+            "complexity": 1
+          },
+          "passed": false
+        },
+        {
+          "input": "Update React components and also the database schema and maybe the API",
+          "expected_scope": "multi_domain",
+          "expected_boundaries": [
+            "frontend",
+            "backend",
+            "database"
+          ],
+          "actual_result": {
+            "scope": "multi_domain",
+            "boundaries": [
+              "component",
+              "api",
+              "database"
+            ],
+            "complexity": 3
+          },
+          "passed": true
+        }
+      ],
+      "timestamp": 1757119068.479114
+    },
+    {
+      "test_name": "noise_resistance",
+      "description": "Test ability to extract meaningful signal from noisy inputs",
+      "test_cases": [
+        {
+          "input": "umm, well, I think maybe we should, like, fix the... you know... the thing that's not working?",
+          "expected_signal": "fix something broken",
+          "noise_level": "high_filler_words",
+          "actual_result": {
+            "extracted_signal": ", ,   we should, , fix the... ... the thing that's not working?",
+            "noise_level": 5,
+            "emotion_level": 0,
+            "signal_clarity": 0.1
+          },
+          "passed": false
+        },
+        {
+          "input": "FIX LOGIN BUG ASAP!!!!!!",
+          "expected_signal": "fix login bug",
+          "noise_level": "high_emotion",
+          "actual_result": {
+            "extracted_signal": "FIX LOGIN BUG ASAP!!!!!!",
+            "noise_level": 0,
+            "emotion_level": 2,
+            "signal_clarity": 1.0
+          },
+          "passed": true
+        },
+        {
+          "input": "The authentication system needs attention (see issue #123, also mentioned in Slack, ref: login-problems.md)",
+          "expected_signal": "authentication system needs work",
+          "noise_level": "low_references",
+          "actual_result": {
+            "extracted_signal": "The authentication system needs attention (see issue #123, also mentioned in Slack, ref: login-problems.md)",
+            "noise_level": 0,
+            "emotion_level": 0,
+            "signal_clarity": 1.0
+          },
+          "passed": true
+        }
+      ],
+      "timestamp": 1757119068.4791865
+    },
+    {
+      "test_name": "multimodal_understanding",
+      "description": "Test processing of different input types and modalities",
+      "test_cases": [
+        {
+          "modality": "code_snippet",
+          "input": "def broken_function():\n    return None  # TODO: implement",
+          "expected_understanding": "incomplete_function",
+          "actual_result": {
+            "understanding_type": "code_analysis",
+            "contains_todo": true,
+            "estimated_completeness": 0.3
+          },
+          "passed": true
+        },
+        {
+          "modality": "error_message",
+          "input": "TypeError: 'NoneType' object is not callable at line 42",
+          "expected_understanding": "runtime_error",
+          "actual_result": {
+            "understanding_type": "error_analysis",
+            "error_type": "TypeError",
+            "severity": "high"
+          },
+          "passed": true
+        },
+        {
+          "modality": "structured_data",
+          "input": "{'issue': 123, 'priority': 'high', 'component': 'auth'}",
+          "expected_understanding": "issue_metadata",
+          "actual_result": {
+            "understanding_type": "metadata_analysis",
+            "structure_complexity": 3,
+            "data_completeness": 0.9
+          },
+          "passed": true
+        }
+      ],
+      "timestamp": 1757119068.4792817
+    }
+  ],
+  "summary_stats": {
+    "total_test_cases": 13,
+    "passed_test_cases": 9,
+    "pass_rate": 0.6923076923076923,
+    "test_categories": 4
+  },
+  "timestamp": 1757119068.4793334
+}

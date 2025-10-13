@@ -1,0 +1,54 @@
+name: 🔒 Create Dependabot Labels
+
+"on":
+  workflow_dispatch:
+    inputs:
+      force_recreate:
+        description: 'Force recreate existing labels'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  create-labels:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Create missing Dependabot labels
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          echo "🔒 Creating missing Dependabot labels..."
+          
+          # Create dependencies label
+          gh label create "dependencies" \
+            --description "Pull requests that update dependencies" \
+            --color "0366d6" || echo "⚠️ Label 'dependencies' may already exist"
+          
+          # Create github-actions label  
+          gh label create "github-actions" \
+            --description "Pull requests that update GitHub Actions" \
+            --color "2188ff" || echo "⚠️ Label 'github-actions' may already exist"
+          
+          # Create security label
+          gh label create "security" \
+            --description "Pull requests that address security issues" \
+            --color "d73a49" || echo "⚠️ Label 'security' may already exist"
+          
+          echo "✅ Done! Dependabot labels have been created."
+          
+      - name: Verify labels exist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Verifying labels were created:"
+          gh label list --search "dependencies" || echo "❌ dependencies label not found"
+          gh label list --search "github-actions" || echo "❌ github-actions label not found"  
+          gh label list --search "security" || echo "❌ security label not found"

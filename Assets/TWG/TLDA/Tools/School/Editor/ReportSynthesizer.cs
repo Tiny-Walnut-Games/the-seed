@@ -1,0 +1,660 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using System.Linq;
+using UnityEngine;
+using UnityEditor;
+using System.Text;
+using UnityEngine.Networking;
+
+namespace TWG.TLDA.School.Editor
+{
+    /// <summary>
+    /// Unity Editor window for School experiment report synthesis
+    /// KeeperNote: Stage 5 - Report synthesis & actionable intel with Unity 6 & GH integration
+    /// </summary>
+    public class ReportSynthesizer : EditorWindow
+    {
+        private Vector2 scrollPosition;
+        private List<ClaimData> loadedClaims;
+        private bool isGenerating = false;
+        private string generationProgress = "";
+        private DateTime lastGenerationTime;
+        private ReportMetadata lastReportMetadata;
+        private bool showLogs = false;
+        private StringBuilder generationLogs = new StringBuilder();
+        private bool enableGitHubIntegration = false;
+        private string gitHubToken = "";
+        private string targetRepository = "";
+        
+        // Paths and settings
+        private const string CLAIMS_DIR = "assets/experiments/school/claims/";
+        private const string VALIDATED_CLAIMS_DIR = "assets/experiments/school/claims/validated/";
+        private const string HYPOTHESES_CLAIMS_DIR = "assets/experiments/school/claims/hypotheses/";
+        private const string REGRESSIONS_CLAIMS_DIR = "assets/experiments/school/claims/regressions/";
+        private const string REPORTS_DIR = "assets/experiments/school/reports/";
+        private const string GITHUB_INTEGRATION_PATH = "assets/experiments/school/claims/github_integration.json";
+        
+        [MenuItem("Tools/School/Build Report")]
+        public static void ShowWindow()
+        {
+            var window = GetWindow<ReportSynthesizer>("Report Synthesizer");
+            window.minSize = new Vector2(700, 900);
+            window.Show();
+        }
+        
+        private void OnEnable()
+        {
+            LoadValidatedClaims();
+        }
+        
+        private void OnGUI()
+        {
+            scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+            
+            // Header
+            EditorGUILayout.Space(10);
+            var titleStyle = new GUIStyle(EditorStyles.boldLabel) { fontSize = 16 };
+            EditorGUILayout.LabelField("🧙‍♂️ School Experiment Report Synthesizer", titleStyle);
+            EditorGUILayout.LabelField("Stage 5: Generate actionable intelligence reports from validated claims", EditorStyles.helpBox);
+            EditorGUILayout.Space(10);
+            
+            // Claims loading section
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            EditorGUILayout.LabelField("📋 Claims Data", EditorStyles.boldLabel);
+            
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("🔄 Refresh Claims", GUILayout.Width(150)))
+            {
+                LoadValidatedClaims();
+            }
+            
+            if (loadedClaims != null)
+            {
+                EditorGUILayout.LabelField($"Loaded {loadedClaims.Count} claims");
+            }
+            else
+            {
+                EditorGUILayout.LabelField("No claims loaded", EditorStyles.helpBox);
+            }
+            EditorGUILayout.EndHorizontal();
+            
+            if (loadedClaims != null && loadedClaims.Count > 0)
+            {
+                // Claims summary
+                var validated = loadedClaims.Where(c => c.ClaimType == "validated").Count();
+                var hypotheses = loadedClaims.Where(c => c.ClaimType == "hypothesis").Count();
+                var regressions = loadedClaims.Where(c => c.ClaimType == "regression").Count();
+                var avgConfidence = loadedClaims.Average(c => c.ConfidenceScore);
+                
+                EditorGUILayout.LabelField($"✅ Validated: {validated} | 🔬 Hypotheses: {hypotheses} | ⚠️ Regressions: {regressions}");
+                EditorGUILayout.LabelField($"📊 Average Confidence: {avgConfidence:F2}");
+            }
+            
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.Space(10);
+            
+            // Report generation section
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            EditorGUILayout.LabelField("📄 Report Generation", EditorStyles.boldLabel);
+            
+            EditorGUI.BeginDisabledGroup(isGenerating || loadedClaims == null || loadedClaims.Count == 0);
+            
+            if (GUILayout.Button("🚀 Generate Report", GUILayout.Height(30)))
+            {
+                _ = GenerateReport();
+            }
+            
+            EditorGUI.EndDisabledGroup();
+            
+            if (isGenerating)
+            {
+                EditorGUILayout.LabelField("⚡ Generating...", EditorStyles.helpBox);
+                EditorGUILayout.LabelField(generationProgress);
+                
+                // Progress indicator
+                var rect = EditorGUILayout.GetControlRect();
+                EditorGUI.ProgressBar(rect, 0.5f, "Building Report...");
+            }
+            
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.Space(10);
+            
+            // GitHub Integration section
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            EditorGUILayout.LabelField("🐙 GitHub Integration (Optional)", EditorStyles.boldLabel);
+            
+            enableGitHubIntegration = EditorGUILayout.Toggle("Enable GitHub Integration", enableGitHubIntegration);
+            
+            if (enableGitHubIntegration)
+            {
+                EditorGUILayout.LabelField("⚠️ GitHub integration requires valid token and repository", EditorStyles.helpBox);
+                gitHubToken = EditorGUILayout.PasswordField("GitHub Token:", gitHubToken);
+                targetRepository = EditorGUILayout.TextField("Target Repository:", targetRepository);
+                EditorGUILayout.LabelField("Format: owner/repository (e.g., jmeyer1980/TWG-TLDA)", EditorStyles.miniLabel);
+            }
+            
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.Space(10);
+            
+            // Results section
+            if (lastReportMetadata != null)
+            {
+                EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+                EditorGUILayout.LabelField("📊 Last Report Generation", EditorStyles.boldLabel);
+                
+                EditorGUILayout.LabelField($"🕒 Generated: {lastGenerationTime:yyyy-MM-dd HH:mm:ss}");
+                EditorGUILayout.LabelField($"📁 Report Path: {lastReportMetadata.ReportPath}");
+                EditorGUILayout.LabelField($"📋 Claims Processed: {lastReportMetadata.ClaimsProcessed}");
+                EditorGUILayout.LabelField($"⭐ Avg Confidence: {lastReportMetadata.AverageConfidence:F2}");
+                
+                EditorGUILayout.BeginHorizontal();
+                if (GUILayout.Button("📂 Open Report", GUILayout.Width(120)))
+                {
+                    if (File.Exists(lastReportMetadata.ReportPath))
+                    {
+                        Application.OpenURL("file://" + Path.GetFullPath(lastReportMetadata.ReportPath));
+                    }
+                    else
+                    {
+                        LogMessage("❌ Report file not found");
+                    }
+                }
+                
+                if (GUILayout.Button("📂 Open Reports Folder", GUILayout.Width(150)))
+                {
+                    var reportsPath = Path.GetFullPath(REPORTS_DIR);
+                    if (Directory.Exists(reportsPath))
+                    {
+                        EditorUtility.RevealInFinder(reportsPath);
+                    }
+                    else
+                    {
+                        LogMessage("❌ Reports directory not found");
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+                
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.Space(10);
+            }
+            
+            // Logs section
+            showLogs = EditorGUILayout.Foldout(showLogs, "📝 Generation Logs");
+            if (showLogs)
+            {
+                EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+                var logContent = generationLogs.ToString();
+                if (string.IsNullOrEmpty(logContent))
+                {
+                    EditorGUILayout.LabelField("No logs available", EditorStyles.centeredGreyMiniLabel);
+                }
+                else
+                {
+                    EditorGUILayout.TextArea(logContent, GUILayout.MaxHeight(200));
+                }
+                
+                if (GUILayout.Button("Clear Logs", GUILayout.Width(100)))
+                {
+                    generationLogs.Clear();
+                }
+                EditorGUILayout.EndVertical();
+            }
+            
+            EditorGUILayout.EndScrollView();
+        }
+        
+        private void LoadValidatedClaims()
+        {
+            loadedClaims = new List<ClaimData>();
+            generationProgress = "Loading claims...";
+            
+            try
+            {
+                LoadClaimsFromDirectory(VALIDATED_CLAIMS_DIR);
+                LoadClaimsFromDirectory(HYPOTHESES_CLAIMS_DIR);
+                LoadClaimsFromDirectory(REGRESSIONS_CLAIMS_DIR);
+                
+                LogMessage($"🧙‍♂️ Loaded {loadedClaims.Count} claims from all categories");
+                generationProgress = $"Loaded {loadedClaims.Count} claims";
+            }
+            catch (Exception ex)
+            {
+                LogMessage($"❌ Failed to load claims: {ex.Message}");
+                generationProgress = "Failed to load claims";
+            }
+        }
+        
+        private void LoadClaimsFromDirectory(string directory)
+        {
+            if (!Directory.Exists(directory)) return;
+            
+            var claimFiles = Directory.GetFiles(directory, "*.json");
+            foreach (var file in claimFiles)
+            {
+                try
+                {
+                    var json = File.ReadAllText(file);
+                    var claim = JsonUtility.FromJson<ClaimData>(json);
+                    if (claim != null)
+                    {
+                        loadedClaims.Add(claim);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogMessage($"⚠️ Failed to parse claim file {file}: {ex.Message}");
+                }
+            }
+        }
+        
+        private async Task GenerateReport()
+        {
+            isGenerating = true;
+            generationProgress = "Initializing report generation...";
+            
+            try
+            {
+                LogMessage("🚀 Starting report generation...");
+                
+                // Ensure reports directory exists
+                Directory.CreateDirectory(REPORTS_DIR);
+                
+                // Generate report content
+                var reportContent = GenerateMarkdownReport();
+                
+                // Save report
+                var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                var reportFileName = $"school_experiment_report_{timestamp}.md";
+                var reportPath = Path.Combine(REPORTS_DIR, reportFileName);
+
+                await File.WriteAllTextAsync(reportPath, reportContent);
+                
+                // Also generate HTML version
+                var htmlContent = ConvertMarkdownToHTML(reportContent);
+                var htmlFileName = $"school_experiment_report_{timestamp}.html";
+                var htmlPath = Path.Combine(REPORTS_DIR, htmlFileName);
+                await File.WriteAllTextAsync(htmlPath, htmlContent);
+                
+                // Create metadata
+                lastReportMetadata = new ReportMetadata
+                {
+                    ReportPath = reportPath,
+                    ClaimsProcessed = loadedClaims.Count,
+                    AverageConfidence = loadedClaims.Average(c => c.ConfidenceScore),
+                    GenerationTime = DateTime.Now
+                };
+                
+                lastGenerationTime = DateTime.Now;
+                
+                LogMessage($"✅ Report generated successfully: {reportPath}");
+                
+                // Optional GitHub integration
+                if (enableGitHubIntegration && !string.IsNullOrEmpty(gitHubToken) && !string.IsNullOrEmpty(targetRepository))
+                {
+                    await PushToGitHub(reportContent, reportFileName);
+                }
+                
+                generationProgress = "Report generation completed!";
+            }
+            catch (Exception ex)
+            {
+                LogMessage($"❌ Report generation failed: {ex.Message}");
+                generationProgress = "Report generation failed";
+            }
+            finally
+            {
+                isGenerating = false;
+            }
+        }
+        
+        private string GenerateMarkdownReport()
+        {
+            var report = new StringBuilder();
+            var timestamp = DateTime.Now;
+            
+            // Report header
+            report.AppendLine("# School Experiment Report");
+            report.AppendLine($"**Generated:** {timestamp:yyyy-MM-dd HH:mm:ss}");
+            report.AppendLine($"**Total Claims:** {loadedClaims.Count}");
+            report.AppendLine();
+            
+            // Summary section
+            var validated = loadedClaims.Where(c => c.ClaimType == "validated").ToList();
+            var hypotheses = loadedClaims.Where(c => c.ClaimType == "hypothesis").ToList();
+            var regressions = loadedClaims.Where(c => c.ClaimType == "regression").ToList();
+            var avgConfidence = loadedClaims.Average(c => c.ConfidenceScore);
+            
+            report.AppendLine("## Executive Summary");
+            report.AppendLine();
+            report.AppendLine($"- ✅ **Validated Claims:** {validated.Count}");
+            report.AppendLine($"- 🔬 **Hypotheses:** {hypotheses.Count}");
+            report.AppendLine($"- ⚠️ **Regressions:** {regressions.Count}");
+            report.AppendLine($"- 📊 **Average Confidence:** {avgConfidence:F1}%");
+            report.AppendLine();
+            
+            // Validated claims (highest priority)
+            if (validated.Any())
+            {
+                report.AppendLine("## ✅ Validated Claims (Ready for Action)");
+                report.AppendLine();
+                GenerateClaimsSection(report, validated, "These claims have high confidence scores and are recommended for immediate implementation.");
+            }
+            
+            // Hypotheses (medium priority)
+            if (hypotheses.Any())
+            {
+                report.AppendLine("## 🔬 Hypotheses (Further Investigation Needed)");
+                report.AppendLine();
+                GenerateClaimsSection(report, hypotheses, "These findings show promise but require additional validation before implementation.");
+            }
+            
+            // Regressions (attention required)
+            if (regressions.Any())
+            {
+                report.AppendLine("## ⚠️ Regressions (Attention Required)");
+                report.AppendLine();
+                GenerateClaimsSection(report, regressions, "These areas show potential performance degradation and should be investigated.");
+            }
+            
+            // GitHub integration metadata
+            if (File.Exists(GITHUB_INTEGRATION_PATH))
+            {
+                try
+                {
+                    var integrationData = File.ReadAllText(GITHUB_INTEGRATION_PATH);
+                    var integration = JsonUtility.FromJson<GitHubIntegrationData>(integrationData);
+                    
+                    report.AppendLine("## 🔗 Integration Metadata");
+                    report.AppendLine();
+                    report.AppendLine($"- **Unity Version:** {integration.UnityVersion}");
+                    report.AppendLine($"- **Git Commit:** {integration.GitCommit}");
+                    report.AppendLine($"- **Git Branch:** {integration.GitBranch}");
+                    report.AppendLine($"- **Baseline Delta:** {integration.BaselineDelta}%");
+                    report.AppendLine();
+                }
+                catch (Exception ex)
+                {
+                    LogMessage($"⚠️ Failed to load GitHub integration data: {ex.Message}");
+                }
+            }
+            
+            report.AppendLine("---");
+            report.AppendLine("*Generated by TWG Living Dev Agent - School Experiment Workflow Stage 5*");
+            
+            return report.ToString();
+        }
+        
+        private void GenerateClaimsSection(StringBuilder report, List<ClaimData> claims, string description)
+        {
+            report.AppendLine(description);
+            report.AppendLine();
+            
+            foreach (var claim in claims.OrderByDescending(c => c.ConfidenceScore))
+            {
+                report.AppendLine($"### {claim.ExperimentName}");
+                report.AppendLine();
+                
+                // What
+                report.AppendLine($"**What:** {GetClaimDescription(claim)}");
+                
+                // Why
+                report.AppendLine($"**Why:** {GetClaimRationale(claim)}");
+                
+                // Evidence links
+                report.AppendLine($"**Evidence:** [Run {claim.RunId}](../outputs/runs/{claim.RunId}/) | Hypothesis: `{claim.HypothesisId}`");
+                
+                // Impact
+                report.AppendLine($"**Impact:** {GetClaimImpact(claim)}");
+                
+                // Action
+                report.AppendLine($"**Recommended Action:** {GetRecommendedAction(claim)}");
+                
+                // Confidence
+                var confidenceBar = GenerateConfidenceBar(claim.ConfidenceScore);
+                report.AppendLine($"**Confidence:** {claim.ConfidenceScore:F1}% {confidenceBar}");
+                
+                if (!string.IsNullOrEmpty(claim.BaselineComparison) && claim.BaselineComparison != "pending")
+                {
+                    report.AppendLine($"**Baseline Comparison:** {claim.BaselineComparison}");
+                }
+                
+                report.AppendLine($"**Validation Time:** {claim.ValidationTime}");
+                report.AppendLine();
+            }
+        }
+        
+        private string GetClaimDescription(ClaimData claim)
+        {
+            return claim.Success 
+                ? $"Experiment '{claim.ExperimentName}' completed successfully with {claim.ConfidenceScore:F1}% confidence."
+                : $"Experiment '{claim.ExperimentName}' identified potential issues requiring attention.";
+        }
+        
+        private string GetClaimRationale(ClaimData claim)
+        {
+            return claim.ClaimType switch
+            {
+                "validated" => "High confidence score indicates reliable findings that can guide development decisions.",
+                "hypothesis" => "Moderate confidence suggests promising direction that warrants further investigation.",
+                "regression" => "Low confidence or negative indicators suggest potential performance degradation.",
+                _ => "Experimental findings provide insights into development opportunities."
+            };
+        }
+        
+        private string GetClaimImpact(ClaimData claim)
+        {
+            var impact = claim.ConfidenceScore switch
+            {
+                >= 0.8f => "High impact - significant improvement opportunity",
+                >= 0.6f => "Medium impact - notable optimization potential", 
+                >= 0.4f => "Low impact - minor enhancement possibility",
+                _ => "Minimal impact - investigation or mitigation needed"
+            };
+            
+            return claim.Success ? impact : "Potential negative impact - requires investigation";
+        }
+        
+        private string GetRecommendedAction(ClaimData claim)
+        {
+            return claim.ClaimType switch
+            {
+                "validated" when claim.Success => "Implement changes based on validated findings. Proceed with development.",
+                "hypothesis" when claim.Success => "Conduct additional experiments to increase confidence before implementation.",
+                "regression" => "Investigate root cause and implement fixes to prevent performance degradation.",
+                _ => "Review experimental results and determine if additional validation is needed."
+            };
+        }
+        
+        private string GenerateConfidenceBar(float confidence)
+        {
+            var percentage = (int)(confidence * 100);
+            var filled = percentage / 10;
+            var empty = 10 - filled;
+            
+            return $"[{'█'.ToString().PadLeft(filled, '█')}{'░'.ToString().PadLeft(empty, '░')}] {percentage}%";
+        }
+        
+        private string ConvertMarkdownToHTML(string markdown)
+        {
+            // Simple markdown to HTML conversion
+            var html = new StringBuilder();
+            
+            html.AppendLine("<!DOCTYPE html>");
+            html.AppendLine("<html><head>");
+            html.AppendLine("<title>School Experiment Report</title>");
+            html.AppendLine("<style>");
+            html.AppendLine("body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }");
+            html.AppendLine("h1, h2, h3 { color: #333; } h1 { border-bottom: 2px solid #007acc; } h2 { border-bottom: 1px solid #ddd; }");
+            html.AppendLine("pre, code { background: #f8f8f8; padding: 10px; border-radius: 4px; }");
+            html.AppendLine(".confidence-bar { font-family: monospace; background: #f0f0f0; padding: 2px 4px; border-radius: 2px; }");
+            html.AppendLine(".emoji { font-size: 1.2em; }");
+            html.AppendLine("</style>");
+            html.AppendLine("</head><body>");
+            
+            // Convert markdown content to HTML
+            var lines = markdown.Split('\n');
+            foreach (var line in lines)
+            {
+                var htmlLine = line
+                    .Replace("# ", "<h1>").Replace("## ", "<h2>").Replace("### ", "<h3>")
+                    .Replace("**", "<strong>").Replace("*", "<em>")
+                    .Replace("[█", "<span class='confidence-bar'>[█")
+                    .Replace("]", "]</span>");
+                
+                if (htmlLine.StartsWith("<h1>") || htmlLine.StartsWith("<h2>") || htmlLine.StartsWith("<h3>"))
+                {
+                    html.AppendLine(htmlLine + (htmlLine.StartsWith("<h1>") ? "</h1>" : htmlLine.StartsWith("<h2>") ? "</h2>" : "</h3>"));
+                }
+                else if (string.IsNullOrWhiteSpace(htmlLine))
+                {
+                    html.AppendLine("<br>");
+                }
+                else
+                {
+                    html.AppendLine("<p>" + htmlLine + "</p>");
+                }
+            }
+            
+            html.AppendLine("</body></html>");
+            return html.ToString();
+        }
+        
+        private async Task PushToGitHub(string reportContent, string fileName)
+        {
+            try
+            {
+                LogMessage("🐙 Attempting GitHub integration...");
+                
+                // This is a placeholder for GitHub API integration
+                // In a real implementation, you would use UnityWebRequest to create issues or PR comments
+                var apiUrl = $"https://api.github.com/repos/{targetRepository}/issues";
+                var issueData = new
+                {
+                    title = $"School Experiment Report - {DateTime.Now:yyyy-MM-dd}",
+                    body = $"## Automated School Experiment Report\n\n{reportContent}",
+                    labels = new[] { "experiment-report", "automated" }
+                };
+                
+                LogMessage($"📤 Would create GitHub issue at: {apiUrl}");
+                LogMessage("⚠️ GitHub integration is currently in demonstration mode");
+                
+                // Actual implementation would use:
+                // using (var request = UnityWebRequest.Post(apiUrl, JsonUtility.ToJson(issueData)))
+                // {
+                //     request.SetRequestHeader("Authorization", $"Bearer {gitHubToken}");
+                //     request.SetRequestHeader("Content-Type", "application/json");
+                //     await request.SendWebRequest();
+                //     // Handle response...
+                // }
+            }
+            catch (Exception ex)
+            {
+                LogMessage($"❌ GitHub integration failed: {ex.Message}");
+            }
+        }
+        
+        private void LogMessage(string message)
+        {
+            var timestamp = DateTime.Now.ToString("HH:mm:ss");
+            var logEntry = $"[{timestamp}] {message}";
+            generationLogs.AppendLine(logEntry);
+            Debug.Log($"[ReportSynthesizer] {message}");
+        }
+        
+        /// <summary>
+        /// CLI entry point for automated report generation
+        /// Usage: Unity -batchmode -executeMethod TWG.TLDA.School.Editor.ReportSynthesizer.GenerateReportCLI
+        /// </summary>
+        public static void GenerateReportCLI()
+        {
+            Debug.Log("[ReportSynthesizer] Starting CLI report generation...");
+            
+            try
+            {
+                var synthesizer = CreateInstance<ReportSynthesizer>();
+                synthesizer.LoadValidatedClaims();
+                
+                if (synthesizer.loadedClaims == null || synthesizer.loadedClaims.Count == 0)
+                {
+                    Debug.LogWarning("[ReportSynthesizer] No claims found for report generation");
+                    return;
+                }
+                
+                // Generate report synchronously for CLI
+                Directory.CreateDirectory(REPORTS_DIR);
+                var reportContent = synthesizer.GenerateMarkdownReport();
+                
+                var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                var reportFileName = $"school_experiment_report_{timestamp}.md";
+                var reportPath = Path.Combine(REPORTS_DIR, reportFileName);
+                
+                File.WriteAllText(reportPath, reportContent);
+                
+                Debug.Log($"[ReportSynthesizer] ✅ CLI report generated: {reportPath}");
+                Debug.Log($"[ReportSynthesizer] 📊 Processed {synthesizer.loadedClaims.Count} claims");
+                
+                // Optional GitHub integration via command line args
+                var args = System.Environment.GetCommandLineArgs();
+                var githubToken = GetCommandLineArg(args, "-github-token");
+                var githubRepo = GetCommandLineArg(args, "-github-repo");
+                
+                if (!string.IsNullOrEmpty(githubToken) && !string.IsNullOrEmpty(githubRepo))
+                {
+                    Debug.Log("[ReportSynthesizer] 🐙 GitHub integration detected in CLI mode");
+                    // Note: Actual GitHub integration would be implemented here
+                    Debug.Log($"[ReportSynthesizer] Target repository: {githubRepo}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[ReportSynthesizer] ❌ CLI report generation failed: {ex.Message}");
+            }
+        }
+        
+        private static string GetCommandLineArg(string[] args, string argName)
+        {
+            for (int i = 0; i < args.Length - 1; i++)
+            {
+                if (args[i] == argName)
+                {
+                    return args[i + 1];
+                }
+            }
+            return null;
+        }
+    }
+    
+    // Data structures
+    [System.Serializable]
+    public class ClaimData
+    {
+        public string RunId;
+        public string ExperimentName;
+        public string HypothesisId;
+        public float ConfidenceScore;
+        public string ClaimType;
+        public string ValidationTime;
+        public bool Success;
+        public string BaselineComparison;
+    }
+    
+    [System.Serializable]
+    public class ReportMetadata
+    {
+        public string ReportPath;
+        public int ClaimsProcessed;
+        public float AverageConfidence;
+        public DateTime GenerationTime;
+    }
+    
+    [System.Serializable]
+    public class GitHubIntegrationData
+    {
+        public string UnityVersion;
+        public string GitCommit;
+        public string GitBranch;
+        public float BaselineDelta;
+    }
+}

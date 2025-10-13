@@ -1,0 +1,199 @@
+{
+  "experiment_id": "component_performance_optimization_20250906_021715",
+  "manifest": {
+    "metadata": {
+      "name": "Component Performance Optimization",
+      "description": "MonoBehaviour component can be optimized for better runtime performance",
+      "version": "1.0.0",
+      "author": "School Experiment Framework",
+      "tags": [
+        "school",
+        "hypothesis",
+        "improvementtarget"
+      ]
+    },
+    "model": {
+      "type": "behavioral_governance",
+      "instance_config": {
+        "enable_intervention_tracking": true
+      },
+      "performance_profile": "experiment"
+    },
+    "conditions": {
+      "hypothesis_types": [
+        "ImprovementTarget"
+      ]
+    },
+    "corpus": {
+      "type": "synthetic",
+      "size": 20,
+      "shuffle": true,
+      "seed": 10876
+    },
+    "processing": {
+      "batch_size": 5,
+      "mode": "sequential",
+      "max_workers": 1,
+      "timeout_seconds": 60
+    },
+    "metrics": {
+      "behavioral_metrics": [
+        "processing_time_ms"
+      ],
+      "performance_metrics": [
+        "throughput_items_per_sec",
+        "success_rate_pct"
+      ]
+    },
+    "output": {
+      "base_path": "assets/experiments/school/outputs",
+      "formats": [
+        "json"
+      ],
+      "artifacts": {
+        "save_raw_results": true,
+        "save_processed_metrics": true
+      }
+    },
+    "execution": {
+      "random_seeds": {
+        "global_seed": 10876,
+        "corpus_seed": 10976
+      },
+      "retry_policy": {
+        "max_retries": 1
+      },
+      "resource_limits": {
+        "max_memory_mb": 256,
+        "max_duration_minutes": 2
+      }
+    },
+    "validation": {
+      "success_criteria": {
+        "min_processed_items": 14,
+        "max_error_rate": 0.2
+      }
+    },
+    "integration": {
+      "chronicle_integration": {
+        "enabled": true,
+        "auto_generate_tldl": false
+      },
+      "pet_events": {
+        "enabled": false
+      },
+      "telemetry": {
+        "enabled": true,
+        "track_developer_state": false,
+        "include_system_metrics": true
+      }
+    }
+  },
+  "status": "completed",
+  "start_time": 1757125035.0266266,
+  "end_time": 1757125035.029233,
+  "duration_seconds": 0.0026063919067382812,
+  "total_runs": 1,
+  "completed_runs": 1,
+  "failed_runs": 0,
+  "runs": [
+    {
+      "run_id": "component_performance_optimization_20250906_021715_run_0000",
+      "experiment_id": "component_performance_optimization_20250906_021715",
+      "condition_values": {
+        "hypothesis_types": "ImprovementTarget"
+      },
+      "status": "ExperimentStatus.COMPLETED",
+      "start_time": 1757125035.0268054,
+      "end_time": 1757125035.0291712,
+      "results": {
+        "operation_id": "component_performance_optimization_20250906_021715_run_0000",
+        "status": "completed",
+        "results": [],
+        "metrics": {
+          "total_processing_time_sec": 0.0014255046844482422,
+          "total_items": 20,
+          "processed_items": 0,
+          "failed_items": 20,
+          "success_rate_pct": 0.0,
+          "throughput_items_per_sec": 0.0,
+          "total_batches": 4,
+          "completed_batches": 4,
+          "failed_batches": 0,
+          "average_batch_processing_time": 3.159046173095703e-06
+        },
+        "progress": {
+          "total_items": 20,
+          "processed_items": 0,
+          "failed_items": 20,
+          "total_batches": 4,
+          "completed_batches": 4,
+          "failed_batches": 0,
+          "start_time": 1757125035.0274038,
+          "estimated_completion_time": 0.0,
+          "current_throughput": 0.0
+        }
+      },
+      "metrics": {
+        "total_processing_time_sec": 0.0014255046844482422,
+        "total_items": 20,
+        "processed_items": 0,
+        "failed_items": 20,
+        "success_rate_pct": 0.0,
+        "throughput_items_per_sec": 0.0,
+        "total_batches": 4,
+        "completed_batches": 4,
+        "failed_batches": 0,
+        "average_batch_processing_time": 3.159046173095703e-06,
+        "condition_hypothesis_types": "ImprovementTarget"
+      },
+      "error": null
+    }
+  ],
+  "failures": [],
+  "aggregate_metrics": {
+    "total_processing_time_sec_mean": 0.0014255046844482422,
+    "total_processing_time_sec_min": 0.0014255046844482422,
+    "total_processing_time_sec_max": 0.0014255046844482422,
+    "total_processing_time_sec_std": 0.0,
+    "total_items_mean": 20.0,
+    "total_items_min": 20,
+    "total_items_max": 20,
+    "total_items_std": 0.0,
+    "processed_items_mean": 0.0,
+    "processed_items_min": 0,
+    "processed_items_max": 0,
+    "processed_items_std": 0.0,
+    "failed_items_mean": 20.0,
+    "failed_items_min": 20,
+    "failed_items_max": 20,
+    "failed_items_std": 0.0,
+    "success_rate_pct_mean": 0.0,
+    "success_rate_pct_min": 0.0,
+    "success_rate_pct_max": 0.0,
+    "success_rate_pct_std": 0.0,
+    "throughput_items_per_sec_mean": 0.0,
+    "throughput_items_per_sec_min": 0.0,
+    "throughput_items_per_sec_max": 0.0,
+    "throughput_items_per_sec_std": 0.0,
+    "total_batches_mean": 4.0,
+    "total_batches_min": 4,
+    "total_batches_max": 4,
+    "total_batches_std": 0.0,
+    "completed_batches_mean": 4.0,
+    "completed_batches_min": 4,
+    "completed_batches_max": 4,
+    "completed_batches_std": 0.0,
+    "failed_batches_mean": 0.0,
+    "failed_batches_min": 0,
+    "failed_batches_max": 0,
+    "failed_batches_std": 0.0,
+    "average_batch_processing_time_mean": 3.159046173095703e-06,
+    "average_batch_processing_time_min": 3.159046173095703e-06,
+    "average_batch_processing_time_max": 3.159046173095703e-06,
+    "average_batch_processing_time_std": 0.0,
+    "total_runs": 1,
+    "success_rate": 1.0
+  },
+  "time_series_data": []
+}

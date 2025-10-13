@@ -1,0 +1,64 @@
+metadata:
+  name: Material Optimization Potential
+  description: Material can be optimized for target platform performance
+  version: 1.0.0
+  author: School Experiment Framework
+  tags:
+  - school
+  - hypothesis
+  - capability
+  - assertion
+  - low
+  - material
+  - medium-confidence
+  hypothesis_id: f6g7h8i9-j0k1-2345-6789-012345fghijk
+  faculty_surface: Assets/Materials/UI/ButtonHighlight.mat
+  hypothesis_type: CapabilityAssertion
+model:
+  type: behavioral_governance
+  instance_config:
+    enable_intervention_tracking: true
+    intervention_threshold: 0.6
+    faculty_surface_focus: Assets/Materials/UI/ButtonHighlight.mat
+  performance_profile: experiment
+conditions:
+  hypothesis_types:
+  - CapabilityAssertion
+  priority_levels:
+  - Low
+  confidence_ranges:
+  - 0.6
+  effort_estimates:
+  - 30 minutes - 1 hour
+corpus:
+  type: synthetic
+  size: 150
+  seed: 7917
+  focus_assets:
+  - Assets/Materials/UI/ButtonHighlight.mat
+processing:
+  batch_size: 10
+  parallel_execution: true
+  checkpoint_interval: 10
+validation:
+  success_criteria:
+  - metric: hypothesis_validation_score
+    threshold: 0.6
+  - metric: faculty_surface_coverage
+    threshold: 0.8
+  expected_duration: 30 minutes - 1 hour
+reporting:
+  output_format: yaml
+  include_metrics:
+  - execution_time
+  - resource_usage
+  - validation_score
+  - faculty_surface_impact
+  dashboard_integration: true
+experiment_context:
+  source_inventory_hash: d0865a96189ad5c3
+  generation_timestamp: '2025-09-06T01:54:49.620900Z'
+  unity_version: 6000.2.0f1
+  project_path: /home/runner/work/TWG-TLDA/TWG-TLDA/Assets
+  stage: '2'
+  workflow: school
