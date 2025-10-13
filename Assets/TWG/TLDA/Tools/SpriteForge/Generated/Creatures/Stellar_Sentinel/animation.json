@@ -1,0 +1,46 @@
+{
+    "AnimationType": 0,
+    "FrameRects": [
+        {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 24.0,
+            "height": 24.0
+        },
+        {
+            "serializedVersion": "2",
+            "x": 24.0,
+            "y": 0.0,
+            "width": 24.0,
+            "height": 24.0
+        },
+        {
+            "serializedVersion": "2",
+            "x": 48.0,
+            "y": 0.0,
+            "width": 24.0,
+            "height": 24.0
+        },
+        {
+            "serializedVersion": "2",
+            "x": 72.0,
+            "y": 0.0,
+            "width": 24.0,
+            "height": 24.0
+        }
+    ],
+    "FrameDurations": [
+        0.20000000298023225,
+        0.20000000298023225,
+        0.20000000298023225,
+        0.20000000298023225
+    ],
+    "Pivot": {
+        "x": 0.5,
+        "y": 0.0
+    },
+    "LoopAnimation": true,
+    "EvolutionStages": [],
+    "FramesPerStage": 1
+}

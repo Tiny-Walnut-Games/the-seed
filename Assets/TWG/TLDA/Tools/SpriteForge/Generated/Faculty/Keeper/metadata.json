@@ -1,0 +1,36 @@
+{
+    "name": "Keeper • Golem of the Divine",
+    "description": "Faculty ultra-rare 1/1. Forged from TLDA verdicts and keeper rituals.",
+    "image": "ipfs://placeholder/FAC-KEEPER-001/sheet.png",
+    "animation_url": "ipfs://placeholder/FAC-KEEPER-001/sheet.mp4",
+    "attributes": [
+        {
+            "trait_type": "Category",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Archetype",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Genre",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Rarity",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Provenance Hash",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Faculty Role",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Uniqueness",
+            "display_type": ""
+        }
+    ]
+}

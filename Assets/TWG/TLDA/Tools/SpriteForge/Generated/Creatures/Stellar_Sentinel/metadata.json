@@ -1,0 +1,52 @@
+{
+    "name": "Stellar Sentinel",
+    "description": "Rare scifi creature. Generated from the TLDA mythos.",
+    "image": "ipfs://placeholder/CRE-20250904-7467/sheet.png",
+    "animation_url": "ipfs://placeholder/CRE-20250904-7467/sheet.mp4",
+    "attributes": [
+        {
+            "trait_type": "Category",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Archetype",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Genre",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Rarity",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Provenance Hash",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Ritual Type",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Ritual Timestamp",
+            "display_type": ""
+        },
+        {
+            "trait_type": "TLDA Source",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Emotional Weight",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Ritual Mark",
+            "display_type": ""
+        },
+        {
+            "trait_type": "Tags",
+            "display_type": ""
+        }
+    ]
+}

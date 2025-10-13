@@ -1,0 +1,12 @@
+{
+    "entries": [
+        {
+            "Id": "TLDA-NFT-20250904-213437-B2197D67",
+            "EventType": "NFT_MINTED",
+            "Source": "TLDANFTBridge",
+            "RitualReference": "TEST-RITUAL-001",
+            "TokenId": "-1306952345",
+            "ProvenanceHash": "8c0a50384111c0c796aa6f0682f31a42414a1dcf5c5f57cf80f82b98dd1b9041"
+        }
+    ]
+}
