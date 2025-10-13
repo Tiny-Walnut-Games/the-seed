@@ -1,0 +1,30 @@
+{
+  "bc81e501-47fc-4755-9569-7c000f4ad83d": {
+    "session_id": "bc81e501-47fc-4755-9569-7c000f4ad83d",
+    "task_name": "Test integration task",
+    "project": "Integration Testing",
+    "category": "development",
+    "start_time": 1756808623.1873324,
+    "end_time": 1756808630.7980006,
+    "total_elapsed": 20.77210283279419,
+    "state": "stopped",
+    "notes": "Integration testing completed successfully",
+    "chronas_session_id": null,
+    "taskmaster_task_id": null,
+    "last_heartbeat": 1756808623.1873324
+  },
+  "19cebb90-93df-44f9-bd4d-44307df418d9": {
+    "session_id": "19cebb90-93df-44f9-bd4d-44307df418d9",
+    "task_name": "Final integration test",
+    "project": "Bug Fix #29",
+    "category": "development",
+    "start_time": 1756808983.378945,
+    "end_time": 1756808991.7619448,
+    "total_elapsed": 8.427435159683228,
+    "state": "stopped",
+    "notes": "Integration testing completed successfully",
+    "chronas_session_id": null,
+    "taskmaster_task_id": null,
+    "last_heartbeat": 1756808983.378945
+  }
+}

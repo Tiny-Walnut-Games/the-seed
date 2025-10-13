@@ -1,0 +1,210 @@
+{
+  "faculty": "memory",
+  "test_suite": "comprehensive_memory_analysis",
+  "total_tests": 5,
+  "execution_time": 0.0008175373077392578,
+  "results": [
+    {
+      "test_name": "semantic_anchor_clustering",
+      "description": "Test ability to cluster semantically similar anchors",
+      "anchors_tested": 7,
+      "clusters_formed": {
+        "security": [
+          "auth-1",
+          "auth-2",
+          "auth-3",
+          "auth-4"
+        ],
+        "frontend": [
+          "ui-1",
+          "ui-2"
+        ],
+        "backend": [
+          "db-1"
+        ]
+      },
+      "timestamp": 1757119068.4798303,
+      "clustering_accuracy": 1.0
+    },
+    {
+      "test_name": "conflict_detection_resolution",
+      "description": "Test ability to detect and resolve contradictory information",
+      "statements_tested": 6,
+      "conflicts_detected": [
+        {
+          "statement_1": {
+            "id": "stmt-1",
+            "content": "The authentication system is secure and reliable",
+            "confidence": 0.9
+          },
+          "statement_2": {
+            "id": "stmt-2",
+            "content": "The login system has critical security vulnerabilities",
+            "confidence": 0.8
+          },
+          "conflict_type": "semantic_opposition",
+          "confidence": 0.8
+        },
+        {
+          "statement_1": {
+            "id": "stmt-3",
+            "content": "User sessions never timeout",
+            "confidence": 0.7
+          },
+          "statement_2": {
+            "id": "stmt-4",
+            "content": "Session timeout is set to 30 minutes",
+            "confidence": 0.9
+          },
+          "conflict_type": "semantic_opposition",
+          "confidence": 0.8
+        },
+        {
+          "statement_1": {
+            "id": "stmt-5",
+            "content": "The database is optimized for performance",
+            "confidence": 0.6
+          },
+          "statement_2": {
+            "id": "stmt-6",
+            "content": "Database queries are extremely slow",
+            "confidence": 0.8
+          },
+          "conflict_type": "semantic_opposition",
+          "confidence": 0.8
+        }
+      ],
+      "timestamp": 1757119068.4799724,
+      "resolutions": [
+        {
+          "strategy": "prefer_higher_confidence",
+          "chosen_statement": "stmt-1",
+          "confidence": 0.9,
+          "rationale": "Higher confidence (0.9) vs (0.8)"
+        },
+        {
+          "strategy": "prefer_higher_confidence",
+          "chosen_statement": "stmt-4",
+          "confidence": 0.9,
+          "rationale": "Higher confidence (0.9) vs (0.7)"
+        },
+        {
+          "strategy": "prefer_higher_confidence",
+          "chosen_statement": "stmt-6",
+          "confidence": 0.8,
+          "rationale": "Higher confidence (0.8) vs (0.6)"
+        }
+      ],
+      "resolution_accuracy": 1.0
+    },
+    {
+      "test_name": "summarization_compression_efficiency",
+      "description": "Test ability to compress information while preserving meaning",
+      "original_fragments": 20,
+      "original_size": 2729,
+      "timestamp": 1757119068.4802248,
+      "micro_summaries": {
+        "count": 4,
+        "compression_ratio": 0.2,
+        "avg_size": 88.0
+      },
+      "macro_summary": {
+        "size": 124,
+        "compression_ratio": 0.04543788933675339,
+        "content": "Macro summary of 4 development sessions focusing on feature implementation, architectural decisions, and iterative progress."
+      },
+      "compression_effectiveness": {
+        "micro_compression_ratio": 0.12898497618175156,
+        "macro_compression_ratio": 0.04543788933675339,
+        "information_preservation": 0.8,
+        "compression_efficiency": "high"
+      }
+    },
+    {
+      "test_name": "retrieval_accuracy_performance",
+      "description": "Test retrieval accuracy and performance across different modes",
+      "knowledge_base_size": 6,
+      "queries_tested": 3,
+      "query_results": [
+        {
+          "query": "React state management",
+          "mode": "semantic_similarity",
+          "retrieved_count": 2,
+          "accuracy": 1.0,
+          "retrieval_time": 3.457069396972656e-05,
+          "retrieved_ids": [
+            "kb-1",
+            "kb-6"
+          ]
+        },
+        {
+          "query": "authentication security",
+          "mode": "semantic_similarity",
+          "retrieved_count": 2,
+          "accuracy": 1.0,
+          "retrieval_time": 2.5272369384765625e-05,
+          "retrieved_ids": [
+            "kb-2",
+            "kb-5"
+          ]
+        },
+        {
+          "query": "frontend development",
+          "mode": "anchor_neighborhood",
+          "retrieved_count": 3,
+          "accuracy": 1.0,
+          "retrieval_time": 2.3365020751953125e-05,
+          "retrieved_ids": [
+            "kb-1",
+            "kb-4",
+            "kb-6"
+          ]
+        }
+      ],
+      "timestamp": 1757119068.480296,
+      "performance_metrics": {
+        "avg_retrieval_time": 2.773602803548177e-05,
+        "avg_accuracy": 1.0,
+        "total_time": 8.320808410644531e-05
+      }
+    },
+    {
+      "test_name": "memory_lifecycle_management",
+      "description": "Test memory eviction, consolidation, and lifecycle policies",
+      "initial_memory_size": 50,
+      "lifecycle_operations": [
+        {
+          "operation": "eviction",
+          "evicted_ids": [
+            "mem-12",
+            "mem-37"
+          ],
+          "eviction_criteria": "age > 30 days AND heat < 0.1",
+          "evicted_count": 2
+        },
+        {
+          "operation": "consolidation",
+          "consolidated_ids": [
+            "mem-47",
+            "mem-8",
+            "mem-31",
+            "mem-38",
+            "mem-4"
+          ],
+          "consolidation_criteria": "semantic similarity > 0.8",
+          "consolidated_count": 5
+        }
+      ],
+      "timestamp": 1757119068.4805522,
+      "final_memory_size": 43,
+      "memory_reduction": 0.14
+    }
+  ],
+  "summary_stats": {
+    "test_categories": 5,
+    "total_operations": 79,
+    "avg_accuracy": 0.85,
+    "performance_grade": "B+"
+  },
+  "timestamp": 1757119068.4806395
+}

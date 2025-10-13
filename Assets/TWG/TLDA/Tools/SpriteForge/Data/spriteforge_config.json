@@ -1,0 +1,309 @@
+{
+  "palettes": {
+    "scifi": {
+      "name": "Sci-Fi Technology",
+      "colors": [
+        "#1a1a2e",
+        "#16213e",
+        "#0f3460",
+        "#00d4ff",
+        "#7fbfff"
+      ],
+      "description": "Dark technological base with cyan and blue glows"
+    },
+    "fantasy": {
+      "name": "Mystical Realms",
+      "colors": [
+        "#4a3728",
+        "#8b5a3c",
+        "#3a5a3a",
+        "#b84df5",
+        "#fff5e6"
+      ],
+      "description": "Earth tones with magical purple accents"
+    },
+    "steampunk": {
+      "name": "Brass Clockwork",
+      "colors": [
+        "#663b28",
+        "#9b6633",
+        "#cc9933",
+        "#4a3118",
+        "#e6cc99"
+      ],
+      "description": "Brass and leather tones with steam white"
+    },
+    "cyberpunk": {
+      "name": "Neon Streets",
+      "colors": [
+        "#0a0a0a",
+        "#1a1a2e",
+        "#666666",
+        "#ff00ff",
+        "#00ff80"
+      ],
+      "description": "Dark base with vibrant neon highlights"
+    },
+    "mythic": {
+      "name": "Divine Essence",
+      "colors": [
+        "#f0f0ff",
+        "#d0d0e6",
+        "#9999cc",
+        "#ffeb4d",
+        "#ffffff"
+      ],
+      "description": "Pure celestial colors with divine gold"
+    }
+  },
+  "faculty_palettes": {
+    "warbler": {
+      "name": "Song of the Well",
+      "colors": [
+        "#3366cc",
+        "#1a99e6",
+        "#66ccff",
+        "#4db3ff",
+        "#80d4ff"
+      ],
+      "description": "Well-blue tones for the Warbler's song"
+    },
+    "creator": {
+      "name": "Divine Authority",
+      "colors": [
+        "#ffcc00",
+        "#e6b800",
+        "#ffe64d",
+        "#ffffcc",
+        "#ffcc00"
+      ],
+      "description": "Golden divine authority colors"
+    },
+    "sentinel": {
+      "name": "Guardian Steel",
+      "colors": [
+        "#666666",
+        "#999999",
+        "#cccccc",
+        "#4da6ff",
+        "#ffffff"
+      ],
+      "description": "Steel gray with guardian blue"
+    },
+    "archivist": {
+      "name": "Ink and Parchment",
+      "colors": [
+        "#2d1b0a",
+        "#5c3317",
+        "#8b5a2b",
+        "#f5deb3",
+        "#ffffcc"
+      ],
+      "description": "Ink browns with parchment cream"
+    },
+    "wrangler": {
+      "name": "Beast Bond",
+      "colors": [
+        "#1a5c1a",
+        "#2d8b2d",
+        "#4db84d",
+        "#85e085",
+        "#ccffcc"
+      ],
+      "description": "Natural greens for beast mastery"
+    },
+    "scribe": {
+      "name": "Living Words",
+      "colors": [
+        "#4a4a4a",
+        "#7a7a7a",
+        "#aaaaaa",
+        "#ff6b6b",
+        "#ffffff"
+      ],
+      "description": "Neutral tones with living text red"
+    },
+    "oracle": {
+      "name": "Future Sight",
+      "colors": [
+        "#2d1b4a",
+        "#5a3399",
+        "#8566cc",
+        "#b999ff",
+        "#e6ccff"
+      ],
+      "description": "Purple mystical vision colors"
+    },
+    "keeper": {
+      "name": "Vault Guardian",
+      "colors": [
+        "#4a3c1a",
+        "#806633",
+        "#b3994d",
+        "#e6cc80",
+        "#ffffb3"
+      ],
+      "description": "Vault gold and protective amber"
+    }
+  },
+  "rarity_effects": {
+    "common": {
+      "glow_intensity": 0.1,
+      "particle_count": 0,
+      "shader_effects": false,
+      "animation_complexity": "basic"
+    },
+    "uncommon": {
+      "glow_intensity": 0.2,
+      "particle_count": 1,
+      "shader_effects": false,
+      "animation_complexity": "basic"
+    },
+    "rare": {
+      "glow_intensity": 0.3,
+      "particle_count": 2,
+      "shader_effects": true,
+      "animation_complexity": "enhanced"
+    },
+    "epic": {
+      "glow_intensity": 0.5,
+      "particle_count": 3,
+      "shader_effects": true,
+      "animation_complexity": "enhanced"
+    },
+    "legendary": {
+      "glow_intensity": 0.7,
+      "particle_count": 5,
+      "shader_effects": true,
+      "animation_complexity": "complex"
+    },
+    "oneofone": {
+      "glow_intensity": 1.0,
+      "particle_count": 8,
+      "shader_effects": true,
+      "animation_complexity": "legendary"
+    }
+  },
+  "archetype_traits": {
+    "familiar": {
+      "base_size": "small",
+      "mobility": "high",
+      "characteristics": ["companion", "loyal", "adaptive"],
+      "animation_style": "bouncy"
+    },
+    "golem": {
+      "base_size": "large",
+      "mobility": "low",
+      "characteristics": ["constructed", "durable", "methodical"],
+      "animation_style": "heavy"
+    },
+    "homunculus": {
+      "base_size": "small",
+      "mobility": "medium",
+      "characteristics": ["artificial", "intelligent", "curious"],
+      "animation_style": "precise"
+    },
+    "sentinel": {
+      "base_size": "large",
+      "mobility": "medium",
+      "characteristics": ["guardian", "vigilant", "protective"],
+      "animation_style": "authoritative"
+    },
+    "wisp": {
+      "base_size": "small",
+      "mobility": "high",
+      "characteristics": ["ethereal", "elusive", "energetic"],
+      "animation_style": "flowing"
+    },
+    "automaton": {
+      "base_size": "medium",
+      "mobility": "medium",
+      "characteristics": ["mechanical", "precise", "efficient"],
+      "animation_style": "mechanical"
+    },
+    "drifter": {
+      "base_size": "medium",
+      "mobility": "high",
+      "characteristics": ["wandering", "mysterious", "free"],
+      "animation_style": "floating"
+    },
+    "warder": {
+      "base_size": "large",
+      "mobility": "low",
+      "characteristics": ["protective", "ancient", "powerful"],
+      "animation_style": "imposing"
+    }
+  },
+  "locations": {
+    "wizards_tower": {
+      "name": "Wizard's Tower",
+      "description": "The ancient spire where arcane knowledge reaches toward the stars",
+      "rarity_tier": "legendary",
+      "ambient_effects": ["floating_books", "magical_sparkles", "wind_currents"]
+    },
+    "the_well": {
+      "name": "The Well",
+      "description": "Sacred depths where the Giant stirs and Warbler songs echo",
+      "rarity_tier": "oneofone",
+      "ambient_effects": ["water_ripples", "echo_waves", "deep_glow"]
+    },
+    "mind_castle_atrium": {
+      "name": "Mind Castle - Atrium",
+      "description": "Grand entrance to the fortress of thought and memory",
+      "rarity_tier": "rare",
+      "ambient_effects": ["thought_wisps", "memory_fragments", "cognitive_glow"]
+    },
+    "mind_castle_scriptorium": {
+      "name": "Mind Castle - Scriptorium",
+      "description": "Where living words take form and knowledge crystallizes",
+      "rarity_tier": "epic",
+      "ambient_effects": ["floating_text", "ink_drops", "quill_trails"]
+    },
+    "mind_castle_observatory": {
+      "name": "Mind Castle - Observatory",
+      "description": "Tower of foresight where future paths converge",
+      "rarity_tier": "epic",
+      "ambient_effects": ["star_charts", "temporal_waves", "vision_flashes"]
+    },
+    "mind_castle_vault": {
+      "name": "Mind Castle - Vault",
+      "description": "Secured chamber of the most precious memories and secrets",
+      "rarity_tier": "legendary",
+      "ambient_effects": ["security_fields", "vault_gleam", "guardian_light"]
+    },
+    "stables": {
+      "name": "The Stables",
+      "description": "Where the creatures of thought rest between adventures",
+      "rarity_tier": "uncommon",
+      "ambient_effects": ["creature_movement", "feeding_glow", "rest_aura"]
+    },
+    "ramparts": {
+      "name": "The Ramparts",
+      "description": "Defensive walls protecting the realm of consciousness",
+      "rarity_tier": "rare",
+      "ambient_effects": ["patrol_lights", "defense_barriers", "watch_flames"]
+    },
+    "courtyard": {
+      "name": "The Courtyard",
+      "description": "Central gathering place where all paths meet",
+      "rarity_tier": "common",
+      "ambient_effects": ["meeting_glow", "pathway_lights", "gathering_warmth"]
+    },
+    "outer_wilds": {
+      "name": "The Outer Wilds",
+      "description": "Untamed regions beyond the mapped consciousness",
+      "rarity_tier": "rare",
+      "ambient_effects": ["wild_energy", "untamed_sparks", "frontier_mist"]
+    }
+  },
+  "generation_settings": {
+    "default_sprite_size": 24,
+    "faculty_sprite_size": 32,
+    "max_animation_frames": 24,
+    "base_animation_fps": 8,
+    "faculty_animation_fps": 12,
+    "export_formats": ["png", "json"],
+    "compression_quality": 100,
+    "pixel_perfect": true
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$id": "https://example.com/schemas/claim.origin.extension.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Claim Origin Extension (Alchemist v0.1.0)",
+  "type": "object",
+  "properties": {
+    "origin": {
+      "type": "object",
+      "required": [
+        "type",
+        "issue_number",
+        "stage_at_evaluation",
+        "logline_hash"
+      ],
+      "properties": {
+        "type": { "const": "gu_pot" },
+        "issue_number": { "type": "integer", "minimum": 1 },
+        "issue_url": { "type": "string", "format": "uri" },
+        "stage_at_evaluation": {
+          "type": "string",
+            "enum": ["distilled", "serum", "antitoxin"]
+        },
+        "logline_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "tension_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "irreversible_shift_declared": { "type": "boolean" },
+        "extracted_on": { "type": "string", "format": "date-time" },
+        "alchemist_version": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["origin"]
+}

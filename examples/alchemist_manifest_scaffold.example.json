@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "experiment_manifest",
+  "origin": {
+    "type": "gu_pot",
+    "issue_number": 123,
+    "issue_url": "https://github.com/OWNER/REPO/issues/123"
+  },
+  "logline": "Adaptive allocator reduces fragmentation during burst load.",
+  "tension": "Need lower p95 allocation latency without triggering GC spikes.",
+  "hashes": {
+    "logline_hash": "sha256:<computed>",
+    "tension_hash": "sha256:<computed>"
+  },
+  "hypothesis": "Because adaptive pooling reduces fragmentation, we expect alloc_latency_p95 to reduce by 5-10%.",
+  "metrics": [
+    {
+      "name": "alloc_latency_p95",
+      "unit": "ms",
+      "direction": "reduce",
+      "precision": 2
+    }
+  ],
+  "determinism": {
+    "seed": 1337,
+    "platform": "win64",
+    "engine_version": "2025.1.0f1"
+  },
+  "execution": {
+    "runner": "alchemist_runner_v1",
+    "iterations": 1
+  },
+  "thresholds": {
+    "placeholder": "Define success/regression thresholds in validation phase."
+  },
+  "notes": "Example manifest produced by scaffold."
+}

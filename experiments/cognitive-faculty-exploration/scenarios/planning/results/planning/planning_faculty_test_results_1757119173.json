@@ -1,0 +1,220 @@
+{
+  "faculty": "planning",
+  "test_suite": "comprehensive_planning_analysis",
+  "total_tests": 4,
+  "execution_time": 0.0017044544219970703,
+  "results": [
+    {
+      "test_name": "advisor_stress_scenarios",
+      "description": "Test Advisor under various operational stresses",
+      "scenarios_tested": 3,
+      "scenario_results": [
+        {
+          "scenario": "quick_analysis_budget_pressure",
+          "description": "Test advisor under tight time constraints",
+          "parameters": [
+            "--advisor-only",
+            "--quick",
+            "--dry-run"
+          ],
+          "expected_behavior": "Focused recommendations with time awareness",
+          "execution_result": {
+            "success": false,
+            "execution_time": 0.00030422210693359375,
+            "error": "[Errno 2] No such file or directory: '../../../scripts/cid-faculty'",
+            "command": "node index.js --advisor-only --quick --dry-run",
+            "parameters": [
+              "--advisor-only",
+              "--quick",
+              "--dry-run"
+            ]
+          },
+          "success": false,
+          "analysis": {
+            "analysis": "failed_execution",
+            "quality": "unknown"
+          }
+        },
+        {
+          "scenario": "complex_scope_analysis",
+          "description": "Test advisor with complex scope requirements",
+          "parameters": [
+            "--advisor-only",
+            "--scope=security",
+            "--dry-run"
+          ],
+          "expected_behavior": "Specialized security-focused analysis",
+          "execution_result": {
+            "success": false,
+            "execution_time": 0.0002422332763671875,
+            "error": "[Errno 2] No such file or directory: '../../../scripts/cid-faculty'",
+            "command": "node index.js --advisor-only --scope=security --dry-run",
+            "parameters": [
+              "--advisor-only",
+              "--scope=security",
+              "--dry-run"
+            ]
+          },
+          "success": false,
+          "analysis": {
+            "analysis": "failed_execution",
+            "quality": "unknown"
+          }
+        },
+        {
+          "scenario": "deep_analysis_mode",
+          "description": "Test advisor with extended analysis budget",
+          "parameters": [
+            "--advisor-only",
+            "--deep",
+            "--dry-run"
+          ],
+          "expected_behavior": "Comprehensive detailed recommendations",
+          "execution_result": {
+            "success": false,
+            "execution_time": 0.0002205371856689453,
+            "error": "[Errno 2] No such file or directory: '../../../scripts/cid-faculty'",
+            "command": "node index.js --advisor-only --deep --dry-run",
+            "parameters": [
+              "--advisor-only",
+              "--deep",
+              "--dry-run"
+            ]
+          },
+          "success": false,
+          "analysis": {
+            "analysis": "failed_execution",
+            "quality": "unknown"
+          }
+        }
+      ],
+      "timestamp": 1757119173.8157852
+    },
+    {
+      "test_name": "oracle_forecasting_accuracy",
+      "description": "Test Oracle strategic forecasting capabilities",
+      "tests_conducted": 2,
+      "test_results": [
+        {
+          "test": "scenario_generation_quality",
+          "description": "Test quality of generated scenarios",
+          "parameters": [
+            "--oracle-only",
+            "--dry-run"
+          ],
+          "evaluation_criteria": [
+            "scenario_count",
+            "probability_distribution",
+            "coherence"
+          ],
+          "execution_result": {
+            "success": false,
+            "execution_time": 0.00024318695068359375,
+            "error": "[Errno 2] No such file or directory: '../../../scripts/cid-faculty'",
+            "command": "node index.js --oracle-only --dry-run",
+            "parameters": [
+              "--oracle-only",
+              "--dry-run"
+            ]
+          },
+          "success": false,
+          "forecasting_analysis": {
+            "analysis": "failed_execution",
+            "forecasting_quality": "unknown"
+          }
+        },
+        {
+          "test": "strategic_horizon_analysis",
+          "description": "Test strategic planning horizon capabilities",
+          "parameters": [
+            "--oracle-only",
+            "--deep",
+            "--dry-run"
+          ],
+          "evaluation_criteria": [
+            "horizon_length",
+            "strategic_depth",
+            "risk_assessment"
+          ],
+          "execution_result": {
+            "success": false,
+            "execution_time": 0.00021386146545410156,
+            "error": "[Errno 2] No such file or directory: '../../../scripts/cid-faculty'",
+            "command": "node index.js --oracle-only --deep --dry-run",
+            "parameters": [
+              "--oracle-only",
+              "--deep",
+              "--dry-run"
+            ]
+          },
+          "success": false,
+          "forecasting_analysis": {
+            "analysis": "failed_execution",
+            "forecasting_quality": "unknown"
+          }
+        }
+      ],
+      "timestamp": 1757119173.8166952
+    },
+    {
+      "test_name": "advisor_oracle_integration",
+      "description": "Test coordinated Advisor + Oracle consultation",
+      "integration_result": {
+        "success": false,
+        "execution_time": 0.0002181529998779297,
+        "error": "[Errno 2] No such file or directory: '../../../scripts/cid-faculty'",
+        "command": "node index.js --dry-run",
+        "parameters": [
+          "--dry-run"
+        ]
+      },
+      "coordination_analysis": {
+        "coordination": "failed_execution"
+      },
+      "timestamp": 1757119173.8174577
+    },
+    {
+      "test_name": "planning_under_uncertainty",
+      "description": "Test planning faculty behavior with incomplete information",
+      "uncertainty_scenarios": [
+        {
+          "scenario": "minimal_context",
+          "description": "Planning with limited repository context",
+          "approach": "Stress test with minimal data availability",
+          "expected_adaptation": "Graceful degradation with conservative recommendations"
+        },
+        {
+          "scenario": "conflicting_priorities",
+          "description": "Planning with contradictory requirements",
+          "approach": "Simulate competing priorities and constraints",
+          "expected_adaptation": "Balanced approach with explicit tradeoff acknowledgment"
+        },
+        {
+          "scenario": "resource_scarcity",
+          "description": "Planning under severe resource constraints",
+          "approach": "Limited budget and capability simulation",
+          "expected_adaptation": "Priority-focused recommendations with efficiency emphasis"
+        }
+      ],
+      "adaptation_mechanisms": [
+        "Conservative confidence scoring under uncertainty",
+        "Explicit acknowledgment of information gaps",
+        "Fallback to higher-level strategic guidance",
+        "Recommendation prioritization based on available certainty"
+      ],
+      "timestamp": 1757119173.8174794
+    }
+  ],
+  "summary_stats": {
+    "total_test_categories": 4,
+    "successful_test_categories": 0,
+    "success_rate": 0.0,
+    "planning_capabilities_verified": [
+      "advisor_stress_handling",
+      "oracle_forecasting",
+      "faculty_integration",
+      "uncertainty_adaptation"
+    ]
+  },
+  "timestamp": 1757119173.81748
+}

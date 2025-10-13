@@ -1,0 +1,10 @@
+{
+  "run_id": "run_0002",
+  "experiment_name": "experiment_e5f6g7h8-i9j0-1234-5678-901234efghij",
+  "manifest_file": "experiment_e5f6g7h8-i9j0-1234-5678-901234efghij.yaml",
+  "execution_time": "2025-09-06T02:20:00Z",
+  "exit_code": 0,
+  "success": true,
+  "stage": "3",
+  "workflow": "school"
+}

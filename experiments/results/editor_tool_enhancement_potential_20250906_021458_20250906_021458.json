@@ -1,0 +1,126 @@
+{
+  "experiment_id": "editor_tool_enhancement_potential_20250906_021458",
+  "manifest": {
+    "metadata": {
+      "name": "Editor Tool Enhancement Potential",
+      "description": "This editor tool can be enhanced with additional workflow automation",
+      "version": "1.0.0",
+      "author": "School Experiment Framework",
+      "created": "2025-09-06T02:15:00Z",
+      "tags": [
+        "school",
+        "hypothesis",
+        "capabilityassertion"
+      ]
+    },
+    "model": {
+      "type": "behavioral_governance",
+      "instance_config": {
+        "enable_intervention_tracking": true,
+        "faculty_surface_focus": "Assets/TWG/TLDA/Tools/SpriteForge/Editor/SpriteForgeEditor.cs"
+      },
+      "performance_profile": "experiment"
+    },
+    "conditions": {
+      "hypothesis_types": [
+        "CapabilityAssertion"
+      ],
+      "faculty_surfaces": [
+        "Assets/TWG/TLDA/Tools/SpriteForge/Editor/SpriteForgeEditor.cs"
+      ]
+    },
+    "corpus": {
+      "type": "synthetic",
+      "size": 50,
+      "shuffle": true,
+      "seed": 5965
+    },
+    "processing": {
+      "batch_size": 10,
+      "mode": "sequential",
+      "max_workers": 1,
+      "timeout_seconds": 300
+    },
+    "metrics": {
+      "behavioral_metrics": [
+        "hypothesis_validation_score",
+        "faculty_surface_coverage",
+        "processing_time_ms"
+      ],
+      "performance_metrics": [
+        "throughput_items_per_sec",
+        "success_rate_pct"
+      ]
+    },
+    "output": {
+      "base_path": "assets/experiments/school/outputs",
+      "formats": [
+        "json"
+      ],
+      "artifacts": {
+        "save_raw_results": true,
+        "save_processed_metrics": true
+      }
+    },
+    "execution": {
+      "random_seeds": {
+        "global_seed": 5965,
+        "corpus_seed": 6065
+      },
+      "retry_policy": {
+        "max_retries": 1
+      },
+      "resource_limits": {
+        "max_memory_mb": 512,
+        "max_duration_minutes": 10
+      }
+    },
+    "validation": {
+      "success_criteria": {
+        "min_processed_items": 40,
+        "max_error_rate": 0.1,
+        "min_validation_score": 0.7
+      }
+    },
+    "integration": {
+      "chronicle_integration": {
+        "enabled": true,
+        "auto_generate_tldl": false
+      },
+      "pet_events": {
+        "enabled": false
+      },
+      "telemetry": {
+        "enabled": true,
+        "track_developer_state": false,
+        "include_system_metrics": true
+      }
+    }
+  },
+  "status": "partial_failure",
+  "start_time": 1757124898.445574,
+  "end_time": 1757124898.4459472,
+  "duration_seconds": 0.0003733634948730469,
+  "total_runs": 1,
+  "completed_runs": 0,
+  "failed_runs": 1,
+  "runs": [],
+  "failures": [
+    {
+      "run_id": "editor_tool_enhancement_potential_20250906_021458_run_0000",
+      "experiment_id": "editor_tool_enhancement_potential_20250906_021458",
+      "condition_values": {
+        "hypothesis_types": "CapabilityAssertion",
+        "faculty_surfaces": "Assets/TWG/TLDA/Tools/SpriteForge/Editor/SpriteForgeEditor.cs"
+      },
+      "status": "ExperimentStatus.FAILED",
+      "start_time": 1757124898.4457777,
+      "end_time": 1757124898.4457905,
+      "results": null,
+      "metrics": null,
+      "error": "BehavioralGovernance.__init__() got an unexpected keyword argument 'faculty_surface_focus'"
+    }
+  ],
+  "aggregate_metrics": {},
+  "time_series_data": []
+}
