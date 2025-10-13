@@ -1,0 +1,35 @@
+{
+  "name": "twg-tlda",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "packs/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "lint": "eslint . --ext .ts,.js,.mjs",
+    "test": "npm run test --workspaces",
+    "test:warbler": "npm run test --workspace=warbler-core",
+    "pack:validate": "node scripts/validate-warbler-pack.mjs packs/warbler-pack-core/pack/templates.json && node scripts/validate-warbler-pack.mjs packs/warbler-pack-faction-politics/pack/templates.json",
+    "warbler:simulate": "node scripts/simulate-warble.mjs",
+    "publish:core": "npm publish --workspace=warbler-core",
+    "publish:packs": "npm publish --workspace=warbler-pack-core && npm publish --workspace=warbler-pack-faction-politics",
+    "release:all": "npm run publish:core && npm run publish:packs"
+  },
+  "dependencies": {
+    "@playwright/mcp": "0.0.37",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "typescript": "^5.3.0",
+    "vitest": "^3.2.4",
+    "eslint": "^9.35.0",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.42.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
