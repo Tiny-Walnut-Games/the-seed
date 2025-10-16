@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LUCA Entity Canonical Schema",
+  "description": "The foundational structure for entities within The Seed. Defines immutable identity core and mutable manifestations across reality branches and time.",
+  "version": "0.1.0",
+  "type": "object",
+  "required": ["identity_core", "manifestations"],
+  "properties": {
+    "identity_core": {
+      "type": "object",
+      "description": "IMMUTABLE. The true name, DNA, and essential identity of the entity. Cannot change or entanglement fails.",
+      "required": ["id", "entity_type", "created_at"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier - the true name of this entity"
+        },
+        "entity_type": {
+          "type": "string",
+          "enum": ["concept", "artifact", "agent", "lineage", "adjacency", "horizon", "fragment"],
+          "description": "Classification within The Seed taxonomy"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this identity core was first instantiated"
+        },
+        "semantic_hash": {
+          "type": "string",
+          "description": "Cryptographic signature of the core essence - for validation"
+        }
+      }
+    },
+    "manifestations": {
+      "type": "array",
+      "description": "MUTABLE. Instances of this entity across reality branches, timestamps, and luminosity levels.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["reality_branch", "timestamp", "state"],
+        "properties": {
+          "reality_branch": {
+            "type": "string",
+            "description": "Which fractal-river branch this manifestation exists in (e.g., 'PRIMARY', 'EXPERIMENT-01', 'ALTERNATE-PATH-A')"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this manifestation was instantiated or last mutated"
+          },
+          "luminosity_level": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 7,
+            "description": "STAT7 luminosity level (0=compressed, 7=fully expanded)"
+          },
+          "coordinates": {
+            "type": "object",
+            "description": "Position in STAT7 multidimensional space (MUTABLE)",
+            "properties": {
+              "realm": { "type": "string" },
+              "lineage": { "type": "string" },
+              "adjacency": { "type": "string" },
+              "horizon": { "type": "string" },
+              "resonance": { "type": "number" },
+              "velocity": { "type": "number" },
+              "density": { "type": "number" }
+            }
+          },
+          "state": {
+            "type": "object",
+            "description": "MUTABLE. Current state data of this manifestation (schema varies by entity_type)"
+          },
+          "entanglement_links": {
+            "type": "array",
+            "description": "References to other entity cores this manifestation resonates with",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target_identity_core_id": {
+                  "type": "string",
+                  "description": "Points to another entity's immutable core"
+                },
+                "resonance_strength": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "entanglement_type": {
+                  "type": "string",
+                  "enum": ["causal", "semantic", "structural", "narrative"]
+                }
+              }
+            }
+          },
+          "bit_chain_events": {
+            "type": "array",
+            "description": "Ordered record of mutations to this manifestation",
+            "items": {
+              "type": "object",
+              "properties": {
+                "event_id": { "type": "string" },
+                "timestamp": { "type": "string", "format": "date-time" },
+                "mutation_type": { "type": "string" },
+                "previous_state_hash": { "type": "string" },
+                "new_state_hash": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional metadata about this entity definition",
+      "properties": {
+        "last_verified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "verification_luminosity": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
