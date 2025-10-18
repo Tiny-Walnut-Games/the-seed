@@ -154,17 +154,17 @@ This enables **replay validation**: Recompute final hash from events and compare
 
 **Global Policy (applies to all entity types):**
 
-| Dimension | Policy | Enforcement | Notes |
-|-----------|--------|-------------|-------|
-| **realm** | Immutable | Schema + validator | Cannot change post-genesis |
-| **lineage** | Immutable | Schema | Ancestry chain is inviolate |
-| **adjacency** | Append-only with monotonicity | Validator | Add neighbors, mark deprecated, never delete/reorder |
-| **horizon** | Dynamic-bounded | Validator | Change allowed, but only within vocabulary per reality_branch; logged as event |
-| **luminosity** | Dynamic | None | Real-time mutable; no audit required |
-| **resonance** | Dynamic | Normalization | 8 decimal places; forbid NaN/Inf |
-| **velocity** | Dynamic | Normalization | 8 decimal places; forbid NaN/Inf |
-| **density** | Dynamic | Normalization | 8 decimal places; forbid NaN/Inf |
-| **dimensionality** | Fold-unfold with reversible mapping | Validator | Must include `fold_map_id` to prove invertibility |
+| Dimension          | Policy                              | Enforcement        | Notes                                                                          |
+|--------------------|-------------------------------------|--------------------|--------------------------------------------------------------------------------|
+| **realm**          | Immutable                           | Schema + validator | Cannot change post-genesis                                                     |
+| **lineage**        | Immutable                           | Schema             | Ancestry chain is inviolate                                                    |
+| **adjacency**      | Append-only with monotonicity       | Validator          | Add neighbors, mark deprecated, never delete/reorder                           |
+| **horizon**        | Dynamic-bounded                     | Validator          | Change allowed, but only within vocabulary per reality_branch; logged as event |
+| **luminosity**     | Dynamic                             | None               | Real-time mutable; no audit required                                           |
+| **resonance**      | Dynamic                             | Normalization      | 8 decimal places; forbid NaN/Inf                                               |
+| **velocity**       | Dynamic                             | Normalization      | 8 decimal places; forbid NaN/Inf                                               |
+| **density**        | Dynamic                             | Normalization      | 8 decimal places; forbid NaN/Inf                                               |
+| **dimensionality** | Fold-unfold with reversible mapping | Validator          | Must include `fold_map_id` to prove invertibility                              |
 
 **Per-Entity-Type Overrides (stricter only):**
 
