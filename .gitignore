@@ -266,6 +266,224 @@ local_journal/
 /Temp
 /.vs/TWG-TLDA/FileContentIndex
 /.vs
-/.vs
 # Determinism test results - temporary files
 experiments/determinism_tests/
+
+# ============================================================================
+# LARGE FILE PROTECTION (No Git LFS available - strict prevention)
+# ============================================================================
+
+# Image formats (all binary image types)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.ico
+*.webp
+*.psd
+*.xcf
+*.ai
+*.svg
+!.github/**/*.svg
+!docs/**/*.svg
+
+# 3D Models and animations
+*.obj
+*.fbx
+*.blend
+*.blend1
+*.dae
+*.max
+*.maya
+*.rig
+*.gltf
+*.glb
+*.usdz
+
+# Audio files
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.aac
+*.m4a
+*.wma
+*.aif
+*.aiff
+
+# Video files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.flv
+*.wmv
+*.webm
+*.m4v
+*.mpg
+*.mpeg
+*.3gp
+
+# Archive files (can be large)
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tar.bz2
+*.iso
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.mdb
+*.accdb
+*.dbf
+
+# ML Model files (often very large)
+*.h5
+*.keras
+*.pb
+*.pth
+*.pt
+*.onnx
+*.pkl
+*.pickle
+*.joblib
+*.model
+*.weights
+*.bin
+*.safetensors
+*.msgpack
+
+# Compiled binaries and executables
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.a
+*.lib
+*.class
+*.jar
+
+# Large generated files
+*.dmg
+dist/
+build/
+*.whl
+*.egg
+
+# Cache and temporary large files
+*.cache
+*.bak
+*.backup
+*.old
+*~
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# System and IDE large artifacts
+.gradle/
+.idea/system/
+.vscode/ipch/
+.vscode/extensions/
+
+# Node modules (can be very large)
+node_modules/
+packs/*/node_modules/
+packages/*/node_modules/
+npm-debug.log*
+yarn-error.log*
+.npm/
+.yarn/cache/
+
+# Python build artifacts (can be large)
+dist/
+build/
+*.egg-info/
+.eggs/
+.tox/
+.nox/
+
+# Generated reports and outputs (can get large)
+*.html
+!docs/**/*.html
+coverage/
+htmlcov/
+.nyc_output/
+
+# ============================================================================
+# PERFORMANCE OPTIMIZATION (smaller operations, faster clones)
+# ============================================================================
+
+# Lock files for package managers (only commit explicit ones)
+yarn.lock
+Pipfile.lock
+poetry.lock
+pnpm-lock.yaml
+
+# Git index lock (process crash artifact)
+.git/index.lock
+
+# OS and editor artifacts
+Thumbs.db
+ehthumbs.db
+.Thumb
+*.bak
+*.orig
+
+# ============================================================================
+# UNITY-SPECIFIC (for game assets and builds)
+# ============================================================================
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Unity generated metafiles (unless explicitly tracked)
+*.meta
+
+# Unity IDEs
+.vscode
+.idea/
+*.sln
+*.csproj
+*.unityproj
+
+# ============================================================================
+# DOCUMENTATION (prevent binary docs from bloating repo)
+# ============================================================================
+
+# PDF files (often large)
+*.pdf
+!docs/**/*.pdf
+
+# Generated documentation
+docs/_build/
+site/
+.doctrees/
+
+# ============================================================================
+# PROJECT-SPECIFIC LARGE FILES
+# ============================================================================
+
+# Seed project specific
+/data/**/*.bin
+/data/**/*.cache
+/schema/**/*.db
+seed/engine/precomputed/
+seed/engine/cache/
+
+# Warbler pack assets (if large)
+packs/*/assets/
+packs/*/dist/
+packs/*/build/
