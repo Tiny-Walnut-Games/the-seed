@@ -1,0 +1,212 @@
+{
+  "EXP-01": {
+    "success": true,
+    "summary": {
+      "total_iterations": 3,
+      "total_bitchains_tested": 300,
+      "total_collisions": 0,
+      "overall_collision_rate": 0.0,
+      "all_passed": true,
+      "results": [
+        {
+          "iteration": 1,
+          "total_bitchains": 100,
+          "unique_addresses": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 2,
+          "total_bitchains": 100,
+          "unique_addresses": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 3,
+          "total_bitchains": 100,
+          "unique_addresses": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        }
+      ]
+    }
+  },
+  "EXP-02": {
+    "success": true,
+    "summary": {
+      "total_scales_tested": 3,
+      "all_passed": true,
+      "results": [
+        {
+          "scale": 1000,
+          "queries": 100,
+          "mean_latency_ms": 0.0002169999061152339,
+          "median_latency_ms": 0.000200001522898674,
+          "p95_latency_ms": 0.0004999455995857716,
+          "p99_latency_ms": 0.000900006853044033,
+          "min_latency_ms": 0.000100000761449337,
+          "max_latency_ms": 0.000900006853044033,
+          "success": true
+        },
+        {
+          "scale": 10000,
+          "queries": 100,
+          "mean_latency_ms": 0.00041599967516958714,
+          "median_latency_ms": 0.000400003045797348,
+          "p95_latency_ms": 0.000900006853044033,
+          "p99_latency_ms": 0.001300009898841381,
+          "min_latency_ms": 0.000200001522898674,
+          "max_latency_ms": 0.001300009898841381,
+          "success": true
+        },
+        {
+          "scale": 100000,
+          "queries": 100,
+          "mean_latency_ms": 0.0006379978731274605,
+          "median_latency_ms": 0.000500003807246685,
+          "p95_latency_ms": 0.001300009898841381,
+          "p99_latency_ms": 0.0024999608285725117,
+          "min_latency_ms": 0.000300002284348011,
+          "max_latency_ms": 0.0024999608285725117,
+          "success": true
+        }
+      ]
+    }
+  },
+  "EXP-03": {
+    "success": true,
+    "summary": {
+      "sample_size": 100,
+      "total_dimension_combos_tested": 8,
+      "results": [
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "adjacency",
+            "horizon",
+            "resonance",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "lineage",
+            "adjacency",
+            "horizon",
+            "resonance",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "adjacency",
+            "horizon",
+            "resonance",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "horizon",
+            "resonance",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "adjacency",
+            "resonance",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "adjacency",
+            "horizon",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "adjacency",
+            "horizon",
+            "resonance",
+            "density"
+          ],
+          "sample_size": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "adjacency",
+            "horizon",
+            "resonance",
+            "velocity"
+          ],
+          "sample_size": 100,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "timestamp": "2025-10-18T14:06:07.588220",
+    "elapsed_seconds": 9.438861,
+    "phase": "Phase 1 Doctrine",
+    "status": "PASSED",
+    "exp01_samples": 100,
+    "exp01_iterations": 3,
+    "exp02_queries": 100,
+    "exp03_samples": 100
+  }
+}
