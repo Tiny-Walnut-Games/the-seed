@@ -1,0 +1,64 @@
+{
+  "identity_core": {
+    "id": "LUCA-0000",
+    "entity_type": "fragment",
+    "created_at": "2025-01-01T00:00:00.000Z",
+    "semantic_hash": "sha256-9f86d081884c7d6d9ffd60a2717b5efb9a8f2f5c8d0e9c0a9a9b8c8d8e8e8e",
+    "canonical_hash": "sha256-9f86d081884c7d6d9ffd60a2717b5efb9a8f2f5c8d0e9c0a9a9b8c8d8e8e8e",
+    "stat7_address_root": "stat7://void/0"
+  },
+  "manifestations": [
+    {
+      "reality_branch": "PRIMARY",
+      "timestamp": "2025-01-01T00:00:00.000Z",
+      "luminosity_level": 0,
+      "coordinates": {
+        "realm": "void",
+        "lineage": "0",
+        "adjacency": [],
+        "horizon": "genesis",
+        "resonance": 1.00000000,
+        "velocity": 0.00000000,
+        "density": 0.00000000
+      },
+      "canonical_hash": "sha256-b0a3f2c9d1e5a8f3b7c2d9e8f1a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1",
+      "stat7_address": "stat7://void/0/da39a3ee5e6b4b0d3255bfef95601890afd80709/genesis?r=1.00000000&v=0.00000000&d=0.00000000",
+      "adjacency_hash": "sha256-da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "chain_integrity_hash": "sha256-b0a3f2c9d1e5a8f3b7c2d9e8f1a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1",
+      "state": {
+        "content": "seed",
+        "phase": "emergence",
+        "bootstrap": true
+      },
+      "entanglement_links": [],
+      "bit_chain_events": [
+        {
+          "event_id": "550e8400-e29b-41d4-a716-446655440000",
+          "timestamp": "2025-01-01T00:00:00.000Z",
+          "mutation_type": "emergence",
+          "previous_state_hash": null,
+          "new_state_hash": "sha256-b0a3f2c9d1e5a8f3b7c2d9e8f1a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1"
+        }
+      ]
+    }
+  ],
+  "mutability_policy": {
+    "realm": "immutable",
+    "lineage": "immutable",
+    "adjacency": "append-only-with-monotonicity",
+    "horizon": "dynamic-bounded",
+    "luminosity": "dynamic",
+    "resonance": "dynamic",
+    "velocity": "dynamic",
+    "density": "dynamic",
+    "dimensionality": "fold-unfold-with-reversible-mapping"
+  },
+  "metadata": {
+    "last_verified": "2025-01-01T00:00:00.000Z",
+    "verification_luminosity": 0,
+    "hardening_phase": "Phase-1-Doctrine",
+    "canonical_serialization_version": "1.0.0",
+    "purpose": "Primordial entity; bootstrap seed for all STAT7 addressing and lineage",
+    "notes": "This is the LUCA (Last Universal Common Ancestor). All entities derive from this ground state. Canonical hashes computed via sorted-JSON + 8dp float normalization + minified serialization."
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LUCA Entity Canonical Schema",
+  "description": "The foundational structure for entities within The Seed. Defines immutable identity core and mutable manifestations across reality branches and time.",
+  "version": "0.1.0",
+  "type": "object",
+  "required": ["identity_core", "manifestations"],
+  "properties": {
+    "identity_core": {
+      "type": "object",
+      "description": "IMMUTABLE. The true name, DNA, and essential identity of the entity. Cannot change or entanglement fails.",
+      "required": ["id", "entity_type", "created_at", "canonical_hash"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier - the true name of this entity"
+        },
+        "entity_type": {
+          "type": "string",
+          "enum": ["concept", "artifact", "agent", "lineage", "adjacency", "horizon", "fragment"],
+          "description": "Classification within The Seed taxonomy"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO8601 UTC with millisecond precision: YYYY-MM-DDTHH:MM:SS.mmmZ"
+        },
+        "semantic_hash": {
+          "type": "string",
+          "description": "Cryptographic signature of the core essence - for validation"
+        },
+        "canonical_hash": {
+          "type": "string",
+          "description": "SHA-256 of sorted identity_core keys with normalized values; immutable once set"
+        },
+        "stat7_address_root": {
+          "type": "string",
+          "format": "uri",
+          "description": "stat7://{realm}/{lineage} root address for this entity's core"
+        }
+      }
+    },
+    "manifestations": {
+      "type": "array",
+      "description": "MUTABLE. Instances of this entity across reality branches, timestamps, and luminosity levels.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["reality_branch", "timestamp", "state", "coordinates", "canonical_hash", "stat7_address", "chain_integrity_hash"],
+        "properties": {
+          "reality_branch": {
+            "type": "string",
+            "description": "Which fractal-river branch this manifestation exists in (e.g., 'PRIMARY', 'EXPERIMENT-01', 'ALTERNATE-PATH-A')"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO8601 UTC with millisecond precision: YYYY-MM-DDTHH:MM:SS.mmmZ"
+          },
+          "luminosity_level": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 7,
+            "description": "STAT7 luminosity level (0=compressed, 7=fully expanded)"
+          },
+          "coordinates": {
+            "type": "object",
+            "description": "Position in STAT7 multidimensional space (MUTABLE per policy)",
+            "required": ["realm", "lineage", "adjacency", "horizon", "resonance", "velocity", "density"],
+            "properties": {
+              "realm": {
+                "type": "string",
+                "description": "Domain classification; IMMUTABLE"
+              },
+              "lineage": {
+                "type": "string",
+                "description": "Generation from LUCA; IMMUTABLE"
+              },
+              "adjacency": {
+                "type": "array",
+                "description": "Relational neighbors; append-only with monotonicity",
+                "items": { "type": "string" }
+              },
+              "horizon": {
+                "type": "string",
+                "description": "Lifecycle stage; dynamic but bounded vocabulary per reality_branch"
+              },
+              "resonance": {
+                "type": "number",
+                "description": "Charge/alignment; normalized to 8 decimal places"
+              },
+              "velocity": {
+                "type": "number",
+                "description": "Rate of change; normalized to 8 decimal places"
+              },
+              "density": {
+                "type": "number",
+                "description": "Compression distance from LUCA; normalized to 8 decimal places"
+              }
+            }
+          },
+          "canonical_hash": {
+            "type": "string",
+            "description": "SHA-256 of manifestation canonical serialization; enables replay validation"
+          },
+          "stat7_address": {
+            "type": "string",
+            "format": "uri",
+            "description": "stat7://{realm}/{lineage}/{adjacency_hash}/{horizon}?r={resonance}&v={velocity}&d={density}"
+          },
+          "adjacency_hash": {
+            "type": "string",
+            "description": "SHA-256 of sorted adjacency list; enables append-only detection"
+          },
+          "fold_map_id": {
+            "type": "string",
+            "description": "Optional: Reference to fold/unfold mapping when dimensionality is modified; proves reversibility"
+          },
+          "chain_integrity_hash": {
+            "type": "string",
+            "description": "Rolling SHA-256 chain hash: H(n) = SHA-256(H(n-1) || event_n_canonical); validates bit_chain_events"
+          },
+          "state": {
+            "type": "object",
+            "description": "MUTABLE. Current state data of this manifestation (schema varies by entity_type)"
+          },
+          "entanglement_links": {
+            "type": "array",
+            "description": "References to other entity cores this manifestation resonates with",
+            "items": {
+              "type": "object",
+              "required": ["target_identity_core_id", "resonance_strength", "entanglement_type"],
+              "properties": {
+                "target_identity_core_id": {
+                  "type": "string",
+                  "description": "Points to existing entity's immutable core (must reference valid identity_core.id)"
+                },
+                "resonance_strength": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Normalized to 8 decimal places; forbid NaN/Inf"
+                },
+                "entanglement_type": {
+                  "type": "string",
+                  "enum": ["causal", "semantic", "structural", "narrative"]
+                },
+                "confidence": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Optional: ranking confidence for downstream filtering (0-1)"
+                }
+              }
+            }
+          },
+          "bit_chain_events": {
+            "type": "array",
+            "description": "Ordered, immutable record of mutations to this manifestation; forms audit scripture",
+            "items": {
+              "type": "object",
+              "required": ["event_id", "timestamp", "mutation_type", "previous_state_hash", "new_state_hash"],
+              "properties": {
+                "event_id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "UUIDv4; globally unique within this manifestation"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "ISO8601 UTC with millisecond precision: YYYY-MM-DDTHH:MM:SS.mmmZ"
+                },
+                "mutation_type": {
+                  "type": "string",
+                  "description": "Enum per entity_type (controlled registry, no free-text sprawl)"
+                },
+                "previous_state_hash": {
+                  "type": ["string", "null"],
+                  "description": "Hash of state before mutation; null only for genesis event"
+                },
+                "new_state_hash": {
+                  "type": "string",
+                  "description": "SHA-256 of state after mutation; must match canonical_hash at this point"
+                },
+                "actor": {
+                  "type": "string",
+                  "description": "Optional: references agent identity_core.id for governance tracking"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "mutability_policy": {
+      "type": "object",
+      "description": "Global policy for STAT7 dimension mutability; per-entity_type overrides may be stricter but never looser",
+      "properties": {
+        "realm": {
+          "type": "string",
+          "const": "immutable",
+          "description": "Cannot change post-genesis; enforced at both entity and manifestation level"
+        },
+        "lineage": {
+          "type": "string",
+          "const": "immutable",
+          "description": "Cannot change post-genesis; generation chain is inviolate"
+        },
+        "adjacency": {
+          "type": "string",
+          "const": "append-only-with-monotonicity",
+          "description": "No deletion; allow 'supersede' markers for deprecation without removal; order is law"
+        },
+        "horizon": {
+          "type": "string",
+          "const": "dynamic-bounded",
+          "description": "Can change, but only within controlled vocabulary per reality_branch; changes logged as explicit bit-chain events"
+        },
+        "luminosity": {
+          "type": "string",
+          "const": "dynamic",
+          "description": "Heat/activity level; no constraints; mutable real-time"
+        },
+        "resonance": {
+          "type": "string",
+          "const": "dynamic",
+          "description": "Charge/alignment; no constraints; normalized to 8 dp"
+        },
+        "velocity": {
+          "type": "string",
+          "const": "dynamic",
+          "description": "Rate of change; no constraints; normalized to 8 dp"
+        },
+        "density": {
+          "type": "string",
+          "const": "dynamic",
+          "description": "Compression distance from LUCA; no constraints; normalized to 8 dp"
+        },
+        "dimensionality": {
+          "type": "string",
+          "const": "fold-unfold-with-reversible-mapping",
+          "description": "Can fold/unfold fractally, but must include fold_map_id to prove reversibility"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional metadata about this entity definition",
+      "properties": {
+        "last_verified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO8601 UTC timestamp of last schema validation"
+        },
+        "verification_luminosity": {
+          "type": "integer",
+          "description": "Luminosity level at last verification"
+        },
+        "hardening_phase": {
+          "type": "string",
+          "description": "Schema hardening phase; e.g., 'Phase-1-Doctrine', 'Phase-2-Cross-Faculty'"
+        },
+        "canonical_serialization_version": {
+          "type": "string",
+          "description": "Version of canonical serialization algorithm used for hashing"
+        }
+      }
+    }
+  }
+}
