@@ -1,0 +1,35 @@
+{
+  "identity_core": {
+    "id": "LUCA-0000",
+    "entity_type": "fragment",
+    "created_at": "YYYY-MM-DDT00:00:00Z",
+    "semantic_hash": "sha256-of-seed"
+  },
+  "manifestations": [
+    {
+      "reality_branch": "PRIMARY",
+      "timestamp": "YYYY-MM-DDT00:00:00Z",
+      "luminosity_level": 0,
+      "coordinates": {
+        "realm": "void",
+        "lineage": "0",
+        "adjacency": "[]",
+        "horizon": "genesis",
+        "resonance": 1.0,
+        "velocity": 0.0,
+        "density": 0.0
+      },
+      "state": { "content": "seed" },
+      "entanglement_links": [],
+      "bit_chain_events": [
+        {
+          "event_id": "evt-0",
+          "timestamp": "YYYY-MM-DDT00:00:00Z",
+          "mutation_type": "emergence",
+          "previous_state_hash": null,
+          "new_state_hash": "sha256-of-seed"
+        }
+      ]
+    }
+  ]
+}

@@ -110,6 +110,15 @@
         }
       }
     },
+    "mutability_policy": {
+      "realm": "immutable",
+      "lineage": "immutable",
+      "adjacency": "append-only",
+      "horizon": "dynamic",
+      "luminosity": "dynamic",
+      "polarity": "dynamic",
+      "dimensionality": "fold/unfold"
+    },
     "metadata": {
       "type": "object",
       "description": "Optional metadata about this entity definition",
