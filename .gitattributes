@@ -1,0 +1,255 @@
+# ============================================================================
+# Git Attributes Configuration
+# Ensures consistent line endings, diff strategies, and merge handling
+# across Windows, macOS, and Linux
+# ============================================================================
+
+# ============================================================================
+# TEXT FILES - Auto line ending normalization (CRLF on Windows, LF on Unix)
+# ============================================================================
+
+# Documentation
+*.md text eol=lf
+*.markdown text eol=lf
+*.txt text eol=lf
+*.rst text eol=lf
+*.asciidoc text eol=lf
+
+# Code - always LF for consistency
+*.py text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.jsx text eol=lf
+*.cs text eol=lf
+*.java text eol=lf
+*.cpp text eol=lf
+*.c text eol=lf
+*.h text eol=lf
+*.hpp text eol=lf
+*.go text eol=lf
+*.rs text eol=lf
+*.rb text eol=lf
+*.php text eol=lf
+*.swift text eol=lf
+*.kt text eol=lf
+
+# Web
+*.html text eol=lf
+*.xml text eol=lf
+*.xhtml text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.sass text eol=lf
+*.less text eol=lf
+
+# Configuration
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.ini text eol=lf
+*.cfg text eol=lf
+*.conf text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+.editorconfig text eol=lf
+*.env text eol=lf
+.env.* text eol=lf
+
+# Data formats
+*.csv text eol=lf
+*.tsv text eol=lf
+*.sql text eol=lf
+*.graphql text eol=lf
+*.gql text eol=lf
+
+# Shell scripts (must have LF)
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+*.fish text eol=lf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Patch files
+*.patch text eol=lf
+*.diff text eol=lf
+
+# ============================================================================
+# BINARY FILES - Never attempt line ending conversion
+# ============================================================================
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.bmp binary
+*.tiff binary
+*.ico binary
+*.webp binary
+*.svg binary
+*.psd binary
+*.xcf binary
+*.ai binary
+
+# 3D Models
+*.obj binary
+*.fbx binary
+*.blend binary
+*.dae binary
+*.max binary
+*.maya binary
+*.gltf binary
+*.glb binary
+*.usdz binary
+
+# Audio
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.flac binary
+*.aac binary
+*.m4a binary
+*.wma binary
+
+# Video
+*.mp4 binary
+*.avi binary
+*.mov binary
+*.mkv binary
+*.flv binary
+*.wmv binary
+*.webm binary
+*.m4v binary
+*.mpg binary
+*.mpeg binary
+
+# Archives
+*.zip binary
+*.7z binary
+*.rar binary
+*.tar binary
+*.gz binary
+*.bz2 binary
+*.iso binary
+
+# Databases
+*.db binary
+*.sqlite binary
+*.sqlite3 binary
+*.mdb binary
+
+# ML Models
+*.h5 binary
+*.keras binary
+*.pb binary
+*.pth binary
+*.pt binary
+*.onnx binary
+*.pkl binary
+*.pickle binary
+*.joblib binary
+*.weights binary
+*.bin binary
+*.safetensors binary
+
+# Executables and libraries
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.o binary
+*.a binary
+*.lib binary
+*.class binary
+*.jar binary
+
+# PDFs and documents
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+*.odt binary
+
+# Fonts
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+
+# Unity specific binaries
+*.unitypackage binary
+*.asset binary
+
+# ============================================================================
+# DIFF AND MERGE STRATEGIES
+# ============================================================================
+
+# Use union merge for certain config conflicts (prefer both versions)
+*.yml merge=union
+*.yaml merge=union
+
+# Python - use standard merge but preserve formatting
+*.py diff=python merge=binary
+
+# JSON - use union for package managers (both dependency branches kept)
+package.json merge=union
+package-lock.json merge=union
+pnpm-lock.yaml merge=union
+yarn.lock merge=union
+poetry.lock merge=union
+
+# Unity scene files - use union merge to reduce conflicts
+*.unity merge=union
+*.prefab merge=union
+
+# ============================================================================
+# DIFF DISPLAY CONFIGURATION
+# ============================================================================
+
+# These file types should show meaningful diffs
+*.json diff=json
+*.py diff=python
+*.js diff=javascript
+*.ts diff=typescript
+*.java diff=java
+*.cs diff=csharp
+*.cpp diff=cpp
+
+# ============================================================================
+# EXPORT IGNORE - Files not needed in archives
+# ============================================================================
+
+.gitignore export-ignore
+.gitattributes export-ignore
+.github export-ignore
+.gitlab-ci.yml export-ignore
+.travis.yml export-ignore
+*.md export-ignore
+LICENSE export-ignore
+CONTRIBUTING.md export-ignore
+CODE_OF_CONDUCT.md export-ignore
+
+# ============================================================================
+# PERFORMANCE HINTS
+# ============================================================================
+
+# Delta compression for text (faster transfers)
+*.json delta
+*.yaml delta
+*.py delta
+*.js delta
+
+# Don't delta these (already compressed or binary)
+*.png -delta
+*.jpg -delta
+*.mp4 -delta
+*.zip -delta
