@@ -1,0 +1,565 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "STAT7 Mutability Contract",
+  "description": "Global policy for STAT7 dimension mutability across all entity types, with per-entity_type overrides (stricter only, never looser).",
+  "version": "1.0.0",
+  "status": "Phase-1-Doctrine-Locked",
+  "contract_date": "2025-01-01T00:00:00.000Z",
+  "type": "object",
+  "required": ["global_policy", "entity_type_overrides"],
+  "properties": {
+    "global_policy": {
+      "type": "object",
+      "description": "Default mutability rules for all dimensions across all entity types.",
+      "required": [
+        "realm",
+        "lineage",
+        "adjacency",
+        "horizon",
+        "luminosity",
+        "resonance",
+        "velocity",
+        "density",
+        "dimensionality"
+      ],
+      "properties": {
+        "realm": {
+          "type": "object",
+          "description": "Domain classification (data/narrative/system/faculty/event/pattern/void)",
+          "properties": {
+            "policy": {
+              "type": "string",
+              "const": "immutable",
+              "description": "Cannot change post-genesis"
+            },
+            "enforcement": {
+              "type": "string",
+              "enum": ["schema-level", "validator", "audit-trail"],
+              "description": "How violation is detected and handled"
+            },
+            "validator_rule": {
+              "type": "string",
+              "description": "Reject any write that attempts to change realm after genesis"
+            }
+          }
+        },
+        "lineage": {
+          "type": "object",
+          "description": "Generation number from LUCA; ancestry chain",
+          "properties": {
+            "policy": {
+              "type": "string",
+              "const": "immutable",
+              "description": "Cannot change post-genesis"
+            },
+            "enforcement": {
+              "type": "string",
+              "const": "schema-level"
+            },
+            "validator_rule": {
+              "type": "string",
+              "description": "Lineage is set at entity creation and never changes"
+            }
+          }
+        },
+        "adjacency": {
+          "type": "object",
+          "description": "Relational neighbors and connections",
+          "properties": {
+            "policy": {
+              "type": "string",
+              "const": "append-only-with-monotonicity",
+              "description": "Can only add, never delete; order is law"
+            },
+            "enforcement": {
+              "type": "string",
+              "const": "validator"
+            },
+            "operations": {
+              "type": "object",
+              "properties": {
+                "append": {
+                  "type": "boolean",
+                  "const": true,
+                  "description": "New adjacent entities can be added"
+                },
+                "delete": {
+                  "type": "boolean",
+                  "const": false,
+                  "description": "Existing adjacencies cannot be removed"
+                },
+                "supersede": {
+                  "type": "boolean",
+                  "const": true,
+                  "description": "Can mark adjacency as deprecated with 'supersede' marker"
+                },
+                "reorder": {
+                  "type": "boolean",
+                  "const": false,
+                  "description": "Cannot reorder existing adjacency list"
+                }
+              }
+            },
+            "validator_rule": {
+              "type": "string",
+              "description": "Check that new adjacency list is strict superset of old (plus optional 'supersede' markers)"
+            }
+          }
+        },
+        "horizon": {
+          "type": "object",
+          "description": "Lifecycle stage (genesis/emergence/peak/decay/crystallization)",
+          "properties": {
+            "policy": {
+              "type": "string",
+              "const": "dynamic-bounded",
+              "description": "Can change, but only within controlled vocabulary per reality_branch"
+            },
+            "enforcement": {
+              "type": "string",
+              "const": "validator"
+            },
+            "vocabulary_per_branch": {
+              "type": "object",
+              "description": "Allowed horizon values per reality branch",
+              "properties": {
+                "PRIMARY": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "enum": [
+                    ["genesis", "emergence", "peak", "decay", "crystallization"]
+                  ]
+                },
+                "*": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "Default for unlisted branches"
+                }
+              }
+            },
+            "change_logging": {
+              "type": "boolean",
+              "const": true,
+              "description": "Every horizon change must be logged as explicit bit-chain event"
+            },
+            "validator_rule": {
+              "type": "string",
+              "description": "Verify new horizon is in vocabulary for this reality_branch; log event"
+            }
+          }
+        },
+        "luminosity": {
+          "type": "object",
+          "description": "Heat/activity level (0-7); represents compressed→expanded state",
+          "properties": {
+            "policy": {
+              "type": "string",
+              "const": "dynamic",
+              "description": "No constraints; can change freely"
+            },
+            "enforcement": {
+              "type": "string",
+              "const": "none",
+              "description": "Real-time mutable; no validation beyond type"
+            },
+            "range": {
+              "type": "object",
+              "properties": {
+                "min": { "type": "integer", "const": 0 },
+                "max": { "type": "integer", "const": 7 }
+              }
+            },
+            "validator_rule": {
+              "type": "string",
+              "description": "None; only enforce type and range"
+            }
+          }
+        },
+        "resonance": {
+          "type": "object",
+          "description": "Charge/alignment; normalized to 8 decimal places",
+          "properties": {
+            "policy": {
+              "type": "string",
+              "const": "dynamic",
+              "description": "No constraints; can change freely"
+            },
+            "enforcement": {
+              "type": "string",
+              "const": "none"
+            },
+            "format": {
+              "type": "object",
+              "properties": {
+                "precision_decimal_places": { "type": "integer", "const": 8 },
+                "normalization": { "type": "string", "const": "round-half-even" }
+              }
+            },
+            "validator_rule": {
+              "type": "string",
+              "description": "Normalize to 8dp; forbid NaN/Inf"
+            }
+          }
+        },
+        "velocity": {
+          "type": "object",
+          "description": "Rate of change; normalized to 8 decimal places",
+          "properties": {
+            "policy": {
+              "type": "string",
+              "const": "dynamic",
+              "description": "No constraints; can change freely"
+            },
+            "enforcement": {
+              "type": "string",
+              "const": "none"
+            },
+            "format": {
+              "type": "object",
+              "properties": {
+                "precision_decimal_places": { "type": "integer", "const": 8 },
+                "normalization": { "type": "string", "const": "round-half-even" }
+              }
+            },
+            "validator_rule": {
+              "type": "string",
+              "description": "Normalize to 8dp; forbid NaN/Inf"
+            }
+          }
+        },
+        "density": {
+          "type": "object",
+          "description": "Compression distance from LUCA; normalized to 8 decimal places",
+          "properties": {
+            "policy": {
+              "type": "string",
+              "const": "dynamic",
+              "description": "No constraints; can change freely"
+            },
+            "enforcement": {
+              "type": "string",
+              "const": "none"
+            },
+            "format": {
+              "type": "object",
+              "properties": {
+                "precision_decimal_places": { "type": "integer", "const": 8 },
+                "normalization": { "type": "string", "const": "round-half-even" }
+              }
+            },
+            "validator_rule": {
+              "type": "string",
+              "description": "Normalize to 8dp; forbid NaN/Inf"
+            }
+          }
+        },
+        "dimensionality": {
+          "type": "object",
+          "description": "Fractal depth; fold/unfold operations",
+          "properties": {
+            "policy": {
+              "type": "string",
+              "const": "fold-unfold-with-reversible-mapping",
+              "description": "Can fold/unfold, but must prove reversibility"
+            },
+            "enforcement": {
+              "type": "string",
+              "const": "validator"
+            },
+            "operations": {
+              "type": "object",
+              "properties": {
+                "fold": {
+                  "type": "boolean",
+                  "const": true,
+                  "description": "Collapse dimensions; requires fold_map_id reference"
+                },
+                "unfold": {
+                  "type": "boolean",
+                  "const": true,
+                  "description": "Expand dimensions; must be invertible"
+                }
+              }
+            },
+            "reversibility_requirement": {
+              "type": "boolean",
+              "const": true,
+              "description": "Must include fold_map_id to prove invertibility"
+            },
+            "validator_rule": {
+              "type": "string",
+              "description": "Verify fold_map_id exists and is referenced in audit trail"
+            }
+          }
+        }
+      }
+    },
+    "entity_type_overrides": {
+      "type": "object",
+      "description": "Per-entity_type constraints that can be stricter than global policy, never looser",
+      "properties": {
+        "agent": {
+          "type": "object",
+          "description": "Active entity (human, AI, system); can have behavioral constraints",
+          "properties": {
+            "horizon": {
+              "type": "object",
+              "description": "Agents have bounded horizon vocabulary",
+              "properties": {
+                "policy": {
+                  "type": "string",
+                  "const": "dynamic-bounded-stricter"
+                },
+                "allowed_values": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "example": ["operational", "dormant", "suspended", "archived"]
+                },
+                "rationale": "Agents have explicit operational states"
+              }
+            },
+            "adjacency": {
+              "type": "object",
+              "description": "Agents have adjacency caps per luminosity level",
+              "properties": {
+                "policy": {
+                  "type": "string",
+                  "const": "append-only-with-cap"
+                },
+                "cap_per_luminosity": {
+                  "type": "object",
+                  "description": "Max neighbors based on heat level",
+                  "properties": {
+                    "0": { "type": "integer", "const": 5 },
+                    "7": { "type": "integer", "const": 100 }
+                  }
+                },
+                "rationale": "Prevents adjacency explosion; cooler agents have tighter focus"
+              }
+            },
+            "lineage": {
+              "type": "object",
+              "description": "Agent provenance requires subledger",
+              "properties": {
+                "policy": {
+                  "type": "string",
+                  "const": "immutable-plus-provenance-subledger"
+                },
+                "subledger_required": {
+                  "type": "boolean",
+                  "const": true
+                },
+                "rationale": "Track agent genealogy and role transitions"
+              }
+            }
+          }
+        },
+        "artifact": {
+          "type": "object",
+          "description": "Passive entity (data, tool, resource); immutable-forward once published",
+          "properties": {
+            "realm": {
+              "type": "object",
+              "description": "Artifacts are domain-locked",
+              "properties": {
+                "policy": {
+                  "type": "string",
+                  "const": "immutable-plus-validation"
+                },
+                "allowed_realms": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "example": ["data", "narrative", "system"]
+                }
+              }
+            },
+            "horizon": {
+              "type": "object",
+              "description": "Artifacts follow strict lifecycle",
+              "properties": {
+                "policy": {
+                  "type": "string",
+                  "const": "dynamic-bounded-strict"
+                },
+                "allowed_values": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "example": ["created", "published", "deprecated", "archived"]
+                },
+                "immutable_at_horizon": {
+                  "type": "string",
+                  "const": "published",
+                  "description": "Once published, artifact becomes immutable except for horizon changes"
+                }
+              }
+            },
+            "luminosity": {
+              "type": "object",
+              "description": "Artifacts are read-only heat",
+              "properties": {
+                "policy": {
+                  "type": "string",
+                  "const": "dynamic-but-logged"
+                },
+                "change_logging": {
+                  "type": "boolean",
+                  "const": true,
+                  "description": "Every luminosity change is audited"
+                }
+              }
+            }
+          }
+        },
+        "concept": {
+          "type": "object",
+          "description": "Abstract entity (idea, pattern, principle); mutable but traced",
+          "properties": {
+            "adjacency": {
+              "type": "object",
+              "description": "Concepts can have unbounded adjacency",
+              "properties": {
+                "policy": {
+                  "type": "string",
+                  "const": "append-only-unbounded"
+                }
+              }
+            },
+            "horizon": {
+              "type": "object",
+              "description": "Concepts evolve freely",
+              "properties": {
+                "policy": {
+                  "type": "string",
+                  "const": "dynamic-unbounded"
+                },
+                "rationale": "Ideas can be in any state; evolution is traced via events"
+              }
+            },
+            "entanglement_links": {
+              "type": "object",
+              "description": "Concepts have strong entanglement",
+              "properties": {
+                "policy": {
+                  "type": "string",
+                  "const": "append-only"
+                },
+                "min_resonance_strength": {
+                  "type": "number",
+                  "const": 0.0,
+                  "description": "Can entangle at any strength"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "validation_rules": {
+      "type": "object",
+      "description": "Global validation logic applied to all entity mutations",
+      "properties": {
+        "rule_1_immutable_immutable": {
+          "type": "string",
+          "description": "Any attempt to change realm or lineage post-genesis is REJECTED immediately"
+        },
+        "rule_2_override_never_looser": {
+          "type": "string",
+          "description": "Entity-type overrides can only be stricter; never relax global constraints"
+        },
+        "rule_3_append_only_order": {
+          "type": "string",
+          "description": "Append-only dimensions must maintain order; any deletion or reordering is detected"
+        },
+        "rule_4_bounded_vocabulary": {
+          "type": "string",
+          "description": "Dynamic-bounded dimensions must validate new value against vocabulary; reject if not found"
+        },
+        "rule_5_float_normalization": {
+          "type": "string",
+          "description": "All floats are normalized to 8dp before any operation; NaN/Inf is REJECTED"
+        },
+        "rule_6_event_logging": {
+          "type": "string",
+          "description": "Any mutation that violates policy must emit bit-chain event or be rejected"
+        },
+        "rule_7_cross_faculty": {
+          "type": "string",
+          "description": "Per-Faculty override contracts can be more specific; must be loaded at schema validation time"
+        }
+      }
+    },
+    "cross_faculty_extensions": {
+      "type": "object",
+      "description": "Hooks for Faculty systems to define entity-type-specific contracts",
+      "properties": {
+        "semantic_anchor_contract": {
+          "type": "string",
+          "description": "Path to Faculty.SemanticAnchor mutability overrides (e.g., governance rules per realm)"
+        },
+        "molten_glyph_contract": {
+          "type": "string",
+          "description": "Path to Faculty.MoltenGlyph dimensional constraints"
+        },
+        "mist_line_contract": {
+          "type": "string",
+          "description": "Path to Faculty.MistLine narrative preservations and entanglement rules"
+        },
+        "intervention_record_contract": {
+          "type": "string",
+          "description": "Path to Faculty.InterventionRecord audit and actor tracking rules"
+        }
+      }
+    },
+    "enforcement_strategy": {
+      "type": "object",
+      "description": "How violations are detected and handled",
+      "properties": {
+        "write_time_validation": {
+          "type": "string",
+          "const": "required",
+          "description": "All writes validated at write-time against active contracts"
+        },
+        "schema_level_validation": {
+          "type": "string",
+          "description": "JSON Schema enforces type and immutability where possible"
+        },
+        "validator_level_validation": {
+          "type": "string",
+          "description": "Custom validators check policy compliance (e.g., append-only verification)"
+        },
+        "audit_trail_validation": {
+          "type": "string",
+          "description": "Bit-chain events log all mutations; replay validation detects post-hoc edits"
+        },
+        "violation_behavior": {
+          "type": "string",
+          "enum": ["reject", "log-and-reject", "quarantine"],
+          "description": "Reject the write, log violation with context, or quarantine entity for review"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "locked_by_phase": {
+          "type": "string",
+          "const": "Phase-1-Doctrine"
+        },
+        "next_review_date": {
+          "type": "string",
+          "format": "date",
+          "description": "When this contract should be reviewed against Faculty needs"
+        },
+        "approvers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Required signatories for updates"
+        }
+      }
+    }
+  }
+}
