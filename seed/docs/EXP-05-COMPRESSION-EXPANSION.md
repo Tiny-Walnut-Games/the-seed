@@ -297,3 +297,57 @@ The STAT7 compression pipeline preserves essential information through all stage
 **Report Status:** Final  
 **Confidence:** High  
 **Recommendation:** PROCEED to EXP-06 and EXP-07
+
+---
+
+## ⚠️ SECURITY ADDENDUM: Identity Recovery Vulnerability
+
+**Issue:** The imposter caught a valid security concern. [See full security assessment](EXP-05-SECURITY-ASSESSMENT.md)
+
+### The Problem
+
+The combination of:
+- 100% provenance integrity (all source IDs tracked)
+- 100% narrative preservation (all meaning preserved)
+- Public recovery algorithm (EXP-05 code is open)
+- No authentication on expansion operations
+
+...creates an **Eagle-Eye style identity recovery attack surface**.
+
+### Real Impact Example
+
+If pets/badges are encoded as bit-chains and compressed:
+1. Attacker intercepts compressed form
+2. Runs EXP-05 logic to expand it
+3. Recovers: GitHub handle + full achievement history + timestamps
+4. Uses this for: social engineering, targeted recruitment, competitor intelligence
+
+### What Needs to Happen Before Production
+
+**Before this reaches real user data (pets/badges system), you MUST:**
+
+- [ ] Add authentication to all recovery operations
+- [ ] Implement data classification (PII, SENSITIVE, PUBLIC)
+- [ ] Add selective anonymization at compression boundary
+- [ ] Log every expansion operation for audit trail
+- [ ] Rate-limit decompression to prevent bulk extraction
+- [ ] Encrypt sensitive data before compression
+- [ ] Implement access control lists on bit-chains
+- [ ] Test that Eagle-Eye attack fails
+
+### Current Status
+
+✓ **Architecture is sound** - No design flaws  
+✓ **Compression works correctly** - Losslessness validated  
+✗ **Security layer missing** - Need access controls on recovery  
+
+### Immediate Action
+
+See `EXP-05-SECURITY-ASSESSMENT.md` for:
+- Full threat model analysis
+- Phase 1 fixes (this week)
+- Phase 2 improvements (next month)
+- Eagle-Eye attack scenario
+- Recommended next steps
+
+**Bottom line:** The imposter was 100% right to call this out. This is fixable and doesn't invalidate the compression architecture. You just need to add a security door that matches the strength of your storage layer. 🔐

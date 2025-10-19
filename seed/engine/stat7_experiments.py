@@ -15,8 +15,27 @@ import uuid
 from datetime import datetime, timezone
 from decimal import Decimal, ROUND_HALF_EVEN
 from typing import Dict, List, Tuple, Any, Optional
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from collections import defaultdict
+from enum import Enum
+
+
+# ============================================================================
+# SECURITY ENUMS (Phase 1 Doctrine: Authentication + Access Control)
+# ============================================================================
+
+class DataClass(Enum):
+    """Data sensitivity classification."""
+    PUBLIC = "PUBLIC"           # Anyone can read
+    SENSITIVE = "SENSITIVE"     # Authenticated users, role-based
+    PII = "PII"                 # Owner-only, requires 2FA
+
+
+class Capability(Enum):
+    """Recovery capability levels."""
+    COMPRESSED = "compressed"  # Read-only mist form, no expansion
+    PARTIAL = "partial"        # Anonymized expansion, limited fields
+    FULL = "full"              # Complete recovery
 
 
 # ============================================================================
@@ -166,6 +185,12 @@ class BitChain:
     """
     Minimal addressable unit in STAT7 space.
     Represents a single entity instance (manifestation).
+    
+    Security fields (Phase 1 Doctrine):
+    - data_classification: Sensitivity level (PUBLIC, SENSITIVE, PII)
+    - access_control_list: Roles allowed to recover this bitchain
+    - owner_id: User who owns this bitchain
+    - encryption_key_id: Optional key for encrypted-at-rest data
     """
     id: str                          # Unique entity ID
     entity_type: str                 # Type: concept, artifact, agent, etc.
@@ -173,6 +198,12 @@ class BitChain:
     coordinates: Coordinates         # STAT7 7D position
     created_at: str                  # ISO8601 UTC timestamp
     state: Dict[str, Any]            # Mutable state data
+    
+    # Security fields (Phase 1)
+    data_classification: DataClass = DataClass.PUBLIC
+    access_control_list: List[str] = field(default_factory=lambda: ["owner"])
+    owner_id: Optional[str] = None
+    encryption_key_id: Optional[str] = None
     
     def __post_init__(self):
         """Normalize timestamps."""
