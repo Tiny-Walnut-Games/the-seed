@@ -1,0 +1,14 @@
+{
+    "name": "TWG.SteamBridge",
+    "rootNamespace": "TWG.Seed.Platform",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
