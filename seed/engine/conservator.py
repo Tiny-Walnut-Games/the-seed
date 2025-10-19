@@ -44,6 +44,7 @@ class RepairTrigger(Enum):
     MODULE_CRASH = "module_crash"
     EXPLICIT_HUMAN_COMMAND = "explicit_human_command"
     DEPENDENCY_CORRUPTION = "dependency_corruption"
+    FIREWALL_ESCAPE = "firewall_escape"  # STAT7 WFC firewall rejection
 
 
 class RepairAction(Enum):
