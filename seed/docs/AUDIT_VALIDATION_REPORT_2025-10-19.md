@@ -10,16 +10,16 @@
 
 The Seed's architecture has **proven core functionality** but suffers from **documentation bloat with false celebrations**. Ground truth follows:
 
-| Experiment | Status | Evidence | Completeness |
-|---|---|---|---|
-| **EXP-01** | ✅ COMPLETE | Class exists, runnable | 100% (address uniqueness proven) |
-| **EXP-02** | ✅ COMPLETE | Class exists, runnable | 100% (retrieval efficiency proven) |
-| **EXP-03** | ✅ COMPLETE | Class exists, runnable | 100% (dimension necessity proven) |
-| **EXP-04** | ✅ COMPLETE | Results JSON + implementation | 100% (fractal scaling proven) |
-| **EXP-05** | ✅ COMPLETE | Results JSON + implementation | 100% (compression validated, security gap identified) |
-| **EXP-06 to EXP-10** | ❌ NOT STARTED | Roadmap only, no code | 0% |
-| **STAT7→NFT Companion** | 🟡 IN PROGRESS | Scaffolding + hybrid encoding | ~40% (experimental) |
-| **STAT7→NFT Badge** | 🟡 IN PROGRESS | Scaffolding + sponsor ring system | ~40% (experimental) |
+| Experiment              | Status         | Evidence                          | Completeness                                          |
+|-------------------------|----------------|-----------------------------------|-------------------------------------------------------|
+| **EXP-01**              | ✅ COMPLETE     | Class exists, runnable            | 100% (address uniqueness proven)                      |
+| **EXP-02**              | ✅ COMPLETE     | Class exists, runnable            | 100% (retrieval efficiency proven)                    |
+| **EXP-03**              | ✅ COMPLETE     | Class exists, runnable            | 100% (dimension necessity proven)                     |
+| **EXP-04**              | ✅ COMPLETE     | Results JSON + implementation     | 100% (fractal scaling proven)                         |
+| **EXP-05**              | ✅ COMPLETE     | Results JSON + implementation     | 100% (compression validated, security gap identified) |
+| **EXP-06 to EXP-10**    | ❌ NOT STARTED  | Roadmap only, no code             | 0%                                                    |
+| **STAT7→NFT Companion** | 🟡 IN PROGRESS | Scaffolding + hybrid encoding     | ~40% (experimental)                                   |
+| **STAT7→NFT Badge**     | 🟡 IN PROGRESS | Scaffolding + sponsor ring system | ~40% (experimental)                                   |
 
 ---
 
@@ -191,16 +191,16 @@ Compression Ratio                | 0.847x  | ⚠️ Modest (0.85x)
 ### What Exists (Inventory)
 **TheSeedConcept directory:** 48 markdown files across 8 subdirectories
 
-| Folder | Count | Quality |
-|---|---|---|
-| **Roadmaps/** | 6 files | ✅ Good (foundational) |
-| **STAT7-NFT/** | 5 files | ⚠️ Mixed (some aspirational) |
-| **Experiments/** | 4 files | ✅ Good (validated) |
-| **Conversations/** | 6 files | 🟠 Archive (philosophical debates) |
-| **CheckCelebrationStatus/** | 10 files | ❌ BLOAT (redundant) |
-| **Firewall & Containment/** | 8 files | ✅ Good (security-focused) |
-| **Schemas/** | 3 files | ✅ Good (reference) |
-| **media/** | 0 markdown | N/A |
+| Folder                      | Count      | Quality                            |
+|-----------------------------|------------|------------------------------------|
+| **Roadmaps/**               | 6 files    | ✅ Good (foundational)              |
+| **STAT7-NFT/**              | 5 files    | ⚠️ Mixed (some aspirational)       |
+| **Experiments/**            | 4 files    | ✅ Good (validated)                 |
+| **Conversations/**          | 6 files    | 🟠 Archive (philosophical debates) |
+| **CheckCelebrationStatus/** | 10 files   | ❌ BLOAT (redundant)                |
+| **Firewall & Containment/** | 8 files    | ✅ Good (security-focused)          |
+| **Schemas/**                | 3 files    | ✅ Good (reference)                 |
+| **media/**                  | 0 markdown | N/A                                |
 
 ### False Celebration Warnings ⚠️
 

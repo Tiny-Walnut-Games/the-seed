@@ -191,21 +191,21 @@ Update main `index.md` with auto-generated table of contents (if using GitBook)
 
 ## Files to Create (This Session)
 
-| File | Purpose | Priority | Effort |
-|---|---|---|---|
-| `index.md` | Master entrypoint | 🔴 HIGH | 30 min |
-| `philosophy/README.md` | Navigation | 🟡 MEDIUM | 15 min |
-| `philosophy/dimensions.md` | What are the 7 STAT7 dimensions? | 🟡 MEDIUM | 20 min |
-| `implementation/README.md` | Navigation | 🟡 MEDIUM | 15 min |
-| `status/README.md` | Navigation | 🟡 MEDIUM | 15 min |
-| `status/phase1_validation.md` | **CRITICAL** (replaces 5 docs) | 🔴 HIGH | 45 min |
-| `status/security_assessment.md` | Flag EXP-05 vulnerability | 🔴 HIGH | 30 min |
-| `status/nft_conversion_progress.md` | Companion/Badge status | 🟡 MEDIUM | 20 min |
-| `roadmap/README.md` | Navigation | 🟡 MEDIUM | 15 min |
-| `roadmap/phase1_locked.md` | What's immutable | 🟡 MEDIUM | 20 min |
-| `roadmap/phase2_foundation.md` | What needs hardening | 🟡 MEDIUM | 20 min |
-| `api/README.md` | Navigation | 🟡 MEDIUM | 15 min |
-| `archive/README.md` | Legacy docs notice | 🟠 LOW | 10 min |
+| File                                | Purpose                          | Priority  | Effort |
+|-------------------------------------|----------------------------------|-----------|--------|
+| `index.md`                          | Master entrypoint                | 🔴 HIGH   | 30 min |
+| `philosophy/README.md`              | Navigation                       | 🟡 MEDIUM | 15 min |
+| `philosophy/dimensions.md`          | What are the 7 STAT7 dimensions? | 🟡 MEDIUM | 20 min |
+| `implementation/README.md`          | Navigation                       | 🟡 MEDIUM | 15 min |
+| `status/README.md`                  | Navigation                       | 🟡 MEDIUM | 15 min |
+| `status/phase1_validation.md`       | **CRITICAL** (replaces 5 docs)   | 🔴 HIGH   | 45 min |
+| `status/security_assessment.md`     | Flag EXP-05 vulnerability        | 🔴 HIGH   | 30 min |
+| `status/nft_conversion_progress.md` | Companion/Badge status           | 🟡 MEDIUM | 20 min |
+| `roadmap/README.md`                 | Navigation                       | 🟡 MEDIUM | 15 min |
+| `roadmap/phase1_locked.md`          | What's immutable                 | 🟡 MEDIUM | 20 min |
+| `roadmap/phase2_foundation.md`      | What needs hardening             | 🟡 MEDIUM | 20 min |
+| `api/README.md`                     | Navigation                       | 🟡 MEDIUM | 15 min |
+| `archive/README.md`                 | Legacy docs notice               | 🟠 LOW    | 10 min |
 
 **Total Effort (This Session):** ~3.5 hours (or split across multiple sessions)
 
@@ -213,13 +213,13 @@ Update main `index.md` with auto-generated table of contents (if using GitBook)
 
 ## Files to Delete/Archive (Phase 3)
 
-| File | Action | Reason |
-|---|---|---|
-| `CheckCelebrationStatus/*` (all 10) | Archive to `archive/` | Redundant |
-| `Conversations/*` (all 6) | Archive to `archive/` | Historical debate, not actionable |
-| `DEEP_DIVE_MAP.md` | Archive | Absorbed into `status/phase1_validation.md` |
-| `START_HERE.md` | Replace | Superseded by new `index.md` |
-| Duplicate status files | Archive | Consolidated to single source of truth |
+| File                                | Action                | Reason                                      |
+|-------------------------------------|-----------------------|---------------------------------------------|
+| `CheckCelebrationStatus/*` (all 10) | Archive to `archive/` | Redundant                                   |
+| `Conversations/*` (all 6)           | Archive to `archive/` | Historical debate, not actionable           |
+| `DEEP_DIVE_MAP.md`                  | Archive               | Absorbed into `status/phase1_validation.md` |
+| `START_HERE.md`                     | Replace               | Superseded by new `index.md`                |
+| Duplicate status files              | Archive               | Consolidated to single source of truth      |
 
 **Do NOT delete original files** — move to `archive/CheckCelebrationStatus/` as backup.
 
