@@ -487,3 +487,4 @@ seed/engine/cache/
 packs/*/assets/
 packs/*/dist/
 packs/*/build/
+/obj/
