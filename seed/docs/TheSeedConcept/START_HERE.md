@@ -1,8 +1,10 @@
-# 🌱 The Seed - Phase 1 Complete
+# 🌱 The Seed - Phase 1 Overview
 
-**Status:** ✅ All validation experiments passing  
-**Time to first results:** 30 seconds  
-**Latest run:** January 18, 2025
+Status: Validation framework available; results depend on your runtime environment
+Time to first results: minutes (quick mode)
+Latest update: 2025-10-19
+
+Note: For onboarding and current project status, start at seed/docs/index.md.
 
 ---
 

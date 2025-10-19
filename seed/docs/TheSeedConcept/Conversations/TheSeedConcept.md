@@ -1,4 +1,6 @@
-# Expanding Vector-Based Storage into a Multiversal Fractal Framework Toward a Psychedelic, Multidimensional Data Architecture: Expanding Vector-Based Storage for RAG & LLM Systems
+# The Seed Concept: Exploratory Paper
+
+Note: This document explores ideas and metaphors behind The Seed. It is not the implementation guide. For onboarding and current status, see seed/docs/index.md.
 
 ---
 

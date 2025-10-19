@@ -125,6 +125,7 @@ namespace TWG.Seed.Platform
         public string FriendId { get; set; } = string.Empty;
         public string Username { get; set; } = string.Empty;
         public string DisplayName { get; set; } = string.Empty;
+        public string AvatarUrl { get; set; } = string.Empty;
         public FriendStatus Status { get; set; }
         public DateTime? LastSeen { get; set; }
         public string CurrentGame { get; set; } = string.Empty;
@@ -178,6 +179,7 @@ namespace TWG.Seed.Platform
     {
         public string CompanionId { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
         public string Species { get; set; } = string.Empty;
         public string Personality { get; set; } = string.Empty;
         public int Level { get; set; }

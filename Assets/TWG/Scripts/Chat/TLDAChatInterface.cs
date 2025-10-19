@@ -235,29 +235,4 @@ namespace TWG.TLDA.Chat
             await Task.Delay(100); // Placeholder
         }
     }
-
-    public class WarblerChatBridge
-    {
-        public System.Action<string, bool>? OnResponseReceived;
-        public System.Action<string>? OnSystemEvent;
-
-        public async Task SendMessage(string message)
-        {
-            OnSystemEvent?.Invoke($"Processing: {message}");
-
-            // Simulate Warbler decision process
-            await Task.Delay(1000);
-
-            if (message.Contains("decide") || message.Contains("choose"))
-            {
-                var decision = "After analyzing the context, I recommend Option A based on risk assessment and potential impact.";
-                OnResponseReceived?.Invoke(decision, true);
-            }
-            else
-            {
-                var response = $"I understand you're asking about: {message}. Let me help you with that development task.";
-                OnResponseReceived?.Invoke(response, false);
-            }
-        }
-    }
 }
