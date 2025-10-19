@@ -602,3 +602,6 @@ packs/*/build/
 /obj/Debug/Unity.Transforms.PerformanceTests.csproj.AssemblyReference.cache
 /obj/Debug/Unity.Transforms.Player.csproj.AssemblyReference.cache
 /obj/Debug/Unity.Transforms.Tests.csproj.AssemblyReference.cache
+/obj
+/obj/Debug
+*.cache
