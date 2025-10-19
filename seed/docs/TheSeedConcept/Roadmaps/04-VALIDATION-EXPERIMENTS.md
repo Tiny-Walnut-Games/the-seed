@@ -223,10 +223,10 @@ If bootstrap fails:
 
 ---
 
-## EXP-08: RAG Retrieval Integration Test
+## EXP-08: Mind-Castle/WARBLER Retrieval Integration Test
 
 ### Hypothesis
-Your custom RAG storage system integrates smoothly with STAT7 addressing.
+Your Mind-Castle/WARBLER storage system integrates smoothly with STAT7 addressing.
 
 ### Method
 1. **Ingest existing data:** Take real data from your RAG system
