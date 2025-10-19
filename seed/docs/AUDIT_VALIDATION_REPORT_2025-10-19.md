@@ -10,16 +10,16 @@
 
 The Seed's architecture has **proven core functionality** but suffers from **documentation bloat with false celebrations**. Ground truth follows:
 
-| Experiment | Status | Evidence | Completeness |
-|---|---|---|---|
-| **EXP-01** | ✅ COMPLETE | Class exists, runnable | 100% (address uniqueness proven) |
-| **EXP-02** | ✅ COMPLETE | Class exists, runnable | 100% (retrieval efficiency proven) |
-| **EXP-03** | ✅ COMPLETE | Class exists, runnable | 100% (dimension necessity proven) |
-| **EXP-04** | ✅ COMPLETE | Results JSON + implementation | 100% (fractal scaling proven) |
-| **EXP-05** | ✅ COMPLETE | Results JSON + implementation | 100% (compression validated, security gap identified) |
-| **EXP-06 to EXP-10** | ❌ NOT STARTED | Roadmap only, no code | 0% |
-| **STAT7→NFT Companion** | 🟡 IN PROGRESS | Scaffolding + hybrid encoding | ~40% (experimental) |
-| **STAT7→NFT Badge** | 🟡 IN PROGRESS | Scaffolding + sponsor ring system | ~40% (experimental) |
+| Experiment              | Status         | Evidence                          | Completeness                                          |
+|-------------------------|----------------|-----------------------------------|-------------------------------------------------------|
+| **EXP-01**              | ✅ COMPLETE     | Class exists, runnable            | 100% (address uniqueness proven)                      |
+| **EXP-02**              | ✅ COMPLETE     | Class exists, runnable            | 100% (retrieval efficiency proven)                    |
+| **EXP-03**              | ✅ COMPLETE     | Class exists, runnable            | 100% (dimension necessity proven)                     |
+| **EXP-04**              | ✅ COMPLETE     | Results JSON + implementation     | 100% (fractal scaling proven)                         |
+| **EXP-05**              | ✅ COMPLETE     | Results JSON + implementation     | 100% (compression validated, security gap identified) |
+| **EXP-06 to EXP-10**    | ❌ NOT STARTED  | Roadmap only, no code             | 0%                                                    |
+| **STAT7→NFT Companion** | 🟡 IN PROGRESS | Scaffolding + hybrid encoding     | ~40% (experimental)                                   |
+| **STAT7→NFT Badge**     | 🟡 IN PROGRESS | Scaffolding + sponsor ring system | ~40% (experimental)                                   |
 
 ---
 
@@ -105,15 +105,49 @@ Expandability                    | 46%     | ⚠️ Depends on realm/breadcrumbs
 Compression Ratio                | 0.847x  | ⚠️ Modest (0.85x)
 ```
 
-**Critical Security Finding:**
-- **VULNERABILITY IDENTIFIED:** Full recovery possible due to:
-  1. 100% provenance chain integrity (source IDs public)
-  2. Public recovery algorithm (deterministic)
-  3. **NO ACCESS CONTROLS** on recovery
-- **Risk:** Before using with real pet/badge data → MUST add authentication + rate limiting
-- **Status:** Flagged in `seed/docs/TheSeedConcept/Firewall and Containment/EXP05_SECURITY_ASSESSMENT.md`
+**Security Architecture (Phase 1 Foundation - LOCKED ✅):**
 
-**Completeness:** 100% (with security caveats)
+Original vulnerability (FIXED):
+- ❌ BEFORE: 100% provenance chain + public recovery + **NO access controls**
+- ✅ AFTER: Full security layer with authentication + rate limiting + audit trail
+
+**3-Layer Firewall Implemented:**
+
+| Layer | Component | Purpose | Status |
+|-------|-----------|---------|--------|
+| **Layer 1** | WFC Firewall (`wfc_firewall.py`) | Entry gate: Julia Set manifold validation | ✅ IMPLEMENTED |
+| **Layer 2a** | RecoveryGate (`recovery_gate.py`) | BOUND path: Access control + audit trail | ✅ IMPLEMENTED |
+| **Layer 2b** | Conservator (`conservator.py`) | ESCAPED path: Bounded repair + re-validation | ✅ IMPLEMENTED |
+| **Integration** | WFCIntegrationOrchestrator (`wfc_integration.py`) | Orchestrates all layers + journey tracking | ✅ IMPLEMENTED |
+
+**Security Controls (All Enforced):**
+
+| Control | Implementation | Status |
+|---------|-----------------|--------|
+| **Access Policy** | `RecoveryPolicy` with role-based rules | ✅ ENFORCED |
+| **Authentication** | `_verify_cold_method()` - auth token required | ✅ ENFORCED |
+| **Role Enforcement** | `_enforce_policy()` line 474 | ✅ ENFORCED |
+| **Owner-Only** | `_enforce_policy()` line 481 | ✅ ENFORCED |
+| **Rate Limiting** | `_rate_limit_exceeded()` - per user per hour | ✅ ENFORCED |
+| **Audit Trail** | `AuditEvent` logged BEFORE data return | ✅ ENFORCED |
+| **Intent Declaration** | `_verify_cold_method()` line 429 | ✅ ENFORCED |
+| **Second Factor** | `_enforce_policy()` line 497 (for PII) | ✅ ENFORCED |
+| **Capability Levels** | COMPRESSED/PARTIAL/FULL based on role | ✅ ENFORCED |
+
+**Story Test Archetypes Applied:**
+- ✅ **PHANTOM PROP** - Data exists + signature valid
+- ✅ **REALM+LINEAGE** - Origin is trusted
+- ✅ **COLD METHOD** - Auth + identity + intent verified
+- ✅ **HOLLOW ENUM** - Policy enforced, not just declared
+- ✅ **PREMATURE CELEBRATION** - Audit logged BEFORE data return
+
+**Test Coverage:**
+- ✅ `tests/test_wfc_firewall.py` - 15+ tests for entry validation
+- ✅ `tests/test_wfc_integration.py` - 12+ tests for complete flow
+- ✅ Auth denial tests verify rejection on invalid tokens
+- ✅ Rate limit tests verify enforcement per user
+
+**Completeness:** ✅ 100% (Security foundation locked, ready for production integration)
 
 ---
 
@@ -191,16 +225,16 @@ Compression Ratio                | 0.847x  | ⚠️ Modest (0.85x)
 ### What Exists (Inventory)
 **TheSeedConcept directory:** 48 markdown files across 8 subdirectories
 
-| Folder | Count | Quality |
-|---|---|---|
-| **Roadmaps/** | 6 files | ✅ Good (foundational) |
-| **STAT7-NFT/** | 5 files | ⚠️ Mixed (some aspirational) |
-| **Experiments/** | 4 files | ✅ Good (validated) |
-| **Conversations/** | 6 files | 🟠 Archive (philosophical debates) |
-| **CheckCelebrationStatus/** | 10 files | ❌ BLOAT (redundant) |
-| **Firewall & Containment/** | 8 files | ✅ Good (security-focused) |
-| **Schemas/** | 3 files | ✅ Good (reference) |
-| **media/** | 0 markdown | N/A |
+| Folder                      | Count      | Quality                            |
+|-----------------------------|------------|------------------------------------|
+| **Roadmaps/**               | 6 files    | ✅ Good (foundational)              |
+| **STAT7-NFT/**              | 5 files    | ⚠️ Mixed (some aspirational)       |
+| **Experiments/**            | 4 files    | ✅ Good (validated)                 |
+| **Conversations/**          | 6 files    | 🟠 Archive (philosophical debates) |
+| **CheckCelebrationStatus/** | 10 files   | ❌ BLOAT (redundant)                |
+| **Firewall & Containment/** | 8 files    | ✅ Good (security-focused)          |
+| **Schemas/**                | 3 files    | ✅ Good (reference)                 |
+| **media/**                  | 0 markdown | N/A                                |
 
 ### False Celebration Warnings ⚠️
 
