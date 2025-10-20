@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
@@ -591,6 +592,15 @@ namespace TWG.TLDA.Chat
             AddMessage("📜 TLDL", "Enhanced entry created with Seed metadata", SeedChatMessageType.TLDL);
 
             await SaveTLDLEntry(entry);
+        }
+
+        private void AddMessage(string tldl, string enhancedEntryCreatedWithSeedMetadata, SeedChatMessageType seedChatMessageType)
+        {
+            // TODO: Use STAT7 Auth or a STAT7 valid anonymous address for the sender.
+            // TODO: Implement this method to add a message to the UI or any other desired action.
+            // It should auth the user via STAT7 authentication and then call the appropriate methods to interact with Seed.
+            // You may need to implement additional logic here depending on how you want to handle these interactions.
+            // For example, you might use the `seedBridge` instance to register narratives or perform spatial searches.
         }
 
         async Task SaveTLDLEntry(string entry)

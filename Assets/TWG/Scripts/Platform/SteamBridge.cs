@@ -286,6 +286,7 @@ namespace TWG.Seed.Platform
             };
 
             // Get Steam inventory items
+#if STEAMWORKS_NET
             var steamInventory = Steamworks.SteamInventory();
             if (steamInventory != null)
             {
@@ -293,6 +294,7 @@ namespace TWG.Seed.Platform
                 // For now, add some mock items with STAT7 addresses
                 inventory.Items.AddRange(await ConvertSteamItemsToSeedEntities());
             }
+#endif
 
             inventory.UsedSlots = inventory.Items.Count;
             return inventory;
@@ -738,39 +740,6 @@ namespace TWG.Seed.Platform
             return $"https://avatars.steamstatic.com/{steamId.m_SteamID}_full.jpg";
         }
 
-        private async Task<decimal> GetSteamWalletBalance()
-        {
-            // Get Steam wallet balance
-            // This would use Steam Wallet API
-            return 0.00m; // Mock implementation
-        }
-
-        private async Task<List<InventoryItem>> ConvertSteamItemsToSeedEntities()
-        {
-            var items = new List<InventoryItem>();
-
-            // Convert Steam inventory items to Seed entities with STAT7 addresses
-            // This would iterate through actual Steam inventory
-
-            return items;
-        }
-
-        private async Task<Dictionary<string, SteamAchievementData>> GetSteamAchievements()
-        {
-            var achievements = new Dictionary<string, SteamAchievementData>();
-
-            // Get Steam achievements
-            // This would use Steam UserStats API
-
-            return achievements;
-        }
-
-        private async Task<Achievement> GetAchievementById(uint achievementId)
-        {
-            // Get specific achievement by ID
-            return null; // Mock implementation
-        }
-
         private async Task<Friend> ConvertSteamFriendToFriend(Steamworks.CSteamID steamId)
         {
             var friend = new Friend
@@ -786,7 +755,6 @@ namespace TWG.Seed.Platform
             return friend;
         }
 
-#if STEAMWORKS_NET
         private FriendStatus ConvertSteamPersonaState(Steamworks.EPersonaState state)
         {
             return state switch
@@ -970,20 +938,6 @@ namespace TWG.Seed.Platform
             return friend;
         }
 
-#if STEAMWORKS_NET
-        private FriendStatus ConvertSteamPersonaState(Steamworks.EPersonaState state)
-        {
-            return state switch
-            {
-                Steamworks.EPersonaState.k_EPersonaStateOffline => FriendStatus.Offline,
-                Steamworks.EPersonaState.k_EPersonaStateOnline => FriendStatus.Online,
-                Steamworks.EPersonaState.k_EPersonaStateAway => FriendStatus.Away,
-                Steamworks.EPersonaState.k_EPersonaStateBusy => FriendStatus.Busy,
-                Steamworks.EPersonaState.k_EPersonaStateInGame => FriendStatus.InGame,
-                _ => FriendStatus.Offline
-            };
-        }
-#endif
     }
 
     // Helper class for Steam achievement data

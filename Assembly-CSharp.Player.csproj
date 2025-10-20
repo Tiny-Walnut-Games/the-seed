@@ -76,7 +76,6 @@
     <Compile Include="Assets\Scripts\Managers\DialogueSystem.cs" />
     <Compile Include="Assets\Scripts\Managers\CharacterController.cs" />
     <Compile Include="Assets\TWG\Scripts\Visualization\MindCastleVisualizer.cs" />
-    <Compile Include="Assets\TWG\Scripts\Chat\WarblerChatBridge.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\TWG\Scripts\NPCControl\WarblerAPI.cs" />
     <Reference Include="UnityEngine">
