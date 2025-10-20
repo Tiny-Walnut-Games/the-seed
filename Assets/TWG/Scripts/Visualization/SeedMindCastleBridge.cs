@@ -25,6 +25,7 @@ namespace TWG.Seed.Integration
         // Seed engine interface (will be implemented)
         private ISeedEngine seedEngine;
         private Dictionary<string, NarrativeEntity> spawnedEntities = new Dictionary<string, NarrativeEntity>();
+        private bool isVisualizationActive = true;
 
         public interface ISeedEngine
         {
@@ -87,7 +88,7 @@ namespace TWG.Seed.Integration
 
         System.Collections.IEnumerator ContinuouslyUpdateVisualization()
         {
-            while (true)
+            while (isVisualizationActive)
             {
                 yield return new WaitForSeconds(1f);
                 _ = UpdateNearbyEntities();
@@ -334,6 +335,22 @@ namespace TWG.Seed.Integration
                 SpawnNarrativeEntity(newEntity);
                 Debug.Log($"New entity registered: {newEntity.Id}");
             }
+        }
+
+        public async Task<IEnumerable<object>> SearchEntities(string query)
+        {
+            // TODO: Implement STAT7 address parsing and querying logic here
+            throw new System.NotImplementedException();
+        }
+
+        public void StopVisualization()
+        {
+            isVisualizationActive = false;
+        }
+
+        void OnDestroy()
+        {
+            StopVisualization();
         }
     }
 
