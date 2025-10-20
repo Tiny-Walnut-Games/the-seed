@@ -67,9 +67,9 @@ namespace TWG.TLDA.NPCControl
         public List<string> GetRecentHistory(int count = 10)
         {
             var recentEntries = new List<string>();
-            int startIndex = Mathf.Max(0, conversationHistory.Count - count);
+            var startIndex = Mathf.Max(0, conversationHistory.Count - count);
 
-            for (int i = startIndex; i < conversationHistory.Count; i++)
+            for (var i = startIndex; i < conversationHistory.Count; i++)
             {
                 var entry = conversationHistory[i];
                 recentEntries.Add($"{entry.speaker}: {entry.content}");
@@ -86,8 +86,8 @@ namespace TWG.TLDA.NPCControl
         public string GenerateContextualResponse(string trigger, NPCPersonality personality, Dictionary<string, object> worldState)
         {
             // Generate response based on personality and context
-            string baseResponse = GetBaseResponse(trigger);
-            string personalizedResponse = PersonalizeResponse(baseResponse, personality, worldState);
+            var baseResponse = GetBaseResponse(trigger);
+            var personalizedResponse = PersonalizeResponse(baseResponse, personality, worldState);
 
             AddDialogue(personality.name, personalizedResponse, DialogueType.NPCResponse);
 
@@ -123,7 +123,7 @@ namespace TWG.TLDA.NPCControl
 
         private string PersonalizeResponse(string baseResponse, NPCPersonality personality, Dictionary<string, object> worldState)
         {
-            string personalizedResponse = baseResponse;
+            var personalizedResponse = baseResponse;
 
             // Modify based on personality traits
             if (personality.aggression > 0.7f)

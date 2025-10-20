@@ -86,7 +86,7 @@ namespace TWG.TLDA.NPCControl
             {
                 Debug.LogError($"Warbler dialogue generation failed: {e.Message}");
                 // Use dialogue system fallback
-                string fallbackDialogue = dialogueSystem.GenerateContextualResponse(trigger, personality, GetWorldState());
+                var fallbackDialogue = dialogueSystem.GenerateContextualResponse(trigger, personality, GetWorldState());
                 onDialogueGenerated?.Invoke(fallbackDialogue);
             }
         }

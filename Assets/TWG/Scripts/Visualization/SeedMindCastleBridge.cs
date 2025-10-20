@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using System.Threading.Tasks;
 using TWG.TLDA.Visualization;
@@ -304,12 +305,12 @@ namespace TWG.Seed.Integration
             }
         }
 
-        System.Collections.IEnumerator ResetHighlight(Renderer renderer, Color originalColor)
+        System.Collections.IEnumerator ResetHighlight(Renderer thisRenderer, Color originalColor)
         {
             yield return new WaitForSeconds(3f);
-            if (renderer != null)
+            if (thisRenderer != null)
             {
-                renderer.material.color = originalColor;
+                thisRenderer.material.color = originalColor;
             }
         }
 
@@ -321,10 +322,10 @@ namespace TWG.Seed.Integration
                 Content = content,
                 Realm = realm,
                 Lineage = 0, // Will be assigned by Seed
-                Resonance = Random.Range(0.0, 1.0),
-                Velocity = Random.Range(0.0, 1.0),
-                Density = Random.Range(0.0, 1.0),
-                Luminosity = Random.Range(0.0, 1.0),
+                Resonance = Random.Range(0.0f, 1.0f),
+                Velocity = Random.Range(0.0f, 1.0f),
+                Density = Random.Range(0.0f, 1.0f),
+                Luminosity = Random.Range(0.0f, 1.0f),
                 CompressionStage = "void"
             };
 
@@ -388,19 +389,19 @@ namespace TWG.Seed.Integration
                 "Faculty knowledge spans disciplines"
             };
 
-            for (int i = 0; i < 50; i++)
+            for (var i = 0; i < 50; i++)
             {
                 mockEntities.Add(new SeedMindCastleBridge.SeedEntity
                 {
                     Id = $"mock_{i}",
-                    Stat7Address = $"stat7://{realms[i % realms.Length]}/{i}/hash{i:D8}?r={Random.Range(0.0, 1.0):F3}&v={Random.Range(0.0, 1.0):F3}&d={Random.Range(0.0, 1.0):F3}",
+                    Stat7Address = $"stat7://{realms[i % realms.Length]}/{i}/hash{i:D8}?r={Random.Range(0.0f, 1.0f):F3}&v={Random.Range(0.0f, 1.0f):F3}&d={Random.Range(0.0f, 1.0f):F3}",
                     Realm = realms[i % realms.Length],
                     Lineage = i / 7,
                     Content = contents[i % contents.Length],
-                    Resonance = Random.Range(0.0, 1.0),
-                    Velocity = Random.Range(0.0, 1.0),
-                    Density = Random.Range(0.0, 1.0),
-                    Luminosity = Random.Range(0.0, 1.0),
+                    Resonance = Random.Range(0.0f, 1.0f),
+                    Velocity = Random.Range(0.0f, 1.0f),
+                    Density = Random.Range(0.0f, 1.0f),
+                    Luminosity = Random.Range(0.0f, 1.0f),
                     CompressionStage = "event"
                 });
             }

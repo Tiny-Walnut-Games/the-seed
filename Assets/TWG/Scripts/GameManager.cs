@@ -104,8 +104,8 @@ namespace TWG.TLDA
                 gameTime += Time.deltaTime;
 
                 // Update time of day
-                float dayProgress = (gameTime % dayDuration) / dayDuration;
-                TimeOfDay newTimeOfDay = GetTimeOfDayFromProgress(dayProgress);
+                var dayProgress = (gameTime % dayDuration) / dayDuration;
+                var newTimeOfDay = GetTimeOfDayFromProgress(dayProgress);
 
                 if (newTimeOfDay != currentTimeOfDay)
                 {
@@ -130,7 +130,7 @@ namespace TWG.TLDA
         {
             if (newState != currentGameState)
             {
-                GameState previousState = currentGameState;
+                var previousState = currentGameState;
                 currentGameState = newState;
                 OnGameStateChanged?.Invoke(previousState, newState);
 
@@ -299,13 +299,13 @@ namespace TWG.TLDA
                 gameTime = PlayerPrefs.GetFloat("GameTime", 0f);
                 currentSceneName = PlayerPrefs.GetString("CurrentScene", "");
 
-                string positionJson = PlayerPrefs.GetString("PlayerPosition", "");
+                var positionJson = PlayerPrefs.GetString("PlayerPosition", "");
                 if (!string.IsNullOrEmpty(positionJson))
                 {
                     lastPlayerPosition = JsonUtility.FromJson<Vector3>(positionJson);
                 }
 
-                string flagsString = PlayerPrefs.GetString("GameFlags", "");
+                var flagsString = PlayerPrefs.GetString("GameFlags", "");
                 if (!string.IsNullOrEmpty(flagsString))
                 {
                     gameFlags = new List<string>(flagsString.Split(','));
