@@ -438,3 +438,7 @@ C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefini
 C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\Unity.Re.0F5F59FB.Up2Date
 C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll
 C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.pdb
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.csproj.AssemblyReference.cache
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.csproj.CoreCompileInputs.cache
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.dll
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinitionConfig.Editor.Tests.pdb

@@ -24,6 +24,13 @@ Dimensions Used | 1000-point Sample | 10K-point Sample | Acceptable?
 ✓ 7 dimensions is right-sized for the problem
 ✓ If fewer dimensions work, we can use them (efficiency gain)
 
+### Latest Results
+**Test Date:** 2025-01-20
+**Status:** ⚠️ INCONCLUSIVE - Requires Scale-up Testing
+**Issue:** Zero collisions in all dimension ablation tests (unexpected)
+**Action Needed:** Re-test with 100K+ samples per dimension
+**Full Report:** [EXP-03 Dimension Necessity Report](../Reports/EXP-03_Dimension_Necessity_Report_2025-01-20.md)
+
 ### Failure Handling
 If collisions spike dramatically:
 - Reconsider dimension definitions (maybe one is redundant?)

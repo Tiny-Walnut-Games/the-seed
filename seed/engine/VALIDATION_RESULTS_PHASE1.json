@@ -1,0 +1,258 @@
+{
+  "EXP-01": {
+    "success": true,
+    "summary": {
+      "total_iterations": 10,
+      "total_bitchains_tested": 10000,
+      "total_collisions": 0,
+      "overall_collision_rate": 0.0,
+      "all_passed": true,
+      "results": [
+        {
+          "iteration": 1,
+          "total_bitchains": 1000,
+          "unique_addresses": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 2,
+          "total_bitchains": 1000,
+          "unique_addresses": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 3,
+          "total_bitchains": 1000,
+          "unique_addresses": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 4,
+          "total_bitchains": 1000,
+          "unique_addresses": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 5,
+          "total_bitchains": 1000,
+          "unique_addresses": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 6,
+          "total_bitchains": 1000,
+          "unique_addresses": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 7,
+          "total_bitchains": 1000,
+          "unique_addresses": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 8,
+          "total_bitchains": 1000,
+          "unique_addresses": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 9,
+          "total_bitchains": 1000,
+          "unique_addresses": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        },
+        {
+          "iteration": 10,
+          "total_bitchains": 1000,
+          "unique_addresses": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "success": true
+        }
+      ]
+    }
+  },
+  "EXP-02": {
+    "success": true,
+    "summary": {
+      "total_scales_tested": 3,
+      "all_passed": true,
+      "results": [
+        {
+          "scale": 1000,
+          "queries": 1000,
+          "mean_latency_ms": 0.00014950009062886238,
+          "median_latency_ms": 0.000100000761449337,
+          "p95_latency_ms": 0.000200001522898674,
+          "p99_latency_ms": 0.000400003045797348,
+          "min_latency_ms": 0.0,
+          "max_latency_ms": 0.006299989763647318,
+          "success": true
+        },
+        {
+          "scale": 10000,
+          "queries": 1000,
+          "mean_latency_ms": 0.00025319939595647156,
+          "median_latency_ms": 0.000200001522898674,
+          "p95_latency_ms": 0.000400003045797348,
+          "p99_latency_ms": 0.000600004568696022,
+          "min_latency_ms": 0.0,
+          "max_latency_ms": 0.019700004486367106,
+          "success": true
+        },
+        {
+          "scale": 100000,
+          "queries": 1000,
+          "mean_latency_ms": 0.0004408997483551502,
+          "median_latency_ms": 0.000300002284348011,
+          "p95_latency_ms": 0.000600004568696022,
+          "p99_latency_ms": 0.000800006091594696,
+          "min_latency_ms": 0.000100000761449337,
+          "max_latency_ms": 0.03610001294873655,
+          "success": true
+        }
+      ]
+    }
+  },
+  "EXP-03": {
+    "success": true,
+    "summary": {
+      "sample_size": 1000,
+      "total_dimension_combos_tested": 8,
+      "results": [
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "adjacency",
+            "horizon",
+            "resonance",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "lineage",
+            "adjacency",
+            "horizon",
+            "resonance",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "adjacency",
+            "horizon",
+            "resonance",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "horizon",
+            "resonance",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "adjacency",
+            "resonance",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "adjacency",
+            "horizon",
+            "velocity",
+            "density"
+          ],
+          "sample_size": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "adjacency",
+            "horizon",
+            "resonance",
+            "density"
+          ],
+          "sample_size": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        },
+        {
+          "dimensions_used": [
+            "realm",
+            "lineage",
+            "adjacency",
+            "horizon",
+            "resonance",
+            "velocity"
+          ],
+          "sample_size": 1000,
+          "collisions": 0,
+          "collision_rate": 0.0,
+          "acceptable": true
+        }
+      ]
+    }
+  }
+}

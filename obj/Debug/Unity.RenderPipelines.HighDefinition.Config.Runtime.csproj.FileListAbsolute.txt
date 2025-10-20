@@ -465,3 +465,7 @@ C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefini
 C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\Unity.Re.0B714F1F.Up2Date
 C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll
 C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinition.Config.Runtime.pdb
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinition.Config.Runtime.csproj.AssemblyReference.cache
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinition.Config.Runtime.csproj.CoreCompileInputs.cache
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\Unity.RenderPipelines.HighDefinition.Config.Runtime.pdb

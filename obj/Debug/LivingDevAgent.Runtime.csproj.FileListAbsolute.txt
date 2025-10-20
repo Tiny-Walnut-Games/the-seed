@@ -457,3 +457,7 @@ C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\LivingDevAgent.Runtime.csproj.Co
 C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\LivingDe.BF33A15A.Up2Date
 C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\LivingDevAgent.Runtime.dll
 C:\Users\Jerry\RiderProjects\the-seed\obj\Debug\LivingDevAgent.Runtime.pdb
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\LivingDevAgent.Runtime.csproj.AssemblyReference.cache
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\LivingDevAgent.Runtime.csproj.CoreCompileInputs.cache
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\LivingDevAgent.Runtime.dll
+C:\Users\jerio\RiderProjects\the-seed\obj\Debug\LivingDevAgent.Runtime.pdb

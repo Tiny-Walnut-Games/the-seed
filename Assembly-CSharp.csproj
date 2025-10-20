@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\Assembly-CSharp\</OutputPath>
-    <DefineConstants>UNITY_6000_2_6;UNITY_6000_2;UNITY_6000;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;UNITY_2023_2_OR_NEWER;UNITY_2023_3_OR_NEWER;UNITY_6000_0_OR_NEWER;UNITY_6000_1_OR_NEWER;UNITY_6000_2_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_UNITY_CONSENT;ENABLE_UNITY_CLOUD_IDENTIFIERS;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_MARSHALLING_TESTS;ENABLE_VIDEO;ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;TEXTCORE_1_0_OR_NEWER;EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED;PLATFORM_STANDALONE_LINUX;PLATFORM_STANDALONE;UNITY_STANDALONE_LINUX;UNITY_STANDALONE;UNITY_STANDALONE_LINUX_API;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_SPATIALTRACKING;ENABLE_MODULAR_UNITYENGINE_ASSEMBLIES;PLATFORM_SUPPORTS_SPLIT_GRAPHICS_JOBS;PLATFORM_USES_EXPLICIT_MEMORY_MANAGER_INITIALIZER;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_6000_2_6;UNITY_6000_2;UNITY_6000;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;UNITY_2023_2_OR_NEWER;UNITY_2023_3_OR_NEWER;UNITY_6000_0_OR_NEWER;UNITY_6000_1_OR_NEWER;UNITY_6000_2_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_UNITY_CONSENT;ENABLE_UNITY_CLOUD_IDENTIFIERS;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_MARSHALLING_TESTS;ENABLE_VIDEO;ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;TEXTCORE_1_0_OR_NEWER;EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_AMD;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_CLOUD_SERVICES_ENGINE_DIAGNOSTICS;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_USES_EXPLICIT_MEMORY_MANAGER_INITIALIZER;PLATFORM_SUPPORTS_WAIT_FOR_PRESENTATION;PLATFORM_SUPPORTS_SPLIT_GRAPHICS_JOBS;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2;STEAMWORKS_NET;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
@@ -44,18 +44,18 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\AspectGenerator.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\JobEntityGenerator.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.LambdaJobs.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.QueryBuilder.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.Query.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.Common.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Common.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.EntityQueryBulkOperations.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\AspectGenerator.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\JobEntityGenerator.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.LambdaJobs.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.QueryBuilder.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.Query.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.Common.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Common.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.EntityQueryBulkOperations.dll" />
+    <Analyzer Include="C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TWG\Scripts\NPCControl\WarblerDialogueSystem.cs" />
@@ -76,48 +76,94 @@
     <Compile Include="Assets\Scripts\Managers\DialogueSystem.cs" />
     <Compile Include="Assets\Scripts\Managers\CharacterController.cs" />
     <Compile Include="Assets\TWG\Scripts\Visualization\MindCastleVisualizer.cs" />
-    <Compile Include="Assets\TWG\Scripts\Chat\WarblerChatBridge.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\TWG\Scripts\NPCControl\WarblerAPI.cs" />
     <None Include="Assets\experiments\school\outputs\runs\run_1fe74ecf_20250910_210655\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\memory-profiler-window.uxml" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAdsUnityWrapper.m" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityBannerUnityWrapper.m" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-content_dark.uss" />
+    <None Include="Library\PackageCache\com.unity.ai.navigation@5218e4bf7edc\ValidationExceptions.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\StdLib.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Hierarchy\hierarchy-item.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Debug\Waveform.shader" />
+    <None Include="Library\PackageCache\com.unity.settings-manager@41738c275190\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\foldout-with-action-button.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.subsystems\package.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_ecb5f9b9_20250910_210703\experiment_results.json" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.jsonserialize\package.json" />
+    <None Include="Library\PackageCache\com.unity.burst@f7a407abf4d5\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\MultiScaleVOUpsample.compute" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\component-header.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-window-item.uss" />
     <None Include="Assets\experiments\school\outputs\runs\run_0002\run_metadata.json" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.screencapture\package.json" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.cloth\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\TabView\tab-view_light.uss" />
+    <None Include="Library\PackageCache\com.unity.test-framework.performance@92d1d09a72ed\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\Distortion.hlsl" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unitywebrequesttexture\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\search-and-goto-buttons_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\common_light.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\ExposureHistogram.hlsl" />
+    <None Include="Library\PackageCache\com.unity.inputsystem@be6c4fd0abf5\package.json" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.ai\package.json" />
+    <None Include="Library\PackageCache\com.unity.entities.graphics@f9ba58a97de9\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-entity_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\PieChart.uss" />
     <None Include="Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.LowLevel.ILSupport\README.txt" />
+    <None Include="Library\PackageCache\com.unity.inputsystem@be6c4fd0abf5\ValidationConfig.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\Texture3DLerp.compute" />
+    <None Include="Library\PackageCache\com.unity.ugui@e375ff18e90f\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-component_light.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\DeferredFog.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\autocomplete.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\common_dark.uss" />
     <None Include="Packages\warbler-core\tsconfig.json" />
+    <None Include="Library\PackageCache\com.unity.2d.tilemap@aa5f5491174d\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\TemporalAntialiasing.shader" />
+    <None Include="Library\PackageCache\com.unity.analytics@6cc66d58ac08\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\key-value-pair.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Preferences\preferences-setting.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Content\entity-query-header.uxml" />
+    <None Include="Library\PackageCache\com.unity.ext.nunit@031a54704bff\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\FastApproximateAntialiasing.hlsl" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\SubpixelMorphologicalAntialiasing.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\two-pane-split-view.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\memory-profiler-left-pane.uxml" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\Dithering.hlsl" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\Bloom.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\add-collection-item.uss" />
+    <None Include="Library\PackageCache\com.unity.xr.legacyinputhelpers@b7579e86f3b4\package.json" />
     <None Include="Packages\warbler-core\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Hierarchy\hierarchy-loading.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Preferences\preferences-value.uxml" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.assetbundle\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Debug\Vectorscope.compute" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Components\component-type-view.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Sampling.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\system-dependency-view.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\CopyStdFromTexArray.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Preferences\preferences-value.uss" />
+    <None Include="Library\PackageCache\com.unity.services.analytics@10a9ca5d5622\package.json" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.core@317e801bb3aa\Shaders\CoreCopy.shader" />
+    <None Include="Library\PackageCache\com.unity.serialization@582cbf30bbfd\package.json" />
+    <None Include="Library\PackageCache\com.unity.entities.graphics@f9ba58a97de9\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-components-tab.uss" />
     <None Include="Assets\Resources\BillingMode.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\Lut3DBaker.compute" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAdsShowListener.h" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.imgui\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Spinner\spinner_light.uss" />
+    <None Include="Library\PackageCache\com.unity.sysroot.linux-x86_64@1998d1c7730e\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-dropdown_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule-item.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.tilemap\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Debug\Waveform.compute" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\entity-info.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-details-component.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-popup.uxml" />
+    <None Include="Library\PackageCache\com.unity.test-framework.performance@92d1d09a72ed\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-component_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\search-and-goto-buttons.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-content_light.uss" />
@@ -126,59 +172,98 @@
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Components\components-window_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\tag-component-element.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Preferences\preferences-setting.uxml" />
+    <None Include="Library\PackageCache\com.unity.timeline@6b9e48457ddb\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\PSSL.hlsl" />
+    <None Include="Library\PackageCache\com.unity.analytics@6cc66d58ac08\Unity.Analytics.Editor.xml" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.accessibility\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\entity-inspector-aspects-tab.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\lazy-load-reference.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details_dark.uss" />
+    <None Include="Library\PackageCache\com.unity.toolchain.win-x86_64-linux-x86_64@426618737602\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-right-pane_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Hierarchy\hierarchy-loading.uxml" />
     <None Include="Assets\experiments\school\outputs\runs\run_0001\run_metadata.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\StyleSheets\Extensions\common.uss" />
+    <None Include="Library\PackageCache\com.unity.ide.visualstudio@74aa435fc4bb\ValidationConfig.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Debug\LightMeter.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\list-element-default.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\query-view.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.terrainphysics\package.json" />
+    <None Include="Library\PackageCache\com.unity.mathematics@8017b507cc74\package.json" />
+    <None Include="Library\PackageCache\com.unity.scriptablebuildpipeline@4fce4ca980cb\package.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_040ce587_20250910_210708\experiment_results.json" />
+    <None Include="Library\PackageCache\com.unity.burst@f7a407abf4d5\ValidationExceptions.json" />
+    <None Include="Library\PackageCache\com.unity.sysroot@7bbbb9339c14\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-window.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Components\component-type-view.uxml" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\AutoExposure.compute" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\MultiScaleVORender.compute" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Hierarchy\hierarchy-prefab-stage.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Content\component-attribute.uxml" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\Texture2DLerp.shader" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\SubpixelMorphologicalAntialiasingBridge.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\foldout-without-action-button.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\null-string-field.uss" />
+    <None Include="Library\PackageCache\com.unity.visualscripting@b4d700247d4b\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Components\components-window_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-relationships-tab.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-entity_dark.uss" />
+    <None Include="Library\PackageCache\com.unity.editorcoroutines@7d48783e7b8c\package.json" />
+    <None Include="Library\PackageCache\com.unity.collab-proxy@ab839cc7d2ad\package.json" />
     <None Include="Assets\csc.rsp" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\search-field.uxml" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\DiskKernels.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration-dependency_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\component-view.uss" />
     <None Include="Assets\experiments\school\hypothesis_drafts.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Controls\foldout-field.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Preferences\preferences-window.uxml" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\D3D11.hlsl" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\MultiScaleVODownsample2.compute" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\ScalableAO.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\memory-profiler-right-pane.uxml" />
+    <None Include="Library\PackageCache\com.unity.purchasing@fccfea3d9a46\ValidationExceptions.json" />
+    <None Include="Library\PackageCache\com.unity.ugui@e375ff18e90f\PackageConversionData.json" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unitywebrequestassetbundle\package.json" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAdsInitializationListener.mm" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-left-pane_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\system-queries-view.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-content.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-window.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-right-pane.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\unsupported-inspector.uss" />
+    <None Include="Library\PackageCache\com.unity.ide.visualstudio@74aa435fc4bb\package.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_0001\execution_logs.txt" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.core@317e801bb3aa\ValidationConfig.json" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.core@317e801bb3aa\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\unsupported-inspector.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule_light.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\WebGPU.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\classic-build-profile.uxml" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.imageconversion\package.json" />
+    <None Include="Library\PackageCache\com.unity.rendering.light-transport@2c9279f90d7c\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\autocomplete_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\foldout-with-action-button.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\common.uss" />
+    <None Include="Library\PackageCache\com.unity.feature.development@767aadbc6eb7\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\SystemSchedule\system-schedule-item.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\section.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\entity-view.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\add-collection-item.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\entity-field.uxml" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unityanalytics\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\build-configuration-dependency.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\pagination-element.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-dropdown.uss" />
+    <None Include="Library\PackageCache\com.unity.ide.rider@1f60b3138684\package.json" />
     <None Include="Assets\experiments\school\claims\hypotheses\claim_run_0002_20250910_210820.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\system-list-view.uxml" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.video\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-popup_light.uss" />
+    <None Include="Library\PackageCache\com.unity.ide.rider@1f60b3138684\ValidationExceptions.json" />
+    <None Include="Library\PackageCache\com.unity.test-framework@40b8da2bd3e9\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\entity-query-header.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\TabView\tab-view.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\tag-component-element.uxml" />
@@ -186,72 +271,127 @@
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\list-element.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Preferences\preferences-window.uss" />
+    <None Include="Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-component.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-component.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\search-field_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\classic-build-profile_light.uss" />
     <None Include="Assets\experiments\school\outputs\runs\github_integration.json" />
+    <None Include="Library\PackageCache\com.unity.purchasing@fccfea3d9a46\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\foldout-field_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\structural-changes-profiler-window_dark.uss" />
+    <None Include="Library\PackageCache\com.unity.performance.profile-analyzer@a68e7bc84997\package.json" />
     <None Include="Assets\TLDA-Unity-Test-Results\test-report.txt" />
+    <None Include="Library\PackageCache\com.unity.services.analytics@10a9ca5d5622\ValidationConfig.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\MultiScaleVO.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\entity-header.uxml" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.particlesystem\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Debug\Vectorscope.shader" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\D3D9.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\null-string-field.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-window_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-details.uxml" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\ScalableAO.shader" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\ACES.hlsl" />
     <None Include="Assets\experiments\school\outputs\runs\run_40358b59_20250906_104406\error.txt" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\FinalPass.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\circular-reference.uxml" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.physics2d\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Debug\Histogram.shader" />
+    <None Include="Library\PackageCache\com.unity.services.core@9e81a5e38245\ValidationExceptions.json" />
     <None Include="Assets\experiments\school\claims\github_integration.json" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.vr\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Debug\Histogram.compute" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\Switch.hlsl" />
+    <None Include="Library\PackageCache\com.unity.services.core@9e81a5e38245\package.json" />
+    <None Include="Library\PackageCache\com.unity.visualscripting@b4d700247d4b\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\centered-message-element.uxml" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\Metal.hlsl" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\Uber.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-field.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Components\components-window.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-aspects-tab_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details_light.uss" />
+    <None Include="Library\PackageCache\com.unity.toolchain.win-x86_64-linux-x86_64@426618737602\ValidationConfig.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\type-inspector.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\header.uss" />
+    <None Include="Library\PackageCache\com.unity.ide.visualstudio@74aa435fc4bb\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\memory-profiler-tree-view-item.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\complicated-type-test.uxml" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\xRLib.hlsl" />
     <None Include="Assets\TWG\UI\ChatInterface.uxml" />
+    <None Include="Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\link.xml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-window_light.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.wind\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\structural-changes-profiler-window_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.umbra\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\CopyStdFromDoubleWide.shader" />
+    <None Include="Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\package.json" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAdsUtilities.m" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-tree-view-item.uss" />
+    <None Include="Library\PackageCache\com.unity.entities.graphics@f9ba58a97de9\pvpExceptions.json" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAdsNativeObject.m" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-left-pane_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-window-item.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Search\search-element-filter-popup.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Debug\Overlays.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\variables_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-details-entity.uxml" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAdsInitializationListener.h" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\PSP2.hlsl" />
     <None Include="Assets\experiments\school\inventory.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Search\search-element.uxml" />
+    <None Include="Library\PackageCache\com.unity.inputsystem@be6c4fd0abf5\ValidationExceptions.json" />
     <None Include="Assets\mcs.rsp" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.audio\package.json" />
     <None Include="Library\PackageCache\com.rlabrecque.steamworks.net@3d42650afca9\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\ScreenSpaceReflections.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\classic-build-profile.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-component_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\query-with-entities.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.physics\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-left-pane.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-field_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-dropdown.uxml" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAdsUtilities.h" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\DepthOfField.hlsl" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\LICENSE.txt" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\nullable-foldout.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\DiscardAlpha.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\component.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\search-element-filter-popup.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-popup_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration_dark.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.vehicles\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\OpenGL.hlsl" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\Switch2.hlsl" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\Lut2DBaker.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\foldout-field.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\structural-changes-profiler-tree-view-item.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-window.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\system.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\display-list.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\SystemSchedule\system-schedule-header.uxml" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAdsLoadListener.mm" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration-dependency_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-field_dark.uss" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAdsLoadListener.h" />
+    <None Include="Library\PackageCache\com.unity.testtools.codecoverage@e4e5058206c0\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Hierarchy\hierarchy-toolbar.uss" />
+    <None Include="Library\PackageCache\com.unity.purchasing@fccfea3d9a46\ValidationConfig.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\component-attribute.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\search-element.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unitywebrequestwww\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\set-element-default.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-header.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\variables.uss" />
     <None Include="Assets\experiments\school\outputs\runs\run_3bd73f9e_20250910_210706\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-popup-item.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\pvpExceptions.json" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unitywebrequestaudio\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\CopyStd.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-popup-item.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-component_dark.uss" />
     <None Include="Assets\experiments\school\claims\hypotheses\claim_run_0002_20250906_023829.json" />
@@ -260,52 +400,87 @@
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\foldout-field_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\circular-reference.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-window-item_dark.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.hierarchycore\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\dots-editor-common_light.uss" />
+    <None Include="Library\PackageCache\com.unity.ugui@e375ff18e90f\Editor Resources\Shaders\TMP_SDF_SSD.cginc" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-component_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\key-value-pair.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\component-header.uss" />
+    <None Include="Library\PackageCache\com.unity.collab-proxy@ab839cc7d2ad\ValidationConfig.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\TabView\tab-view_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\entity-view.uss" />
+    <None Include="Library\PackageCache\com.unity.ai.navigation@5218e4bf7edc\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Hierarchy\hierarchy.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.xr\package.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\MotionBlur.shader" />
+    <None Include="Library\PackageCache\com.unity.profiling.core@aac7b93912bc\package.json" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAnalyticsWrapper.m" />
+    <None Include="Library\PackageCache\com.unity.ugui@e375ff18e90f\Editor Resources\Shaders\TMP_Properties.cginc" />
+    <None Include="Library\PackageCache\com.unity.settings-manager@41738c275190\ValidationExceptions.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\MultiScaleVODownsample1.compute" />
+    <None Include="Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\AOT\Newtonsoft.Json.xml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\build-configuration.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule_dark.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\Fog.hlsl" />
+    <None Include="Library\PackageCache\com.unity.timeline@6b9e48457ddb\ValidationExceptions.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\ExposureHistogram.compute" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\entity-inspector-components-tab.uxml" />
+    <None Include="Library\PackageCache\com.unity.ugui@e375ff18e90f\Editor Resources\Shaders\TMP_SDF Internal Editor.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\structural-changes-profiler-window.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\memory-profiler-component.uxml" />
     <None Include="Assets\experiments\school\claims\hypotheses\claim_run_0001_20250910_210820.json" />
+    <None Include="Library\PackageCache\com.unity.analytics@6cc66d58ac08\Unity.Analytics.StandardEvents.xml" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\package.json" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.director\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\dots-editor-common_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\search-and-goto-buttons.uxml" />
+    <None Include="Library\PackageCache\com.unity.visualscripting@b4d700247d4b\ValidationConfig.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-dropdown_light.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\GrainBaker.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-window.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\structural-changes-profiler-tree-view-item.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Search\search-element.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\entity-query.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.terrain\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Hierarchy\hierarchy-toolbar.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-right-pane_light.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\GaussianDownsample.compute" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Search\search-element-filter-popup.uxml" />
+    <None Include="Library\PackageCache\com.unity.2d.sprite@331abd9a1e2f\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-component.uss" />
     <None Include="Assets\TWG\UI\ChatInterface.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\variables_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-window.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\search-field_light.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\ScreenSpaceReflections.hlsl" />
     <None Include="Library\PackageCache\com.unity.collections@aea9d3bd5e19\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\install-quick-search-popup.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Hierarchy\hierarchy-prefab-stage.uxml" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.androidjni\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-aspects-tab.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\XboxOne.hlsl" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\Copy.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Spinner\spinner_dark.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\D3D12.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Components\components-window.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\DepthOfField.shader" />
+    <None Include="Library\PackageCache\com.unity.ugui@e375ff18e90f\PackageConversionData_Assets.json" />
+    <None Include="Library\PackageCache\com.unity.ads@3bb3d269d51b\Plugins\iOS\UnityAdsShowListener.mm" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\StyleSheets\Extensions\dark.uss" />
     <None Include="Assets\experiments\school\claims\hypotheses\claim_run_0001_20250906_023829.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-entity.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\SubpixelMorphologicalAntialiasing.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\structural-changes-profiler-window.uss" />
     <None Include="Assets\experiments\school\outputs\runs\run_4e6f8e84_20250910_210700\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\SystemSchedule\system-schedule-toolbar.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\pagination-element.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\lazy-load-reference.uxml" />
+    <None Include="Library\PackageCache\com.unity.mathematics@8017b507cc74\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-component_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\search-and-goto-buttons_light.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.animation\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\classic-build-profile_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\DebugWindows\system-debug-window.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration-dependency.uss" />
@@ -313,23 +488,32 @@
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\StyleSheets\Extensions\light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule-toolbar.uss" />
+    <None Include="Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.xml" />
     <None Include="Library\PackageCache\com.unity.collections@aea9d3bd5e19\pvpExceptions.json" />
+    <None Include="Library\PackageCache\com.unity.burst@f7a407abf4d5\Unity.Burst.Unsafe.xml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\install-quick-search-popup.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-aspects-tab_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule-header.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-content.uss" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unitywebrequest\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\dots-editor-common.uss" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\Vulkan.hlsl" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.uielements\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\search-field.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\inspector.uss" />
     <None Include="Library\PackageCache\com.unity.collections@aea9d3bd5e19\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\build-component.uxml" />
     <None Include="Assets\experiments\school\outputs\runs\run_0002\execution_logs.txt" />
     <None Include="Assets\experiments\school\outputs\runs\run_82a29b71_20250910_210657\experiment_results.json" />
+    <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Colors.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\foldout-without-action-button.uxml" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.high-definition-config@f7c893e8c254\package.json" />
+    <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.ui\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-window-item_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\centered-message-element.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\set-element.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\component-view.uxml" />
+    <None Include="Library\PackageCache\com.unity.multiplayer.center@f3fb577b3546\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\DebugWindows\debug-window.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\system-list-view.uss" />
     <Reference Include="UnityEngine">
@@ -337,6 +521,9 @@
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AccessibilityModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEngine.AccessibilityModule.dll</HintPath>
@@ -412,6 +599,9 @@
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InsightsModule">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEngine.InsightsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEngine.JSONSerializeModule.dll</HintPath>
@@ -693,40 +883,40 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Cecil.Awesome">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities.CodeGen\Unity.Cecil.Awesome.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities.CodeGen\Unity.Cecil.Awesome.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="ReportGeneratorMerged">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.testtools.codecoverage@e4e5058206c0\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.testtools.codecoverage@e4e5058206c0\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Hashing">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.IO.Hashing\System.IO.Hashing.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.IO.Hashing\System.IO.Hashing.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.visualscripting@b4d700247d4b\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.visualscripting@b4d700247d4b\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -742,9 +932,6 @@
     </Reference>
     <Reference Include="Unity.Android.Gradle">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\PlaybackEngines\MacStandaloneSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -1112,256 +1299,95 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Purchasing.SecurityStub">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.SecurityStub.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Entities.Graphics">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Entities.Graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AI.Navigation.Updater">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AI.Navigation.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.EditorCoroutines.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Entities.Graphics.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Entities.Graphics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Purchasing.Stores">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.Stores.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Components">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Services.Core.Components.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.SysrootPackage.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.SysrootPackage.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rendering.LightTransport.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Rendering.LightTransport.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Sysroot.Linux_x86_64">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InputSystem.ForUI">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Profiling.Core">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Profiling.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Environments">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.AIIntegration.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Sprite.AIIntegration.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InputSystem">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Purchasing.Codeless">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.Codeless.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AI.Navigation">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Purchasing">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Purchasing">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Purchasing.Utilities">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.Utilities.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Analytics">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Analytics">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Flow.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Purchasing.SecurityCore">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.SecurityCore.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Serialization">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Multiplayer.Center.Common">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Multiplayer.Center.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Multiplayer.Center.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Multiplayer.Center.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rendering.LightTransport.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Rendering.LightTransport.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Serialization.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Serialization.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Settings.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Settings.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Analytics">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Services.Analytics.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.Purchasing.SecurityStub.csproj">
+      <Project>{0296b6c5-9882-9dbe-a89c-b477cf765c9e}</Project>
+      <Name>Unity.Purchasing.SecurityStub</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Entities.csproj">
       <Project>{745c929c-e0dd-79dd-1ca8-a58f798051b8}</Project>
       <Name>Unity.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
+      <Project>{109e0ac9-af7a-c455-d99f-8f67a695c6c3}</Project>
+      <Name>Unity.2D.Sprite.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{5ddf2bc2-f0ba-36f3-fa07-1055872a510f}</Project>
+      <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
     <ProjectReference Include="TWG.SteamBridge.csproj">
       <Project>{4753a5f6-0bdd-8107-a23a-b084d3d3e188}</Project>
       <Name>TWG.SteamBridge</Name>
     </ProjectReference>
+    <ProjectReference Include="UnityEngine.SpatialTracking.csproj">
+      <Project>{9fb13422-442b-3270-3dae-126f4123d9df}</Project>
+      <Name>UnityEngine.SpatialTracking</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Postprocessing.Runtime.csproj">
+      <Project>{0926d099-8846-78b7-8598-97276313781e}</Project>
+      <Name>Unity.Postprocessing.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Entities.Graphics.csproj">
+      <Project>{5489c057-4f09-5653-f993-168bdbe8e587}</Project>
+      <Name>Unity.Entities.Graphics</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Services.Core.csproj">
+      <Project>{c64a3812-8523-b8c7-6fc9-35aa5d4df363}</Project>
+      <Name>Unity.Services.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj">
+      <Project>{6220235b-2813-d32a-3bd7-d97418c880b8}</Project>
+      <Name>Unity.RenderPipelines.Core.ShaderLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj">
+      <Project>{6d8c422b-71bd-6a25-a567-4764951f2523}</Project>
+      <Name>Unity.VisualScripting.SettingsProvider.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Entities.Editor.Properties.csproj">
       <Project>{bf2a64fb-a42b-c645-d448-4a56dc9d4aa5}</Project>
       <Name>Unity.Entities.Editor.Properties</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.csproj">
+      <Project>{40f7bfae-9b2d-8b79-6080-be61702eb0cc}</Project>
+      <Name>Unity.TestTools.CodeCoverage.Editor.OpenCover.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Updater.csproj">
+      <Project>{8800d831-bfa7-3f20-0143-04a9d2208725}</Project>
+      <Name>Unity.AI.Navigation.Updater</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Editor.csproj">
+      <Project>{72db9de9-b77a-3a22-90f5-595b717dc823}</Project>
+      <Name>Unity.AI.Navigation.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj">
+      <Project>{1a00289e-58bf-73c6-d3ce-3842289f23f5}</Project>
+      <Name>Unity.EditorCoroutines.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Entities.Graphics.Editor.csproj">
+      <Project>{bc3ca3d9-a924-4319-6394-6cba1c5d9192}</Project>
+      <Name>Unity.Entities.Graphics.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.Shared.csproj">
+      <Project>{56db6dbb-03ed-b8cf-404c-f4904cfbd112}</Project>
+      <Name>Unity.RenderPipelines.Core.Runtime.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Purchasing.Stores.csproj">
+      <Project>{6c654726-bebd-d521-1ee9-0ed41d5f34c1}</Project>
+      <Name>Unity.Purchasing.Stores</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Services.Core.Components.csproj">
+      <Project>{22b327d4-b741-c25f-ae45-d35aa0310db9}</Project>
+      <Name>Unity.Services.Core.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.SpatialTracking.csproj">
+      <Project>{9f9a38f0-e6f9-3107-0a59-3c26bbe92de8}</Project>
+      <Name>UnityEditor.SpatialTracking</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.Advertisements.csproj">
+      <Project>{5d5eaaf5-c159-0179-de09-982217f695eb}</Project>
+      <Name>UnityEngine.Advertisements</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Entities.UI.csproj">
       <Project>{cf06df0c-9ad4-121b-c0a3-8cc09bfe2fa3}</Project>
@@ -1371,6 +1397,26 @@
       <Project>{50b97029-8134-1e38-6c7b-8222660a6732}</Project>
       <Name>Unity.Entities.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.SysrootPackage.Editor.csproj">
+      <Project>{36cf5806-9ac3-c67c-91b3-b7bc20bdc530}</Project>
+      <Name>Unity.SysrootPackage.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Rider.Editor.csproj">
+      <Project>{c0b7c024-5187-c904-59d6-d4dee72e654e}</Project>
+      <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Analytics.DataPrivacy.csproj">
+      <Project>{122fb7c7-e0e7-551a-6ce5-bd9188970d5f}</Project>
+      <Name>Unity.Analytics.DataPrivacy</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Rendering.LightTransport.Editor.csproj">
+      <Project>{3dc965a6-7e73-7228-31ea-1ade7d7e29f5}</Project>
+      <Name>Unity.Rendering.LightTransport.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj">
+      <Project>{70b5795f-d91b-9609-672b-d389af20f5a8}</Project>
+      <Name>Unity.AI.Navigation.Editor.ConversionSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="LivingDevAgent.Runtime.csproj">
       <Project>{486cfbeb-4247-fa6d-c81d-60b638a4d46d}</Project>
       <Name>LivingDevAgent.Runtime</Name>
@@ -1379,13 +1425,65 @@
       <Project>{95910597-8ae2-c035-d04a-7dae0e6d2047}</Project>
       <Name>Unity.Transforms.Hybrid</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Flow.csproj">
+      <Project>{a73e8dcb-1cdb-2ebc-f044-68abea384770}</Project>
+      <Name>Unity.VisualScripting.Flow</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Sysroot.Linux_x86_64.csproj">
+      <Project>{73397473-d73c-7c55-1e08-0090456b51cf}</Project>
+      <Name>Unity.Sysroot.Linux_x86_64</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
+      <Project>{f4e69325-e809-7dc0-f63a-c24fe003577a}</Project>
+      <Name>Unity.TextMeshPro.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Scenes.csproj">
       <Project>{891254ec-5648-6c2b-e219-2c4bf51db916}</Project>
       <Name>Unity.Scenes</Name>
     </ProjectReference>
+    <ProjectReference Include="UnityEngine.XR.LegacyInputHelpers.csproj">
+      <Project>{a686d969-f344-e4f4-1ef3-abbc768ce48e}</Project>
+      <Name>UnityEngine.XR.LegacyInputHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualStudio.Editor.csproj">
+      <Project>{5360879d-bd90-acb0-f34e-55b21bd87c37}</Project>
+      <Name>Unity.VisualStudio.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="LivingDevAgent.Editor.csproj">
       <Project>{f0b009c0-72fe-b649-26f7-f39f957df442}</Project>
       <Name>LivingDevAgent.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Editor.csproj">
+      <Project>{02377f89-dd17-4efa-c07d-0b24c08d1d88}</Project>
+      <Name>Unity.2D.Tilemap.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.XR.LegacyInputHelpers.csproj">
+      <Project>{974d1974-6d6f-1d81-8163-30985b233218}</Project>
+      <Name>UnityEditor.XR.LegacyInputHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.ForUI.csproj">
+      <Project>{aa7029db-b651-185a-a286-a5d414fa78c6}</Project>
+      <Name>Unity.InputSystem.ForUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Profiling.Core.csproj">
+      <Project>{24a0202a-6dfe-4137-dcf8-2b3dafe7e768}</Project>
+      <Name>Unity.Profiling.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.GPUDriven.Runtime.csproj">
+      <Project>{7855ee5a-da41-b7cb-24b3-0ec56f78bdaf}</Project>
+      <Name>Unity.RenderPipelines.GPUDriven.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.State.Editor.csproj">
+      <Project>{f34098ee-851e-a8c2-05d1-5aacabc1f597}</Project>
+      <Name>Unity.VisualScripting.State.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{0f69ad3e-e2da-4fa8-fd7b-a3c0c154b87d}</Project>
+      <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Services.Core.Environments.csproj">
+      <Project>{72937a94-33bb-a2ba-2f66-19a9da2e0523}</Project>
+      <Name>Unity.Services.Core.Environments</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Entities.Hybrid.csproj">
       <Project>{0a581fc0-c367-3108-ca00-736a451a72b3}</Project>
@@ -1399,6 +1497,30 @@
       <Project>{ae7fba66-034f-40cc-23bb-6707abba9866}</Project>
       <Name>Unity.Entities.Build</Name>
     </ProjectReference>
+    <ProjectReference Include="UnityEngine.Advertisements.Editor.csproj">
+      <Project>{429e8606-c60b-9acd-7b56-dab91ecabd73}</Project>
+      <Name>UnityEngine.Advertisements.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Sprite.AIIntegration.Editor.csproj">
+      <Project>{e1f7b20a-18a6-cedb-e82f-8adf2daae99f}</Project>
+      <Name>Unity.2D.Sprite.AIIntegration.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.Shared.csproj">
+      <Project>{0e53402b-d2ce-4118-2057-2ff911ad4200}</Project>
+      <Name>Unity.RenderPipelines.Core.Editor.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.csproj">
+      <Project>{c0f3897c-a48f-3a78-f21d-3ed2702c418c}</Project>
+      <Name>Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.csproj">
+      <Project>{2c4386f5-48a0-55fa-7dc7-42d09a393d39}</Project>
+      <Name>Unity.InputSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Purchasing.Codeless.csproj">
+      <Project>{7874b270-3517-2f62-c521-1bc091f55ef0}</Project>
+      <Name>Unity.Purchasing.Codeless</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Transforms.csproj">
       <Project>{c5687b02-72c4-7e5b-157a-704c94617017}</Project>
       <Name>Unity.Transforms</Name>
@@ -1407,21 +1529,97 @@
       <Project>{728b8991-8bdd-d36e-ab81-ca871051ddfe}</Project>
       <Name>Unity.Mathematics.Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj">
+      <Project>{eba14b69-cdf9-0c30-eb73-56ebc53d6b95}</Project>
+      <Name>Unity.RenderPipelines.Core.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.csproj">
+      <Project>{9e9c0a61-ff69-a7e6-c6e9-e445924337a0}</Project>
+      <Name>Unity.AI.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.Purchasing.csproj">
+      <Project>{4a98e101-87bb-ebda-b2fc-ca2fdf28e6a8}</Project>
+      <Name>UnityEditor.Purchasing</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.ScriptableBuildPipeline.csproj">
+      <Project>{80cfdbd7-a738-5053-820e-1a44c39f6bfc}</Project>
+      <Name>Unity.ScriptableBuildPipeline</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Scenes.Editor.csproj">
       <Project>{b6c05b59-cb4d-c419-3847-b13dc5da3a32}</Project>
       <Name>Unity.Scenes.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Purchasing.csproj">
+      <Project>{8ad691b4-8cae-66c8-3a6b-1ed087af1fae}</Project>
+      <Name>Unity.Purchasing</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.csproj">
+      <Project>{26266757-c8ad-78ff-9775-748191c7ea2b}</Project>
+      <Name>Unity.TestTools.CodeCoverage.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.csproj">
+      <Project>{034e5213-9fd5-0e94-2fd6-d9b177f12f34}</Project>
+      <Name>Unity.Timeline</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64.csproj">
+      <Project>{e5c5ba57-a654-6c97-af46-a11244888648}</Project>
+      <Name>Unity.Toolchain.Win-x86_64-Linux-x86_64</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj">
+      <Project>{9580a9d7-4877-8b88-d0b4-07cc67228913}</Project>
+      <Name>Unity.VisualScripting.Shared.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.ScriptableBuildPipeline.Editor.csproj">
+      <Project>{601737a2-657c-d1ce-43e2-d38a5ded4161}</Project>
+      <Name>Unity.ScriptableBuildPipeline.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
+      <Project>{19e3dac9-a952-193c-1687-f0b97538ea05}</Project>
+      <Name>Unity.PlasticSCM.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Purchasing.Utilities.csproj">
+      <Project>{e871b53f-9352-6712-6d7f-64a788697be6}</Project>
+      <Name>Unity.Purchasing.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Burst.Editor.csproj">
+      <Project>{5fe3fd7d-fd76-7fa9-3bd1-b32247a52ee6}</Project>
+      <Name>Unity.Burst.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Core.csproj">
+      <Project>{9a0a1b67-9d2d-252a-a3da-326f0a0f7034}</Project>
+      <Name>Unity.VisualScripting.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Mathematics.Editor.csproj">
+      <Project>{1b38efa0-8f19-1d1b-903c-9a95832f8d75}</Project>
+      <Name>Unity.Mathematics.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Entities.UI.Editor.csproj">
       <Project>{370a231a-e2db-8e02-ff52-48549941b96f}</Project>
       <Name>Unity.Entities.UI.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Services.Core.Analytics.csproj">
+      <Project>{d0da3432-52c7-34b2-4276-6a556c84245d}</Project>
+      <Name>Unity.Services.Core.Analytics</Name>
+    </ProjectReference>
     <ProjectReference Include="com.rlabrecque.steamworks.net.csproj">
       <Project>{cd4687a9-f968-a292-a6d3-b4fc92fc9601}</Project>
       <Name>com.rlabrecque.steamworks.net</Name>
     </ProjectReference>
+    <ProjectReference Include="Analytics.csproj">
+      <Project>{6ac888dc-e677-8c46-a27d-805c8d8050d8}</Project>
+      <Name>Analytics</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
+      <Project>{a1ba84f2-11b3-577a-2c53-b0688ad07f9a}</Project>
+      <Name>Unity.RenderPipelines.Core.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="com.rlabrecque.steamworks.net.editor.csproj">
       <Project>{323229e7-9867-a37b-252f-162450bb904b}</Project>
       <Name>com.rlabrecque.steamworks.net.editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj">
+      <Project>{f09d076c-ad4b-f154-84ca-349ac29ab8e2}</Project>
+      <Name>Unity.VisualScripting.Flow.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="TWG.TLDA.TestSuite.Editor.csproj">
       <Project>{1fd84da3-5b5a-cc8a-1a30-c4c7199db76a}</Project>
@@ -1431,9 +1629,53 @@
       <Project>{324ceeca-cda4-b88e-39b7-3f197b6bcaa7}</Project>
       <Name>Unity.Collections</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.Editor.csproj">
+      <Project>{2b3930cf-e2bb-d4d0-44fb-52eb87dd0272}</Project>
+      <Name>Unity.Timeline.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Purchasing.SecurityCore.csproj">
+      <Project>{8f0bebde-82af-2c28-0639-5c75f0001c55}</Project>
+      <Name>Unity.Purchasing.SecurityCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Mathematics.csproj">
+      <Project>{577a8cfe-7b85-60c2-cb6d-5773066a059e}</Project>
+      <Name>Unity.Mathematics</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Extensions.Hybrid.csproj">
       <Project>{6a1ba748-c59f-0e53-7348-731ef6a7217c}</Project>
       <Name>Unity.Mathematics.Extensions.Hybrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Serialization.csproj">
+      <Project>{cd6412d2-c132-ad50-7f92-0a1a38ea5c71}</Project>
+      <Name>Unity.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Multiplayer.Center.Common.csproj">
+      <Project>{20d2e2d6-db1d-3ea9-aa91-0ddc30681bc1}</Project>
+      <Name>Unity.Multiplayer.Center.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Burst.csproj">
+      <Project>{65942818-e0cb-1728-164c-6ae502311b90}</Project>
+      <Name>Unity.Burst</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Core.Editor.csproj">
+      <Project>{055da804-b573-d860-65fd-3458d90b54fe}</Project>
+      <Name>Unity.VisualScripting.Core.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Multiplayer.Center.Editor.csproj">
+      <Project>{5194a716-4423-ab76-f7db-235cd5fcd962}</Project>
+      <Name>Unity.Multiplayer.Center.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Rendering.LightTransport.Runtime.csproj">
+      <Project>{06758333-7ea9-6de1-9a6e-bb0ed905c76d}</Project>
+      <Name>Unity.Rendering.LightTransport.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.State.csproj">
+      <Project>{04544ba1-81a3-de8b-1d57-a471851afd59}</Project>
+      <Name>Unity.VisualScripting.State</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Postprocessing.Editor.csproj">
+      <Project>{56227b64-5fcf-42c7-b51c-7b36f5dd1d1b}</Project>
+      <Name>Unity.Postprocessing.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Deformations.csproj">
       <Project>{11cd120b-e365-74c1-7770-6196e2f7b0cd}</Project>
@@ -1442,6 +1684,30 @@
     <ProjectReference Include="Unity.Collections.Editor.csproj">
       <Project>{fd476069-d2a3-22d5-54c0-ecbae029af9b}</Project>
       <Name>Unity.Collections.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Serialization.Editor.csproj">
+      <Project>{15144a9f-3bcf-9e41-e176-e0340bea0e3c}</Project>
+      <Name>Unity.Serialization.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime.csproj">
+      <Project>{5e7289f7-4dbe-89d4-33b5-c84ee269bfeb}</Project>
+      <Name>Unity.RenderPipelines.HighDefinition.Config.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Performance.Profile-Analyzer.Editor.csproj">
+      <Project>{316bf800-72bb-b49b-395e-02564642c543}</Project>
+      <Name>Unity.Performance.Profile-Analyzer.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Settings.Editor.csproj">
+      <Project>{8f41d224-a018-a664-27a0-d776116d2257}</Project>
+      <Name>Unity.Settings.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{86211f72-ae85-3787-f373-252657111fcb}</Project>
+      <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Services.Analytics.csproj">
+      <Project>{4241fb2d-b0cc-8768-6c1a-1dedc9bbcd10}</Project>
+      <Name>Unity.Services.Analytics</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
