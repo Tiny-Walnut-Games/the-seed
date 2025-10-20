@@ -94,6 +94,7 @@
     <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.jsonserialize\package.json" />
     <None Include="Library\PackageCache\com.unity.burst@f7a407abf4d5\package.json" />
     <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\MultiScaleVOUpsample.compute" />
+    <None Include="Library\PackageCache\com.unity.feature.ecs@c02e4143bb5e\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\component-header.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-window-item.uss" />
     <None Include="Assets\experiments\school\outputs\runs\run_0002\run_metadata.json" />
@@ -211,7 +212,7 @@
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-relationships-tab.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-entity_dark.uss" />
     <None Include="Library\PackageCache\com.unity.editorcoroutines@7d48783e7b8c\package.json" />
-    <None Include="Library\PackageCache\com.unity.collab-proxy@ab839cc7d2ad\package.json" />
+    <None Include="Library\PackageCache\com.unity.collab-proxy@1e5e48aff19d\package.json" />
     <None Include="Assets\csc.rsp" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\search-field.uxml" />
     <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Builtins\DiskKernels.hlsl" />
@@ -240,6 +241,7 @@
     <None Include="Library\PackageCache\com.unity.render-pipelines.core@317e801bb3aa\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\unsupported-inspector.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule_light.uss" />
+    <None Include="Library\PackageCache\com.unity.physics@b8c0a578fe9d\package.json" />
     <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\API\WebGPU.hlsl" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\classic-build-profile.uxml" />
     <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.imageconversion\package.json" />
@@ -336,6 +338,7 @@
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-left-pane_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-window-item.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Search\search-element-filter-popup.uss" />
+    <None Include="Library\PackageCache\com.unity.physics@b8c0a578fe9d\pvpExceptions.json" />
     <None Include="Library\PackageCache\com.unity.postprocessing@4a41da475b74\PostProcessing\Shaders\Debug\Overlays.shader" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\variables_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-details-entity.uxml" />
@@ -406,7 +409,7 @@
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-component_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\key-value-pair.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\component-header.uss" />
-    <None Include="Library\PackageCache\com.unity.collab-proxy@ab839cc7d2ad\ValidationConfig.json" />
+    <None Include="Library\PackageCache\com.unity.collab-proxy@1e5e48aff19d\ValidationConfig.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\TabView\tab-view_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\entity-view.uss" />
     <None Include="Library\PackageCache\com.unity.ai.navigation@5218e4bf7edc\package.json" />
@@ -511,6 +514,7 @@
     <None Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.ui\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-window-item_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\centered-message-element.uss" />
+    <None Include="Library\PackageCache\com.unity.physics@b8c0a578fe9d\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\set-element.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\component-view.uxml" />
     <None Include="Library\PackageCache\com.unity.multiplayer.center@f3fb577b3546\package.json" />
@@ -1449,6 +1453,10 @@
       <Project>{5360879d-bd90-acb0-f34e-55b21bd87c37}</Project>
       <Name>Unity.VisualStudio.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Physics.Editor.csproj">
+      <Project>{8e5fbcfc-531b-19e6-292d-22ffef53b752}</Project>
+      <Name>Unity.Physics.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="LivingDevAgent.Editor.csproj">
       <Project>{f0b009c0-72fe-b649-26f7-f39f957df442}</Project>
       <Name>LivingDevAgent.Editor</Name>
@@ -1533,6 +1541,10 @@
       <Project>{eba14b69-cdf9-0c30-eb73-56ebc53d6b95}</Project>
       <Name>Unity.RenderPipelines.Core.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Physics.Hybrid.csproj">
+      <Project>{b4bfd09a-b814-b68a-198a-08301738e19e}</Project>
+      <Name>Unity.Physics.Hybrid</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.AI.Navigation.csproj">
       <Project>{9e9c0a61-ff69-a7e6-c6e9-e445924337a0}</Project>
       <Name>Unity.AI.Navigation</Name>
@@ -1592,6 +1604,10 @@
     <ProjectReference Include="Unity.Mathematics.Editor.csproj">
       <Project>{1b38efa0-8f19-1d1b-903c-9a95832f8d75}</Project>
       <Name>Unity.Mathematics.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Physics.csproj">
+      <Project>{3bcfc898-ebc0-4f0a-67a3-679603d3030a}</Project>
+      <Name>Unity.Physics</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Entities.UI.Editor.csproj">
       <Project>{370a231a-e2db-8e02-ff52-48549941b96f}</Project>

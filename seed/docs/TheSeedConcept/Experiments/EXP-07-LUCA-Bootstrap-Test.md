@@ -17,3 +17,29 @@ If bootstrap fails:
 LUCA might be under-defined (needs more core information)
 Lineage alone might not capture enough information (need Adjacency copies)
 Or the system is genuinely not bootstrappable (major architecture problem)
+
+```stat7_entity.py:295-317
+    # ========================================================================
+    # LUCA Bootstrap
+    # ========================================================================
+    
+    @property
+    def luca_distance(self) -> int:
+        """Distance from LUCA (Last Universal Common Ancestor)"""
+        return self.stat7.lineage
+    
+    def get_luca_trace(self) -> Dict[str, Any]:
+        """
+        Get path back to LUCA bootstrap origin.
+        In a real system, this would trace parent entities.
+        """
+        return {
+            'entity_id': self.entity_id,
+            'luca_distance': self.luca_distance,
+            'realm': self.stat7.realm.value,
+            'lineage': self.stat7.lineage,
+            'created_at': self.created_at.isoformat(),
+            'migration_source': self.migration_source,
+            'event_count': len(self.lifecycle_events)
+        }
+```
