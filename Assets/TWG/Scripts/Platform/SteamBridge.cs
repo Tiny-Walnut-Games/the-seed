@@ -151,10 +151,31 @@ namespace TWG.Seed.Platform
 
             _ = Task.Run(async () =>
             {
-                var achievement = await GetAchievementById(callback.m_nGameProgress);
-                if (achievement != null)
+                try
                 {
+                    var achName = callback.m_rgchAchievementName;
+                    var achievement = new Achievement
+                    {
+                        AchievementId = achName,
+                        Name = achName,
+                        Description = string.Empty,
+                        IsUnlocked = true,
+                        UnlockDate = DateTime.UtcNow,
+                        Progress = 100f,
+                        IconUrl = string.Empty,
+                        Points = 0,
+                        Stat7Address = GenerateStat7AddressForAchievement(achName),
+                        AchievementStory = await GenerateAchievementStory(new SteamAchievementData
+                        {
+                            Name = achName,
+                            Description = string.Empty
+                        })
+                    };
                     await RegisterAchievementAsNarrative(achievement);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning($"Failed handling achievement stored callback: {ex.Message}");
                 }
             });
         }
@@ -285,13 +306,9 @@ namespace TWG.Seed.Platform
 
             // Get Steam inventory items
 #if STEAMWORKS_NET
-            var steamInventory = Steamworks.SteamInventory();
-            if (steamInventory != null)
-            {
-                // This would need proper Steam inventory implementation
-                // For now, add some mock items with STAT7 addresses
-                inventory.Items.AddRange(await ConvertSteamItemsToSeedEntities());
-            }
+            // Steamworks.NET uses static SteamInventory API; integrate as needed.
+            // For now, add any converted items via a placeholder converter.
+            inventory.Items.AddRange(await ConvertSteamItemsToSeedEntities());
 #endif
 
             inventory.UsedSlots = inventory.Items.Count;
@@ -507,27 +524,35 @@ namespace TWG.Seed.Platform
             };
 
 #if STEAMWORKS_NET
-            // Get Steam stats
-            Steamworks.SteamUserStats.RequestCurrentStats();
-
+            // Get Steam stats (RequestCurrentStats is managed by the Steam client in this Steamworks.NET version)
             // Example stats - would need proper implementation
-            stats.TotalPlayTime = TimeSpan.FromHours(Steamworks.SteamUserStats.GetStatFloat("total_play_hours"));
-            stats.SessionsPlayed = (int)Steamworks.SteamUserStats.GetStatInt("sessions_played");
-            stats.LastSession = DateTime.UtcNow.AddDays(-Random.Range(1, 30)); // Mock data
+            float totalHours = 0f;
+            Steamworks.SteamUserStats.GetStat("total_play_hours", out totalHours);
+            stats.TotalPlayTime = TimeSpan.FromHours(totalHours);
+
+            int sessions = 0;
+            Steamworks.SteamUserStats.GetStat("sessions_played", out sessions);
+            stats.SessionsPlayed = sessions;
+
+            stats.LastSession = DateTime.UtcNow.AddDays(-UnityEngine.Random.Range(1, 30)); // Placeholder data
 
             // Add narrative-specific stats
+            float narrativesCreated = 0f;
+            Steamworks.SteamUserStats.GetStat("narratives_created", out narrativesCreated);
             stats.NarrativeStats.Add(new NarrativeStat
             {
                 StatName = "Narratives_Created",
-                Value = Steamworks.SteamUserStats.GetStatFloat("narratives_created"),
+                Value = narrativesCreated,
                 Stat7Address = GenerateStat7Address("narratives_created"),
                 LastUpdated = DateTime.UtcNow
             });
 
+            float companionsEvolved = 0f;
+            Steamworks.SteamUserStats.GetStat("companions_evolved", out companionsEvolved);
             stats.NarrativeStats.Add(new NarrativeStat
             {
                 StatName = "Companions_Evolved",
-                Value = Steamworks.SteamUserStats.GetStatFloat("companions_evolved"),
+                Value = companionsEvolved,
                 Stat7Address = GenerateStat7Address("companions_evolved"),
                 LastUpdated = DateTime.UtcNow
             });
@@ -577,8 +602,9 @@ namespace TWG.Seed.Platform
                 // Steamworks.SteamRemoteStorage.FileWrite(fileName, companionJson, companionJson.Length);
 
                 // Update Steam stats
-                Steamworks.SteamUserStats.SetStatInt("total_companions",
-                    Steamworks.SteamUserStats.GetStatInt("total_companions") + 1);
+                int totalCompanions = 0;
+                Steamworks.SteamUserStats.GetStat("total_companions", out totalCompanions);
+                Steamworks.SteamUserStats.SetStat("total_companions", totalCompanions + 1);
                 Steamworks.SteamUserStats.StoreStats();
 
                 Debug.Log($"Narrative companion registered: {companionId}");
@@ -611,14 +637,16 @@ namespace TWG.Seed.Platform
                 // Update Steam stats based on progress
                 if (progress.ExperienceGained > 0)
                 {
-                    Steamworks.SteamUserStats.SetStatFloat("total_experience_gained",
-                        Steamworks.SteamUserStats.GetStatFloat("total_experience_gained") + (float)progress.ExperienceGained);
+                    float exp = 0f;
+                    Steamworks.SteamUserStats.GetStat("total_experience_gained", out exp);
+                    Steamworks.SteamUserStats.SetStat("total_experience_gained", exp + (float)progress.ExperienceGained);
                 }
 
                 if (!string.IsNullOrEmpty(progress.NewAbility))
                 {
-                    Steamworks.SteamUserStats.SetStatInt("abilities_unlocked",
-                        Steamworks.SteamUserStats.GetStatInt("abilities_unlocked") + 1);
+                    int abilities = 0;
+                    Steamworks.SteamUserStats.GetStat("abilities_unlocked", out abilities);
+                    Steamworks.SteamUserStats.SetStat("abilities_unlocked", abilities + 1);
                 }
 
                 Steamworks.SteamUserStats.StoreStats();
@@ -761,7 +789,10 @@ namespace TWG.Seed.Platform
                 Steamworks.EPersonaState.k_EPersonaStateOnline => FriendStatus.Online,
                 Steamworks.EPersonaState.k_EPersonaStateAway => FriendStatus.Away,
                 Steamworks.EPersonaState.k_EPersonaStateBusy => FriendStatus.Busy,
-                Steamworks.EPersonaState.k_EPersonaStateInGame => FriendStatus.InGame,
+                Steamworks.EPersonaState.k_EPersonaStateSnooze => FriendStatus.Away,
+                Steamworks.EPersonaState.k_EPersonaStateLookingToPlay => FriendStatus.Online,
+                Steamworks.EPersonaState.k_EPersonaStateLookingToTrade => FriendStatus.Online,
+                Steamworks.EPersonaState.k_EPersonaStateInvisible => FriendStatus.Offline,
                 _ => FriendStatus.Offline
             };
         }

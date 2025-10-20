@@ -280,6 +280,9 @@
     <Reference Include="nunit.framework">
       <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Analytics.Tracker">
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO.Hashing">
       <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.IO.Hashing\System.IO.Hashing.dll</HintPath>
     </Reference>
@@ -291,6 +294,9 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.StandardEvents">
+      <HintPath>C:\Users\jerio\RiderProjects\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
