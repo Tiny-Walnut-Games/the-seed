@@ -493,3 +493,4 @@ packs/*/build/
 /bin*/Debug/*
 /bin*/Release/*
 *.cache
+Unity.*.csproj

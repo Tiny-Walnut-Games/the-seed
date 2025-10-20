@@ -19,11 +19,11 @@ namespace TWG.TLDA.School.Editor
         private string generationProgress = "";
         private DateTime lastGenerationTime;
         private int manifestsGenerated = 0;
-        
+
         // Input/Output settings
-        private const string INPUT_PATH = "assets/experiments/school/hypothesis_drafts.json";
-        private const string OUTPUT_DIR = "assets/experiments/school/manifests/";
-        
+        private const string INPUT_PATH = "Assets/experiments/school/hypothesis_drafts.json";
+        private const string OUTPUT_DIR = "Assets/experiments/school/manifests/";
+
         [MenuItem("Tools/School/Generate Experiment Manifests")]
         public static void ShowWindow()
         {
@@ -31,20 +31,68 @@ namespace TWG.TLDA.School.Editor
             window.minSize = new Vector2(500, 700);
             window.Show();
         }
-        
+
+        /// <summary>
+        /// Run manifest generation without opening any windows. Returns number of manifests written.
+        /// </summary>
+        public static async Task<int> RunHeadless(string inputPath = null, string outputDir = null)
+        {
+            string inPath = inputPath ?? INPUT_PATH;
+            string outDir = outputDir ?? OUTPUT_DIR;
+
+            if (!File.Exists(inPath))
+            {
+                throw new FileNotFoundException($"Hypotheses not found: {inPath}");
+            }
+
+            var json = await File.ReadAllTextAsync(inPath);
+            var drafts = JsonUtility.FromJson<HypothesisDrafts>(json);
+            if (drafts == null || drafts.Hypotheses == null)
+            {
+                return 0;
+            }
+
+            if (!Directory.Exists(outDir)) Directory.CreateDirectory(outDir);
+
+            var temp = CreateInstance<ExperimentManifestGenerator>();
+            try
+            {
+                int written = 0;
+                for (int i = 0; i < drafts.Hypotheses.Count; i++)
+                {
+                    var h = drafts.Hypotheses[i];
+                    var manifest = temp.CreateExperimentManifest(h);
+                    var filename = $"experiment_{h.Id}.yaml";
+                    var filepath = Path.Combine(outDir, filename);
+                    await File.WriteAllTextAsync(filepath, manifest);
+                    written++;
+                    await Task.Yield();
+                }
+
+                return written;
+            }
+            finally
+            {
+                if (!Application.isPlaying)
+                {
+                    DestroyImmediate(temp);
+                }
+            }
+        }
+
         private void OnGUI()
         {
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
-            
+
             DrawHeader();
             DrawInputSection();
             DrawGenerationSection();
             DrawResultsSection();
             DrawOutputSection();
-            
+
             EditorGUILayout.EndScrollView();
         }
-        
+
         private void DrawHeader()
         {
             EditorGUILayout.Space(10);
@@ -52,18 +100,18 @@ namespace TWG.TLDA.School.Editor
             GUILayout.Label("Stage 2: Generate YAML manifests for each hypothesis", EditorStyles.helpBox);
             EditorGUILayout.Space(10);
         }
-        
+
         private void DrawInputSection()
         {
             EditorGUILayout.LabelField("Input Configuration", EditorStyles.boldLabel);
-            
+
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             EditorGUILayout.LabelField("Hypothesis Drafts File:", INPUT_PATH);
-            
+
             if (File.Exists(INPUT_PATH))
             {
                 EditorGUILayout.LabelField("✓ Input file found", EditorStyles.miniLabel);
-                
+
                 if (GUILayout.Button("Load Hypotheses", GUILayout.Height(30)))
                 {
                     LoadHypotheses();
@@ -74,31 +122,31 @@ namespace TWG.TLDA.School.Editor
                 EditorGUILayout.LabelField("✗ Input file not found. Run Stage 1 first.", EditorStyles.miniLabel);
             }
             EditorGUILayout.EndVertical();
-            
+
             EditorGUILayout.Space(10);
         }
-        
+
         private void DrawGenerationSection()
         {
             EditorGUILayout.LabelField("Manifest Generation", EditorStyles.boldLabel);
-            
+
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            
+
             if (loadedHypotheses != null)
             {
                 EditorGUILayout.LabelField($"Loaded {loadedHypotheses.Hypotheses.Count} hypotheses");
                 EditorGUILayout.LabelField($"From: {loadedHypotheses.Timestamp}");
                 EditorGUILayout.LabelField($"Unity Version: {loadedHypotheses.UnityVersion}");
-                
+
                 EditorGUILayout.Space(5);
-                
+
                 GUI.enabled = !isGenerating;
                 if (GUILayout.Button("Generate Experiment Manifests", GUILayout.Height(40)))
                 {
                     GenerateManifests();
                 }
                 GUI.enabled = true;
-                
+
                 if (isGenerating)
                 {
                     EditorGUILayout.LabelField("Status:", generationProgress);
@@ -109,17 +157,17 @@ namespace TWG.TLDA.School.Editor
             {
                 EditorGUILayout.LabelField("No hypotheses loaded. Load input file first.");
             }
-            
+
             EditorGUILayout.EndVertical();
             EditorGUILayout.Space(10);
         }
-        
+
         private void DrawResultsSection()
         {
             EditorGUILayout.LabelField("Generation Results", EditorStyles.boldLabel);
-            
+
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            
+
             if (manifestsGenerated > 0)
             {
                 EditorGUILayout.LabelField($"✓ Generated {manifestsGenerated} manifest files");
@@ -129,23 +177,23 @@ namespace TWG.TLDA.School.Editor
             {
                 EditorGUILayout.LabelField("No manifests generated yet.");
             }
-            
+
             EditorGUILayout.EndVertical();
             EditorGUILayout.Space(10);
         }
-        
+
         private void DrawOutputSection()
         {
             EditorGUILayout.LabelField("Output Configuration", EditorStyles.boldLabel);
-            
+
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             EditorGUILayout.LabelField("Output Directory:", OUTPUT_DIR);
-            
+
             if (Directory.Exists(OUTPUT_DIR))
             {
                 var files = Directory.GetFiles(OUTPUT_DIR, "experiment_*.yaml");
                 EditorGUILayout.LabelField($"Current manifest files: {files.Length}");
-                
+
                 if (GUILayout.Button("Open Output Directory"))
                 {
                     EditorUtility.RevealInFinder(OUTPUT_DIR);
@@ -155,17 +203,74 @@ namespace TWG.TLDA.School.Editor
             {
                 EditorGUILayout.LabelField("Output directory will be created during generation.");
             }
-            
+
             EditorGUILayout.EndVertical();
         }
-        
+
+        [Serializable]
+        private class HypothesisDraftsSurrogate
+        {
+            public string Timestamp;
+            public string Status;
+            public string UnityVersion;
+            public string ProjectPath;
+            public string SourceInventoryHash;
+            public Hypothesis[] Hypotheses;
+        }
+
         private void LoadHypotheses()
         {
             try
             {
                 var json = File.ReadAllText(INPUT_PATH);
+
+                // Primary attempt
                 loadedHypotheses = JsonUtility.FromJson<HypothesisDrafts>(json);
-                Debug.Log($"[ExperimentManifestGenerator] Loaded {loadedHypotheses.Hypotheses.Count} hypotheses from {INPUT_PATH}");
+                var count = loadedHypotheses?.Hypotheses?.Count ?? 0;
+
+                // Fallback: try surrogate with array
+                if (count == 0)
+                {
+                    var surrogate = JsonUtility.FromJson<HypothesisDraftsSurrogate>(json);
+                    if (surrogate?.Hypotheses != null && surrogate.Hypotheses.Length > 0)
+                    {
+                        loadedHypotheses = new HypothesisDrafts
+                        {
+                            Timestamp = surrogate.Timestamp,
+                            Status = surrogate.Status,
+                            UnityVersion = surrogate.UnityVersion,
+                            ProjectPath = surrogate.ProjectPath,
+                            SourceInventoryHash = surrogate.SourceInventoryHash,
+                            Hypotheses = new List<Hypothesis>(surrogate.Hypotheses)
+                        };
+                        count = loadedHypotheses.Hypotheses.Count;
+                    }
+                    else
+                    {
+                        // Fallback: handle top-level array of hypotheses
+                        var trimmed = json.TrimStart();
+                        if (trimmed.StartsWith("["))
+                        {
+                            var wrapped = "{\"Hypotheses\":" + json + "}";
+                            surrogate = JsonUtility.FromJson<HypothesisDraftsSurrogate>(wrapped);
+                            if (surrogate?.Hypotheses != null && surrogate.Hypotheses.Length > 0)
+                            {
+                                loadedHypotheses = new HypothesisDrafts
+                                {
+                                    Hypotheses = new List<Hypothesis>(surrogate.Hypotheses)
+                                };
+                                count = loadedHypotheses.Hypotheses.Count;
+                            }
+                        }
+                    }
+                }
+
+                if (loadedHypotheses == null)
+                {
+                    loadedHypotheses = new HypothesisDrafts { Hypotheses = new List<Hypothesis>() };
+                }
+
+                Debug.Log($"[ExperimentManifestGenerator] Loaded {count} hypotheses from {INPUT_PATH}");
             }
             catch (Exception ex)
             {
@@ -173,7 +278,7 @@ namespace TWG.TLDA.School.Editor
                 EditorUtility.DisplayDialog("Load Error", $"Failed to load hypotheses:\n{ex.Message}", "OK");
             }
         }
-        
+
         private async void GenerateManifests()
         {
             if (loadedHypotheses == null || loadedHypotheses.Hypotheses.Count == 0)
@@ -181,10 +286,10 @@ namespace TWG.TLDA.School.Editor
                 EditorUtility.DisplayDialog("Generation Error", "No hypotheses loaded. Please load the input file first.", "OK");
                 return;
             }
-            
+
             isGenerating = true;
             manifestsGenerated = 0;
-            
+
             try
             {
                 // Ensure output directory exists
@@ -192,27 +297,27 @@ namespace TWG.TLDA.School.Editor
                 {
                     Directory.CreateDirectory(OUTPUT_DIR);
                 }
-                
+
                 generationProgress = "Generating experiment manifests...";
-                
+
                 for (int i = 0; i < loadedHypotheses.Hypotheses.Count; i++)
                 {
                     var hypothesis = loadedHypotheses.Hypotheses[i];
                     generationProgress = $"Processing hypothesis {i + 1}/{loadedHypotheses.Hypotheses.Count}: {hypothesis.Title}";
-                    
+
                     await GenerateManifestForHypothesis(hypothesis);
                     manifestsGenerated++;
-                    
+
                     // Allow UI to update
                     await Task.Delay(10);
                 }
-                
+
                 lastGenerationTime = DateTime.Now;
                 generationProgress = $"Completed! Generated {manifestsGenerated} manifests.";
-                
+
                 Debug.Log($"[ExperimentManifestGenerator] Generated {manifestsGenerated} experiment manifests in {OUTPUT_DIR}");
-                
-                EditorUtility.DisplayDialog("Generation Complete", 
+
+                EditorUtility.DisplayDialog("Generation Complete",
                     $"Successfully generated {manifestsGenerated} experiment manifests.\n\nOutput directory: {OUTPUT_DIR}", "OK");
             }
             catch (Exception ex)
@@ -226,30 +331,30 @@ namespace TWG.TLDA.School.Editor
                 EditorUtility.ClearProgressBar();
             }
         }
-        
+
         private async Task GenerateManifestForHypothesis(Hypothesis hypothesis)
         {
             var manifest = CreateExperimentManifest(hypothesis);
             var filename = $"experiment_{hypothesis.Id}.yaml";
             var filepath = Path.Combine(OUTPUT_DIR, filename);
-            
+
             await File.WriteAllTextAsync(filepath, manifest);
         }
-        
+
         private string CreateExperimentManifest(Hypothesis hypothesis)
         {
             // Map hypothesis priority to experiment parameters
             var (modelType, corpusSize, batchSize) = GetExperimentParametersFromHypothesis(hypothesis);
-            
+
             // Generate deterministic seed from hypothesis ID
             var seed = GenerateSeedFromId(hypothesis.Id);
-            
+
             // Create experiment tags based on hypothesis type and priority
             var tags = GenerateExperimentTags(hypothesis);
-            
+
             // Map confidence to intervention threshold
             var interventionThreshold = Math.Max(0.3f, Math.Min(0.9f, hypothesis.Confidence));
-            
+
             var manifest = $@"metadata:
   name: ""{hypothesis.Title}""
   description: ""{hypothesis.Description}""
@@ -289,7 +394,7 @@ processing:
   batch_size: {batchSize}
   parallel_execution: true
   checkpoint_interval: 10
-  
+
 validation:
   success_criteria:
     - metric: ""hypothesis_validation_score""
@@ -297,7 +402,7 @@ validation:
     - metric: ""faculty_surface_coverage""
       threshold: 0.8
   expected_duration: ""{hypothesis.EstimatedEffort}""
-  
+
 reporting:
   output_format: ""yaml""
   include_metrics:
@@ -319,14 +424,14 @@ experiment_context:
 
             return manifest;
         }
-        
+
         private (string modelType, int corpusSize, int batchSize) GetExperimentParametersFromHypothesis(Hypothesis hypothesis)
         {
             // Map hypothesis characteristics to experiment parameters
             string modelType = "behavioral_governance";
             int corpusSize = 100;
             int batchSize = 10;
-            
+
             // Adjust based on hypothesis type
             switch (hypothesis.Type)
             {
@@ -339,7 +444,7 @@ experiment_context:
                     corpusSize = 200;
                     break;
             }
-            
+
             // Adjust based on priority
             switch (hypothesis.Priority)
             {
@@ -355,7 +460,7 @@ experiment_context:
                     // Keep default values
                     break;
             }
-            
+
             // Adjust based on confidence
             if (hypothesis.Confidence > 0.8f)
             {
@@ -365,21 +470,21 @@ experiment_context:
             {
                 corpusSize = (int)(corpusSize * 0.8);
             }
-            
+
             return (modelType, corpusSize, batchSize);
         }
-        
+
         private int GenerateSeedFromId(string hypothesisId)
         {
             // Generate deterministic seed from hypothesis ID hash
             var hash = hypothesisId.GetHashCode();
             return Math.Abs(hash % 10000) + 1000; // Ensure positive seed between 1000-10999
         }
-        
+
         private List<string> GenerateExperimentTags(Hypothesis hypothesis)
         {
             var tags = new List<string> { "school", "hypothesis" };
-            
+
             // Add type-based tags
             switch (hypothesis.Type)
             {
@@ -390,13 +495,13 @@ experiment_context:
                     tags.AddRange(new[] { "improvement", "optimization" });
                     break;
             }
-            
+
             // Add priority tag
             tags.Add(hypothesis.Priority.ToLower());
-            
+
             // Add faculty surface type tag
             tags.Add(hypothesis.FacultySurfaceType.ToLower());
-            
+
             // Add confidence level tag
             if (hypothesis.Confidence >= 0.8f)
                 tags.Add("high-confidence");
@@ -404,7 +509,7 @@ experiment_context:
                 tags.Add("medium-confidence");
             else
                 tags.Add("low-confidence");
-            
+
             return tags;
         }
     }

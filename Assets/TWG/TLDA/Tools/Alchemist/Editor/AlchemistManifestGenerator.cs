@@ -8,6 +8,8 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEditor;
 using System.Globalization;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace TWG.TLDA.Alchemist.Editor
 {
