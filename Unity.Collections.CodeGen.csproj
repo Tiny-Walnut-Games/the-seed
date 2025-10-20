@@ -448,16 +448,16 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\PlaybackEngines\LinuxStandaloneSupport\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.Rocks.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.Pdb.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -856,7 +856,7 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\Unity.CompilationPipeline.Common.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

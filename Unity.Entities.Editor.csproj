@@ -44,18 +44,18 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\AspectGenerator.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\JobEntityGenerator.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.LambdaJobs.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.QueryBuilder.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.Query.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.Common.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Common.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.EntityQueryBulkOperations.dll" />
-    <Analyzer Include="C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\AspectGenerator.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\JobEntityGenerator.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.LambdaJobs.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.QueryBuilder.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.Query.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.Common.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Common.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.EntityQueryBulkOperations.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities.Editor\Baking\EntityBakingPreview.cs" />
@@ -727,13 +727,13 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\PlaybackEngines\LinuxStandaloneSupport\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -1129,31 +1129,31 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Profiling.Core">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\ScriptAssemblies\Unity.Profiling.Core.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Profiling.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Serialization">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\ScriptAssemblies\Unity.Serialization.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Serialization.Editor">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\ScriptAssemblies\Unity.Serialization.Editor.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Serialization.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>C:\Users\Jerry\RiderProjects\the-seed\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
