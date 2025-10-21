@@ -4,8 +4,8 @@ EXP-06: Entanglement Detection
 Implements the mathematical framework for detecting semantic entanglement between bit-chains.
 All algorithms are formally proven in EXP-06-MATHEMATICAL-FRAMEWORK.md
 
-Core Score Function:
-E(B1, B2) = 0.3·P + 0.2·R + 0.25·A + 0.15·L + 0.1·ℓ
+Core Score Function (Version 2 — Tuned Weights):
+E(B1, B2) = 0.5·P + 0.15·R + 0.2·A + 0.1·L + 0.05·ℓ
 
 Where:
   P = Polarity Resonance (cosine similarity)
@@ -14,7 +14,7 @@ Where:
   L = Luminosity Proximity (density distance)
   ℓ = Lineage Affinity (exponential decay)
 
-Status: Mathematical validation phase
+Status: Phase 1 Mathematical Validation COMPLETE; proceeding with Phase 2 robustness
 """
 
 import math
@@ -396,16 +396,16 @@ class EntanglementDetector:
     Main detector class for finding entangled bit-chains.
     
     Usage:
-        detector = EntanglementDetector(threshold=0.65)
+        detector = EntanglementDetector(threshold=0.85)
         entangled = detector.detect(bitchains)
     """
     
-    def __init__(self, threshold: float = 0.65):
+    def __init__(self, threshold: float = 0.85):
         """
         Initialize detector with threshold.
         
         Args:
-            threshold: Score threshold for declaring entanglement (default 0.65)
+            threshold: Score threshold for declaring entanglement (default 0.85)
         """
         if not 0.0 <= threshold <= 1.0:
             raise ValueError(f"Threshold must be in [0.0, 1.0], got {threshold}")

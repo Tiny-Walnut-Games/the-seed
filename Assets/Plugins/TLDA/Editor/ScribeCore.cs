@@ -7,7 +7,7 @@ using System.IO;
 namespace LivingDevAgent.Editor.Scribe
 {
     /// <summary>
-    /// 🔧 ENHANCEMENT READY - The Scribe Core orchestrator 
+    /// 🔧 ENHANCEMENT READY - The Scribe Core orchestrator
     /// Current: Basic UI framework with module coordination
     /// Enhancement path: Full documentation workflow with template integration
     /// Sacred Symbol Preservation: Mind Castle architecture foundation - expand features while preserving module separation
@@ -25,12 +25,12 @@ namespace LivingDevAgent.Editor.Scribe
         private ScribeTemplateManager _templateManager;
         private ScribeMarkdownParser _markdownParser;
         private ScribeMarkdownGenerator _markdownGenerator;
-        
+
         // Window state
         private int _currentTab = 0; // 0=Form, 1=Editor, 2=Preview
         private string _statusMessage = "Ready";
         private Rect _position;
-        
+
         // 📸 REVOLUTIONARY: Adjustable Code Snapshot System - Jerry's Genius Innovation
         private int _snapshotRange = 10; // Default: Standard (10)
         private int _selectedLineNumber = -1;
@@ -38,10 +38,10 @@ namespace LivingDevAgent.Editor.Scribe
         private readonly Dictionary<string, int> _quickPresets = new()
         {
             { "Tight", 3 },
-            { "Standard", 10 }, 
+            { "Standard", 10 },
             { "Wide", 25 }
         };
-        
+
         [MenuItem("Tools/Living Dev Agent/The Scribe")]
         public static void ShowWindow()
         {
@@ -49,7 +49,7 @@ namespace LivingDevAgent.Editor.Scribe
             window.minSize = new Vector2(900, 600);
             window.Show();
         }
-        
+
         void OnEnable()
         {
             _dataManager = new ScribeDataManager();
@@ -61,18 +61,18 @@ namespace LivingDevAgent.Editor.Scribe
             _previewRenderer = new ScribePreviewRenderer(_imageManager);
             _rawEditor = new ScribeRawEditor(_dataManager, _imageManager);
             _formBuilder = new ScribeFormBuilder(_dataManager, _imageManager);
-            
+
             // 🔧 ENHANCEMENT READY - Navigator selection state management
             // Current: Connects navigator events to proper file handling
             // Enhancement path: Multi-tab support, recent files, workspace session persistence
             _navigator.OnFileSelected += OnNavigatorFileSelected;
             _navigator.OnDirectorySelected += OnNavigatorDirectorySelected;
-            
+
             _rawEditor.OnContentChanged += OnRawContentChanged;
-            
+
             LoadInitialFile();
         }
-        
+
         void InitializeModules()
         {
             // KeeperNote: Module initialization order matters - dependencies first
@@ -80,29 +80,29 @@ namespace LivingDevAgent.Editor.Scribe
             _fileOps = new ScribeFileOperations(_dataManager);
             _imageManager = new ScribeImageManager();
             _templateManager = new ScribeTemplateManager();
-            
+
             _navigator = new ScribeNavigator(_fileOps);
             _formBuilder = new ScribeFormBuilder(_dataManager, _imageManager);
             _rawEditor = new ScribeRawEditor(_dataManager, _imageManager);
             _previewRenderer = new ScribePreviewRenderer(_imageManager);
-            
+
             // Wire up event handlers
             _navigator.OnFileSelected += HandleFileSelected;
             _formBuilder.OnContentChanged += HandleFormContentChanged;
             _rawEditor.OnContentChanged += HandleRawContentChanged;
         }
-        
+
         void OnGUI()
         {
             _position = position;
-            
+
             DrawToolbar();
-            
+
             EditorGUILayout.BeginHorizontal();
             {
                 // Left panel - Navigator
                 _navigator.Draw(260);
-                
+
                 // Main content area
                 EditorGUILayout.BeginVertical();
                 {
@@ -112,10 +112,10 @@ namespace LivingDevAgent.Editor.Scribe
                 EditorGUILayout.EndVertical();
             }
             EditorGUILayout.EndHorizontal();
-            
+
             DrawStatusBar();
         }
-        
+
         void DrawToolbar()
         {
             EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
@@ -124,16 +124,16 @@ namespace LivingDevAgent.Editor.Scribe
                 {
                     GenerateFromForm();
                 }
-                
+
                 if (GUILayout.Button("Save", EditorStyles.toolbarButton))
                 {
                     SaveCurrentDocument();
                 }
-                
+
                 // 📸 Adjustable Code Snapshot Controls
                 GUILayout.Space(10);
                 GUILayout.Label("📸", EditorStyles.miniLabel);
-                
+
                 // Quick presets
                 foreach (var preset in _quickPresets)
                 {
@@ -143,34 +143,34 @@ namespace LivingDevAgent.Editor.Scribe
                         UpdateStatus($"Snapshot range: {preset.Key} ({preset.Value} lines)");
                     }
                 }
-                
+
                 GUILayout.Space(5);
                 GUILayout.Label("Range:", EditorStyles.miniLabel);
                 _snapshotRange = EditorGUILayout.IntSlider(_snapshotRange, 1, 50, GUILayout.Width(120));
-                
+
                 if (GUILayout.Button("📋 Copy Snapshot", EditorStyles.toolbarButton))
                 {
                     OpenSpellsmithCodeViewer();
                 }
-                
+
                 if (GUILayout.Button("🔗 Add Reference", EditorStyles.toolbarButton))
                 {
                     AddCodeReference();
                 }
-                
+
                 GUILayout.FlexibleSpace();
-                
+
                 // 🐙 GitExtensions-style Git Integration
                 if (GUILayout.Button("🐙 Git Status", EditorStyles.toolbarButton))
                 {
                     ShowGitStatus();
                 }
-                
+
                 if (GUILayout.Button("📝 Smart Commit", EditorStyles.toolbarButton))
                 {
                     ShowWarblerCommitDialog();
                 }
-                
+
                 if (GUILayout.Button("Settings", EditorStyles.toolbarButton))
                 {
                     ShowSettings();
@@ -178,7 +178,7 @@ namespace LivingDevAgent.Editor.Scribe
             }
             EditorGUILayout.EndHorizontal();
         }
-        
+
         // 🔧 ENHANCEMENT READY - Tab navigation system
         // Current: Basic tab switching for Form/Editor/Preview modes
         // Enhancement path: Add keyboard shortcuts, tab context menus, drag reordering
@@ -187,7 +187,7 @@ namespace LivingDevAgent.Editor.Scribe
             string[] tabNames = { "Form Builder", "Raw Editor", "Preview" };
             _currentTab = GUILayout.Toolbar(_currentTab, tabNames);
         }
-        
+
         // 🔧 ENHANCEMENT READY - Content area rendering
         // Current: Basic module delegation based on active tab
         // Enhancement path: Split view modes, synchronized scrolling, real-time preview
@@ -206,7 +206,7 @@ namespace LivingDevAgent.Editor.Scribe
                     break;
             }
         }
-        
+
         // 🔧 ENHANCEMENT READY - Status communication system
         // Current: Enhanced status display with git integration and operation confirmation
         // Enhancement path: Progress indicators, actionable notifications, toast messages, commit history
@@ -216,7 +216,7 @@ namespace LivingDevAgent.Editor.Scribe
             {
                 GUILayout.Label(_statusMessage, EditorStyles.miniLabel);
                 GUILayout.FlexibleSpace();
-                
+
                 // Git status indicator
                 try
                 {
@@ -231,7 +231,7 @@ namespace LivingDevAgent.Editor.Scribe
                 {
                     // Git not available - no problem
                 }
-                
+
                 // Show current file info
                 if (!string.IsNullOrEmpty(_fileOps?.CurrentFilePath))
                 {
@@ -240,7 +240,7 @@ namespace LivingDevAgent.Editor.Scribe
             }
             EditorGUILayout.EndHorizontal();
         }
-        
+
         /// <summary>
         /// 🐙 Quick git information for status bar display
         /// Shows branch and uncommitted changes count
@@ -258,15 +258,15 @@ namespace LivingDevAgent.Editor.Scribe
                     RedirectStandardOutput = true,
                     CreateNoWindow = true
                 };
-                
+
                 using var process = System.Diagnostics.Process.Start(startInfo);
                 process.WaitForExit(1000); // Quick timeout
-                
+
                 if (process.ExitCode == 0)
                 {
                     var output = process.StandardOutput.ReadToEnd();
                     var changedFiles = string.IsNullOrEmpty(output) ? 0 : output.Split('\n').Length - 1;
-                    
+
                     // Get branch name
                     var branchInfo = new System.Diagnostics.ProcessStartInfo
                     {
@@ -277,16 +277,16 @@ namespace LivingDevAgent.Editor.Scribe
                         RedirectStandardOutput = true,
                         CreateNoWindow = true
                     };
-                    
+
                     using var branchProcess = System.Diagnostics.Process.Start(branchInfo);
                     branchProcess.WaitForExit(1000);
-                    
+
                     var branch = branchProcess.StandardOutput.ReadToEnd().Trim();
                     if (string.IsNullOrEmpty(branch)) branch = "detached";
-                    
+
                     return changedFiles > 0 ? $"{branch} ({changedFiles} changes)" : $"{branch} (clean)";
                 }
-                
+
                 return "";
             }
             catch
@@ -294,7 +294,7 @@ namespace LivingDevAgent.Editor.Scribe
                 return "";
             }
         }
-        
+
         // 🔧 ENHANCEMENT READY - Document generation workflow
         // Current: Basic form-to-markdown conversion
         // Enhancement path: Template selection, batch generation, export formats
@@ -315,7 +315,7 @@ namespace LivingDevAgent.Editor.Scribe
                 Debug.LogError($"[Scribe] Generation error: {ex}");
             }
         }
-        
+
         // 🔧 ENHANCEMENT READY - Document persistence system
         // Current: Basic save operation through file ops
         // Enhancement path: Auto-save, version control integration, backup management
@@ -338,16 +338,16 @@ namespace LivingDevAgent.Editor.Scribe
                 Debug.LogError($"[Scribe] Save error: {ex}");
             }
         }
-        
+
         // 🔧 ENHANCEMENT READY - Settings management
         // Current: Placeholder for configuration UI
         // Enhancement path: Preferences window, workspace settings, plugin configuration
         void ShowSettings()
         {
-            // TODO: Implement settings window
+            // 👀TODO: Implement settings window
             UpdateStatus("Settings panel coming soon...");
         }
-        
+
         // 🔧 ENHANCEMENT READY - Session state persistence
         // Current: Placeholder for window state restoration
         // Enhancement path: Tab positions, recent files, workspace layout memory
@@ -357,7 +357,7 @@ namespace LivingDevAgent.Editor.Scribe
             // _currentTab = EditorPrefs.GetInt("Scribe.CurrentTab", 0);
             // _dataManager.RootPath = EditorPrefs.GetString("Scribe.RootPath", "Assets");
         }
-        
+
         /// <summary>
         /// 🔧 ENHANCEMENT READY - Initial file loading for startup
         /// Current: Basic default document creation
@@ -377,16 +377,16 @@ namespace LivingDevAgent.Editor.Scribe
                 Debug.LogWarning($"[Scribe] LoadInitialFile: {ex.Message}");
             }
         }
-        
+
         // Event handlers - Sacred extension points for workflow integration
-        
+
         void HandleFileSelected(string filePath)
         {
             _fileOps.LoadFile(filePath);
             _currentTab = 1; // Switch to editor
             UpdateStatus($"Loaded: {System.IO.Path.GetFileName(filePath)}");
         }
-        
+
         void HandleFormContentChanged()
         {
             if (_dataManager != null && _dataManager.AutoSyncEnabled)
@@ -396,7 +396,7 @@ namespace LivingDevAgent.Editor.Scribe
                 UpdateStatus("Form synced to raw editor");
             }
         }
-        
+
         // 🔧 ENHANCEMENT READY - Raw editor change handling
         // Current: Basic notification of content changes
         // Enhancement path: Conflict resolution, real-time validation, auto-formatting
@@ -408,7 +408,7 @@ namespace LivingDevAgent.Editor.Scribe
                 UpdateStatus("Raw content modified");
             }
         }
-        
+
         /// <summary>
         /// 🔧 ENHANCEMENT READY - Raw content change handler for Navigator integration
         /// Current: Handles raw editor content changes
@@ -423,13 +423,13 @@ namespace LivingDevAgent.Editor.Scribe
                 UpdateStatus("Content updated");
             }
         }
-        
+
         void UpdateStatus(string message)
         {
             _statusMessage = message;
             Repaint();
         }
-        
+
         void OnDisable()
         {
             // Clean up event handlers
@@ -440,7 +440,7 @@ namespace LivingDevAgent.Editor.Scribe
             if (_rawEditor != null)
                 _rawEditor.OnContentChanged -= HandleRawContentChanged;
         }
-        
+
         /// <summary>
         /// 📸 REVOLUTIONARY - Dynamic Code Snapshot with Surgical Precision
         /// Current: Captures adjustable range around selected line with live preview
@@ -454,34 +454,34 @@ namespace LivingDevAgent.Editor.Scribe
                 UpdateStatus("⚠️ Select a line in the editor first");
                 return;
             }
-            
+
             var lines = _currentFileContent.Split('\n');
             var targetLine = Mathf.Clamp(_selectedLineNumber, 0, lines.Length - 1);
-            
+
             var startLine = Mathf.Max(0, targetLine - _snapshotRange);
             var endLine = Mathf.Min(lines.Length - 1, targetLine + _snapshotRange);
-            
+
             var snapshot = new System.Text.StringBuilder();
             snapshot.AppendLine($"```csharp");
             snapshot.AppendLine($"// 📸 Code Snapshot: Lines {startLine + 1}-{endLine + 1} (Range: ±{_snapshotRange})");
             snapshot.AppendLine($"// Target Line: {targetLine + 1}");
             snapshot.AppendLine($"// File: {_fileOps?.CurrentFilePath ?? "Unknown"}");
             snapshot.AppendLine();
-            
+
             for (int i = startLine; i <= endLine; i++)
             {
                 var linePrefix = (i == targetLine) ? ">>> " : "    ";
                 snapshot.AppendLine($"{linePrefix}{lines[i]}");
             }
-            
+
             snapshot.AppendLine("```");
-            
+
             GUIUtility.systemCopyBuffer = snapshot.ToString();
             UpdateStatus($"📸 Snapshot copied! Lines {startLine + 1}-{endLine + 1} (±{_snapshotRange} range)");
         }
-        
+
         /// <summary>
-        /// 🔗 ENHANCEMENT READY - Smart Code Reference Integration  
+        /// 🔗 ENHANCEMENT READY - Smart Code Reference Integration
         /// Current: Adds snapshot as embedded reference in current TLDL entry
         /// Enhancement path: Cross-document linking, version-aware references, diff integration
         /// </summary>
@@ -490,7 +490,7 @@ namespace LivingDevAgent.Editor.Scribe
             if (_dataManager != null)
             {
                 var snapshot = GenerateCodeSnapshot();
-                
+
                 // Add to current action or discovery
                 if (_dataManager.Actions.Count > 0)
                 {
@@ -502,14 +502,14 @@ namespace LivingDevAgent.Editor.Scribe
                     var lastDiscovery = _dataManager.Discoveries[^1];
                     lastDiscovery.Evidence += $"\n\n{snapshot}";
                 }
-                
+
                 _dataManager.SyncFormToRaw();
                 UpdateStatus($"🔗 Code reference added with ±{_snapshotRange} line context");
             }
         }
-        
+
         /// <summary>
-        /// 🐙 LEGENDARY - GitExtensions-style Git Integration 
+        /// 🐙 LEGENDARY - GitExtensions-style Git Integration
         /// Current: Basic git status display in Unity Editor
         /// Enhancement path: Full GitExtensions UI, diff viewer, branch management, merge conflict resolution
         /// Sacred Vision: "It would make it feel a little like you" - AI-powered Git workflow!
@@ -520,7 +520,7 @@ namespace LivingDevAgent.Editor.Scribe
             gitWindow.Show();
             UpdateStatus("🐙 Git interface opening...");
         }
-        
+
         /// <summary>
         /// 📝 REVOLUTIONARY - Warbler-Powered Smart Commit System
         /// Current: Integration point for warbler commit message generation
@@ -534,34 +534,34 @@ namespace LivingDevAgent.Editor.Scribe
             commitWindow.Show();
             UpdateStatus("📝 Warbler commit dialog opening...");
         }
-        
+
         string GenerateCodeSnapshot()
         {
             if (string.IsNullOrEmpty(_currentFileContent) || _selectedLineNumber < 0)
                 return "// No code selected for snapshot";
-                
+
             var lines = _currentFileContent.Split('\n');
             var targetLine = Mathf.Clamp(_selectedLineNumber, 0, lines.Length - 1);
             var startLine = Mathf.Max(0, targetLine - _snapshotRange);
             var endLine = Mathf.Min(lines.Length - 1, targetLine + _snapshotRange);
-            
+
             var snapshot = new System.Text.StringBuilder();
             snapshot.AppendLine($"### 📸 Code Reference (±{_snapshotRange} lines)");
             snapshot.AppendLine($"**File**: `{System.IO.Path.GetFileName(_fileOps?.CurrentFilePath ?? "Unknown")}`");
             snapshot.AppendLine($"**Lines**: {startLine + 1}-{endLine + 1} (Target: {targetLine + 1})");
             snapshot.AppendLine();
             snapshot.AppendLine("```csharp");
-            
+
             for (int i = startLine; i <= endLine; i++)
             {
                 var lineMarker = (i == targetLine) ? " // ← TARGET" : "";
                 snapshot.AppendLine($"{lines[i]}{lineMarker}");
             }
-            
+
             snapshot.AppendLine("```");
             return snapshot.ToString();
         }
-        
+
         /// <summary>
         /// 🔧 ENHANCEMENT READY - Navigator file selection with proper state management
         /// Current: Handles file selection and maintains Navigator selection state
@@ -574,10 +574,10 @@ namespace LivingDevAgent.Editor.Scribe
             {
                 // Update Navigator selection state FIRST
                 _navigator.SetSelectedFile(filePath);
-                
+
                 // Load the file
                 _fileOps.LoadFile(filePath);
-                
+
                 // Update UI components - simplified approach
                 if (_dataManager != null && _fileOps != null)
                 {
@@ -588,13 +588,13 @@ namespace LivingDevAgent.Editor.Scribe
                         _dataManager.ParseMarkdown(_dataManager.RawMarkdown);
                     }
                 }
-                
+
                 // Update status
                 UpdateStatus($"📖 Opened: {System.IO.Path.GetFileName(filePath)}");
-                
+
                 // Force UI refresh to show selection state
                 Repaint();
-                
+
                 Debug.Log($"✅ File selected and loaded: {filePath}");
             }
             catch (System.Exception e)
@@ -603,13 +603,13 @@ namespace LivingDevAgent.Editor.Scribe
                 Debug.LogError($"[ScribeCore] Failed to open file {filePath}: {e.Message}");
             }
         }
-        
+
         void OnNavigatorDirectorySelected(string directoryPath)
         {
             UpdateStatus($"📁 Selected directory: {System.IO.Path.GetFileName(directoryPath)}");
             Debug.Log($"Directory selected: {directoryPath}");
         }
-        
+
         /// <summary>
         /// 🔍 LEGENDARY - Open Spellsmith Code Selector as persistent window
         /// Current: Opens persistent window for proper code selection workflow

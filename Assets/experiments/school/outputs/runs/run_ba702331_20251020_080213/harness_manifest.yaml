@@ -1,0 +1,13 @@
+# Auto-generated harness manifest
+run_id: "run_ba702331_20251020_080213"
+experiment_name: "Component Performance Optimization"
+hypothesis_id: ""24a7ae87-2003-4f91-bdf3-891fe4c02f7a""
+hypothesis_type: ""ImprovementTarget""
+confidence_threshold: 0.5
+output_directory: "assets/experiments/school/outputs/runs/run_ba702331_20251020_080213"
+stage: "Stage 3 - Experiment Execution"
+timestamp: "2025-10-20T12:02:15Z"
+artifacts:
+  - experiment_results.json
+  - performance_metrics.json
+  - unity_logs.txt

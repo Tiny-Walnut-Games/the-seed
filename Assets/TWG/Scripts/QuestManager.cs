@@ -20,10 +20,10 @@ namespace TWG.TLDA
         [SerializeField] private int maxActiveQuests = 10;
 
         // Events
-        public event Action<Quest>? OnQuestStarted;
-        public event Action<Quest>? OnQuestCompleted;
-        public event Action<Quest>? OnQuestFailed;
-        public event Action<Quest, QuestObjective>? OnObjectiveCompleted;
+        public event Action<Quest> OnQuestStarted = delegate { };
+        public event Action<Quest> OnQuestCompleted = delegate { };
+        public event Action<Quest> OnQuestFailed = delegate { };
+        public event Action<Quest, QuestObjective> OnObjectiveCompleted = delegate { };
 
         void Awake()
         {
@@ -300,7 +300,7 @@ namespace TWG.TLDA
                 }
             }
 
-            string json = JsonUtility.ToJson(saveData);
+            var json = JsonUtility.ToJson(saveData);
             PlayerPrefs.SetString("QuestProgress", json);
             PlayerPrefs.Save();
 
@@ -316,11 +316,11 @@ namespace TWG.TLDA
 
             try
             {
-                string json = PlayerPrefs.GetString("QuestProgress");
+                var json = PlayerPrefs.GetString("QuestProgress");
                 var saveData = JsonUtility.FromJson<QuestSaveData>(json);
 
                 // Restore active quests
-                foreach (string questId in saveData.activeQuestIds)
+                foreach (var questId in saveData.activeQuestIds)
                 {
                     if (StartQuest(questId))
                     {
@@ -343,7 +343,7 @@ namespace TWG.TLDA
                 }
 
                 // Restore completed quests
-                foreach (string questId in saveData.completedQuestIds)
+                foreach (var questId in saveData.completedQuestIds)
                 {
                     var questTemplate = availableQuests.FirstOrDefault(q => q.questId == questId);
                     if (questTemplate != null)
@@ -399,7 +399,7 @@ namespace TWG.TLDA
 
         public string GetProgressSummary()
         {
-            int completedObjectives = objectives.Count(o => o.isCompleted);
+            var completedObjectives = objectives.Count(o => o.isCompleted);
             return $"{completedObjectives}/{objectives.Count} objectives";
         }
     }

@@ -1,0 +1,65 @@
+metadata:
+  name: "Complex Prefab Simplification"
+  description: "Prefab with many components could be simplified or broken into smaller prefabs"
+  version: "1.0.0"
+  author: "School Experiment Framework"
+  tags: ["school", "hypothesis", "improvement", "optimization", "low", "prefab", "low-confidence"]
+  hypothesis_id: "8bcd9dd3-e41f-40ab-979f-5c4677ee8fd4"
+  faculty_surface: "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIToggleHistory.prefab"
+  hypothesis_type: "ImprovementTarget"
+
+model:
+  type: "batch_evaluation"
+  instance_config:
+    enable_intervention_tracking: true
+    intervention_threshold: 0.40
+    faculty_surface_focus: "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIToggleHistory.prefab"
+  performance_profile: "experiment"
+
+conditions:
+  hypothesis_types:
+    - "ImprovementTarget"
+  priority_levels:
+    - "Low"
+  confidence_ranges:
+    - 0.40
+  effort_estimates:
+    - "2-4 hours"
+
+corpus:
+  type: "synthetic"
+  size: 160
+  seed: 5653
+  focus_assets:
+    - "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIToggleHistory.prefab"
+
+processing:
+  batch_size: 10
+  parallel_execution: true
+  checkpoint_interval: 10
+
+validation:
+  success_criteria:
+    - metric: "hypothesis_validation_score"
+      threshold: 0.40
+    - metric: "faculty_surface_coverage"
+      threshold: 0.8
+  expected_duration: "2-4 hours"
+
+reporting:
+  output_format: "yaml"
+  include_metrics:
+    - "execution_time"
+    - "resource_usage"
+    - "validation_score"
+    - "faculty_surface_impact"
+  dashboard_integration: true
+
+# Experiment-specific metadata
+experiment_context:
+  source_inventory_hash: "3NJSw727yF4PEGIG4WK57W6GCYePNCObLG3XrWCRbnY="
+  generation_timestamp: "2025-10-20T11:57:20.071435Z"
+  unity_version: "6000.2.6f2"
+  project_path: "E:/Tiny_Walnut_Games/the-seed/Assets"
+  stage: "2"
+  workflow: "school"

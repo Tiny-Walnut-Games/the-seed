@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using System.Threading.Tasks;
 using TWG.TLDA.Visualization;
@@ -247,7 +248,7 @@ namespace TWG.Seed.Integration
                 _ => "Warbler Core"
             };
 
-            // This would need to be implemented in MindCastleVisualizer
+            // 👀This would need to be implemented in MindCastleVisualizer
             // mindCastle.AddEntityToRoom(roomName, entity);
         }
 
@@ -304,12 +305,12 @@ namespace TWG.Seed.Integration
             }
         }
 
-        System.Collections.IEnumerator ResetHighlight(Renderer renderer, Color originalColor)
+        System.Collections.IEnumerator ResetHighlight(Renderer thisRenderer, Color originalColor)
         {
             yield return new WaitForSeconds(3f);
-            if (renderer != null)
+            if (thisRenderer != null)
             {
-                renderer.material.color = originalColor;
+                thisRenderer.material.color = originalColor;
             }
         }
 
@@ -321,10 +322,10 @@ namespace TWG.Seed.Integration
                 Content = content,
                 Realm = realm,
                 Lineage = 0, // Will be assigned by Seed
-                Resonance = Random.Range(0.0, 1.0),
-                Velocity = Random.Range(0.0, 1.0),
-                Density = Random.Range(0.0, 1.0),
-                Luminosity = Random.Range(0.0, 1.0),
+                Resonance = Random.Range(0.0f, 1.0f),
+                Velocity = Random.Range(0.0f, 1.0f),
+                Density = Random.Range(0.0f, 1.0f),
+                Luminosity = Random.Range(0.0f, 1.0f),
                 CompressionStage = "void"
             };
 
@@ -338,8 +339,8 @@ namespace TWG.Seed.Integration
 
         public async Task<IEnumerable<object>> SearchEntities(string query)
         {
-            // TODO: Implement STAT7 address parsing and querying logic here
-            throw new System.NotImplementedException();
+            var results = await seedEngine.SearchEntities(query);
+            return results.Cast<object>();
         }
 
         public void StopVisualization()
@@ -356,11 +357,11 @@ namespace TWG.Seed.Integration
     // Factory for creating Seed engine instances
     public static class SeedEngineFactory
     {
-        public static async Task<SeedMindCastleBridge.ISeedEngine> CreateAsync()
+        public static Task<SeedMindCastleBridge.ISeedEngine> CreateAsync()
         {
-            // This would connect to your actual Python Seed engine
+            // 👀This would connect to your actual Python Seed engine
             // For now, return a mock implementation
-            return new MockSeedEngine();
+            return Task.FromResult<SeedMindCastleBridge.ISeedEngine>(new MockSeedEngine());
         }
     }
 
@@ -388,50 +389,50 @@ namespace TWG.Seed.Integration
                 "Faculty knowledge spans disciplines"
             };
 
-            for (int i = 0; i < 50; i++)
+            for (var i = 0; i < 50; i++)
             {
                 mockEntities.Add(new SeedMindCastleBridge.SeedEntity
                 {
                     Id = $"mock_{i}",
-                    Stat7Address = $"stat7://{realms[i % realms.Length]}/{i}/hash{i:D8}?r={Random.Range(0.0, 1.0):F3}&v={Random.Range(0.0, 1.0):F3}&d={Random.Range(0.0, 1.0):F3}",
+                    Stat7Address = $"stat7://{realms[i % realms.Length]}/{i}/hash{i:D8}?r={Random.Range(0.0f, 1.0f):F3}&v={Random.Range(0.0f, 1.0f):F3}&d={Random.Range(0.0f, 1.0f):F3}",
                     Realm = realms[i % realms.Length],
                     Lineage = i / 7,
                     Content = contents[i % contents.Length],
-                    Resonance = Random.Range(0.0, 1.0),
-                    Velocity = Random.Range(0.0, 1.0),
-                    Density = Random.Range(0.0, 1.0),
-                    Luminosity = Random.Range(0.0, 1.0),
+                    Resonance = Random.Range(0.0f, 1.0f),
+                    Velocity = Random.Range(0.0f, 1.0f),
+                    Density = Random.Range(0.0f, 1.0f),
+                    Luminosity = Random.Range(0.0f, 1.0f),
                     CompressionStage = "event"
                 });
             }
         }
 
-        public async Task<bool> RegisterEntity(SeedMindCastleBridge.SeedEntity entity)
+        public Task<bool> RegisterEntity(SeedMindCastleBridge.SeedEntity entity)
         {
             mockEntities.Add(entity);
-            return await Task.FromResult(true);
+            return Task.FromResult(true);
         }
 
-        public async Task<IEnumerable<SeedMindCastleBridge.SeedEntity>> SearchEntities(string query)
+        public Task<IEnumerable<SeedMindCastleBridge.SeedEntity>> SearchEntities(string query)
         {
             var results = mockEntities.Where(e =>
                 e.Content.ToLower().Contains(query.ToLower()) ||
                 e.Realm.ToLower().Contains(query.ToLower()));
-            return await Task.FromResult(results);
+            return Task.FromResult(results);
         }
 
-        public async Task<SeedMindCastleBridge.SeedEntity> GetEntityByAddress(string stat7Address)
+        public Task<SeedMindCastleBridge.SeedEntity> GetEntityByAddress(string stat7Address)
         {
             var entity = mockEntities.FirstOrDefault(e => e.Stat7Address == stat7Address);
-            return await Task.FromResult(entity);
+            return Task.FromResult(entity);
         }
 
-        public async Task<IEnumerable<SeedMindCastleBridge.SeedEntity>> GetEntitiesInProximity(Vector3 position, float radius)
+        public Task<IEnumerable<SeedMindCastleBridge.SeedEntity>> GetEntitiesInProximity(Vector3 position, float radius)
         {
             // For mock, just return random entities
             var count = Mathf.Min(10, mockEntities.Count);
             var results = mockEntities.OrderBy(_ => Random.value).Take(count);
-            return await Task.FromResult(results);
+            return Task.FromResult(results);
         }
     }
 }

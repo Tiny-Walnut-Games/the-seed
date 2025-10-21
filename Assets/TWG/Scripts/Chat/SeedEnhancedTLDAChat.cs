@@ -18,13 +18,13 @@ namespace TWG.TLDA.Chat
         [Header("Seed Integration")]
         [SerializeField] private SeedMindCastleBridge seedBridge;
         [SerializeField] private IPlatformBridge platformBridge;
-        [SerializeField] private bool enableSpatialSearch = true;
+        // [SerializeField] private bool enableSpatialSearch = true;  // Reserved for 👀future expansion
         [SerializeField] private bool autoRegisterNarratives = true;
         [SerializeField] private bool enableCrossPlatformSync = true;
 
         [Header("Chat Configuration")]
         [SerializeField] private UIDocument chatUIDocument;
-        [SerializeField] private bool connectToWarbler = true;
+        // [SerializeField] private bool connectToWarbler = true;  // Reserved for 👀future expansion
         [SerializeField] private bool enableTLDLLogging = true;
 
         [Header("Visual Features")]
@@ -238,7 +238,7 @@ namespace TWG.TLDA.Chat
                 await seedBridge.SearchAndVisualize(query);
 
                 var results = await seedBridge.SearchEntities(query);
-                DisplaySpatialResults(results, query);
+                DisplaySpatialResults(results.Cast<object>(), query);
 
                 AddSystemMessage($"✅ Found {results.Count()} spatial entities");
             }
@@ -470,7 +470,7 @@ namespace TWG.TLDA.Chat
             }
         }
 
-        async Task<string> GenerateUserStat7Address()
+        Task<string> GenerateUserStat7Address()
         {
             // Generate STAT7 address for user session
             var sessionId = currentSessionId.GetHashCode();
@@ -478,10 +478,10 @@ namespace TWG.TLDA.Chat
             var velocity = ((sessionId / 1000) % 1000) / 1000.0;
             var density = ((sessionId / 1000000) % 1000) / 1000.0;
 
-            return $"stat7://user/{sessionId}/hash{sessionId:X8}?r={resonance:F3}&v={velocity:F3}&d={density:F3}";
+            return Task.FromResult($"stat7://user/{sessionId}/hash{sessionId:X8}?r={resonance:F3}&v={velocity:F3}&d={density:F3}");
         }
 
-        async Task<string> GenerateMessageStat7Address(string message)
+        Task<string> GenerateMessageStat7Address(string message)
         {
             // Generate STAT7 address for message
             var messageHash = message.GetHashCode();
@@ -489,7 +489,7 @@ namespace TWG.TLDA.Chat
             var velocity = Math.Abs((messageHash / 1000) % 1000) / 1000.0;
             var density = Math.Abs((messageHash / 1000000) % 1000) / 1000.0;
 
-            return $"stat7://message/{messageHash}/hash{messageHash:X8}?r={resonance:F3}&v={velocity:F3}&d={density:F3}";
+            return Task.FromResult($"stat7://message/{messageHash}/hash{messageHash:X8}?r={resonance:F3}&v={velocity:F3}&d={density:F3}");
         }
 
         async Task SyncPlatformAchievements(PlatformUserIdentity userIdentity)
@@ -499,7 +499,7 @@ namespace TWG.TLDA.Chat
             try
             {
                 var achievements = await platformBridge.GetAchievements();
-                var unlockedCount = achievements.UnlockedAchievements.Count;
+                var unlockedCount = achievements.UnlockedCount;
 
                 if (unlockedCount > 0)
                 {
@@ -596,7 +596,7 @@ namespace TWG.TLDA.Chat
 
         private void AddMessage(string tldl, string enhancedEntryCreatedWithSeedMetadata, SeedChatMessageType seedChatMessageType)
         {
-            // TODO: Use STAT7 Auth or a STAT7 valid anonymous address for the sender.
+            // TODO: Use 👀STAT7 Auth or a STAT7 valid anonymous address for the sender.
             // TODO: Implement this method to add a message to the UI or any other desired action.
             // It should auth the user via STAT7 authentication and then call the appropriate methods to interact with Seed.
             // You may need to implement additional logic here depending on how you want to handle these interactions.
@@ -645,8 +645,8 @@ namespace TWG.TLDA.Chat
     // Enhanced Warbler bridge with Seed integration
     public class WarblerChatBridge
     {
-        public System.Action<string, bool>? OnResponseReceived;
-        public System.Action<string>? OnSystemEvent;
+        public System.Action<string, bool> OnResponseReceived = delegate { };
+        public System.Action<string> OnSystemEvent = delegate { };
 
         public async Task SendMessage(string message)
         {
@@ -677,4 +677,10 @@ namespace TWG.TLDA.Chat
             }
         }
     }
+}
+
+// Missing type definitions to fix compilation
+namespace TWG.Seed.Integration
+{
+    // SeedMindCastleBridge is defined in SeedMindCastleBridge.cs
 }

@@ -37,10 +37,10 @@ namespace TWG.TLDA
         public Vector3 LastPlayerPosition => lastPlayerPosition;
 
         // Events
-        public event Action<int>? OnPlayerLevelChanged;
-        public event Action<GameState, GameState>? OnGameStateChanged;
-        public event Action<TimeOfDay>? OnTimeOfDayChanged;
-        public event Action<string>? OnSceneChanged;
+        public event Action<int> OnPlayerLevelChanged = delegate { };
+        public event Action<GameState, GameState> OnGameStateChanged = delegate { };
+        public event Action<TimeOfDay> OnTimeOfDayChanged = delegate { };
+        public event Action<string> OnSceneChanged = delegate { };
 
         private Dictionary<string, object> gameData = new Dictionary<string, object>();
         private List<string> gameFlags = new List<string>();
@@ -104,8 +104,8 @@ namespace TWG.TLDA
                 gameTime += Time.deltaTime;
 
                 // Update time of day
-                float dayProgress = (gameTime % dayDuration) / dayDuration;
-                TimeOfDay newTimeOfDay = GetTimeOfDayFromProgress(dayProgress);
+                var dayProgress = (gameTime % dayDuration) / dayDuration;
+                var newTimeOfDay = GetTimeOfDayFromProgress(dayProgress);
 
                 if (newTimeOfDay != currentTimeOfDay)
                 {
@@ -130,7 +130,7 @@ namespace TWG.TLDA
         {
             if (newState != currentGameState)
             {
-                GameState previousState = currentGameState;
+                var previousState = currentGameState;
                 currentGameState = newState;
                 OnGameStateChanged?.Invoke(previousState, newState);
 
@@ -172,7 +172,7 @@ namespace TWG.TLDA
         /// <summary>
         /// Retrieve game data
         /// </summary>
-        public T GetGameData<T>(string key, T defaultValue = default(T)!)
+        public T GetGameData<T>(string key, T defaultValue = default!)
         {
             if (gameData.ContainsKey(key))
             {
@@ -299,13 +299,13 @@ namespace TWG.TLDA
                 gameTime = PlayerPrefs.GetFloat("GameTime", 0f);
                 currentSceneName = PlayerPrefs.GetString("CurrentScene", "");
 
-                string positionJson = PlayerPrefs.GetString("PlayerPosition", "");
+                var positionJson = PlayerPrefs.GetString("PlayerPosition", "");
                 if (!string.IsNullOrEmpty(positionJson))
                 {
                     lastPlayerPosition = JsonUtility.FromJson<Vector3>(positionJson);
                 }
 
-                string flagsString = PlayerPrefs.GetString("GameFlags", "");
+                var flagsString = PlayerPrefs.GetString("GameFlags", "");
                 if (!string.IsNullOrEmpty(flagsString))
                 {
                     gameFlags = new List<string>(flagsString.Split(','));

@@ -1,0 +1,8 @@
+
+================================================================================
+ EXP-08 RAG INTEGRATION - VALIDATION TEST SUITE
+================================================================================
+
+[SETUP] Initializing RAG components...
+
+[TEST 1] Embedding Generation

@@ -25,7 +25,7 @@ namespace TWG.TLDA.NPCControl
             try
             {
                 // Create cache key for similar requests
-                string cacheKey = $"decision_{request.context}_{string.Join(",", request.options)}";
+                var cacheKey = $"decision_{request.context}_{string.Join(",", request.options)}";
 
                 // Check cache first
                 if (IsValidCache(cacheKey))
@@ -33,9 +33,9 @@ namespace TWG.TLDA.NPCControl
                     return (string)requestCache[cacheKey];
                 }
 
-                string jsonData = JsonUtility.ToJson(request);
+                var jsonData = JsonUtility.ToJson(request);
 
-                using (UnityWebRequest webRequest = UnityWebRequest.PostWwwForm($"{baseUrl}/decision", ""))
+                using (var webRequest = UnityWebRequest.PostWwwForm($"{baseUrl}/decision", ""))
                 {
                     webRequest.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(jsonData));
                     webRequest.downloadHandler = new DownloadHandlerBuffer();
@@ -81,7 +81,7 @@ namespace TWG.TLDA.NPCControl
             try
             {
                 // Create cache key for dialogue requests
-                string cacheKey = $"dialogue_{request.trigger}_{request.npcPersonality?.GetHashCode()}";
+                var cacheKey = $"dialogue_{request.trigger}_{request.npcPersonality?.GetHashCode()}";
 
                 // Check cache first
                 if (IsValidCache(cacheKey))
@@ -89,9 +89,9 @@ namespace TWG.TLDA.NPCControl
                     return (string)requestCache[cacheKey];
                 }
 
-                string jsonData = JsonUtility.ToJson(request);
+                var jsonData = JsonUtility.ToJson(request);
 
-                using (UnityWebRequest webRequest = UnityWebRequest.PostWwwForm($"{baseUrl}/dialogue", ""))
+                using (var webRequest = UnityWebRequest.PostWwwForm($"{baseUrl}/dialogue", ""))
                 {
                     webRequest.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(jsonData));
                     webRequest.downloadHandler = new DownloadHandlerBuffer();
@@ -155,13 +155,13 @@ namespace TWG.TLDA.NPCControl
         {
             try
             {
-                using (UnityWebRequest webRequest = UnityWebRequest.Get($"{baseUrl}/health"))
+                using (var webRequest = UnityWebRequest.Get($"{baseUrl}/health"))
                 {
                     var operation = webRequest.SendWebRequest();
 
                     // Wait for completion with timeout
-                    float timeout = 5f;
-                    float elapsed = 0f;
+                    var timeout = 5f;
+                    var elapsed = 0f;
 
                     while (!operation.isDone && elapsed < timeout)
                     {
@@ -205,7 +205,7 @@ namespace TWG.TLDA.NPCControl
                 ["default"] = new[] { "...", "Indeed.", "Hmm." }
             };
 
-            string key = fallbackResponses.ContainsKey(trigger.ToLower()) ? trigger.ToLower() : "default";
+            var key = fallbackResponses.ContainsKey(trigger.ToLower()) ? trigger.ToLower() : "default";
             var responses = fallbackResponses[key];
             return responses[UnityEngine.Random.Range(0, responses.Length)];
         }

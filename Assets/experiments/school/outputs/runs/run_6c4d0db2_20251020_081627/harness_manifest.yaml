@@ -1,0 +1,13 @@
+# Auto-generated harness manifest
+run_id: "run_6c4d0db2_20251020_081627"
+experiment_name: "Prefab Variant Creation Potential"
+hypothesis_id: ""c1b4b5c4-74ae-4c4f-80b3-97f5484d0021""
+hypothesis_type: ""CapabilityAssertion""
+confidence_threshold: 0.7
+output_directory: "assets/experiments/school/outputs/runs/run_6c4d0db2_20251020_081627"
+stage: "Stage 3 - Experiment Execution"
+timestamp: "2025-10-20T12:16:28Z"
+artifacts:
+  - experiment_results.json
+  - performance_metrics.json
+  - unity_logs.txt

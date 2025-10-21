@@ -80,7 +80,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
             try
             {
                 var data = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonData);
-                
+
                 companionId = data.ContainsKey("pet_id") ? data["pet_id"].ToString() : Guid.NewGuid().ToString();
                 companionName = data.ContainsKey("pet_name") ? data["pet_name"].ToString() : "Unknown Companion";
                 species = data.ContainsKey("species") ? data["species"].ToString() : "unknown";
@@ -91,12 +91,12 @@ namespace LivingDevAgent.Runtime.CompanionBattler
                 {
                     Enum.TryParse(data["element"].ToString(), true, out element);
                 }
-                
+
                 if (data.ContainsKey("archetype"))
                 {
                     Enum.TryParse(data["archetype"].ToString(), true, out archetype);
                 }
-                
+
                 if (data.ContainsKey("temperament"))
                 {
                     Enum.TryParse(data["temperament"].ToString(), true, out temperament);
@@ -126,7 +126,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
         {
             // Base stats from evolution stage
             string stage = data.ContainsKey("current_stage") ? data["current_stage"].ToString() : "hatchling";
-            
+
             int baseHealth = GetBaseStatForStage("health", stage);
             int baseEnergy = GetBaseStatForStage("energy", stage);
             int baseAttack = GetBaseStatForStage("attack", stage);
@@ -268,7 +268,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
                         ability.effectType,
                         power
                     );
-                    
+
                     if (ability.targetType == TargetType.Self || ability.effectType == BattleEffectType.Buff)
                     {
                         battleStats.activeEffects.Add(statusEffect);
@@ -321,7 +321,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
         private void TriggerBattleQuip(CompanionAbility ability)
         {
             List<string> quipPool = ability.battleQuips;
-            
+
             // Add context-specific quips based on battle state
             if (battleStats.HealthPercentage < 0.25f && lowHealthQuips.Count > 0)
             {
@@ -332,8 +332,8 @@ namespace LivingDevAgent.Runtime.CompanionBattler
             {
                 string selectedQuip = quipPool[UnityEngine.Random.Range(0, quipPool.Count)];
                 OnQuipSpoken?.Invoke(this, selectedQuip);
-                
-                // TODO: Integration with Warbler conversation system for dynamic quip generation
+
+                // 👀TODO: Integration with Warbler conversation system for dynamic quip generation
                 Debug.Log($"[{companionName}]: \"{selectedQuip}\"");
             }
         }
@@ -360,7 +360,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
         public void OnVictory()
         {
             battleStats.battlesWon++;
-            
+
             if (victoryQuips.Count > 0)
             {
                 string quip = victoryQuips[UnityEngine.Random.Range(0, victoryQuips.Count)];
@@ -377,7 +377,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
         {
             // Simple evolution check - could be enhanced with narrative triggers
             bool readyForEvolution = battleStats.battlesWon > 0 && battleStats.battlesWon % 5 == 0;
-            
+
             if (readyForEvolution)
             {
                 Debug.Log($"[Companion] {companionName} is ready for evolution ceremony!");

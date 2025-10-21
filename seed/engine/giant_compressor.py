@@ -5,7 +5,7 @@ import time, hashlib
 class GiantCompressor:
     """The Giant: compacts raw fragments into clustered sediment strata.
 
-    NOTE: Clustering is currently naive (all fragments into one cluster). Future: semantic embedding similarity (HDBSCAN/k-means).
+    NOTE: Clustering is currently naive (all fragments into one cluster). 👀Future: semantic embedding similarity (HDBSCAN/k-means).
     """
     def __init__(self, sediment_store: "SedimentStore", embed_fn=None):
         self.sediment_store = sediment_store
@@ -25,7 +25,7 @@ class GiantCompressor:
         }
 
     def _cluster(self, frags: List[Dict[str, Any]]) -> Dict[str, Any]:
-        # TODO: replace with real semantic clustering
+        # 👀TODO: replace with real semantic clustering
         concat = " ".join(f.get("text", "") for f in frags)
         digest = hashlib.sha256(concat.encode()).hexdigest()[:10]
         return {"id": f"cluster_{digest}", "fragments": frags, "size": len(frags)}

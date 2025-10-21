@@ -1,0 +1,65 @@
+metadata:
+  name: "Texture Compression Optimization"
+  description: "Texture can be optimized with appropriate compression settings for target platforms"
+  version: "1.0.0"
+  author: "School Experiment Framework"
+  tags: ["school", "hypothesis", "improvement", "optimization", "low", "texture", "high-confidence"]
+  hypothesis_id: "7b48e256-6b02-47ec-b95e-6eb1d8168ac9"
+  faculty_surface: "Assets/CRE-FANTASY-001_sprite.png"
+  hypothesis_type: "ImprovementTarget"
+
+model:
+  type: "batch_evaluation"
+  instance_config:
+    enable_intervention_tracking: true
+    intervention_threshold: 0.80
+    faculty_surface_focus: "Assets/CRE-FANTASY-001_sprite.png"
+  performance_profile: "experiment"
+
+conditions:
+  hypothesis_types:
+    - "ImprovementTarget"
+  priority_levels:
+    - "Low"
+  confidence_ranges:
+    - 0.80
+  effort_estimates:
+    - "15-30 minutes"
+
+corpus:
+  type: "synthetic"
+  size: 200
+  seed: 7925
+  focus_assets:
+    - "Assets/CRE-FANTASY-001_sprite.png"
+
+processing:
+  batch_size: 10
+  parallel_execution: true
+  checkpoint_interval: 10
+
+validation:
+  success_criteria:
+    - metric: "hypothesis_validation_score"
+      threshold: 0.80
+    - metric: "faculty_surface_coverage"
+      threshold: 0.8
+  expected_duration: "15-30 minutes"
+
+reporting:
+  output_format: "yaml"
+  include_metrics:
+    - "execution_time"
+    - "resource_usage"
+    - "validation_score"
+    - "faculty_surface_impact"
+  dashboard_integration: true
+
+# Experiment-specific metadata
+experiment_context:
+  source_inventory_hash: "3NJSw727yF4PEGIG4WK57W6GCYePNCObLG3XrWCRbnY="
+  generation_timestamp: "2025-10-20T11:57:03.891511Z"
+  unity_version: "6000.2.6f2"
+  project_path: "E:/Tiny_Walnut_Games/the-seed/Assets"
+  stage: "2"
+  workflow: "school"

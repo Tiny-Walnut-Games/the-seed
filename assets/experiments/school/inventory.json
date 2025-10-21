@@ -1,1 +1,4604 @@
-{}
+{
+    "Timestamp": "2025-10-20T11:55:11.2618864Z",
+    "Hash": "3NJSw727yF4PEGIG4WK57W6GCYePNCObLG3XrWCRbnY=",
+    "UnityVersion": "6000.2.6f2",
+    "ProjectPath": "E:/Tiny_Walnut_Games/the-seed/Assets",
+    "FacultySurfaces": [
+        {
+            "Path": "Assets/CRE-FANTASY-001_sprite.png",
+            "Type": "Texture",
+            "Guid": "298db0f96389d3148aaf3fc5f6debb1e",
+            "AssetType": "Texture2D",
+            "FileSize": 641,
+            "LastModified": "2025-10-17T23:24:48.0543207-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Editor/ForceCSharp10.cs",
+            "Type": "Script",
+            "Guid": "5acba100bb50457aaed96981b1aa93e6",
+            "AssetType": "MonoScript",
+            "FileSize": 1797,
+            "LastModified": "2025-10-17T23:24:48.0563208-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ChronasTimerOverlay.cs",
+            "Type": "Script",
+            "Guid": "583dc583920aa8d4d8eea49f511de906",
+            "AssetType": "MonoScript",
+            "FileSize": 22768,
+            "LastModified": "2025-10-17T23:24:48.0723223-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeCommitWindow.cs",
+            "Type": "Script",
+            "Guid": "9a8f29355f90072488576c8e9c9e4d85",
+            "AssetType": "MonoScript",
+            "FileSize": 21661,
+            "LastModified": "2025-10-17T23:24:48.0773246-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeCore.cs",
+            "Type": "Script",
+            "Guid": "cd696936b0f150747a3208e8339b9bc8",
+            "AssetType": "MonoScript",
+            "FileSize": 27312,
+            "LastModified": "2025-10-17T23:24:48.0783239-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeDataManager.cs",
+            "Type": "Script",
+            "Guid": "9f2f673115ddafe40a0f66e8d3bb0266",
+            "AssetType": "MonoScript",
+            "FileSize": 3566,
+            "LastModified": "2025-10-17T23:24:48.0793229-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeFileOperations.cs",
+            "Type": "Script",
+            "Guid": "6911fff66af0c8940aa526ce1f9d96ef",
+            "AssetType": "MonoScript",
+            "FileSize": 15009,
+            "LastModified": "2025-10-17T23:24:48.0813243-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeFormBuilder.cs",
+            "Type": "Script",
+            "Guid": "0137a35af6b67284ba931c9ec9ff9aad",
+            "AssetType": "MonoScript",
+            "FileSize": 26340,
+            "LastModified": "2025-10-17T23:24:48.0823221-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeGitWindow.cs",
+            "Type": "Script",
+            "Guid": "d65fb00fc618e3b4599b13fd147ea4ea",
+            "AssetType": "MonoScript",
+            "FileSize": 23434,
+            "LastModified": "2025-10-17T23:24:48.0843237-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeImageManager.cs",
+            "Type": "Script",
+            "Guid": "bb6f4ec8392ac0c4685a33c837e3d4c7",
+            "AssetType": "MonoScript",
+            "FileSize": 8026,
+            "LastModified": "2025-10-17T23:24:48.0853219-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeMarkdownGenerator.cs",
+            "Type": "Script",
+            "Guid": "4da4c61b12adfff4b930eeb4d9de9533",
+            "AssetType": "MonoScript",
+            "FileSize": 7473,
+            "LastModified": "2025-10-17T23:24:48.0863254-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeMarkdownParser.cs",
+            "Type": "Script",
+            "Guid": "b28be8e643b37bc4b90cdd6bf6cb1a3a",
+            "AssetType": "MonoScript",
+            "FileSize": 9385,
+            "LastModified": "2025-10-17T23:24:48.0883243-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeNavigator.cs",
+            "Type": "Script",
+            "Guid": "15bfbe4558b35544d82b7b9b948e2b7b",
+            "AssetType": "MonoScript",
+            "FileSize": 18401,
+            "LastModified": "2025-10-17T23:24:48.0893253-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribePreviewRenderer.cs",
+            "Type": "Script",
+            "Guid": "095e44872dde48942ad96fe85e47839e",
+            "AssetType": "MonoScript",
+            "FileSize": 14770,
+            "LastModified": "2025-10-17T23:24:48.0913228-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeRawEditor.cs",
+            "Type": "Script",
+            "Guid": "50ff304d4e897134da0dbd5ad65c819a",
+            "AssetType": "MonoScript",
+            "FileSize": 11112,
+            "LastModified": "2025-10-17T23:24:48.0923229-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/ScribeTemplateManager.cs",
+            "Type": "Script",
+            "Guid": "0dc16054f10b3454296fd3dfbb565011",
+            "AssetType": "MonoScript",
+            "FileSize": 10286,
+            "LastModified": "2025-10-17T23:24:48.0933219-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/SpellsmithCodeWindow.cs",
+            "Type": "Script",
+            "Guid": "f7380a6a45df98241a10149f003659d8",
+            "AssetType": "MonoScript",
+            "FileSize": 14610,
+            "LastModified": "2025-10-17T23:24:48.0943245-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Editor/TerminusShellConsole.cs",
+            "Type": "Script",
+            "Guid": "67058de5a52c4f345ba5b93b6f05a462",
+            "AssetType": "MonoScript",
+            "FileSize": 42475,
+            "LastModified": "2025-10-17T23:24:48.0963235-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Runtime/Companion.cs",
+            "Type": "Script",
+            "Guid": "d0c5bb12c2d3ca542a2d48ce583d1cd4",
+            "AssetType": "MonoScript",
+            "FileSize": 18539,
+            "LastModified": "2025-10-17T23:24:48.0993208-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Runtime/CompanionBattleCore.cs",
+            "Type": "Script",
+            "Guid": "8fb7ab203d351a249bd0ffca329da116",
+            "AssetType": "MonoScript",
+            "FileSize": 6091,
+            "LastModified": "2025-10-17T23:24:48.1003221-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Runtime/CompanionBattleManager.cs",
+            "Type": "Script",
+            "Guid": "814d1896b015530468dbb5b23443021d",
+            "AssetType": "MonoScript",
+            "FileSize": 17466,
+            "LastModified": "2025-10-17T23:24:48.1013236-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Runtime/CompanionBattleUI.cs",
+            "Type": "Script",
+            "Guid": "a733e2317de97a947a8d62ec9709c4c4",
+            "AssetType": "MonoScript",
+            "FileSize": 22920,
+            "LastModified": "2025-10-17T23:24:48.1023261-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/Plugins/TLDA/Runtime/CompanionWarblerIntegration.cs",
+            "Type": "Script",
+            "Guid": "3bd13cfc430faac41a0037ca420fbbf0",
+            "AssetType": "MonoScript",
+            "FileSize": 29742,
+            "LastModified": "2025-10-17T23:24:48.1043222-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/Chat/SeedEnhancedTLDAChat.cs",
+            "Type": "Script",
+            "Guid": "f7159bc79d057ac40a5a7880c00da9a9",
+            "AssetType": "MonoScript",
+            "FileSize": 25885,
+            "LastModified": "2025-10-19T20:14:03.8069826-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/Chat/TLDAChatInterface.cs",
+            "Type": "Script",
+            "Guid": "967f6e3b86ed4e14a92dec7741932f38",
+            "AssetType": "MonoScript",
+            "FileSize": 7663,
+            "LastModified": "2025-10-19T09:08:16.9186492-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/Editor/WarblerChatWindow.cs",
+            "Type": "Script",
+            "Guid": "eeef54c9a407c9c48a12be0cb0035cc9",
+            "AssetType": "MonoScript",
+            "FileSize": 5176,
+            "LastModified": "2025-10-17T23:24:48.1383227-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/Editor/WarblerIntelligentOrchestrator.cs",
+            "Type": "Script",
+            "Guid": "c50810f6bb73dc645a122ccaab582a28",
+            "AssetType": "MonoScript",
+            "FileSize": 87622,
+            "LastModified": "2025-10-17T23:24:48.1403227-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/Editor/WarblerProjectOrchestrator.cs",
+            "Type": "Script",
+            "Guid": "7abe4fd03e08345488906116d4a34e89",
+            "AssetType": "MonoScript",
+            "FileSize": 26124,
+            "LastModified": "2025-10-17T23:24:48.1413223-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/GameManager.cs",
+            "Type": "Script",
+            "Guid": "9c3e5f7a1b4d6e89c2f5a8b1d4e7f0a3",
+            "AssetType": "MonoScript",
+            "FileSize": 10427,
+            "LastModified": "2025-10-20T00:10:44.5235046-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/NPCControl/WarblerAPI.cs",
+            "Type": "Script",
+            "Guid": "8b2c4e5f7a9d4c91b3e6f8a2c5d7e9f1",
+            "AssetType": "MonoScript",
+            "FileSize": 9017,
+            "LastModified": "2025-10-20T00:10:44.5095091-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/NPCControl/WarblerDialogueSystem.cs",
+            "Type": "Script",
+            "Guid": "163577e279af1944f8cfffac3b0547c8",
+            "AssetType": "MonoScript",
+            "FileSize": 9719,
+            "LastModified": "2025-10-20T00:10:44.4895051-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/NPCControl/WarblerNPCBridge.cs",
+            "Type": "Script",
+            "Guid": "2110dc14929af884186b61d1ece6488d",
+            "AssetType": "MonoScript",
+            "FileSize": 6036,
+            "LastModified": "2025-10-20T00:10:44.4995055-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/Platform/IPlatformBridge.cs",
+            "Type": "Script",
+            "Guid": "4978ebbe041abde418ed0a2fc853dbd7",
+            "AssetType": "MonoScript",
+            "FileSize": 9923,
+            "LastModified": "2025-10-19T11:14:16.6048613-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/Platform/ISteamworksAPI.cs",
+            "Type": "Script",
+            "Guid": "bc637830ccaef314cad81115a82097cd",
+            "AssetType": "MonoScript",
+            "FileSize": 2740,
+            "LastModified": "2025-10-19T10:26:28.2532837-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/Platform/SteamBridge.cs",
+            "Type": "Script",
+            "Guid": "65a4736934c40ee429fe3306d04026ac",
+            "AssetType": "MonoScript",
+            "FileSize": 37581,
+            "LastModified": "2025-10-20T05:07:13.8883134-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/QuestManager.cs",
+            "Type": "Script",
+            "Guid": "b18de662ee1090545ba966123aac52c9",
+            "AssetType": "MonoScript",
+            "FileSize": 16371,
+            "LastModified": "2025-10-20T00:10:44.5355056-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/Visualization/MindCastleVisualizer.cs",
+            "Type": "Script",
+            "Guid": "358fbc5b561b0204a97e36f2661178a6",
+            "AssetType": "MonoScript",
+            "FileSize": 9851,
+            "LastModified": "2025-10-17T23:24:48.1493225-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/Scripts/Visualization/SeedMindCastleBridge.cs",
+            "Type": "Script",
+            "Guid": "53b4017f2e4ea6246a67df181a57a561",
+            "AssetType": "MonoScript",
+            "FileSize": 15790,
+            "LastModified": "2025-10-20T00:16:48.0802889-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/Alchemist/Editor/AlchemistManifestGenerator.cs",
+            "Type": "Script",
+            "Guid": "4825d3d128c5553449b3418681382490",
+            "AssetType": "MonoScript",
+            "FileSize": 26012,
+            "LastModified": "2025-10-20T07:23:59.4148860-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/School/Editor/ExperimentManifestGenerator.cs",
+            "Type": "Script",
+            "Guid": "a2b5c8439e1d47ab8f9e47edcb528493",
+            "AssetType": "MonoScript",
+            "FileSize": 16449,
+            "LastModified": "2025-10-20T07:23:15.3432433-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/School/Editor/ExperimentRunner.cs",
+            "Type": "Script",
+            "Guid": "0d9fac0ffe30ef74d8083c802258ab20",
+            "AssetType": "MonoScript",
+            "FileSize": 28232,
+            "LastModified": "2025-10-17T23:24:48.1583215-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/School/Editor/HypothesisExtractor.cs",
+            "Type": "Script",
+            "Guid": "d5ec8333f1c24bbb957736edcb591284",
+            "AssetType": "MonoScript",
+            "FileSize": 28971,
+            "LastModified": "2025-10-20T07:22:34.2654593-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/School/Editor/InventoryCollector.cs",
+            "Type": "Script",
+            "Guid": "a1b2c3d4e5f6789012345678901234ab",
+            "AssetType": "MonoScript",
+            "FileSize": 18179,
+            "LastModified": "2025-10-20T07:21:40.6800758-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/School/Editor/ManifestConverter.cs",
+            "Type": "Script",
+            "Guid": "bcc32c394e6df024fb79a835cbc57dfc",
+            "AssetType": "MonoScript",
+            "FileSize": 12680,
+            "LastModified": "2025-10-17T23:24:48.1613219-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/School/Editor/ReportSynthesizer.cs",
+            "Type": "Script",
+            "Guid": "d0084f9584b7d5c4a88de7b1549c6caa",
+            "AssetType": "MonoScript",
+            "FileSize": 43511,
+            "LastModified": "2025-10-17T23:24:48.1623219-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/School/Editor/ResultValidator.cs",
+            "Type": "Script",
+            "Guid": "def67890123456789012345678901def",
+            "AssetType": "MonoScript",
+            "FileSize": 60805,
+            "LastModified": "2025-10-17T23:24:48.1643220-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/School/Editor/SchoolExperimentWorkbench.cs",
+            "Type": "Script",
+            "Guid": "5576d66084a4bef43ace847cf4b6ed25",
+            "AssetType": "MonoScript",
+            "FileSize": 14232,
+            "LastModified": "2025-10-20T05:07:13.8903121-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/TestSuite/Editor/OneClickValidationRunner.cs",
+            "Type": "Script",
+            "Guid": "50b4d66421d1e2f43af8e5514f38082d",
+            "AssetType": "MonoScript",
+            "FileSize": 11033,
+            "LastModified": "2025-10-17T23:24:48.1673223-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/TLDA/Tools/TestSuite/Editor/UnityTestSuiteManager.cs",
+            "Type": "Script",
+            "Guid": "2d01c20769377e8438df3f074f10395b",
+            "AssetType": "MonoScript",
+            "FileSize": 35948,
+            "LastModified": "2025-10-17T23:24:48.1703223-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/UI/ChatInterface.uss",
+            "Type": "ScriptableObject",
+            "Guid": "9dd71e1e3528c134686783e3e14a731b",
+            "AssetType": "StyleSheet",
+            "FileSize": 3785,
+            "LastModified": "2025-10-17T23:24:48.1733227-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/UI/ChatInterface.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "a834f9203ac398c4e9bfc46ec1bfc8b5",
+            "AssetType": "VisualTreeAsset",
+            "FileSize": 1515,
+            "LastModified": "2025-10-17T23:24:48.1743234-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Editor\\ForceCSharp10.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 1797,
+            "LastModified": "2025-10-17T23:24:48.0563208-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\GameManager.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 10427,
+            "LastModified": "2025-10-20T00:10:44.5235046-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\QuestManager.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 16371,
+            "LastModified": "2025-10-20T00:10:44.5355056-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ChronasTimerOverlay.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 22768,
+            "LastModified": "2025-10-17T23:24:48.0723223-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeCommitWindow.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 21661,
+            "LastModified": "2025-10-17T23:24:48.0773246-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeCore.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 27312,
+            "LastModified": "2025-10-17T23:24:48.0783239-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeDataManager.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 3566,
+            "LastModified": "2025-10-17T23:24:48.0793229-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeFileOperations.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 15009,
+            "LastModified": "2025-10-17T23:24:48.0813243-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeFormBuilder.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 26340,
+            "LastModified": "2025-10-17T23:24:48.0823221-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeGitWindow.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 23434,
+            "LastModified": "2025-10-17T23:24:48.0843237-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeImageManager.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 8026,
+            "LastModified": "2025-10-17T23:24:48.0853219-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeMarkdownGenerator.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 7473,
+            "LastModified": "2025-10-17T23:24:48.0863254-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeMarkdownParser.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 9385,
+            "LastModified": "2025-10-17T23:24:48.0883243-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeNavigator.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 18401,
+            "LastModified": "2025-10-17T23:24:48.0893253-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribePreviewRenderer.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 14770,
+            "LastModified": "2025-10-17T23:24:48.0913228-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeRawEditor.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 11112,
+            "LastModified": "2025-10-17T23:24:48.0923229-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\ScribeTemplateManager.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 10286,
+            "LastModified": "2025-10-17T23:24:48.0933219-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\SpellsmithCodeWindow.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 14610,
+            "LastModified": "2025-10-17T23:24:48.0943245-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Editor\\TerminusShellConsole.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 42475,
+            "LastModified": "2025-10-17T23:24:48.0963235-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Runtime\\Companion.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 18539,
+            "LastModified": "2025-10-17T23:24:48.0993208-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleCore.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 6091,
+            "LastModified": "2025-10-17T23:24:48.1003221-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleManager.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 17466,
+            "LastModified": "2025-10-17T23:24:48.1013236-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Runtime\\CompanionBattleUI.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 22920,
+            "LastModified": "2025-10-17T23:24:48.1023261-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\Plugins\\TLDA\\Runtime\\CompanionWarblerIntegration.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 29742,
+            "LastModified": "2025-10-17T23:24:48.1043222-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\Chat\\SeedEnhancedTLDAChat.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 25885,
+            "LastModified": "2025-10-19T20:14:03.8069826-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\Chat\\TLDAChatInterface.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 7663,
+            "LastModified": "2025-10-19T09:08:16.9186492-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\Editor\\WarblerChatWindow.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 5176,
+            "LastModified": "2025-10-17T23:24:48.1383227-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\Editor\\WarblerIntelligentOrchestrator.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 87622,
+            "LastModified": "2025-10-17T23:24:48.1403227-04:00",
+            "Tags": [
+                "EditorTool",
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\Editor\\WarblerProjectOrchestrator.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 26124,
+            "LastModified": "2025-10-17T23:24:48.1413223-04:00",
+            "Tags": [
+                "EditorTool",
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\NPCControl\\WarblerAPI.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 9017,
+            "LastModified": "2025-10-20T00:10:44.5095091-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\NPCControl\\WarblerDialogueSystem.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 9719,
+            "LastModified": "2025-10-20T00:10:44.4895051-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\NPCControl\\WarblerNPCBridge.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 6036,
+            "LastModified": "2025-10-20T00:10:44.4995055-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\Platform\\IPlatformBridge.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 9923,
+            "LastModified": "2025-10-19T11:14:16.6048613-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\Platform\\ISteamworksAPI.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 2740,
+            "LastModified": "2025-10-19T10:26:28.2532837-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\Platform\\SteamBridge.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 37581,
+            "LastModified": "2025-10-20T05:07:13.8883134-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\Visualization\\MindCastleVisualizer.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 9851,
+            "LastModified": "2025-10-17T23:24:48.1493225-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\Scripts\\Visualization\\SeedMindCastleBridge.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 15790,
+            "LastModified": "2025-10-20T00:16:48.0802889-04:00",
+            "Tags": [
+                "Component"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\Alchemist\\Editor\\AlchemistManifestGenerator.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 26012,
+            "LastModified": "2025-10-20T07:23:59.4148860-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ExperimentManifestGenerator.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 16449,
+            "LastModified": "2025-10-20T07:23:15.3432433-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ExperimentRunner.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 28232,
+            "LastModified": "2025-10-17T23:24:48.1583215-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\HypothesisExtractor.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 28971,
+            "LastModified": "2025-10-20T07:22:34.2654593-04:00",
+            "Tags": [
+                "EditorTool",
+                "Component",
+                "DataAsset"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\InventoryCollector.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 18179,
+            "LastModified": "2025-10-20T07:21:40.6800758-04:00",
+            "Tags": [
+                "EditorTool",
+                "Component",
+                "DataAsset"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ManifestConverter.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 12680,
+            "LastModified": "2025-10-17T23:24:48.1613219-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ReportSynthesizer.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 43511,
+            "LastModified": "2025-10-17T23:24:48.1623219-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\ResultValidator.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 60805,
+            "LastModified": "2025-10-17T23:24:48.1643220-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\School\\Editor\\SchoolExperimentWorkbench.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 14232,
+            "LastModified": "2025-10-20T05:07:13.8903121-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\TestSuite\\Editor\\OneClickValidationRunner.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 11033,
+            "LastModified": "2025-10-17T23:24:48.1673223-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets\\TWG\\TLDA\\Tools\\TestSuite\\Editor\\UnityTestSuiteManager.cs",
+            "Type": "Script",
+            "Guid": "",
+            "AssetType": "MonoScript",
+            "FileSize": 35948,
+            "LastModified": "2025-10-17T23:24:48.1703223-04:00",
+            "Tags": [
+                "EditorTool"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.analytics/DataPrivacy/DataPrivacyButton.prefab",
+            "Type": "Prefab",
+            "Guid": "71b11355001648444b41d17fd36c150d",
+            "AssetType": "GameObject",
+            "FileSize": 7140,
+            "LastModified": "2022-01-28T07:06:14.0000000-05:00",
+            "Tags": [
+                "Components:10"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Hybrid.Tests/Prefabs/Prefab.prefab",
+            "Type": "Prefab",
+            "Guid": "40ac66a62ee141c4eb80b1fc54d6761f",
+            "AssetType": "GameObject",
+            "FileSize": 1332,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:2"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Hybrid.Tests/Prefabs/Prefab_AbstractMB.prefab",
+            "Type": "Prefab",
+            "Guid": "0091c08a6daec4522a9279c0f5987a58",
+            "AssetType": "GameObject",
+            "FileSize": 1347,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:2"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Hybrid.Tests/Prefabs/Prefab_Hierarchy.prefab",
+            "Type": "Prefab",
+            "Guid": "89ee37a9ee5f7c94cbb0f67649c33f56",
+            "AssetType": "GameObject",
+            "FileSize": 2617,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:4"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Hybrid.Tests/Prefabs/Prefab_Hierarchy_With_StaticOptimizeEntity.prefab",
+            "Type": "Prefab",
+            "Guid": "a177e7183feb3f34d9df03e1b53321f6",
+            "AssetType": "GameObject",
+            "FileSize": 2193,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:3"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Hybrid.Tests/Prefabs/Prefab_MissingMB.prefab",
+            "Type": "Prefab",
+            "Guid": "354b85a68f992134d9db037099e41c25",
+            "AssetType": "GameObject",
+            "FileSize": 1295,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:2"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Hybrid.Tests/Prefabs/Prefab_Reference_Prefab.prefab",
+            "Type": "Prefab",
+            "Guid": "09b1f1eddafb12849bff8b0da87c78f0",
+            "AssetType": "GameObject",
+            "FileSize": 1914,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:3"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Hybrid.Tests/Prefabs/Prefab_Reference_Self.prefab",
+            "Type": "Prefab",
+            "Guid": "a9de45f391d304d438c772da9c605c79",
+            "AssetType": "GameObject",
+            "FileSize": 1865,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:3"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Scenes.Editor.PerformanceTests/Assets/Empty.prefab",
+            "Type": "Prefab",
+            "Guid": "49cb77be2b9bdfa42ac1a0cfd55dd7f3",
+            "AssetType": "GameObject",
+            "FileSize": 896,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:1"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Scenes.Editor.PerformanceTests/Assets/Sphere.prefab",
+            "Type": "Prefab",
+            "Guid": "8b8b2306a76110642a3d9d1b79fc7cdc",
+            "AssetType": "GameObject",
+            "FileSize": 2972,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:4"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Scenes.Editor.PerformanceTests/Assets/Tagged.prefab",
+            "Type": "Prefab",
+            "Guid": "445e1dd0a72e1024aaa77d594a3419f7",
+            "AssetType": "GameObject",
+            "FileSize": 1286,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:2"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Scenes.Hybrid.Tests/Playmode/Monobehaviours/ObjectRefPrefab.prefab",
+            "Type": "Prefab",
+            "Guid": "220ad30328e67f248993e135462c3bc1",
+            "AssetType": "GameObject",
+            "FileSize": 1345,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:2"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Scenes.Hybrid.Tests/TestSceneWithSubScene/TestPrefab.prefab",
+            "Type": "Prefab",
+            "Guid": "bd8aa253eb3d6174c813ccfbff525b48",
+            "AssetType": "GameObject",
+            "FileSize": 4099,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": [
+                "Components:6"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Resources/DebugUICanvas.prefab",
+            "Type": "Prefab",
+            "Guid": "cf6cbdd672089a84796e55a21fed1cbe",
+            "AssetType": "GameObject",
+            "FileSize": 10171,
+            "LastModified": "2025-09-17T08:58:22.0000000-04:00",
+            "Tags": [
+                "Components:5"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Resources/DebugUIPersistentCanvas.prefab",
+            "Type": "Prefab",
+            "Guid": "f6b1a0fe75d5009449cf55ae76220e2b",
+            "AssetType": "GameObject",
+            "FileSize": 6886,
+            "LastModified": "2025-09-17T08:58:22.0000000-04:00",
+            "Tags": [
+                "Components:10"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIBitField.prefab",
+            "Type": "Prefab",
+            "Guid": "7c78b588b2e1f7c4a86ca4a985cf6e4a",
+            "AssetType": "GameObject",
+            "FileSize": 376228,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:13"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIButton.prefab",
+            "Type": "Prefab",
+            "Guid": "f6ce33b91f6ffe54cadacbf4bb112440",
+            "AssetType": "GameObject",
+            "FileSize": 6969,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:8"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIColor.prefab",
+            "Type": "Prefab",
+            "Guid": "77c185820dd1a464eac89cae3abccddf",
+            "AssetType": "GameObject",
+            "FileSize": 41624,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:16"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIEnumField.prefab",
+            "Type": "Prefab",
+            "Guid": "988db55689193434fb0b3b89538f978f",
+            "AssetType": "GameObject",
+            "FileSize": 15851,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:17"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIEnumHistory.prefab",
+            "Type": "Prefab",
+            "Guid": "b2da6b27df236b144b3516ed8e7d36ac",
+            "AssetType": "GameObject",
+            "FileSize": 6494,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:8"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIFloatField.prefab",
+            "Type": "Prefab",
+            "Guid": "d8c744701b43c864b88e7f8144e19bc5",
+            "AssetType": "GameObject",
+            "FileSize": 24187,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:25"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIFoldout.prefab",
+            "Type": "Prefab",
+            "Guid": "1c87ab2ce8b8b304d98fbe9a734b1f74",
+            "AssetType": "GameObject",
+            "FileSize": 16002,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:13"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIGroup.prefab",
+            "Type": "Prefab",
+            "Guid": "38a07789c9e87004dad98c2909f58369",
+            "AssetType": "GameObject",
+            "FileSize": 9916,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:14"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIHandlerRenderingLayerField.prefab",
+            "Type": "Prefab",
+            "Guid": "928d1ca04af80c84e8d5dabc18095d79",
+            "AssetType": "GameObject",
+            "FileSize": 373496,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:13"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIHBox.prefab",
+            "Type": "Prefab",
+            "Guid": "f7f5e36797cf0c1408561665c67b179b",
+            "AssetType": "GameObject",
+            "FileSize": 3296,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:5"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIIntField.prefab",
+            "Type": "Prefab",
+            "Guid": "ae00bb75e0cd5b04b8fe7fb4ab662629",
+            "AssetType": "GameObject",
+            "FileSize": 24571,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:25"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIMessageBox.prefab",
+            "Type": "Prefab",
+            "Guid": "10a25524b0986f9488b430e2829bbbe8",
+            "AssetType": "GameObject",
+            "FileSize": 6279,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:9"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIObject.prefab",
+            "Type": "Prefab",
+            "Guid": "a87cfaef648f17c41b568e842e068c51",
+            "AssetType": "GameObject",
+            "FileSize": 6265,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:8"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIObjectList.prefab",
+            "Type": "Prefab",
+            "Guid": "ad83bc56407925d44a77a5bd01cd6783",
+            "AssetType": "GameObject",
+            "FileSize": 15820,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:17"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIObjectPopupField.prefab",
+            "Type": "Prefab",
+            "Guid": "48fb043c850cadc4a883b53785e14c6e",
+            "AssetType": "GameObject",
+            "FileSize": 16131,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:17"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIPanel.prefab",
+            "Type": "Prefab",
+            "Guid": "daa46a58178a6ad41ae1ddc2dc7f856d",
+            "AssetType": "GameObject",
+            "FileSize": 58730,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:62"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIProgressBar.prefab",
+            "Type": "Prefab",
+            "Guid": "d3770aaa3bbd8384aabab9ddd383e21e",
+            "AssetType": "GameObject",
+            "FileSize": 9667,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:12"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIRow.prefab",
+            "Type": "Prefab",
+            "Guid": "2d019437ff89b8d44949727731cd9357",
+            "AssetType": "GameObject",
+            "FileSize": 15917,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:13"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIToggle.prefab",
+            "Type": "Prefab",
+            "Guid": "ce347ad101f41ee4ab5c3fbc0ea447db",
+            "AssetType": "GameObject",
+            "FileSize": 11102,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:13"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIToggleHistory.prefab",
+            "Type": "Prefab",
+            "Guid": "5088d0220f0c4df439cf06c5c270eacb",
+            "AssetType": "GameObject",
+            "FileSize": 11027,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:13"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIUIntField.prefab",
+            "Type": "Prefab",
+            "Guid": "f22bcc84a5f4a1944b075a2c4ac71493",
+            "AssetType": "GameObject",
+            "FileSize": 24575,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:25"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIValue.prefab",
+            "Type": "Prefab",
+            "Guid": "dc0f88987826e6e48b1fe9c7c2b53a53",
+            "AssetType": "GameObject",
+            "FileSize": 6348,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:8"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIValuePersistent.prefab",
+            "Type": "Prefab",
+            "Guid": "8778e6b26b51c6a4999b94d7cacd8b5d",
+            "AssetType": "GameObject",
+            "FileSize": 6275,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:8"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIValueTuple.prefab",
+            "Type": "Prefab",
+            "Guid": "a2148203dd960814ca5db0c293ceda35",
+            "AssetType": "GameObject",
+            "FileSize": 6267,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:8"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIVBox.prefab",
+            "Type": "Prefab",
+            "Guid": "ca3e294656861a64b8aeeb9f916da0a9",
+            "AssetType": "GameObject",
+            "FileSize": 3303,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:5"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIVector2.prefab",
+            "Type": "Prefab",
+            "Guid": "326f7c58aed965d41bf7805a782d1e44",
+            "AssetType": "GameObject",
+            "FileSize": 27464,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:13"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIVector3.prefab",
+            "Type": "Prefab",
+            "Guid": "94afea5f242d72547979595ba963f335",
+            "AssetType": "GameObject",
+            "FileSize": 33474,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:13"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Widgets/DebugUIVector4.prefab",
+            "Type": "Prefab",
+            "Guid": "d47f009476100f545971a81ede14c750",
+            "AssetType": "GameObject",
+            "FileSize": 39489,
+            "LastModified": "2025-09-17T08:58:24.0000000-04:00",
+            "Tags": [
+                "Components:13"
+            ]
+        },
+        {
+            "Path": "Packages/com.unity.xr.legacyinputhelpers/Prefabs/XRRig.prefab",
+            "Type": "Prefab",
+            "Guid": "c116b7497ab8ca34c9188965d4295e27",
+            "AssetType": "GameObject",
+            "FileSize": 4793,
+            "LastModified": "2025-01-24T20:52:44.0000000-05:00",
+            "Tags": [
+                "Components:6"
+            ]
+        },
+        {
+            "Path": "Assets/TWG/UI/ChatInterface.uss",
+            "Type": "ScriptableObject",
+            "Guid": "9dd71e1e3528c134686783e3e14a731b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 3785,
+            "LastModified": "2025-10-17T23:24:48.1733227-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Assets/TWG/UI/ChatInterface.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "a834f9203ac398c4e9bfc46ec1bfc8b5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1515,
+            "LastModified": "2025-10-17T23:24:48.1743234-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.sprite/Editor/UI/SpriteEditor/PolygonChangeShapeWindow.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "ad9baf3ac3e35c948bf6a50e91e91473",
+            "AssetType": "ScriptableObject",
+            "FileSize": 651,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.sprite/Editor/UI/SpriteEditor/SpriteEditor.uss",
+            "Type": "ScriptableObject",
+            "Guid": "fd3d7c275a0958b4fa0f26a0ee9b8481",
+            "AssetType": "ScriptableObject",
+            "FileSize": 5511,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.sprite/Editor/UI/SpriteEditor/SpriteEditorToolbar.uss",
+            "Type": "ScriptableObject",
+            "Guid": "35f4ee23cc5e408190298151beab219a",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1670,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.sprite/Editor/UI/SpriteEditor/SpriteFrameCapabilityWindow.uss",
+            "Type": "ScriptableObject",
+            "Guid": "6c7e9115f7d147358afe5f37134801db",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1386,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.sprite/Editor/UI/SpriteEditor/SpriteFrameCapabilityWindow.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "dde790a688b0426aa8b203f14ba9ced2",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1185,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.sprite/Editor/UI/SpriteEditor/SpriteFrameModuleInspector.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d02b5650e6e0b4c45ab18d5a1d1fce97",
+            "AssetType": "ScriptableObject",
+            "FileSize": 6049,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.sprite/Editor/UI/SpriteEditor/SpriteOutlineToolOverlayPanel.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "822efcfdd5f5a45e99513239c9c1859f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 3321,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.sprite/Editor/UI/SpriteEditor/SpriteOutlineToolOverlayPanelStyle.uss",
+            "Type": "ScriptableObject",
+            "Guid": "453cfcbf89b424ad9a293b19d1e3d4bb",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2445,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.tilemap/Editor/UI/External/GridView.uss",
+            "Type": "ScriptableObject",
+            "Guid": "2d273e946d0b400a8bc9d2cb4c1946c9",
+            "AssetType": "ScriptableObject",
+            "FileSize": 255,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.tilemap/Editor/UI/External/RenameableLabel.uss",
+            "Type": "ScriptableObject",
+            "Guid": "7a5950bc69d34eaa8b69e23a0219af0e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 599,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.tilemap/Editor/UI/GridPaintPaletteWindow.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ecc64bf4ebc64e2d8487b3a631c5113c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1589,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.tilemap/Editor/UI/GridPaintPaletteWindowDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "2af7a09b750644968bf66758786d99d9",
+            "AssetType": "ScriptableObject",
+            "FileSize": 87,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.tilemap/Editor/UI/GridPaintPaletteWindowLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "73653b679fcd4ba6941afb0cda629d09",
+            "AssetType": "ScriptableObject",
+            "FileSize": 87,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.tilemap/Editor/UI/TilePaletteOverlay.uss",
+            "Type": "ScriptableObject",
+            "Guid": "7d4067dd1e595a64aa7286438069d37c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 8706,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.tilemap/Editor/UI/TilePaletteOverlayDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "edca8f45c1127f147b3fa62aad3ed9c1",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1241,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.2d.tilemap/Editor/UI/TilePaletteOverlayLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "2a208840b98c7aa46a99ed3517e86d98",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1205,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.ads/Editor/DevX/StyleSheets/AdsService.uss",
+            "Type": "ScriptableObject",
+            "Guid": "a451e7337cff44f4fafbff3d0a3dab16",
+            "AssetType": "ScriptableObject",
+            "FileSize": 3376,
+            "LastModified": "2024-07-17T05:54:11.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.ads/Editor/DevX/UXML/AdsServiceGameIds.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "c56cc6e1706668e41a7ffa7e8d94d867",
+            "AssetType": "ScriptableObject",
+            "FileSize": 428,
+            "LastModified": "2024-07-17T05:54:11.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.ads/Editor/DevX/UXML/AdsServiceGettingStarted.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "36a0d3e3b68a24f33bc94a0305851df5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 633,
+            "LastModified": "2024-07-17T05:54:11.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.ai.navigation/Editor/ConversionSystem/converter_editor.uss",
+            "Type": "ScriptableObject",
+            "Guid": "3eb99c80b411349188e1e5167887ac6c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 72,
+            "LastModified": "2025-08-27T11:27:56.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.ai.navigation/Editor/ConversionSystem/converter_editor.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "cd1eb3c3c695c494d855ea678fe7395b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1740,
+            "LastModified": "2025-08-27T11:27:56.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.ai.navigation/Editor/ConversionSystem/converter_widget.uss",
+            "Type": "ScriptableObject",
+            "Guid": "63cb84b97408b4d25a6925daccffcd22",
+            "AssetType": "ScriptableObject",
+            "FileSize": 0,
+            "LastModified": "2025-08-27T11:27:56.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.ai.navigation/Editor/ConversionSystem/converter_widget.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "aaa3e510761864dac9b71f85526490d6",
+            "AssetType": "ScriptableObject",
+            "FileSize": 3099,
+            "LastModified": "2025-08-27T11:27:56.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.ai.navigation/Editor/ConversionSystem/converter_widget_item.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d6de7697d63d64fabbfb31425d93541e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1179,
+            "LastModified": "2025-08-27T11:27:56.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.analytics/Editor/Tools/DebugPanel.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "2f2828a95e4aa0b4da75d138a20cf0cd",
+            "AssetType": "ScriptableObject",
+            "FileSize": 7223,
+            "LastModified": "2025-06-16T04:45:57.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.analytics/Editor/Tools/DebugPanelStyles.uss",
+            "Type": "ScriptableObject",
+            "Guid": "aa0c67bb08888624b86deb74de3ddba0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 5972,
+            "LastModified": "2025-06-16T04:45:57.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.analytics/Editor/Tools/DebugPanelStylesDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "18d4f34ad7671a449b06df2eba77fd35",
+            "AssetType": "ScriptableObject",
+            "FileSize": 411,
+            "LastModified": "2025-06-16T04:45:57.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.analytics/Editor/Tools/DebugPanelStylesLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "e52cc1fcf2af9374c8ce0fe21f3ba3bc",
+            "AssetType": "ScriptableObject",
+            "FileSize": 405,
+            "LastModified": "2025-06-16T04:45:57.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/add-collection-item.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d1e87fe7e57a81345a3fcea2a7a4c14a",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1146,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/build-component.uss",
+            "Type": "ScriptableObject",
+            "Guid": "27856cf839b417d49a97febe170cbf8d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2022,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/build-component_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "f95ef1d2cd5b5504fb5495eef61e2843",
+            "AssetType": "ScriptableObject",
+            "FileSize": 926,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/build-component_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "6e1680a566fadb44696d9c8e6d4764c5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 925,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/build-configuration-dependency.uss",
+            "Type": "ScriptableObject",
+            "Guid": "9e56d884c374fa943a7a855cf3d82038",
+            "AssetType": "ScriptableObject",
+            "FileSize": 705,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/build-configuration-dependency_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "a477c1a606b92264ca4be45319cfc247",
+            "AssetType": "ScriptableObject",
+            "FileSize": 298,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/build-configuration-dependency_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "aadc6888783662a48bb576202ff20462",
+            "AssetType": "ScriptableObject",
+            "FileSize": 294,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/build-configuration.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5405049c7fddbc54fa6e65a2ec151a7d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2066,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/build-configuration_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "6a88ab429b28700428b9cdc6d72f9d5f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 407,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/build-configuration_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "beaa3ce82375de143a4c3e0c4bb864a1",
+            "AssetType": "ScriptableObject",
+            "FileSize": 406,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/circular-reference.uss",
+            "Type": "ScriptableObject",
+            "Guid": "7b74c6039e021904386574d772e55bde",
+            "AssetType": "ScriptableObject",
+            "FileSize": 463,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/classic-build-profile.uss",
+            "Type": "ScriptableObject",
+            "Guid": "f96a5e118205e0249897a6891ee7686d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 704,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/classic-build-profile_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "9e02ac82c6f1d6d4197fccd597376c70",
+            "AssetType": "ScriptableObject",
+            "FileSize": 193,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/classic-build-profile_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "37385eff77132b34ea611b2bcfac166e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 191,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/common.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d52e75456734e484d925164b62e7c3a1",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1052,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/common_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "51c35d0ee8576d14b937dc9df8b05e80",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1255,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/common_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d09c2148428d24d49bf4d3e89848bf4a",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1259,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/install-quick-search-popup.uss",
+            "Type": "ScriptableObject",
+            "Guid": "2f00a1064b81d2342be6a5d55eee673e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 261,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/key-value-pair.uss",
+            "Type": "ScriptableObject",
+            "Guid": "cb74784643b787a468ec0f7419ca884c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 963,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/lazy-load-reference.uss",
+            "Type": "ScriptableObject",
+            "Guid": "433e17cb71d2e1e4c8370e94ce5d05af",
+            "AssetType": "ScriptableObject",
+            "FileSize": 96,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/list-element-default.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d3f118fe343260145803cc21672b829d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 608,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/list-element.uss",
+            "Type": "ScriptableObject",
+            "Guid": "0787e00706a54a44aaae919c9e6cc267",
+            "AssetType": "ScriptableObject",
+            "FileSize": 785,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/null-string-field.uss",
+            "Type": "ScriptableObject",
+            "Guid": "54e560af463a3154293765b75207ffc0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 208,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/nullable-foldout.uss",
+            "Type": "ScriptableObject",
+            "Guid": "4a25b818efc49a547ae2c3c20df43be1",
+            "AssetType": "ScriptableObject",
+            "FileSize": 68,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/pagination-element.uss",
+            "Type": "ScriptableObject",
+            "Guid": "36b0acd2d2dffe34783268aae0368215",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1848,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/search-element-filter-popup.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5a1776eab9579364ca297f5100c6d590",
+            "AssetType": "ScriptableObject",
+            "FileSize": 700,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/search-element.uss",
+            "Type": "ScriptableObject",
+            "Guid": "faf4a0687853e5847822c6fa023c8659",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2214,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/set-element-default.uss",
+            "Type": "ScriptableObject",
+            "Guid": "fa4ac5c04c519cb4e922fe081378bdf3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 582,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/set-element.uss",
+            "Type": "ScriptableObject",
+            "Guid": "cfcc099badafd6648a531bba6ed12f9f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 748,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uss/two-pane-split-view.uss",
+            "Type": "ScriptableObject",
+            "Guid": "916c8779552ad754f9f21c4235a2101e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1268,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/add-collection-item.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "f508fe45f8d68a24b92fa8b58d143dbd",
+            "AssetType": "ScriptableObject",
+            "FileSize": 944,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/build-component.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "6f3eb4eba4d5ff945bafc0980ca00e6c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1018,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/build-configuration-dependency.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "26eeb080afb4c61439e86ae36ac251e5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 477,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/build-configuration.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "5ccee95a96751684eb41e3f1c16ab075",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1695,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/circular-reference.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "f7d39d0f3d3c72242ae6461bd3d82b91",
+            "AssetType": "ScriptableObject",
+            "FileSize": 487,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/classic-build-profile.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "95c7148174c252e4fbd7cb69edbda92d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1002,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/complicated-type-test.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "98e40935c5528424da513b39dc83917b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1643,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/install-quick-search-popup.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "bdd9c3d6a9e60e748bdbabf679a5cab8",
+            "AssetType": "ScriptableObject",
+            "FileSize": 512,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/key-value-pair.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "612578fae72245b468ee5a1de798247c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 584,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/lazy-load-reference.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "5e11d8941300a4e45afc85edd2b9838c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 338,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/null-string-field.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "a7aec91e309c7f04888967959f3fb253",
+            "AssetType": "ScriptableObject",
+            "FileSize": 341,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/pagination-element.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "4e69a50ddae71b04291b30faa5cd4060",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1059,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/Unity.Entities.UI/uxml/type-inspector.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "681f7718b96a6134488144add897af1b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 473,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-dropdown.uss",
+            "Type": "ScriptableObject",
+            "Guid": "4668d4d693a86f6498b9039262408eac",
+            "AssetType": "ScriptableObject",
+            "FileSize": 676,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-dropdown_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "8264ea2c542e0e241adaba95fbfbe1dd",
+            "AssetType": "ScriptableObject",
+            "FileSize": 296,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-dropdown_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "0d32c43c677a7b949a7aeaeaf4d6a74b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 294,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-popup-item.uss",
+            "Type": "ScriptableObject",
+            "Guid": "4b756089e2ff4fd4cbe31fa6ce83da70",
+            "AssetType": "ScriptableObject",
+            "FileSize": 395,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-popup.uss",
+            "Type": "ScriptableObject",
+            "Guid": "07156037b6225bc4abe1b3c2285b5a4e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 881,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-popup_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5a6fd76cf352e2a42b7fcc03b2491233",
+            "AssetType": "ScriptableObject",
+            "FileSize": 611,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-popup_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "a641c63a9ca8f50468415985cc8c4f9a",
+            "AssetType": "ScriptableObject",
+            "FileSize": 611,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-window-item.uss",
+            "Type": "ScriptableObject",
+            "Guid": "7073274637714d7418377a737e9c1f6c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 646,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-window-item_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "9b6111e1474a98f41996f925c8b0c033",
+            "AssetType": "ScriptableObject",
+            "FileSize": 284,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-window-item_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "cf0200936dce1394bb87dbc8b7ea0b87",
+            "AssetType": "ScriptableObject",
+            "FileSize": 280,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/active-build-config-window.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ad455d64049dd424bbd347e43fd3a775",
+            "AssetType": "ScriptableObject",
+            "FileSize": 443,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/search-field.uss",
+            "Type": "ScriptableObject",
+            "Guid": "4f6f5981d012086458dfec13c8b48ab7",
+            "AssetType": "ScriptableObject",
+            "FileSize": 288,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/search-field_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "37d7360f5603385478bf01f6fe419841",
+            "AssetType": "ScriptableObject",
+            "FileSize": 112,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ActiveBuildConfiguration/search-field_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ad29f586cc1cf2a4cac3427f4b889ab9",
+            "AssetType": "ScriptableObject",
+            "FileSize": 113,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/autocomplete.uss",
+            "Type": "ScriptableObject",
+            "Guid": "411941b66bb9dc147addcf44883bb030",
+            "AssetType": "ScriptableObject",
+            "FileSize": 236,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/autocomplete_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d595ab0cf391f3845a7cc4f301dec530",
+            "AssetType": "ScriptableObject",
+            "FileSize": 93,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/autocomplete_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5b5adf578eccc434cb23eff9953f8cb2",
+            "AssetType": "ScriptableObject",
+            "FileSize": 93,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/centered-message-element.uss",
+            "Type": "ScriptableObject",
+            "Guid": "cf86dab030a253a48982b7323ffab131",
+            "AssetType": "ScriptableObject",
+            "FileSize": 472,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/component-view.uss",
+            "Type": "ScriptableObject",
+            "Guid": "a4bf23801ecfc234c8357e21ead9c971",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1355,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/dots-editor-common.uss",
+            "Type": "ScriptableObject",
+            "Guid": "4f75daa9032958d40bdb57d61400c3e3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1090,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/dots-editor-common_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ec8a6ed9315b49b49b3a0837d7b5c60e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 806,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/dots-editor-common_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ab456db8ce6789f4f87db55342d0381c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 826,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/entity-view.uss",
+            "Type": "ScriptableObject",
+            "Guid": "fb6ae9621826ced4a95ca6c546a81781",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1188,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/foldout-with-action-button.uss",
+            "Type": "ScriptableObject",
+            "Guid": "30127f53bc2e911439ca84aeea96ab2e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1493,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/foldout-without-action-button.uss",
+            "Type": "ScriptableObject",
+            "Guid": "44b8da52eaaa2fc4785b2c4c51b89489",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1282,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/query-view.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d3f4c48d761c8ca4098b8aee71e78033",
+            "AssetType": "ScriptableObject",
+            "FileSize": 804,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/query-with-entities.uss",
+            "Type": "ScriptableObject",
+            "Guid": "0a82736d571451441821df76d4ee2d23",
+            "AssetType": "ScriptableObject",
+            "FileSize": 653,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/system-dependency-view.uss",
+            "Type": "ScriptableObject",
+            "Guid": "02e13a11616b4354b8ce672db0f9ff9f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 926,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/system-list-view.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ffa6c676bcedf4a4fb2741c4409f9ab0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 291,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/system-queries-view.uss",
+            "Type": "ScriptableObject",
+            "Guid": "3553fbf0426ca5048b4610e22fc84fbc",
+            "AssetType": "ScriptableObject",
+            "FileSize": 563,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/variables.uss",
+            "Type": "ScriptableObject",
+            "Guid": "1b1ab9431a0e4d84783d7961e3ffe596",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1278,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/variables_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "9d4d8813ae423764382a63651f200bf6",
+            "AssetType": "ScriptableObject",
+            "FileSize": 5428,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Common/variables_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "c9f61edea73066a4085d44644b116a5b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 5489,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Components/component-type-view.uss",
+            "Type": "ScriptableObject",
+            "Guid": "f156b619677a5f646b959925c6af110c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1049,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Components/components-window.uss",
+            "Type": "ScriptableObject",
+            "Guid": "0e5010aa99faaa2439b04bc7fb7b424f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 759,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Components/components-window_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "54ebf326a87cdd44da00c3584dcbd1db",
+            "AssetType": "ScriptableObject",
+            "FileSize": 55,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Components/components-window_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "03127dd370ce826479a1aeeab9d646e0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 55,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Content/component-attribute.uss",
+            "Type": "ScriptableObject",
+            "Guid": "fa50d2800cc8f3744b5d064ed0f7cd17",
+            "AssetType": "ScriptableObject",
+            "FileSize": 314,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Content/component.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5a55e14bcf0b3c64bbc7661dcdb92fb0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 103,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Content/display-list.uss",
+            "Type": "ScriptableObject",
+            "Guid": "9af1088b2caaa264fbc412c29887619c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 143,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Content/entity-info.uss",
+            "Type": "ScriptableObject",
+            "Guid": "92ad3a5ab945a3849b0da6ee42960e41",
+            "AssetType": "ScriptableObject",
+            "FileSize": 365,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Content/entity-query-header.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d6b92f6ef53f0004d8e12d505db7303b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1841,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Content/entity-query.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5d07fd1ab66d6ba458f967827343fa6e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 966,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Content/header.uss",
+            "Type": "ScriptableObject",
+            "Guid": "78d733d2e0721804a84b86a7103fa469",
+            "AssetType": "ScriptableObject",
+            "FileSize": 342,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Content/section.uss",
+            "Type": "ScriptableObject",
+            "Guid": "e54bd7677a18a8e45ae37e9094da218c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1185,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Content/system.uss",
+            "Type": "ScriptableObject",
+            "Guid": "8aeeaaef64448804c87a039f45ed7e98",
+            "AssetType": "ScriptableObject",
+            "FileSize": 330,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Controls/foldout-field.uss",
+            "Type": "ScriptableObject",
+            "Guid": "7a42053e7b35182428852563b7a08cc3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 376,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Controls/foldout-field_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "6b66515ecc3502b40b3ce7c73d3e81b1",
+            "AssetType": "ScriptableObject",
+            "FileSize": 226,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Controls/foldout-field_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "470c268d7c09c8843afbdb2709c83a6b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 228,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Controls/TabView/tab-view.uss",
+            "Type": "ScriptableObject",
+            "Guid": "e68ef33ce663ff145a6499e8ba08133d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 570,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Controls/TabView/tab-view_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ebf6a2296a5f9364382ecc1eebe1c2f5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 88,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Controls/TabView/tab-view_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "902e817ad9615f741bc63c39dcae4e30",
+            "AssetType": "ScriptableObject",
+            "FileSize": 88,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/DebugWindows/debug-window.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ef00e93edc6df854b9ead9ba17ec8ffc",
+            "AssetType": "ScriptableObject",
+            "FileSize": 731,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Hierarchy/hierarchy-item.uss",
+            "Type": "ScriptableObject",
+            "Guid": "20be7680c0110664b96fab07455fcbb0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 4675,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Hierarchy/hierarchy-loading.uss",
+            "Type": "ScriptableObject",
+            "Guid": "e1bcd2a219086744b95d26c4ca6bef9f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 848,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Hierarchy/hierarchy-prefab-stage.uss",
+            "Type": "ScriptableObject",
+            "Guid": "34651e64f54646d29f155ec984b568a5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1118,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Hierarchy/hierarchy-toolbar.uss",
+            "Type": "ScriptableObject",
+            "Guid": "cadf7c98ecb141a439f7be93f5e9961e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 274,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Hierarchy/hierarchy.uss",
+            "Type": "ScriptableObject",
+            "Guid": "fb0f4225d9a05a24ea92d82294809d4c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1722,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/component-header.uss",
+            "Type": "ScriptableObject",
+            "Guid": "cb179af7f15a77f49b3bca7ba978819f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1991,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/entity-field.uss",
+            "Type": "ScriptableObject",
+            "Guid": "4805676c899e44545b40a50c1d17ce12",
+            "AssetType": "ScriptableObject",
+            "FileSize": 344,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/entity-field_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "bac5a17632449894abe1e8109f415084",
+            "AssetType": "ScriptableObject",
+            "FileSize": 248,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/entity-field_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "2a59f9080af981b4faa361702eefc6c7",
+            "AssetType": "ScriptableObject",
+            "FileSize": 245,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/entity-header.uss",
+            "Type": "ScriptableObject",
+            "Guid": "fa6f1e51facd1bb4abe73e0444304e94",
+            "AssetType": "ScriptableObject",
+            "FileSize": 758,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/entity-inspector-aspects-tab.uss",
+            "Type": "ScriptableObject",
+            "Guid": "bd6d94244d5058241815175dc757a4d3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 254,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/entity-inspector-aspects-tab_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "2f613d3cb95a5f64c80fc3982b2292b5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 96,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/entity-inspector-aspects-tab_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5827488857908be49b7dd8ea89f15239",
+            "AssetType": "ScriptableObject",
+            "FileSize": 96,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/entity-inspector-components-tab.uss",
+            "Type": "ScriptableObject",
+            "Guid": "3218308db1c3ce246b4eb93b23d7350d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 154,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/entity-inspector-relationships-tab.uss",
+            "Type": "ScriptableObject",
+            "Guid": "54ccb561a575e834d84af3280df3847d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 223,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/entity-inspector.uss",
+            "Type": "ScriptableObject",
+            "Guid": "07f9f4a30454cb6468651a36cb1cece3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 396,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/inspector.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5fe01a2b80746434293b9a8abb0270f2",
+            "AssetType": "ScriptableObject",
+            "FileSize": 395,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/tag-component-element.uss",
+            "Type": "ScriptableObject",
+            "Guid": "1381a3f8a295d064cb333eb13cf629c4",
+            "AssetType": "ScriptableObject",
+            "FileSize": 78,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Inspector/unsupported-inspector.uss",
+            "Type": "ScriptableObject",
+            "Guid": "6586ddbe77e9c4fd88e0bc5295c77978",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1275,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-content.uss",
+            "Type": "ScriptableObject",
+            "Guid": "3f3d1b4e73dde4547b53766f4dcf1dfb",
+            "AssetType": "ScriptableObject",
+            "FileSize": 398,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-content_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "20c67d273ea5bff41869f1dd152fb857",
+            "AssetType": "ScriptableObject",
+            "FileSize": 69,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-content_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d235819d2a497814787d33656f12ef78",
+            "AssetType": "ScriptableObject",
+            "FileSize": 69,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-details-component.uss",
+            "Type": "ScriptableObject",
+            "Guid": "2701bd7b33e659648b7242babb587805",
+            "AssetType": "ScriptableObject",
+            "FileSize": 999,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-details-component_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "4b4c97ba82761744294a08e81be8ecf8",
+            "AssetType": "ScriptableObject",
+            "FileSize": 526,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-details-component_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "c24788d5231931a41a70414b8fd9d512",
+            "AssetType": "ScriptableObject",
+            "FileSize": 529,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-details-entity.uss",
+            "Type": "ScriptableObject",
+            "Guid": "2e1c20bedd3ba3f41a09bf51f4353fda",
+            "AssetType": "ScriptableObject",
+            "FileSize": 984,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-details-entity_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "64430018b5a92b04599c1bda0cb51284",
+            "AssetType": "ScriptableObject",
+            "FileSize": 505,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-details-entity_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "01e4f0658f88ef341af7d931204f0620",
+            "AssetType": "ScriptableObject",
+            "FileSize": 508,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-details.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d8867d276bc11314eacdfa9c909a317a",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2924,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-details_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "43deda06caa40d04ab77828bf311ddc3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 510,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-details_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "6851231afc70bb643adb830bc70a1f18",
+            "AssetType": "ScriptableObject",
+            "FileSize": 512,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-window.uss",
+            "Type": "ScriptableObject",
+            "Guid": "14fae58bb20342843b282ab7d6cb31c5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2767,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-window_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "b7eda5f8a00d42c4bb5737e50770b92c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1038,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/entities-journaling-window_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "b89df067670920a45b5bf16f0c47f93d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1030,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/search-and-goto-buttons.uss",
+            "Type": "ScriptableObject",
+            "Guid": "c2b7841f777e050469a60b2c943c6e8c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 505,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/search-and-goto-buttons_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d0ba21270cbf0fc448d420b809058427",
+            "AssetType": "ScriptableObject",
+            "FileSize": 277,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Journaling/search-and-goto-buttons_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "7e9458a5589b55843a276a6ea8cb101d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 279,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/PieChart.uss",
+            "Type": "ScriptableObject",
+            "Guid": "012b709a2b0c046f7925f173a44dd165",
+            "AssetType": "ScriptableObject",
+            "FileSize": 544,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Preferences/preferences-setting.uss",
+            "Type": "ScriptableObject",
+            "Guid": "611a835f3155e1a40a99b6bdd832e8eb",
+            "AssetType": "ScriptableObject",
+            "FileSize": 261,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Preferences/preferences-value.uss",
+            "Type": "ScriptableObject",
+            "Guid": "02d5da325d1bfb14d85e46964ce017d9",
+            "AssetType": "ScriptableObject",
+            "FileSize": 335,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Preferences/preferences-window.uss",
+            "Type": "ScriptableObject",
+            "Guid": "17122775bf34c3143af1f3275a8778e0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 282,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-component.uss",
+            "Type": "ScriptableObject",
+            "Guid": "8d9f0ebe6bc0a7e48834f127a776c8fa",
+            "AssetType": "ScriptableObject",
+            "FileSize": 506,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-component_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "bb4107b50d6d2684990d1580786d6cf4",
+            "AssetType": "ScriptableObject",
+            "FileSize": 783,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-component_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "41658340632143e40805230e0a6ec051",
+            "AssetType": "ScriptableObject",
+            "FileSize": 789,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-left-pane.uss",
+            "Type": "ScriptableObject",
+            "Guid": "1adcaa0e42848784196f1b1294a69cb4",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1244,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-left-pane_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "89c89efe4bc899149af74edc6fd3a34e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 636,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-left-pane_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "152996d2a07a6fb49869acb17e2552c6",
+            "AssetType": "ScriptableObject",
+            "FileSize": 657,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-right-pane.uss",
+            "Type": "ScriptableObject",
+            "Guid": "453e059144efd9547a9ec2e72b9233e3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 875,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-right-pane_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "6357d0586ecca704ca627ea73bd76d8c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 194,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-right-pane_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "6d196ab0565f50a48929ba17fb086e2e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 195,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-tree-view-item.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5920aed470f9b1542866184d732fa405",
+            "AssetType": "ScriptableObject",
+            "FileSize": 571,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/memory-profiler-window.uss",
+            "Type": "ScriptableObject",
+            "Guid": "8a76ba5eddd227841a8ab3158c94e62a",
+            "AssetType": "ScriptableObject",
+            "FileSize": 171,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/structural-changes-profiler-tree-view-item.uss",
+            "Type": "ScriptableObject",
+            "Guid": "1d7ecb6d321d0434ab9dc0489ca38e7e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 631,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/structural-changes-profiler-window.uss",
+            "Type": "ScriptableObject",
+            "Guid": "3e6c1f1f46703844e8243d6ee3bb7a51",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1361,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/structural-changes-profiler-window_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "475ebeaf4046674498927c291a5b27bb",
+            "AssetType": "ScriptableObject",
+            "FileSize": 681,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/ProfilerModules/structural-changes-profiler-window_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "c8d1195f1888e294a9dec41756116e87",
+            "AssetType": "ScriptableObject",
+            "FileSize": 703,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Search/search-element-filter-popup.uss",
+            "Type": "ScriptableObject",
+            "Guid": "9956b54219ee54028a47527161197e5c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 693,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Search/search-element.uss",
+            "Type": "ScriptableObject",
+            "Guid": "1def64e41b27246dd88ac310309ee2c2",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2215,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Spinner/spinner.uss",
+            "Type": "ScriptableObject",
+            "Guid": "9ec6aca16be3e6042a0afd9325118ee0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 952,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Spinner/spinner_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "dd517ceef00529a498a4d7b0090e6de8",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1472,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/Spinner/spinner_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "62e01bb374e968e458606b5d90aea6e8",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1486,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/StyleSheets/Extensions/common.uss",
+            "Type": "ScriptableObject",
+            "Guid": "93488387164280342a9e292cdc777dd4",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1279,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/StyleSheets/Extensions/dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "1e038f987753eee408c2ee41f2cb2fbe",
+            "AssetType": "ScriptableObject",
+            "FileSize": 977,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/StyleSheets/Extensions/light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ce35b45632b4a8e46badb98554bdb185",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1175,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/SystemSchedule/system-schedule-header.uss",
+            "Type": "ScriptableObject",
+            "Guid": "3fe93618575659040bc90078a39001bd",
+            "AssetType": "ScriptableObject",
+            "FileSize": 820,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/SystemSchedule/system-schedule-item.uss",
+            "Type": "ScriptableObject",
+            "Guid": "82270f3f01f539a488203989f817aa71",
+            "AssetType": "ScriptableObject",
+            "FileSize": 4189,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/SystemSchedule/system-schedule-toolbar.uss",
+            "Type": "ScriptableObject",
+            "Guid": "dee62a63ee487b847a01471067868f82",
+            "AssetType": "ScriptableObject",
+            "FileSize": 183,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/SystemSchedule/system-schedule.uss",
+            "Type": "ScriptableObject",
+            "Guid": "6ed7c6794a538a84abd2b2fa49d3e3b7",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1997,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/SystemSchedule/system-schedule_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "6c380e57506b7b543b44c4c4f0696b52",
+            "AssetType": "ScriptableObject",
+            "FileSize": 388,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uss/SystemSchedule/system-schedule_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "85e0797299719ba418a656ea1356c917",
+            "AssetType": "ScriptableObject",
+            "FileSize": 388,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ActiveBuildConfiguration/active-build-config-dropdown.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "2aee882fa464e354c8c4bb781c352734",
+            "AssetType": "ScriptableObject",
+            "FileSize": 405,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ActiveBuildConfiguration/active-build-config-popup-item.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "3b842a7698993f44696a1fed88f8a6e8",
+            "AssetType": "ScriptableObject",
+            "FileSize": 232,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ActiveBuildConfiguration/active-build-config-popup.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "a256f935985ba4244bb7e61b54f80886",
+            "AssetType": "ScriptableObject",
+            "FileSize": 741,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ActiveBuildConfiguration/active-build-config-window-item.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "89eeeaf40706c90439db691799acbf32",
+            "AssetType": "ScriptableObject",
+            "FileSize": 307,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ActiveBuildConfiguration/active-build-config-window.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "0dfc372e08d9df24f904a30fc0737ca7",
+            "AssetType": "ScriptableObject",
+            "FileSize": 669,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ActiveBuildConfiguration/search-field.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "94c6f87504b414e4686e08b80677b316",
+            "AssetType": "ScriptableObject",
+            "FileSize": 254,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Common/centered-message-element.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "28abd7fca35dc9649ba32503ab3d7de0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 404,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Common/component-view.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "df52dd2d928bbe9478dd70f1fe97708b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 547,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Common/entity-view.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "f55339b34a745864f819827392d76cf9",
+            "AssetType": "ScriptableObject",
+            "FileSize": 530,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Common/foldout-with-action-button.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d56caba5b986c91468be3eb0718810f0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 795,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Common/foldout-without-action-button.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "9f27b10bb0c8bec40bdb50ac27f13fec",
+            "AssetType": "ScriptableObject",
+            "FileSize": 500,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Common/system-dependency-view.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "5b75c41fd0a85e145808ae042992c430",
+            "AssetType": "ScriptableObject",
+            "FileSize": 438,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Common/system-list-view.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "765b23db7bca95e4a946ee9b40a0b5e3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 223,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Components/component-type-view.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "14ebda7d703f18146a748aafa720b642",
+            "AssetType": "ScriptableObject",
+            "FileSize": 292,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Components/components-window.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "58c2254808dd3294996f2326ef9922bd",
+            "AssetType": "ScriptableObject",
+            "FileSize": 678,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Content/component-attribute.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "34f502b0111edaa44a67ff2ec882547a",
+            "AssetType": "ScriptableObject",
+            "FileSize": 330,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Content/entity-query-header.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "715d6444faf7bc147b32dac7f89e0a89",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1405,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Controls/foldout-field.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "b4bfee0042b42774d9beb8ca6be700f2",
+            "AssetType": "ScriptableObject",
+            "FileSize": 419,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/DebugWindows/system-debug-window.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "9e2243c1c62fe0c40a2e79f6321550a7",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2128,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Hierarchy/hierarchy-item.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d2cc86688abc2674094ef5bdf49bab39",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1014,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Hierarchy/hierarchy-loading.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "832a2d066e4130a488aa14d5c53f3bf0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 540,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Hierarchy/hierarchy-prefab-stage.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "bdf9e0a026904203a8200dee350e991b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 646,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Hierarchy/hierarchy-toolbar.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "6d18dda165e754a4db5c73c3aaa6abd1",
+            "AssetType": "ScriptableObject",
+            "FileSize": 318,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Inspector/component-header.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "7053bd64e67cd7940bac4371fa879944",
+            "AssetType": "ScriptableObject",
+            "FileSize": 92,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Inspector/entity-field.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "161622b1f0032aa42b050b2b3c2444aa",
+            "AssetType": "ScriptableObject",
+            "FileSize": 155,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Inspector/entity-header.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "676a4a070e5060443b5bba60647d799f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1163,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Inspector/entity-inspector-aspects-tab.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "431cdb2845ac371498eae54e83e5c090",
+            "AssetType": "ScriptableObject",
+            "FileSize": 562,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Inspector/entity-inspector-components-tab.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "9c60efcd8dd305d42ac62bc63a3eedd3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 523,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Inspector/entity-inspector-relationships-tab.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d2a58434d47e03f4f9c4404a950ab972",
+            "AssetType": "ScriptableObject",
+            "FileSize": 253,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Inspector/tag-component-element.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "076117f3174c68647b52834de6c1db9c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 261,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Inspector/unsupported-inspector.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "754e95f09b5194d458bbc3e78cdb1753",
+            "AssetType": "ScriptableObject",
+            "FileSize": 942,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Journaling/entities-journaling-content.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "35fc4834e737315489072081aa13b1f0",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1380,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Journaling/entities-journaling-details-component.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "a2c46eda94918c84aa5f9346e863ac1e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 474,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Journaling/entities-journaling-details-entity.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "c93e6949131ccc54392693a162588d3a",
+            "AssetType": "ScriptableObject",
+            "FileSize": 462,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Journaling/entities-journaling-details.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "c7410309e16e4e8449cebdfdc1f6f7d9",
+            "AssetType": "ScriptableObject",
+            "FileSize": 7798,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Journaling/entities-journaling-window.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "356dbc3ec7bbaaa49aa5504112db4275",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2641,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Journaling/search-and-goto-buttons.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "ec9df4b6e98765f4890163614e54c7c5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 283,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Preferences/preferences-setting.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "133783250ca3922488edf24b4373295f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 284,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Preferences/preferences-value.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "e1dce15f1e253654ea8f8038735c2887",
+            "AssetType": "ScriptableObject",
+            "FileSize": 225,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Preferences/preferences-window.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "c48fb466d94d23e41bed137e8c7afa61",
+            "AssetType": "ScriptableObject",
+            "FileSize": 349,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ProfilerModules/memory-profiler-component.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "bce0c4a219a59fd4eaa230c2827bccf7",
+            "AssetType": "ScriptableObject",
+            "FileSize": 383,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ProfilerModules/memory-profiler-left-pane.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "91ad9f19a65c12d48b42ae13f572beb2",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1048,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ProfilerModules/memory-profiler-right-pane.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "e4f61c5c08ed0a64abf1c82540395b6b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1900,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ProfilerModules/memory-profiler-tree-view-item.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "9824d616b890aa14d9676ba302f09494",
+            "AssetType": "ScriptableObject",
+            "FileSize": 481,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ProfilerModules/memory-profiler-window.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "002f0a5984c36ff4087620bbe09f6e9f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 435,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ProfilerModules/structural-changes-profiler-tree-view-item.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "7a1dffa10293acb40a91226662cbd9c1",
+            "AssetType": "ScriptableObject",
+            "FileSize": 529,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/ProfilerModules/structural-changes-profiler-window.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "ac753f79dc7a7b74289f1b8d9f017489",
+            "AssetType": "ScriptableObject",
+            "FileSize": 994,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Search/search-element-filter-popup.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "7d859cb5124b04934bdaf787dad0c4aa",
+            "AssetType": "ScriptableObject",
+            "FileSize": 276,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/Search/search-element.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d98ebc488c5d547e98fb17d68249296b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1373,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/SystemSchedule/system-schedule-header.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "9ab2c777e00be3e4c96541b1fd7d6648",
+            "AssetType": "ScriptableObject",
+            "FileSize": 870,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/SystemSchedule/system-schedule-item.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "e5977a6cc6b5b4c4bbd21eb12804a729",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1654,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Editor Default Resources/uxml/SystemSchedule/system-schedule-toolbar.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "4e54ea1415d54174689bd05d729bee16",
+            "AssetType": "ScriptableObject",
+            "FileSize": 334,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Build/StyleSheets/dots-settings-window.uss",
+            "Type": "ScriptableObject",
+            "Guid": "3ddd7cf3fb5e4309888c6d8c5363ffd8",
+            "AssetType": "ScriptableObject",
+            "FileSize": 739,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Editor/ContentProvider/Selection/uss/content-not-ready.uss",
+            "Type": "ScriptableObject",
+            "Guid": "b37077129a23f414e82574f53470acf3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1455,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Editor/ContentProvider/Selection/uss/content-not-ready_dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "7b695be4229afa04ebef1356fc4f9df2",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1871,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Editor/ContentProvider/Selection/uss/content-not-ready_light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "a79b512b745df384f9d5a653adc65863",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1883,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Entities.Editor/ContentProvider/Selection/uxml/content-not-ready.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "0aae23974f2848c43b09ef055de1ae1c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 412,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Scenes.Editor/ClearEntitiesCacheWindow/ClearEntitiesCacheWindow.uss",
+            "Type": "ScriptableObject",
+            "Guid": "893506d1a73aec94d83cf0805016fe77",
+            "AssetType": "ScriptableObject",
+            "FileSize": 968,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.entities/Unity.Scenes.Editor/ClearEntitiesCacheWindow/ClearEntitiesCacheWindow.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "727f7442d06b3bf4ebc57e9e4e85ca35",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1018,
+            "LastModified": "2025-10-02T16:26:44.8070000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/StyleSheets/PlatformSupportVisualCommon.uss",
+            "Type": "ScriptableObject",
+            "Guid": "8dfdbd3e458f56844b5524e2175d8ca1",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1136,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/StyleSheets/PlatformSupportVisualDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "85d7db48c22668e488e23d32d62dc375",
+            "AssetType": "ScriptableObject",
+            "FileSize": 178,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/StyleSheets/PlatformSupportVisualLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "bb40ae15550bc0d4da476860ada8bc46",
+            "AssetType": "ScriptableObject",
+            "FileSize": 179,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/StyleSheets/ServicesProjectSettingsCommon.uss",
+            "Type": "ScriptableObject",
+            "Guid": "2435e8171140b76409f69db86db0af41",
+            "AssetType": "ScriptableObject",
+            "FileSize": 10531,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/StyleSheets/ServicesProjectSettingsDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "626c73531ebd8114e8ec291868c11324",
+            "AssetType": "ScriptableObject",
+            "FileSize": 3754,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/StyleSheets/ServicesProjectSettingsLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "b84a2474ed59eb343b6599f94684c6e9",
+            "AssetType": "ScriptableObject",
+            "FileSize": 3889,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/UXML/AnalyticsWarning.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "e19dce4e8a4c4ef58fe19536b828cc63",
+            "AssetType": "ScriptableObject",
+            "FileSize": 653,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/UXML/CatalogEditor.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "272fc8157ba0fdf4a97aac7ba51e3c74",
+            "AssetType": "ScriptableObject",
+            "FileSize": 534,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/UXML/GooglePlayConfiguration.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "2551410ce2168804cb697138fe0062ec",
+            "AssetType": "ScriptableObject",
+            "FileSize": 4257,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/UXML/Label.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "1fc8186e4165842fc814f3d67c2c3d84",
+            "AssetType": "ScriptableObject",
+            "FileSize": 188,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/UXML/PlatformSupportVisual.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "c3366f3483b39407d88aaf60004a65f4",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1143,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.purchasing/Editor/ServiceProjectSettings/UI/UXML/PurchasingProjectSettings.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "7bcc2360f5525c542aed6bffb5021271",
+            "AssetType": "ScriptableObject",
+            "FileSize": 92,
+            "LastModified": "2025-10-14T11:44:32.6120000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/BindingPanelRowTemplate.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "449c8e5ca27af8e4a9db710c8be5e4df",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1285,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/CompositeBindingPropertiesEditor.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "2bd2d0548382d58489e8c2999daf4139",
+            "AssetType": "ScriptableObject",
+            "FileSize": 654,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/CompositePartBindingPropertiesEditor.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "acfae125fa5d7904987a696b3993d432",
+            "AssetType": "ScriptableObject",
+            "FileSize": 818,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/ControlSchemeEditor.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "303ef5b13740f9a4db252c50122d2c62",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1672,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/InputActionMapsTreeViewItem.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "3fa44185ed614414ebab354dfe5a06b6",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1817,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/InputActionsEditor.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "c662e0d3cc3c4f948808f9847f715ef2",
+            "AssetType": "ScriptableObject",
+            "FileSize": 5734,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/InputActionsEditorStyles.uss",
+            "Type": "ScriptableObject",
+            "Guid": "7dac9c49a90bca4499371d0adc9b617b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 4424,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/InputActionsProjectSettings.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "75a33987e21d5ac449deecea3dcd864f",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1706,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/InputActionsTreeViewItem.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "452df07a8ad0c944c879a484d5890e61",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1966,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/InputAssetEditorDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "cca9ce0c8554d5244930f14c21489ac1",
+            "AssetType": "ScriptableObject",
+            "FileSize": 135,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/InputAssetEditorLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5e7024ed0fd03984289320d04507bc0c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 127,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/PackageResources/NameAndParameterListViewItemTemplate.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "9cbd73d51dc491b4888055ae65cd9545",
+            "AssetType": "ScriptableObject",
+            "FileSize": 822,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.inputsystem/InputSystem/Plugins/PlayerInput/DefaultInputActions.inputactions",
+            "Type": "ScriptableObject",
+            "Guid": "ca9f5fa95ffab41fb9a615ab714db018",
+            "AssetType": "ScriptableObject",
+            "FileSize": 32330,
+            "LastModified": "2025-08-06T02:16:34.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.multiplayer.center/Editor/MultiplayerCenterWindow/UI/dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "1984cd07fe96417f9e88f5771f6b4b32",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1101,
+            "LastModified": "2025-09-17T08:58:10.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.multiplayer.center/Editor/MultiplayerCenterWindow/UI/light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "f1ac2efb1bcd4dfd95dc196ed3c11367",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1115,
+            "LastModified": "2025-09-17T08:58:10.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.multiplayer.center/Editor/MultiplayerCenterWindow/UI/MultiplayerCenterWindow.uss",
+            "Type": "ScriptableObject",
+            "Guid": "bac00d6e07f0b4305bb395363c89d92b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 12716,
+            "LastModified": "2025-09-17T08:58:10.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.postprocessing/PostProcessing/PostProcessResources.asset",
+            "Type": "ScriptableObject",
+            "Guid": "d82512f9c8e5d4a4d938b575d47f88d4",
+            "AssetType": "ScriptableObject",
+            "FileSize": 8888,
+            "LastModified": "2025-09-19T06:23:33.9640000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/LookDev/DisplayWindow-PersonalSkin.uss",
+            "Type": "ScriptableObject",
+            "Guid": "7c95237923780ad4683f959f53629b60",
+            "AssetType": "ScriptableObject",
+            "FileSize": 986,
+            "LastModified": "2025-09-17T08:58:16.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/LookDev/DisplayWindow.uss",
+            "Type": "ScriptableObject",
+            "Guid": "e78887bb3654fde48bc3bc31beb7c7e4",
+            "AssetType": "ScriptableObject",
+            "FileSize": 5918,
+            "LastModified": "2025-09-17T08:58:16.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/LookDev/Inspectors.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ac4993c3b6160894d896820a9648ff4d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 412,
+            "LastModified": "2025-09-17T08:58:18.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/StyleSheets/DefaultVolumeProfileEditor.uss",
+            "Type": "ScriptableObject",
+            "Guid": "83a028a39a272694784e78db21cff69b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 445,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/StyleSheets/HeaderFoldout.uss",
+            "Type": "ScriptableObject",
+            "Guid": "20e417e1ec9645d44ad61671212c15f7",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1846,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/StyleSheets/HeaderFoldoutDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "2e54b39aedaf3ae4a866b97489135739",
+            "AssetType": "ScriptableObject",
+            "FileSize": 99,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/StyleSheets/HeaderFoldoutLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "dc364c42ee0194a4cace7e9e86e0b9dc",
+            "AssetType": "ScriptableObject",
+            "FileSize": 99,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/StyleSheets/HelpButton.uss",
+            "Type": "ScriptableObject",
+            "Guid": "4b3af3115f6d00b41a5655ef26d54683",
+            "AssetType": "ScriptableObject",
+            "FileSize": 471,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/StyleSheets/RenderGraphViewer.uss",
+            "Type": "ScriptableObject",
+            "Guid": "cf3ac3446e9c4333b9d16ece5c21317d",
+            "AssetType": "ScriptableObject",
+            "FileSize": 14401,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/StyleSheets/RenderGraphViewerDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "a74acab1c36b3344e95480f4d42afd55",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2961,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/StyleSheets/RenderGraphViewerLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "8bf46326c944b984c9084f09aef9b2e2",
+            "AssetType": "ScriptableObject",
+            "FileSize": 3124,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/StyleSheets/RenderPipelineGlobalSettings.uss",
+            "Type": "ScriptableObject",
+            "Guid": "925e22fd08389624bbc859935ca73339",
+            "AssetType": "ScriptableObject",
+            "FileSize": 450,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/StyleSheets/VolumeEditor.uss",
+            "Type": "ScriptableObject",
+            "Guid": "cd410e8cdc0119a46a753f48e79c8d07",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1596,
+            "LastModified": "2025-09-17T08:58:20.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/UXML/DefaultVolumeProfileEditor.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d0b4821bb729cd24fbbe0af5feaa73ab",
+            "AssetType": "ScriptableObject",
+            "FileSize": 496,
+            "LastModified": "2025-09-17T08:58:22.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/UXML/RenderGraphViewer.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "00387952e4f43ec45a9084e579a44e4e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2454,
+            "LastModified": "2025-09-17T08:58:22.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/UXML/RenderPipelineGlobalSettings.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d8d5beb40e5c9f94f95d805868251329",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1224,
+            "LastModified": "2025-09-17T08:58:22.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Editor/UXML/VolumeEditor.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d367e3b92ff05ac4eb99950f44cc0333",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2523,
+            "LastModified": "2025-09-17T08:58:22.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.render-pipelines.core/Runtime/RenderPipelineResources/Default Lens Flare (SRP).asset",
+            "Type": "ScriptableObject",
+            "Guid": "bd7eaf3bd49c39f4cb77bd809459aa72",
+            "AssetType": "ScriptableObject",
+            "FileSize": 33945,
+            "LastModified": "2025-09-17T08:58:32.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/EditorGameService/USS/ServicesProjectSettingsCommon.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5b82a86adaaeb4c0786b09f4f5b9065a",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1784,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/EditorGameService/USS/ServicesProjectSettingsDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "8d3c945b112744efda5b766100f90895",
+            "AssetType": "ScriptableObject",
+            "FileSize": 95,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/EditorGameService/USS/ServicesProjectSettingsLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ebe4630c4fee24fa99c02c62897bfcb9",
+            "AssetType": "ScriptableObject",
+            "FileSize": 96,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/Environments/UI/Assets/EnvironmentDropdown.uss",
+            "Type": "ScriptableObject",
+            "Guid": "42a0b66a9be7b4cf589ea1f73e59d3a3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 227,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/Environments/UI/Assets/EnvironmentDropdown.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "25817525973c443a8af59ddd3933b035",
+            "AssetType": "ScriptableObject",
+            "FileSize": 646,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/Environments/UI/Assets/EnvironmentSelectorUi.uss",
+            "Type": "ScriptableObject",
+            "Guid": "70a510401d114452a9dc4a53f35f6bfc",
+            "AssetType": "ScriptableObject",
+            "FileSize": 460,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/Environments/UI/Assets/EnvironmentSelectorUi.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "ad33ee81edf99439497a9945fef1a626",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1900,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/Environments/UI/Assets/EnvironmentView.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "c7b962ececa7141c3b769f4ffa78ac1c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 195,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/Environments/UI/Assets/EnvironmentView_style.uss",
+            "Type": "ScriptableObject",
+            "Guid": "65ea1516d975048d59571ca8c47688a9",
+            "AssetType": "ScriptableObject",
+            "FileSize": 135,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/ProjectBindRedirect/USS/ProjectBindRedirectPopupCommon.uss",
+            "Type": "ScriptableObject",
+            "Guid": "990ecbe74fdfe264c984fd5827e08cfe",
+            "AssetType": "ScriptableObject",
+            "FileSize": 671,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/ProjectBindRedirect/USS/ProjectBindRedirectPopupDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "4b167fb836933974a9ab0b380bec5b98",
+            "AssetType": "ScriptableObject",
+            "FileSize": 52,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/ProjectBindRedirect/USS/ProjectBindRedirectPopupLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "7c83fba134eed5642bd60711033a2758",
+            "AssetType": "ScriptableObject",
+            "FileSize": 112,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/ProjectBindRedirect/USS/ProjectBindRedirectProjectSettings.uss",
+            "Type": "ScriptableObject",
+            "Guid": "859a95323373144b7a6b438edfc6ee56",
+            "AssetType": "ScriptableObject",
+            "FileSize": 547,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/ProjectBindRedirect/UXML/ProjectBindRedirectContent.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "c3ea97ea17d794d399434834be23ac62",
+            "AssetType": "ScriptableObject",
+            "FileSize": 786,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/ProjectBindRedirect/UXML/ProjectBindRedirectPopup.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "6d24c9b8f12524834ab8c048bcc93f12",
+            "AssetType": "ScriptableObject",
+            "FileSize": 709,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/ProjectBindRedirect/UXML/ProjectBindRedirectProjectSettings.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "1979fd426439544d792c9d2cb653aaa3",
+            "AssetType": "ScriptableObject",
+            "FileSize": 593,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/USS/PlatformSupportVisualCommon.uss",
+            "Type": "ScriptableObject",
+            "Guid": "9adf428799cec421caeecd93d938c500",
+            "AssetType": "ScriptableObject",
+            "FileSize": 441,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/USS/PlatformSupportVisualDark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "d4f6a83cd2a8c40ce97bda4199084fbc",
+            "AssetType": "ScriptableObject",
+            "FileSize": 97,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/USS/PlatformSupportVisualLight.uss",
+            "Type": "ScriptableObject",
+            "Guid": "c56cb2f61c79e4427b47e2dedd499d46",
+            "AssetType": "ScriptableObject",
+            "FileSize": 94,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/USS/SliderToggleCommon.uss",
+            "Type": "ScriptableObject",
+            "Guid": "1a303738ae14b4b0c8a513889c711eea",
+            "AssetType": "ScriptableObject",
+            "FileSize": 503,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/AccessTokenError.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "9bbe9fb6e9537684cac89a4e82cf3d63",
+            "AssetType": "ScriptableObject",
+            "FileSize": 448,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/ExceptionVisual.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "9021ecdbba26e420baa115f09cb56091",
+            "AssetType": "ScriptableObject",
+            "FileSize": 188,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/LoggedOut.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "0e9515598d3bf405bb8311f6d4528e00",
+            "AssetType": "ScriptableObject",
+            "FileSize": 505,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/Offline.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "5f53bfe242dd84ea1975e05f5a30c390",
+            "AssetType": "ScriptableObject",
+            "FileSize": 501,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/PlatformSupportVisual.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "3ec1058b5f6b14ce3ad4b976c291d834",
+            "AssetType": "ScriptableObject",
+            "FileSize": 249,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/PleaseWait.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "b7ecf3a3ec1c94010a20351870519493",
+            "AssetType": "ScriptableObject",
+            "FileSize": 279,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/ProjectSettingsCommonHeader.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d93845e99ca3b42d0aecd4ab938a1342",
+            "AssetType": "ScriptableObject",
+            "FileSize": 776,
+            "LastModified": "2024-11-21T21:13:36.0000000-05:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.rlabrecque.steamworks.net/Editor/Settings/EditorSteamworksNETSettingsStyleSheet.uss",
+            "Type": "ScriptableObject",
+            "Guid": "fcba6a16ac8056e418e5f791a8bbb67c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 410,
+            "LastModified": "2025-10-20T06:17:27.0663341-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.timeline/Editor/StyleSheets/ClipInspector.uss",
+            "Type": "ScriptableObject",
+            "Guid": "eded20d65a4c8a7489e4df3772953e51",
+            "AssetType": "ScriptableObject",
+            "FileSize": 489,
+            "LastModified": "2025-08-04T15:17:21.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.timeline/Editor/StyleSheets/Extensions/common.uss",
+            "Type": "ScriptableObject",
+            "Guid": "ada555936059fa149bb48537842ee230",
+            "AssetType": "ScriptableObject",
+            "FileSize": 21484,
+            "LastModified": "2025-08-04T15:17:21.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.timeline/Editor/StyleSheets/Extensions/dark.uss",
+            "Type": "ScriptableObject",
+            "Guid": "5393cdb70614ab24f94f78bfcf5d1455",
+            "AssetType": "ScriptableObject",
+            "FileSize": 9472,
+            "LastModified": "2025-08-04T15:17:21.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.timeline/Editor/StyleSheets/Extensions/light.uss",
+            "Type": "ScriptableObject",
+            "Guid": "e98085123be873947970c4f10099a39a",
+            "AssetType": "ScriptableObject",
+            "FileSize": 9386,
+            "LastModified": "2025-08-04T15:17:21.0000000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Layouts/DownloadPlasticExeDialog.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "3da0c7cf51d8e4b40a5af55a4ca63e4e",
+            "AssetType": "ScriptableObject",
+            "FileSize": 412,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Layouts/OrganizationPanel.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "b6420407edc75d04f89d57eb2fcc314b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1365,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Layouts/ProgressControlsForDialogs.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "feccc3dff22272744a267246ae760a73",
+            "AssetType": "ScriptableObject",
+            "FileSize": 283,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Layouts/SignInPanel.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "18b097dd2d10fb442a321314f4541401",
+            "AssetType": "ScriptableObject",
+            "FileSize": 720,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Layouts/SignInWithEmailPanel.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "0229db2477529f049aa3683cfba9d23b",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1136,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Layouts/TabView.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "d0a8e201e79e1f441bdf295aef957220",
+            "AssetType": "ScriptableObject",
+            "FileSize": 146,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Layouts/TeamEditionConfigurationWindow.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "26d3a583da6079145a52a8bef4beb6c5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 2000,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Layouts/WaitingSignInPanel.uxml",
+            "Type": "ScriptableObject",
+            "Guid": "913c727eecab25c489fa2adbad9c9ab8",
+            "AssetType": "ScriptableObject",
+            "FileSize": 426,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Styles/Base.uss",
+            "Type": "ScriptableObject",
+            "Guid": "bdf4f3d05dd541fa829ffa06bfbc8d0c",
+            "AssetType": "ScriptableObject",
+            "FileSize": 1762,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Styles/DownloadPlasticExeDialog.uss",
+            "Type": "ScriptableObject",
+            "Guid": "3073089003718474ab284d743790fbb2",
+            "AssetType": "ScriptableObject",
+            "FileSize": 497,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Styles/OrganizationPanel.uss",
+            "Type": "ScriptableObject",
+            "Guid": "642639f75f2dfbd4ab01e6708b58f304",
+            "AssetType": "ScriptableObject",
+            "FileSize": 406,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Styles/ProgressControlsForDialogs.uss",
+            "Type": "ScriptableObject",
+            "Guid": "e05b9be8556f5ae41aa78140b83146d5",
+            "AssetType": "ScriptableObject",
+            "FileSize": 51,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Styles/SignInPanel.uss",
+            "Type": "ScriptableObject",
+            "Guid": "c673e4e20ea67ab40a4661592f51aa99",
+            "AssetType": "ScriptableObject",
+            "FileSize": 322,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Styles/SignInWithEmailPanel.uss",
+            "Type": "ScriptableObject",
+            "Guid": "b37675bc656348c429a6c56b2eda1345",
+            "AssetType": "ScriptableObject",
+            "FileSize": 452,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Styles/TabView.uss",
+            "Type": "ScriptableObject",
+            "Guid": "88da5407899aaaf448a40c85888108ae",
+            "AssetType": "ScriptableObject",
+            "FileSize": 497,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Styles/TeamEditionConfigurationWindow.uss",
+            "Type": "ScriptableObject",
+            "Guid": "1cd69f37df825af4385cd9efe745fc30",
+            "AssetType": "ScriptableObject",
+            "FileSize": 351,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        },
+        {
+            "Path": "Packages/com.unity.collab-proxy/Editor/Assets/Styles/WaitingSignInPanel.uss",
+            "Type": "ScriptableObject",
+            "Guid": "90945345530e7174eb4f0575a0bec0bf",
+            "AssetType": "ScriptableObject",
+            "FileSize": 144,
+            "LastModified": "2025-10-09T15:04:06.5660000-04:00",
+            "Tags": []
+        }
+    ]
+}

@@ -1,0 +1,122 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "the-seed"
+version = "0.1.0"
+description = "The Seed - A fractal, multidimensional addressing and retrieval system for infinitely extensible data and narrative storage"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+
+dependencies = [
+    "pydantic>=2.0",
+    "numpy>=1.20",
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-xdist>=3.0",
+    "black>=22.0",
+    "flake8>=4.0",
+    "mypy>=0.950",
+    "ipython>=8.0",
+]
+
+test = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-xdist>=3.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+# Test discovery
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--disable-warnings",
+    "--co",  # Collect only on verbose runs
+]
+
+# Markers for organizing tests
+markers = [
+    "exp01: EXP-01 Address Uniqueness Tests",
+    "exp02: EXP-02 Retrieval Efficiency Tests",
+    "exp03: EXP-03 Dimension Necessity Tests",
+    "exp04: EXP-04 Fractal Scaling Tests",
+    "exp05: EXP-05 Compression/Expansion Tests",
+    "exp06: EXP-06 Entanglement Detection Tests",
+    "exp07: EXP-07 LUCA Bootstrap Tests",
+    "exp08: EXP-08 Warbler Integration Tests",
+    "exp09: EXP-09 Concurrency Tests",
+    "exp10: EXP-10 Narrative Preservation Tests",
+    "math: Mathematical validation tests",
+    "robustness: Robustness and stress tests",
+    "integration: Integration tests",
+    "slow: Slow running tests",
+]
+
+[tool.coverage.run]
+source = ["seed", "scripts"]
+omit = [
+    "*/tests/*",
+    "*/__pycache__/*",
+    "*/site-packages/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*Protocol.*:",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = "seed.engine.*"
+ignore_errors = true

@@ -4,16 +4,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-// Conditional compilation for Steamworks.NET
-#if STEAMWORKS_NET
+// Conditional compilation for Facepunch.Steamworks
+#if FACEPUNCH_STEAMWORKS
 using Steamworks;
+using Steamworks.Data;
 #endif
 
 namespace TWG.Seed.Platform
 {
     /// <summary>
     /// Steam platform bridge implementation
-    /// Integrates Steamworks API with The Seed's Fractal-Chain system
+    /// Integrates Facepunch.Steamworks API with The Seed's Fractal-Chain system
+    ///
+    /// CRITICAL SETUP INSTRUCTIONS:
+    /// 1. This bridge uses Facepunch.Steamworks (official package from Valve)
+    /// 2. Add FACEPUNCH_STEAMWORKS to conditional compilation symbols:
+    ///    - In your .csproj file: <DefineConstants>FACEPUNCH_STEAMWORKS</DefineConstants>
+    ///    - Or in Unity: Edit > Project Settings > Player > Scripting Define Symbols
+    ///      Add: FACEPUNCH_STEAMWORKS
+    /// 3. Install Facepunch.Steamworks from NuGet (already done)
+    /// 4. Call SteamClient.RunCallbacks() every frame in your game loop!
+    ///    Example:
+    ///    void Update() {
+    ///        #if FACEPUNCH_STEAMWORKS
+    ///        SteamClient.RunCallbacks();
+    ///        #endif
+    ///    }
     ///
     /// DEVELOPMENT NOTES:
     /// - Use Steam App ID 480 (Space War) for testing without a real App ID
@@ -30,10 +46,9 @@ namespace TWG.Seed.Platform
         public event Action<PlatformEvent> OnPlatformEvent;
         public event Action<NarrativeEvent> OnNarrativeEvent;
 
-#if STEAMWORKS_NET
-        private Steamworks.Callback<Steamworks.UserStatsReceived_t> userStatsCallback;
-        private Steamworks.Callback<Steamworks.UserAchievementStored_t> achievementCallback;
-        private Steamworks.Callback<Steamworks.GameOverlayActivated_t> overlayCallback;
+#if FACEPUNCH_STEAMWORKS
+        // Facepunch.Steamworks uses async callbacks differently
+        private bool isCallbacksSetup = false;
 #endif
 
         // Mock data for when Steam is not available
@@ -57,7 +72,7 @@ namespace TWG.Seed.Platform
         {
             try
             {
-#if STEAMWORKS_NET
+#if FACEPUNCH_STEAMWORKS
                 // Check if Steam is available
                 if (!IsSteamClientRunning())
                 {
@@ -67,26 +82,36 @@ namespace TWG.Seed.Platform
                     return true;
                 }
 
-                // Initialize Steamworks
-                if (!Steamworks.SteamAPI.Init())
+                // Initialize Facepunch.Steamworks
+                // Facepunch.Steamworks.SteamClient.Init() handles initialization
+                try
                 {
-                    Debug.LogWarning("SteamAPI initialization failed. Steam bridge will operate in mock mode.");
+                    // Initialize with the AppID (use 480 for Space War testing)
+                    var steamClient = SteamClient.Init(480);
+                    if (!steamClient)
+                    {
+                        Debug.LogWarning("SteamClient initialization failed. Steam bridge will operate in mock mode.");
+                        IsSteamAvailable = false;
+                        IsInitialized = true;
+                        return true;
+                    }
+                }
+                catch (Exception initEx)
+                {
+                    Debug.LogWarning($"SteamClient.Init() failed: {initEx.Message}. Operating in mock mode.");
                     IsSteamAvailable = false;
-                    IsInitialized = true; // Still mark as initialized for graceful degradation
+                    IsInitialized = true;
                     return true;
                 }
 
-                // Setup callbacks
-                SetupCallbacks();
-
                 IsSteamAvailable = true;
                 IsInitialized = true;
-                Debug.Log("Steam bridge initialized successfully with real Steam API");
+                Debug.Log("Steam bridge initialized successfully with Facepunch Steamworks API");
 
                 // Sync initial data
                 await SyncSteamDataToSeed();
 #else
-                Debug.LogWarning("Steamworks.NET not available. Steam bridge will operate in mock mode.");
+                Debug.LogWarning("Facepunch.Steamworks not available. Steam bridge will operate in mock mode.");
                 IsSteamAvailable = false;
                 IsInitialized = true;
 #endif
@@ -102,13 +127,13 @@ namespace TWG.Seed.Platform
             }
         }
 
-#if STEAMWORKS_NET
+#if FACEPUNCH_STEAMWORKS
         private bool IsSteamClientRunning()
         {
             try
             {
                 // Check if Steam process is running
-                var processes = System.Diagnostics.Process.GetProcessesByName("Steam");
+                var processes = System.Diagnostics.Process.GetProcessesByName("steam");
                 return processes.Length > 0;
             }
             catch (Exception ex)
@@ -121,47 +146,69 @@ namespace TWG.Seed.Platform
 
         void SetupCallbacks()
         {
-#if STEAMWORKS_NET
+#if FACEPUNCH_STEAMWORKS
             if (!IsSteamAvailable)
             {
                 Debug.Log("Skipping Steam callback setup - Steam not available");
                 return;
             }
 
-            userStatsCallback = Steamworks.Callback<Steamworks.UserStatsReceived_t>.Create(OnUserStatsReceived);
-            achievementCallback = Steamworks.Callback<Steamworks.UserAchievementStored_t>.Create(OnAchievementStored);
-            overlayCallback = Steamworks.Callback<Steamworks.GameOverlayActivated_t>.Create(OnOverlayActivated);
+            // Facepunch.Steamworks handles callbacks automatically
+            // No manual setup needed - callbacks are processed in SteamClient.RunCallbacks()
+            // which should be called every frame in your update loop
+            isCallbacksSetup = true;
+            Debug.Log("Facepunch.Steamworks callbacks ready (auto-managed by SteamClient)");
 #else
-            Debug.Log("Steamworks.NET not available - skipping callback setup");
+            Debug.Log("Facepunch.Steamworks not available - skipping callback setup");
 #endif
         }
 
-#if STEAMWORKS_NET
-        void OnUserStatsReceived(Steamworks.UserStatsReceived_t callback)
+#if FACEPUNCH_STEAMWORKS
+        // Note: In Facepunch.Steamworks, callbacks are automatically processed
+        // Call SteamClient.RunCallbacks() in your game's Update loop
+        // Example in your game manager:
+        // void Update() { SteamClient.RunCallbacks(); }
+
+        private async Task HandleUserStatsReceived()
         {
             if (!IsSteamAvailable) return;
 
-            if (callback.m_nGameID == Steamworks.SteamUtils.GetAppID())
+            // Sync whenever user stats are received
+            await SyncSteamDataToSeed();
+        }
+
+        private async Task HandleAchievementStored(string achName)
+        {
+            if (!IsSteamAvailable) return;
+
+            try
             {
-                _ = Task.Run(async () => await SyncSteamDataToSeed());
+                var achievement = new Achievement
+                {
+                    AchievementId = achName,
+                    Name = achName,
+                    Description = string.Empty,
+                    IsUnlocked = true,
+                    UnlockDate = DateTime.UtcNow,
+                    Progress = 100f,
+                    IconUrl = string.Empty,
+                    Points = 0,
+                    Stat7Address = GenerateStat7AddressForAchievement(achName),
+                    AchievementStory = await GenerateAchievementStory(new SteamAchievementData
+                    {
+                        Name = achName,
+                        Description = string.Empty
+                    })
+                };
+                await RegisterAchievementAsNarrative(achievement);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"Failed handling achievement stored callback: {ex.Message}");
             }
         }
 
-        void OnAchievementStored(Steamworks.UserAchievementStored_t callback)
-        {
-            if (!IsSteamAvailable) return;
-
-            _ = Task.Run(async () =>
-            {
-                var achievement = await GetAchievementById(callback.m_nGameProgress);
-                if (achievement != null)
-                {
-                    await RegisterAchievementAsNarrative(achievement);
-                }
-            });
-        }
-
-        void OnOverlayActivated(Steamworks.GameOverlayActivated_t callback)
+        private void HandleOverlayActivated(bool active)
         {
             if (!IsSteamAvailable) return;
 
@@ -171,7 +218,7 @@ namespace TWG.Seed.Platform
                 Timestamp = DateTime.UtcNow,
                 Data = new Dictionary<string, object>
                 {
-                    ["active"] = callback.m_bActive > 0
+                    ["active"] = active
                 }
             });
         }
@@ -188,29 +235,52 @@ namespace TWG.Seed.Platform
                 return mockUserIdentity;
             }
 
-#if STEAMWORKS_NET
-            var steamId = Steamworks.SteamUser.GetSteamID();
-            var personaName = Steamworks.SteamFriends.GetPersonaName();
-
-            return new PlatformUserIdentity
+#if FACEPUNCH_STEAMWORKS
+            try
             {
-                PlatformUserId = steamId.m_SteamID.ToString(),
-                Username = personaName,
-                DisplayName = personaName,
-                AvatarUrl = GetSteamAvatarUrl(steamId.m_SteamID.ToString()),
-                CountryCode = Steamworks.SteamUtils.GetIPCountry(),
-                SessionStart = DateTime.UtcNow,
-                PlatformSpecificData = new Dictionary<string, object>
+                var steamId = SteamClient.SteamId;
+                var personaName = SteamClient.PersonaName;
+
+                return new PlatformUserIdentity
                 {
-                    ["steamId64"] = steamId.m_SteamID,
-                    ["personaState"] = Steamworks.SteamFriends.GetPersonaState().ToString(),
-                    ["isMock"] = false
-                }
-            };
+                    PlatformUserId = steamId.ToString(),
+                    Username = personaName,
+                    DisplayName = personaName,
+                    AvatarUrl = GetSteamAvatarUrl(steamId.ToString()),
+                    CountryCode = await GetCountryCode(),
+                    SessionStart = DateTime.UtcNow,
+                    PlatformSpecificData = new Dictionary<string, object>
+                    {
+                        ["steamId64"] = (ulong)steamId,
+                        ["personaState"] = "Online",
+                        ["isMock"] = false
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"Failed to authenticate user: {ex.Message}");
+                return mockUserIdentity;
+            }
 #else
             return mockUserIdentity;
 #endif
         }
+
+#if FACEPUNCH_STEAMWORKS
+        private async Task<string> GetCountryCode()
+        {
+            try
+            {
+                // Facepunch.Steamworks.SteamUtils.GetIPCountry() returns string directly
+                return SteamUtils.IPCountry ?? "US";
+            }
+            catch
+            {
+                return "US";
+            }
+        }
+#endif
 
         public Task<bool> ValidateSession()
         {
@@ -223,9 +293,16 @@ namespace TWG.Seed.Platform
                 return Task.FromResult(true); // Always valid in mock mode
             }
 
-#if STEAMWORKS_NET
-            var isValid = Steamworks.SteamUser.BLoggedOn();
-            return Task.FromResult(isValid);
+#if FACEPUNCH_STEAMWORKS
+            try
+            {
+                var isValid = SteamClient.IsLoggedOn;
+                return Task.FromResult(isValid);
+            }
+            catch
+            {
+                return Task.FromResult(false);
+            }
 #else
             return Task.FromResult(true);
 #endif
@@ -286,13 +363,15 @@ namespace TWG.Seed.Platform
             };
 
             // Get Steam inventory items
-#if STEAMWORKS_NET
-            var steamInventory = Steamworks.SteamInventory();
-            if (steamInventory != null)
+#if FACEPUNCH_STEAMWORKS
+            try
             {
-                // This would need proper Steam inventory implementation
-                // For now, add some mock items with STAT7 addresses
+                // Facepunch.Steamworks uses SteamInventory API
                 inventory.Items.AddRange(await ConvertSteamItemsToSeedEntities());
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"Failed to get Steam inventory items: {ex.Message}");
             }
 #endif
 
@@ -446,17 +525,24 @@ namespace TWG.Seed.Platform
                 MaxFriends = 250
             };
 
-#if STEAMWORKS_NET
-            // Get Steam friends
-            var friendCount = Steamworks.SteamFriends.GetFriendCount(Steamworks.EFriendFlags.k_EFriendFlagAll);
-            for (int i = 0; i < friendCount; i++)
+#if FACEPUNCH_STEAMWORKS
+            try
             {
-                var steamId = Steamworks.SteamFriends.GetFriendByIndex(i, Steamworks.EFriendFlags.k_EFriendFlagAll);
-                var friend = await ConvertSteamFriendToFriend(steamId);
-                if (friend != null)
+                // Get Steam friends in Facepunch.Steamworks
+                var friendCount = SteamFriends.GetFriendCount(FriendFlags.All);
+                for (int i = 0; i < friendCount; i++)
                 {
-                    friends.Friends.Add(friend);
+                    var steamId = SteamFriends.GetFriendByIndex(i, FriendFlags.All);
+                    var friend = await ConvertSteamFriendToFriend(steamId);
+                    if (friend != null)
+                    {
+                        friends.Friends.Add(friend);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"Failed to get Steam friends: {ex.Message}");
             }
 #endif
 
@@ -508,31 +594,61 @@ namespace TWG.Seed.Platform
                 NarrativeStats = new List<NarrativeStat>()
             };
 
-#if STEAMWORKS_NET
-            // Get Steam stats
-            Steamworks.SteamUserStats.RequestCurrentStats();
-
-            // Example stats - would need proper implementation
-            stats.TotalPlayTime = TimeSpan.FromHours(Steamworks.SteamUserStats.GetStatFloat("total_play_hours"));
-            stats.SessionsPlayed = (int)Steamworks.SteamUserStats.GetStatInt("sessions_played");
-            stats.LastSession = DateTime.UtcNow.AddDays(-Random.Range(1, 30)); // Mock data
-
-            // Add narrative-specific stats
-            stats.NarrativeStats.Add(new NarrativeStat
+#if FACEPUNCH_STEAMWORKS
+            try
             {
-                StatName = "Narratives_Created",
-                Value = Steamworks.SteamUserStats.GetStatFloat("narratives_created"),
-                Stat7Address = GenerateStat7Address("narratives_created"),
-                LastUpdated = DateTime.UtcNow
-            });
+                // In Facepunch.Steamworks, request stats first
+                await SteamUserStats.RequestCurrentStats();
 
-            stats.NarrativeStats.Add(new NarrativeStat
+                // Get Steam stats
+                var totalHours = SteamUserStats.GetStat("total_play_hours");
+                stats.TotalPlayTime = TimeSpan.FromHours(totalHours);
+
+                var sessions = SteamUserStats.GetStat("sessions_played");
+                stats.SessionsPlayed = (int)sessions;
+
+                stats.LastSession = DateTime.UtcNow.AddDays(-UnityEngine.Random.Range(1, 30)); // Placeholder data
+
+                // Add narrative-specific stats
+                var narrativesCreated = SteamUserStats.GetStat("narratives_created");
+                stats.NarrativeStats.Add(new NarrativeStat
+                {
+                    StatName = "Narratives_Created",
+                    Value = narrativesCreated,
+                    Stat7Address = GenerateStat7Address("narratives_created"),
+                    LastUpdated = DateTime.UtcNow
+                });
+
+                var companionsEvolved = SteamUserStats.GetStat("companions_evolved");
+                stats.NarrativeStats.Add(new NarrativeStat
+                {
+                    StatName = "Companions_Evolved",
+                    Value = companionsEvolved,
+                    Stat7Address = GenerateStat7Address("companions_evolved"),
+                    LastUpdated = DateTime.UtcNow
+                });
+            }
+            catch (Exception ex)
             {
-                StatName = "Companions_Evolved",
-                Value = Steamworks.SteamUserStats.GetStatFloat("companions_evolved"),
-                Stat7Address = GenerateStat7Address("companions_evolved"),
-                LastUpdated = DateTime.UtcNow
-            });
+                Debug.LogWarning($"Failed to get Steam stats: {ex.Message}. Using defaults.");
+                stats.TotalPlayTime = TimeSpan.FromHours(12.5);
+                stats.SessionsPlayed = 8;
+                stats.LastSession = DateTime.UtcNow.AddHours(-2);
+                stats.NarrativeStats.Add(new NarrativeStat
+                {
+                    StatName = "Narratives_Created",
+                    Value = 5,
+                    Stat7Address = GenerateStat7Address("narratives_created"),
+                    LastUpdated = DateTime.UtcNow
+                });
+                stats.NarrativeStats.Add(new NarrativeStat
+                {
+                    StatName = "Companions_Evolved",
+                    Value = 2,
+                    Stat7Address = GenerateStat7Address("companions_evolved"),
+                    LastUpdated = DateTime.UtcNow
+                });
+            }
 #else
             // Mock stats when Steamworks not available
             stats.TotalPlayTime = TimeSpan.FromHours(12.5);
@@ -568,20 +684,21 @@ namespace TWG.Seed.Platform
                 return true; // Always succeed in mock mode
             }
 
-#if STEAMWORKS_NET
+#if FACEPUNCH_STEAMWORKS
             try
             {
                 // Store companion data in Steam remote storage or cloud
                 var companionJson = JsonUtility.ToJson(companion);
                 var fileName = $"companion_{companionId}.json";
 
-                // This would use Steam Remote Storage API
-                // Steamworks.SteamRemoteStorage.FileWrite(fileName, companionJson, companionJson.Length);
+                // In Facepunch.Steamworks, use RemoteStorage API
+                var data = System.Text.Encoding.UTF8.GetBytes(companionJson);
+                SteamRemoteStorage.FileWrite(fileName, data);
 
                 // Update Steam stats
-                Steamworks.SteamUserStats.SetStatInt("total_companions",
-                    Steamworks.SteamUserStats.GetStatInt("total_companions") + 1);
-                Steamworks.SteamUserStats.StoreStats();
+                var totalCompanions = SteamUserStats.GetStat("total_companions");
+                SteamUserStats.SetStat("total_companions", totalCompanions + 1);
+                SteamUserStats.StoreStats();
 
                 Debug.Log($"Narrative companion registered: {companionId}");
                 return true;
@@ -607,23 +724,23 @@ namespace TWG.Seed.Platform
                 return true; // Always succeed in mock mode
             }
 
-#if STEAMWORKS_NET
+#if FACEPUNCH_STEAMWORKS
             try
             {
                 // Update Steam stats based on progress
                 if (progress.ExperienceGained > 0)
                 {
-                    Steamworks.SteamUserStats.SetStatFloat("total_experience_gained",
-                        Steamworks.SteamUserStats.GetStatFloat("total_experience_gained") + (float)progress.ExperienceGained);
+                    var exp = SteamUserStats.GetStat("total_experience_gained");
+                    SteamUserStats.SetStat("total_experience_gained", exp + progress.ExperienceGained);
                 }
 
                 if (!string.IsNullOrEmpty(progress.NewAbility))
                 {
-                    Steamworks.SteamUserStats.SetStatInt("abilities_unlocked",
-                        Steamworks.SteamUserStats.GetStatInt("abilities_unlocked") + 1);
+                    var abilities = SteamUserStats.GetStat("abilities_unlocked");
+                    SteamUserStats.SetStat("abilities_unlocked", abilities + 1);
                 }
 
-                Steamworks.SteamUserStats.StoreStats();
+                SteamUserStats.StoreStats();
 
                 Debug.Log($"Narrative progress updated for companion: {companionId}");
                 return true;
@@ -663,7 +780,7 @@ namespace TWG.Seed.Platform
             var companions = new List<NarrativeCompanionData>();
 
             // Load companions from Steam Remote Storage
-            // This would iterate through stored companion files
+            // 👀This would iterate through stored companion files
 
             return companions;
         }
@@ -693,7 +810,7 @@ namespace TWG.Seed.Platform
             var storeItems = new List<PlatformStoreItem>();
 
             // Get Steam store items
-            // This would use Steam Store API or Workshop
+            // 👀This would use Steam Store API or Workshop
 
             return storeItems;
         }
@@ -710,7 +827,7 @@ namespace TWG.Seed.Platform
             }
 
             // Process Steam purchase
-            // This would use Steam Microtransaction API
+            // 👀This would use Steam Microtransaction API
 
             return await Task.FromResult(true);
         }
@@ -727,43 +844,53 @@ namespace TWG.Seed.Platform
             }
 
             // Consume Steam item
-            // This would use Steam Inventory API
+            // 👀This would use Steam Inventory API
 
             return await Task.FromResult(true);
         }
 
-#if STEAMWORKS_NET
-        private string GetSteamAvatarUrl(Steamworks.CSteamID steamId)
+#if FACEPUNCH_STEAMWORKS
+        private string GetSteamAvatarUrl(string steamIdStr)
         {
             // Get friend's avatar image and convert to URL
-            // This would need proper Steam API implementation
-            return $"https://avatars.steamstatic.com/{steamId.m_SteamID}_full.jpg";
+            // In Facepunch.Steamworks, avatars are accessed differently
+            return $"https://avatars.steamstatic.com/{steamIdStr}_full.jpg";
         }
 
-        private async Task<Friend> ConvertSteamFriendToFriend(Steamworks.CSteamID steamId)
+        private async Task<Friend> ConvertSteamFriendToFriend(SteamId steamId)
         {
-            var friend = new Friend
+            try
             {
-                FriendId = steamId.m_SteamID.ToString(),
-                Username = Steamworks.SteamFriends.GetFriendPersonaName(steamId),
-                DisplayName = Steamworks.SteamFriends.GetFriendPersonaName(steamId),
-                Status = ConvertSteamPersonaState(Steamworks.SteamFriends.GetFriendPersonaState(steamId)),
-                AvatarUrl = GetSteamAvatarUrl(steamId),
-                SharedNarratives = new List<SharedNarrative>()
-            };
+                var friend = new Friend
+                {
+                    FriendId = steamId.ToString(),
+                    Username = SteamFriends.GetName(steamId),
+                    DisplayName = SteamFriends.GetName(steamId),
+                    Status = ConvertSteamPersonaState(SteamFriends.GetPersonaState(steamId)),
+                    AvatarUrl = GetSteamAvatarUrl(steamId.ToString()),
+                    SharedNarratives = new List<SharedNarrative>()
+                };
 
-            return friend;
+                return friend;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"Failed to convert Steam friend: {ex.Message}");
+                return null;
+            }
         }
 
-        private FriendStatus ConvertSteamPersonaState(Steamworks.EPersonaState state)
+        private FriendStatus ConvertSteamPersonaState(PersonaState state)
         {
             return state switch
             {
-                Steamworks.EPersonaState.k_EPersonaStateOffline => FriendStatus.Offline,
-                Steamworks.EPersonaState.k_EPersonaStateOnline => FriendStatus.Online,
-                Steamworks.EPersonaState.k_EPersonaStateAway => FriendStatus.Away,
-                Steamworks.EPersonaState.k_EPersonaStateBusy => FriendStatus.Busy,
-                Steamworks.EPersonaState.k_EPersonaStateInGame => FriendStatus.InGame,
+                PersonaState.Offline => FriendStatus.Offline,
+                PersonaState.Online => FriendStatus.Online,
+                PersonaState.Busy => FriendStatus.Busy,
+                PersonaState.Away => FriendStatus.Away,
+                PersonaState.Snooze => FriendStatus.Away,
+                PersonaState.LookingToTrade => FriendStatus.Online,
+                PersonaState.LookingToPlay => FriendStatus.Online,
                 _ => FriendStatus.Offline
             };
         }
@@ -833,15 +960,15 @@ namespace TWG.Seed.Platform
         {
             if (IsInitialized && IsSteamAvailable)
             {
-#if STEAMWORKS_NET
+#if FACEPUNCH_STEAMWORKS
                 try
                 {
-                    Steamworks.SteamAPI.Shutdown();
-                    Debug.Log("Steam API shutdown successfully");
+                    SteamClient.Shutdown();
+                    Debug.Log("Steam Client shutdown successfully");
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogWarning($"Steam API shutdown error: {ex.Message}");
+                    Debug.LogWarning($"Steam Client shutdown error: {ex.Message}");
                 }
                 finally
                 {
@@ -853,7 +980,7 @@ namespace TWG.Seed.Platform
         }
 
         // Private helper methods
-#if STEAMWORKS_NET
+#if FACEPUNCH_STEAMWORKS
         private async Task SyncSteamDataToSeed()
         {
             try
@@ -893,7 +1020,7 @@ namespace TWG.Seed.Platform
         private async Task<decimal> GetSteamWalletBalance()
         {
             // Get Steam wallet balance
-            // This would use Steam Wallet API when available
+            // 👀This would use Steam Wallet API when available
             return 0.00m; // Mock implementation
         }
 
@@ -902,7 +1029,7 @@ namespace TWG.Seed.Platform
             var items = new List<InventoryItem>();
 
             // Convert Steam inventory items to Seed entities with STAT7 addresses
-            // This would iterate through actual Steam inventory when available
+            // 👀This would iterate through actual Steam inventory when available
 
             return items;
         }
@@ -912,7 +1039,7 @@ namespace TWG.Seed.Platform
             var achievements = new Dictionary<string, SteamAchievementData>();
 
             // Get Steam achievements
-            // This would use Steam UserStats API when available
+            // 👀This would use Steam UserStats API when available
 
             return achievements;
         }

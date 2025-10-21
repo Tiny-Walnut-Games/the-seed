@@ -32,7 +32,7 @@ namespace TWG.TLDA.Visualization
 
         public class CastleRoom
         {
-            public GameObject? roomObject;
+            public GameObject roomObject = null;
             public string faculty = string.Empty; // "Chronicle Keeper", "Warbler Core", etc.
             public Vector3 position;
             public List<WarblerVoice> containedVoices = new List<WarblerVoice>();
@@ -41,17 +41,17 @@ namespace TWG.TLDA.Visualization
 
         public class WarblerVoice
         {
-            public GameObject? voiceObject;
+            public GameObject voiceObject = null;
             public string content = string.Empty; // The "words" this voice carries
             public Vector3 targetPosition;
             public bool isGoodThought = true;
             public float lifespan = 5f;
-            public CastleRoom? currentRoom;
+            public CastleRoom currentRoom = null;
         }
 
         public class AliceFilter
         {
-            public GameObject? filterObject;
+            public GameObject filterObject = null;
             public List<WarblerVoice> processingVoices = new List<WarblerVoice>();
 
             public bool ProcessThought(WarblerVoice voice)

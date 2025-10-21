@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\Assembly-CSharp\</OutputPath>
-    <DefineConstants>UNITY_6000_2_6;UNITY_6000_2;UNITY_6000;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;UNITY_2023_2_OR_NEWER;UNITY_2023_3_OR_NEWER;UNITY_6000_0_OR_NEWER;UNITY_6000_1_OR_NEWER;UNITY_6000_2_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_UNITY_CONSENT;ENABLE_UNITY_CLOUD_IDENTIFIERS;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_MARSHALLING_TESTS;ENABLE_VIDEO;ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;TEXTCORE_1_0_OR_NEWER;EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED;PLATFORM_STANDALONE_LINUX;PLATFORM_STANDALONE;UNITY_STANDALONE_LINUX;UNITY_STANDALONE;UNITY_STANDALONE_LINUX_API;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_SPATIALTRACKING;ENABLE_MODULAR_UNITYENGINE_ASSEMBLIES;PLATFORM_SUPPORTS_SPLIT_GRAPHICS_JOBS;PLATFORM_USES_EXPLICIT_MEMORY_MANAGER_INITIALIZER;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_6000_2_6;UNITY_6000_2;UNITY_6000;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;UNITY_2023_2_OR_NEWER;UNITY_2023_3_OR_NEWER;UNITY_6000_0_OR_NEWER;UNITY_6000_1_OR_NEWER;UNITY_6000_2_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_UNITY_CONSENT;ENABLE_UNITY_CLOUD_IDENTIFIERS;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_MARSHALLING_TESTS;ENABLE_VIDEO;ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;TEXTCORE_1_0_OR_NEWER;EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED;PLATFORM_STANDALONE_LINUX;PLATFORM_STANDALONE;UNITY_STANDALONE_LINUX;UNITY_STANDALONE;UNITY_STANDALONE_LINUX_API;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_SPATIALTRACKING;ENABLE_MODULAR_UNITYENGINE_ASSEMBLIES;PLATFORM_SUPPORTS_SPLIT_GRAPHICS_JOBS;PLATFORM_USES_EXPLICIT_MEMORY_MANAGER_INITIALIZER;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2;STEAMWORKS_NET;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
@@ -51,285 +51,810 @@
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.LambdaJobs.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.QueryBuilder.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.Query.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.Common.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.Query.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Common.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.EntityQueryBulkOperations.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\TWG\Scripts\Visualization\MindCastleSceneSetup.cs" />
+    <Compile Include="Assets\TWG\Scripts\Visualization\stat7node.cs" />
     <Compile Include="Assets\TWG\Scripts\NPCControl\WarblerDialogueSystem.cs" />
     <Compile Include="Assets\TWG\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\CharacterStats.cs" />
-    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\CombatSystem.cs" />
-    <Compile Include="Assets\Scripts\Managers\InventorySystem.cs" />
     <Compile Include="Assets\TWG\Scripts\Chat\TLDAChatInterface.cs" />
-    <Compile Include="Assets\Scripts\Managers\QuestManager.cs" />
     <Compile Include="Assets\TWG\Scripts\NPCControl\WarblerNPCBridge.cs" />
     <Compile Include="Assets\TWG\Scripts\QuestManager.cs" />
     <Compile Include="Assets\TWG\Scripts\Visualization\SeedMindCastleBridge.cs" />
-    <Compile Include="Assets\Scripts\Managers\SaveSystem.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\TWG\Scripts\Chat\SeedEnhancedTLDAChat.cs" />
-    <Compile Include="Assets\Scripts\Managers\DialogueSystem.cs" />
-    <Compile Include="Assets\Scripts\Managers\CharacterController.cs" />
     <Compile Include="Assets\TWG\Scripts\Visualization\MindCastleVisualizer.cs" />
-    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\TWG\Scripts\NPCControl\WarblerAPI.cs" />
     <None Include="Assets\experiments\school\outputs\runs\run_1fe74ecf_20250910_210655\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\memory-profiler-window.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_731044ef_20251020_081237\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-content_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Hierarchy\hierarchy-item.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\foldout-with-action-button.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f4fe3238_20251020_081721\experiment_results.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_ecb5f9b9_20250910_210703\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a04a0ccf_20251020_080111\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_51ee001a_20251020_075950\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\component-header.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-window-item.uss" />
     <None Include="Assets\experiments\school\outputs\runs\run_0002\run_metadata.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bae18385_20251020_081443\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b44fc7df_20251020_081804\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_59bc15ac_20251020_080056\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_00bdfb6f_20251020_080409\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e3cab012_20251020_081028\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1898c623_20251020_080002\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6fb538c9_20251020_080640\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dd8aff7d_20251020_080822\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b73f74c3_20251020_081527\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c34d0830_20251020_081047\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fc165680_20251020_080344\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\TabView\tab-view_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d4a09ab5_20251020_080156\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_117ee958_20251020_080012\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8ac0da48_20251020_080254\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\search-and-goto-buttons_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\common_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_54ea4580_20251020_080918\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a786a3c5_20251020_081705\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ff5e96d7_20251020_082025\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_11e98e32_20251020_081642\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ec40b0d7_20251020_081352\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-entity_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d3fd6987_20251020_080333\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_38315d32_20251020_080422\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\PieChart.uss" />
     <None Include="Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.LowLevel.ILSupport\README.txt" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1ea13ad3_20251020_080328\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ca66c212_20251020_081229\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ecc9bd11_20251020_080457\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_90b2d6bb_20251020_080859\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1e883d52_20251020_081138\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a38da0e8_20251020_081234\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_77c8b225_20251020_081650\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9d0716ef_20251020_080024\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e6325ac6_20251020_080657\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-component_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\autocomplete.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6d18f87d_20251020_081242\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_99ce8f25_20251020_081619\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b8844f9b_20251020_082052\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5d018093_20251020_081519\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\common_dark.uss" />
-    <None Include="Packages\warbler-core\tsconfig.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\key-value-pair.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_77c3e345_20251020_081819\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f3ec0cb4_20251020_075923\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Preferences\preferences-setting.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_28c26628_20251020_081503\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_77480463_20251020_075851\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Content\entity-query-header.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d0a3f363_20251020_081859\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d7d0be56_20251020_081406\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e796d4e7_20251020_075839\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c1195af9_20251020_081015\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c926d6bf_20251020_080946\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_68b81219_20251020_080928\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_00a4563a_20251020_080721\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\two-pane-split-view.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\memory-profiler-left-pane.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4a557b96_20251020_080452\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1a1b35db_20251020_075901\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fdf45241_20251020_081106\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_364d86cf_20251020_080537\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_31b173cf_20251020_075906\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e5167ae1_20251020_081535\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_33366243_20251020_082015\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9190133f_20251020_075930\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bfd64429_20251020_080438\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_0ab821fc_20251020_080737\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_38092237_20251020_081013\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1fd5ac89_20251020_080654\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\add-collection-item.uss" />
-    <None Include="Packages\warbler-core\package.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e3ab188a_20251020_081203\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_3c3908d1_20251020_080602\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a9f17062_20251020_082125\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c8153f9a_20251020_081949\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c51d3d31_20251020_080605\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Hierarchy\hierarchy-loading.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Preferences\preferences-value.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2ca89891_20251020_082117\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ba702331_20251020_080213\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Components\component-type-view.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_022c9959_20251020_080515\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_13d9f2a1_20251020_081144\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\system-dependency-view.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Preferences\preferences-value.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b41ae952_20251020_081256\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5265fd65_20251020_081604\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_60bb7242_20251020_080625\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_79ea377c_20251020_081345\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_de6c0356_20251020_080308\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6949d80f_20251020_082204\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_22894fa9_20251020_081915\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bc08a4ec_20251020_080617\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_10af8178_20251020_080920\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-components-tab.uss" />
     <None Include="Assets\Resources\BillingMode.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_703970b9_20251020_080742\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8537272b_20251020_080159\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f9a74089_20251020_081058\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Spinner\spinner_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7825b6a0_20251020_080830\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_377c3f85_20251020_081213\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_05780020_20251020_080053\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_275d1797_20251020_080644\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ccc77f68_20251020_080040\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_3a9e7b2d_20251020_082146\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c1c4cd00_20251020_080940\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-dropdown_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a7a697bc_20251020_081606\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule-item.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_36db05ec_20251020_080642\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2e202400_20251020_080412\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f453a10b_20251020_080323\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e04bf4f3_20251020_080819\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\entity-info.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_eab2b5a6_20251020_080234\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-details-component.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5b0a683a_20251020_081342\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-popup.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2f5d2b61_20251020_081648\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e386ba6e_20251020_082110\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-component_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\search-and-goto-buttons.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_61000a76_20251020_081827\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_20b942f6_20251020_080631\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_456efc70_20251020_081026\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-content_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\entity-inspector-relationships-tab.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9aef3727_20251020_081427\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_48f5461d_20251020_081440\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Hierarchy\hierarchy-item.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5c2a0cbd_20251020_081248\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_77051030_20251020_080542\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2b7b2709_20251020_081637\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5379a42b_20251020_081337\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_71a831fa_20251020_080726\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4adb6868_20251020_080647\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_718d64db_20251020_080528\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Components\components-window_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a6911b43_20251020_081848\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_eaf25a81_20251020_080226\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_878865c6_20251020_080242\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\tag-component-element.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Preferences\preferences-setting.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d26affe5_20251020_080845\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_045f7e7b_20251020_080854\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_10c0da7c_20251020_081146\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_711f8dba_20251020_081031\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e875c69c_20251020_081226\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bdccbff0_20251020_080106\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fce91805_20251020_081314\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5d56856e_20251020_082007\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_15c803ab_20251020_080404\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\entity-inspector-aspects-tab.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f126662a_20251020_080956\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\lazy-load-reference.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_65f504bf_20251020_081445\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5bffd24c_20251020_082156\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-right-pane_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c83b887a_20251020_081538\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e4b2fb68_20251020_080310\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_be6115ef_20251020_081951\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8723e6a7_20251020_080523\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Hierarchy\hierarchy-loading.uxml" />
     <None Include="Assets\experiments\school\outputs\runs\run_0001\run_metadata.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_02f9f91d_20251020_080134\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d03da006_20251020_080848\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\StyleSheets\Extensions\common.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4dfcf262_20251020_081550\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bf92bd90_20251020_080153\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b21afa98_20251020_081812\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f35ca1f1_20251020_080935\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ea1ae2fd_20251020_080415\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b397f294_20251020_080555\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d6a4566e_20251020_081232\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6c581b09_20251020_081932\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b8fa5bf7_20251020_080101\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_283f5039_20251020_081039\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\list-element-default.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\query-view.uss" />
     <None Include="Assets\experiments\school\outputs\runs\run_040ce587_20250910_210708\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_3c392efd_20251020_080208\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_0ddc0273_20251020_075938\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_55ccca44_20251020_081332\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a4f15199_20251020_080951\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_49895e77_20251020_081311\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-window.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_14e6937a_20251020_075941\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Components\component-type-view.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_01943294_20251020_080545\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4a08fc5c_20251020_080500\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_546c1440_20251020_080649\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d2c1543a_20251020_081250\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Hierarchy\hierarchy-prefab-stage.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Content\component-attribute.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b05e6453_20251020_081939\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\foldout-without-action-button.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a9bdb528_20251020_081715\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\null-string-field.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7b195217_20251020_075933\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_eb452b24_20251020_080239\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_032e4dec_20251020_080430\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Components\components-window_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_94cf2ef9_20251020_080905\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-relationships-tab.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-entity_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f25986fc_20251020_080707\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_01bf79eb_20251020_081010\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4ca929e1_20251020_082133\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_84f69de9_20251020_082057\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_05151a12_20251020_081522\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_70854f27_20251020_080433\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_17a86ea5_20251020_080825\experiment_results.json" />
     <None Include="Assets\csc.rsp" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bfc19d61_20251020_080531\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\search-field.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ec0d1d9f_20251020_082042\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_215781ac_20251020_081116\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration-dependency_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b626af0e_20251020_080229\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\component-view.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b2abf016_20251020_080851\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_efc0fcc7_20251020_081136\experiment_results.json" />
     <None Include="Assets\experiments\school\hypothesis_drafts.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_156f4c36_20251020_081540\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dae33105_20251020_081517\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_20a3ab6b_20251020_082123\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Controls\foldout-field.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_749d4f2d_20251020_080804\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2f0b4f51_20251020_081457\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a1f168fd_20251020_080842\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Preferences\preferences-window.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5c4d57f7_20251020_081854\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_85a0d305_20251020_080518\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c401ea45_20251020_080806\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_59c80eef_20251020_080729\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_20568b89_20251020_080910\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\memory-profiler-right-pane.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5fb9d850_20251020_080030\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_46e29f70_20251020_081718\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b39b8145_20251020_080015\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c0be1b02_20251020_080619\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5dbd79d8_20251020_081133\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_62ed73c8_20251020_081824\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e5571e54_20251020_081645\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d91f65fa_20251020_081101\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6df840d4_20251020_081543\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-left-pane_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4e2ab1fd_20251020_075847\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ae59bde1_20251020_081937\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ad915dfe_20251020_075948\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a96d7f1b_20251020_075903\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c4768234_20251020_082136\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_068efaa5_20251020_081548\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fb44fb1d_20251020_080907\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f671cc65_20251020_080718\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\system-queries-view.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4cc93d13_20251020_082002\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-content.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-window.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_308eef0e_20251020_080739\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2cbb8602_20251020_081205\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-right-pane.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_520defe9_20251020_081416\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_08f6dea4_20251020_081452\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\unsupported-inspector.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dadfafeb_20251020_081240\experiment_results.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_0001\execution_logs.txt" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4cba234a_20251020_081155\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c57c8f3a_20251020_080244\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\unsupported-inspector.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1bd84244_20251020_080303\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5483bcb5_20251020_080916\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_54361bf6_20251020_080550\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6475df67_20251020_082159\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d6fe7c72_20251020_081500\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a7b9c539_20251020_080407\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\classic-build-profile.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5e4333c1_20251020_081408\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d6105bac_20251020_081158\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d8e04c68_20251020_075856\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c6edb5c1_20251020_081959\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fc145e5a_20251020_080349\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_85cd6af1_20251020_080809\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_99a1398f_20251020_081152\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7991e9b7_20251020_080342\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\autocomplete_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\foldout-with-action-button.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\common.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_cefc4665_20251020_080710\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\SystemSchedule\system-schedule-item.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\section.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ff00fff5_20251020_080750\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c677f663_20251020_082131\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\entity-view.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\add-collection-item.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fceed3b5_20251020_080840\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9f3af06a_20251020_081814\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2997545a_20251020_081656\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c6685484_20251020_081329\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\entity-field.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_09620e19_20251020_082037\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_31d20a06_20251020_082115\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\build-configuration-dependency.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\pagination-element.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7e9eec59_20251020_081023\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_511d9878_20251020_080745\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_46cc7606_20251020_080320\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_56c3a033_20251020_081319\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c9cf231e_20251020_080142\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_90687bc7_20251020_075925\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5934ba1d_20251020_080339\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-dropdown.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_088adaf3_20251020_081609\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4f3416d3_20251020_080959\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_076a0fd5_20251020_080508\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dbe5b9d0_20251020_081512\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e32e137a_20251020_082105\experiment_results.json" />
     <None Include="Assets\experiments\school\claims\hypotheses\claim_run_0002_20250910_210820.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\system-list-view.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_da0f9070_20251020_080833\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b99d05ff_20251020_080812\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a5137074_20251020_080000\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-popup_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6188cc14_20251020_081726\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1bfd660a_20251020_080659\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_3114cf54_20251020_082100\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d4223fbb_20251020_081759\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c4e9f248_20251020_075908\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\entity-query-header.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6c4d0db2_20251020_081627\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c81e36c4_20251020_080050\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e66193bb_20251020_081114\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a050c9ab_20251020_081347\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\TabView\tab-view.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8a6b68c8_20251020_080035\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_41634d9b_20251020_082044\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5e194f11_20251020_081809\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_164cd466_20251020_081321\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\tag-component-element.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_06803e16_20251020_081509\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-popup.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\list-element.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8a7585c0_20251020_075854\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9c9c033b_20251020_081411\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6fc8905b_20251020_081219\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Preferences\preferences-window.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_314df1ff_20251020_081435\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-component.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_76c54693_20251020_082029\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-component.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6a3a5e24_20251020_081455\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1ce34f48_20251020_081639\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9a84b534_20251020_081514\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_55ee340a_20251020_081002\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\search-field_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\classic-build-profile_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a8f006c8_20251020_081754\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_734bb8f6_20251020_080716\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_45f93900_20251020_081530\experiment_results.json" />
     <None Include="Assets\experiments\school\outputs\runs\github_integration.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_83dcfed6_20251020_081817\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c297d4db_20251020_081224\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\foldout-field_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_57063c43_20251020_080326\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fed9d7fd_20251020_081723\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\structural-changes-profiler-window_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ba81a209_20251020_081856\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7b30101f_20251020_080129\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_34eb2ab4_20251020_080817\experiment_results.json" />
     <None Include="Assets\TLDA-Unity-Test-Results\test-report.txt" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\entity-header.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8b52be9c_20251020_081553\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c4b185f6_20251020_081245\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9a3837d1_20251020_081910\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8a849a71_20251020_080032\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ef43bdf9_20251020_081902\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4c8f793e_20251020_082141\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5fd2bbd1_20251020_081918\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\null-string-field.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f80c19a9_20251020_081128\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-window_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-details.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6b868289_20251020_080252\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b600d66d_20251020_081450\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_caa9c01d_20251020_080704\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2ab5bbe1_20251020_081109\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2f2c9c32_20251020_080305\experiment_results.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_40358b59_20250906_104406\error.txt" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6f73cf41_20251020_075945\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2b7c3218_20251020_080454\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_aacb9025_20251020_081756\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\circular-reference.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d23c7f2b_20251020_081413\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ee20cf96_20251020_082004\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1a7dbb45_20251020_081710\experiment_results.json" />
     <None Include="Assets\experiments\school\claims\github_integration.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7049b0f8_20251020_081053\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4fe583ab_20251020_080754\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fb28f725_20251020_081944\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ded8f19f_20251020_081924\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\centered-message-element.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c804069e_20251020_080629\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d4556461_20251020_080359\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_3c368ad8_20251020_081103\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f60af3d0_20251020_080020\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-field.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_13b7a458_20251020_080401\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Components\components-window.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_312d57a6_20251020_075943\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-aspects-tab_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_11337a66_20251020_080520\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f13a2285_20251020_081111\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_13e06961_20251020_081448\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_39ac3509_20251020_081316\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\type-inspector.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fd66858b_20251020_081433\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\header.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_21a6c035_20251020_075837\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_baac916c_20251020_080007\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_cbe74182_20251020_080354\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_db931a0f_20251020_082120\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b00037ea_20251020_080446\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\memory-profiler-tree-view-item.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\complicated-type-test.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9fa9b4c1_20251020_080600\experiment_results.json" />
     <None Include="Assets\TWG\UI\ChatInterface.uxml" />
+    <None Include="Assets\experiments\school\claims\hypotheses\claim_run_0002_20251020_082539.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b6486454_20251020_081007\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1b20bee2_20251020_080119\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_57ed05e7_20251020_080318\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4cb370d4_20251020_080224\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f8d8db69_20251020_081556\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-window_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1a11ff58_20251020_081037\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\structural-changes-profiler-window_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_75c94337_20251020_081122\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_340e4b73_20251020_080150\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4996eeff_20251020_075928\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_0a48c9f3_20251020_081042\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8859c97d_20251020_081659\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a66ed378_20251020_075918\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1d30b62b_20251020_075859\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4b0c0526_20251020_081830\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-tree-view-item.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c8e91486_20251020_082138\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9dafae66_20251020_081838\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_00a8beb3_20251020_082034\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bf0a34f0_20251020_080724\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c5b128dc_20251020_080534\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_eb600ce6_20251020_081309\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bac6a312_20251020_080356\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8250584b_20251020_080937\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_be887892_20251020_081611\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-left-pane_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-window-item.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a8d31ad5_20251020_081558\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Search\search-element-filter-popup.uss" />
+    <None Include="Assets\experiments\school\claims\hypotheses\claim_run_0001_20251020_082539.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5bccf122_20251020_081743\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dfc64ced_20251020_080623\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_65013155_20251020_080420\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_440d63ce_20251020_081921\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_89ac153c_20251020_081424\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d3fed96a_20251020_080038\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_295926c1_20251020_080218\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e5d88a90_20251020_075834\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_61e0e815_20251020_080759\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\variables_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\entities-journaling-details-entity.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_36382283_20251020_075842\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_435bb84a_20251020_080757\experiment_results.json" />
     <None Include="Assets\experiments\school\inventory.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5985162c_20251020_081802\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Search\search-element.uxml" />
-    <None Include="Assets\mcs.rsp" />
-    <None Include="Library\PackageCache\com.rlabrecque.steamworks.net@3d42650afca9\package.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e23ca9f7_20251020_080247\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e264643e_20251020_082102\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9114195d_20251020_080117\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\classic-build-profile.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-component_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4528169e_20251020_081708\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\query-with-entities.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1db9c519_20251020_082022\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dfce203a_20251020_080027\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-left-pane.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-field_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fb04d931_20251020_081350\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-dropdown.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e03c464b_20251020_082153\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f0764c03_20251020_080122\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\nullable-foldout.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_26e23c68_20251020_081653\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8a07f054_20251020_081624\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f8e08508_20251020_080815\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\component.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\search-element-filter-popup.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fedcb471_20251020_081130\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-popup_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_03791425_20251020_082020\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e6151f5c_20251020_082027\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_faba5419_20251020_081357\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\foldout-field.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_184d6292_20251020_082209\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\structural-changes-profiler-tree-view-item.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_27be2e6e_20251020_082143\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-window.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_cea2fcf1_20251020_081211\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ea87d18f_20251020_080552\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\system.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\display-list.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\SystemSchedule\system-schedule-header.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_3d110bfb_20251020_081738\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration-dependency_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ca7cbe1a_20251020_081731\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-field_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_33d14b61_20251020_081629\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1d653c1c_20251020_082201\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6147809f_20251020_080417\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8a59eaa7_20251020_081301\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Hierarchy\hierarchy-toolbar.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d132736f_20251020_081055\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6d051d37_20251020_080109\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dc6ff471_20251020_082009\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a78dfb0e_20251020_080954\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_32b20b40_20251020_081733\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\component-attribute.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\search-element.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2677ae06_20251020_081634\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\set-element-default.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e505399d_20251020_081741\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-header.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_29ae31c7_20251020_080043\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_3093f4ef_20251020_081437\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bc89aeb9_20251020_080441\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\variables.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a00145ce_20251020_081904\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_0669eaf8_20251020_081418\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8ff5d5fc_20251020_081702\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_130cb9fd_20251020_082049\experiment_results.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_3bd73f9e_20250910_210706\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_cdf7ff46_20251020_081713\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-popup-item.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_60d0b263_20251020_075844\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\pvpExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-popup-item.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f6603af1_20251020_081926\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-component_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e5328535_20251020_080114\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e21c3547_20251020_082054\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7726319b_20251020_081907\experiment_results.json" />
     <None Include="Assets\experiments\school\claims\hypotheses\claim_run_0002_20250906_023829.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\system-dependency-view.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\autocomplete_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\foldout-field_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d92e3338_20251020_080925\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\circular-reference.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_50e6b084_20251020_075913\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d483e10d_20251020_080004\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_aa5a39f0_20251020_081617\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_cbf1e379_20251020_080048\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_903b015a_20251020_081946\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8e5a92d8_20251020_080827\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-window-item_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_df5c2fc0_20251020_080045\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_85ae7014_20251020_080503\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_56fee52b_20251020_080949\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\dots-editor-common_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_059a1f4b_20251020_080137\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ba91a733_20251020_080250\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-component_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_64287949_20251020_080300\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_32bfec3c_20251020_080009\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_54b81c4f_20251020_081050\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\key-value-pair.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\component-header.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8027a3f9_20251020_081045\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_db2378e1_20251020_081034\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_56f56ece_20251020_082107\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Controls\TabView\tab-view_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7b425aae_20251020_080505\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_18628df6_20251020_080615\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\entity-view.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ddf1e165_20251020_075957\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Hierarchy\hierarchy.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2ec241f2_20251020_081632\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_813d52eb_20251020_080139\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7cf1fe71_20251020_081403\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_0c118003_20251020_081327\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2a3f2841_20251020_080210\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_849442a1_20251020_080526\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_91edb3c1_20251020_080856\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_0cf871b3_20251020_081746\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_359dfbe8_20251020_081355\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f5d8ad66_20251020_080837\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_09974f57_20251020_081119\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ed355b82_20251020_081929\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_85ced356_20251020_081506\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\build-configuration.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_20031e94_20251020_081934\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_070d92b5_20251020_080933\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_75c4c909_20251020_080923\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\entity-inspector-components-tab.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1a7a43ad_20251020_081306\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\structural-changes-profiler-window.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ProfilerModules\memory-profiler-component.uxml" />
     <None Include="Assets\experiments\school\claims\hypotheses\claim_run_0001_20250910_210820.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_66a11118_20251020_080347\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_929de5d1_20251020_081339\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7e11c32e_20251020_081221\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e3b26262_20251020_080351\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8f3697eb_20251020_080449\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bca2beef_20251020_080747\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ef45366e_20251020_081324\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c25ee5d6_20251020_081400\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_64d817d7_20251020_080022\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_59b09425_20251020_081200\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fa1d20f7_20251020_080913\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_98101254_20251020_075953\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9edde232_20251020_082039\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\dots-editor-common_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Journaling\search-and-goto-buttons.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-dropdown_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_b74da34c_20251020_080752\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7a5f6485_20251020_080634\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_26870222_20251020_080943\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6ad5adb9_20251020_075911\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\ActiveBuildConfiguration\active-build-config-window.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_61aa7495_20251020_080221\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f7af3450_20251020_080103\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bd0e098f_20251020_075849\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\structural-changes-profiler-tree-view-item.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Search\search-element.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bb074d4f_20251020_081748\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_17da3515_20251020_081533\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a20a02c5_20251020_081303\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1a2dd5e5_20251020_080902\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2d27816f_20251020_080017\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1b95a391_20251020_080930\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d0d36f8f_20251020_082032\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_0ece1887_20251020_080732\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_081ba9e3_20251020_080652\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_3871b545_20251020_080236\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1475a45d_20251020_082017\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Content\entity-query.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dfe6308a_20251020_075920\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_19293453_20251020_080202\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Hierarchy\hierarchy-toolbar.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-right-pane_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_03b2f1ac_20251020_080124\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dd7cdf3e_20251020_081149\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Search\search-element-filter-popup.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\memory-profiler-component.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_099b47a2_20251020_081822\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_47776313_20251020_080336\experiment_results.json" />
     <None Include="Assets\TWG\UI\ChatInterface.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5b124e92_20251020_080145\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2e89de41_20251020_082112\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\variables_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-window.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_2fde7d1f_20251020_080548\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\search-field_light.uss" />
     <None Include="Library\PackageCache\com.unity.collections@aea9d3bd5e19\package.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_29149345_20251020_081622\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c03200bd_20251020_080835\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\install-quick-search-popup.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Hierarchy\hierarchy-prefab-stage.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-aspects-tab.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c54c8377_20251020_081421\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dada06a1_20251020_080132\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Spinner\spinner_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c65af655_20251020_080425\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_42b0a540_20251020_082151\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9f1223d5_20251020_080702\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_69047a5f_20251020_080513\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Components\components-window.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_8f837101_20251020_081913\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6b73f016_20251020_080539\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_55a266f0_20251020_081614\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ac409f26_20251020_081253\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\StyleSheets\Extensions\dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_98344784_20251020_080557\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_94172157_20251020_080059\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5833d7d3_20251020_082148\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1576396d_20251020_081005\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9e69a472_20251020_075955\experiment_results.json" />
     <None Include="Assets\experiments\school\claims\hypotheses\claim_run_0001_20250906_023829.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-details-entity.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_50a60b3e_20251020_081941\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_67d3ba03_20251020_080315\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\package.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ProfilerModules\structural-changes-profiler-window.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_239f9746_20251020_080427\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_dfde1af8_20251020_081954\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_07749e75_20251020_075915\experiment_results.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_4e6f8e84_20250910_210700\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\SystemSchedule\system-schedule-toolbar.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_45b33cf0_20251020_080205\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\pagination-element.uxml" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\lazy-load-reference.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_18791149_20251020_081728\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_9ede0d38_20251020_080127\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-component_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\search-and-goto-buttons_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_4764df41_20251020_081334\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_12f4612d_20251020_081141\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e1625f1c_20251020_081546\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_967f8fa2_20251020_082012\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_741c879b_20251020_081601\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_a4f9ad55_20251020_081430\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\classic-build-profile_dark.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\DebugWindows\system-debug-window.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_32180257_20251020_081018\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration-dependency.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Spinner\spinner.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_0ea98fe6_20251020_082128\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_00349971_20251020_080444\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\build-configuration_light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_c14a7b58_20251020_081751\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_562e3e14_20251020_081832\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_bcca99fe_20251020_081125\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\StyleSheets\Extensions\light.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_3b94f4f9_20251020_080313\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule-toolbar.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_fbe4915e_20251020_080257\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_84446573_20251020_080216\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.collections@aea9d3bd5e19\pvpExceptions.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_29095e7b_20251020_080802\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_95b9ab74_20251020_075935\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_ddc9ef92_20251020_080734\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_d6f33f38_20251020_080148\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\install-quick-search-popup.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\entity-inspector-aspects-tab_dark.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_36affda1_20251020_081021\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6ef6c6f9_20251020_081736\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_64084323_20251020_082047\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\SystemSchedule\system-schedule-header.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Journaling\entities-journaling-content.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\dots-editor-common.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_6aaa0255_20251020_081216\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\search-field.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Inspector\inspector.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_116f3af3_20251020_081807\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1446910c_20251020_080637\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.collections@aea9d3bd5e19\ValidationExceptions.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uxml\build-component.uxml" />
     <None Include="Assets\experiments\school\outputs\runs\run_0002\execution_logs.txt" />
     <None Include="Assets\experiments\school\outputs\runs\run_82a29b71_20250910_210657\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5d8c42e1_20251020_081208\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\foldout-without-action-button.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_7ca5f6f0_20251020_081258\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f6fdd795_20251020_080231\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_3a38cb07_20251020_080510\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_f1ea9e85_20251020_082206\experiment_results.json" />
+    <None Include="Assets\experiments\school\outputs\runs\run_1f15dae0_20251020_081525\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\ActiveBuildConfiguration\active-build-config-window-item_light.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\centered-message-element.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_5f10cf0e_20251020_080331\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\Unity.Entities.UI\uss\set-element.uss" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Common\component-view.uxml" />
+    <None Include="Assets\experiments\school\outputs\runs\run_e509ffc9_20251020_081957\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\DebugWindows\debug-window.uss" />
+    <None Include="Assets\experiments\school\outputs\runs\run_353cc78d_20251020_080435\experiment_results.json" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uss\Common\system-list-view.uss" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
@@ -691,6 +1216,18 @@
     <Reference Include="UnityEditor.XRModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.visualscripting@191c0d7e3b69\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="ReportGeneratorMerged">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.testtools.codecoverage@e4e5058206c0\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Cecil.Awesome">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities.CodeGen\Unity.Cecil.Awesome.dll</HintPath>
     </Reference>
@@ -700,32 +1237,11 @@
     <Reference Include="nunit.framework">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\Unity.Analytics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="ReportGeneratorMerged">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.testtools.codecoverage@e4e5058206c0\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Hashing">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.IO.Hashing\System.IO.Hashing.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.visualscripting@b4d700247d4b\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.analytics@6cc66d58ac08\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -1111,26 +1627,23 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Purchasing.SecurityStub">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.SecurityStub.dll</HintPath>
+    <Reference Include="Unity.2D.Common.Path.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Common.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.InternalAPIEngineBridge.001">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
+    <Reference Include="PsdPlugin">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Entities.Graphics">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Entities.Graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
@@ -1138,35 +1651,50 @@
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Splines.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Splines.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Navigation.Updater">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AI.Navigation.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.EditorCoroutines.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
+    <Reference Include="Unity.Formats.Fbx.Runtime">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Entities.Graphics.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Entities.Graphics.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Animation.Rigging.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Animation.Rigging.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.EditorCoroutines.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Runtime">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Purchasing.Stores">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.Stores.dll</HintPath>
+    <Reference Include="Unity.2D.Common.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Services.Core.Components">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Services.Core.Components.dll</HintPath>
+    <Reference Include="Unity.Polybrush.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Polybrush.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
+    <Reference Include="Unity.2D.Aseprite.Common">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Aseprite.Common.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Rendering.LightTransport.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Rendering.LightTransport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Animation.Rigging">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Animation.Rigging.dll</HintPath>
     </Reference>
     <Reference Include="Unity.SysrootPackage.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.SysrootPackage.Editor.dll</HintPath>
@@ -1174,14 +1702,14 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Analytics.DataPrivacy.dll</HintPath>
+    <Reference Include="Unity.2D.Aseprite.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Rendering.LightTransport.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Rendering.LightTransport.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
+    <Reference Include="Unity.TerrainTools">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TerrainTools.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
@@ -1192,26 +1720,23 @@
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Physics.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Physics.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InputSystem.ForUI">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Profiling.Core">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Profiling.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
@@ -1219,14 +1744,20 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Services.Core.Environments">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
+    <Reference Include="Unity.Formats.Fbx.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Formats.Fbx.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.AIIntegration.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Sprite.AIIntegration.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
@@ -1234,74 +1765,98 @@
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InputSystem">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Purchasing.Codeless">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.Codeless.dll</HintPath>
+    <Reference Include="Unity.Splines">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Splines.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Navigation">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
+    <Reference Include="Unity.Physics.Hybrid">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Physics.Hybrid.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Purchasing">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEditor.Purchasing.dll</HintPath>
+    <Reference Include="Unity.2D.IK.Runtime">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ScriptableBuildPipeline">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Purchasing">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+    <Reference Include="Unity.2D.Animation.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Polybrush">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Polybrush.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ScriptableBuildPipeline.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.Shared.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Purchasing.Utilities">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.Utilities.dll</HintPath>
+    <Reference Include="Unity.2D.PixelPerfect.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Services.Core.Analytics">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.Core">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Analytics">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Analytics.dll</HintPath>
+    <Reference Include="Unity.Cinemachine.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Cinemachine.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Physics">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Physics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Cinemachine">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Psdimporter.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.IK.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Fbx">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Autodesk.Fbx.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Runtime">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Runtime">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Purchasing.SecurityCore">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Purchasing.SecurityCore.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
@@ -1321,20 +1876,23 @@
     <Reference Include="Unity.Multiplayer.Center.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Multiplayer.Center.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TerrainTools.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TerrainTools.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rendering.LightTransport.Runtime">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Rendering.LightTransport.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
+    <Reference Include="Autodesk.Fbx.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Autodesk.Fbx.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Serialization.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Serialization.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
@@ -1344,9 +1902,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Analytics">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Services.Analytics.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -1414,14 +1969,6 @@
       <Project>{370a231a-e2db-8e02-ff52-48549941b96f}</Project>
       <Name>Unity.Entities.UI.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="com.rlabrecque.steamworks.net.csproj">
-      <Project>{cd4687a9-f968-a292-a6d3-b4fc92fc9601}</Project>
-      <Name>com.rlabrecque.steamworks.net</Name>
-    </ProjectReference>
-    <ProjectReference Include="com.rlabrecque.steamworks.net.editor.csproj">
-      <Project>{323229e7-9867-a37b-252f-162450bb904b}</Project>
-      <Name>com.rlabrecque.steamworks.net.editor</Name>
-    </ProjectReference>
     <ProjectReference Include="TWG.TLDA.TestSuite.Editor.csproj">
       <Project>{1fd84da3-5b5a-cc8a-1a30-c4c7199db76a}</Project>
       <Name>TWG.TLDA.TestSuite.Editor</Name>
@@ -1434,13 +1981,13 @@
       <Project>{6a1ba748-c59f-0e53-7348-731ef6a7217c}</Project>
       <Name>Unity.Mathematics.Extensions.Hybrid</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Deformations.csproj">
-      <Project>{11cd120b-e365-74c1-7770-6196e2f7b0cd}</Project>
-      <Name>Unity.Deformations</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Collections.Editor.csproj">
       <Project>{fd476069-d2a3-22d5-54c0-ecbae029af9b}</Project>
       <Name>Unity.Collections.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Deformations.csproj">
+      <Project>{11cd120b-e365-74c1-7770-6196e2f7b0cd}</Project>
+      <Name>Unity.Deformations</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,9 @@
 {
     "name": "TWG.SteamBridge",
     "rootNamespace": "TWG.Seed.Platform",
-    "references": [],
+    "references": [
+        "com.rlabrecque.steamworks.net"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

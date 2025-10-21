@@ -1,0 +1,21 @@
+{
+    "RunId": "run_0001",
+    "ExperimentName": "experiment_c3d4e5f6-g7h8-9012-3456-789012cdefgh",
+    "HypothesisId": "unknown",
+    "ConfidenceScore": 0.6498000025749207,
+    "ClaimType": "Hypothesis",
+    "ValidationTime": "2025-10-20T08:25:39.5411559-04:00",
+    "Success": true,
+    "BaselineComparison": "pending",
+    "Classification": {
+        "PrimaryType": "Hypothesis",
+        "SecondaryType": "standard",
+        "AnomalyScore": 0.0,
+        "ClassificationFlags": [],
+        "ClassificationReason": "Base confidence: 0.65",
+        "TrendSignificance": 0.6498000025749207,
+        "BaselineDeviation": "Within expected baseline range",
+        "IsExpectedAnomaly": false,
+        "PhenomenonType": ""
+    }
+}

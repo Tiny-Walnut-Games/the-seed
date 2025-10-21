@@ -1,0 +1,13 @@
+# Auto-generated harness manifest
+run_id: "run_1898c623_20251020_080002"
+experiment_name: "Editor Tool Enhancement Potential"
+hypothesis_id: ""0eb5551b-7ceb-4ea6-9317-532333c21cdc""
+hypothesis_type: ""CapabilityAssertion""
+confidence_threshold: 0.7
+output_directory: "assets/experiments/school/outputs/runs/run_1898c623_20251020_080002"
+stage: "Stage 3 - Experiment Execution"
+timestamp: "2025-10-20T12:00:03Z"
+artifacts:
+  - experiment_results.json
+  - performance_metrics.json
+  - unity_logs.txt
