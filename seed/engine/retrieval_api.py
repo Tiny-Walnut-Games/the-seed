@@ -35,10 +35,25 @@ class RetrievalQuery:
     exclude_conflicts: bool = True
     include_provenance: bool = True
     query_timestamp: float = None
+    stat7_hybrid: bool = False  # Enable STAT7 hybrid scoring
+    stat7_address: Optional[Dict[str, Any]] = None  # STAT7 coordinates for hybrid scoring
+    weight_semantic: float = 0.6  # Weight for semantic similarity in hybrid mode
+    weight_stat7: float = 0.4  # Weight for STAT7 resonance in hybrid mode
     
     def __post_init__(self):
         if self.query_timestamp is None:
             self.query_timestamp = time.time()
+        if self.stat7_hybrid and not self.stat7_address:
+            # Default STAT7 address if not specified
+            self.stat7_address = {
+                "realm": {"type": "default", "label": "retrieval_query"},
+                "lineage": 0,
+                "adjacency": 0.5,
+                "horizon": "scene",
+                "luminosity": 0.7,
+                "polarity": 0.5,
+                "dimensionality": 3
+            }
 
 
 @dataclass
@@ -54,6 +69,8 @@ class RetrievalResult:
     provenance_depth: int
     conflict_flags: List[str]  # Any conflicts detected
     metadata: Dict[str, Any]
+    stat7_resonance: float = 0.0  # STAT7 hybrid scoring component (if enabled)
+    semantic_similarity: float = 0.0  # Semantic scoring component (if hybrid)
 
 
 @dataclass
@@ -72,16 +89,19 @@ class ContextAssembly:
 
 class RetrievalAPI:
     """
-    Anchor-grounded context retrieval system.
+    Anchor-grounded context retrieval system with optional STAT7 hybrid scoring.
     
     Provides intelligent context assembly by combining semantic anchors,
     micro-summaries, macro distillations, and memory fragments with
     conflict awareness and provenance tracking.
+    
+    Supports STAT7 hybrid scoring for multi-dimensional retrieval when enabled.
     """
     
     def __init__(self, config: Optional[Dict[str, Any]] = None, 
                  semantic_anchors=None, summarization_ladder=None, 
-                 conflict_detector=None, embedding_provider=None):
+                 conflict_detector=None, embedding_provider=None,
+                 stat7_bridge=None):
         self.config = config or {}
         
         # Component dependencies
@@ -89,6 +109,7 @@ class RetrievalAPI:
         self.summarization_ladder = summarization_ladder
         self.conflict_detector = conflict_detector
         self.embedding_provider = embedding_provider
+        self.stat7_bridge = stat7_bridge  # Optional STAT7 RAG bridge for hybrid scoring
         
         # Configuration parameters
         self.default_max_results = self.config.get("default_max_results", 10)
@@ -96,15 +117,24 @@ class RetrievalAPI:
         self.temporal_decay_hours = self.config.get("temporal_decay_hours", 24)
         self.quality_threshold = self.config.get("quality_threshold", 0.6)
         
+        # STAT7 hybrid scoring configuration
+        self.enable_stat7_hybrid = self.config.get("enable_stat7_hybrid", False)
+        self.default_weight_semantic = self.config.get("default_weight_semantic", 0.6)
+        self.default_weight_stat7 = self.config.get("default_weight_stat7", 0.4)
+        
         # Retrieval cache (for performance)
         self.query_cache: Dict[str, ContextAssembly] = {}
         self.cache_ttl_seconds = self.config.get("cache_ttl_seconds", 300)  # 5 minutes
+        
+        # Document STAT7 assignments cache (for rapid re-retrieval)
+        self.document_stat7_cache: Dict[str, Dict[str, Any]] = {}
         
         # Metrics
         self.metrics = {
             "total_queries": 0,
             "cache_hits": 0,
             "cache_misses": 0,
+            "hybrid_queries": 0,
             "average_results_per_query": 0.0,
             "average_retrieval_time_ms": 0.0,
             "quality_distribution": {"high": 0, "medium": 0, "low": 0}
@@ -258,7 +288,11 @@ class RetrievalAPI:
             max_results=query_dict.get("max_results", self.default_max_results),
             confidence_threshold=query_dict.get("confidence_threshold", 0.6),
             exclude_conflicts=query_dict.get("exclude_conflicts", True),
-            include_provenance=query_dict.get("include_provenance", True)
+            include_provenance=query_dict.get("include_provenance", True),
+            stat7_hybrid=query_dict.get("stat7_hybrid", self.enable_stat7_hybrid),
+            stat7_address=query_dict.get("stat7_address"),
+            weight_semantic=query_dict.get("weight_semantic", self.default_weight_semantic),
+            weight_stat7=query_dict.get("weight_stat7", self.default_weight_stat7)
         )
     
     def _retrieve_semantic_similarity(self, query: RetrievalQuery) -> List[RetrievalResult]:
@@ -551,6 +585,11 @@ class RetrievalAPI:
     
     def _filter_and_rank_results(self, results: List[RetrievalResult], query: RetrievalQuery) -> List[RetrievalResult]:
         """Filter and rank results based on query parameters."""
+        # Apply STAT7 hybrid scoring if enabled
+        if query.stat7_hybrid:
+            results = self._apply_hybrid_scoring(results, query)
+            self.metrics["hybrid_queries"] += 1
+        
         # Filter by confidence threshold
         filtered = [r for r in results if r.relevance_score >= query.confidence_threshold]
         
@@ -731,7 +770,8 @@ class RetrievalAPI:
             "semantic_anchors": self.semantic_anchors is not None,
             "summarization_ladder": self.summarization_ladder is not None,
             "conflict_detector": self.conflict_detector is not None,
-            "embedding_provider": self.embedding_provider is not None
+            "embedding_provider": self.embedding_provider is not None,
+            "stat7_bridge": self.stat7_bridge is not None
         }
     
     def _calculate_average_quality(self) -> float:
@@ -760,3 +800,178 @@ class RetrievalAPI:
             return 1.0
         
         return successful_retrievals / total_retrievals
+    
+    # ========================================================================
+    # STAT7 Hybrid Scoring Support (Phase 2)
+    # ========================================================================
+    
+    def _auto_assign_stat7_address(self, content_id: str, metadata: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Auto-assign STAT7 address to content based on metadata.
+        
+        Supports fallback to default if metadata incomplete.
+        
+        Args:
+            content_id: ID of the content being assigned
+            metadata: Document metadata with optional realm, lineage, etc.
+        
+        Returns:
+            STAT7 address dictionary with all 7 dimensions
+        """
+        # Check cache first
+        if content_id in self.document_stat7_cache:
+            return self.document_stat7_cache[content_id]
+        
+        # Extract from metadata or use defaults
+        realm_type = metadata.get("realm_type", "data")
+        realm_label = metadata.get("realm_label", "content")
+        lineage = metadata.get("lineage", 0)
+        
+        # Compute adjacency from connectivity hints
+        adjacency = min(1.0, metadata.get("connection_count", 0) / 10.0)
+        
+        # Horizon from lifecycle stage
+        lifecycle = metadata.get("lifecycle_stage", "scene")
+        horizon_map = {
+            "genesis": "logline",
+            "emergence": "outline",
+            "peak": "scene",
+            "decay": "panel"
+        }
+        horizon = horizon_map.get(lifecycle, "scene")
+        
+        # Luminosity from activity/heat
+        luminosity = min(1.0, max(0.0, metadata.get("activity_level", 0.5)))
+        
+        # Polarity from update frequency / resonance
+        polarity = min(1.0, metadata.get("resonance_factor", 0.5))
+        
+        # Dimensionality from thread count
+        thread_count = metadata.get("thread_count", 3)
+        dimensionality = min(7, max(1, thread_count))
+        
+        stat7_address = {
+            "realm": {
+                "type": realm_type,
+                "label": realm_label
+            },
+            "lineage": lineage,
+            "adjacency": round(adjacency, 2),
+            "horizon": horizon,
+            "luminosity": round(luminosity, 2),
+            "polarity": round(polarity, 2),
+            "dimensionality": dimensionality
+        }
+        
+        # Cache the assignment
+        self.document_stat7_cache[content_id] = stat7_address
+        return stat7_address
+    
+    def _apply_hybrid_scoring(self, results: List[RetrievalResult], query: RetrievalQuery) -> List[RetrievalResult]:
+        """
+        Apply STAT7 hybrid scoring to retrieval results.
+        
+        Combines semantic similarity with STAT7 resonance scoring.
+        Updates relevance_score to reflect hybrid score.
+        
+        Args:
+            results: Initial retrieval results with semantic scores
+            query: Query object with STAT7 address and weights
+        
+        Returns:
+            Results with updated hybrid relevance scores
+        """
+        if not query.stat7_hybrid or not self.stat7_bridge:
+            return results  # No hybrid scoring if not enabled or bridge missing
+        
+        try:
+            from seed.engine.stat7_rag_bridge import STAT7Address, Realm
+        except ImportError:
+            # Fallback if bridge not available
+            return results
+        
+        # Convert query STAT7 dict to STAT7Address object
+        if not query.stat7_address:
+            return results
+        
+        try:
+            q_stat7_dict = query.stat7_address
+            query_realm = Realm(
+                type=q_stat7_dict["realm"]["type"],
+                label=q_stat7_dict["realm"]["label"]
+            )
+            query_stat7 = STAT7Address(
+                realm=query_realm,
+                lineage=q_stat7_dict["lineage"],
+                adjacency=q_stat7_dict["adjacency"],
+                horizon=q_stat7_dict["horizon"],
+                luminosity=q_stat7_dict["luminosity"],
+                polarity=q_stat7_dict["polarity"],
+                dimensionality=q_stat7_dict["dimensionality"]
+            )
+        except Exception:
+            # Invalid STAT7 address, fall back to semantic
+            return results
+        
+        # Apply hybrid scoring to each result
+        for result in results:
+            # Get or compute STAT7 address for this result's content
+            if "stat7" not in result.metadata:
+                # Auto-assign if not already present
+                result.metadata["stat7"] = self._auto_assign_stat7_address(
+                    result.content_id,
+                    result.metadata
+                )
+            
+            # Extract document STAT7 address
+            doc_stat7_dict = result.metadata.get("stat7", {})
+            if not doc_stat7_dict:
+                continue
+            
+            try:
+                doc_realm = Realm(
+                    type=doc_stat7_dict["realm"]["type"],
+                    label=doc_stat7_dict["realm"]["label"]
+                )
+                doc_stat7 = STAT7Address(
+                    realm=doc_realm,
+                    lineage=doc_stat7_dict["lineage"],
+                    adjacency=doc_stat7_dict["adjacency"],
+                    horizon=doc_stat7_dict["horizon"],
+                    luminosity=doc_stat7_dict["luminosity"],
+                    polarity=doc_stat7_dict["polarity"],
+                    dimensionality=doc_stat7_dict["dimensionality"]
+                )
+            except Exception:
+                # Skip if document STAT7 invalid
+                continue
+            
+            # Compute STAT7 resonance score
+            stat7_res = self.stat7_bridge.stat7_resonance(query_stat7, doc_stat7)
+            result.stat7_resonance = stat7_res
+            
+            # Compute semantic similarity (if available)
+            semantic_sim = result.relevance_score  # Current score is semantic
+            result.semantic_similarity = semantic_sim
+            
+            # Combine into hybrid score
+            hybrid = (query.weight_semantic * semantic_sim) + (query.weight_stat7 * stat7_res)
+            result.relevance_score = max(0.0, min(hybrid, 1.0))
+        
+        return results
+    
+    def _get_stat7_address_for_content(self, content_id: str, metadata: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        """
+        Get or compute STAT7 address for content with caching.
+        
+        Args:
+            content_id: ID of content
+            metadata: Content metadata
+        
+        Returns:
+            STAT7 address dictionary or None
+        """
+        if content_id in self.document_stat7_cache:
+            return self.document_stat7_cache[content_id]
+        
+        return self._auto_assign_stat7_address(content_id, metadata)
