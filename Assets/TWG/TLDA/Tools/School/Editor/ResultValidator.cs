@@ -23,7 +23,7 @@ namespace TWG.TLDA.School.Editor
         private ValidationSummary lastValidationSummary;
         private bool showLogs = false;
         private readonly StringBuilder validationLogs = new();
-        
+
         // Paths and settings
         private const string RUNS_DIR = "assets/experiments/school/outputs/runs/";
         private const string CLAIMS_DIR = "assets/experiments/school/claims/";
@@ -34,7 +34,7 @@ namespace TWG.TLDA.School.Editor
         private const string IMPROVEMENTS_CLAIMS_DIR = "assets/experiments/school/claims/improvements/";
         private const string NEW_PHENOMENA_CLAIMS_DIR = "assets/experiments/school/claims/new_phenomena/";
         private const string BASELINE_METRICS_PATH = "data/baseline_metrics.json";
-        
+
         [MenuItem("Tools/School/Validate Results")]
         public static void ShowWindow()
         {
@@ -42,54 +42,54 @@ namespace TWG.TLDA.School.Editor
             window.minSize = new Vector2(600, 800);
             window.Show();
         }
-        
+
         private void OnEnable()
         {
             LoadAvailableRuns();
         }
-        
+
         private void OnGUI()
         {
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
-            
+
             DrawHeader();
             DrawRunsSection();
             DrawValidationSection();
             DrawResultsSection();
             DrawLogsSection();
-            
+
             EditorGUILayout.EndScrollView();
         }
-        
+
         private void DrawHeader()
         {
             EditorGUILayout.Space(10);
-            
+
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             EditorGUILayout.LabelField("School Result Validator - Stage 4", EditorStyles.largeLabel);
             EditorGUILayout.LabelField("Validation & Promotion with Unity 6 & GitHub Integration", EditorStyles.miniLabel);
             EditorGUILayout.Space(5);
-            
+
             var style = new GUIStyle(EditorStyles.label) { wordWrap = true };
             EditorGUILayout.LabelField("Validates experiment results, computes confidence scores, checks baseline deltas, and promotes validated claims.", style);
             EditorGUILayout.EndVertical();
-            
+
             EditorGUILayout.Space(10);
         }
-        
+
         private void DrawRunsSection()
         {
             EditorGUILayout.LabelField("Available Experiment Runs", EditorStyles.boldLabel);
-            
+
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            
+
             if (GUILayout.Button("Refresh Runs"))
             {
                 LoadAvailableRuns();
             }
-            
+
             EditorGUILayout.Space(5);
-            
+
             if (availableRuns == null || availableRuns.Count == 0)
             {
                 EditorGUILayout.LabelField("No experiment runs found.");
@@ -98,7 +98,7 @@ namespace TWG.TLDA.School.Editor
             else
             {
                 EditorGUILayout.LabelField($"Found {availableRuns.Count} experiment runs:");
-                
+
                 EditorGUILayout.BeginVertical(EditorStyles.textArea);
                 foreach (var run in availableRuns.Take(10)) // Show first 10
                 {
@@ -108,29 +108,29 @@ namespace TWG.TLDA.School.Editor
                     EditorGUILayout.LabelField($"{(run.Success ? "✓" : "✗")}", GUILayout.Width(20));
                     EditorGUILayout.EndHorizontal();
                 }
-                
+
                 if (availableRuns.Count > 10)
                 {
                     EditorGUILayout.LabelField($"... and {availableRuns.Count - 10} more runs");
                 }
                 EditorGUILayout.EndVertical();
             }
-            
+
             EditorGUILayout.EndVertical();
             EditorGUILayout.Space(10);
         }
-        
+
         private void DrawValidationSection()
         {
             EditorGUILayout.LabelField("Validation Control", EditorStyles.boldLabel);
-            
+
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            
+
             if (isValidating)
             {
                 EditorGUILayout.LabelField("Status: Validating...", EditorStyles.boldLabel);
                 EditorGUILayout.LabelField(validationProgress);
-                
+
                 if (GUILayout.Button("Cancel Validation"))
                 {
                     isValidating = false;
@@ -140,7 +140,7 @@ namespace TWG.TLDA.School.Editor
             else
             {
                 EditorGUILayout.LabelField("Status: Ready");
-                
+
                 GUI.enabled = availableRuns != null && availableRuns.Count > 0;
                 if (GUILayout.Button("Validate All Results"))
                 {
@@ -148,34 +148,34 @@ namespace TWG.TLDA.School.Editor
                 }
                 GUI.enabled = true;
             }
-            
+
             EditorGUILayout.EndVertical();
             EditorGUILayout.Space(10);
         }
-        
+
         private void DrawResultsSection()
         {
             EditorGUILayout.LabelField("Validation Results", EditorStyles.boldLabel);
-            
+
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            
+
             if (lastValidationSummary != null)
             {
                 EditorGUILayout.LabelField($"Last validation: {lastValidationTime:yyyy-MM-dd HH:mm:ss}");
                 EditorGUILayout.Space(5);
-                
+
                 EditorGUILayout.LabelField($"Runs validated: {lastValidationSummary.RunsValidated}");
                 EditorGUILayout.LabelField($"Claims promoted: {lastValidationSummary.ClaimsPromoted}");
                 EditorGUILayout.LabelField($"Average confidence: {lastValidationSummary.AverageConfidence:F2}");
                 EditorGUILayout.LabelField($"Baseline delta: {lastValidationSummary.BaselineDelta:F2}%");
-                
+
                 EditorGUILayout.Space(5);
-                
+
                 if (GUILayout.Button("Show Claims Directory"))
                 {
                     ShowClaimsDirectory();
                 }
-                
+
                 if (GUILayout.Button("Show GitHub Integration Data"))
                 {
                     ShowGitHubIntegrationData();
@@ -186,38 +186,38 @@ namespace TWG.TLDA.School.Editor
                 EditorGUILayout.LabelField("No validation results yet.");
                 EditorGUILayout.LabelField("Run validation to see results here.");
             }
-            
+
             EditorGUILayout.EndVertical();
             EditorGUILayout.Space(10);
         }
-        
+
         private void DrawLogsSection()
         {
             EditorGUILayout.LabelField("Validation Logs", EditorStyles.boldLabel);
-            
+
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            
+
             showLogs = EditorGUILayout.Foldout(showLogs, $"Show logs ({validationLogs.Length} characters)");
-            
+
             if (showLogs)
             {
                 EditorGUILayout.BeginVertical(EditorStyles.textArea);
                 EditorGUILayout.SelectableLabel(validationLogs.ToString(), GUILayout.Height(200));
                 EditorGUILayout.EndVertical();
-                
+
                 if (GUILayout.Button("Clear Logs"))
                 {
                     validationLogs.Clear();
                 }
             }
-            
+
             EditorGUILayout.EndVertical();
         }
-        
+
         private void LoadAvailableRuns()
         {
             availableRuns = new List<RunResult>();
-            
+
             try
             {
                 if (!Directory.Exists(RUNS_DIR))
@@ -225,9 +225,9 @@ namespace TWG.TLDA.School.Editor
                     LogMessage($"Runs directory not found: {RUNS_DIR}");
                     return;
                 }
-                
+
                 var runDirectories = Directory.GetDirectories(RUNS_DIR, "run_*");
-                
+
                 foreach (var runDir in runDirectories)
                 {
                     var metadataPath = Path.Combine(runDir, "run_metadata.json");
@@ -237,7 +237,7 @@ namespace TWG.TLDA.School.Editor
                         {
                             var metadataJson = File.ReadAllText(metadataPath);
                             var runData = JsonUtility.FromJson<RunMetadata>(metadataJson);
-                            
+
                             var runResult = new RunResult
                             {
                                 RunId = runData.run_id,
@@ -247,7 +247,7 @@ namespace TWG.TLDA.School.Editor
                                 RunDirectory = runDir,
                                 Metadata = runData
                             };
-                            
+
                             availableRuns.Add(runResult);
                         }
                         catch (Exception ex)
@@ -256,7 +256,7 @@ namespace TWG.TLDA.School.Editor
                         }
                     }
                 }
-                
+
                 availableRuns = availableRuns.OrderBy(r => r.RunId).ToList();
                 LogMessage($"Loaded {availableRuns.Count} experiment runs");
             }
@@ -265,15 +265,15 @@ namespace TWG.TLDA.School.Editor
                 LogMessage($"Failed to load runs: {ex.Message}");
             }
         }
-        
+
         private async void ValidateAllResults()
         {
             if (isValidating) return;
-            
+
             isValidating = true;
             validationProgress = "Starting validation...";
             lastValidationTime = DateTime.Now;
-            
+
             try
             {
                 // Ensure output directories exist
@@ -284,18 +284,18 @@ namespace TWG.TLDA.School.Editor
                 Directory.CreateDirectory(ANOMALIES_CLAIMS_DIR);
                 Directory.CreateDirectory(IMPROVEMENTS_CLAIMS_DIR);
                 Directory.CreateDirectory(NEW_PHENOMENA_CLAIMS_DIR);
-                
+
                 var summary = new ValidationSummary();
                 var validatedClaims = new List<ClaimData>();
-                
+
                 LogMessage($"Validating {availableRuns.Count} experiment runs...");
-                
+
                 for (int i = 0; i < availableRuns.Count; i++)
                 {
                     var run = availableRuns[i];
                     validationProgress = $"Validating run {i + 1}/{availableRuns.Count}: {run.RunId}";
                     Repaint();
-                    
+
                     var claim = await ValidateRun(run);
                     if (claim != null)
                     {
@@ -303,30 +303,30 @@ namespace TWG.TLDA.School.Editor
                         summary.RunsValidated++;
                         summary.ConfidenceScores.Add(claim.ConfidenceScore);
                     }
-                    
+
                     await Task.Yield();
                 }
-                
+
                 // Compute baseline delta
                 summary.BaselineDelta = await ComputeBaselineDelta();
-                
+
                 // Promote claims based on validation results
                 summary.ClaimsPromoted = await PromoteClaims(validatedClaims);
-                
+
                 // Calculate average confidence
-                summary.AverageConfidence = summary.ConfidenceScores.Count > 0 
-                    ? summary.ConfidenceScores.Average() 
+                summary.AverageConfidence = summary.ConfidenceScores.Count > 0
+                    ? summary.ConfidenceScores.Average()
                     : 0.0f;
-                
+
                 lastValidationSummary = summary;
-                
+
                 LogMessage($"Validation complete: {summary.RunsValidated} runs validated, {summary.ClaimsPromoted} claims promoted");
-                
+
                 // Generate GitHub integration data
                 await GenerateGitHubIntegrationData(summary);
-                
-                EditorUtility.DisplayDialog("Validation Complete", 
-                    $"Validated {summary.RunsValidated} runs.\nPromoted {summary.ClaimsPromoted} claims.\nAverage confidence: {summary.AverageConfidence:F2}", 
+
+                EditorUtility.DisplayDialog("Validation Complete",
+                    $"Validated {summary.RunsValidated} runs.\nPromoted {summary.ClaimsPromoted} claims.\nAverage confidence: {summary.AverageConfidence:F2}",
                     "OK");
             }
             catch (Exception ex)
@@ -341,20 +341,20 @@ namespace TWG.TLDA.School.Editor
                 Repaint();
             }
         }
-        
+
         private async Task<ClaimData> ValidateRun(RunResult run) // Enhanced validation with comprehensive claim analysis
         {
             try
             {
                 // Simulate brief validation delay to represent actual analysis time
                 await Task.Delay(1); // Brief delay to represent validation processing
-                
+
                 // Calculate confidence score based on run success and metadata
                 float confidence = CalculateConfidenceScore(run);
-                
+
                 // Determine claim type based on validation criteria
                 var (claimType, classificationMetadata) = DetermineClaimTypeWithMetadata(run, confidence);
-                
+
                 var claim = new ClaimData
                 {
                     RunId = run.RunId,
@@ -367,7 +367,7 @@ namespace TWG.TLDA.School.Editor
                     BaselineComparison = "pending", // Will be computed later
                     Classification = classificationMetadata
                 };
-                
+
                 LogMessage($"Run {run.RunId}: confidence={confidence:F2}, type={claimType}, " +
                           $"anomaly_score={classificationMetadata.AnomalyScore:F2}");
                 return claim;
@@ -378,11 +378,11 @@ namespace TWG.TLDA.School.Editor
                 return null;
             }
         }
-        
+
         private float CalculateConfidenceScore(RunResult run)
         {
             float baseConfidence = run.Success ? 0.8f : 0.2f;
-            
+
             // Factor in execution consistency (if we have execution logs)
             float consistencyFactor = 1.0f;
             var logsPath = Path.Combine(run.RunDirectory, "execution_logs.txt");
@@ -400,17 +400,17 @@ namespace TWG.TLDA.School.Editor
                     consistencyFactor = 0.8f; // Default if we can't read logs
                 }
             }
-            
+
             // Factor in metadata completeness
             float metadataFactor = 1.0f;
             if (string.IsNullOrEmpty(run.Metadata.hypothesis_id)) metadataFactor *= 0.9f;
             if (string.IsNullOrEmpty(run.Metadata.git_commit)) metadataFactor *= 0.95f;
             if (string.IsNullOrEmpty(run.Metadata.git_branch)) metadataFactor *= 0.95f;
-            
+
             float finalConfidence = baseConfidence * consistencyFactor * metadataFactor;
             return Math.Min(0.95f, Math.Max(0.05f, finalConfidence));
         }
-        
+
         /// <summary>
         /// Determine claim type and classification metadata based on comprehensive validation criteria
         /// 🎯 ENHANCED IMPLEMENTATION: Uses run metadata, execution context, confidence score, and advanced
@@ -421,32 +421,32 @@ namespace TWG.TLDA.School.Editor
         {
             // Step 1: Basic classification using confidence thresholds
             var baseClassification = DetermineBaseClassification(confidence);
-            
+
             // Step 2: Analyze for anomaly patterns
             var anomalyAnalysis = AnalyzeAnomalyPatterns(run, confidence);
-            
+
             // Step 3: Check for improvement patterns
             var improvementAnalysis = AnalyzeImprovementPatterns(run, confidence);
-            
+
             // Step 4: Detect new phenomena
             var phenomenonAnalysis = AnalyzeNewPhenomena(run, confidence);
-            
+
             // Step 5: Apply metadata-based classification enhancements
             var enhancedAnalysis = ApplyMetadataBasedClassification(run, confidence, baseClassification.ToString());
-            
+
             // Step 6: Apply domain-specific classification rules
             var finalAnalysis = ApplyDomainSpecificClassification(run, confidence, enhancedAnalysis);
-            
+
             // Step 7: Combine all analyses to determine final classification
             var (finalType, metadata) = SynthesizeClassification(
-                run, confidence, baseClassification, anomalyAnalysis, 
+                run, confidence, baseClassification, anomalyAnalysis,
                 improvementAnalysis, phenomenonAnalysis, finalAnalysis);
-            
+
             LogMessage($"Enhanced classification for {run.RunId}: " +
                       $"base={baseClassification}, final={finalType}, " +
                       $"anomaly_score={metadata.AnomalyScore:F2}, " +
                       $"trend_significance={metadata.TrendSignificance:F2}");
-            
+
             return (finalType, metadata);
         }
 
@@ -469,7 +469,7 @@ namespace TWG.TLDA.School.Editor
         private AnomalyAnalysis AnalyzeAnomalyPatterns(RunResult run, float confidence)
         {
             var analysis = new AnomalyAnalysis();
-            
+
             // Analyze execution time patterns for anomalies
             if (!string.IsNullOrEmpty(run.ExecutionTime) && TryParseExecutionTime(run.ExecutionTime, out var duration))
             {
@@ -488,27 +488,27 @@ namespace TWG.TLDA.School.Editor
                     analysis.Type = AnomalyType.Performance;
                 }
             }
-            
+
             // Check for expected anomalies based on experiment name patterns
             var experimentName = run.ExperimentName.ToLower();
-            if (experimentName.Contains("stress") || experimentName.Contains("load") || 
+            if (experimentName.Contains("stress") || experimentName.Contains("load") ||
                 experimentName.Contains("boundary") || experimentName.Contains("edge"))
             {
                 analysis.IsExpected = true;
                 analysis.AnomalyScore += 0.2f; // Moderate anomaly score for expected stress tests
                 analysis.AnomalyFlags.Add("expected_stress_test");
             }
-            
+
             // Check for git branch patterns that suggest expected anomalies
             var gitBranch = run.Metadata.git_branch?.ToLower() ?? "";
-            if (gitBranch.Contains("experimental") || gitBranch.Contains("prototype") || 
+            if (gitBranch.Contains("experimental") || gitBranch.Contains("prototype") ||
                 gitBranch.Contains("research") || gitBranch.Contains("spike"))
             {
                 analysis.IsExpected = true;
                 analysis.AnomalyScore += 0.15f;
                 analysis.AnomalyFlags.Add("experimental_branch");
             }
-            
+
             // Behavioral anomalies - success/failure mismatch with confidence
             if (run.Success && confidence < 0.3f)
             {
@@ -522,7 +522,7 @@ namespace TWG.TLDA.School.Editor
                 analysis.AnomalyFlags.Add("failure_confidence_mismatch");
                 analysis.Type = AnomalyType.Behavioral;
             }
-            
+
             return analysis;
         }
 
@@ -532,13 +532,13 @@ namespace TWG.TLDA.School.Editor
         private ImprovementAnalysis AnalyzeImprovementPatterns(RunResult run, float confidence)
         {
             var analysis = new ImprovementAnalysis();
-            
+
             // High confidence successful runs are potential improvements
             if (run.Success && confidence >= 0.8f)
             {
                 analysis.ImprovementScore = confidence;
                 analysis.ImprovementFlags.Add("high_confidence_success");
-                
+
                 // Check for performance improvement indicators
                 var experimentName = run.ExperimentName.ToLower();
                 if (experimentName.Contains("optimization") || experimentName.Contains("performance") ||
@@ -548,7 +548,7 @@ namespace TWG.TLDA.School.Editor
                     analysis.ImprovementFlags.Add("performance_optimization");
                     analysis.Type = "performance";
                 }
-                
+
                 // Check for user experience improvements
                 if (experimentName.Contains("ui") || experimentName.Contains("ux") ||
                     experimentName.Contains("usability") || experimentName.Contains("experience"))
@@ -558,7 +558,7 @@ namespace TWG.TLDA.School.Editor
                     analysis.Type = "user_experience";
                 }
             }
-            
+
             return analysis;
         }
 
@@ -568,7 +568,7 @@ namespace TWG.TLDA.School.Editor
         private PhenomenonAnalysis AnalyzeNewPhenomena(RunResult run, float confidence)
         {
             var analysis = new PhenomenonAnalysis();
-            
+
             // Check for novel experiment patterns
             var experimentName = run.ExperimentName.ToLower();
             if (experimentName.Contains("novel") || experimentName.Contains("new") ||
@@ -578,14 +578,14 @@ namespace TWG.TLDA.School.Editor
                 analysis.PhenomenonFlags.Add("novel_experiment_indicator");
                 analysis.Type = "experimental_breakthrough";
             }
-            
+
             // Check for unusual confidence patterns that might indicate new phenomena
             if (confidence > 0.9f && run.Success)
             {
                 analysis.PhenomenonScore += 0.3f; // Very high confidence might indicate something new
                 analysis.PhenomenonFlags.Add("exceptionally_high_confidence");
             }
-            
+
             // Check for git context that suggests new phenomena
             var gitBranch = run.Metadata.git_branch?.ToLower() ?? "";
             if (gitBranch.Contains("discovery") || gitBranch.Contains("exploration") ||
@@ -595,7 +595,7 @@ namespace TWG.TLDA.School.Editor
                 analysis.PhenomenonFlags.Add("exploratory_branch");
                 analysis.Type = "behavioral_discovery";
             }
-            
+
             return analysis;
         }
 
@@ -760,22 +760,22 @@ namespace TWG.TLDA.School.Editor
         private ExperimentType ClassifyExperimentType(string experimentName)
         {
             var name = experimentName.ToLower();
-            
+
             if (name.Contains("performance") || name.Contains("benchmark") || name.Contains("speed"))
                 return ExperimentType.Performance;
-            
+
             if (name.Contains("ui") || name.Contains("interface") || name.Contains("ux") || name.Contains("frontend"))
                 return ExperimentType.UserInterface;
-            
+
             if (name.Contains("integration") || name.Contains("api") || name.Contains("service"))
                 return ExperimentType.Integration;
-            
+
             if (name.Contains("security") || name.Contains("auth") || name.Contains("permission"))
                 return ExperimentType.Security;
-            
+
             if (name.Contains("data") || name.Contains("processing") || name.Contains("analytics"))
                 return ExperimentType.DataProcessing;
-            
+
             return ExperimentType.General;
         }
 
@@ -785,7 +785,7 @@ namespace TWG.TLDA.School.Editor
         private bool TryParseExecutionTime(string executionTimeStr, out TimeSpan duration)
         {
             duration = TimeSpan.Zero;
-            
+
             try
             {
                 // Handle various formats: "1.23s", "45.6", "00:01:23", etc.
@@ -812,7 +812,7 @@ namespace TWG.TLDA.School.Editor
             {
                 // Parsing failed, return false
             }
-            
+
             return false;
         }
 
@@ -891,13 +891,13 @@ namespace TWG.TLDA.School.Editor
                     LogMessage("No baseline metrics found, assuming 0% delta");
                     return 0.0f;
                 }
-                
-                // Simple delta calculation - in a real implementation, this would be more sophisticated
+
+                // 👀Simple delta calculation - in a real implementation, this would be more sophisticated
                 var currentMetrics = await CaptureCurrentMetrics();
                 var baselineText = File.ReadAllText(BASELINE_METRICS_PATH);
-                
+
                 // For now, just return a placeholder delta
-                // Real implementation would compare actual metrics
+                // 👀Real implementation would compare actual metrics
                 return 2.5f; // 2.5% improvement over baseline
             }
             catch (Exception ex)
@@ -914,8 +914,8 @@ namespace TWG.TLDA.School.Editor
         {
             // Simulate metrics capture with small delay to represent actual system polling
             await Task.Delay(10); // Brief delay to represent actual metrics gathering
-            
-            // In a real implementation, this would gather system metrics like:
+
+            // 👀In a real implementation, this would gather system metrics like:
             // - Memory usage, CPU performance, frame rate, load times, etc.
             var mockMetrics = new
             {
@@ -924,7 +924,7 @@ namespace TWG.TLDA.School.Editor
                 frameRate = UnityEngine.Random.Range(45, 60),
                 loadTime = UnityEngine.Random.Range(1.2f, 2.8f)
             };
-            
+
             return JsonUtility.ToJson(mockMetrics);
         }
 
@@ -934,7 +934,7 @@ namespace TWG.TLDA.School.Editor
         private async Task<int> PromoteClaims(List<ClaimData> claims)
         {
             int promoted = 0;
-            
+
             foreach (var claim in claims)
             {
                 string targetDir = claim.ClaimType switch
@@ -947,9 +947,9 @@ namespace TWG.TLDA.School.Editor
                     "new_phenomenon" => NEW_PHENOMENA_CLAIMS_DIR,
                     _ => HYPOTHESES_CLAIMS_DIR // Default fallback
                 };
-                
+
                 var claimPath = Path.Combine(targetDir, $"claim_{claim.RunId}_{DateTime.Now:yyyyMMdd_HHmmss}.json");
-                
+
                 try
                 {
                     var claimJson = JsonUtility.ToJson(claim, true);
@@ -962,7 +962,7 @@ namespace TWG.TLDA.School.Editor
                     LogMessage($"Failed to promote claim {claim.RunId}: {ex.Message}");
                 }
             }
-            
+
             await Task.Yield();
             return promoted;
         }
@@ -990,10 +990,10 @@ namespace TWG.TLDA.School.Editor
                     Stage = "4",
                     Workflow = "school"
                 };
-                
+
                 var integrationPath = Path.Combine(CLAIMS_DIR, "github_integration.json");
                 File.WriteAllText(integrationPath, JsonUtility.ToJson(integrationData, true));
-                
+
                 LogMessage($"GitHub integration data saved to: {integrationPath}");
                 await Task.Yield();
             }
@@ -1009,7 +1009,7 @@ namespace TWG.TLDA.School.Editor
         private string[] GetClaimsPaths()
         {
             var paths = new List<string>();
-            
+
             try
             {
                 if (Directory.Exists(VALIDATED_CLAIMS_DIR))
@@ -1029,7 +1029,7 @@ namespace TWG.TLDA.School.Editor
             {
                 LogMessage($"Failed to get claims paths: {ex.Message}");
             }
-            
+
             return paths.ToArray();
         }
 
@@ -1100,7 +1100,7 @@ namespace TWG.TLDA.School.Editor
             }
             else
             {
-                EditorUtility.DisplayDialog("Claims Directory", 
+                EditorUtility.DisplayDialog("Claims Directory",
                     "Claims directory not found. Run validation first.", "OK");
             }
         }
@@ -1116,13 +1116,13 @@ namespace TWG.TLDA.School.Editor
                 var content = File.ReadAllText(integrationPath);
                 LogMessage("GitHub Integration Data:");
                 LogMessage(content);
-                
-                EditorUtility.DisplayDialog("GitHub Integration Data", 
+
+                EditorUtility.DisplayDialog("GitHub Integration Data",
                     $"Integration data available at:\n{integrationPath}\n\nCheck logs for full content.", "OK");
             }
             else
             {
-                EditorUtility.DisplayDialog("GitHub Integration Data", 
+                EditorUtility.DisplayDialog("GitHub Integration Data",
                     "No integration data found. Run validation first.", "OK");
             }
         }
@@ -1156,36 +1156,36 @@ namespace TWG.TLDA.School.Editor
                 ClassificationFlags = CombineClassificationFlags(anomalyAnalysis, improvementAnalysis, phenomenonAnalysis),
                 ClassificationReason = GenerateClassificationReason(run, confidence, anomalyAnalysis, improvementAnalysis, phenomenonAnalysis)
             };
-            
+
             // Determine final classification type
             string finalType = DetermineFinalClassificationType(
                 baseClassification, anomalyAnalysis, improvementAnalysis, phenomenonAnalysis, enhancedAnalysis);
-            
+
             // Set metadata based on final type
             metadata.PrimaryType = finalType;
             metadata.SecondaryType = DetermineSecondaryType(anomalyAnalysis, improvementAnalysis, phenomenonAnalysis);
             metadata.BaselineDeviation = CalculateBaselineDeviation(confidence, anomalyAnalysis);
             metadata.PhenomenonType = phenomenonAnalysis.Type;
-            
+
             return (finalType, metadata);
         }
-        
+
         /// <summary>
         /// Calculate trend significance based on various analysis factors
         /// </summary>
         private float CalculateTrendSignificance(float confidence, AnomalyAnalysis anomalyAnalysis, ImprovementAnalysis improvementAnalysis)
         {
             float significance = confidence;
-            
+
             // Factor in anomaly score
             significance += anomalyAnalysis.AnomalyScore * 0.3f;
-            
+
             // Factor in improvement score
             significance += improvementAnalysis.ImprovementScore * 0.2f;
-            
+
             return Math.Min(1.0f, significance);
         }
-        
+
         /// <summary>
         /// Combine classification flags from all analyses
         /// </summary>
@@ -1197,34 +1197,34 @@ namespace TWG.TLDA.School.Editor
             flags.AddRange(phenomenonAnalysis.PhenomenonFlags);
             return flags.ToArray();
         }
-        
+
         /// <summary>
         /// Generate human-readable classification reason
         /// </summary>
         private string GenerateClassificationReason(RunResult run, float confidence, AnomalyAnalysis anomalyAnalysis, ImprovementAnalysis improvementAnalysis, PhenomenonAnalysis phenomenonAnalysis)
         {
             var reasons = new List<string>();
-            
+
             reasons.Add($"Base confidence: {confidence:F2}");
-            
+
             if (anomalyAnalysis.AnomalyScore > 0.3f)
             {
                 reasons.Add($"Anomaly detected (score: {anomalyAnalysis.AnomalyScore:F2}, type: {anomalyAnalysis.Type})");
             }
-            
+
             if (improvementAnalysis.ImprovementScore > 0.5f)
             {
                 reasons.Add($"Improvement detected (score: {improvementAnalysis.ImprovementScore:F2}, type: {improvementAnalysis.Type})");
             }
-            
+
             if (phenomenonAnalysis.PhenomenonScore > 0.4f)
             {
                 reasons.Add($"New phenomenon detected (score: {phenomenonAnalysis.PhenomenonScore:F2}, type: {phenomenonAnalysis.Type})");
             }
-            
+
             return string.Join("; ", reasons);
         }
-        
+
         /// <summary>
         /// Determine final classification type from all analyses
         /// </summary>
@@ -1240,23 +1240,23 @@ namespace TWG.TLDA.School.Editor
             {
                 return "new_phenomenon";
             }
-            
+
             // Check for significant improvements
             if (improvementAnalysis.ImprovementScore > 0.8f)
             {
                 return "improvement";
             }
-            
+
             // Check for anomalies
             if (anomalyAnalysis.AnomalyScore > 0.6f)
             {
                 return "anomaly";
             }
-            
+
             // Fall back to enhanced analysis or base classification
             return enhancedAnalysis ?? baseClassification.ToString().ToLower();
         }
-        
+
         /// <summary>
         /// Determine secondary classification type for additional context
         /// </summary>
@@ -1266,20 +1266,20 @@ namespace TWG.TLDA.School.Editor
             {
                 return anomalyAnalysis.Type.ToString().ToLower();
             }
-            
+
             if (improvementAnalysis.ImprovementScore > 0.5f)
             {
                 return improvementAnalysis.Type ?? "general_improvement";
             }
-            
+
             if (phenomenonAnalysis.PhenomenonScore > 0.4f)
             {
                 return phenomenonAnalysis.Type ?? "unknown_phenomenon";
             }
-            
+
             return "standard";
         }
-        
+
         /// <summary>
         /// Calculate baseline deviation description
         /// </summary>
@@ -1289,17 +1289,17 @@ namespace TWG.TLDA.School.Editor
             {
                 return $"Significant deviation detected (anomaly score: {anomalyAnalysis.AnomalyScore:F2})";
             }
-            
+
             if (confidence > 0.8f)
             {
                 return "Positive deviation from baseline";
             }
-            
+
             if (confidence < 0.3f)
             {
                 return "Negative deviation from baseline";
             }
-            
+
             return "Within expected baseline range";
         }
 
@@ -1358,13 +1358,13 @@ namespace TWG.TLDA.School.Editor
         private enum AnomalyType
         {
             Expected,          // Anomalies that are anticipated (e.g., during system changes)
-            Unexpected,        // Truly unexpected anomalies requiring investigation  
+            Unexpected,        // Truly unexpected anomalies requiring investigation
             Performance,       // Performance-related anomalies
             Behavioral,        // Behavioral pattern anomalies
             Data              // Data pattern anomalies
         }
     }
-    
+
     // Data structures for validation
     [System.Serializable]
     public class RunResult
@@ -1376,7 +1376,7 @@ namespace TWG.TLDA.School.Editor
         public string RunDirectory;
         public RunMetadata Metadata;
     }
-    
+
     [System.Serializable]
     public class RunMetadata
     {
@@ -1392,7 +1392,7 @@ namespace TWG.TLDA.School.Editor
         public string git_commit;
         public string git_branch;
     }
-    
+
     [System.Serializable]
     public class ValidationSummary
     {
@@ -1402,7 +1402,7 @@ namespace TWG.TLDA.School.Editor
         public float BaselineDelta;
         public List<float> ConfidenceScores = new();
     }
-    
+
     [System.Serializable]
     public class GitHubValidationIntegrationData
     {

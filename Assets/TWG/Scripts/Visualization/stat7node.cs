@@ -314,7 +314,7 @@ public class STAT7Node : MonoBehaviour
 
     void UpdateAdjacencyLines()
     {
-        // This would render lines to adjacent nodes
+        // This 👀would render lines to adjacent nodes
         // Implementation depends on your line rendering system
     }
 
@@ -366,7 +366,7 @@ public class STAT7Node : MonoBehaviour
         if (isSelected)
         {
             // Implement node dragging in 3D space
-            // This would update coordinates based on mouse movement
+            // This 👀would update coordinates based on mouse movement
         }
     }
 
@@ -466,7 +466,7 @@ public class STAT7Node : MonoBehaviour
 
     string ComputeChainIntegrityHash()
     {
-        // Simplified chain integrity hash
+        // 👀Simplified chain integrity hash
         // In full implementation, this would chain with previous events
         return ComputeCanonicalHash();
     }

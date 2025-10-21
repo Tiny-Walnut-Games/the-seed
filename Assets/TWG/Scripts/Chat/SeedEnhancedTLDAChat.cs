@@ -18,13 +18,13 @@ namespace TWG.TLDA.Chat
         [Header("Seed Integration")]
         [SerializeField] private SeedMindCastleBridge seedBridge;
         [SerializeField] private IPlatformBridge platformBridge;
-        // [SerializeField] private bool enableSpatialSearch = true;  // Reserved for future expansion
+        // [SerializeField] private bool enableSpatialSearch = true;  // Reserved for 👀future expansion
         [SerializeField] private bool autoRegisterNarratives = true;
         [SerializeField] private bool enableCrossPlatformSync = true;
 
         [Header("Chat Configuration")]
         [SerializeField] private UIDocument chatUIDocument;
-        // [SerializeField] private bool connectToWarbler = true;  // Reserved for future expansion
+        // [SerializeField] private bool connectToWarbler = true;  // Reserved for 👀future expansion
         [SerializeField] private bool enableTLDLLogging = true;
 
         [Header("Visual Features")]
@@ -596,7 +596,7 @@ namespace TWG.TLDA.Chat
 
         private void AddMessage(string tldl, string enhancedEntryCreatedWithSeedMetadata, SeedChatMessageType seedChatMessageType)
         {
-            // TODO: Use STAT7 Auth or a STAT7 valid anonymous address for the sender.
+            // TODO: Use 👀STAT7 Auth or a STAT7 valid anonymous address for the sender.
             // TODO: Implement this method to add a message to the UI or any other desired action.
             // It should auth the user via STAT7 authentication and then call the appropriate methods to interact with Seed.
             // You may need to implement additional logic here depending on how you want to handle these interactions.

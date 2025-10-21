@@ -248,7 +248,7 @@ namespace TWG.Seed.Integration
                 _ => "Warbler Core"
             };
 
-            // This would need to be implemented in MindCastleVisualizer
+            // 👀This would need to be implemented in MindCastleVisualizer
             // mindCastle.AddEntityToRoom(roomName, entity);
         }
 
@@ -359,7 +359,7 @@ namespace TWG.Seed.Integration
     {
         public static Task<SeedMindCastleBridge.ISeedEngine> CreateAsync()
         {
-            // This would connect to your actual Python Seed engine
+            // 👀This would connect to your actual Python Seed engine
             // For now, return a mock implementation
             return Task.FromResult<SeedMindCastleBridge.ISeedEngine>(new MockSeedEngine());
         }

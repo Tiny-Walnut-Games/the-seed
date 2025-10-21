@@ -6,15 +6,15 @@
 
 The RAG Stress Test Suite proves your RAG system is production-ready by stressing it across 7 critical dimensions:
 
-| Dimension | Focus | Tests | Data Scale |
-|-----------|-------|-------|-----------|
-| **Embedding Scale** | Throughput & determinism | batch 100, 1K, 10K | Warbler packs |
-| **Anchor Creation** | Index performance | scale + deduplication | 100-10K items |
-| **Retrieval** | Query latency & ranking | semantic search | 100-1K corpus |
-| **Caching** | Hit rates & performance | repeated queries | 5-10 cycles |
-| **Concurrency** | Thread safety | 1, 4, 8 threads | 20 parallel queries |
-| **Memory Pressure** | GC stability | 5 cycles × 128MB | Quality preservation |
-| **Soak** | Sustained operation | 5 minutes continuous | ~200 QPS |
+| Dimension           | Focus                    | Tests                 | Data Scale           |
+|---------------------|--------------------------|-----------------------|----------------------|
+| **Embedding Scale** | Throughput & determinism | batch 100, 1K, 10K    | Warbler packs        |
+| **Anchor Creation** | Index performance        | scale + deduplication | 100-10K items        |
+| **Retrieval**       | Query latency & ranking  | semantic search       | 100-1K corpus        |
+| **Caching**         | Hit rates & performance  | repeated queries      | 5-10 cycles          |
+| **Concurrency**     | Thread safety            | 1, 4, 8 threads       | 20 parallel queries  |
+| **Memory Pressure** | GC stability             | 5 cycles × 128MB      | Quality preservation |
+| **Soak**            | Sustained operation      | 5 minutes continuous  | ~200 QPS             |
 
 ## Test Data: Warbler Packs
 
@@ -262,15 +262,15 @@ pytest tests/stress/test_rag_stress_suite.py::TestRAGStress::test_embedding_gene
 
 All tests pass when:
 
-| Metric | Threshold | Status |
-|--------|-----------|--------|
-| Embedding throughput | > 500 items/sec | ✅ |
-| Anchor creation throughput | > 500 anchors/sec | ✅ |
-| Query latency (p95) | < 25ms | ✅ |
-| Cache hit rate | > 80% | ✅ |
-| Concurrent queries | no errors | ✅ |
-| Memory stability | < 0.01 quality variance | ✅ |
-| Soak errors | 0 | ✅ |
+| Metric                     | Threshold               | Status |
+|----------------------------|-------------------------|--------|
+| Embedding throughput       | > 500 items/sec         | ✅      |
+| Anchor creation throughput | > 500 anchors/sec       | ✅      |
+| Query latency (p95)        | < 25ms                  | ✅      |
+| Cache hit rate             | > 80%                   | ✅      |
+| Concurrent queries         | no errors               | ✅      |
+| Memory stability           | < 0.01 quality variance | ✅      |
+| Soak errors                | 0                       | ✅      |
 
 ### Warning Signs
 

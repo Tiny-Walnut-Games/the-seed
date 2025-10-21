@@ -53,7 +53,7 @@ namespace TWG.TLDA.ProjectOrchestration
             "llama3.1:8b"
         };
         private int selectedModelIndex = 0;
-        // private System.Diagnostics.Process ollamaServeProcess = null;  // Reserved for future expansion
+        // private System.Diagnostics.Process ollamaServeProcess = null;  // Reserved for 👀 future expansion
         private string ollamaLogPath = string.Empty;
         private System.Diagnostics.Process ollamaServeProcess = null;
 
@@ -1949,7 +1949,7 @@ namespace TWG.TLDA.AI.Generated
 
         void Update()
         {
-            // TODO: Implement AI-recommended functionality
+            // 👀TODO: Implement AI-recommended functionality
         }";
         }
 

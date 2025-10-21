@@ -8,7 +8,7 @@ namespace TWG.TLDA.NPCControl
     /// <summary>
     /// ?? INTENDED EXPANSION - Bridge between TLDA/Warbler decision engine and Unity NPC controllers
     /// ?Intended use!? NPC AI Decision Making - Expand as needed for your project
-    /// 
+    ///
     /// Customer-facing extension point for:
     /// - Custom dialogue systems integration
     /// - Game-specific decision contexts
@@ -18,8 +18,8 @@ namespace TWG.TLDA.NPCControl
     public class WarblerNPCBridge : MonoBehaviour
     {
         [Header("Warbler Connection")]
-        // [SerializeField] private string warblerEndpoint = "http://localhost:8080/warbler";  // Reserved for future expansion
-        // [SerializeField] private bool useLocalWarbler = true;  // Reserved for future expansion
+        // [SerializeField] private string warblerEndpoint = "http://localhost:8080/warbler";  // Reserved for 👀future expansion
+        // [SerializeField] private bool useLocalWarbler = true;  // Reserved for 👀future expansion
 
         [Header("NPC Configuration")]
         [SerializeField] private NPCPersonality personality = new NPCPersonality();

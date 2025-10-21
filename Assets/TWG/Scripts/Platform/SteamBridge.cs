@@ -780,7 +780,7 @@ namespace TWG.Seed.Platform
             var companions = new List<NarrativeCompanionData>();
 
             // Load companions from Steam Remote Storage
-            // This would iterate through stored companion files
+            // 👀This would iterate through stored companion files
 
             return companions;
         }
@@ -810,7 +810,7 @@ namespace TWG.Seed.Platform
             var storeItems = new List<PlatformStoreItem>();
 
             // Get Steam store items
-            // This would use Steam Store API or Workshop
+            // 👀This would use Steam Store API or Workshop
 
             return storeItems;
         }
@@ -827,7 +827,7 @@ namespace TWG.Seed.Platform
             }
 
             // Process Steam purchase
-            // This would use Steam Microtransaction API
+            // 👀This would use Steam Microtransaction API
 
             return await Task.FromResult(true);
         }
@@ -844,7 +844,7 @@ namespace TWG.Seed.Platform
             }
 
             // Consume Steam item
-            // This would use Steam Inventory API
+            // 👀This would use Steam Inventory API
 
             return await Task.FromResult(true);
         }
@@ -1020,7 +1020,7 @@ namespace TWG.Seed.Platform
         private async Task<decimal> GetSteamWalletBalance()
         {
             // Get Steam wallet balance
-            // This would use Steam Wallet API when available
+            // 👀This would use Steam Wallet API when available
             return 0.00m; // Mock implementation
         }
 
@@ -1029,7 +1029,7 @@ namespace TWG.Seed.Platform
             var items = new List<InventoryItem>();
 
             // Convert Steam inventory items to Seed entities with STAT7 addresses
-            // This would iterate through actual Steam inventory when available
+            // 👀This would iterate through actual Steam inventory when available
 
             return items;
         }
@@ -1039,7 +1039,7 @@ namespace TWG.Seed.Platform
             var achievements = new Dictionary<string, SteamAchievementData>();
 
             // Get Steam achievements
-            // This would use Steam UserStats API when available
+            // 👀This would use Steam UserStats API when available
 
             return achievements;
         }

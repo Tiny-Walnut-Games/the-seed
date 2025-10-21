@@ -14,7 +14,7 @@ namespace TWG.TLDA.Chat
     {
         [Header("Chat Configuration")]
         [SerializeField] private UIDocument chatUIDocument;
-        // [SerializeField] private bool connectToWarbler = true;  // Reserved for future expansion
+        // [SerializeField] private bool connectToWarbler = true;  // Reserved for 👀future expansion
         [SerializeField] private bool enableTLDLLogging = true;
 
         private ScrollView chatScrollView;

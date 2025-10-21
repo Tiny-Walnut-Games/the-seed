@@ -111,7 +111,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
         {
             if (collectionPanel != null)
                 collectionPanel.SetActive(collectionPanel == activePanel);
-            if (teamBuildingPanel != null) 
+            if (teamBuildingPanel != null)
                 teamBuildingPanel.SetActive(teamBuildingPanel == activePanel);
             if (battlePanel != null)
                 battlePanel.SetActive(battlePanel == activePanel);
@@ -157,7 +157,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
                 return;
 
             GameObject cardObj = Instantiate(companionCardPrefab, companionGrid);
-            
+
             if (cardObj.TryGetComponent<CompanionCard>(out var card))
             {
                 card.SetupCard(companion);
@@ -168,7 +168,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
         private void OnCompanionCardSelected(Companion companion)
         {
             Debug.Log($"[CompanionUI] Selected companion: {companion.Name}");
-            
+
             // Add to team if there's space
             if (selectedTeam.Count < 3 && !selectedTeam.Contains(companion))
             {
@@ -194,7 +194,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
 
                 // Show/hide companion in slot
                 slot.gameObject.SetActive(hasCompanion);
-                
+
                 if (hasCompanion)
                 {
                     UpdateTeamSlot(slot, selectedTeam[i]);
@@ -290,7 +290,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
             // Add companion status UI components - these are needed for proper UI layering
             var _ = statusObj.AddComponent<Canvas>();
             var _1 = statusObj.AddComponent<CanvasGroup>();
-            
+
             // Health bar
             var healthBar = CreateStatusBar(statusObj.transform, "Health", Color.red);
             var energyBar = CreateStatusBar(statusObj.transform, "Energy", Color.blue);
@@ -472,7 +472,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
             {
                 TargetType.Self => activePlayerCompanion,
                 TargetType.Enemy => null,// Select first living enemy
-                                         // This would need reference to enemy team from battle manager
+                                         // 👀This would need reference to enemy team from battle manager
                                          // Placeholder
                 _ => null,
             };
@@ -523,9 +523,9 @@ namespace LivingDevAgent.Runtime.CompanionBattler
         {
             battleQuipText.text = $"{speaker.Name}: \"{quip}\"";
             battleQuipText.gameObject.SetActive(true);
-            
+
             yield return new WaitForSeconds(3f);
-            
+
             battleQuipText.gameObject.SetActive(false);
         }
 
@@ -565,7 +565,7 @@ namespace LivingDevAgent.Runtime.CompanionBattler
         {
             // Trigger evolution ceremony
             Debug.Log("[CompanionUI] Evolution ceremony confirmed!");
-            
+
             // Close evolution panel
             SetActivePanel(collectionPanel);
         }
