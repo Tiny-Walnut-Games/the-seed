@@ -1,0 +1,13 @@
+# Auto-generated harness manifest
+run_id: "run_e3cab012_20251020_081028"
+experiment_name: "Data Structure Extensibility"
+hypothesis_id: ""7e03c7ab-c772-4487-b0ec-5312e6c41bab""
+hypothesis_type: ""CapabilityAssertion""
+confidence_threshold: 0.8
+output_directory: "assets/experiments/school/outputs/runs/run_e3cab012_20251020_081028"
+stage: "Stage 3 - Experiment Execution"
+timestamp: "2025-10-20T12:10:30Z"
+artifacts:
+  - experiment_results.json
+  - performance_metrics.json
+  - unity_logs.txt

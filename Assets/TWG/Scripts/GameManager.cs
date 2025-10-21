@@ -37,10 +37,10 @@ namespace TWG.TLDA
         public Vector3 LastPlayerPosition => lastPlayerPosition;
 
         // Events
-        public event Action<int>? OnPlayerLevelChanged;
-        public event Action<GameState, GameState>? OnGameStateChanged;
-        public event Action<TimeOfDay>? OnTimeOfDayChanged;
-        public event Action<string>? OnSceneChanged;
+        public event Action<int> OnPlayerLevelChanged = delegate { };
+        public event Action<GameState, GameState> OnGameStateChanged = delegate { };
+        public event Action<TimeOfDay> OnTimeOfDayChanged = delegate { };
+        public event Action<string> OnSceneChanged = delegate { };
 
         private Dictionary<string, object> gameData = new Dictionary<string, object>();
         private List<string> gameFlags = new List<string>();
@@ -172,7 +172,7 @@ namespace TWG.TLDA
         /// <summary>
         /// Retrieve game data
         /// </summary>
-        public T GetGameData<T>(string key, T defaultValue = default(T)!)
+        public T GetGameData<T>(string key, T defaultValue = default!)
         {
             if (gameData.ContainsKey(key))
             {

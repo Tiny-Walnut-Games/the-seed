@@ -1,0 +1,13 @@
+# Auto-generated harness manifest
+run_id: "run_4ca929e1_20251020_082133"
+experiment_name: "Material Optimization Potential"
+hypothesis_id: "f6g7h8i9-j0k1-2345-6789-012345fghijk"
+hypothesis_type: "CapabilityAssertion"
+confidence_threshold: 0
+output_directory: "assets/experiments/school/outputs/runs/run_4ca929e1_20251020_082133"
+stage: "Stage 3 - Experiment Execution"
+timestamp: "2025-10-20T12:21:35Z"
+artifacts:
+  - experiment_results.json
+  - performance_metrics.json
+  - unity_logs.txt

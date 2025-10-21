@@ -1,0 +1,13 @@
+# Auto-generated harness manifest
+run_id: "run_7b30101f_20251020_080129"
+experiment_name: "Asset Integration Potential"
+hypothesis_id: ""1dba13d2-e21f-40f5-93ab-9d48d8d9d92b""
+hypothesis_type: ""CapabilityAssertion""
+confidence_threshold: 0.4
+output_directory: "assets/experiments/school/outputs/runs/run_7b30101f_20251020_080129"
+stage: "Stage 3 - Experiment Execution"
+timestamp: "2025-10-20T12:01:31Z"
+artifacts:
+  - experiment_results.json
+  - performance_metrics.json
+  - unity_logs.txt

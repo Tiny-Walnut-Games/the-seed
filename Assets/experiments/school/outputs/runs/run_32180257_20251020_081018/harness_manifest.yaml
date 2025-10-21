@@ -1,0 +1,13 @@
+# Auto-generated harness manifest
+run_id: "run_32180257_20251020_081018"
+experiment_name: "Large Script Refactoring Opportunity"
+hypothesis_id: ""7c592a8d-2aa5-4cd3-9f78-69a8624aefac""
+hypothesis_type: ""ImprovementTarget""
+confidence_threshold: 0.6
+output_directory: "assets/experiments/school/outputs/runs/run_32180257_20251020_081018"
+stage: "Stage 3 - Experiment Execution"
+timestamp: "2025-10-20T12:10:20Z"
+artifacts:
+  - experiment_results.json
+  - performance_metrics.json
+  - unity_logs.txt

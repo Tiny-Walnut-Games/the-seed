@@ -20,10 +20,10 @@ namespace TWG.TLDA
         [SerializeField] private int maxActiveQuests = 10;
 
         // Events
-        public event Action<Quest>? OnQuestStarted;
-        public event Action<Quest>? OnQuestCompleted;
-        public event Action<Quest>? OnQuestFailed;
-        public event Action<Quest, QuestObjective>? OnObjectiveCompleted;
+        public event Action<Quest> OnQuestStarted = delegate { };
+        public event Action<Quest> OnQuestCompleted = delegate { };
+        public event Action<Quest> OnQuestFailed = delegate { };
+        public event Action<Quest, QuestObjective> OnObjectiveCompleted = delegate { };
 
         void Awake()
         {

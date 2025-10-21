@@ -1,0 +1,65 @@
+metadata:
+  name: "Asset Integration Potential"
+  description: "Asset can be further integrated into project workflow and optimization pipeline"
+  version: "1.0.0"
+  author: "School Experiment Framework"
+  tags: ["school", "hypothesis", "capability", "assertion", "low", "scriptableobject", "low-confidence"]
+  hypothesis_id: "0d2e0cbf-ddcc-42bd-9561-af230690c6c4"
+  faculty_surface: "Packages/com.unity.timeline/Editor/StyleSheets/ClipInspector.uss"
+  hypothesis_type: "CapabilityAssertion"
+
+model:
+  type: "behavioral_governance"
+  instance_config:
+    enable_intervention_tracking: true
+    intervention_threshold: 0.40
+    faculty_surface_focus: "Packages/com.unity.timeline/Editor/StyleSheets/ClipInspector.uss"
+  performance_profile: "experiment"
+
+conditions:
+  hypothesis_types:
+    - "CapabilityAssertion"
+  priority_levels:
+    - "Low"
+  confidence_ranges:
+    - 0.40
+  effort_estimates:
+    - "30 minutes - 1 hour"
+
+corpus:
+  type: "synthetic"
+  size: 120
+  seed: 2968
+  focus_assets:
+    - "Packages/com.unity.timeline/Editor/StyleSheets/ClipInspector.uss"
+
+processing:
+  batch_size: 10
+  parallel_execution: true
+  checkpoint_interval: 10
+
+validation:
+  success_criteria:
+    - metric: "hypothesis_validation_score"
+      threshold: 0.40
+    - metric: "faculty_surface_coverage"
+      threshold: 0.8
+  expected_duration: "30 minutes - 1 hour"
+
+reporting:
+  output_format: "yaml"
+  include_metrics:
+    - "execution_time"
+    - "resource_usage"
+    - "validation_score"
+    - "faculty_surface_impact"
+  dashboard_integration: true
+
+# Experiment-specific metadata
+experiment_context:
+  source_inventory_hash: "3NJSw727yF4PEGIG4WK57W6GCYePNCObLG3XrWCRbnY="
+  generation_timestamp: "2025-10-20T11:57:55.655081Z"
+  unity_version: "6000.2.6f2"
+  project_path: "E:/Tiny_Walnut_Games/the-seed/Assets"
+  stage: "2"
+  workflow: "school"

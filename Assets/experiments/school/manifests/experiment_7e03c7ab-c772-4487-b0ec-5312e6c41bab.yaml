@@ -1,0 +1,65 @@
+metadata:
+  name: "Data Structure Extensibility"
+  description: "ScriptableObject data structure can be extended with additional fields and validation"
+  version: "1.0.0"
+  author: "School Experiment Framework"
+  tags: ["school", "hypothesis", "capability", "assertion", "medium", "script", "high-confidence"]
+  hypothesis_id: "7e03c7ab-c772-4487-b0ec-5312e6c41bab"
+  faculty_surface: "Assets\TWG\TLDA\Tools\School\Editor\HypothesisExtractor.cs"
+  hypothesis_type: "CapabilityAssertion"
+
+model:
+  type: "behavioral_governance"
+  instance_config:
+    enable_intervention_tracking: true
+    intervention_threshold: 0.80
+    faculty_surface_focus: "Assets\TWG\TLDA\Tools\School\Editor\HypothesisExtractor.cs"
+  performance_profile: "experiment"
+
+conditions:
+  hypothesis_types:
+    - "CapabilityAssertion"
+  priority_levels:
+    - "Medium"
+  confidence_ranges:
+    - 0.80
+  effort_estimates:
+    - "1-2 hours"
+
+corpus:
+  type: "synthetic"
+  size: 225
+  seed: 7945
+  focus_assets:
+    - "Assets\TWG\TLDA\Tools\School\Editor\HypothesisExtractor.cs"
+
+processing:
+  batch_size: 15
+  parallel_execution: true
+  checkpoint_interval: 10
+
+validation:
+  success_criteria:
+    - metric: "hypothesis_validation_score"
+      threshold: 0.80
+    - metric: "faculty_surface_coverage"
+      threshold: 0.8
+  expected_duration: "1-2 hours"
+
+reporting:
+  output_format: "yaml"
+  include_metrics:
+    - "execution_time"
+    - "resource_usage"
+    - "validation_score"
+    - "faculty_surface_impact"
+  dashboard_integration: true
+
+# Experiment-specific metadata
+experiment_context:
+  source_inventory_hash: "3NJSw727yF4PEGIG4WK57W6GCYePNCObLG3XrWCRbnY="
+  generation_timestamp: "2025-10-20T11:57:12.938635Z"
+  unity_version: "6000.2.6f2"
+  project_path: "E:/Tiny_Walnut_Games/the-seed/Assets"
+  stage: "2"
+  workflow: "school"

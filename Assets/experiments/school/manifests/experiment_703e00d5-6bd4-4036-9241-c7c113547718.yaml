@@ -1,0 +1,65 @@
+metadata:
+  name: "Large Script Refactoring Opportunity"
+  description: "Large script file could benefit from refactoring into smaller, focused components"
+  version: "1.0.0"
+  author: "School Experiment Framework"
+  tags: ["school", "hypothesis", "improvement", "optimization", "medium", "script", "medium-confidence"]
+  hypothesis_id: "703e00d5-6bd4-4036-9241-c7c113547718"
+  faculty_surface: "Assets\TWG\Scripts\Platform\SteamBridge.cs"
+  hypothesis_type: "ImprovementTarget"
+
+model:
+  type: "batch_evaluation"
+  instance_config:
+    enable_intervention_tracking: true
+    intervention_threshold: 0.60
+    faculty_surface_focus: "Assets\TWG\Scripts\Platform\SteamBridge.cs"
+  performance_profile: "experiment"
+
+conditions:
+  hypothesis_types:
+    - "ImprovementTarget"
+  priority_levels:
+    - "Medium"
+  confidence_ranges:
+    - 0.60
+  effort_estimates:
+    - "4-8 hours"
+
+corpus:
+  type: "synthetic"
+  size: 300
+  seed: 5865
+  focus_assets:
+    - "Assets\TWG\Scripts\Platform\SteamBridge.cs"
+
+processing:
+  batch_size: 15
+  parallel_execution: true
+  checkpoint_interval: 10
+
+validation:
+  success_criteria:
+    - metric: "hypothesis_validation_score"
+      threshold: 0.60
+    - metric: "faculty_surface_coverage"
+      threshold: 0.8
+  expected_duration: "4-8 hours"
+
+reporting:
+  output_format: "yaml"
+  include_metrics:
+    - "execution_time"
+    - "resource_usage"
+    - "validation_score"
+    - "faculty_surface_impact"
+  dashboard_integration: true
+
+# Experiment-specific metadata
+experiment_context:
+  source_inventory_hash: "3NJSw727yF4PEGIG4WK57W6GCYePNCObLG3XrWCRbnY="
+  generation_timestamp: "2025-10-20T11:57:11.731844Z"
+  unity_version: "6000.2.6f2"
+  project_path: "E:/Tiny_Walnut_Games/the-seed/Assets"
+  stage: "2"
+  workflow: "school"

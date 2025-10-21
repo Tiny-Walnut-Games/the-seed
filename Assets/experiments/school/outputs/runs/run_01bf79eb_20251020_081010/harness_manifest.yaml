@@ -1,0 +1,13 @@
+# Auto-generated harness manifest
+run_id: "run_01bf79eb_20251020_081010"
+experiment_name: "Texture Compression Optimization"
+hypothesis_id: ""7b48e256-6b02-47ec-b95e-6eb1d8168ac9""
+hypothesis_type: ""ImprovementTarget""
+confidence_threshold: 0.8
+output_directory: "assets/experiments/school/outputs/runs/run_01bf79eb_20251020_081010"
+stage: "Stage 3 - Experiment Execution"
+timestamp: "2025-10-20T12:10:12Z"
+artifacts:
+  - experiment_results.json
+  - performance_metrics.json
+  - unity_logs.txt

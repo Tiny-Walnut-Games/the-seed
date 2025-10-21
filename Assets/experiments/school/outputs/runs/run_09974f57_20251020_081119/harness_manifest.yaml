@@ -1,0 +1,13 @@
+# Auto-generated harness manifest
+run_id: "run_09974f57_20251020_081119"
+experiment_name: "Complex Prefab Simplification"
+hypothesis_id: ""869a7d40-c005-4b78-b915-87e75190b0c1""
+hypothesis_type: ""ImprovementTarget""
+confidence_threshold: 0.4
+output_directory: "assets/experiments/school/outputs/runs/run_09974f57_20251020_081119"
+stage: "Stage 3 - Experiment Execution"
+timestamp: "2025-10-20T12:11:21Z"
+artifacts:
+  - experiment_results.json
+  - performance_metrics.json
+  - unity_logs.txt
