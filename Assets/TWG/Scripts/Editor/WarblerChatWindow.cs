@@ -17,14 +17,14 @@ namespace TWG.TLDA.Chat
             window.Show();
         }
 
-        private VisualTreeAsset? _chatUxml;
-        private StyleSheet? _chatUss;
+        private VisualTreeAsset _chatUxml = null;
+        private StyleSheet _chatUss = null;
 
-        private ScrollView? _messages;
-        private TextField? _input;
-        private Button? _send;
-        private VisualElement? _typing;
-        private WarblerChatBridge? _bridge;
+        private ScrollView _messages = null;
+        private TextField _input = null;
+        private Button _send = null;
+        private VisualElement _typing = null;
+        private WarblerChatBridge _bridge = null;
 
         private void OnEnable()
         {

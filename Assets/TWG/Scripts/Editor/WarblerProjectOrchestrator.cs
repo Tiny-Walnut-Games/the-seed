@@ -24,7 +24,7 @@ namespace TWG.TLDA.ProjectOrchestration
         private bool isProcessing = false;
         private string statusMessage = "Ready for project orchestration";
         private Vector2 scrollPosition;
-        private ProjectTemplate? selectedTemplate;
+        private ProjectTemplate selectedTemplate = null;
 
         private Dictionary<string, ProjectTemplate> gameTemplates = new Dictionary<string, ProjectTemplate>
         {

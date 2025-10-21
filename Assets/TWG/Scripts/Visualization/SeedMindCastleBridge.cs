@@ -339,8 +339,8 @@ namespace TWG.Seed.Integration
 
         public async Task<IEnumerable<object>> SearchEntities(string query)
         {
-            // TODO: Implement STAT7 address parsing and querying logic here
-            throw new System.NotImplementedException();
+            var results = await seedEngine.SearchEntities(query);
+            return results.Cast<object>();
         }
 
         public void StopVisualization()
@@ -357,11 +357,11 @@ namespace TWG.Seed.Integration
     // Factory for creating Seed engine instances
     public static class SeedEngineFactory
     {
-        public static async Task<SeedMindCastleBridge.ISeedEngine> CreateAsync()
+        public static Task<SeedMindCastleBridge.ISeedEngine> CreateAsync()
         {
             // This would connect to your actual Python Seed engine
             // For now, return a mock implementation
-            return new MockSeedEngine();
+            return Task.FromResult<SeedMindCastleBridge.ISeedEngine>(new MockSeedEngine());
         }
     }
 
@@ -407,32 +407,32 @@ namespace TWG.Seed.Integration
             }
         }
 
-        public async Task<bool> RegisterEntity(SeedMindCastleBridge.SeedEntity entity)
+        public Task<bool> RegisterEntity(SeedMindCastleBridge.SeedEntity entity)
         {
             mockEntities.Add(entity);
-            return await Task.FromResult(true);
+            return Task.FromResult(true);
         }
 
-        public async Task<IEnumerable<SeedMindCastleBridge.SeedEntity>> SearchEntities(string query)
+        public Task<IEnumerable<SeedMindCastleBridge.SeedEntity>> SearchEntities(string query)
         {
             var results = mockEntities.Where(e =>
                 e.Content.ToLower().Contains(query.ToLower()) ||
                 e.Realm.ToLower().Contains(query.ToLower()));
-            return await Task.FromResult(results);
+            return Task.FromResult(results);
         }
 
-        public async Task<SeedMindCastleBridge.SeedEntity> GetEntityByAddress(string stat7Address)
+        public Task<SeedMindCastleBridge.SeedEntity> GetEntityByAddress(string stat7Address)
         {
             var entity = mockEntities.FirstOrDefault(e => e.Stat7Address == stat7Address);
-            return await Task.FromResult(entity);
+            return Task.FromResult(entity);
         }
 
-        public async Task<IEnumerable<SeedMindCastleBridge.SeedEntity>> GetEntitiesInProximity(Vector3 position, float radius)
+        public Task<IEnumerable<SeedMindCastleBridge.SeedEntity>> GetEntitiesInProximity(Vector3 position, float radius)
         {
             // For mock, just return random entities
             var count = Mathf.Min(10, mockEntities.Count);
             var results = mockEntities.OrderBy(_ => Random.value).Take(count);
-            return await Task.FromResult(results);
+            return Task.FromResult(results);
         }
     }
 }

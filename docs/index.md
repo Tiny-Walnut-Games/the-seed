@@ -6,7 +6,7 @@ Welcome to the **Chronicle Keeper's** domain, where every development journey is
 
 ## 🧠 About the Chronicle Keeper
 
-The Chronicle Keeper is the self-perpetuating Scribe System that powers the True Living Development Log. It parses GitHub issues, comments, and CI events to generate scroll-worthy entries automatically, preserving the lore and ensuring chronological accuracy.
+The Chronicle Keeper is the self-perpetuating Scribe System that powers the Living Development Log. It parses GitHub issues, comments, and CI events to generate scroll-worthy entries automatically, preserving the lore and ensuring chronological accuracy.
 
 ## 📊 Chronicle Statistics
 

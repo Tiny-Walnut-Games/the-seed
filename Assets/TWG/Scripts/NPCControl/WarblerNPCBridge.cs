@@ -18,8 +18,8 @@ namespace TWG.TLDA.NPCControl
     public class WarblerNPCBridge : MonoBehaviour
     {
         [Header("Warbler Connection")]
-        [SerializeField] private string warblerEndpoint = "http://localhost:8080/warbler";
-        [SerializeField] private bool useLocalWarbler = true;
+        // [SerializeField] private string warblerEndpoint = "http://localhost:8080/warbler";  // Reserved for future expansion
+        // [SerializeField] private bool useLocalWarbler = true;  // Reserved for future expansion
 
         [Header("NPC Configuration")]
         [SerializeField] private NPCPersonality personality = new NPCPersonality();
