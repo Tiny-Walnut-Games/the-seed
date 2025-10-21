@@ -71,26 +71,26 @@ python -m pytest tests/test_exp06_entanglement_math.py tests/test_exp06_final_va
 
 ## Documentation Guide
 
-| Document | Purpose | Read If |
-|----------|---------|---------|
-| **00-FIX-OVERVIEW.md** | This file - high-level summary | You want the 2-minute overview |
-| **QUICK-START-GUIDE.md** | How to run tests now | You want simple commands to execute |
-| **TEST-FIX-SUMMARY.md** | Detailed before/after comparison | You want to understand what changed |
-| **EXP-06-REPRODUCIBILITY-PROTOCOL.md** | Complete reproduction instructions | You want the full protocol |
-| **README.md** | Navigation hub | You're lost 😊 |
+| Document                               | Purpose                            | Read If                             |
+|----------------------------------------|------------------------------------|-------------------------------------|
+| **00-FIX-OVERVIEW.md**                 | This file - high-level summary     | You want the 2-minute overview      |
+| **QUICK-START-GUIDE.md**               | How to run tests now               | You want simple commands to execute |
+| **TEST-FIX-SUMMARY.md**                | Detailed before/after comparison   | You want to understand what changed |
+| **EXP-06-REPRODUCIBILITY-PROTOCOL.md** | Complete reproduction instructions | You want the full protocol          |
+| **README.md**                          | Navigation hub                     | You're lost 😊                      |
 
 ---
 
 ## Key Metrics
 
-| Metric | Result |
-|--------|--------|
-| Tests Fixed | 8/8 ✅ |
-| Threshold Optimal | 0.85 ✅ |
-| Precision at 0.85 | 100.0% ✅ |
-| Recall at 0.85 | 100.0% ✅ |
-| F1 Score | 1.0000 ✅ |
-| Separation (True/False) | 4.67× ✅ |
+| Metric                  | Result   |
+|-------------------------|----------|
+| Tests Fixed             | 8/8 ✅    |
+| Threshold Optimal       | 0.85 ✅   |
+| Precision at 0.85       | 100.0% ✅ |
+| Recall at 0.85          | 100.0% ✅ |
+| F1 Score                | 1.0000 ✅ |
+| Separation (True/False) | 4.67× ✅  |
 
 ---
 
@@ -152,16 +152,16 @@ python -m pytest tests/test_exp06_robustness.py -v -s
 
 ## Summary
 
-| Aspect | Status |
-|--------|--------|
-| Tests Found & Fixed | ✅ 8/8 |
-| All Tests Passing | ✅ YES |
-| Protocol Updated | ✅ YES |
-| Ready to Run | ✅ YES |
-| Ready for Phase 2 | ✅ YES |
+| Aspect              | Status |
+|---------------------|--------|
+| Tests Found & Fixed | ✅ 8/8  |
+| All Tests Passing   | ✅ YES  |
+| Protocol Updated    | ✅ YES  |
+| Ready to Run        | ✅ YES  |
+| Ready for Phase 2   | ✅ YES  |
 
 ---
 
-**Last Updated:** 2025-01-20  
+**Last Updated:** 2025-10-20  
 **Status:** ✅ COMPLETE & VERIFIED  
 **Next Action:** Run `QUICK-START-GUIDE.md` commands

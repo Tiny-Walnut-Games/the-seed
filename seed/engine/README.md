@@ -9,22 +9,22 @@ This README provides a **cross‑reference atlas**: mapping the mythic archetype
 
 ## 🗺️ Engine Atlas
 
-| **Mythic Archetype** | **Module / File** | **Engineer‑speak** | **Summary** |
-|-----------------------|-------------------|--------------------|-------------|
-| **The Conservator / Warbler’s Perch** | `conservator.py` | Auto‑repair module | Monitors modules, triggers repair ops, restores integrity. |
-| **Sentinel Overlord** | `governance.py` | Quality scoring & drift detection | Scores cycles, detects drift, raises alerts, maintains lineage stability. |
-| **The Mouthpiece / Selector** | `selector.py` | Prompt assembly & orchestration | Builds multi‑voice prompts from castle/mist, applies governance, routes to TTS. |
-| **Safety Transparency Scroll** | `safety_policy_transparency.py` | Policy enforcement & audit logging | Logs safety events, applies redaction, escalates violations, generates transparency reports. |
-| **Performance Codex** | `performance_profiles.py` | Benchmarking & profiling | Defines performance profiles, compares models, tracks throughput/latency. |
-| **Plugin Cathedral** | `plugin_manager.py`, `plugin_sandbox.py`, `manifest_loader.py`, `base_plugin.py` | Plugin lifecycle & sandboxing | Manages plugin discovery, manifests, safe execution, and event routing. |
-| **Castle Graph** | `castle_graph.py` | Graph structure / state representation | Represents narrative “rooms” and their relationships. |
-| **Mist Layer** | `melt_layer.py`, `evaporation.py` | Contextual state transforms | Handles ephemeral context, condensation/evaporation of narrative signals. |
-| **Retrieval Bridge** | `retrieval_api.py` | Retrieval‑augmented generation API | Provides semantic + STAT7 retrieval modes for context assembly. |
-| **Summarization Ladder** | `summarization_ladder.py` | Abstractive summarization pipeline | Generates micro/macro summaries, distills context. |
-| **Conflict Detector** | `conflict_detector.py` | Consistency & contradiction checks | Detects conflicting signals, flags evidence, classifies conflict types. |
-| **Multimodal Expressive Layer** | `multimodal_engine.py`, `audio/`, `visual_overlays.py` | Audio/visual synthesis | Maps affect to soundscapes, generates overlays, integrates TTS. |
-| **Telemetry Scrolls** | `telemetry.py`, `cycle_telemetry.py` | Metrics & monitoring | Tracks cycle telemetry, logs performance and lineage events. |
-| **Experimental Scrolls** | `exp04_fractal_scaling.py`, `exp05_compression_expansion.py`, `exp06_*` | Research experiments | Document lineage experiments, chaos tests, and scaling rituals. |
+| **Mythic Archetype**                  | **Module / File**                                                                | **Engineer‑speak**                     | **Summary**                                                                                  |
+|---------------------------------------|----------------------------------------------------------------------------------|----------------------------------------|----------------------------------------------------------------------------------------------|
+| **The Conservator / Warbler’s Perch** | `conservator.py`                                                                 | Auto‑repair module                     | Monitors modules, triggers repair ops, restores integrity.                                   |
+| **Sentinel Overlord**                 | `governance.py`                                                                  | Quality scoring & drift detection      | Scores cycles, detects drift, raises alerts, maintains lineage stability.                    |
+| **The Mouthpiece / Selector**         | `selector.py`                                                                    | Prompt assembly & orchestration        | Builds multi‑voice prompts from castle/mist, applies governance, routes to TTS.              |
+| **Safety Transparency Scroll**        | `safety_policy_transparency.py`                                                  | Policy enforcement & audit logging     | Logs safety events, applies redaction, escalates violations, generates transparency reports. |
+| **Performance Codex**                 | `performance_profiles.py`                                                        | Benchmarking & profiling               | Defines performance profiles, compares models, tracks throughput/latency.                    |
+| **Plugin Cathedral**                  | `plugin_manager.py`, `plugin_sandbox.py`, `manifest_loader.py`, `base_plugin.py` | Plugin lifecycle & sandboxing          | Manages plugin discovery, manifests, safe execution, and event routing.                      |
+| **Castle Graph**                      | `castle_graph.py`                                                                | Graph structure / state representation | Represents narrative “rooms” and their relationships.                                        |
+| **Mist Layer**                        | `melt_layer.py`, `evaporation.py`                                                | Contextual state transforms            | Handles ephemeral context, condensation/evaporation of narrative signals.                    |
+| **Retrieval Bridge**                  | `retrieval_api.py`                                                               | Retrieval‑augmented generation API     | Provides semantic + STAT7 retrieval modes for context assembly.                              |
+| **Summarization Ladder**              | `summarization_ladder.py`                                                        | Abstractive summarization pipeline     | Generates micro/macro summaries, distills context.                                           |
+| **Conflict Detector**                 | `conflict_detector.py`                                                           | Consistency & contradiction checks     | Detects conflicting signals, flags evidence, classifies conflict types.                      |
+| **Multimodal Expressive Layer**       | `multimodal_engine.py`, `audio/`, `visual_overlays.py`                           | Audio/visual synthesis                 | Maps affect to soundscapes, generates overlays, integrates TTS.                              |
+| **Telemetry Scrolls**                 | `telemetry.py`, `cycle_telemetry.py`                                             | Metrics & monitoring                   | Tracks cycle telemetry, logs performance and lineage events.                                 |
+| **Experimental Scrolls**              | `exp04_fractal_scaling.py`, `exp05_compression_expansion.py`, `exp06_*`          | Research experiments                   | Document lineage experiments, chaos tests, and scaling rituals.                              |
 
 ---
 ## Engine Flow Mental Models
