@@ -1,0 +1,24 @@
+{
+  "start_time": "2025-10-21T19:42:44.661518",
+  "scenarios": [
+    {
+      "scenario": 0,
+      "queries": 10,
+      "successful": 10,
+      "failed": 0,
+      "avg_query_time_ms": 0.6264209747314453,
+      "batch_coherence": 0.0
+    },
+    {
+      "scenario": 1,
+      "queries": 10,
+      "successful": 10,
+      "failed": 0,
+      "avg_query_time_ms": 0.011491775512695312,
+      "batch_coherence": 0.0
+    }
+  ],
+  "total_coherence_score": 0.0,
+  "average_coherence": 0.0,
+  "end_time": "2025-10-21T19:42:44.674925"
+}

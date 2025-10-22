@@ -1,0 +1,48 @@
+{
+  "start_time": "2025-10-21T17:28:58.392061",
+  "scenarios": [
+    {
+      "scenario": 0,
+      "queries": 20,
+      "successful": 20,
+      "failed": 0,
+      "avg_query_time_ms": 0.11802911758422852,
+      "batch_coherence": 0.0
+    },
+    {
+      "scenario": 1,
+      "queries": 20,
+      "successful": 20,
+      "failed": 0,
+      "avg_query_time_ms": 0.012159347534179688,
+      "batch_coherence": 0.0
+    },
+    {
+      "scenario": 2,
+      "queries": 20,
+      "successful": 20,
+      "failed": 0,
+      "avg_query_time_ms": 0.01672506332397461,
+      "batch_coherence": 0.0
+    },
+    {
+      "scenario": 3,
+      "queries": 20,
+      "successful": 20,
+      "failed": 0,
+      "avg_query_time_ms": 0.01811981201171875,
+      "batch_coherence": 0.0
+    },
+    {
+      "scenario": 4,
+      "queries": 20,
+      "successful": 20,
+      "failed": 0,
+      "avg_query_time_ms": 0.0148773193359375,
+      "batch_coherence": 0.0
+    }
+  ],
+  "total_coherence_score": 0.0,
+  "average_coherence": 0.0,
+  "end_time": "2025-10-21T17:28:58.651300"
+}

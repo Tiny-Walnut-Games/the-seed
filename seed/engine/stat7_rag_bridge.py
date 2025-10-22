@@ -393,3 +393,77 @@ def compare_retrieval_results(
         "score_improvement": round(hybrid_avg - semantic_avg, 4),
         "avg_reranking_distance": round(avg_reranking_distance, 2),
     }
+
+
+# ============================================================================
+# STAT7RAGBridge: Wrapper for RetrievalAPI Integration
+# ============================================================================
+
+class STAT7RAGBridge:
+    """
+    Bridge class that provides STAT7 functionality for RetrievalAPI integration.
+    
+    Wraps the module-level STAT7 functions (stat7_resonance, hybrid_score, retrieve)
+    to provide a consistent interface for the RetrievalAPI's hybrid scoring system.
+    
+    This allows RetrievalAPI to work with STAT7 coordinates seamlessly through
+    dependency injection.
+    """
+    
+    def stat7_resonance(self, query_stat7: STAT7Address, doc_stat7: STAT7Address) -> float:
+        """
+        Compute STAT7 resonance between query and document addresses.
+        
+        Args:
+            query_stat7: Query STAT7 address
+            doc_stat7: Document STAT7 address
+        
+        Returns: [0.0, 1.0] resonance score
+        """
+        return stat7_resonance(query_stat7, doc_stat7)
+    
+    def hybrid_score(
+        self,
+        query_embedding: List[float],
+        doc: RAGDocument,
+        query_stat7: STAT7Address,
+        weight_semantic: float = 0.6,
+        weight_stat7: float = 0.4,
+    ) -> float:
+        """
+        Compute hybrid score combining semantic similarity with STAT7 resonance.
+        
+        Args:
+            query_embedding: Query embedding vector
+            doc: RAG document with embedding and STAT7 address
+            query_stat7: Query STAT7 address
+            weight_semantic: Weight for semantic similarity (default 0.6)
+            weight_stat7: Weight for STAT7 resonance (default 0.4)
+        
+        Returns: [0.0, 1.0] hybrid score
+        """
+        return hybrid_score(query_embedding, doc, query_stat7, weight_semantic, weight_stat7)
+    
+    def retrieve(
+        self,
+        documents: List[RAGDocument],
+        query_embedding: List[float],
+        query_stat7: STAT7Address,
+        k: int = 10,
+        weight_semantic: float = 0.6,
+        weight_stat7: float = 0.4,
+    ) -> List[Tuple[str, float]]:
+        """
+        Retrieve top-k documents using hybrid (semantic + STAT7) scoring.
+        
+        Args:
+            documents: List of RAG documents to search
+            query_embedding: Query embedding vector
+            query_stat7: Query STAT7 address
+            k: Number of results to return
+            weight_semantic: Weight for semantic similarity
+            weight_stat7: Weight for STAT7 resonance
+        
+        Returns: List of (doc_id, hybrid_score) tuples, sorted by score (descending)
+        """
+        return retrieve(documents, query_embedding, query_stat7, k, weight_semantic, weight_stat7)

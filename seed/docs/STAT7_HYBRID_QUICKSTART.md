@@ -130,15 +130,15 @@ print(f"Cache hit rate: {metrics['cache_performance']['hit_rate']:.2%}")
 
 When you enable `stat7_hybrid=True`, the system scores documents on 7 dimensions:
 
-| Dimension | Range | What It Measures | Example |
-|-----------|-------|------------------|---------|
-| **Realm** | type + label | Domain/context | "game"/"warbler_pack" |
-| **Lineage** | 0-10+ | Generation/version | "v2" = lineage 2 |
-| **Adjacency** | 0.0-1.0 | How well-connected | 0.8 = well-connected |
-| **Horizon** | logline/outline/scene/panel | Zoom level/lifecycle | "scene" = middle zoom |
-| **Luminosity** | 0.0-1.0 | Clarity/activity | 0.9 = very active/clear |
-| **Polarity** | 0.0-1.0 | Charge/resonance | 0.7 = moderate tension |
-| **Dimensionality** | 1-7 | Complexity/threads | 5 = fairly complex |
+| Dimension          | Range                       | What It Measures     | Example                 |
+|--------------------|-----------------------------|----------------------|-------------------------|
+| **Realm**          | type + label                | Domain/context       | "game"/"warbler_pack"   |
+| **Lineage**        | 0-10+                       | Generation/version   | "v2" = lineage 2        |
+| **Adjacency**      | 0.0-1.0                     | How well-connected   | 0.8 = well-connected    |
+| **Horizon**        | logline/outline/scene/panel | Zoom level/lifecycle | "scene" = middle zoom   |
+| **Luminosity**     | 0.0-1.0                     | Clarity/activity     | 0.9 = very active/clear |
+| **Polarity**       | 0.0-1.0                     | Charge/resonance     | 0.7 = moderate tension  |
+| **Dimensionality** | 1-7                         | Complexity/threads   | 5 = fairly complex      |
 
 **Resonance Score:** How well do these 7 dimensions align between query and document?
 
@@ -181,13 +181,13 @@ stat7_addr = api._auto_assign_stat7_address("doc_id", metadata)
 
 ## Performance Characteristics
 
-| Operation | Latency | Notes |
-|-----------|---------|-------|
-| Semantic query (baseline) | ~10ms | No STAT7 overhead |
-| Hybrid query (cold cache) | ~15ms | +5ms for resonance calc |
-| Hybrid query (warm cache) | ~11ms | Cache hit on STAT7 assignment |
-| STAT7 assignment (first) | ~1ms | Computed from metadata |
-| STAT7 assignment (cached) | <0.1ms | Lookup only |
+| Operation                 | Latency | Notes                         |
+|---------------------------|---------|-------------------------------|
+| Semantic query (baseline) | ~10ms   | No STAT7 overhead             |
+| Hybrid query (cold cache) | ~15ms   | +5ms for resonance calc       |
+| Hybrid query (warm cache) | ~11ms   | Cache hit on STAT7 assignment |
+| STAT7 assignment (first)  | ~1ms    | Computed from metadata        |
+| STAT7 assignment (cached) | <0.1ms  | Lookup only                   |
 
 **Typical end-to-end:** <1 second for 10 results (multi-threaded safe)
 

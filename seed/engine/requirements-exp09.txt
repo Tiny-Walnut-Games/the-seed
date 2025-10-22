@@ -1,0 +1,30 @@
+# EXP-09 CLI API Service Dependencies
+# Required for FastAPI service and Click CLI
+
+# Web framework
+fastapi>=0.104.0
+uvicorn>=0.24.0
+
+# CLI framework
+click>=8.1.0
+
+# HTTP client
+requests>=2.31.0
+
+# Data validation
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# Concurrency & async
+asyncio-contextmanager>=1.0.0
+
+# Logging & monitoring
+python-json-logger>=2.0.7
+
+# Optional: Performance optimization
+orjson>=3.9.0
+
+# Dev dependencies (optional)
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+httpx>=0.25.0

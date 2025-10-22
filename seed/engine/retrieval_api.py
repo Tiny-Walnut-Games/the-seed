@@ -129,6 +129,9 @@ class RetrievalAPI:
         # Document STAT7 assignments cache (for rapid re-retrieval)
         self.document_stat7_cache: Dict[str, Dict[str, Any]] = {}
         
+        # Simple in-memory document store for ingestion
+        self._context_store: Dict[str, Dict[str, Any]] = {}
+        
         # Metrics
         self.metrics = {
             "total_queries": 0,
@@ -261,6 +264,34 @@ class RetrievalAPI:
         
         return self.retrieve_context(query)
     
+    def add_document(self, doc_id: str, content: str, metadata: Dict[str, Any] = None) -> bool:
+        """
+        Add a document to the context store for retrieval.
+        
+        Args:
+            doc_id: Unique document identifier
+            content: Document content
+            metadata: Optional metadata (realm, type, etc.)
+            
+        Returns:
+            True if added successfully
+        """
+        if doc_id in self._context_store:
+            return False  # Document already exists
+        
+        self._context_store[doc_id] = {
+            "content": content,
+            "metadata": metadata or {},
+            "added_at": time.time(),
+            "length": len(content),
+            "content_hash": hashlib.sha256(content.encode()).hexdigest()
+        }
+        return True
+    
+    def get_context_store_size(self) -> int:
+        """Get number of documents in context store."""
+        return len(self._context_store)
+    
     def get_retrieval_metrics(self) -> Dict[str, Any]:
         """Get retrieval performance and usage metrics."""
         return {
@@ -270,6 +301,7 @@ class RetrievalAPI:
                 "cache_size": len(self.query_cache),
                 "cache_efficiency": self._calculate_cache_efficiency()
             },
+            "context_store_size": self.get_context_store_size(),
             "system_health": {
                 "components_available": self._check_component_availability(),
                 "average_quality": self._calculate_average_quality(),
@@ -299,14 +331,22 @@ class RetrievalAPI:
         """Retrieve content based on semantic similarity."""
         results = []
         
-        if not query.semantic_query or not self.embedding_provider:
+        if not query.semantic_query:
             return results
         
-        # Get query embedding
-        try:
-            query_embedding = self.embedding_provider.embed_text(query.semantic_query)
-        except Exception:
-            return results
+        # DEBUG
+        import sys
+        print(f"DEBUG: _retrieve_semantic_similarity called with query='{query.semantic_query}'", file=sys.stderr)
+        print(f"DEBUG: embedding_provider={self.embedding_provider}, semantic_anchors={self.semantic_anchors}", file=sys.stderr)
+        print(f"DEBUG: context_store size={len(self._context_store)}", file=sys.stderr)
+        
+        # If embedding provider available, use it
+        if self.embedding_provider:
+            # Get query embedding
+            try:
+                query_embedding = self.embedding_provider.embed_text(query.semantic_query)
+            except Exception:
+                return results
         
         # Search semantic anchors
         if self.semantic_anchors:
@@ -365,6 +405,58 @@ class RetrievalAPI:
                             }
                         )
                         results.append(result)
+        
+        # Fallback: Search context store using keyword matching if no embeddings
+        if not self.embedding_provider and not results:
+            results.extend(self._search_context_store(query))
+        
+        return results
+    
+    def _search_context_store(self, query: RetrievalQuery) -> List[RetrievalResult]:
+        """
+        Simple keyword-based search of context store.
+        Used as fallback when embedding provider is not available.
+        """
+        results = []
+        
+        if not query.semantic_query or not self._context_store:
+            return results
+        
+        # Lowercase query terms for case-insensitive matching
+        query_terms = query.semantic_query.lower().split()
+        
+        # Score each document by keyword matches
+        scored_docs = []
+        for doc_id, doc_data in self._context_store.items():
+            content = doc_data.get("content", "").lower()
+            
+            # Count keyword matches
+            matches = sum(1 for term in query_terms if term in content)
+            if matches > 0:
+                # Calculate relevance score based on match ratio
+                relevance_score = min(1.0, matches / len(query_terms))
+                scored_docs.append((doc_id, doc_data, relevance_score))
+        
+        # Sort by relevance score (descending)
+        scored_docs.sort(key=lambda x: x[2], reverse=True)
+        
+        # Create results
+        for doc_id, doc_data, relevance_score in scored_docs[:query.max_results]:
+            if relevance_score >= query.confidence_threshold:
+                result = RetrievalResult(
+                    result_id=f"ctx_{doc_id}",
+                    content_type="context_store",
+                    content_id=doc_id,
+                    content=doc_data.get("content", "")[:500],  # Truncate to 500 chars
+                    relevance_score=relevance_score,
+                    temporal_distance=0.0,
+                    anchor_connections=[],
+                    provenance_depth=1,
+                    conflict_flags=[],
+                    metadata=doc_data.get("metadata", {}),
+                    semantic_similarity=relevance_score
+                )
+                results.append(result)
         
         return results
     

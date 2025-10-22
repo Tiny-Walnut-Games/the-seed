@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # EXP-09 API Service - Single instance for development
+  exp09-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: exp09-api-service
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - WORKERS=4
+    volumes:
+      - ./:/app
+      - ./results:/app/results
+    networks:
+      - exp-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # Optional: Multiple instances for load testing (commented out by default)
+  # exp09-api-2:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: exp09-api-service-2
+  #   ports:
+  #     - "8001:8000"
+  #   environment:
+  #     - PYTHONUNBUFFERED=1
+  #   volumes:
+  #     - ./:/app
+  #   networks:
+  #     - exp-network
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+
+  # Optional: Nginx reverse proxy for load balancing (uncomment if needed)
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: exp09-nginx
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #   networks:
+  #     - exp-network
+  #   depends_on:
+  #     - exp09-api
+  #     - exp09-api-2
+
+networks:
+  exp-network:
+    driver: bridge
+
+volumes:
+  exp-data:
+    driver: local

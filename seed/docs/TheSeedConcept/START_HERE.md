@@ -166,15 +166,15 @@ python scripts/run_exp_phase1.py --full --output my_results.json
 ### The 7 STAT7 Dimensions
 Every entity is addressed by these 7 immutable values:
 
-| Dimension | Example | Purpose |
-|-----------|---------|---------|
-| realm | "narrative" | Domain (data, narrative, system, etc.) |
-| lineage | 2 | Generation from LUCA (root entity) |
-| adjacency | ["concept-1"] | Related entities (append-only list) |
-| horizon | "emergence" | Lifecycle stage (genesis→peak→crystallization) |
-| resonance | 0.75 | Charge/alignment (-1 to 1) |
-| velocity | 0.1 | Rate of change (any float) |
-| density | 0.5 | Compression distance (0 to 1) |
+| Dimension | Example       | Purpose                                        |
+|-----------|---------------|------------------------------------------------|
+| realm     | "narrative"   | Domain (data, narrative, system, etc.)         |
+| lineage   | 2             | Generation from LUCA (root entity)             |
+| adjacency | ["concept-1"] | Related entities (append-only list)            |
+| horizon   | "emergence"   | Lifecycle stage (genesis→peak→crystallization) |
+| resonance | 0.75          | Charge/alignment (-1 to 1)                     |
+| velocity  | 0.1           | Rate of change (any float)                     |
+| density   | 0.5           | Compression distance (0 to 1)                  |
 
 ### How Addressing Works
 1. **Normalize** all values (floats to 8 decimals, timestamps to ISO8601)
@@ -246,15 +246,15 @@ This ensures:
 
 ## 🚦 Current Status
 
-| Component | Status | Details |
-|-----------|--------|---------|
-| **Phase 1 Architecture** | ✅ Complete | Locked & validated |
-| **EXP-01: Addressing** | ✅ PASS | 0 collisions on 10K samples |
-| **EXP-02: Retrieval** | ✅ PASS | 0.00043ms mean latency |
-| **EXP-03: Dimensions** | ✅ PASS | All 7 verified necessary |
-| **Framework** | ✅ Complete | 900 lines, fully tested |
-| **Documentation** | ✅ Complete | Comprehensive guides |
-| **Production Ready** | ✅ YES | Can be used now |
+| Component                | Status     | Details                     |
+|--------------------------|------------|-----------------------------|
+| **Phase 1 Architecture** | ✅ Complete | Locked & validated          |
+| **EXP-01: Addressing**   | ✅ PASS     | 0 collisions on 10K samples |
+| **EXP-02: Retrieval**    | ✅ PASS     | 0.00043ms mean latency      |
+| **EXP-03: Dimensions**   | ✅ PASS     | All 7 verified necessary    |
+| **Framework**            | ✅ Complete | 900 lines, fully tested     |
+| **Documentation**        | ✅ Complete | Comprehensive guides        |
+| **Production Ready**     | ✅ YES      | Can be used now             |
 
 ---
 
@@ -372,4 +372,4 @@ cat PHASE1_VALIDATION_COMPLETE.md
 
 ---
 
-*Last updated: January 18, 2025 | Phase 1 Complete | Ready for Phase 2*
+*Last updated: October 18, 2025 | Phase 1 Complete | Ready for Phase 2*

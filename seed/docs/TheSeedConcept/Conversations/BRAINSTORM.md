@@ -79,7 +79,7 @@ The imposter only exists at high Luminosity (active, overthinking).
 ---
 
 ### Spark 5: Warbler ≠ Your RAG (Clear Distinction)
-**Date:** 2025-01 | **Status:** CLARIFICATION NEEDED
+**Date:** 2025-10 | **Status:** CLARIFICATION NEEDED
 
 The documentation said Warbler is the system. But you're saying:
 - You designed your own RAG
@@ -99,7 +99,7 @@ If true, then STAT7 is the ADDRESS LANGUAGE that bridges them.
 ---
 
 ### Spark 6: Adjacency as a Directed Graph
-**Date:** 2025-01 | **Status:** DESIGN CHOICE
+**Date:** 2025-10 | **Status:** DESIGN CHOICE
 
 Current model: Adjacency is a Set<UUID> (bidirectional).
 
@@ -119,7 +119,7 @@ Implication: Some relationships are one-way
 ---
 
 ### Spark 7: The Heat Death of The Seed
-**Date:** 2025-01 | **Status:** EXISTENTIAL
+**Date:** 2025-10 | **Status:** EXISTENTIAL
 
 If Luminosity decays naturally, what happens to very old data?
 - It crystallizes toward LUCA
@@ -135,7 +135,7 @@ Is there a "heat death" state where all data has compressed to LUCA and the syst
 ---
 
 ### Spark 8: Multiple LUCAs?
-**Date:** 2025-01 | **Status:** CHALLENGING ASSUMPTION
+**Date:** 2025-10 | **Status:** CHALLENGING ASSUMPTION
 
 We said there's ONE LUCA. But what if different Realms have their own LUCAs?
 
@@ -153,7 +153,7 @@ LUCA_faculty: The basic advisory principle
 ---
 
 ### Spark 9: Polarity as Political/Philosophical Alignment
-**Date:** 2025-01 | **Status:** LOADED BUT INTERESTING
+**Date:** 2025-10 | **Status:** LOADED BUT INTERESTING
 
 What if Polarity doesn't just mean "positive/negative" but encodes:
 - Technical opinion (REST vs GraphQL, monolith vs microservices)
@@ -167,7 +167,7 @@ What if Polarity doesn't just mean "positive/negative" but encodes:
 ---
 
 ### Spark 10: Bit-Chain as Haiku
-**Date:** 2025-01 | **Status:** POETIC CONSTRAINT
+**Date:** 2025-10 | **Status:** POETIC CONSTRAINT
 
 What's the minimum viable bit-chain?
 - Haiku has 17 syllables (highly compressed)
@@ -193,12 +193,17 @@ This captures:
 ---
 
 ### Spark 11: The Warbler Connection (Deeper)
-**Date:** 2025-01 | **Status:** INTEGRATION EXPLORATION
+**Date:** 2025-10 | **Status:** INTEGRATION EXPLORATION
 
 Warbler has:
 - Pattern synthesis (recognizes recurring motifs)
 - Chronicle Keeper (documents automatically)
 - Bootstrap Sentinel (AI collaboration protocol)
+  - We may want to integrate TinyWalnutGames/vLLM-Bootstrap into The Seed
+    - vLLM-Bootstrap automates installing dependencies, fetching, serving, and using LLM models locally
+    - It also provides a standardized way to run LLM inference locally
+      - It supports OpenAI, Anthropic, Cohere, and Hugging Face models
+        - And any model that follows the vLLM API spec through the use of a simple settings file
 
 Your STAT7 has:
 - Address space (where everything lives)
@@ -215,7 +220,7 @@ This would make Warbler not a separate system, but a **PATTERN RECOGNITION LAYER
 ---
 
 ### Spark 12: RAG Retrieval as LUCA-Navigation
-**Date:** 2025-01 | **Status:** IMPLEMENTATION IDEA
+**Date:** 2025-10 | **Status:** IMPLEMENTATION IDEA
 
 Your RAG system probably:
 1. Ingests data
@@ -239,6 +244,41 @@ Query: "Why did we choose immutability?"
 ```
 
 This would be **direct addressing** instead of **similarity search**.
+
+---
+
+### Spark 13: The Skeptic (Bob) — Anti-Cheat for Information
+**Date:** 2025-10 | **Status:** CHECKS & BALANCES
+
+Alice makes decisions. Faculty validates them. But what if a result is **suspiciously perfect**?
+
+**The Skeptic (Bob's job):**
+- Monitors coherence scores in the retrieval layer
+- Flags anomalies: high coherence + low entanglement = suspicious
+- Treats it like anti-cheat: "This looks too good. Why?"
+- Escalates to Faculty for adversarial review before it gets distributed
+
+**Why now?**
+1. EXP-09 made coherence reliable (before it was noise)
+2. You have Faculty infrastructure already working in CI
+3. STAT7 gives vocabulary for "what makes this isolated?"
+4. Narrative preservation (EXP-10) needs this guardrail
+
+**The Pattern:**
+```
+High coherence + Low entanglement → Quarantine
+High coherence + High entanglement → Trust (return immediately)
+```
+
+This catches:
+- Well-written but false information
+- Hallucination echo chambers
+- Dataset biases that game the metric
+- Adversarial results crafted to fool coherence
+
+**Key Insight:** Coherence without resonance is a red flag. Bob's job is to ask "Does this connect to what we already know is true?"
+
+**Next:** Design Bob's decision tree and implement in `exp09_api_service.py` as a pre-return filter.
 
 ---
 
@@ -357,7 +397,7 @@ Counter: You're asking the right questions. You're willing to validate experimen
 ## Next Session Prompts
 
 **Pick one to dive deep:**
-1. "Let's map my RAG system onto STAT7 and see where it fits/doesn't fit"
+1. "Let's map my RAG system onto STAT7 and see where it fits/does'n't fit"
 2. "Let's design the LUCA Archaeology experiment—what's the LUCA of The Seed itself?"
 3. "Let's start coding Experiment 1 (Address Uniqueness) and see if STAT7 actually works"
 4. "Let's explore non-Euclidean distance metrics for bit-chain retrieval"

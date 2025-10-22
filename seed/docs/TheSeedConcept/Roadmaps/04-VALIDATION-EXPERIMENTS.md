@@ -315,6 +315,78 @@ If narrative is lost:
 
 ---
 
+## EXP-10 Extension: The Skeptic (Bob) — Coherence Arbitrage Detection
+
+### Context
+EXP-09 established a coherence metric that measures narrative quality. However, **suspiciously perfect coherence scores need adversarial review**.
+
+### Concept: "The Skeptic" (nicknamed **Bob**)
+When a query result achieves high coherence (0.85+) **without corresponding entanglement or polarity resonance**, Bob intercepts it for investigation:
+
+```
+High coherence result (0.89+) with low entanglement
+  → Bob quarantines it
+  → Escalates to Faculty for adversarial review:
+     ├─ Is this actually correct or just well-written?
+     ├─ Does it resonate with other trustworthy sources?
+     ├─ Is the narrative thread sound or circular (self-referential)?
+     ├─ Does it have suspicious polarity isolation?
+     └─ [During investigation, result is marked PENDING]
+```
+
+### Why This Works
+1. **Good metric enables detection** — EXP-09's coherence is now reliable, so anomalies are meaningful
+2. **Faculty infrastructure exists** — Already used in CI pipelines; proven decision-making capacity
+3. **STAT7 vocabulary is ready** — Polarity (does this resonate?) + Entanglement (connects to known good?) + Luminosity (is this heat from truth or friction?)
+4. **Epistemological skepticism** — Builds checks and balances into the retrieval layer
+
+### Detection Rules (Bob's Decision Tree)
+```
+IF coherence > 0.85 AND (
+    entanglement_score < 0.3 OR
+    polarity_variance > 0.7 OR
+    narrative_threads == 1 AND luminosity < 0.5
+):
+    QUARANTINE(result)
+    ESCALATE_TO_FACULTY(for_adversarial_review)
+    MARK_AS(PENDING_VALIDATION)
+    PROVIDE_COMPONENT_BREAKDOWN()
+```
+
+### Anti-Cheat Implications
+- **Prevents hallucination echo chambers** — Isolated high-scoring results can't propagate
+- **Catches adversarial results** — Well-crafted false information gets flagged for review
+- **Validates the confidence signal** — High coherence + high entanglement = genuinely strong result
+- **Transparent bias detection** — Coherence without entanglement might indicate dataset bias
+
+### Integration Point
+Bob operates at the retrieval API layer (likely in `exp09_api_service.py`), before results are returned to end users. Results can still be served but marked with investigation status.
+
+### Example Scenario
+```
+Query: "What is the optimal architecture?"
+
+Result 1 (NO QUARANTINE):
+- Coherence: 0.89
+- Entanglement: 0.78
+- Polarity alignment: coherent
+- Status: ✅ RETURN (high confidence + connected to known good)
+
+Result 2 (QUARANTINE - BOB ACTIVATES):
+- Coherence: 0.91 (suspiciously high!)
+- Entanglement: 0.15 (disconnected)
+- Polarity alignment: isolated (+0.95 when others are ±0.5)
+- Status: 🚫 PENDING (request faculty review)
+```
+
+### Success Criteria
+- [ ] Bob correctly flags false positives (well-written but unsubstantiated results)
+- [ ] Bob doesn't over-quarantine (high coherence + entanglement passes through)
+- [ ] Faculty review resolves cases with consistent decisions
+- [ ] System documents why each quarantine was justified/unjustified
+
+---
+
 ## Master Test Plan
 
 ### Phase 1: Foundation (Week 1)
