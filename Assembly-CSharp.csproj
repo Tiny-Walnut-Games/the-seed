@@ -51,8 +51,8 @@
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.LambdaJobs.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.QueryBuilder.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.dll" />
-    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.Common.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.SystemAPI.Query.dll" />
+    <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.Common.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Common.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\SystemGenerator.EntityQueryBulkOperations.dll" />
     <Analyzer Include="E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
@@ -458,7 +458,6 @@
     <None Include="Assets\experiments\school\outputs\runs\run_ba81a209_20251020_081856\experiment_results.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_7b30101f_20251020_080129\experiment_results.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_34eb2ab4_20251020_080817\experiment_results.json" />
-    <None Include="Assets\TLDA-Unity-Test-Results\test-report.txt" />
     <None Include="Library\PackageCache\com.unity.entities@f6e02210e263\Editor Default Resources\uxml\Inspector\entity-header.uxml" />
     <None Include="Assets\experiments\school\outputs\runs\run_8b52be9c_20251020_081553\experiment_results.json" />
     <None Include="Assets\experiments\school\outputs\runs\run_c4b185f6_20251020_081245\experiment_results.json" />
@@ -1216,18 +1215,6 @@
     <Reference Include="UnityEditor.XRModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.visualscripting@191c0d7e3b69\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="ReportGeneratorMerged">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.testtools.codecoverage@e4e5058206c0\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Cecil.Awesome">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.entities@f6e02210e263\Unity.Entities.CodeGen\Unity.Cecil.Awesome.dll</HintPath>
     </Reference>
@@ -1237,11 +1224,23 @@
     <Reference Include="nunit.framework">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="ReportGeneratorMerged">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.testtools.codecoverage@e4e5058206c0\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO.Hashing">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.IO.Hashing\System.IO.Hashing.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.visualscripting@191c0d7e3b69\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -1663,14 +1662,14 @@
     <Reference Include="Unity.Formats.Fbx.Runtime">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.EditorCoroutines.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Entities.Graphics.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Entities.Graphics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Animation.Rigging.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Animation.Rigging.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.EditorCoroutines.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
@@ -1690,9 +1689,6 @@
     <Reference Include="Unity.2D.PixelPerfect">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Rendering.LightTransport.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Rendering.LightTransport.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Animation.Rigging">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Animation.Rigging.dll</HintPath>
     </Reference>
@@ -1702,17 +1698,20 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Rendering.LightTransport.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Rendering.LightTransport.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Aseprite.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TerrainTools">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TerrainTools.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Sysroot.Linux_x86_64">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
@@ -1756,11 +1755,11 @@
     <Reference Include="Unity.2D.Sprite.AIIntegration.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Sprite.AIIntegration.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
@@ -1795,14 +1794,14 @@
     <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Searcher.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.Shared.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ScriptableBuildPipeline.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
@@ -1810,11 +1809,11 @@
     <Reference Include="Unity.Burst.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Core">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Cinemachine.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Cinemachine.Editor.dll</HintPath>
@@ -1843,11 +1842,11 @@
     <Reference Include="Unity.2D.IK.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Fbx">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Autodesk.Fbx.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Fbx">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Autodesk.Fbx.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
@@ -1885,11 +1884,11 @@
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Fbx.Editor">
-      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Autodesk.Fbx.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Serialization.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.Serialization.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Fbx.Editor">
+      <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Autodesk.Fbx.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>E:\Tiny_Walnut_Games\the-seed\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
@@ -1917,13 +1916,13 @@
       <Project>{bf2a64fb-a42b-c645-d448-4a56dc9d4aa5}</Project>
       <Name>Unity.Entities.Editor.Properties</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Entities.UI.csproj">
-      <Project>{cf06df0c-9ad4-121b-c0a3-8cc09bfe2fa3}</Project>
-      <Name>Unity.Entities.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Entities.Editor.csproj">
       <Project>{50b97029-8134-1e38-6c7b-8222660a6732}</Project>
       <Name>Unity.Entities.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Entities.UI.csproj">
+      <Project>{cf06df0c-9ad4-121b-c0a3-8cc09bfe2fa3}</Project>
+      <Name>Unity.Entities.UI</Name>
     </ProjectReference>
     <ProjectReference Include="LivingDevAgent.Runtime.csproj">
       <Project>{486cfbeb-4247-fa6d-c81d-60b638a4d46d}</Project>
@@ -1981,13 +1980,13 @@
       <Project>{6a1ba748-c59f-0e53-7348-731ef6a7217c}</Project>
       <Name>Unity.Mathematics.Extensions.Hybrid</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Collections.Editor.csproj">
-      <Project>{fd476069-d2a3-22d5-54c0-ecbae029af9b}</Project>
-      <Name>Unity.Collections.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Deformations.csproj">
       <Project>{11cd120b-e365-74c1-7770-6196e2f7b0cd}</Project>
       <Name>Unity.Deformations</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Collections.Editor.csproj">
+      <Project>{fd476069-d2a3-22d5-54c0-ecbae029af9b}</Project>
+      <Name>Unity.Collections.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
