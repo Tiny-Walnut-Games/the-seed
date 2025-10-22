@@ -1,0 +1,76 @@
+{
+  "experiment": "EXP-01",
+  "title": "Address Uniqueness Test",
+  "timestamp": "2025-10-22T17:32:43.227016+00:00",
+  "status": "PASS",
+  "results": {
+    "sample_size": 1000,
+    "iterations": 10,
+    "total_tests": 10000,
+    "successful_tests": 10000,
+    "collision_rate": 0.0,
+    "unique_addresses_per_iteration": [
+      {
+        "iteration": 1,
+        "total": 1000,
+        "unique": 1000,
+        "collisions": 0
+      },
+      {
+        "iteration": 2,
+        "total": 1000,
+        "unique": 1000,
+        "collisions": 0
+      },
+      {
+        "iteration": 3,
+        "total": 1000,
+        "unique": 1000,
+        "collisions": 0
+      },
+      {
+        "iteration": 4,
+        "total": 1000,
+        "unique": 1000,
+        "collisions": 0
+      },
+      {
+        "iteration": 5,
+        "total": 1000,
+        "unique": 1000,
+        "collisions": 0
+      },
+      {
+        "iteration": 6,
+        "total": 1000,
+        "unique": 1000,
+        "collisions": 0
+      },
+      {
+        "iteration": 7,
+        "total": 1000,
+        "unique": 1000,
+        "collisions": 0
+      },
+      {
+        "iteration": 8,
+        "total": 1000,
+        "unique": 1000,
+        "collisions": 0
+      },
+      {
+        "iteration": 9,
+        "total": 1000,
+        "unique": 1000,
+        "collisions": 0
+      },
+      {
+        "iteration": 10,
+        "total": 1000,
+        "unique": 1000,
+        "collisions": 0
+      }
+    ],
+    "success_rate": 1.0
+  }
+}

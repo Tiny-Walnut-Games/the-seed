@@ -1,0 +1,40 @@
+{
+  "experiment": "EXP-03",
+  "title": "Dimension Necessity Test",
+  "timestamp": "2025-10-22T17:30:43.797490+00:00",
+  "status": "PASS",
+  "results": {
+    "sample_size": 1000,
+    "baseline_collisions": 0,
+    "dimension_ablation": {
+      "realm": {
+        "collisions": 0,
+        "collision_rate_percent": 0.0
+      },
+      "lineage": {
+        "collisions": 0,
+        "collision_rate_percent": 0.0
+      },
+      "adjacency": {
+        "collisions": 0,
+        "collision_rate_percent": 0.0
+      },
+      "horizon": {
+        "collisions": 0,
+        "collision_rate_percent": 0.0
+      },
+      "resonance": {
+        "collisions": 0,
+        "collision_rate_percent": 0.0
+      },
+      "velocity": {
+        "collisions": 0,
+        "collision_rate_percent": 0.0
+      },
+      "density": {
+        "collisions": 0,
+        "collision_rate_percent": 0.0
+      }
+    }
+  }
+}

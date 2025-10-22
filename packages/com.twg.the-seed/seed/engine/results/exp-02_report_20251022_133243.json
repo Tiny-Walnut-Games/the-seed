@@ -1,0 +1,37 @@
+{
+  "experiment": "EXP-02",
+  "title": "Retrieval Efficiency Test",
+  "timestamp": "2025-10-22T17:32:43.228154+00:00",
+  "status": "PASS",
+  "results": {
+    "query_count_per_scale": 1000,
+    "scales_tested": [
+      1000,
+      10000,
+      100000
+    ],
+    "performance_metrics": {
+      "1000": {
+        "scale": 1000,
+        "mean_latency_ms": 0.0002,
+        "median_latency_ms": 0.0001,
+        "p95_latency_ms": 0.0002,
+        "p99_latency_ms": 0.0005
+      },
+      "10000": {
+        "scale": 10000,
+        "mean_latency_ms": 0.0003,
+        "median_latency_ms": 0.0002,
+        "p95_latency_ms": 0.0004,
+        "p99_latency_ms": 0.0008
+      },
+      "100000": {
+        "scale": 100000,
+        "mean_latency_ms": 0.0004,
+        "median_latency_ms": 0.0004,
+        "p95_latency_ms": 0.0007,
+        "p99_latency_ms": 0.0011
+      }
+    }
+  }
+}

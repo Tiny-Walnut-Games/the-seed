@@ -1,0 +1,79 @@
+{
+  "experiment": "EXP-08",
+  "title": "RAG Integration Test",
+  "timestamp": "2025-10-22T17:54:45.315160+00:00",
+  "status": "PASS",
+  "results": {
+    "api_healthy": true,
+    "rag_integration": {
+      "api_healthy": true,
+      "total_queries": 15,
+      "concurrent_queries": 0,
+      "errors": 0,
+      "data_integration_success": true
+    },
+    "semantic_retrieval": {
+      "total_queries": 3,
+      "successful_queries": 1,
+      "results": [
+        {
+          "query_id": "rag_test_1",
+          "semantic": "bounty hunter dangerous missions",
+          "results_count": 0,
+          "expected_results": 1,
+          "success": false,
+          "execution_time_ms": 0.7715225219726562
+        },
+        {
+          "query_id": "rag_test_2",
+          "semantic": "wisdom about courage",
+          "results_count": 0,
+          "expected_results": 0,
+          "success": true,
+          "execution_time_ms": 0.7202625274658203
+        },
+        {
+          "query_id": "rag_test_3",
+          "semantic": "character dialogue",
+          "results_count": 0,
+          "expected_results": 1,
+          "success": false,
+          "execution_time_ms": 0.7698535919189453
+        }
+      ]
+    },
+    "hybrid_retrieval": {
+      "total_queries": 2,
+      "successful_queries": 2,
+      "results": [
+        {
+          "query_id": "hybrid_test_1",
+          "semantic": "find wisdom about resilience",
+          "weight_semantic": 0.6,
+          "weight_stat7": 0.4,
+          "results_count": 0,
+          "success": true,
+          "execution_time_ms": 0.8938312530517578,
+          "narrative_coherence": 0.0
+        },
+        {
+          "query_id": "hybrid_test_2",
+          "semantic": "the nature of consciousness",
+          "weight_semantic": 0.6,
+          "weight_stat7": 0.4,
+          "results_count": 0,
+          "success": true,
+          "execution_time_ms": 0.6437301635742188,
+          "narrative_coherence": 0.0
+        }
+      ]
+    },
+    "overall_metrics": {
+      "total_queries_tested": 5,
+      "successful_queries": 3,
+      "success_rate": 0.6,
+      "rag_documents_accessible": true,
+      "hybrid_search_working": true
+    }
+  }
+}

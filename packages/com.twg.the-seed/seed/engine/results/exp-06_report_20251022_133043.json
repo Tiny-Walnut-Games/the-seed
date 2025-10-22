@@ -1,0 +1,13 @@
+{
+  "experiment": "EXP-06",
+  "title": "Entanglement Detection Test",
+  "timestamp": "2025-10-22T17:30:43.798566+00:00",
+  "status": "PASS",
+  "results": {
+    "detected_pairs": 20,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "runtime_seconds": 0.1029
+  }
+}

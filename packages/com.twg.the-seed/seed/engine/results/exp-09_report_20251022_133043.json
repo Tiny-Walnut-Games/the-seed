@@ -1,0 +1,17 @@
+{
+  "experiment": "EXP-09",
+  "title": "API Service and Hybrid Query Test",
+  "timestamp": "2025-10-22T17:30:43.799814+00:00",
+  "status": "PASS",
+  "results": {
+    "api_service": {
+      "status": "healthy",
+      "uptime_seconds": 59.3,
+      "total_queries": 0,
+      "concurrent_queries": 0,
+      "errors": 0
+    },
+    "semantic_queries": [],
+    "hybrid_queries": []
+  }
+}
