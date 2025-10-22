@@ -516,10 +516,10 @@ python exp09_cli.py metrics --json-output
 **Expected Output:**
 ```json
 {
-  "total_queries": XX,
-  "hybrid_queries": XX,
-  "bob_detections": XX,
-  "bob_verification_success_rate": 0.XX,
+  "total_queries": 0,
+  "hybrid_queries": 0,
+  "bob_detections": 0,
+  "bob_verification_success_rate": 0.00,
   "errors": 0
 }
 ```
