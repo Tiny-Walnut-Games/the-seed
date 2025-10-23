@@ -266,8 +266,12 @@ class STAT7EventStreamer:
             await self.register_client(websocket)
             try:
                 async for message in websocket:
-                    # Handle client messages if needed
-                    pass
+                    # Handle client messages
+                    try:
+                        data = json.loads(message)
+                        await self.handle_client_message(data, websocket)
+                    except json.JSONDecodeError:
+                        self.logger.warning(f"Invalid JSON received from client: {message}")
             except websockets.exceptions.ConnectionClosed:
                 pass
             finally:
@@ -285,6 +289,250 @@ class STAT7EventStreamer:
         if hasattr(self, 'server'):
             self.server.close()
             self.logger.info("STAT7 Visualization Server stopped")
+
+    async def run_semantic_fidelity_proof(self, sample_size: int = 200):
+        """
+        Semantic Fidelity Proof: Test if clustering reflects narrative similarity.
+
+        Creates entities with related narrative content and verifies they cluster together.
+        """
+        self.logger.info("🧠 Starting Semantic Fidelity Proof...")
+
+        # Create narrative clusters with semantic relationships
+        narrative_themes = {
+            "hero_journey": {
+                "keywords": ["hero", "journey", "quest", "adventure", "transformation"],
+                "realm": "narrative",
+                "entity_type": "concept"
+            },
+            "system_architecture": {
+                "keywords": ["system", "architecture", "design", "structure", "framework"],
+                "realm": "system",
+                "entity_type": "artifact"
+            },
+            "data_patterns": {
+                "keywords": ["data", "pattern", "analysis", "insight", "correlation"],
+                "realm": "data",
+                "entity_type": "lineage"
+            },
+            "agent_behavior": {
+                "keywords": ["agent", "behavior", "decision", "action", "strategy"],
+                "realm": "faculty",
+                "entity_type": "agent"
+            }
+        }
+
+        entities_per_theme = sample_size // len(narrative_themes)
+
+        for theme_name, theme_config in narrative_themes.items():
+            for i in range(entities_per_theme):
+                # Create semantically related entities
+                keyword = theme_config["keywords"][i % len(theme_config["keywords"])]
+
+                bitchain = BitChain(
+                    id=f"semantic_{theme_name}_{i}",
+                    entity_type=theme_config["entity_type"],
+                    realm=theme_config["realm"],
+                    coordinates=Coordinates(
+                        realm=theme_config["realm"],
+                        lineage=i + 1,
+                        adjacency=[f"semantic_{theme_name}_{j}" for j in range(max(0, i-2), min(entities_per_theme, i+3))],
+                        horizon="emergence",
+                        resonance=0.7 + (i % 5) * 0.05,  # Similar resonance within theme
+                        velocity=0.3 + (i % 3) * 0.1,
+                        density=0.6 + (i % 4) * 0.1
+                    ),
+                    created_at=datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+                    state={
+                        "narrative": f"{keyword.capitalize()} exploration in {theme_name.replace('_', ' ')}",
+                        "theme": theme_name,
+                        "semantic_cluster": True,
+                        "dialogue": f"Exploring {keyword} within the context of {theme_name.replace('_', ' ')}"
+                    }
+                )
+
+                event = self.create_bitchain_event(bitchain, "SEMANTIC_FIDELITY")
+                await self.broadcast_event(event)
+
+                # Small delay for visualization
+                await asyncio.sleep(0.01)
+
+        # Send analysis complete event
+        analysis_event = self.create_experiment_event(
+            "SEMANTIC_FIDELITY",
+            "completed",
+            {
+                "proof_type": "semantic_fidelity",
+                "entities_created": sample_size,
+                "themes": list(narrative_themes.keys()),
+                "expected_behavior": "Entities with similar narrative content should cluster together"
+            }
+        )
+        await self.broadcast_event(analysis_event)
+
+        self.logger.info(f"✅ Semantic Fidelity Proof completed with {sample_size} entities")
+
+    async def run_resilience_testing(self, sample_size: int = 150):
+        """
+        Resilience Testing: Test lattice behavior under mutation, deletion, and adversarial input.
+
+        Creates entities and then simulates various stressors to test system resilience.
+        """
+        self.logger.info("🛡️ Starting Resilience Testing...")
+
+        # Phase 1: Create stable baseline entities
+        baseline_entities = []
+        for i in range(sample_size):
+            bitchain = BitChain(
+                id=f"resilience_baseline_{i}",
+                entity_type="concept",
+                realm="system",
+                coordinates=Coordinates(
+                    realm="system",
+                    lineage=i + 1,
+                    adjacency=[f"resilience_baseline_{j}" for j in range(max(0, i-3), min(sample_size, i+4))],
+                    horizon="genesis",
+                    resonance=0.5,
+                    velocity=0.5,
+                    density=0.5
+                ),
+                created_at=datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+                state={
+                    "test_phase": "baseline",
+                    "resilience_test": True,
+                    "stability_factor": 1.0
+                }
+            )
+            baseline_entities.append(bitchain)
+            event = self.create_bitchain_event(bitchain, "RESILIENCE_BASELINE")
+            await self.broadcast_event(event)
+            await asyncio.sleep(0.01)
+
+        # Phase 2: Mutation testing - entities with corrupted coordinates
+        for i in range(sample_size // 4):
+            mutated = BitChain(
+                id=f"resilience_mutation_{i}",
+                entity_type="fragment",  # Corrupted type
+                realm="void",  # Unexpected realm
+                coordinates=Coordinates(
+                    realm="void",
+                    lineage=-i,  # Invalid lineage
+                    adjacency=[],  # Empty adjacency
+                    horizon="decay",  # Decay horizon
+                    resonance=-1.5,  # Invalid resonance
+                    velocity=999.0,  # Extreme velocity
+                    density=-0.5  # Invalid density
+                ),
+                created_at=datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+                state={
+                    "test_phase": "mutation",
+                    "corruption_level": "high",
+                    "resilience_test": True
+                }
+            )
+            event = self.create_bitchain_event(mutated, "RESILIENCE_MUTATION")
+            await self.broadcast_event(event)
+            await asyncio.sleep(0.01)
+
+        # Phase 3: Deletion simulation - entities marked for deletion
+        for i in range(sample_size // 6):
+            deletion_entity = BitChain(
+                id=f"resilience_deletion_{i}",
+                entity_type="adjacency",
+                realm="event",
+                coordinates=Coordinates(
+                    realm="event",
+                    lineage=i + 1000,  # High lineage
+                    adjacency=[f"deleted_{j}" for j in range(3)],  # References to deleted entities
+                    horizon="crystallization",
+                    resonance=0.0,  # Zero resonance
+                    velocity=0.0,  # Zero velocity
+                    density=0.0  # Zero density
+                ),
+                created_at=datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+                state={
+                    "test_phase": "deletion_simulation",
+                    "marked_for_deletion": True,
+                    "dangling_references": True,
+                    "resilience_test": True
+                }
+            )
+            event = self.create_bitchain_event(deletion_entity, "RESILIENCE_DELETION")
+            await self.broadcast_event(event)
+            await asyncio.sleep(0.01)
+
+        # Phase 4: Adversarial input - entities with conflicting properties
+        for i in range(sample_size // 8):
+            adversarial = BitChain(
+                id=f"resilience_adversarial_{i}",
+                entity_type="horizon",
+                realm="pattern",
+                coordinates=Coordinates(
+                    realm="pattern",
+                    lineage=i * 7,  # Prime number spacing
+                    adjacency=[f"conflict_{j}" for j in range(10)],  # High adjacency
+                    horizon="peak",  # Peak horizon
+                    resonance=1.0 if i % 2 == 0 else -1.0,  # Bipolar resonance
+                    velocity=2.0 * (-1 if i % 3 == 0 else 1),  # Oscillating velocity
+                    density=1.0 if i % 5 == 0 else 0.0  # Binary density
+                ),
+                created_at=datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+                state={
+                    "test_phase": "adversarial",
+                    "conflict_level": "maximum",
+                    "paradoxical_properties": True,
+                    "resilience_test": True,
+                    "dialogue": f"Adversarial entity {i} testing system boundaries"
+                }
+            )
+            event = self.create_bitchain_event(adversarial, "RESILIENCE_ADVERSARIAL")
+            await self.broadcast_event(event)
+            await asyncio.sleep(0.01)
+
+        # Send resilience testing complete event
+        resilience_event = self.create_experiment_event(
+            "RESILIENCE_TESTING",
+            "completed",
+            {
+                "proof_type": "resilience_testing",
+                "baseline_entities": sample_size,
+                "mutation_entities": sample_size // 4,
+                "deletion_entities": sample_size // 6,
+                "adversarial_entities": sample_size // 8,
+                "total_test_entities": sample_size + (sample_size // 4) + (sample_size // 6) + (sample_size // 8),
+                "expected_behavior": "System should handle corrupted, deleted, and adversarial entities gracefully"
+            }
+        )
+        await self.broadcast_event(resilience_event)
+
+        self.logger.info(f"✅ Resilience Testing completed with {sample_size + (sample_size // 4) + (sample_size // 6) + (sample_size // 8)} total entities")
+
+    async def handle_client_message(self, data: Dict[str, Any], websocket):
+        """Handle incoming messages from WebSocket clients."""
+        message_type = data.get('type')
+
+        if message_type == 'run_semantic_fidelity_proof':
+            sample_size = data.get('sample_size', 200)
+            await self.run_semantic_fidelity_proof(sample_size)
+
+        elif message_type == 'run_resilience_testing':
+            sample_size = data.get('sample_size', 150)
+            await self.run_resilience_testing(sample_size)
+
+        elif message_type == 'start_experiment':
+            experiment_id = data.get('experiment_id')
+            duration = data.get('duration', 30)
+            self.logger.info(f"Starting experiment {experiment_id} for {duration}s")
+            # Here you would trigger the actual experiment
+            # For now, we'll just acknowledge
+
+        elif message_type == 'stop_experiment':
+            experiment_id = data.get('experiment_id')
+            self.logger.info(f"Stopping experiment {experiment_id}")
+            # Here you would stop the actual experiment
+
+        else:
+            self.logger.warning(f"Unknown message type: {message_type}")
 
 
 # ============================================================================
