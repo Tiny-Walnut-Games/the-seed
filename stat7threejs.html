@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAT7 7D Space Visualization</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        #canvas-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            max-width: 320px;
+            max-height: 80vh;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            font-size: 12px;
+            transform: scale(1);
+            transform-origin: top left;
+        }
+
+        #stats {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            backdrop-filter: blur(10px);
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            z-index: 100;
+            transform: scale(1);
+            transform-origin: bottom right;
+        }
+
+        #experiment-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            backdrop-filter: blur(10px);
+            max-width: 350px;
+            max-height: 40vh;
+            overflow-y: auto;
+            z-index: 100;
+            transform: scale(1);
+            transform-origin: top right;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .control-group input[type="range"] {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .control-group select {
+            width: 100%;
+            padding: 5px;
+            background: #222;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 3px;
+        }
+
+        .realm-legend {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 5px;
+            font-size: 11px;
+        }
+
+        .realm-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .status-connected { background: #2ecc71; }
+        .status-disconnected { background: #e74c3c; }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        button:disabled {
+            background: #555;
+            cursor: not-allowed;
+        }
+
+        #entity-details {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 200;
+            display: none;
+        }
+
+        #entity-details h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+
+        .detail-section {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .detail-section:last-child {
+            border-bottom: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .experiment-controls {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .experiment-btn {
+            padding: 5px 10px;
+            font-size: 11px;
+            background: #2ecc71;
+        }
+
+        .experiment-btn.active {
+            background: #e74c3c;
+        }
+
+        .experiment-btn:hover {
+            background: #27ae60;
+        }
+
+        .experiment-btn.active:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+<div id="canvas-container">
+    <canvas id="stat7-canvas"></canvas>
+</div>
+
+<div id="controls">
+    <h3>🎮 STAT7 Controls</h3>
+
+    <div class="control-group">
+        <label>Connection Status: <span id="connection-status"><span class="status-indicator status-disconnected"></span>Disconnected</span></label>
+    </div>
+
+    <div class="control-group">
+        <label>Projection Mode:</label>
+        <select id="projection-mode">
+            <option value="7d-to-3d">7D → 3D (t-SNE)</option>
+            <option value="7d-to-2d">7D → 2D (PCA)</option>
+            <option value="realm-slice">Realm Slice</option>
+            <option value="dimension-cross-section">Dimension Cross-Section</option>
+        </select>
+    </div>
+
+    <div class="control-group">
+        <label>Point Size: <span id="point-size-value">1.0</span></label>
+        <input type="range" id="point-size" min="0.1" max="5.0" step="0.1" value="1.0">
+    </div>
+
+    <div class="control-group">
+        <label>Animation Speed: <span id="speed-value">1.0</span></label>
+        <input type="range" id="animation-speed" min="0.0" max="3.0" step="0.1" value="1.0">
+    </div>
+
+    <div class="control-group">
+        <label>Realm Filter:</label>
+        <select id="realm-filter" multiple>
+            <option value="data" selected>Data</option>
+            <option value="narrative" selected>Narrative</option>
+            <option value="system" selected>System</option>
+            <option value="faculty" selected>Faculty</option>
+            <option value="event" selected>Event</option>
+            <option value="pattern" selected>Pattern</option>
+            <option value="void" selected>Void</option>
+        </select>
+    </div>
+
+    <div class="control-group">
+        <button id="reset-camera">📷 Reset Camera</button>
+        <button id="clear-points">🗑️ Clear Points</button>
+        <button id="clear-ghosts">👻 Clear Ghosts</button>
+    </div>
+
+    <div class="control-group">
+        <label>🔍 Search Entities:</label>
+        <input type="text" id="search-input" placeholder="Search by ID, type, realm..." style="width: 100%; padding: 5px; background: #222; color: #fff; border: 1px solid #444; border-radius: 3px;">
+        <button id="search-btn" style="width: 100%; margin-top: 5px;">Search</button>
+        <div id="search-results" style="margin-top: 5px; max-height: 100px; overflow-y: auto; font-size: 11px;"></div>
+    </div>
+
+    <div class="control-group">
+        <label>🎯 Natural Language Query:</label>
+        <textarea id="query-input" placeholder="e.g., 'Show me data realm entities with high resonance'" style="width: 100%; height: 60px; padding: 5px; background: #222; color: #fff; border: 1px solid #444; border-radius: 3px; resize: vertical;"></textarea>
+        <button id="query-btn" style="width: 100%; margin-top: 5px;">Execute Query</button>
+        <div id="query-results" style="margin-top: 5px; font-size: 11px;"></div>
+    </div>
+
+    <div class="control-group">
+        <h4>Realm Legend:</h4>
+        <div class="realm-legend">
+            <div class="realm-color" style="background: #3498db;"></div><span>Data</span>
+            <div class="realm-color" style="background: #e74c3c;"></div><span>Narrative</span>
+            <div class="realm-color" style="background: #2ecc71;"></div><span>System</span>
+            <div class="realm-color" style="background: #f39c12;"></div><span>Faculty</span>
+            <div class="realm-color" style="background: #9b59b6;"></div><span>Event</span>
+            <div class="realm-color" style="background: #1abc9c;"></div><span>Pattern</span>
+            <div class="realm-color" style="background: #34495e;"></div><span>Void</span>
+        </div>
+    </div>
+</div>
+
+<div id="stats">
+    <h4>📊 Statistics</h4>
+    <div>Total Points: <span id="total-points">0</span></div>
+    <div>Visible Points: <span id="visible-points">0</span></div>
+    <div>FPS: <span id="fps">0</span></div>
+    <div>Events Received: <span id="events-received">0</span></div>
+    <div>Active Experiments: <span id="active-experiments">0</span></div>
+</div>
+
+<div id="experiment-info">
+    <h4>🧪 Experiment Control</h4>
+    <div class="experiment-controls">
+        <button class="experiment-btn" data-exp="EXP01">EXP01</button>
+        <button class="experiment-btn" data-exp="EXP02">EXP02</button>
+        <button class="experiment-btn" data-exp="EXP03">EXP03</button>
+        <button class="experiment-btn" data-exp="EXP04">EXP04</button>
+        <button class="experiment-btn" data-exp="EXP05">EXP05</button>
+    </div>
+    <div class="experiment-controls">
+        <button class="experiment-btn" data-exp="EXP06">EXP06</button>
+        <button class="experiment-btn" data-exp="EXP07">EXP07</button>
+        <button class="experiment-btn" data-exp="EXP08">EXP08</button>
+        <button class="experiment-btn" data-exp="EXP09">EXP09</button>
+        <button class="experiment-btn" data-exp="EXP10">EXP10</button>
+    </div>
+    <div class="experiment-controls">
+        <button id="play-all">▶️ Play All</button>
+        <button id="stop-all">⏹️ Stop All</button>
+        <button id="clear-all">🗑️ Clear All</button>
+    </div>
+    <div class="experiment-controls">
+        <button id="semantic-fidelity">🧠 Semantic Fidelity</button>
+        <button id="resilience-test">🛡️ Resilience Test</button>
+    </div>
+    <div id="experiment-log"></div>
+</div>
+
+<div id="entity-details">
+    <button class="close-btn" onclick="window.stat7Viz.closeEntityDetails()">×</button>
+    <h3 id="entity-title">Entity Details</h3>
+    <div class="detail-section">
+        <h4>Basic Information</h4>
+        <div id="entity-basic"></div>
+    </div>
+    <div class="detail-section">
+        <h4>STAT7 Coordinates</h4>
+        <div id="entity-coordinates"></div>
+    </div>
+    <div class="detail-section">
+        <h4>Narrative Payload</h4>
+        <div id="entity-narrative"></div>
+    </div>
+    <div class="detail-section">
+        <h4>Related Entities</h4>
+        <div id="entity-related"></div>
+    </div>
+</div>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+
+<script>
+    class STAT7Visualization {
+        constructor() {
+            this.scene = null;
+            this.camera = null;
+            this.renderer = null;
+            this.points = [];
+            this.pointObjects = new Map();
+            this.websocket = null;
+            this.stats = {
+                totalPoints: 0,
+                visiblePoints: 0,
+                fps: 0,
+                eventsReceived: 0,
+                activeExperiments: new Set()
+            };
+            this.settings = {
+                pointSize: 1.0,
+                animationSpeed: 1.0,
+                projectionMode: '7d-to-3d',
+                realmFilter: new Set(['data', 'narrative', 'system', 'faculty', 'event', 'pattern', 'void'])
+            };
+            this.lastFrameTime = performance.now();
+            this.frameCount = 0;
+
+            this.init();
+        }
+
+        init() {
+            this.setupThreeJS();
+            this.setupWebSocket();
+            this.setupControls();
+            this.animate();
+        }
+
+        setupThreeJS() {
+            // Scene
+            this.scene = new THREE.Scene();
+            this.scene.background = new THREE.Color(0x0a0a0a);
+
+            // Camera
+            this.camera = new THREE.PerspectiveCamera(
+                75,
+                window.innerWidth / window.innerHeight,
+                0.1,
+                1000
+            );
+            this.camera.position.set(50, 50, 50);
+            this.camera.lookAt(0, 0, 0);
+
+            // Renderer
+            this.renderer = new THREE.WebGLRenderer({
+                canvas: document.getElementById('stat7-canvas'),
+                antialias: true
+            });
+            this.renderer.setSize(window.innerWidth, window.innerHeight);
+            this.renderer.setPixelRatio(window.devicePixelRatio);
+
+            // Lights
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+            this.scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(50, 50, 50);
+            this.scene.add(directionalLight);
+
+            // Grid helper
+            const gridHelper = new THREE.GridHelper(100, 20, 0x444444, 0x222222);
+            this.scene.add(gridHelper);
+
+            // Axes helper
+            const axesHelper = new THREE.AxesHelper(20);
+            this.scene.add(axesHelper);
+
+            // Mouse controls
+            this.setupMouseControls();
+
+            // Handle resize
+            window.addEventListener('resize', () => this.onWindowResize());
+        }
+
+        setupMouseControls() {
+            let mouseDown = false;
+            let mouseX = 0;
+            let mouseY = 0;
+            let rightMouseDown = false;
+
+            this.renderer.domElement.addEventListener('mousedown', (e) => {
+                if (e.button === 0) { // Left click
+                    mouseDown = true;
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                } else if (e.button === 2) { // Right click
+                    rightMouseDown = true;
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                }
+            });
+
+            this.renderer.domElement.addEventListener('mouseup', (e) => {
+                if (e.button === 0) mouseDown = false;
+                else if (e.button === 2) rightMouseDown = false;
+            });
+
+            this.renderer.domElement.addEventListener('mousemove', (e) => {
+                if (mouseDown) {
+                    // Rotate camera around origin (left click)
+                    const deltaX = e.clientX - mouseX;
+                    const deltaY = e.clientY - mouseY;
+
+                    const spherical = new THREE.Spherical();
+                    spherical.setFromVector3(this.camera.position);
+                    spherical.theta -= deltaX * 0.01;
+                    spherical.phi += deltaY * 0.01;
+                    spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi));
+
+                    this.camera.position.setFromSpherical(spherical);
+                    this.camera.lookAt(0, 0, 0);
+
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                } else if (rightMouseDown) {
+                    // Pan camera (right click)
+                    const deltaX = (e.clientX - mouseX) * 0.1;
+                    const deltaY = (e.clientY - mouseY) * 0.1;
+
+                    const right = new THREE.Vector3();
+                    const up = new THREE.Vector3(0, 1, 0);
+                    right.crossVectors(up, this.camera.position).normalize();
+
+                    this.camera.position.add(right.multiplyScalar(-deltaX));
+                    this.camera.position.add(up.multiplyScalar(deltaY));
+
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                }
+            });
+
+            // Zoom with mouse wheel
+            this.renderer.domElement.addEventListener('wheel', (e) => {
+                const scale = e.deltaY > 0 ? 1.1 : 0.9;
+                this.camera.position.multiplyScalar(scale);
+            });
+
+            // Click on entities
+            this.renderer.domElement.addEventListener('click', (e) => {
+                this.handleEntityClick(e);
+            });
+
+            // Prevent context menu on right click
+            this.renderer.domElement.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+            });
+        }
+
+        handleEntityClick(event) {
+            // Convert mouse position to 3D coordinates
+            const mouse = new THREE.Vector2();
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(mouse, this.camera);
+
+            // Check for intersections with point objects
+            const intersects = raycaster.intersectObjects(Array.from(this.pointObjects.values()));
+
+            if (intersects.length > 0) {
+                const clickedPoint = intersects[0].object;
+                const bitchainData = clickedPoint.userData.bitchain;
+                this.showEntityDetails(bitchainData, clickedPoint);
+            }
+        }
+
+        showEntityDetails(bitchainData, pointObject) {
+            // Create or update the entity details panel
+            let detailsPanel = document.getElementById('entity-details');
+            if (!detailsPanel) {
+                detailsPanel = document.createElement('div');
+                detailsPanel.id = 'entity-details';
+                detailsPanel.style.cssText = `
+                    position: absolute;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0, 0, 0, 0.9);
+                    color: white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    border: 1px solid #333;
+                    max-width: 400px;
+                    z-index: 1000;
+                    backdrop-filter: blur(10px);
+                    font-family: 'Courier New', monospace;
+                    font-size: 12px;
+                `;
+                document.body.appendChild(detailsPanel);
+            }
+
+            const coords = bitchainData.coordinates || {};
+            const metadata = pointObject.userData.metadata || {};
+
+            detailsPanel.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="margin: 0; color: ${metadata.color || '#ffffff'};">🔮 Entity Details</h3>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">✕</button>
+                </div>
+                <div style="margin-bottom: 10px;"><strong>ID:</strong> <span style="color: #3498db;">${bitchainData.id || 'Unknown'}</span></div>
+                <div style="margin-bottom: 10px;"><strong>Type:</strong> <span style="color: #2ecc71;">${bitchainData.entity_type || 'Unknown'}</span></div>
+                <div style="margin-bottom: 10px;"><strong>Realm:</strong> <span style="color: #e74c3c;">${bitchainData.realm || coords.realm || 'Unknown'}</span></div>
+                <div style="margin-bottom: 10px;"><strong>Address:</strong> <span style="color: #f39c12; font-size: 10px;">${bitchainData.address || 'Unknown'}</span></div>
+                <div style="margin-bottom: 10px;"><strong>STAT7 URI:</strong> <span style="color: #9b59b6; font-size: 10px;">${bitchainData.stat7_uri || 'Unknown'}</span></div>
+
+                <h4 style="margin: 15px 0 10px 0; color: #1abc9c;">📍 7D Coordinates:</h4>
+                <div style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px; font-size: 11px;">
+                    <div><strong>Realm:</strong> ${coords.realm || 'Unknown'}</div>
+                    <div><strong>Lineage:</strong> ${coords.lineage || 'Unknown'}</div>
+                    <div><strong>Horizon:</strong> ${coords.horizon || 'Unknown'}</div>
+                    <div><strong>Resonance:</strong> ${coords.resonance || 'Unknown'}</div>
+                    <div><strong>Velocity:</strong> ${coords.velocity || 'Unknown'}</div>
+                    <div><strong>Density:</strong> ${coords.density || 'Unknown'}</div>
+                    <div><strong>Adjacency:</strong> ${(coords.adjacency || []).length} connections</div>
+                </div>
+
+                ${bitchainData.state ? `
+                    <h4 style="margin: 15px 0 10px 0; color: #f39c12;">📊 State Data:</h4>
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px; font-size: 11px;">
+                        <pre style="margin: 0; white-space: pre-wrap;">${JSON.stringify(bitchainData.state, null, 2)}</pre>
+                    </div>
+                ` : ''}
+            `;
+
+            // Highlight the selected entity
+            this.highlightEntity(pointObject);
+        }
+
+        highlightEntity(pointObject) {
+            // Reset previous highlights
+            this.pointObjects.forEach(point => {
+                const material = point.material;
+                material.emissiveIntensity = 0.2;
+                point.scale.setScalar(1.0);
+            });
+
+            // Highlight selected entity
+            const material = pointObject.material;
+            material.emissiveIntensity = 0.8;
+            pointObject.scale.setScalar(1.5);
+
+            // Reset highlight after 3 seconds
+            setTimeout(() => {
+                material.emissiveIntensity = 0.2;
+                pointObject.scale.setScalar(1.0);
+            }, 3000);
+        }
+
+        setupWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//localhost:8765`;
+
+            console.log(`Attempting to connect to WebSocket at: ${wsUrl}`);
+
+            this.websocket = new WebSocket(wsUrl);
+
+            this.websocket.onopen = () => {
+                this.updateConnectionStatus(true);
+                console.log('✅ Connected to STAT7 WebSocket server');
+            };
+
+            this.websocket.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    this.handleWebSocketMessage(data);
+                } catch (e) {
+                    console.error('Error parsing WebSocket message:', e, event.data);
+                }
+            };
+
+            this.websocket.onclose = (event) => {
+                this.updateConnectionStatus(false);
+                console.log('❌ Disconnected from STAT7 WebSocket server', event.code, event.reason);
+
+                // Attempt to reconnect after 3 seconds
+                setTimeout(() => {
+                    console.log('🔄 Attempting to reconnect...');
+                    this.setupWebSocket();
+                }, 3000);
+            };
+
+            this.websocket.onerror = (error) => {
+                console.error('❌ WebSocket error:', error);
+                this.updateConnectionStatus(false);
+            };
+        }
+
+        handleWebSocketMessage(data) {
+            console.log('Received WebSocket message:', data);
+            this.stats.eventsReceived++;
+
+            switch (data.event_type) {
+                case 'bitchain_created':
+                    console.log('Processing bitchain_created event');
+                    this.addBitChain(data.data, data.metadata);
+                    break;
+                case 'experiment_start':
+                    console.log('Processing experiment_start event');
+                    this.handleExperimentStart(data);
+                    break;
+                case 'experiment_complete':
+                    console.log('Processing experiment_complete event');
+                    this.handleExperimentComplete(data);
+                    break;
+                case 'experiment_iteration_start':
+                case 'experiment_iteration_complete':
+                    console.log('Processing experiment iteration event');
+                    this.handleExperimentIteration(data);
+                    break;
+                default:
+                    console.log('Unknown event type:', data.event_type);
+            }
+
+            this.updateStats();
+        }
+
+        addBitChain(bitchainData, metadata) {
+            console.log('Adding BitChain:', bitchainData, metadata);
+
+            // Check if we have the required data
+            if (!bitchainData) {
+                console.error('No bitchainData provided');
+                return;
+            }
+
+            // The server sends 'coordinates' not 'stat7_coordinates'
+            const coords = bitchainData.coordinates || bitchainData.stat7_coordinates;
+            if (!coords) {
+                console.error('No coordinates found in bitchainData:', bitchainData);
+                console.log('Available keys:', Object.keys(bitchainData));
+                return;
+            }
+
+            // Check for duplicate entities
+            const entityId = bitchainData.id || bitchainData.address;
+            if (this.pointObjects.has(entityId)) {
+                console.warn(`⚠️ Duplicate entity detected: ${entityId}, skipping...`);
+                return;
+            }
+
+            const position = this.project7DTo3D(coords);
+
+            // Create point geometry
+            const geometry = new THREE.SphereGeometry((metadata.size || 1.0) * (this.settings.pointSize || 1.0), 8, 6);
+            const material = new THREE.MeshPhongMaterial({
+                color: metadata.color || '#ffffff',
+                emissive: metadata.color || '#ffffff',
+                emissiveIntensity: 0.2,
+                transparent: true,
+                opacity: 0.8
+            });
+            const point = new THREE.Mesh(geometry, material);
+            point.position.copy(position);
+            point.userData = {
+                bitchain: bitchainData,
+                metadata: metadata,
+                originalPosition: position.clone(),
+                animationOffset: Math.random() * Math.PI * 2,
+                entityId: entityId
+            };
+
+            this.scene.add(point);
+            this.pointObjects.set(entityId, point);
+            this.points.push(bitchainData);
+
+            this.stats.totalPoints++;
+            console.log(`✅ Added point ${this.stats.totalPoints} at position:`, position);
+            console.log(`   Realm: ${coords.realm}, Type: ${bitchainData.entity_type}, ID: ${entityId.substring(0, 8)}...`);
+        }
+
+        project7DTo3D(coords) {
+            // convert 7d coordinates to 3d for visualization using t-SNE or PCA
+
+            const realmValues = {
+                'data': 0, 'narrative': 1, 'system': 2, 'faculty': 3,
+                'event': 4, 'pattern': 5, 'void': 6
+            };
+
+            const realmVal = realmValues[coords.realm] || 0;
+            const lineage = coords.lineage / 100;
+            const additionalValue = coords.adjacency.length / 10;
+            const horizonValues = {'genesis': 0, 'emergence': 0.25, 'peak': 0.5, 'decay': 0.75, 'crystallization': 1};
+            const horizon = horizonValues[coords.horizon] || 0.5;
+            const resonance = (coords.resonance + 1.0) / 2.0;  // Convert -1,1 to 0,1
+            const velocity = (coords.velocity + 1.0) / 2.0;
+            const density = coords.density;
+
+            // multidimensional projection of the above values into a 3-dimensional space
+            const x = (realmVal - 3) * 15 + resonance * 10 - 5;
+            const y = lineage * 20 + velocity * 10 - 5;
+            const z = horizon * 20 + density * 10 - 5;
+
+            return new THREE.Vector3(x, y, z);
+        }
+
+        handleExperimentStart(data) {
+            this.stats.activeExperiments.add(data.experiment_id);
+            this.addExperimentLog(`🚀 ${data.data.name} started`, 'start');
+        }
+
+        handleExperimentComplete(data) {
+            this.stats.activeExperiments.delete(data.experiment_id);
+            this.addExperimentLog(`✅ ${data.experiment_id} complete`, 'complete');
+        }
+
+        handleExperimentIteration(data) {
+            const status = data.event_type.includes('start') ? '▶️' : '⏹️';
+            this.addExperimentLog(`${status} Iteration ${data.data.iteration}/${data.data.total}`, 'iteration');
+        }
+
+        addExperimentLog(message, type) {
+            const log = document.getElementById('experiment-log');
+            const entry = document.createElement('div');
+            entry.style.marginBottom = '5px';
+            entry.style.fontSize = '11px';
+            entry.style.opacity = '0.8';
+
+            const timestamp = new Date().toLocaleTimeString();
+            entry.textContent = `[${timestamp}] ${message}`;
+
+            log.appendChild(entry);
+
+            // Keep only last 10 entries
+            while (log.children.length > 10) {
+                log.removeChild(log.firstChild);
+            }
+        }
+
+        setupControls() {
+                // Projection mode
+                document.getElementById('projection-mode').addEventListener('change', (e) => {
+                    this.settings.projectionMode = e.target.value;
+                    this.updateProjection();
+                });
+
+                // Point size
+                document.getElementById('point-size').addEventListener('input', (e) => {
+                    this.settings.pointSize = parseFloat(e.target.value);
+                    document.getElementById('point-size-value').textContent = this.settings.pointSize.toFixed(1);
+                    this.updatePointSizes();
+                });
+
+                // Animation speed
+                document.getElementById('animation-speed').addEventListener('input', (e) => {
+                    this.settings.animationSpeed = parseFloat(e.target.value);
+                    document.getElementById('speed-value').textContent = this.settings.animationSpeed.toFixed(1);
+                });
+
+                // Realm filter
+                document.getElementById('realm-filter').addEventListener('change', (e) => {
+                    this.settings.realmFilter = new Set(Array.from(e.target.selectedOptions).map(opt => opt.value));
+                    this.updateRealmFilter();
+                });
+
+                // Buttons
+                document.getElementById('reset-camera').addEventListener('click', () => {
+                    this.resetCamera();
+                });
+
+                document.getElementById('clear-points').addEventListener('click', () => {
+                    this.clearAllPoints();
+                });
+
+                document.getElementById('clear-ghosts').addEventListener('click', () => {
+                    this.clearGhostEntities();
+                });
+
+                // Search functionality
+                document.getElementById('search-btn').addEventListener('click', () => {
+                    this.performSearch();
+                });
+
+                document.getElementById('search-input').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.performSearch();
+                    }
+                });
+
+                // Query functionality
+                document.getElementById('query-btn').addEventListener('click', () => {
+                    this.performNaturalLanguageQuery();
+                });
+
+                document.getElementById('query-input').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && e.ctrlKey) {
+                        this.performNaturalLanguageQuery();
+                    }
+                });
+
+                // Experiment controls
+                document.querySelectorAll('.experiment-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const expId = e.target.dataset.exp;
+                        this.toggleExperiment(expId, e.target);
+                    });
+                });
+
+                document.getElementById('play-all').addEventListener('click', () => {
+                    this.playAllExperiments();
+                });
+
+                document.getElementById('stop-all').addEventListener('click', () => {
+                    this.stopAllExperiments();
+                });
+
+                document.getElementById('clear-all').addEventListener('click', () => {
+                    this.clearAllExperiments();
+                });
+
+                // Advanced proof controls
+                document.getElementById('semantic-fidelity').addEventListener('click', () => {
+                    this.runSemanticFidelityProof();
+                });
+
+                document.getElementById('resilience-test').addEventListener('click', () => {
+                    this.runResilienceTest();
+                });
+            }
+
+            updateProjection() {
+                // Reproject all points based on new projection mode
+                this.pointObjects.forEach((point, id) => {
+                    const coords = point.userData.bitchain.stat7_coordinates;
+                    const newPosition = this.project7DTo3D(coords);
+                    point.userData.originalPosition = newPosition.clone();
+                    point.position.copy(newPosition);
+                });
+            }
+
+            updatePointSizes() {
+                this.pointObjects.forEach(point => {
+                    const baseSize = point.userData.metadata.size;
+                    point.scale.setScalar(this.settings.pointSize);
+                });
+            }
+
+            updateRealmFilter() {
+                let visibleCount = 0;
+                this.pointObjects.forEach((point, entityId) => {
+                    const bitchain = point.userData.bitchain;
+                    const coords = bitchain.coordinates || bitchain.stat7_coordinates;
+                    const realm = coords ? coords.realm : (bitchain.realm || 'unknown');
+                    const visible = this.settings.realmFilter.has(realm);
+                    point.visible = visible;
+                    if (visible) visibleCount++;
+                });
+                this.stats.visiblePoints = visibleCount;
+                this.updateStats();
+                console.log(`🔍 Realm filter updated: ${visibleCount}/${this.pointObjects.size} entities visible`);
+            }
+
+            resetCamera() {
+                this.camera.position.set(50, 50, 50);
+                this.camera.lookAt(0, 0, 0);
+            }
+
+            clearAllPoints() {
+                console.log(`🗑️ Clearing ${this.pointObjects.size} point objects and ${this.points.length} data points`);
+
+                // Remove all point objects from scene
+                this.pointObjects.forEach((point, id) => {
+                    this.scene.remove(point);
+                    point.geometry.dispose();
+                    point.material.dispose();
+                });
+
+                // Clear all collections
+                this.pointObjects.clear();
+                this.points = [];
+
+                // Reset stats
+                this.stats.totalPoints = 0;
+                this.stats.visiblePoints = 0;
+
+                // Clear any entity details panels
+                const detailsPanel = document.getElementById('entity-details');
+                if (detailsPanel) {
+                    detailsPanel.remove();
+                }
+
+                // Clear search results
+                const searchResults = document.getElementById('search-results');
+                if (searchResults) {
+                    searchResults.innerHTML = '';
+                }
+
+                // Clear query results
+                const queryResults = document.getElementById('query-results');
+                if (queryResults) {
+                    queryResults.innerHTML = '';
+                }
+
+                this.updateStats();
+                console.log('✅ All points cleared successfully');
+            }
+
+            clearGhostEntities() {
+                console.log('👻 Clearing ghost entities...');
+
+                let ghostCount = 0;
+                const validPointIds = new Set(this.points.map(p => p.id || p.address));
+
+                // Find and remove ghost entities (point objects that don't have corresponding data)
+                this.pointObjects.forEach((point, entityId) => {
+                    if (!validPointIds.has(entityId)) {
+                        console.log(`👻 Removing ghost entity: ${entityId}`);
+                        this.scene.remove(point);
+                        point.geometry.dispose();
+                        point.material.dispose();
+                        ghostCount++;
+                    }
+                });
+
+                // Clean up the pointObjects map
+                const cleanedPointObjects = new Map();
+                this.pointObjects.forEach((point, entityId) => {
+                    if (validPointIds.has(entityId)) {
+                        cleanedPointObjects.set(entityId, point);
+                    }
+                });
+                this.pointObjects = cleanedPointObjects;
+
+                // Update stats
+                this.stats.totalPoints = this.pointObjects.size;
+                this.stats.visiblePoints = this.pointObjects.size;
+
+                this.updateStats();
+                console.log(`✅ Cleared ${ghostCount} ghost entities. ${this.pointObjects.size} entities remaining.`);
+            }
+
+            performSearch() {
+                const searchTerm = document.getElementById('search-input').value.toLowerCase();
+                const resultsDiv = document.getElementById('search-results');
+
+                if (!searchTerm) {
+                    resultsDiv.innerHTML = '<span style="color: #888;">Enter a search term</span>';
+                    return;
+                }
+
+                const results = this.points.filter(bitchainData => {
+                    return (bitchainData.id && bitchainData.id.toLowerCase().includes(searchTerm)) ||
+                           (bitchainData.entity_type && bitchainData.entity_type.toLowerCase().includes(searchTerm)) ||
+                           (bitchainData.realm && bitchainData.realm.toLowerCase().includes(searchTerm)) ||
+                           (bitchainData.address && bitchainData.address.toLowerCase().includes(searchTerm));
+                });
+
+                resultsDiv.innerHTML = `<span style="color: #3498db;">Found ${results.length} results</span>`;
+
+                if (results.length > 0) {
+                    resultsDiv.innerHTML += '<div style="margin-top: 5px;">';
+                    results.slice(0, 5).forEach((result, index) => {
+                        const point = this.pointObjects.get(result.id || result.address);
+                        if (point) {
+                            resultsDiv.innerHTML += `
+                                <div style="cursor: pointer; padding: 2px; border-radius: 3px;"
+                                     onmouseover="this.style.background='#333'"
+                                     onmouseout="this.style.background='transparent'"
+                                     onclick="window.stat7Viz.focusOnEntity('${result.id || result.address}')">
+                                    ${index + 1}. ${result.entity_type} - ${result.realm} (${result.id ? result.id.substring(0, 8) + '...' : 'No ID'})
+                                </div>
+                            `;
+                        }
+                    });
+                    resultsDiv.innerHTML += '</div>';
+                }
+
+                // Highlight matching entities
+                this.highlightSearchResults(results);
+            }
+
+            highlightSearchResults(results) {
+                // Reset all highlights
+                this.pointObjects.forEach(point => {
+                    const material = point.material;
+                    material.emissiveIntensity = 0.2;
+                    point.scale.setScalar(1.0);
+                });
+
+                // Highlight search results
+                results.forEach(result => {
+                    const point = this.pointObjects.get(result.id || result.address);
+                    if (point) {
+                        const material = point.material;
+                        material.emissiveIntensity = 0.6;
+                        point.scale.setScalar(1.3);
+                    }
+                });
+            }
+
+            focusOnEntity(entityId) {
+                const point = this.pointObjects.get(entityId);
+                if (point) {
+                    // Move camera to focus on this entity
+                    const targetPosition = point.position.clone();
+                    targetPosition.z += 20; // Move camera back a bit
+
+                    // Smooth camera transition
+                    const startPosition = this.camera.position.clone();
+                    const duration = 1000; // 1 second
+                    const startTime = Date.now();
+
+                    const animateCamera = () => {
+                        const elapsed = Date.now() - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+
+                        this.camera.position.lerpVectors(startPosition, targetPosition, progress);
+                        this.camera.lookAt(point.position);
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animateCamera);
+                        } else {
+                            // Show entity details
+                            const bitchainData = point.userData.bitchain;
+                            this.showEntityDetails(bitchainData, point);
+                        }
+                    };
+
+                    animateCamera();
+                }
+            }
+
+            performNaturalLanguageQuery() {
+                const query = document.getElementById('query-input').value.toLowerCase();
+                const resultsDiv = document.getElementById('query-results');
+
+                if (!query) {
+                    resultsDiv.innerHTML = '<span style="color: #888;">Enter a query</span>';
+                    return;
+                }
+
+                // Simple natural language processing
+                let filteredPoints = [...this.points];
+
+                // Parse realm filters
+                const realms = ['data', 'narrative', 'system', 'faculty', 'event', 'pattern', 'void'];
+                realms.forEach(realm => {
+                    if (query.includes(realm)) {
+                        filteredPoints = filteredPoints.filter(p =>
+                            (p.realm && p.realm.toLowerCase() === realm) ||
+                            (p.coordinates && p.coordinates.realm === realm)
+                        );
+                    }
+                });
+
+                // Parse entity type filters
+                const types = ['concept', 'artifact', 'agent', 'lineage', 'adjacency', 'horizon', 'fragment'];
+                types.forEach(type => {
+                    if (query.includes(type)) {
+                        filteredPoints = filteredPoints.filter(p =>
+                            p.entity_type && p.entity_type.toLowerCase() === type
+                        );
+                    }
+                });
+
+                // Parse value filters
+                if (query.includes('high resonance')) {
+                    filteredPoints = filteredPoints.filter(p =>
+                        p.coordinates && p.coordinates.resonance > 0.5
+                    );
+                }
+                if (query.includes('low resonance')) {
+                    filteredPoints = filteredPoints.filter(p =>
+                        p.coordinates && p.coordinates.resonance < -0.5
+                    );
+                }
+                if (query.includes('high velocity')) {
+                    filteredPoints = filteredPoints.filter(p =>
+                        p.coordinates && Math.abs(p.coordinates.velocity) > 0.5
+                    );
+                }
+                if (query.includes('high density')) {
+                    filteredPoints = filteredPoints.filter(p =>
+                        p.coordinates && p.coordinates.density > 0.7
+                    );
+                }
+
+                // Parse horizon filters
+                const horizons = ['genesis', 'emergence', 'peak', 'decay', 'crystallization'];
+                horizons.forEach(horizon => {
+                    if (query.includes(horizon)) {
+                        filteredPoints = filteredPoints.filter(p =>
+                            p.coordinates && p.coordinates.horizon === horizon
+                        );
+                    }
+                });
+
+                resultsDiv.innerHTML = `<span style="color: #2ecc71;">Query matched ${filteredPoints.length} entities</span>`;
+
+                if (filteredPoints.length > 0 && filteredPoints.length < 20) {
+                    resultsDiv.innerHTML += '<div style="margin-top: 5px; font-size: 10px;">';
+                    const realmCounts = {};
+                    const typeCounts = {};
+
+                    filteredPoints.forEach(point => {
+                        const realm = point.realm || (point.coordinates && point.coordinates.realm) || 'unknown';
+                        const type = point.entity_type || 'unknown';
+                        realmCounts[realm] = (realmCounts[realm] || 0) + 1;
+                        typeCounts[type] = (typeCounts[type] || 0) + 1;
+                    });
+
+                    resultsDiv.innerHTML += '<strong>Realms:</strong> ' + Object.entries(realmCounts).map(([r, c]) => `${r}(${c})`).join(', ');
+                    resultsDiv.innerHTML += '<br><strong>Types:</strong> ' + Object.entries(typeCounts).map(([t, c]) => `${t}(${c})`).join(', ');
+                    resultsDiv.innerHTML += '</div>';
+                }
+
+                // Highlight query results
+                this.highlightSearchResults(filteredPoints);
+            }
+
+            updateConnectionStatus(connected) {
+                const statusElement = document.getElementById('connection-status');
+                const indicatorClass = connected ? 'status-connected' : 'status-disconnected';
+                const statusText = connected ? 'Connected' : 'Disconnected';
+
+                statusElement.innerHTML = `<span class="status-indicator ${indicatorClass}"></span>${statusText}`;
+            }
+
+            updateStats() {
+                // Count visible points first
+                let visibleCount = 0;
+                this.pointObjects.forEach(point => {
+                    if (point.visible !== false) visibleCount++;  // Default to visible if not set
+                });
+                this.stats.visiblePoints = visibleCount;
+
+                // Update display
+                document.getElementById('total-points').textContent = this.stats.totalPoints;
+                document.getElementById('visible-points').textContent = this.stats.visiblePoints;
+                document.getElementById('fps').textContent = this.stats.fps.toFixed(1);
+                document.getElementById('events-received').textContent = this.stats.eventsReceived;
+                document.getElementById('active-experiments').textContent = this.stats.activeExperiments.size;
+
+                console.log(`Stats updated: Total=${this.stats.totalPoints}, Visible=${this.stats.visiblePoints}, Events=${this.stats.eventsReceived}`);
+            }
+
+            animate() {
+                requestAnimationFrame(() => this.animate());
+
+                // Calculate FPS
+                const currentTime = performance.now();
+                const deltaTime = currentTime - this.lastFrameTime;
+                this.frameCount++;
+
+                if (this.frameCount % 30 === 0) {
+                    this.stats.fps = 1000 / deltaTime;
+                    this.updateStats();
+                }
+
+                this.lastFrameTime = currentTime;
+
+                // Animate points
+                if (this.settings.animationSpeed > 0) {
+                    const time = currentTime * 0.001 * this.settings.animationSpeed;
+
+                    this.pointObjects.forEach((point, entityId) => {
+                        if (!point.visible) return;
+
+                        // Gentle floating animation
+                        const offset = point.userData.animationOffset;
+                        const floatY = Math.sin(time + offset) * 0.5;
+                        const floatX = Math.cos(time * 0.7 + offset) * 0.3;
+
+                        point.position.x = point.userData.originalPosition.x + floatX;
+                        point.position.y = point.userData.originalPosition.y + floatY;
+
+                        // Gentle rotation
+                        point.rotation.y += 0.01 * this.settings.animationSpeed;
+                    });
+                }
+
+                this.renderer.render(this.scene, this.camera);
+            }
+
+            onWindowResize() {
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            handleDPIAndScaling() {
+                // Calculate appropriate scale based on DPI and window size
+                const dpi = window.devicePixelRatio || 1;
+                const windowWidth = window.innerWidth;
+
+                // Adjust scale for high DPI displays
+                let scale = 1.0;
+                if (dpi > 1.5) {
+                    scale = Math.min(1.0, 1.0 / (dpi * 0.8));
+                }
+
+                // Adjust for very small or large windows
+                if (windowWidth < 1200) {
+                    scale *= 0.9;
+                } else if (windowWidth > 2000) {
+                    scale *= 1.1;
+                }
+
+                // Apply scaling to UI panels
+                const panels = ['controls', 'stats', 'experiment-info'];
+                panels.forEach(panelId => {
+                    const panel = document.getElementById(panelId);
+                    if (panel) {
+                        panel.style.transform = `scale(${scale})`;
+
+                        // Adjust position based on scale to keep panels in view
+                        if (panelId === 'experiment-info') {
+                            panel.style.bottom = `${20 / scale}px`;
+                            panel.style.left = `${20 / scale}px`;
+                        } else if (panelId === 'stats') {
+                            panel.style.top = `${20 / scale}px`;
+                            panel.style.right = `${20 / scale}px`;
+                        } else if (panelId === 'controls') {
+                            panel.style.top = `${20 / scale}px`;
+                            panel.style.left = `${20 / scale}px`;
+                        }
+                    }
+                });
+
+                console.log(`DPI: ${dpi}, Scale: ${scale}, Window: ${windowWidth}px`);
+            }
+        }
+
+        // Experiment Control Methods
+        toggleExperiment(expId, button) {
+            const isActive = button.classList.contains('active');
+
+            if (isActive) {
+                // Stop experiment
+                button.classList.remove('active');
+                this.stopExperiment(expId);
+                this.logExperiment(`${expId} stopped`);
+            } else {
+                // Start experiment
+                button.classList.add('active');
+                this.startExperiment(expId);
+                this.logExperiment(`${expId} started (30s run)`);
+            }
+        }
+
+        startExperiment(expId) {
+            this.stats.activeExperiments.add(expId);
+
+            // Send start message to WebSocket server
+            if (this.websocket && this.websocket.readyState === WebSocket.OPEN) {
+                this.websocket.send(JSON.stringify({
+                    type: 'start_experiment',
+                    experiment_id: expId,
+                    duration: 30 // 30 seconds
+                }));
+            }
+
+            // Auto-stop after 30 seconds
+            setTimeout(() => {
+                if (this.stats.activeExperiments.has(expId)) {
+                    this.stopExperiment(expId);
+                    const button = document.querySelector(`[data-exp="${expId}"]`);
+                    if (button) button.classList.remove('active');
+                    this.logExperiment(`${expId} auto-completed`);
+                }
+            }, 30000);
+        }
+
+        stopExperiment(expId) {
+            this.stats.activeExperiments.delete(expId);
+
+            if (this.websocket && this.websocket.readyState === WebSocket.OPEN) {
+                this.websocket.send(JSON.stringify({
+                    type: 'stop_experiment',
+                    experiment_id: expId
+                }));
+            }
+        }
+
+        playAllExperiments() {
+            const buttons = document.querySelectorAll('.experiment-btn');
+            buttons.forEach(button => {
+                const expId = button.dataset.exp;
+                if (!button.classList.contains('active')) {
+                    button.classList.add('active');
+                    this.startExperiment(expId);
+                }
+            });
+            this.logExperiment('All experiments started');
+        }
+
+        stopAllExperiments() {
+            const buttons = document.querySelectorAll('.experiment-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            this.stats.activeExperiments.forEach(expId => {
+                this.stopExperiment(expId);
+            });
+
+            this.logExperiment('All experiments stopped');
+        }
+
+        clearAllExperiments() {
+            this.stopAllExperiments();
+            this.clearAllPoints();
+            this.logExperiment('All experiments cleared');
+        }
+
+        logExperiment(message) {
+            const logDiv = document.getElementById('experiment-log');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.style.cssText = 'font-size: 11px; margin-bottom: 3px; color: #aaa;';
+            logEntry.innerHTML = `<span style="color: #666;">[${timestamp}]</span> ${message}`;
+
+            logDiv.appendChild(logEntry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+
+            // Keep only last 10 log entries
+            while (logDiv.children.length > 10) {
+                logDiv.removeChild(logDiv.firstChild);
+            }
+        }
+
+        // Enhanced Entity Details Methods
+        closeEntityDetails() {
+            const detailsPanel = document.getElementById('entity-details');
+            if (detailsPanel) {
+                detailsPanel.style.display = 'none';
+            }
+
+            // Reset highlights
+            this.pointObjects.forEach(point => {
+                const material = point.material;
+                material.emissiveIntensity = 0.2;
+                point.scale.setScalar(1.0);
+            });
+        }
+
+        showEntityDetails(bitchainData, pointObject) {
+            const detailsPanel = document.getElementById('entity-details');
+            const coords = bitchainData.coordinates || bitchainData.stat7_coordinates || {};
+
+            // Update title
+            document.getElementById('entity-title').textContent =
+                `🔮 ${bitchainData.entity_type || 'Entity'} - ${bitchainData.realm || coords.realm || 'Unknown'}`;
+
+            // Basic information
+            document.getElementById('entity-basic').innerHTML = `
+                <div><strong>ID:</strong> <span style="color: #3498db; font-family: monospace; font-size: 10px;">${bitchainData.id || 'Unknown'}</span></div>
+                <div><strong>Type:</strong> <span style="color: #2ecc71;">${bitchainData.entity_type || 'Unknown'}</span></div>
+                <div><strong>Realm:</strong> <span style="color: #e74c3c;">${bitchainData.realm || coords.realm || 'Unknown'}</span></div>
+                <div><strong>Address:</strong> <span style="color: #f39c12; font-family: monospace; font-size: 10px;">${bitchainData.address || 'Unknown'}</span></div>
+                <div><strong>Created:</strong> <span style="color: #9b59b6;">${bitchainData.created_at || 'Unknown'}</span></div>
+            `;
+
+            // STAT7 coordinates
+            document.getElementById('entity-coordinates').innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
+                    <div><strong>Realm:</strong> ${coords.realm || 'Unknown'}</div>
+                    <div><strong>Lineage:</strong> ${coords.lineage || 'Unknown'}</div>
+                    <div><strong>Horizon:</strong> ${coords.horizon || 'Unknown'}</div>
+                    <div><strong>Resonance:</strong> ${coords.resonance || 'Unknown'}</div>
+                    <div><strong>Velocity:</strong> ${coords.velocity || 'Unknown'}</div>
+                    <div><strong>Density:</strong> ${coords.density || 'Unknown'}</div>
+                </div>
+                ${coords.adjacency ? `
+                    <div style="margin-top: 10px;">
+                        <strong>Adjacency:</strong> ${(coords.adjacency || []).join(', ') || 'None'}
+                    </div>
+                ` : ''}
+            `;
+
+            // Narrative payload (enhanced)
+            const narrativeContent = this.extractNarrativeContent(bitchainData);
+            document.getElementById('entity-narrative').innerHTML = narrativeContent ||
+                '<div style="color: #666; font-style: italic;">No narrative content available</div>';
+
+            // Related entities
+            const relatedContent = this.findRelatedEntities(bitchainData);
+            document.getElementById('entity-related').innerHTML = relatedContent ||
+                '<div style="color: #666; font-style: italic;">No related entities found</div>';
+
+            // Show panel
+            detailsPanel.style.display = 'block';
+
+            // Highlight selected entity
+            this.highlightEntity(pointObject);
+        }
+
+        extractNarrativeContent(bitchainData) {
+            const state = bitchainData.state || {};
+            const content = [];
+
+            // Extract dialogue
+            if (state.dialogue) {
+                content.push(`
+                    <div style="margin-bottom: 10px;">
+                        <strong style="color: #3498db;">💬 Dialogue:</strong>
+                        <div style="background: rgba(52, 152, 219, 0.1); padding: 8px; border-radius: 5px; margin-top: 5px;">
+                            ${state.dialogue}
+                        </div>
+                    </div>
+                `);
+            }
+
+            // Extract narrative text
+            if (state.narrative) {
+                content.push(`
+                    <div style="margin-bottom: 10px;">
+                        <strong style="color: #e74c3c;">📖 Narrative:</strong>
+                        <div style="background: rgba(231, 76, 60, 0.1); padding: 8px; border-radius: 5px; margin-top: 5px;">
+                            ${state.narrative}
+                        </div>
+                    </div>
+                `);
+            }
+
+            // Extract description
+            if (state.description) {
+                content.push(`
+                    <div style="margin-bottom: 10px;">
+                        <strong style="color: #2ecc71;">📝 Description:</strong>
+                        <div style="background: rgba(46, 204, 113, 0.1); padding: 8px; border-radius: 5px; margin-top: 5px;">
+                            ${state.description}
+                        </div>
+                    </div>
+                `);
+            }
+
+            // Extract other interesting state data
+            Object.keys(state).forEach(key => {
+                if (!['dialogue', 'narrative', 'description'].includes(key) && state[key]) {
+                    const value = typeof state[key] === 'object' ? JSON.stringify(state[key], null, 2) : state[key];
+                    content.push(`
+                        <div style="margin-bottom: 10px;">
+                            <strong style="color: #f39c12;">⚙️ ${key}:</strong>
+                            <div style="background: rgba(243, 156, 18, 0.1); padding: 8px; border-radius: 5px; margin-top: 5px; font-size: 11px;">
+                                ${value}
+                            </div>
+                        </div>
+                    `);
+                }
+            });
+
+            return content.join('');
+        }
+
+        findRelatedEntities(bitchainData) {
+            const coords = bitchainData.coordinates || bitchainData.stat7_coordinates || {};
+            const adjacency = coords.adjacency || [];
+
+            if (adjacency.length === 0) return null;
+
+            const related = this.points.filter(p => {
+                if (p.id === bitchainData.id) return false;
+                return adjacency.includes(p.id) || adjacency.includes(p.address);
+            });
+
+            if (related.length === 0) return null;
+
+            return related.slice(0, 5).map(entity => `
+                <div style="padding: 5px; background: rgba(255,255,255,0.05); border-radius: 3px; margin-bottom: 5px; cursor: pointer;"
+                     onclick="window.stat7Viz.focusOnEntity('${entity.id || entity.address}')">
+                    <div style="color: #3498db; font-size: 11px;">${entity.entity_type || 'Unknown'}</div>
+                    <div style="color: #aaa; font-size: 10px;">${entity.realm || 'Unknown'} - ${(entity.id || '').substring(0, 8)}...</div>
+                </div>
+            `).join('');
+        }
+
+        focusOnEntity(entityId) {
+            const point = this.pointObjects.get(entityId);
+            if (point) {
+                // Move camera to focus on entity
+                const targetPosition = point.position.clone();
+                targetPosition.z += 20; // Offset camera back
+
+                // Smooth camera transition
+                const startPosition = this.camera.position.clone();
+                const startTime = Date.now();
+                const duration = 1000; // 1 second transition
+
+                const animateCamera = () => {
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3); // Ease out cubic
+
+                    this.camera.position.lerpVectors(startPosition, targetPosition, eased);
+                    this.camera.lookAt(point.position);
+
+                    if (progress < 1) {
+                        requestAnimationFrame(animateCamera);
+                    } else {
+                        // Show entity details when camera arrives
+                        const bitchainData = point.userData.bitchain;
+                        this.showEntityDetails(bitchainData, point);
+                    }
+                };
+
+                animateCamera();
+            }
+        }
+
+        // Advanced Proof Methods
+        runSemanticFidelityProof() {
+            this.logExperiment('🧠 Starting Semantic Fidelity Proof...');
+
+            if (this.websocket && this.websocket.readyState === WebSocket.OPEN) {
+                this.websocket.send(JSON.stringify({
+                    type: 'run_semantic_fidelity_proof',
+                    sample_size: 200
+                }));
+            } else {
+                this.logExperiment('❌ WebSocket not connected');
+            }
+        }
+
+        runResilienceTest() {
+            this.logExperiment('🛡️ Starting Resilience Testing...');
+
+            if (this.websocket && this.websocket.readyState === WebSocket.OPEN) {
+                this.websocket.send(JSON.stringify({
+                    type: 'run_resilience_testing',
+                    sample_size: 150
+                }));
+            } else {
+                this.logExperiment('❌ WebSocket not connected');
+            }
+        }
+    }
+
+    // Initialize visualization when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+        window.stat7Viz = new STAT7Visualization();
+
+        // Handle DPI scaling and monitor changes
+        window.stat7Viz.handleDPIAndScaling();
+
+        // Wait a moment before connecting to WebSocket to allow server to start
+        setTimeout(() => {
+            console.log('🔌 Initializing WebSocket connection...');
+            window.stat7Viz.setupWebSocket();
+        }, 2000); // 2 second delay
+    });
+
+    // Handle monitor changes and DPI scaling
+    window.addEventListener('resize', () => {
+        if (window.stat7Viz) {
+            window.stat7Viz.handleDPIAndScaling();
+        }
+    });
+
+    // Handle DPI changes (Windows display scaling)
+    if (window.matchMedia) {
+        window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`).addEventListener('change', () => {
+            if (window.stat7Viz) {
+                window.stat7Viz.handleDPIAndScaling();
+            }
+        });
+    }
+
+    // Handle page visibility to pause/resume rendering
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            // Page is hidden, reduce rendering frequency
+            if (window.stat7Viz) {
+                window.stat7Viz.settings.animationSpeed = 0;
+            }
+        } else {
+            // Page is visible, restore animation
+            if (window.stat7Viz) {
+                const speedSlider = document.getElementById('animation-speed');
+                window.stat7Viz.settings.animationSpeed = parseFloat(speedSlider.value);
+            }
+        }
+    });
+    </script>
+</body>
+</html>

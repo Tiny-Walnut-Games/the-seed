@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>STAT7 Modular Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #1a1a1a; color: white; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #2ecc71; }
+        .error { background: #e74c3c; }
+        .info { background: #3498db; }
+        a { color: #3498db; }
+    </style>
+</head>
+<body>
+    <h1>STAT7 Modular Structure Test</h1>
+    <div id="test-results"></div>
+
+    <script>
+        const results = document.getElementById('test-results');
+
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.textContent = message;
+            results.appendChild(div);
+        }
+
+        function testScriptLoad(src, name) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => {
+                    addResult(`✅ ${name} loaded successfully`, 'success');
+                    resolve();
+                };
+                script.onerror = () => {
+                    addResult(`❌ Failed to load ${name}`, 'error');
+                    reject(new Error(`Failed to load ${name}`));
+                };
+                document.head.appendChild(script);
+            });
+        }
+
+        async function runTests() {
+            addResult('🧪 Testing STAT7 Modular Components...', 'info');
+
+            try {
+                // Test each component
+                await testScriptLoad('stat7-core.js', 'STAT7 Core');
+                await testScriptLoad('stat7-websocket.js', 'STAT7 WebSocket Manager');
+                await testScriptLoad('stat7-ui.js', 'STAT7 UI Controller');
+                await testScriptLoad('stat7-main.js', 'STAT7 Main');
+
+                // Test class availability
+                if (typeof STAT7Core !== 'undefined') {
+                    addResult('✅ STAT7Core class available', 'success');
+                } else {
+                    addResult('❌ STAT7Core class not found', 'error');
+                }
+
+                if (typeof STAT7WebSocketManager !== 'undefined') {
+                    addResult('✅ STAT7WebSocketManager class available', 'success');
+                } else {
+                    addResult('❌ STAT7WebSocketManager class not found', 'error');
+                }
+
+                if (typeof STAT7UIController !== 'undefined') {
+                    addResult('✅ STAT7UIController class available', 'success');
+                } else {
+                    addResult('❌ STAT7UIController class not found', 'error');
+                }
+
+                if (typeof STAT7Visualization !== 'undefined') {
+                    addResult('✅ STAT7Visualization class available', 'success');
+                } else {
+                    addResult('❌ STAT7Visualization class not found', 'error');
+                }
+
+                addResult('🎉 All modular components loaded successfully!', 'success');
+                addResult('Open <a href="stat7-modular.html" target="_blank">stat7-modular.html</a> to use the modular visualization', 'info');
+
+            } catch (error) {
+                addResult(`❌ Test failed: ${error.message}`, 'error');
+            }
+        }
+
+        // Run tests when page loads
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html>

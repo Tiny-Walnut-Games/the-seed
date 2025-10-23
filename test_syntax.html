@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>STAT7 Visualization Test</title>
+</head>
+<body>
+    <h1>STAT7 Visualization Syntax Test</h1>
+    <div id="test-result"></div>
+
+    <script>
+        // Test if the STAT7Visualization class can be instantiated
+        try {
+            // Load the main visualization file
+            const script = document.createElement('script');
+            script.src = 'stat7threejs.html';
+            script.onload = function() {
+                document.getElementById('test-result').innerHTML =
+                    '<p style="color: green;">✅ STAT7 visualization loaded successfully!</p>' +
+                    '<p>Open <a href="stat7threejs.html" target="_blank">stat7threejs.html</a> to use the visualization.</p>';
+            };
+            script.onerror = function() {
+                document.getElementById('test-result').innerHTML =
+                    '<p style="color: red;">❌ Failed to load STAT7 visualization</p>';
+            };
+            document.head.appendChild(script);
+        } catch (error) {
+            document.getElementById('test-result').innerHTML =
+                '<p style="color: red;">❌ Error: ' + error.message + '</p>';
+        }
+    </script>
+</body>
+</html>

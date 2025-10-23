@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAT7 7D Space Visualization</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        #canvas-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            max-width: 320px;
+            max-height: 80vh;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            font-size: 12px;
+            transform: scale(1);
+            transform-origin: top left;
+        }
+
+        #stats {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            backdrop-filter: blur(10px);
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            z-index: 100;
+            transform: scale(1);
+            transform-origin: bottom right;
+        }
+
+        #experiment-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            backdrop-filter: blur(10px);
+            max-width: 350px;
+            max-height: 40vh;
+            overflow-y: auto;
+            z-index: 100;
+            transform: scale(1);
+            transform-origin: top right;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .control-group input[type="range"] {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .control-group select {
+            width: 100%;
+            padding: 5px;
+            background: #222;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 3px;
+        }
+
+        .realm-legend {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 5px;
+            font-size: 11px;
+        }
+
+        .realm-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .status-connected { background: #2ecc71; }
+        .status-disconnected { background: #e74c3c; }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        button:disabled {
+            background: #555;
+            cursor: not-allowed;
+        }
+
+        #entity-details {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 200;
+            display: none;
+        }
+
+        #entity-details h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+
+        .detail-section {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .detail-section:last-child {
+            border-bottom: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .experiment-controls {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .experiment-btn {
+            padding: 5px 10px;
+            font-size: 11px;
+            background: #2ecc71;
+        }
+
+        .experiment-btn.active {
+            background: #e74c3c;
+        }
+
+        .experiment-btn:hover {
+            background: #27ae60;
+        }
+
+        .experiment-btn.active:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+<div id="canvas-container">
+    <canvas id="stat7-canvas"></canvas>
+</div>
+
+<div id="controls">
+    <h3>🎮 STAT7 Controls</h3>
+
+    <div class="control-group">
+        <label>Connection Status: <span id="connection-status"><span class="status-indicator status-disconnected"></span>Disconnected</span></label>
+    </div>
+
+    <div class="control-group">
+        <label>Projection Mode:</label>
+        <select id="projection-mode">
+            <option value="7d-to-3d">7D → 3D (t-SNE)</option>
+            <option value="7d-to-2d">7D → 2D (PCA)</option>
+            <option value="realm-slice">Realm Slice</option>
+            <option value="dimension-cross-section">Dimension Cross-Section</option>
+        </select>
+    </div>
+
+    <div class="control-group">
+        <label>Point Size: <span id="point-size-value">1.0</span></label>
+        <input type="range" id="point-size" min="0.1" max="5.0" step="0.1" value="1.0">
+    </div>
+
+    <div class="control-group">
+        <label>Animation Speed: <span id="speed-value">1.0</span></label>
+        <input type="range" id="animation-speed" min="0.0" max="3.0" step="0.1" value="1.0">
+    </div>
+
+    <div class="control-group">
+        <label>Realm Filter:</label>
+        <select id="realm-filter" multiple>
+            <option value="data" selected>Data</option>
+            <option value="narrative" selected>Narrative</option>
+            <option value="system" selected>System</option>
+            <option value="faculty" selected>Faculty</option>
+            <option value="event" selected>Event</option>
+            <option value="pattern" selected>Pattern</option>
+            <option value="void" selected>Void</option>
+        </select>
+    </div>
+
+    <div class="control-group">
+        <button id="reset-camera">📷 Reset Camera</button>
+        <button id="clear-points">🗑️ Clear Points</button>
+        <button id="clear-ghosts">👻 Clear Ghosts</button>
+    </div>
+
+    <div class="control-group">
+        <label>🔍 Search Entities:</label>
+        <input type="text" id="search-input" placeholder="Search by ID, type, realm..." style="width: 100%; padding: 5px; background: #222; color: #fff; border: 1px solid #444; border-radius: 3px;">
+        <button id="search-btn" style="width: 100%; margin-top: 5px;">Search</button>
+        <div id="search-results" style="margin-top: 5px; max-height: 100px; overflow-y: auto; font-size: 11px;"></div>
+    </div>
+
+    <div class="control-group">
+        <label>🎯 Natural Language Query:</label>
+        <textarea id="query-input" placeholder="e.g., 'Show me data realm entities with high resonance'" style="width: 100%; height: 60px; padding: 5px; background: #222; color: #fff; border: 1px solid #444; border-radius: 3px; resize: vertical;"></textarea>
+        <button id="query-btn" style="width: 100%; margin-top: 5px;">Execute Query</button>
+        <div id="query-results" style="margin-top: 5px; font-size: 11px;"></div>
+    </div>
+
+    <div class="control-group">
+        <h4>Realm Legend:</h4>
+        <div class="realm-legend">
+            <div class="realm-color" style="background: #3498db;"></div><span>Data</span>
+            <div class="realm-color" style="background: #e74c3c;"></div><span>Narrative</span>
+            <div class="realm-color" style="background: #2ecc71;"></div><span>System</span>
+            <div class="realm-color" style="background: #f39c12;"></div><span>Faculty</span>
+            <div class="realm-color" style="background: #9b59b6;"></div><span>Event</span>
+            <div class="realm-color" style="background: #1abc9c;"></div><span>Pattern</span>
+            <div class="realm-color" style="background: #34495e;"></div><span>Void</span>
+        </div>
+    </div>
+</div>
+
+<div id="stats">
+    <h4>📊 Statistics</h4>
+    <div>Total Points: <span id="total-points">0</span></div>
+    <div>Visible Points: <span id="visible-points">0</span></div>
+    <div>FPS: <span id="fps">0</span></div>
+    <div>Events Received: <span id="events-received">0</span></div>
+    <div>Active Experiments: <span id="active-experiments">0</span></div>
+</div>
+
+<div id="experiment-info">
+    <h4>🧪 Experiment Control</h4>
+    <div class="experiment-controls">
+        <button class="experiment-btn" data-exp="EXP01">EXP01</button>
+        <button class="experiment-btn" data-exp="EXP02">EXP02</button>
+        <button class="experiment-btn" data-exp="EXP03">EXP03</button>
+        <button class="experiment-btn" data-exp="EXP04">EXP04</button>
+        <button class="experiment-btn" data-exp="EXP05">EXP05</button>
+    </div>
+    <div class="experiment-controls">
+        <button class="experiment-btn" data-exp="EXP06">EXP06</button>
+        <button class="experiment-btn" data-exp="EXP07">EXP07</button>
+        <button class="experiment-btn" data-exp="EXP08">EXP08</button>
+        <button class="experiment-btn" data-exp="EXP09">EXP09</button>
+        <button class="experiment-btn" data-exp="EXP10">EXP10</button>
+    </div>
+    <div class="experiment-controls">
+        <button id="play-all">▶️ Play All</button>
+        <button id="stop-all">⏹️ Stop All</button>
+        <button id="clear-all">🗑️ Clear All</button>
+    </div>
+    <div class="experiment-controls">
+        <button id="semantic-fidelity">🧠 Semantic Fidelity</button>
+        <button id="resilience-test">🛡️ Resilience Test</button>
+    </div>
+    <div id="experiment-log"></div>
+</div>
+
+<div id="entity-details">
+    <button class="close-btn" onclick="window.stat7Viz.closeEntityDetails()">×</button>
+    <h3 id="entity-title">Entity Details</h3>
+    <div class="detail-section">
+        <h4>Basic Information</h4>
+        <div id="entity-basic"></div>
+    </div>
+    <div class="detail-section">
+        <h4>STAT7 Coordinates</h4>
+        <div id="entity-coordinates"></div>
+    </div>
+    <div class="detail-section">
+        <h4>Narrative Payload</h4>
+        <div id="entity-narrative"></div>
+    </div>
+    <div class="detail-section">
+        <h4>Related Entities</h4>
+        <div id="entity-related"></div>
+    </div>
+</div>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<!-- Modular STAT7 Components -->
+<script src="stat7-core.js"></script>
+<script src="stat7-websocket.js"></script>
+<script src="stat7-ui.js"></script>
+<script src="stat7-main.js"></script>
+
+</body>
+</html>

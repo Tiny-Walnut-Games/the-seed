@@ -1,32 +1,23 @@
 # STAT7 Visualization System Requirements
 # Install with: pip install -r requirements-visualization.txt
 
-# Core WebSocket and async support
-websockets>=11.0.0
-asyncio-mqtt>=0.13.0
+# Core WebSocket support
+websockets>=10.0
 
-# Data processing and serialization
-numpy>=1.21.0
-pandas>=1.3.0
+# Async support (usually included with Python 3.7+)
+asyncio
 
-# Jupyter notebook support (optional)
-jupyter>=1.0.0
-ipython>=8.0.0
-ipywidgets>=8.0.0
+# Data handling
+# Note: dataclasses is built-in for Python 3.7+
+# typing is built-in for Python 3.5+
 
-# Three.js Python bindings (optional, for advanced features)
-three>=0.5.0
+# Optional: For enhanced development
+jupyter>=1.0.0  # For Jupyter notebook support
+ipywidgets>=7.0.0  # For interactive widgets in Jupyter
 
-# Development and testing (optional)
-pytest>=7.0.0
-pytest-asyncio>=0.21.0
-black>=22.0.0
-flake8>=5.0.0
+# Optional: For testing and validation
+pytest>=6.0.0
+pytest-asyncio>=0.18.0
 
-# Performance monitoring (optional)
-psutil>=5.9.0
-memory-profiler>=0.60.0
-
-# For advanced dimensional reduction (optional)
-scikit-learn>=1.1.0
-scipy>=1.9.0
+# Optional: For performance monitoring
+psutil>=5.8.0
