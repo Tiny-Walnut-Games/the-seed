@@ -495,3 +495,7 @@ packs/*/build/
 *.cache
 Unity.*.csproj
 #!/seed/engine/.venv/
+
+
+# Local AI index artifacts (generated)
+.ai-index/
