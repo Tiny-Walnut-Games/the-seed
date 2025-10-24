@@ -25,11 +25,11 @@ namespace TWG.TLDA.Chat
 
         [Header("Chat Configuration")]
         [SerializeField] private UIDocument chatUIDocument;
-        // [SerializeField] private bool connectToWarbler = true;  // Reserved for 👀future expansion
+        // [SerializeField] private bool connectToWarbler = true;  // Reserved for future expansion
         [FormerlySerializedAs("enableTLDLLogging")] [SerializeField] private bool enableTldlLogging = true;
 
         [Header("Visual Features")]
-        [SerializeField] private bool highlightStat7Addresses = true;
+        [SerializeField] private bool highlightStat7Addresses = true;  // Watch for STAT7 in messages
         [SerializeField] private bool showRelatedEntities = true;
         [SerializeField] private bool enableNarrativeVisualization = true;
 
@@ -156,6 +156,36 @@ namespace TWG.TLDA.Chat
                     AddSystemMessage("⚠️ Platform integration unavailable");
                 }
             }
+        }
+
+        void OnDestroy()
+        {
+            // Unsubscribe from all events to prevent memory leaks
+            if (_sendButton != null)
+                _sendButton.clicked -= SendMessage;
+
+            if (_searchButton != null)
+                _searchButton.clicked -= PerformSpatialSearch;
+
+            if (_messageInput != null)
+                _messageInput.UnregisterCallback<KeyDownEvent>(OnMessageInputKeyDown);
+
+            if (_searchInput != null)
+                _searchInput.UnregisterCallback<KeyDownEvent>(OnSearchInputKeyDown);
+
+            if (_warblerBridge != null)
+            {
+                _warblerBridge.OnResponseReceived -= OnWarblerResponse;
+                _warblerBridge.OnSystemEvent -= OnSystemEvent;
+            }
+
+            if (_platformBridge != null)
+            {
+                _platformBridge.OnPlatformEvent -= OnPlatformEvent;
+                _platformBridge.OnNarrativeEvent -= OnNarrativeEvent;
+            }
+
+            Debug.Log("🧹 SeedEnhancedTldaChat cleanup completed - all event subscriptions cleared");
         }
 
         void OnMessageInputKeyDown(KeyDownEvent evt)
@@ -595,19 +625,54 @@ namespace TWG.TLDA.Chat
             await SaveTldlEntry(entry);
         }
 
-        private void AddMessage(string tldl, string enhancedEntryCreatedWithSeedMetadata, SeedChatMessageType seedChatMessageType)
+        private void AddMessage(string sender, string content, SeedChatMessageType messageType)
         {
-            // TODO: Use 👀STAT7 Auth or a STAT7 valid anonymous address for the sender.
-            // TODO: Implement this method to add a message to the UI or any other desired action.
-            // It should auth the user via STAT7 authentication and then call the appropriate methods to interact with Seed.
-            // You may need to implement additional logic here depending on how you want to handle these interactions.
-            // For example, you might use the `seedBridge` instance to register narratives or perform spatial searches.
+            var chatMessage = new SeedChatMessage
+            {
+                Sender = sender,
+                Content = content,
+                Timestamp = System.DateTime.Now,
+                Type = messageType,
+                Stat7Address = string.Empty,
+                SourcePlatform = _platformBridge?.PlatformType
+            };
+
+            _messageHistory.Add(chatMessage);
+            AddMessageToUI(chatMessage);
         }
 
         async Task SaveTldlEntry(string entry)
         {
-            // Implementation would save to TLDL system with STAT7 addressing
-            await Task.Delay(100);
+            try
+            {
+                // Generate TLDL entry path with session ID
+                var entryPath = System.IO.Path.Combine(
+                    Application.persistentDataPath,
+                    "TLDL",
+                    $"tldl-{_currentSessionId}-{System.DateTime.Now:yyyy-MM-dd-HHmmss}.md"
+                );
+
+                // Ensure directory exists
+                var directory = System.IO.Path.GetDirectoryName(entryPath);
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                // Save TLDL entry
+                await Task.Run(() =>
+                {
+                    System.IO.File.WriteAllText(entryPath, entry);
+                    Debug.Log($"✅ TLDL entry saved to: {entryPath}");
+                });
+
+                AddSystemMessage($"✅ TLDL entry saved successfully (Session: {_currentSessionId})");
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"❌ Failed to save TLDL entry: {ex.Message}");
+                AddSystemMessage($"❌ Failed to save TLDL entry: {ex.Message}");
+            }
         }
 
         // Public API for external systems
@@ -643,45 +708,156 @@ namespace TWG.TLDA.Chat
         }
     }
 
-    // Enhanced Warbler bridge with Seed integration
+    /// <summary>
+    /// Enhanced Warbler bridge with Seed integration
+    /// Provides decision-making and narrative processing capabilities
+    /// </summary>
     public class WarblerChatBridge
     {
         public System.Action<string, bool> OnResponseReceived = delegate { };
         public System.Action<string> OnSystemEvent = delegate { };
+        private Random _responseVariation = new Random();
 
+        /// <summary>
+        /// Send message to Warbler for processing with Seed context integration
+        /// </summary>
         public async Task SendMessage(string message)
         {
-            OnSystemEvent?.Invoke($"Processing: {message}");
+            try
+            {
+                if (string.IsNullOrWhiteSpace(message))
+                {
+                    OnSystemEvent?.Invoke("⚠️ Empty message received");
+                    return;
+                }
 
-            // Simulate enhanced Warbler decision process with Seed context
-            await Task.Delay(1000);
+                OnSystemEvent?.Invoke($"🧠 Processing: {message}");
+                
+                // Simulate enhanced Warbler decision process with Seed context
+                // In production, this would connect to actual Warbler API/ML service
+                var processingTime = 800 + _responseVariation.Next(400); // 800-1200ms
+                await Task.Delay(processingTime);
 
-            if (message.Contains("decide") || message.Contains("choose"))
-            {
-                var decision = "After analyzing the context through STAT7 spatial mapping, I recommend Option A based on risk assessment and potential narrative impact.";
-                OnResponseReceived?.Invoke(decision, true);
+                var response = GenerateResponse(message);
+                var isDecision = IsDecisionQuery(message);
+                
+                OnResponseReceived?.Invoke(response, isDecision);
+                OnSystemEvent?.Invoke($"✅ Response generated ({processingTime}ms)");
             }
-            else if (message.Contains("search") || message.Contains("find"))
+            catch (System.Exception ex)
             {
-                var response = "I'll search the spatial database for entities related to your query. The results will appear in the Mind Castle visualization.";
-                OnResponseReceived?.Invoke(response, false);
+                Debug.LogError($"❌ Warbler processing error: {ex.Message}");
+                OnSystemEvent?.Invoke($"❌ Error processing message: {ex.Message}");
             }
-            else if (message.Contains("narrative") || message.Contains("story"))
+        }
+
+        private string GenerateResponse(string message)
+        {
+            var messageLower = message.ToLower();
+
+            if (messageLower.Contains("decide") || messageLower.Contains("choose") || messageLower.Contains("recommend"))
             {
-                var response = "I can help you create a narrative entity that will be registered in The Seed with its own STAT7 address and spatial coordinates.";
-                OnResponseReceived?.Invoke(response, false);
+                return GenerateDecisionResponse(message);
+            }
+            else if (messageLower.Contains("search") || messageLower.Contains("find") || messageLower.Contains("query"))
+            {
+                return GenerateSearchResponse(message);
+            }
+            else if (messageLower.Contains("narrative") || messageLower.Contains("story") || messageLower.Contains("create"))
+            {
+                return GenerateNarrativeResponse(message);
+            }
+            else if (messageLower.Contains("error") || messageLower.Contains("fail") || messageLower.Contains("issue"))
+            {
+                return GenerateTroubleshootingResponse(message);
+            }
+            else if (messageLower.Contains("stat7") || messageLower.Contains("address") || messageLower.Contains("spatial"))
+            {
+                return GenerateSpatialResponse(message);
             }
             else
             {
-                var response = $"I understand you're asking about: {message}. Let me help you with that development task using the enhanced Seed architecture.";
-                OnResponseReceived?.Invoke(response, false);
+                return GenerateGeneralResponse(message);
             }
         }
-    }
-}
 
-// Missing type definitions to fix compilation
-namespace TWG.Seed.Integration
-{
-    // SeedMindCastleBridge is defined in SeedMindCastleBridge.cs
+        private string GenerateDecisionResponse(string message)
+        {
+            var options = new[]
+            {
+                "After analyzing the context through STAT7 spatial mapping, I recommend the first option based on risk assessment and narrative coherence.",
+                "Evaluating multiple pathways through Fractal-Chain analysis... The optimal path appears to be the collaborative approach, as it maximizes narrative density.",
+                "This decision point has significant narrative weight. Consider the spatial implications: Option A strengthens local coherence, while Option B increases global reach.",
+                "Based on entity proximity and narrative resonance, I'd advise prioritizing the path that maintains existing relationships while opening new possibilities.",
+            };
+            return options[_responseVariation.Next(options.Length)];
+        }
+
+        private string GenerateSearchResponse(string message)
+        {
+            var options = new[]
+            {
+                "🔍 Searching the Seed's spatial database for matching narratives. I'll visualize results in the Mind Castle as they arrive.",
+                "Querying spatial indices across multiple realms... This will take a moment as we search through compressed narrative layers.",
+                "I'll search for entities related to your query and display them in the Mind Castle visualization. Watch for highlighted STAT7 addresses.",
+                "Scanning narrative space for relevant entities... Found preliminary results. Refining search through Fractal-Chain proximity analysis.",
+            };
+            return options[_responseVariation.Next(options.Length)];
+        }
+
+        private string GenerateNarrativeResponse(string message)
+        {
+            var options = new[]
+            {
+                "📚 I can help you craft a narrative that will be registered in The Seed with its own STAT7 address and spatial coordinates.",
+                "Creating new narratives is a core function of our system. What realm should this entity belong to? (narrative, experience, concept, etc.)",
+                "I can weave this into the Fractal-Chain. Once registered, it will have spatial coordinates and can interact with other entities.",
+                "Narrative creation will generate a unique STAT7 address. This entity will be queryable and can form relationships with existing narrative entities.",
+            };
+            return options[_responseVariation.Next(options.Length)];
+        }
+
+        private string GenerateTroubleshootingResponse(string message)
+        {
+            var options = new[]
+            {
+                "⚠️ I'm analyzing the issue. This could be a spatial coherence problem or a STAT7 addressing failure. Can you provide more details?",
+                "Detected error condition. Let's troubleshoot: Is this related to entity registration, spatial search, or narrative synchronization?",
+                "Error noted. Checking system logs and spatial coherence metrics. What's the error message you're seeing?",
+                "I've identified a potential issue. This might be related to platform integration or Seed engine connectivity. Let me investigate.",
+            };
+            return options[_responseVariation.Next(options.Length)];
+        }
+
+        private string GenerateSpatialResponse(string message)
+        {
+            var options = new[]
+            {
+                "🗺️ The STAT7 addressing system maps narrative entities into 3D spatial coordinates within the Fractal-Chain. Each entity has a unique address.",
+                "Spatial analysis shows interesting clustering. Would you like me to visualize this in the Mind Castle or search for related entities?",
+                "Your query touches on spatial coherence. The system measures proximity between narratives using resonance, velocity, and density metrics.",
+                "STAT7 addresses encode spatial meaning. Entities with higher resonance are more influential in their local narrative neighborhoods.",
+            };
+            return options[_responseVariation.Next(options.Length)];
+        }
+
+        private string GenerateGeneralResponse(string message)
+        {
+            var options = new[]
+            {
+                $"I understand you're exploring: {message}. How can I help you work with The Seed's narrative architecture?",
+                "Interesting question. The Seed system can help you organize, search, and interact with narrative data in spatial coordinates.",
+                "This relates to our narrative system. Would you like to create new entities, search existing ones, or analyze spatial relationships?",
+                "I'm here to help you navigate The Seed. You can register narratives, perform spatial searches, or work with platform companions.",
+            };
+            return options[_responseVariation.Next(options.Length)];
+        }
+
+        private bool IsDecisionQuery(string message)
+        {
+            var messageLower = message.ToLower();
+            return messageLower.Contains("decide") || messageLower.Contains("choose") || 
+                   messageLower.Contains("recommend") || messageLower.Contains("should");
+        }
+    }
 }
