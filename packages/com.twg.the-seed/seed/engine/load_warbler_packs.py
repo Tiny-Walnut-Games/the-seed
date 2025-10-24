@@ -25,7 +25,9 @@ WARBLER_PACKS = [
     "warbler-pack-wisdom-scrolls",
     "warbler-pack-faction-politics",
     "warbler-pack-hf-npc-dialogue",
-    "warbler-pack-hf-multi-character"
+    "warbler-pack-hf-multi-character",
+    "warbler-pack-massive-synthetic",
+    "warbler-pack-massive-augmented"
 ]
 
 

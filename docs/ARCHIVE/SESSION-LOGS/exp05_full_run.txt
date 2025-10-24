@@ -1,0 +1,29 @@
+
+================================================================================
+EXP-05: COMPRESSION/EXPANSION LOSSLESSNESS VALIDATION
+================================================================================
+Testing 100 random bit-chains through full compression pipeline
+
+Compressing bit-chains...
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\Tiny_Walnut_Games\the-seed\seed\engine\exp05_compression_expansion.py", line 605, in <module>
+    results = run_compression_expansion_test(num_bitchains=num_bitchains)
+  File "E:\Tiny_Walnut_Games\the-seed\seed\engine\exp05_compression_expansion.py", line 455, in run_compression_expansion_test
+    print(f"  \u2713 Processed {i + 1}/{num_bitchains} bit-chains")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Tiny_Walnut_Games\the-seed\seed\engine\exp05_compression_expansion.py", line 615, in <module>
+    print(f"\n\u2717 EXPERIMENT FAILED: {e}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2717' in position 2: character maps to <undefined>

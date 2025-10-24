@@ -1,0 +1,453 @@
+{
+  "test_summary": {
+    "start_time": "2025-10-23T21:34:05.594726",
+    "end_time": "2025-10-23T21:39:14.153596",
+    "duration_seconds": 308.55887,
+    "duration_minutes": 5.142647833333333,
+    "hardware_profile": "i7-6700/32GB/RTX 2060 SUPER"
+  },
+  "volume_metrics": {
+    "total_queries": 149,
+    "successful_queries": 0,
+    "failed_queries": 149,
+    "success_rate": 0.0,
+    "queries_per_second_target": 4,
+    "queries_per_second_actual": 0.48289002354720834
+  },
+  "performance_metrics": {
+    "avg_query_time_ms": 0,
+    "median_query_time_ms": 0,
+    "p95_query_time_ms": 0,
+    "p99_query_time_ms": 0
+  },
+  "hardware_metrics": {
+    "avg_cpu_percent": 34.7993288590604,
+    "max_cpu_percent": 77.35,
+    "avg_memory_percent": 61.96778523489933,
+    "max_memory_percent": 64.6,
+    "memory_efficiency": "OPTIMAL"
+  },
+  "bob_analysis": {
+    "total_decisions": 0,
+    "passed": 0,
+    "verified": 0,
+    "quarantined": 0,
+    "alert_rate": 0,
+    "quarantine_rate": 0
+  },
+  "query_analysis": {
+    "query_type_breakdown": {},
+    "complexity_breakdown": {
+      "simple": 149,
+      "moderate": 0,
+      "complex": 0
+    }
+  },
+  "hardware_optimization": {
+    "cpu_utilization": "EFFICIENT",
+    "memory_management": "GOOD",
+    "concurrency_optimal": true
+  },
+  "detailed_results": [
+    {
+      "timestamp": "2025-10-23T21:37:32.173061",
+      "query_id": "city_1761269850133_24354",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0397512912750244,
+      "cpu_usage": 35.45,
+      "memory_usage": 64.4
+    },
+    {
+      "timestamp": "2025-10-23T21:37:34.228815",
+      "query_id": "city_1761269852177_32571",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.050934076309204,
+      "cpu_usage": 16.15,
+      "memory_usage": 64.4
+    },
+    {
+      "timestamp": "2025-10-23T21:37:36.279622",
+      "query_id": "city_1761269854233_84935",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.045992851257324,
+      "cpu_usage": 45.9,
+      "memory_usage": 64.45
+    },
+    {
+      "timestamp": "2025-10-23T21:37:38.337482",
+      "query_id": "city_1761269856284_98331",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.052535057067871,
+      "cpu_usage": 47.0,
+      "memory_usage": 64.5
+    },
+    {
+      "timestamp": "2025-10-23T21:37:40.391771",
+      "query_id": "city_1761269858343_86253",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0485355854034424,
+      "cpu_usage": 36.15,
+      "memory_usage": 64.55
+    },
+    {
+      "timestamp": "2025-10-23T21:37:42.467612",
+      "query_id": "city_1761269860396_31053",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.070708990097046,
+      "cpu_usage": 17.75,
+      "memory_usage": 64.6
+    },
+    {
+      "timestamp": "2025-10-23T21:37:44.520526",
+      "query_id": "city_1761269862471_49327",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.048707962036133,
+      "cpu_usage": 43.15,
+      "memory_usage": 64.5
+    },
+    {
+      "timestamp": "2025-10-23T21:37:46.582415",
+      "query_id": "city_1761269864524_37519",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0575551986694336,
+      "cpu_usage": 17.3,
+      "memory_usage": 64.45
+    },
+    {
+      "timestamp": "2025-10-23T21:37:48.637602",
+      "query_id": "city_1761269866587_27093",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0498321056365967,
+      "cpu_usage": 19.95,
+      "memory_usage": 64.5
+    },
+    {
+      "timestamp": "2025-10-23T21:37:50.713376",
+      "query_id": "city_1761269868642_58960",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0712666511535645,
+      "cpu_usage": 31.25,
+      "memory_usage": 64.5
+    },
+    {
+      "timestamp": "2025-10-23T21:37:52.770277",
+      "query_id": "city_1761269870718_29617",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0512733459472656,
+      "cpu_usage": 69.25,
+      "memory_usage": 64.55
+    },
+    {
+      "timestamp": "2025-10-23T21:37:54.827271",
+      "query_id": "city_1761269872775_98841",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0522162914276123,
+      "cpu_usage": 18.6,
+      "memory_usage": 64.05
+    },
+    {
+      "timestamp": "2025-10-23T21:37:56.888481",
+      "query_id": "city_1761269874832_22206",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.05611252784729,
+      "cpu_usage": 36.65,
+      "memory_usage": 61.7
+    },
+    {
+      "timestamp": "2025-10-23T21:37:58.946976",
+      "query_id": "city_1761269876893_18426",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.053421974182129,
+      "cpu_usage": 37.0,
+      "memory_usage": 59.95
+    },
+    {
+      "timestamp": "2025-10-23T21:38:01.015440",
+      "query_id": "city_1761269878950_55001",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0645456314086914,
+      "cpu_usage": 34.4,
+      "memory_usage": 59.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:03.070211",
+      "query_id": "city_1761269881019_45589",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0509870052337646,
+      "cpu_usage": 38.9,
+      "memory_usage": 59.7
+    },
+    {
+      "timestamp": "2025-10-23T21:38:05.129579",
+      "query_id": "city_1761269883074_50494",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.055269241333008,
+      "cpu_usage": 18.25,
+      "memory_usage": 59.55
+    },
+    {
+      "timestamp": "2025-10-23T21:38:07.175414",
+      "query_id": "city_1761269885134_58488",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0405161380767822,
+      "cpu_usage": 27.55,
+      "memory_usage": 59.3
+    },
+    {
+      "timestamp": "2025-10-23T21:38:10.292365",
+      "query_id": "city_1761269887181_78354",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 3.110891342163086,
+      "cpu_usage": 24.8,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:12.343569",
+      "query_id": "city_1761269890296_39785",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0469062328338623,
+      "cpu_usage": 51.15,
+      "memory_usage": 58.849999999999994
+    },
+    {
+      "timestamp": "2025-10-23T21:38:14.402201",
+      "query_id": "city_1761269892348_33835",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0534894466400146,
+      "cpu_usage": 32.7,
+      "memory_usage": 58.849999999999994
+    },
+    {
+      "timestamp": "2025-10-23T21:38:16.483107",
+      "query_id": "city_1761269894407_73683",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0752296447753906,
+      "cpu_usage": 51.65,
+      "memory_usage": 58.8
+    },
+    {
+      "timestamp": "2025-10-23T21:38:18.541365",
+      "query_id": "city_1761269896488_96181",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.053213119506836,
+      "cpu_usage": 69.3,
+      "memory_usage": 58.849999999999994
+    },
+    {
+      "timestamp": "2025-10-23T21:38:20.585413",
+      "query_id": "city_1761269898545_83874",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0394506454467773,
+      "cpu_usage": 26.05,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:22.630387",
+      "query_id": "city_1761269900589_66686",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0410537719726562,
+      "cpu_usage": 5.65,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:24.679146",
+      "query_id": "city_1761269902634_62579",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0449721813201904,
+      "cpu_usage": 7.1,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:26.751711",
+      "query_id": "city_1761269904683_96692",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0686147212982178,
+      "cpu_usage": 15.3,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:28.809235",
+      "query_id": "city_1761269906755_67707",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0535783767700195,
+      "cpu_usage": 8.6,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:30.847500",
+      "query_id": "city_1761269908813_16802",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0342986583709717,
+      "cpu_usage": 14.05,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:32.903855",
+      "query_id": "city_1761269910860_93390",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0430002212524414,
+      "cpu_usage": 22.45,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:34.949435",
+      "query_id": "city_1761269912918_63512",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.031233310699463,
+      "cpu_usage": 13.8,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:36.993225",
+      "query_id": "city_1761269914962_53964",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.03104567527771,
+      "cpu_usage": 15.0,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:39.037102",
+      "query_id": "city_1761269917008_77937",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.028318405151367,
+      "cpu_usage": 24.95,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:41.085051",
+      "query_id": "city_1761269919041_49820",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.043452262878418,
+      "cpu_usage": 9.1,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:43.135415",
+      "query_id": "city_1761269921089_74967",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.045605421066284,
+      "cpu_usage": 6.6,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:45.180783",
+      "query_id": "city_1761269923139_23106",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0408387184143066,
+      "cpu_usage": 19.2,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:47.234897",
+      "query_id": "city_1761269925185_94015",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.049856662750244,
+      "cpu_usage": 28.549999999999997,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:38:49.271790",
+      "query_id": "city_1761269927238_99188",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.033050060272217,
+      "cpu_usage": 28.95,
+      "memory_usage": 58.849999999999994
+    },
+    {
+      "timestamp": "2025-10-23T21:38:51.315853",
+      "query_id": "city_1761269929277_18300",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0380563735961914,
+      "cpu_usage": 7.2,
+      "memory_usage": 58.8
+    },
+    {
+      "timestamp": "2025-10-23T21:38:53.374232",
+      "query_id": "city_1761269931319_13958",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.054708242416382,
+      "cpu_usage": 17.2,
+      "memory_usage": 58.8
+    },
+    {
+      "timestamp": "2025-10-23T21:38:55.442377",
+      "query_id": "city_1761269933378_94222",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0634350776672363,
+      "cpu_usage": 44.95,
+      "memory_usage": 58.849999999999994
+    },
+    {
+      "timestamp": "2025-10-23T21:38:57.491269",
+      "query_id": "city_1761269935446_41495",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.045057535171509,
+      "cpu_usage": 8.35,
+      "memory_usage": 58.849999999999994
+    },
+    {
+      "timestamp": "2025-10-23T21:38:59.537081",
+      "query_id": "city_1761269937495_15137",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.041138172149658,
+      "cpu_usage": 7.1,
+      "memory_usage": 58.8
+    },
+    {
+      "timestamp": "2025-10-23T21:39:01.579883",
+      "query_id": "city_1761269939542_68726",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0374491214752197,
+      "cpu_usage": 9.05,
+      "memory_usage": 58.849999999999994
+    },
+    {
+      "timestamp": "2025-10-23T21:39:03.617199",
+      "query_id": "city_1761269941584_13646",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0323851108551025,
+      "cpu_usage": 10.65,
+      "memory_usage": 58.9
+    },
+    {
+      "timestamp": "2025-10-23T21:39:05.693366",
+      "query_id": "city_1761269943621_62832",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.07236647605896,
+      "cpu_usage": 13.8,
+      "memory_usage": 58.849999999999994
+    },
+    {
+      "timestamp": "2025-10-23T21:39:07.734906",
+      "query_id": "city_1761269945697_40241",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0373260974884033,
+      "cpu_usage": 11.15,
+      "memory_usage": 58.8
+    },
+    {
+      "timestamp": "2025-10-23T21:39:09.796797",
+      "query_id": "city_1761269947738_91029",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.058040142059326,
+      "cpu_usage": 14.85,
+      "memory_usage": 58.8
+    },
+    {
+      "timestamp": "2025-10-23T21:39:11.832686",
+      "query_id": "city_1761269949801_42621",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.0316290855407715,
+      "cpu_usage": 21.25,
+      "memory_usage": 58.8
+    },
+    {
+      "timestamp": "2025-10-23T21:39:14.019935",
+      "query_id": "city_1761269951972_38884",
+      "error": "HTTP 405: {\"detail\":\"Method Not Allowed\"}",
+      "query_time": 2.047046661376953,
+      "cpu_usage": 14.850000000000001,
+      "memory_usage": 58.8
+    }
+  ]
+}
