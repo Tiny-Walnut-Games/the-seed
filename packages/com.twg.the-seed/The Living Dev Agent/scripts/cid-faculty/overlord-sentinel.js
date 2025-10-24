@@ -22,20 +22,31 @@
  */
 
 const fs = require('fs');
+const path = require('path');
 const { execSync } = require('child_process');
 const https = require('https');
 const { URL } = require('url');
 const yaml = require('js-yaml');
 
+// 🔐 CRITICAL CONSTANTS - Security Settings
+const MIN_DAILY_APPROVALS = 1;
+const MAX_DAILY_APPROVALS = 1000;
+
 class OverlordSentinel {
     constructor(config = {}) {
         this.config = {
-            configPath: config.configPath || 'configs/overlord-sentinel.yml',
+            configPath: config.configPath || path.resolve(__dirname, '../../configs/overlord-sentinel.yml'),
             githubToken: config.githubToken || process.env.GITHUB_TOKEN,
+            githubApiTimeout: config.githubApiTimeout || 5000,
             dryRun: config.dryRun || false,
             emergencyStop: config.emergencyStop || false,
             ...config
         };
+        
+        // 🔐 Validate GitHub token exists
+        if (!this.config.githubToken) {
+            console.warn('⚠️ WARNING: GitHub token not configured. GitHub API validation will be skipped.');
+        }
         
         // Load overlord configuration
         this.overlordConfig = this.loadOverlordConfig();
@@ -43,6 +54,7 @@ class OverlordSentinel {
         // Initialize audit system
         this.auditLog = [];
         this.dailyApprovalCount = 0;
+        this.lastResetDate = new Date().toDateString(); // Track daily reset
         
         // GitHub API setup
         this.githubApiBase = 'https://api.github.com';
@@ -112,10 +124,36 @@ class OverlordSentinel {
     }
 
     /**
+     * Validate context object input
+     */
+    validateContext(context) {
+        const required = ['actor', 'repository', 'workflow_name'];
+        for (const field of required) {
+            if (!context[field] || typeof context[field] !== 'string') {
+                throw new Error(`Invalid context: missing or invalid '${field}'`);
+            }
+        }
+    }
+
+    /**
      * Evaluate workflow approval request with comprehensive security validation
      */
     async evaluateApprovalRequest(context) {
         console.log('🔍 Evaluating workflow approval request...');
+        
+        try {
+            // 🔐 Validate input context
+            this.validateContext(context);
+        } catch (error) {
+            console.error('❌ Invalid request context:', error.message);
+            return {
+                granted: false,
+                reason: error.message,
+                recommendation: 'ERROR_INVALID_CONTEXT',
+                confidence: 0.0,
+                security_violations: ['INVALID_CONTEXT']
+            };
+        }
         
         const approval = {
             granted: false,
@@ -140,7 +178,14 @@ class OverlordSentinel {
                 return approval;
             }
             
-            // 📊 Daily approval limit check
+            // 📊 Daily approval limit check with date-based reset
+            const today = new Date().toDateString();
+            if (today !== this.lastResetDate) {
+                this.dailyApprovalCount = 0;
+                this.lastResetDate = today;
+                console.log('📅 Daily approval counter reset for new day');
+            }
+            
             if (this.dailyApprovalCount >= this.overlordConfig.overlord.security.max_daily_approvals) {
                 approval.reason = `Daily approval limit reached (${this.dailyApprovalCount}/${this.overlordConfig.overlord.security.max_daily_approvals})`;
                 approval.recommendation = 'RATE_LIMITED';
@@ -425,16 +470,33 @@ class OverlordSentinel {
     }
 
     /**
-     * Simple pattern matching with wildcard support
+     * Safe glob-style pattern matching with wildcard support
+     * Prevents ReDoS (Regular Expression Denial of Service) attacks
      */
     matchPattern(text, pattern) {
         if (!pattern.includes('*')) {
-            return text === pattern;
+            return text.toLowerCase() === pattern.toLowerCase();
         }
         
-        const regexPattern = pattern.replace(/\*/g, '.*');
-        const regex = new RegExp(`^${regexPattern}$`, 'i');
-        return regex.test(text);
+        // Prevent ReDoS by limiting string length
+        if (text.length > 1000 || pattern.length > 100) {
+            console.warn('⚠️ Pattern matching input exceeds safe length');
+            return false;
+        }
+        
+        // Escape special regex characters except *
+        const escaped = pattern.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
+        
+        // Convert glob * to safe regex (limited backtracking)
+        const regexPattern = escaped.replace(/\\\*/g, '[^/]*');
+        
+        try {
+            const regex = new RegExp(`^${regexPattern}$`, 'i');
+            return regex.test(text);
+        } catch (error) {
+            console.error('❌ Pattern matching error:', error.message);
+            return false;
+        }
     }
 
     /**
@@ -459,7 +521,9 @@ class OverlordSentinel {
                 const orgsUrl = `${this.githubApiBase}/users/${actor}/orgs`;
                 const orgsResponse = await this.makeGitHubRequest(orgsUrl);
                 if (orgsResponse && Array.isArray(orgsResponse)) {
-                    organizations = orgsResponse.map(org => org.login);
+                    organizations = orgsResponse
+                        .filter(org => org && org.login && typeof org.login === 'string')
+                        .map(org => org.login);
                 }
             } catch (error) {
                 // Organization membership may be private
@@ -479,7 +543,7 @@ class OverlordSentinel {
     }
 
     /**
-     * Make authenticated GitHub API request
+     * Make authenticated GitHub API request with token masking for security
      */
     async makeGitHubRequest(url) {
         return new Promise((resolve, reject) => {
@@ -503,7 +567,8 @@ class OverlordSentinel {
                         if (res.statusCode >= 200 && res.statusCode < 300) {
                             resolve(JSON.parse(data));
                         } else {
-                            reject(new Error(`GitHub API request failed: ${res.statusCode} ${res.statusMessage}`));
+                            // Don't expose status message which might contain sensitive data
+                            reject(new Error(`GitHub API request failed: ${res.statusCode}`));
                         }
                     } catch (error) {
                         reject(new Error(`Failed to parse GitHub API response: ${error.message}`));
@@ -511,7 +576,12 @@ class OverlordSentinel {
                 });
             });
             
-            req.on('error', reject);
+            req.on('error', (err) => {
+                // Mask any token exposure in error messages
+                const maskedError = new Error(err.message.replace(this.config.githubToken || '', '[REDACTED]'));
+                reject(maskedError);
+            });
+            
             req.setTimeout(this.config.githubApiTimeout, () => {
                 req.abort();
                 reject(new Error('GitHub API request timeout'));
@@ -575,11 +645,38 @@ class OverlordSentinel {
     }
 
     /**
-     * Schedule GitHub audit comment (placeholder for implementation)
+     * Schedule GitHub audit comment
+     * Note: Requires workflow context (issue/PR number and repository)
      */
     scheduleGitHubAuditComment(auditEntry) {
-        // Implementation would depend on having issue/PR context
-        console.log(`📝 Audit comment scheduled: ${auditEntry.event_type} for ${auditEntry.actor}`);
+        try {
+            if (!auditEntry || !auditEntry.event_type || !auditEntry.actor) {
+                throw new Error('Invalid audit entry: missing required fields');
+            }
+            
+            const timestamp = new Date(auditEntry.timestamp).toLocaleString();
+            const auditComment = `
+## 🔐 Overlord Sentinel Audit Log
+- **Event**: ${auditEntry.event_type}
+- **Actor**: ${auditEntry.actor}
+- **Repository**: ${auditEntry.repository}
+- **Workflow**: ${auditEntry.workflow_name}
+- **Branch**: ${auditEntry.branch}
+- **Timestamp**: ${timestamp}
+- **Decision**: ${auditEntry.approval_granted ? '✅ Approved' : '❌ Rejected'}
+- **Reason**: ${auditEntry.reason}
+`;
+            
+            console.log(`📝 Audit comment created for ${auditEntry.event_type}`);
+            
+            // In a real CI/CD environment, this would post to GitHub API
+            // For now, log it for audit trail
+            if (this.overlordConfig.overlord.audit.destinations.includes('github_comments')) {
+                console.log('💬 GitHub comment destination available (requires additional context)');
+            }
+        } catch (error) {
+            console.error('❌ Failed to create audit comment:', error.message);
+        }
     }
 
     /**

@@ -398,6 +398,11 @@ build/
 node_modules/
 packs/*/node_modules/
 packages/*/node_modules/
+
+# 🔐 CRITICAL SECURITY - Configuration Files with Sensitive Data
+# Overlord Sentinel configuration may contain user consent tracking
+Packages/com.twg.the-seed/The\ Living\ Dev\ Agent/configs/overlord-sentinel.yml
+# Use overlord-sentinel.yml.template for distribution instead
 npm-debug.log*
 yarn-error.log*
 .npm/
