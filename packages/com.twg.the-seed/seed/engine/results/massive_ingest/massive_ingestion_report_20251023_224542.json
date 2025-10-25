@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-10-23T22:45:42.504007",
+  "ingestion_type": "massive_scale",
+  "target_documents": 1000000,
+  "results": {
+    "synthetic": {
+      "document_count": 5000000,
+      "pack_path": "E:\\Tiny_Walnut_Games\\packs\\warbler-pack-massive-synthetic"
+    }
+  },
+  "total_documents": 5000000,
+  "packs_created": 1,
+  "completion_percentage": 500.0,
+  "estimated_city_simulation_capacity": "5000K NPCs with 50000 conversations each"
+}

@@ -1,0 +1,27 @@
+# GPU Acceleration Requirements for Cognitive Development Features (Bob & Alice)
+# For RTX 2060 SUPER and CUDA 12.x systems
+#
+# Install with: pip install -r requirements-gpu.txt
+#
+# NOTE: Requires NVIDIA CUDA Toolkit 12.x installed system-wide
+# Download from: https://developer.nvidia.com/cuda-downloads
+
+# Core GPU Libraries
+cupy-cuda12x>=12.0.0          # GPU arrays (alternative: cupy-cuda11x for CUDA 11.x)
+pycuda>=2022.1                # CUDA driver access
+
+# Optional but recommended for faster embeddings
+torch>=2.0.0                   # PyTorch with CUDA support
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Existing dependencies (from main requirements)
+fastapi>=0.100.0
+uvicorn>=0.23.0
+numpy>=1.24.0
+requests>=2.31.0
+pydantic>=2.0.0
+scipy>=1.11.0
+
+# Performance monitoring
+psutil>=5.10.0

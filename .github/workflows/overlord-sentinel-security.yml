@@ -40,7 +40,12 @@ jobs:
 
       - name: 📦 Install Python security tools
         run: |
-          pip install bandit pip-audit safety truffleHog3
+          # Install with pinned versions for reproducibility and security
+          pip install \
+            bandit==1.7.5 \
+            pip-audit==2.6.1 \
+            safety==3.0.1 \
+            trufflehog==5.0.0
           echo "✅ Python security tools installed"
 
       - name: 🔍 Advanced Secret Scanning (TruffleHog)
@@ -55,8 +60,7 @@ import os
 # Run TruffleHog with entropy detection
 try:
     result = subprocess.run([
-        'truffleHog3', '--format=json', '--entropy=True', '--max_depth=50', 
-        '--exclude_paths=.git,node_modules,*.log,*.sarif,*.json'
+        'trufflehog', 'filesystem', '.', '--json'
     ], capture_output=True, text=True, cwd='.')
     
     if result.stdout:
@@ -67,7 +71,7 @@ try:
                 try:
                     finding = json.loads(line)
                     trufflehog_results.append(finding)
-                except:
+                except (json.JSONDecodeError, ValueError):
                     continue
         
         # Create SARIF format for TruffleHog results
@@ -116,7 +120,7 @@ try:
         with open('trufflehog-results.sarif', 'w') as f:
             json.dump({'version': '2.1.0', 'runs': [{'tool': {'driver': {'name': 'TruffleHog'}}, 'results': []}]}, f)
 
-except Exception as e:
+except (subprocess.CalledProcessError, FileNotFoundError, IOError, json.JSONDecodeError) as e:
     print(f'⚠️ TruffleHog scan failed: {e}')
     # Create empty SARIF for consistency
     with open('trufflehog-results.sarif', 'w') as f:
@@ -138,7 +142,7 @@ except Exception as e:
           try:
             with open('bandit-results.json', 'r') as f:
               bandit_data = json.load(f)
-          except:
+          except (json.JSONDecodeError, FileNotFoundError, IOError):
             bandit_data = {'results': []}
           
           # Convert to SARIF format
@@ -158,11 +162,13 @@ except Exception as e:
           }
           
           # Process Bandit results
+          severity_map = {'HIGH': 'error', 'MEDIUM': 'warning', 'LOW': 'note'}
           for result in bandit_data.get('results', []):
+            severity = result.get('issue_severity', 'LOW').upper()
             sarif_result = {
               'ruleId': result.get('test_id', 'unknown'),
               'message': {'text': result.get('issue_text', 'Security issue detected')},
-              'level': 'warning' if result.get('issue_severity', 'LOW').upper() in ['HIGH', 'MEDIUM'] else 'note',
+              'level': severity_map.get(severity, 'note'),
               'locations': [{
                 'physicalLocation': {
                   'artifactLocation': {
@@ -263,15 +269,18 @@ except Exception as e:
                   
                   for line_num, line in enumerate(content.split('\n'), 1):
                     for pattern, message in patterns:
-                      if re.search(pattern, line, re.IGNORECASE):
-                        issues.append({
-                          'file': filepath,
-                          'line': line_num,
-                          'pattern': pattern,
-                          'message': message,
-                          'code': line.strip()
-                        })
-                except Exception:
+                      try:
+                        if re.search(pattern, line, re.IGNORECASE):
+                          issues.append({
+                            'file': filepath,
+                            'line': line_num,
+                            'pattern': pattern,
+                            'message': message,
+                            'code': line.strip()
+                          })
+                      except (re.error, TypeError):
+                        continue
+                except (IOError, UnicodeDecodeError, OSError):
                   continue
           
           # Create SARIF format
@@ -331,7 +340,7 @@ except Exception as e:
           try:
             with open('pip-audit-results.json', 'r') as f:
               audit_data = json.load(f)
-          except:
+          except (json.JSONDecodeError, FileNotFoundError, IOError):
             audit_data = []
           
           # Convert to SARIF format

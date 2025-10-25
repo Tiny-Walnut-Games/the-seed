@@ -1,0 +1,76 @@
+{
+  "experiment": "EXP-04",
+  "test_type": "Fractal Scaling",
+  "start_time": "2025-10-22T16:55:57.837071+00:00",
+  "end_time": "2025-10-22T16:56:06.883878+00:00",
+  "total_duration_seconds": 9.047,
+  "scales_tested": 3,
+  "scale_results": [
+    {
+      "scale": 1000,
+      "num_bitchains": 1000,
+      "num_addresses": 1000,
+      "unique_addresses": 1000,
+      "collision_count": 0,
+      "collision_rate_percent": 0.0,
+      "retrieval": {
+        "num_queries": 1000,
+        "mean_ms": 0.00037,
+        "median_ms": 0.0003,
+        "p95_ms": 0.0007,
+        "p99_ms": 0.0011
+      },
+      "performance": {
+        "total_time_seconds": 0.101,
+        "addresses_per_second": 9910
+      },
+      "valid": true
+    },
+    {
+      "scale": 10000,
+      "num_bitchains": 10000,
+      "num_addresses": 10000,
+      "unique_addresses": 10000,
+      "collision_count": 0,
+      "collision_rate_percent": 0.0,
+      "retrieval": {
+        "num_queries": 1000,
+        "mean_ms": 0.000354,
+        "median_ms": 0.0003,
+        "p95_ms": 0.0006,
+        "p99_ms": 0.0011
+      },
+      "performance": {
+        "total_time_seconds": 0.742,
+        "addresses_per_second": 13470
+      },
+      "valid": true
+    },
+    {
+      "scale": 100000,
+      "num_bitchains": 100000,
+      "num_addresses": 100000,
+      "unique_addresses": 100000,
+      "collision_count": 0,
+      "collision_rate_percent": 0.0,
+      "retrieval": {
+        "num_queries": 1000,
+        "mean_ms": 0.000637,
+        "median_ms": 0.0006,
+        "p95_ms": 0.0011,
+        "p99_ms": 0.0014
+      },
+      "performance": {
+        "total_time_seconds": 8.147,
+        "addresses_per_second": 12273
+      },
+      "valid": true
+    }
+  ],
+  "degradation_analysis": {
+    "collision_degradation": "\u2713 Zero collisions at all scales",
+    "retrieval_degradation": "\u2713 Retrieval latency scales logarithmically (1.80x for 100x scale)"
+  },
+  "is_fractal": true,
+  "all_valid": true
+}

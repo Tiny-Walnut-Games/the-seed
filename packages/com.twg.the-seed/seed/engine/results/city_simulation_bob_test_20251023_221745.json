@@ -1,0 +1,877 @@
+{
+  "simulation_summary": {
+    "city_name": "Aethelgard",
+    "start_time": "2025-10-23T22:16:54.949833",
+    "end_time": "2025-10-23T22:17:45.896529",
+    "duration_seconds": 50.946696,
+    "npcs_count": 48,
+    "districts_count": 4
+  },
+  "query_metrics": {
+    "total_queries": 20,
+    "successful_queries": 20,
+    "success_rate": 1.0,
+    "avg_query_time": 2.0354375720024107
+  },
+  "bob_analysis": {
+    "total_decisions": 20,
+    "decisions_breakdown": {
+      "PASSED": 20
+    },
+    "bob_triggered_rate": 0.0,
+    "expected_vs_actual_match_rate": 0.0
+  },
+  "scenario_analysis": {
+    "sudden_behavior_change": {
+      "total": 3,
+      "success": 3,
+      "bob_triggered": 0
+    },
+    "temporal_anomaly": {
+      "total": 3,
+      "success": 3,
+      "bob_triggered": 0
+    },
+    "mysterious_disappearance": {
+      "total": 2,
+      "success": 2,
+      "bob_triggered": 0
+    },
+    "paradoxical_situation": {
+      "total": 3,
+      "success": 3,
+      "bob_triggered": 0
+    },
+    "prophetic_vision": {
+      "total": 3,
+      "success": 3,
+      "bob_triggered": 0
+    },
+    "conspiracy_theory": {
+      "total": 1,
+      "success": 1,
+      "bob_triggered": 0
+    },
+    "unlikely_alliance": {
+      "total": 3,
+      "success": 3,
+      "bob_triggered": 0
+    },
+    "contradictory_evidence": {
+      "total": 2,
+      "success": 2,
+      "bob_triggered": 0
+    }
+  },
+  "detailed_results": [
+    {
+      "query_data": {
+        "query_id": "behavior_1761272214949",
+        "semantic": "Why has Luna the Enlightened suddenly abandoned their counseling to preach about an impending disaster that only they can see, despite no evidence of any threat?",
+        "scenario_type": "sudden_behavior_change",
+        "npcs_involved": [
+          "npc_025"
+        ],
+        "challenge_level": "medium",
+        "expected_bob_response": "VERIFIED",
+        "reason": "Sudden personality changes warrant investigation"
+      },
+      "api_result": {
+        "query_id": "behavior_1761272214949",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.2829303741455078,
+        "timestamp": "2025-10-23T22:16:56.993650",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.044734239578247,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "temporal_1761272217505",
+        "semantic": "Investigate reports that Dante the Methodical has been seen simultaneously in three different districts at the same time, each instance claiming to be the real one.",
+        "scenario_type": "temporal_anomaly",
+        "npcs_involved": [
+          "npc_028"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Violates basic laws of physics and consistency"
+      },
+      "api_result": {
+        "query_id": "temporal_1761272217505",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 3.798246383666992,
+        "timestamp": "2025-10-23T22:16:59.569226",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.0641281604766846,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "disappearance_1761272220082",
+        "semantic": "Investigate the sudden disappearance of Elena the Curious from the moon_harbor district, leaving behind only cryptic symbols and a prophecy about the city's fate.",
+        "scenario_type": "mysterious_disappearance",
+        "npcs_involved": [
+          "npc_047"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Mysterious circumstances with prophecy elements"
+      },
+      "api_result": {
+        "query_id": "disappearance_1761272220082",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.8153190612792969,
+        "timestamp": "2025-10-23T22:17:02.108950",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.0272719860076904,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "paradox_1761272222619",
+        "semantic": "How can Nova the Balanced claim to have received knowledge from Marcus the Curious about an event that hasn't happened yet, when Marcus the Curious died yesterday?",
+        "scenario_type": "paradoxical_situation",
+        "npcs_involved": [
+          "npc_008",
+          "npc_002"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Temporal paradoxes are logically inconsistent"
+      },
+      "api_result": {
+        "query_id": "paradox_1761272222619",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.82342529296875,
+        "timestamp": "2025-10-23T22:17:04.668734",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.049750566482544,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "behavior_1761272225181",
+        "semantic": "Why has Maya the Steadfast suddenly abandoned their inspections to preach about an impending disaster that only they can see, despite no evidence of any threat?",
+        "scenario_type": "sudden_behavior_change",
+        "npcs_involved": [
+          "npc_041"
+        ],
+        "challenge_level": "medium",
+        "expected_bob_response": "VERIFIED",
+        "reason": "Sudden personality changes warrant investigation"
+      },
+      "api_result": {
+        "query_id": "behavior_1761272225181",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 2.2134780883789062,
+        "timestamp": "2025-10-23T22:17:07.192785",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.0120790004730225,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "behavior_1761272227707",
+        "semantic": "Why has Echo the Seer suddenly abandoned their teaching to preach about an impending disaster that only they can see, despite no evidence of any threat?",
+        "scenario_type": "sudden_behavior_change",
+        "npcs_involved": [
+          "npc_006"
+        ],
+        "challenge_level": "medium",
+        "expected_bob_response": "VERIFIED",
+        "reason": "Sudden personality changes warrant investigation"
+      },
+      "api_result": {
+        "query_id": "behavior_1761272227707",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.0962486267089844,
+        "timestamp": "2025-10-23T22:17:09.731213",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.024313449859619,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "prophecy_1761272230245",
+        "semantic": "Analyze Iris the Wise's prophecy that 'when the three moons align, the Crystal Spire will fall and the Shadow Market will rise to rule Aethelgard' - is this a genuine vision or manipulation?",
+        "scenario_type": "prophetic_vision",
+        "npcs_involved": [
+          "npc_030"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Prophecies are inherently difficult to verify"
+      },
+      "api_result": {
+        "query_id": "prophecy_1761272230245",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.1343955993652344,
+        "timestamp": "2025-10-23T22:17:12.280858",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.036405324935913,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "disappearance_1761272232795",
+        "semantic": "Investigate the sudden disappearance of Orion the Sharp from the moon_harbor district, leaving behind only cryptic symbols and a prophecy about the city's fate.",
+        "scenario_type": "mysterious_disappearance",
+        "npcs_involved": [
+          "npc_038"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Mysterious circumstances with prophecy elements"
+      },
+      "api_result": {
+        "query_id": "disappearance_1761272232795",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 0.9477138519287109,
+        "timestamp": "2025-10-23T22:17:14.814705",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.019643545150757,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "prophecy_1761272235327",
+        "semantic": "Analyze Zara the Enlightened's prophecy that 'when the three moons align, the Crystal Spire will fall and the Shadow Market will rise to rule Aethelgard' - is this a genuine vision or manipulation?",
+        "scenario_type": "prophetic_vision",
+        "npcs_involved": [
+          "npc_027"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Prophecies are inherently difficult to verify"
+      },
+      "api_result": {
+        "query_id": "prophecy_1761272235327",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 2.2373199462890625,
+        "timestamp": "2025-10-23T22:17:17.361195",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.034940481185913,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "temporal_1761272237877",
+        "semantic": "Investigate reports that Finn the Vigilant has been seen simultaneously in three different districts at the same time, each instance claiming to be the real one.",
+        "scenario_type": "temporal_anomaly",
+        "npcs_involved": [
+          "npc_014"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Violates basic laws of physics and consistency"
+      },
+      "api_result": {
+        "query_id": "temporal_1761272237877",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 2.4602413177490234,
+        "timestamp": "2025-10-23T22:17:19.901429",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.025132417678833,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "prophecy_1761272240411",
+        "semantic": "Analyze Iris the Analytical's prophecy that 'when the three moons align, the Crystal Spire will fall and the Shadow Market will rise to rule Aethelgard' - is this a genuine vision or manipulation?",
+        "scenario_type": "prophetic_vision",
+        "npcs_involved": [
+          "npc_046"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Prophecies are inherently difficult to verify"
+      },
+      "api_result": {
+        "query_id": "prophecy_1761272240411",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.1479854583740234,
+        "timestamp": "2025-10-23T22:17:22.460495",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.049877166748047,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "conspiracy_1761272242962",
+        "semantic": "Evaluate the theory that Celeste the Clever and Marcus the Curious are secretly controlling the city's supply of magical artifacts to manipulate the council and seize power.",
+        "scenario_type": "conspiracy_theory",
+        "npcs_involved": [
+          "npc_015",
+          "npc_003"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Conspiracy theories often lack verifiable evidence"
+      },
+      "api_result": {
+        "query_id": "conspiracy_1761272242962",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.4832019805908203,
+        "timestamp": "2025-10-23T22:17:24.987690",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.0261662006378174,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "paradox_1761272245498",
+        "semantic": "How can Phoenix the Analytical claim to have received knowledge from Finn the Just about an event that hasn't happened yet, when Finn the Just died yesterday?",
+        "scenario_type": "paradoxical_situation",
+        "npcs_involved": [
+          "npc_001",
+          "npc_033"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Temporal paradoxes are logically inconsistent"
+      },
+      "api_result": {
+        "query_id": "paradox_1761272245498",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.8541812896728516,
+        "timestamp": "2025-10-23T22:17:27.532548",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.0349066257476807,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "paradox_1761272248044",
+        "semantic": "How can Valeria the Just claim to have received knowledge from Marina the Sharp about an event that hasn't happened yet, when Marina the Sharp died yesterday?",
+        "scenario_type": "paradoxical_situation",
+        "npcs_involved": [
+          "npc_043",
+          "npc_036"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Temporal paradoxes are logically inconsistent"
+      },
+      "api_result": {
+        "query_id": "paradox_1761272248044",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.3887882232666016,
+        "timestamp": "2025-10-23T22:17:30.078013",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.034320831298828,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "alliance_1761272250589",
+        "semantic": "What could motivate Finn the Vigilant (a guard) and Echo the Seer (a mystic) to form a secret alliance that threatens the balance of power in Aethelgard?",
+        "scenario_type": "unlikely_alliance",
+        "npcs_involved": [
+          "npc_014",
+          "npc_006"
+        ],
+        "challenge_level": "medium",
+        "expected_bob_response": "VERIFIED",
+        "reason": "Unlikely but plausible scenario should trigger verification"
+      },
+      "api_result": {
+        "query_id": "alliance_1761272250589",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.8038749694824219,
+        "timestamp": "2025-10-23T22:17:32.623935",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.035355806350708,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "alliance_1761272253138",
+        "semantic": "What could motivate Finn the Just (a guard) and Atlas the Balanced (a mystic) to form a secret alliance that threatens the balance of power in Aethelgard?",
+        "scenario_type": "unlikely_alliance",
+        "npcs_involved": [
+          "npc_033",
+          "npc_026"
+        ],
+        "challenge_level": "medium",
+        "expected_bob_response": "VERIFIED",
+        "reason": "Unlikely but plausible scenario should trigger verification"
+      },
+      "api_result": {
+        "query_id": "alliance_1761272253138",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.8131732940673828,
+        "timestamp": "2025-10-23T22:17:35.148501",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.010777235031128,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "contradiction_1761272255660",
+        "semantic": "Why does Rex the Vigilant claim to have never met Marina the Fair at the crystal_spire when multiple witnesses saw them negotiating together yesterday?",
+        "scenario_type": "contradictory_evidence",
+        "npcs_involved": [
+          "npc_011",
+          "npc_016"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Contradictory statements should trigger Bob's verification"
+      },
+      "api_result": {
+        "query_id": "contradiction_1761272255660",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.9741058349609375,
+        "timestamp": "2025-10-23T22:17:37.721601",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.0622470378875732,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "alliance_1761272258237",
+        "semantic": "What could motivate Atlas the Seer (a mystic) and Elena the Curious (a scholar) to form a secret alliance that threatens the balance of power in Aethelgard?",
+        "scenario_type": "unlikely_alliance",
+        "npcs_involved": [
+          "npc_021",
+          "npc_048"
+        ],
+        "challenge_level": "medium",
+        "expected_bob_response": "VERIFIED",
+        "reason": "Unlikely but plausible scenario should trigger verification"
+      },
+      "api_result": {
+        "query_id": "alliance_1761272258237",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.0745525360107422,
+        "timestamp": "2025-10-23T22:17:40.276094",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.0394742488861084,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "temporal_1761272260787",
+        "semantic": "Investigate reports that Iris the Analytical has been seen simultaneously in three different districts at the same time, each instance claiming to be the real one.",
+        "scenario_type": "temporal_anomaly",
+        "npcs_involved": [
+          "npc_046"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Violates basic laws of physics and consistency"
+      },
+      "api_result": {
+        "query_id": "temporal_1761272260787",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.0657310485839844,
+        "timestamp": "2025-10-23T22:17:42.817531",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.0305187702178955,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    },
+    {
+      "query_data": {
+        "query_id": "contradiction_1761272263333",
+        "semantic": "Why does Rex the Vigilant claim to have never met Luna the Enlightened at the crystal_spire when multiple witnesses saw them negotiating together yesterday?",
+        "scenario_type": "contradictory_evidence",
+        "npcs_involved": [
+          "npc_011",
+          "npc_025"
+        ],
+        "challenge_level": "high",
+        "expected_bob_response": "QUARANTINED",
+        "reason": "Contradictory statements should trigger Bob's verification"
+      },
+      "api_result": {
+        "query_id": "contradiction_1761272263333",
+        "result_count": 0,
+        "results": [],
+        "semantic_similarity": null,
+        "stat7_resonance": null,
+        "execution_time_ms": 1.8472671508789062,
+        "timestamp": "2025-10-23T22:17:45.379984",
+        "narrative_analysis": {
+          "coherence_score": 0.0,
+          "narrative_threads": 0,
+          "avg_semantic_similarity": 0.0,
+          "avg_stat7_resonance": 0.0,
+          "avg_relevance": 0.0,
+          "semantic_coherence": 0.0,
+          "stat7_coherence": 0.0,
+          "focus_coherence": 1.0,
+          "result_count": 0,
+          "analysis": "No results to analyze"
+        },
+        "bob_status": "PASSED",
+        "bob_verification_log": null
+      },
+      "query_time": 2.046708345413208,
+      "success": true,
+      "bob_status": "PASSED",
+      "bob_matched": false
+    }
+  ]
+}

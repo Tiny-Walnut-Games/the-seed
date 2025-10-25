@@ -1,0 +1,89 @@
+{
+  "experiment": "EXP-05",
+  "test_type": "Compression/Expansion Losslessness",
+  "start_time": "2025-10-23T23:47:18.212757+00:00",
+  "end_time": "2025-10-23T23:47:18.237969+00:00",
+  "total_duration_seconds": 0.025,
+  "bitchains_tested": 100,
+  "aggregate_metrics": {
+    "avg_compression_ratio": 0.831,
+    "avg_luminosity_decay": 0.0147,
+    "avg_coordinate_accuracy": 0.4286,
+    "percent_provenance_intact": 100.0,
+    "percent_narrative_preserved": 100.0,
+    "percent_expandable": 40.0
+  },
+  "compression_quality": {
+    "is_lossless": true,
+    "major_findings": [
+      "[OK] Provenance chain maintained through all compression stages",
+      "[OK] Narrative meaning preserved via embeddings and affect",
+      "[OK] STAT7 coordinates partially recoverable (42.9%)",
+      "[WARN] Compression ratio modest (0.83x)",
+      "[OK] Luminosity retained through compression (98.5%)"
+    ]
+  },
+  "sample_paths": [
+    {
+      "original_realm": "faculty",
+      "original_address": "0154ad64d9df7f2e...",
+      "stages_count": 5,
+      "final_stage": "mist",
+      "compression_ratio": 0.608,
+      "luminosity_decay": -0.0862818210040644,
+      "coordinate_accuracy": 0.4286,
+      "provenance_intact": true,
+      "narrative_preserved": true,
+      "can_expand": false
+    },
+    {
+      "original_realm": "system",
+      "original_address": "4b0744d7034afe97...",
+      "stages_count": 5,
+      "final_stage": "mist",
+      "compression_ratio": 0.6964769647696477,
+      "luminosity_decay": -0.09373319870147881,
+      "coordinate_accuracy": 0.4286,
+      "provenance_intact": true,
+      "narrative_preserved": true,
+      "can_expand": false
+    },
+    {
+      "original_realm": "data",
+      "original_address": "fd6b189cc1ecd7e6...",
+      "stages_count": 5,
+      "final_stage": "mist",
+      "compression_ratio": 0.592896174863388,
+      "luminosity_decay": -0.04283678081404757,
+      "coordinate_accuracy": 0.4286,
+      "provenance_intact": true,
+      "narrative_preserved": true,
+      "can_expand": false
+    },
+    {
+      "original_realm": "void",
+      "original_address": "1cc68023aa38aef8...",
+      "stages_count": 5,
+      "final_stage": "mist",
+      "compression_ratio": 0.7983651226158038,
+      "luminosity_decay": -0.2095075351166356,
+      "coordinate_accuracy": 0.4286,
+      "provenance_intact": true,
+      "narrative_preserved": true,
+      "can_expand": false
+    },
+    {
+      "original_realm": "system",
+      "original_address": "a1bbfdaca06f395c...",
+      "stages_count": 5,
+      "final_stage": "mist",
+      "compression_ratio": 0.6830601092896175,
+      "luminosity_decay": 0.3704973040082493,
+      "coordinate_accuracy": 0.4286,
+      "provenance_intact": true,
+      "narrative_preserved": true,
+      "can_expand": true
+    }
+  ],
+  "all_valid": true
+}
