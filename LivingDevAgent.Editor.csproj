@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>9.0</LangVersion>
     <_TargetFrameworkDirectories>non_empty_path_generated_by_unity.rider.package</_TargetFrameworkDirectories>
     <_FullFrameworkReferenceAssemblyPaths>non_empty_path_generated_by_unity.rider.package</_FullFrameworkReferenceAssemblyPaths>
     <DisableHandlePackageFileConflicts>true</DisableHandlePackageFileConflicts>
@@ -46,24 +46,24 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeMarkdownParser.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeCore.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\SpellsmithCodeWindow.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeImageManager.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\TerminusShellConsole.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeCommitWindow.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeDataManager.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ChronasTimerOverlay.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeMarkdownGenerator.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribePreviewRenderer.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeFileOperations.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeGitWindow.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeRawEditor.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeNavigator.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeTemplateManager.cs" />
-    <Compile Include="Assets\Plugins\TLDA\Editor\ScribeFormBuilder.cs" />
-    <None Include="Assets\Plugins\TLDA\Editor\LivingDevAgent.Editor.asmdef" />
-    <None Include="Assets\Plugins\TLDA\Editor\LivingDevAgent.Editor.csc.rsp" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\SpellsmithCodeWindow.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribePreviewRenderer.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeMarkdownParser.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeTemplateManager.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeImageManager.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeNavigator.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeCommitWindow.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeCore.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeFormBuilder.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeDataManager.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ChronasTimerOverlay.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeRawEditor.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeGitWindow.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeFileOperations.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\ScribeMarkdownGenerator.cs" />
+    <Compile Include="Assets\Plugins\TWG\TLDA\Editor\TerminusShellConsole.cs" />
+    <None Include="Assets\Plugins\TWG\TLDA\Editor\LivingDevAgent.Editor.asmdef" />
+    <None Include="Assets\Plugins\TWG\TLDA\Editor\LivingDevAgent.Editor.csc.rsp" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

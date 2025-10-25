@@ -7,6 +7,7 @@ using System.Linq;
 using TWG.Seed.Integration;
 using TWG.Seed.Platform;
 using UnityEngine.Serialization;
+using Random = System.Random;
 
 namespace TWG.TLDA.Chat
 {
@@ -716,7 +717,7 @@ namespace TWG.TLDA.Chat
     {
         public System.Action<string, bool> OnResponseReceived = delegate { };
         public System.Action<string> OnSystemEvent = delegate { };
-        private Random _responseVariation = new Random();
+        private readonly Random _responseVariation = new Random();
 
         /// <summary>
         /// Send message to Warbler for processing with Seed context integration
@@ -732,7 +733,7 @@ namespace TWG.TLDA.Chat
                 }
 
                 OnSystemEvent?.Invoke($"🧠 Processing: {message}");
-                
+
                 // Simulate enhanced Warbler decision process with Seed context
                 // In production, this would connect to actual Warbler API/ML service
                 var processingTime = 800 + _responseVariation.Next(400); // 800-1200ms
@@ -740,7 +741,7 @@ namespace TWG.TLDA.Chat
 
                 var response = GenerateResponse(message);
                 var isDecision = IsDecisionQuery(message);
-                
+
                 OnResponseReceived?.Invoke(response, isDecision);
                 OnSystemEvent?.Invoke($"✅ Response generated ({processingTime}ms)");
             }
@@ -856,7 +857,7 @@ namespace TWG.TLDA.Chat
         private bool IsDecisionQuery(string message)
         {
             var messageLower = message.ToLower();
-            return messageLower.Contains("decide") || messageLower.Contains("choose") || 
+            return messageLower.Contains("decide") || messageLower.Contains("choose") ||
                    messageLower.Contains("recommend") || messageLower.Contains("should");
         }
     }
