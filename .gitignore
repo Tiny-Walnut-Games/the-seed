@@ -398,6 +398,11 @@ build/
 node_modules/
 packs/*/node_modules/
 packages/*/node_modules/
+
+# 🔐 CRITICAL SECURITY - Configuration Files with Sensitive Data
+# Overlord Sentinel configuration may contain user consent tracking
+Packages/com.twg.the-seed/The\ Living\ Dev\ Agent/configs/overlord-sentinel.yml
+# Use overlord-sentinel.yml.template for distribution instead
 npm-debug.log*
 yarn-error.log*
 .npm/
@@ -495,6 +500,7 @@ packs/*/build/
 *.cache
 Unity.*.csproj
 #!/seed/engine/.venv/
-Assets/experiments/school/reports/school_experiment_report_20250906_122104.html
-Assets/experiments/school/reports/school_experiment_report_20250906_122117.html
-Assets/experiments/school/reports/school_experiment_report_20250910_210531.html
+
+
+# Local AI index artifacts (generated)
+.ai-index/

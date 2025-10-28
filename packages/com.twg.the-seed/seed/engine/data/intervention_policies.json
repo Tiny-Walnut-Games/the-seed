@@ -1,0 +1,45 @@
+{
+  "intervention_thresholds": {
+    "soft_suggestion": 0.3,
+    "rewrite": 0.6,
+    "block": 0.9,
+    "style_guidance": 0.4,
+    "safety_intervention": 0.8
+  },
+  "style_adaptation": {
+    "learning_phase_duration": 604800,
+    "adapting_phase_duration": 1209600,
+    "patience_decay_rate": 0.1,
+    "tolerance_adjustment_rate": 0.05
+  },
+  "reflective_templates": {
+    "soft_suggestion": "I suggested {suggestion} because {reasoning}. The user's {context} indicated {pattern}, suggesting a gentle guidance approach would be most effective.",
+    "rewrite": "I recommended rewriting because {reasoning}. The original {input} could be improved by {improvement}. This change enhances code quality and maintainability.",
+    "block": "I blocked this action because {safety_concern}. The {context} presented {risk_level} risk. This is a critical safety measure to protect system integrity.",
+    "style_guidance": "I provided style guidance because {style_issue}. The user's preference for {preference} suggests {adaptation} would be more aligned with their development style.",
+    "safety_intervention": "I intervened with a critical safety measure because {safety_concern}. The detected {context} with {risk_level} risk requires immediate action to maintain system security."
+  },
+  "governance_integration": {
+    "intervention_weight": 0.2,
+    "base_governance_weight": 0.8,
+    "enable_adaptive_blending": true
+  },
+  "behavior_flags": {
+    "track_acceptance_patterns": true,
+    "enable_style_adaptation": true,
+    "enable_reflective_loops": true,
+    "enable_safety_integration": true,
+    "enable_audit_trails": true
+  },
+  "v0_8_enhancements": {
+    "safety_event_tracking": true,
+    "policy_transparency": true,
+    "redaction_enabled": true,
+    "audit_logging": true,
+    "escalation_thresholds": {
+      "safety_concerns": 3,
+      "rejection_rate": 0.5,
+      "over_intervention": 0.8
+    }
+  }
+}

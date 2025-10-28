@@ -1,0 +1,76 @@
+{
+  "experiment": "EXP-04",
+  "test_type": "Fractal Scaling",
+  "start_time": "2025-10-23T23:47:03.287983+00:00",
+  "end_time": "2025-10-23T23:47:10.403549+00:00",
+  "total_duration_seconds": 7.116,
+  "scales_tested": 3,
+  "scale_results": [
+    {
+      "scale": 1000,
+      "num_bitchains": 1000,
+      "num_addresses": 1000,
+      "unique_addresses": 1000,
+      "collision_count": 0,
+      "collision_rate_percent": 0.0,
+      "retrieval": {
+        "num_queries": 1000,
+        "mean_ms": 0.000162,
+        "median_ms": 0.0001,
+        "p95_ms": 0.0003,
+        "p99_ms": 0.0007
+      },
+      "performance": {
+        "total_time_seconds": 0.067,
+        "addresses_per_second": 14873
+      },
+      "valid": true
+    },
+    {
+      "scale": 10000,
+      "num_bitchains": 10000,
+      "num_addresses": 10000,
+      "unique_addresses": 10000,
+      "collision_count": 0,
+      "collision_rate_percent": 0.0,
+      "retrieval": {
+        "num_queries": 1000,
+        "mean_ms": 0.000207,
+        "median_ms": 0.0002,
+        "p95_ms": 0.0003,
+        "p99_ms": 0.0007
+      },
+      "performance": {
+        "total_time_seconds": 0.609,
+        "addresses_per_second": 16417
+      },
+      "valid": true
+    },
+    {
+      "scale": 100000,
+      "num_bitchains": 100000,
+      "num_addresses": 100000,
+      "unique_addresses": 100000,
+      "collision_count": 0,
+      "collision_rate_percent": 0.0,
+      "retrieval": {
+        "num_queries": 1000,
+        "mean_ms": 0.000345,
+        "median_ms": 0.0003,
+        "p95_ms": 0.0006,
+        "p99_ms": 0.0008
+      },
+      "performance": {
+        "total_time_seconds": 6.392,
+        "addresses_per_second": 15643
+      },
+      "valid": true
+    }
+  ],
+  "degradation_analysis": {
+    "collision_degradation": "\u2713 Zero collisions at all scales",
+    "retrieval_degradation": "\u2713 Retrieval latency scales logarithmically (2.12x for 100x scale)"
+  },
+  "is_fractal": true,
+  "all_valid": true
+}
