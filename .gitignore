@@ -495,3 +495,6 @@ packs/*/build/
 *.cache
 Unity.*.csproj
 #!/seed/engine/.venv/
+Assets/experiments/school/reports/school_experiment_report_20250906_122104.html
+Assets/experiments/school/reports/school_experiment_report_20250906_122117.html
+Assets/experiments/school/reports/school_experiment_report_20250910_210531.html
