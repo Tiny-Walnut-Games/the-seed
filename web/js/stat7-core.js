@@ -1,326 +1,161 @@
-/**
- * STAT7 Core Visualization Engine
- * Handles Three.js setup, rendering, and basic entity management
- */
+// Orchestrator: initializes Three.js, data service, model, layout, view, and UI
+import { Config } from './stat7-config.js';
+import { DataService } from './stat7-data.js';
+import { WorldState } from './stat7-model.js';
+import { LayoutEngine } from './stat7-layout.js';
+import { View } from './stat7-view.js';
+import { Effects } from './stat7-effects.js';
+import { nowMs } from './stat7-utils.js';
+import './stat7-ui.js'; // side-effect: HUD legend builder if needed
 
-class STAT7Core {
-    constructor() {
-        this.scene = null;
-        this.camera = null;
-        this.renderer = null;
-        this.points = [];
-        this.pointObjects = new Map();
-        this.stats = {
-            totalPoints: 0,
-            visiblePoints: 0,
-            fps: 0,
-            eventsReceived: 0,
-            activeExperiments: new Set()
-        };
-        this.settings = {
-            pointSize: 1.0,
-            animationSpeed: 1.0,
-            projectionMode: '7d-to-3d',
-            realmFilter: new Set(['data', 'narrative', 'system', 'faculty', 'event', 'pattern', 'void'])
-        };
-        this.lastFrameTime = performance.now();
-        this.frameCount = 0;
+export async function bootstrap(container, ui, cfg = Config) {
+  // Scene setup
+  const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:false });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+  renderer.setClearColor(cfg.view.background, 1);
+  container.appendChild(renderer.domElement);
 
-        this.init();
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, container.clientWidth/container.clientHeight, 0.1, 5000);
+  camera.position.set(0, 220, 560);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.dampingFactor = 0.08; controls.zoomSpeed = 0.6;
+
+  const lights = new THREE.Group();
+  const amb = new THREE.AmbientLight(0xffffff, 0.35); lights.add(amb);
+  const dir = new THREE.DirectionalLight(0xffffff, 0.7); dir.position.set(200,400,200); lights.add(dir);
+  scene.add(lights);
+
+  // Core subsystems
+  const world = new WorldState();
+  const layout = new LayoutEngine(cfg, world);
+  const view = new View(cfg, world, scene, camera);
+  const fx = new Effects(cfg, world, scene);
+  const data = new DataService(cfg);
+
+  // Build initial canonical nodes from your backend roles
+  const roles = cfg.roles;
+  world.upsertNode('api-gateway', { role: roles.API_GATEWAY, name: 'API Gateway' });
+  world.upsertNode('event-store', { role: roles.EVENT_STORE, name: 'Event Store' });
+  world.upsertNode('tick-engine', { role: roles.TICK_ENGINE, name: 'Tick Engine' });
+  world.upsertNode('governance', { role: roles.GOVERNANCE, name: 'Governance' });
+  // Known edges for default flow
+  world.upsertEdge('api->eventstore', { a:'api-gateway', b:'event-store', topic:'events' });
+  world.upsertEdge('eventstore->tick', { a:'event-store', b:'tick-engine', topic:'stream' });
+  world.upsertEdge('eventstore->governance', { a:'event-store', b:'governance', topic:'audit' });
+
+  // UI legend build based on config palette
+  const legend = ui.legend;
+  if (legend) {
+    legend.innerHTML = '';
+    const mk = (label, color) => {
+      const d = document.createElement('div'); d.style.display='flex'; d.style.alignItems='center'; d.style.gap='6px'; d.style.marginRight='10px';
+      const sw = document.createElement('span'); sw.style.width='10px'; sw.style.height='10px'; sw.style.borderRadius='50%'; sw.style.background = `#${color.toString(16).padStart(6,'0')}`;
+      const tx = document.createElement('span'); tx.textContent = label; tx.style.fontSize='12px'; tx.style.opacity='0.9';
+      d.appendChild(sw); d.appendChild(tx); legend.appendChild(d);
+    };
+    mk('API Gateway', cfg.view.palette.api);
+    mk('Event Store', cfg.view.palette.eventstore);
+    mk('Tick Engine', cfg.view.palette.tick);
+    mk('Governance', cfg.view.palette.governance);
+  }
+
+  // Data wiring: use existing websocket protocol where possible
+  data.on((evt) => {
+    if (evt.type === 'connection') {
+      const st = data.getStats();
+      setConnState(ui.conn, evt.state, evt.mock);
+      setLatency(ui.lat, st.avgLatencyMs);
     }
+    if (evt.type === 'event') {
+      const m = evt.data;
+      // Normalize to role ids
+      const roleId =
+        m.service === 'api' ? 'api-gateway' :
+        m.service === 'eventstore' ? 'event-store' :
+        m.service === 'tick' ? 'tick-engine' :
+        m.service === 'governance' ? 'governance' : m.service;
 
-    init() {
-        this.setupThreeJS();
-        this.setupMouseControls();
-        this.animate();
+      // Update node metrics
+      const n = world.upsertNode(roleId, { role: m.service, name: roleId });
+      if (m.metrics) {
+        n.latencyMs = m.metrics.latencyMs ?? n.latencyMs;
+        n.errorRate = m.metrics.errorRate ?? n.errorRate;
+        n.load = m.metrics.throughput ?? n.load;
+      }
+
+      // Guess edges by topic or pairings
+      const topic = m.topic || 'events';
+      const target = topic.includes('audit') ? 'governance' : topic.includes('tick') || topic.includes('stream') ? 'tick-engine' : 'event-store';
+      const edgeId = `${roleId}->${target}`;
+      const e = world.upsertEdge(edgeId, { a: roleId, b: target, topic });
+      if (m.metrics) {
+        e.latencyMs = m.metrics.latencyMs ?? e.latencyMs;
+        e.throughput = m.metrics.throughput ?? e.throughput;
+        e.activity = 1.0;
+      }
+
+      // Visual effects: spawn message along edge
+      fx.emitMessage(edgeId, m);
     }
+  });
 
-    setupThreeJS() {
-        // Scene
-        this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0x0a0a0a);
+  // Resize handling
+  const onResize = () => {
+    const w = container.clientWidth, h = container.clientHeight;
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+    renderer.setSize(w,h,false);
+  };
+  window.addEventListener('resize', onResize);
 
-        // Camera
-        this.camera = new THREE.PerspectiveCamera(
-            75,
-            window.innerWidth / window.innerHeight,
-            0.1,
-            1000
-        );
-        this.camera.position.set(50, 50, 50);
-        this.camera.lookAt(0, 0, 0);
+  // Main loop
+  let last = nowMs(); let running = true; let hudVisible = true; let labelsEnabled = true; let particlesEnabled = cfg.view.particles.enabled; let autoLayout = cfg.graph.autoLayout;
+  function frame() {
+    if (!running) return;
+    const t = nowMs();
+    const dt = Math.min((t - last)/1000, cfg.graph.maxDt);
+    last = t;
 
-        // Renderer
-        this.renderer = new THREE.WebGLRenderer({
-            canvas: document.getElementById('stat7-canvas'),
-            antialias: true
-        });
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+    layout.update(dt, autoLayout);
+    view.update(dt, { labels: labelsEnabled });
+    fx.update(dt, particlesEnabled);
 
-        // Lights
-        const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
-        this.scene.add(ambientLight);
+    renderer.render(scene, camera);
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(50, 50, 50);
-        this.scene.add(directionalLight);
+    // UI stats
+    const stats = data.getStats();
+    if (ui.fps) ui.fps.textContent = `FPS: ${Math.round(1/Math.max(0.001, dt))}`;
+    if (ui.tp) ui.tp.textContent = `Msgs/s: ${stats.avgThroughput}`;
+    if (ui.lat) setLatency(ui.lat, stats.avgLatencyMs);
 
-        // Grid helper
-        const gridHelper = new THREE.GridHelper(100, 20, 0x444444, 0x222222);
-        this.scene.add(gridHelper);
+    controls.update();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
 
-        // Axes helper
-        const axesHelper = new THREE.AxesHelper(20);
-        this.scene.add(axesHelper);
+  data.connect();
 
-        // Handle resize
-        window.addEventListener('resize', () => this.onWindowResize());
-    }
+  function setConnState(el, state, mock=false) {
+    el.classList.remove('ok','warn','err');
+    if (state === 'open') { el.classList.add('ok'); el.textContent = mock ? 'Mock Connected' : 'Connected'; }
+    else if (state === 'closed') { el.classList.add('warn'); el.textContent = 'Disconnected'; }
+    else { el.classList.add('warn'); el.textContent = 'Connecting...'; }
+  }
+  function setLatency(el, ms) {
+    const th = cfg.thresholds;
+    el.classList.remove('ok','warn','err');
+    const state = ms >= th.latencyErrorMs ? 'err' : ms >= th.latencyWarnMs ? 'warn' : 'ok';
+    el.classList.add(state); el.textContent = `Latency: ${ms} ms`;
+  }
 
-    setupMouseControls() {
-        let mouseDown = false;
-        let mouseX = 0;
-        let mouseY = 0;
-        let rightMouseDown = false;
-
-        this.renderer.domElement.addEventListener('mousedown', (e) => {
-            if (e.button === 0) { // Left click
-                mouseDown = true;
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            } else if (e.button === 2) { // Right click
-                rightMouseDown = true;
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            }
-        });
-
-        this.renderer.domElement.addEventListener('mouseup', (e) => {
-            if (e.button === 0) mouseDown = false;
-            else if (e.button === 2) rightMouseDown = false;
-        });
-
-        this.renderer.domElement.addEventListener('mousemove', (e) => {
-            if (mouseDown) {
-                // Rotate camera around origin (left click)
-                const deltaX = e.clientX - mouseX;
-                const deltaY = e.clientY - mouseY;
-
-                const spherical = new THREE.Spherical();
-                spherical.setFromVector3(this.camera.position);
-                spherical.theta -= deltaX * 0.01;
-                spherical.phi += deltaY * 0.01;
-                spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi));
-
-                this.camera.position.setFromSpherical(spherical);
-                this.camera.lookAt(0, 0, 0);
-
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            } else if (rightMouseDown) {
-                // Pan camera (right click)
-                const deltaX = (e.clientX - mouseX) * 0.1;
-                const deltaY = (e.clientY - mouseY) * 0.1;
-
-                const right = new THREE.Vector3();
-                const up = new THREE.Vector3(0, 1, 0);
-                right.crossVectors(up, this.camera.position).normalize();
-
-                this.camera.position.add(right.multiplyScalar(-deltaX));
-                this.camera.position.add(up.multiplyScalar(deltaY));
-
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            }
-        });
-
-        // Zoom with mouse wheel
-        this.renderer.domElement.addEventListener('wheel', (e) => {
-            const scale = e.deltaY > 0 ? 1.1 : 0.9;
-            this.camera.position.multiplyScalar(scale);
-        });
-
-        // Prevent context menu on right click
-        this.renderer.domElement.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
-    }
-
-    onWindowResize() {
-        this.camera.aspect = window.innerWidth / window.innerHeight;
-        this.camera.updateProjectionMatrix();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-
-    createPoint(bitchainData) {
-        const coords = bitchainData.coordinates || bitchainData.stat7_coordinates || {};
-        const position = this.project7DTo3D(coords);
-
-        // Create geometry and material
-        const geometry = new THREE.SphereGeometry(0.5, 16, 16);
-        const material = new THREE.MeshPhongMaterial({
-            color: this.getRealmColor(coords.realm || bitchainData.realm),
-            emissive: this.getRealmColor(coords.realm || bitchainData.realm),
-            emissiveIntensity: 0.2,
-            shininess: 100
-        });
-
-        const point = new THREE.Mesh(geometry, material);
-        point.position.copy(position);
-        point.userData = {
-            bitchain: bitchainData,
-            metadata: {
-                color: this.getRealmColor(coords.realm || bitchainData.realm),
-                size: this.getEntitySize(bitchainData.entity_type),
-                originalPosition: position.clone(),
-                animationOffset: Math.random() * Math.PI * 2
-            }
-        };
-
-        // Store in map
-        const entityId = bitchainData.id || bitchainData.address;
-        this.pointObjects.set(entityId, point);
-        this.scene.add(point);
-
-        return point;
-    }
-
-    project7DTo3D(coords) {
-        // Simple 7D to 3D projection
-        const x = (coords.lineage || 0) * 0.5;
-        const y = (coords.resonance || 0) * 20;
-        const z = (coords.velocity || 0) * 10;
-
-        return new THREE.Vector3(x, y, z);
-    }
-
-    getRealmColor(realm) {
-        const realmColors = {
-            'data': 0x3498db,      // Blue
-            'narrative': 0xe74c3c, // Red
-            'system': 0x2ecc71,     // Green
-            'faculty': 0xf39c12,    // Orange
-            'event': 0x9b59b6,      // Purple
-            'pattern': 0x1abc9c,    // Teal
-            'void': 0x34495e,       // Dark gray
-        };
-        return realmColors[realm] || 0x95a5a6; // Default gray
-    }
-
-    getEntitySize(entityType) {
-        const entitySizes = {
-            'concept': 1.0,
-            'artifact': 1.5,
-            'agent': 2.0,
-            'lineage': 1.2,
-            'adjacency': 0.8,
-            'horizon': 1.8,
-            'fragment': 0.6,
-        };
-        return entitySizes[entityType] || 1.0;
-    }
-
-    updatePointSizes() {
-        this.pointObjects.forEach(point => {
-            const baseSize = point.userData.metadata.size;
-            point.scale.setScalar(this.settings.pointSize);
-        });
-    }
-
-    updateRealmFilter() {
-        let visibleCount = 0;
-        this.pointObjects.forEach((point, entityId) => {
-            const bitchain = point.userData.bitchain;
-            const coords = bitchain.coordinates || bitchain.stat7_coordinates;
-            const realm = coords ? coords.realm : (bitchain.realm || 'unknown');
-            const visible = this.settings.realmFilter.has(realm);
-            point.visible = visible;
-            if (visible) visibleCount++;
-        });
-        this.stats.visiblePoints = visibleCount;
-        console.log(`🔍 Realm filter updated: ${visibleCount}/${this.pointObjects.size} entities visible`);
-    }
-
-    resetCamera() {
-        this.camera.position.set(50, 50, 50);
-        this.camera.lookAt(0, 0, 0);
-    }
-
-    clearAllPoints() {
-        console.log(`🗑️ Clearing ${this.pointObjects.size} point objects and ${this.points.length} data points`);
-
-        // Remove all point objects from scene
-        this.pointObjects.forEach((point, id) => {
-            this.scene.remove(point);
-            point.geometry.dispose();
-            point.material.dispose();
-        });
-
-        // Clear all collections
-        this.pointObjects.clear();
-        this.points = [];
-
-        // Reset stats
-        this.stats.totalPoints = 0;
-        this.stats.visiblePoints = 0;
-
-        console.log('✅ All points cleared successfully');
-    }
-
-    updateStats() {
-        // Count visible points first
-        let visibleCount = 0;
-        this.pointObjects.forEach(point => {
-            if (point.visible !== false) visibleCount++;  // Default to visible if not set
-        });
-        this.stats.visiblePoints = visibleCount;
-
-        // Update display
-        document.getElementById('total-points').textContent = this.stats.totalPoints;
-        document.getElementById('visible-points').textContent = this.stats.visiblePoints;
-        document.getElementById('fps').textContent = this.stats.fps.toFixed(1);
-        document.getElementById('events-received').textContent = this.stats.eventsReceived;
-        document.getElementById('active-experiments').textContent = this.stats.activeExperiments.size;
-
-        console.log(`Stats updated: Total=${this.stats.totalPoints}, Visible=${this.stats.visiblePoints}, Events=${this.stats.eventsReceived}`);
-    }
-
-    animate() {
-        requestAnimationFrame(() => this.animate());
-
-        // Calculate FPS
-        const currentTime = performance.now();
-        const deltaTime = currentTime - this.lastFrameTime;
-        this.frameCount++;
-
-        if (this.frameCount % 30 === 0) {
-            this.stats.fps = 1000 / deltaTime;
-            this.updateStats();
-        }
-
-        this.lastFrameTime = currentTime;
-
-        // Animate points
-        if (this.settings.animationSpeed > 0) {
-            const time = currentTime * 0.001 * this.settings.animationSpeed;
-
-            this.pointObjects.forEach((point, entityId) => {
-                if (!point.visible) return;
-
-                // Gentle floating animation
-                const offset = point.userData.metadata.animationOffset;
-                const floatY = Math.sin(time + offset) * 0.5;
-                const floatX = Math.cos(time * 0.7 + offset) * 0.3;
-
-                point.position.x = point.userData.metadata.originalPosition.x + floatX;
-                point.position.y = point.userData.metadata.originalPosition.y + floatY;
-
-                // Gentle rotation
-                point.rotation.y += 0.01 * this.settings.animationSpeed;
-            });
-        }
-
-        this.renderer.render(this.scene, this.camera);
-    }
+  // Public API for UI toggles
+  return {
+    setParticlesEnabled(v){ particlesEnabled = v; },
+    setLabelsEnabled(v){ labelsEnabled = v; },
+    setAutoLayout(v){ autoLayout = v; },
+    setMockMode(v){ data.setMock(v); },
+    toggleHUD(){ hudVisible = !hudVisible; document.getElementById('hud').style.display = hudVisible ? 'block':'none'; },
+    pauseResume(){ running = !running; if (running) { last = nowMs(); requestAnimationFrame(frame);} },
+  };
 }

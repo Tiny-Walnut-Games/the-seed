@@ -26,8 +26,8 @@ class TestSimple:
         """Test that required files exist."""
         root_path = Path(__file__).parent.parent
         required_files = [
-            "stat7wsserve.py",
-            "stat7threejs.html",
+            "web/server/stat7wsserve.py",
+            "web/stat7threejs.html",
         ]
         
         missing_files = []
@@ -50,6 +50,12 @@ class TestSimple:
     def test_stat7_server_import(self):
         """Test STAT7 server module import."""
         try:
+            # Add web/server to path for stat7wsserve import
+            root_path = Path(__file__).parent.parent
+            server_path = str(root_path / "web" / "server")
+            if server_path not in sys.path:
+                sys.path.insert(0, server_path)
+            
             from stat7wsserve import STAT7EventStreamer
             assert STAT7EventStreamer is not None
         except ImportError as e:

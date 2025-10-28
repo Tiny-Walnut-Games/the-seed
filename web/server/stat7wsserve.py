@@ -1,4 +1,4 @@
-﻿"""
+"""
 STAT7 Visualization WebSocket Server
 
 Real-time streaming of STAT7 events to browser-based Three.js visualization.
@@ -174,19 +174,20 @@ class STAT7EventStreamer:
 
     async def broadcast_event(self, event: VisualizationEvent):
         """Broadcast event to all connected clients."""
-        if not self.clients:
-            return
-
         event_data = json.dumps(event.to_dict())
 
-        # Add to buffer
+        # Always add to buffer (even if no clients connected yet)
         self.event_buffer.append(event)
         if len(self.event_buffer) > self.max_buffer_size:
             self.event_buffer.pop(0)
 
-        # Broadcast to all clients
+        # Broadcast to all connected clients (if any)
+        if not self.clients:
+            return
+
         disconnected = set()
-        for client in self.clients:
+        # Iterate over a copy to avoid "Set changed size during iteration" error
+        for client in list(self.clients):
             try:
                 await client.send(event_data)
             except websockets.exceptions.ConnectionClosed:
