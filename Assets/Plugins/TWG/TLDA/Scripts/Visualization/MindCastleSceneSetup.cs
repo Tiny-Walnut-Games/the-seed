@@ -109,7 +109,7 @@ public class MindCastleSceneSetup : MonoBehaviour
     private void CleanupExistingSetup()
     {
         // Find and destroy existing MindCastle objects
-        var existingNodes = FindObjectsOfType<Stat7Node>();
+        var existingNodes = FindObjectsByType<Stat7Node>(FindObjectsSortMode.None);
         foreach (var node in existingNodes)
         {
             if (node.gameObject.name.StartsWith("MindCastle_"))
@@ -118,7 +118,7 @@ public class MindCastleSceneSetup : MonoBehaviour
             }
         }
 
-        var existingLineRenderers = FindObjectsOfType<LineRenderer>();
+        var existingLineRenderers = FindObjectsByType<LineRenderer>(FindObjectsSortMode.None);
         foreach (var line in existingLineRenderers)
         {
             if (line.gameObject.name.StartsWith("AdjacencyLine_"))
@@ -127,7 +127,7 @@ public class MindCastleSceneSetup : MonoBehaviour
             }
         }
 
-        var existingSetup = FindObjectOfType<MindCastleSceneSetup>();
+        var existingSetup = FindFirstObjectByType<MindCastleSceneSetup>();
         if (existingSetup != null && existingSetup != this)
         {
             DestroyImmediate(existingSetup.gameObject);
@@ -166,7 +166,7 @@ public class MindCastleSceneSetup : MonoBehaviour
     private void SetupLighting()
     {
         // Setup main directional light
-        _mainLight = FindObjectOfType<Light>();
+        _mainLight = FindFirstObjectByType<Light>();
         if (_mainLight == null)
         {
             var lightObj = new GameObject("Main Light");

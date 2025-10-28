@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -28,7 +29,7 @@ namespace TWG.Scripts.Editor
         private bool useAIAnalysis = true;
         private string statusMessage = "Ready for AI-powered project orchestration";
         private Vector2 scrollPosition;
-        private ProjectAnalysis lastAnalysis = null;
+        private ProjectAnalysis? lastAnalysis = null;
 
         // Connection Management
         private bool isConnected = false;
@@ -38,7 +39,7 @@ namespace TWG.Scripts.Editor
         private Vector2 connectionScrollPosition;
 
         // GitHub Copilot Integration
-        private bool githubCopilotAvailable = false;
+        private bool githubCopilotAvailable = false;  // Checked at initialization
         private bool githubCopilotConnected = false;
         private bool githubCopilotAuthenticating = false;
         private string githubCopilotStatus = "🔒 Not Authenticated";
@@ -54,9 +55,30 @@ namespace TWG.Scripts.Editor
             "llama3.1:8b"
         };
         private int selectedModelIndex = 0;
-        // private System.Diagnostics.Process ollamaServeProcess = null;  // Reserved for 👀 future expansion
+        // private System.Diagnostics.Process? ollamaServeProcess = null;  // Reserved for 👀 future expansion
         private string ollamaLogPath = string.Empty;
-        private System.Diagnostics.Process ollamaServeProcess = null;
+        private System.Diagnostics.Process? ollamaServeProcess = null;
+
+        private void OnEnable()
+        {
+            // Initialize GitHub Copilot availability on window enable
+            CheckGitHubCopilotAvailability();
+        }
+
+        private void CheckGitHubCopilotAvailability()
+        {
+            // Check if GitHub Copilot credentials are available
+            var token = Environment.GetEnvironmentVariable("GITHUB_COPILOT_TOKEN") ?? 
+                        Environment.GetEnvironmentVariable("COPILOT_API_KEY");
+            githubCopilotAvailable = !string.IsNullOrEmpty(token);
+            
+            if (!githubCopilotAvailable && preferGitHubCopilot)
+            {
+                // If Copilot not available but preferred, fall back to Ollama
+                preferGitHubCopilot = false;
+                UnityEngine.Debug.Log("GitHub Copilot not configured. Falling back to Ollama.");
+            }
+        }
 
         void OnGUI()
         {
@@ -2067,7 +2089,7 @@ namespace TWG.TLDA.AI.Generated
         public string[] technical_considerations = System.Array.Empty<string>();
         public string suggested_architecture = "";
         public string warbler_insights = "";
-        public WarblerEnhancement warbler_enhancement = null;
+        public WarblerEnhancement? warbler_enhancement = null;
 
         // New fields for multi-provider support
         public string ai_provider_used = "";
@@ -2087,7 +2109,7 @@ namespace TWG.TLDA.AI.Generated
     public class AIAnalysisResult
     {
         public bool success;
-        public ProjectAnalysis analysis = null;
+        public ProjectAnalysis? analysis = null;
         public string blueprint_path = "";
     }
 }

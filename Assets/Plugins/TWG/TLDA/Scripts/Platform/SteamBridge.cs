@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,8 +44,19 @@ namespace TWG.Seed.Platform
         public bool IsInitialized { get; private set; }
         public bool IsSteamAvailable { get; private set; }
 
-        public event Action<PlatformEvent> OnPlatformEvent;
-        public event Action<NarrativeEvent> OnNarrativeEvent;
+        public event Action<PlatformEvent>? OnPlatformEvent;
+        public event Action<NarrativeEvent>? OnNarrativeEvent;
+        
+        // Platform event invocation helper - ensures events are always safely invoked
+        private void RaisePlatformEvent(PlatformEvent platformEvent)
+        {
+            OnPlatformEvent?.Invoke(platformEvent);
+        }
+        
+        private void RaiseNarrativeEvent(NarrativeEvent narrativeEvent)
+        {
+            OnNarrativeEvent?.Invoke(narrativeEvent);
+        }
 
 #if FACEPUNCH_STEAMWORKS
         // Facepunch.Steamworks uses async callbacks differently
@@ -114,6 +126,7 @@ namespace TWG.Seed.Platform
                 Debug.LogWarning("Facepunch.Steamworks not available. Steam bridge will operate in mock mode.");
                 IsSteamAvailable = false;
                 IsInitialized = true;
+                await Task.Delay(0); // Maintain async contract
 #endif
 
                 return true;
@@ -212,7 +225,7 @@ namespace TWG.Seed.Platform
         {
             if (!IsSteamAvailable) return;
 
-            OnPlatformEvent?.Invoke(new PlatformEvent
+            RaisePlatformEvent(new PlatformEvent
             {
                 EventType = "OverlayActivated",
                 Timestamp = DateTime.UtcNow,
@@ -232,6 +245,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log("Returning mock user identity - Steam not available");
+                await Task.Delay(0); // Maintain async contract
                 return mockUserIdentity;
             }
 
@@ -260,9 +274,11 @@ namespace TWG.Seed.Platform
             catch (Exception ex)
             {
                 Debug.LogWarning($"Failed to authenticate user: {ex.Message}");
+                await Task.Delay(0); // Maintain async contract
                 return mockUserIdentity;
             }
 #else
+            await Task.Delay(0); // Maintain async contract
             return mockUserIdentity;
 #endif
         }
@@ -323,6 +339,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log("Returning mock inventory - Steam not available");
+                await Task.Delay(0); // Allow event loop to process
                 return new PlatformInventory
                 {
                     Items = new List<InventoryItem>
@@ -387,6 +404,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log("Returning mock achievements - Steam not available");
+                await Task.Delay(0); // Allow event loop to process
                 var mockAchievements = new List<Achievement>
                 {
                     new Achievement
@@ -488,6 +506,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log("Returning mock friends list - Steam not available");
+                await Task.Delay(0); // Allow event loop to process
                 var mockFriends = new List<Friend>
                 {
                     new Friend
@@ -557,6 +576,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log("Returning mock player stats - Steam not available");
+                await Task.Delay(0); // Allow event loop to process
                 return new PlatformStats
                 {
                     GameStats = new Dictionary<string, double>
@@ -681,6 +701,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log($"Mock registering narrative companion: {companionId} - Steam not available");
+                await Task.Delay(0); // Allow event loop to process
                 return true; // Always succeed in mock mode
             }
 
@@ -721,6 +742,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log($"Mock updating narrative progress for companion: {companionId} - Steam not available");
+                await Task.Delay(0); // Allow event loop to process
                 return true; // Always succeed in mock mode
             }
 
@@ -763,6 +785,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log("Returning mock narrative companions - Steam not available");
+                await Task.Delay(0); // Allow event loop to process
                 return new List<NarrativeCompanionData>
                 {
                     new NarrativeCompanionData
@@ -793,6 +816,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log("Returning mock store items - Steam not available");
+                await Task.Delay(0); // Allow event loop to process
                 return new List<PlatformStoreItem>
                 {
                     new PlatformStoreItem
@@ -823,6 +847,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log($"Mock purchasing item: {itemId} - Steam not available");
+                await Task.Delay(0); // Allow event loop to process
                 return true; // Always succeed in mock mode
             }
 
@@ -840,6 +865,7 @@ namespace TWG.Seed.Platform
             if (!IsSteamAvailable)
             {
                 Debug.Log($"Mock consuming item: {itemId} - Steam not available");
+                await Task.Delay(0); // Allow event loop to process
                 return true; // Always succeed in mock mode
             }
 
@@ -911,6 +937,7 @@ namespace TWG.Seed.Platform
         private async Task<NarrativeStory> GenerateAchievementStory(SteamAchievementData achievement)
         {
             // Generate narrative story based on achievement
+            await Task.Delay(0); // Maintain async pattern
             return new NarrativeStory
             {
                 Title = $"The Legend of {achievement.Name}",
@@ -923,7 +950,8 @@ namespace TWG.Seed.Platform
 
         private async Task RegisterAchievementAsNarrative(Achievement achievement)
         {
-            OnNarrativeEvent?.Invoke(new NarrativeEvent
+            await Task.Delay(0); // Maintain async pattern
+            RaiseNarrativeEvent(new NarrativeEvent
             {
                 EventType = "AchievementUnlocked",
                 EntityId = achievement.AchievementId,
@@ -941,7 +969,8 @@ namespace TWG.Seed.Platform
 
         private async Task RegisterInventoryItemAsNarrative(InventoryItem item)
         {
-            OnNarrativeEvent?.Invoke(new NarrativeEvent
+            await Task.Delay(0); // Maintain async pattern
+            RaiseNarrativeEvent(new NarrativeEvent
             {
                 EventType = "InventoryItemAcquired",
                 EntityId = item.ItemId,
@@ -1021,6 +1050,7 @@ namespace TWG.Seed.Platform
         {
             // Get Steam wallet balance
             // 👀This would use Steam Wallet API when available
+            await Task.Delay(0); // Allow event loop to process
             return 0.00m; // Mock implementation
         }
 
@@ -1030,6 +1060,7 @@ namespace TWG.Seed.Platform
 
             // Convert Steam inventory items to Seed entities with STAT7 addresses
             // 👀This would iterate through actual Steam inventory when available
+            await Task.Delay(0); // Allow event loop to process
 
             return items;
         }
@@ -1040,29 +1071,16 @@ namespace TWG.Seed.Platform
 
             // Get Steam achievements
             // 👀This would use Steam UserStats API when available
+            await Task.Delay(0); // Allow event loop to process
 
             return achievements;
         }
 
-        private async Task<Achievement> GetAchievementById(uint achievementId)
+        private async Task<Achievement?> GetAchievementById(uint achievementId)
         {
             // Get specific achievement by ID
+            await Task.Delay(0); // Allow event loop to process
             return null; // Mock implementation
-        }
-
-        private async Task<Friend> ConvertSteamFriendToFriend(string steamId)
-        {
-            var friend = new Friend
-            {
-                FriendId = steamId,
-                Username = steamId, // Would use Steam API when available
-                DisplayName = steamId,
-                Status = FriendStatus.Online,
-                AvatarUrl = GetSteamAvatarUrl(steamId),
-                SharedNarratives = new List<SharedNarrative>()
-            };
-
-            return friend;
         }
 
     }

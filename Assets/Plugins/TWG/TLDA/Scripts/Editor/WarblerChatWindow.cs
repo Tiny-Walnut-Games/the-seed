@@ -1,3 +1,4 @@
+#nullable enable
 using System.Linq;
 using System.Threading.Tasks;
 using TWG.TLDA.Chat;
@@ -18,14 +19,14 @@ namespace TWG.Scripts.Editor
             window.Show();
         }
 
-        private VisualTreeAsset _chatUxml = null;
-        private StyleSheet _chatUss = null;
+        private VisualTreeAsset? _chatUxml = null;
+        private StyleSheet? _chatUss = null;
 
-        private ScrollView _messages = null;
-        private TextField _input = null;
-        private Button _send = null;
-        private VisualElement _typing = null;
-        private WarblerChatBridge _bridge = null;
+        private ScrollView? _messages = null;
+        private TextField? _input = null;
+        private Button? _send = null;
+        private VisualElement? _typing = null;
+        private WarblerChatBridge? _bridge = null;
 
         private void OnEnable()
         {

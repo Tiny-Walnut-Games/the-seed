@@ -1,0 +1,90 @@
+{
+  "interventions": [
+    {
+      "intervention_id": "int_1761649588211",
+      "timestamp": 1761649588.4458685,
+      "intervention_type": "soft_suggestion",
+      "context": {
+        "context": "validation_test"
+      },
+      "original_input": "original_code",
+      "suggested_output": "improved_code",
+      "reasoning": "I suggested improved_code because validation reason. The user's unknown context indicated standard pattern.",
+      "acceptance_status": "pending",
+      "user_response": null,
+      "final_output": null,
+      "response_time_ms": null,
+      "safety_event_level": null,
+      "policy_metadata": {
+        "redaction_applied": false,
+        "redaction_types": [],
+        "redaction_counts": {},
+        "safety_level": "none"
+      },
+      "redaction_applied": false,
+      "audit_trail": [
+        {
+          "timestamp": 1761649588.4458692,
+          "action": "intervention_created",
+          "metadata": {
+            "redaction_enabled": true,
+            "safety_level": null
+          }
+        }
+      ]
+    },
+    {
+      "intervention_id": "int_1761649740124",
+      "timestamp": 1761649740.1360204,
+      "intervention_type": "soft_suggestion",
+      "context": {
+        "context": "validation_test"
+      },
+      "original_input": "original_code",
+      "suggested_output": "improved_code",
+      "reasoning": "I suggested improved_code because validation reason. The user's unknown context indicated standard pattern.",
+      "acceptance_status": "pending",
+      "user_response": null,
+      "final_output": null,
+      "response_time_ms": null,
+      "safety_event_level": null,
+      "policy_metadata": {
+        "redaction_applied": false,
+        "redaction_types": [],
+        "redaction_counts": {},
+        "safety_level": "none"
+      },
+      "redaction_applied": false,
+      "audit_trail": [
+        {
+          "timestamp": 1761649740.1360216,
+          "action": "intervention_created",
+          "metadata": {
+            "redaction_enabled": true,
+            "safety_level": null
+          }
+        }
+      ]
+    }
+  ],
+  "style_profiles": {
+    "validation_user": {
+      "user_id": "validation_user",
+      "patience_level": 0.5,
+      "intervention_tolerance": 0.5,
+      "preferred_intervention_types": [
+        "soft_suggestion"
+      ],
+      "response_patterns": {},
+      "adaptation_phase": "learning",
+      "last_updated": 1761649740.1236427
+    }
+  },
+  "metrics_summary": {
+    "total_interventions": 2,
+    "acceptance_rate": 0.0,
+    "avg_response_time": 0.0,
+    "last_updated": 1761649740.13603
+  },
+  "last_updated": 1761649740.1360815
+}
