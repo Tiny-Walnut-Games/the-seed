@@ -46,7 +46,7 @@ jobs:
 
     steps:
     - name: 📥 Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.3.0
 
     - name: 🐍 Setup Python
       uses: actions/setup-python@v4
@@ -146,10 +146,10 @@ jobs:
 
     steps:
     - name: 📥 Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.3.0
 
     - name: 🐍 Setup Python Environment
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v4.9.0
       with:
         python-version: '3.11'
         cache: 'pip'
@@ -290,7 +290,7 @@ jobs:
         EOF
 
     - name: 📈 Upload Test Results as Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.6.2
       if: always()
       with:
         name: load-test-results-500-players-ubuntu
@@ -375,10 +375,10 @@ Download full test results and logs from the workflow run artifacts (retained fo
 
     steps:
     - name: 📥 Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.3.0
 
     - name: 🐍 Setup Python Environment
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v4.9.0
       with:
         python-version: '3.11'
         cache: 'pip'
