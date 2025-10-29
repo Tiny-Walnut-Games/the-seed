@@ -163,14 +163,15 @@ def demo_v08_safety_features():
     print("🔒 Demo 3: Redaction Transforms & PII Protection")
     print("-" * 45)
     
+    # Using RFC-compliant test data that won't trigger security scanners
     test_content = """
     Personal Information Test:
-    - Email: jane.smith@company.com
-    - Phone: +1 (555) 987-6543
-    - SSN: 123-45-6789
-    - Credit Card: 4532 1234 5678 9012
-    - API Key: sk_live_51H7K8j2eZvKYlo2CYCvTJxS8p3mK4N5Q6R7S8T9
-    - IP Address: 192.168.100.50
+    - Email: demo.user@example.com
+    - Phone: +1 (555) 000-0000
+    - SSN: 000-00-0000
+    - Credit Card: 0000 0000 0000 0000
+    - API Key: sk_test_FAKE1234567890ABCDEFGHIJKLMNOP
+    - IP Address: 203.0.113.42
     """
     
     print("Original content:")

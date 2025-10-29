@@ -181,7 +181,7 @@ jobs:
           DRY_RUN="${{ steps.config.outputs.dry_run }}"
 
           # Use new enhanced faculty system
-          FACULTY_ARGS="--issue=${{ ISSUE_NUMBER }} --budget=$BUDGET_MINUTES"
+          FACULTY_ARGS="--issue=${{ env.ISSUE_NUMBER }} --budget=$BUDGET_MINUTES"
 
           if [ "$DRY_RUN" = "true" ]; then
             FACULTY_ARGS="$FACULTY_ARGS --dry-run"
@@ -221,7 +221,7 @@ jobs:
             # Generate enhanced faculty TLDL entry
             node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/faculty-tldl.js" \
               $ADVISOR_FILE $ORACLE_FILE \
-              --issue=${{ ISSUE_NUMBER }} \
+              --issue=${{ env.ISSUE_NUMBER }} \
               --out=/tmp/faculty-scroll-entry.json
           fi
 
@@ -288,7 +288,7 @@ jobs:
               -H \"Authorization: token \$GITHUB_TOKEN\" \\
               -H \"Content-Type: application/json\" \\
               -d @/tmp/faculty-comment.json \\
-              \"https://api.github.com/repos/\${{ GITHUB_REPOSITORY }}/issues/\${{ GITHUB_ISSUE_NUMBER }}/comments\"
+              \"https://api.github.com/repos/\$GITHUB_REPOSITORY/issues/\$GITHUB_ISSUE_NUMBER/comments\"
           fi
 
       - name: Award Faculty Badges
@@ -315,7 +315,7 @@ jobs:
             # Use enhanced faculty badge system
             node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/faculty-badges.js" \
               $ADVISOR_FILE $ORACLE_FILE \
-              --issue=${{ ISSUE_NUMBER }}
+              --issue=${{ env.ISSUE_NUMBER }}
           fi
 
       - name: Upload Faculty Artifacts
