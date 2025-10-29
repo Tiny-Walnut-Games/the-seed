@@ -4,6 +4,7 @@ import requests
 import json
 import time
 import logging
+from urllib.parse import urlparse
 from .audio import TTSProvider, TTSProviderFactory, VoiceConfig, VoiceCharacteristic, TTSRequest
 
 # Configure secure logging
@@ -42,8 +43,10 @@ class LLMClient:
     def _test_endpoint(self, endpoint: str) -> bool:
         """Test if an endpoint is available with proper error handling."""
         try:
-            # Validate endpoint is localhost for security
-            if not ("localhost" in endpoint or "127.0.0.1" in endpoint or "api.openai.com" in endpoint):
+            # Validate endpoint is localhost or api.openai.com for security
+            parsed = urlparse(endpoint)
+            hostname = parsed.hostname
+            if hostname not in ("localhost", "127.0.0.1", "api.openai.com"):
                 logger.warning(f"Rejecting non-localhost endpoint for security: {endpoint[:20]}...")
                 return False
             
