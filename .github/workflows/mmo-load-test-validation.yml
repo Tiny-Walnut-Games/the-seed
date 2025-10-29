@@ -160,6 +160,43 @@ jobs:
         pip install pytest pytest-asyncio websockets statistics
         pip install -r web/requirements-visualization.txt || true
 
+    - name: 🔍 Verify Test Environment & Imports
+      run: |
+        echo "🔍 Checking Python version..."
+        python --version
+        python -c "import sys; print(f'Python path: {sys.executable}')"
+        
+        echo ""
+        echo "🔍 Checking pytest installation..."
+        pytest --version
+        
+        echo ""
+        echo "🔍 Testing imports..."
+        PYTHONUNBUFFERED=1 python << 'EOF'
+        import sys
+        import os
+        sys.path.insert(0, os.path.join(os.getcwd(), 'web/server'))
+        
+        print("✅ Python path setup complete")
+        try:
+            from stat7wsserve import STAT7EventStreamer, generate_random_bitchain
+            print("✅ Successfully imported STAT7EventStreamer and generate_random_bitchain")
+        except Exception as e:
+            print(f"❌ Import error: {e}")
+            import traceback
+            traceback.print_exc()
+            sys.exit(1)
+        
+        try:
+            import websockets
+            print("✅ Successfully imported websockets")
+        except Exception as e:
+            print(f"❌ Import error: {e}")
+            sys.exit(1)
+            
+        print("✅ All imports successful!")
+        EOF
+
     - name: 🔥 Execute 500 Concurrent Player Load Test
       id: load_test
       run: |
@@ -171,14 +208,16 @@ jobs:
 
         mkdir -p test-results
 
-        # Run the load test with full output
-        pytest tests/test_websocket_load_stress.py::test_concurrent_500_clients \
+        # Run the load test with unbuffered Python output
+        # Using PYTHONUNBUFFERED to ensure all output is captured
+        PYTHONUNBUFFERED=1 python -u -m pytest tests/test_websocket_load_stress.py::test_concurrent_500_clients \
           -v \
           --tb=short \
           --junitxml=test-results/load-test-500-ubuntu.xml \
+          --capture=no \
           2>&1 | tee test-results/load-test-output.log
 
-        TEST_EXIT_CODE=$?
+        TEST_EXIT_CODE=${PIPESTATUS[0]}
         echo "test_exit_code=$TEST_EXIT_CODE" >> $GITHUB_OUTPUT
 
         if [ $TEST_EXIT_CODE -eq 0 ]; then
@@ -189,6 +228,14 @@ jobs:
           echo "test_status=FAILED" >> $GITHUB_OUTPUT
         fi
 
+        echo ""
+        echo "📋 Test output log size: $(wc -c < test-results/load-test-output.log) bytes"
+        echo "📋 First 50 lines of output:"
+        head -n 50 test-results/load-test-output.log
+        echo ""
+        echo "📋 Last 50 lines of output:"
+        tail -n 50 test-results/load-test-output.log
+        
         exit $TEST_EXIT_CODE
 
     - name: 📊 Extract and Validate Performance Metrics
@@ -219,25 +266,48 @@ jobs:
             'workflow_run': os.environ.get('GITHUB_RUN_ID', 'unknown'),
         }
 
-        # Extract metrics using regex patterns
+        # Extract metrics using regex patterns (handles whitespace variations)
         patterns = {
-            'avg_latency': r'Avg latency: ([\d.]+)ms',
-            'p50_latency': r'P50 latency: ([\d.]+)ms',
-            'p99_latency': r'P99 latency: ([\d.]+)ms',
-            'max_latency': r'Max latency: ([\d.]+)ms',
-            'connection_time': r'Connection time: ([\d.]+)s',
-            'broadcast_time': r'Broadcast time: ([\d.]+)s',
+            'avg_latency': r'Avg\s+latency:\s*([\d.]+)\s*ms',
+            'p50_latency': r'P50\s+latency:\s*([\d.]+)\s*ms',
+            'p99_latency': r'P99\s+latency:\s*([\d.]+)\s*ms',
+            'max_latency': r'Max\s+latency:\s*([\d.]+)\s*ms',
+            'connection_time': r'Connection\s+time:\s*([\d.]+)\s*s',
+            'broadcast_time': r'Broadcast\s+time:\s*([\d.]+)\s*s',
         }
 
+        print("📝 Searching for metrics in test output...")
         for key, pattern in patterns.items():
-            match = re.search(pattern, content)
+            match = re.search(pattern, content, re.MULTILINE | re.IGNORECASE)
             if match:
                 value = match.group(1)
                 metrics[key] = value
                 print(f"✅ {key}: {value}")
             else:
                 metrics[key] = 'N/A'
-                print(f"⚠️  {key}: Not found")
+                print(f"⚠️  {key}: Not found in output")
+        
+        # Debug: Show what we're searching in
+        if 'avg_latency' not in metrics or metrics['avg_latency'] == 'N/A':
+            print("\n🔍 Debug: Searching for 'latency' in output:")
+            latency_lines = [line for line in content.split('\n') if 'latency' in line.lower()]
+            if latency_lines:
+                for line in latency_lines[:10]:
+                    print(f"   {line}")
+            else:
+                print("   No lines containing 'latency' found!")
+            
+            # Check if test actually ran
+            if 'Load Test:' in content:
+                print("✅ Test appears to have run (found 'Load Test:' marker)")
+            else:
+                print("❌ Test may not have run (no 'Load Test:' marker found)")
+            
+            # Show last 20 lines of output for debugging
+            print("\n📋 Last 20 lines of output:")
+            lines = content.split('\n')
+            for line in lines[-20:]:
+                print(f"   {line}")
 
         # Validate against thresholds
         print("\n" + "=" * 70)
