@@ -30,7 +30,7 @@ jobs:
             role_name: "The Advisor"
             role_desc: "Present Wisdom"
           - faculty: oracle
-            role_name: "The Oracle" 
+            role_name: "The Oracle"
             role_desc: "Future Sight"
     steps:
       - name: Checkout
@@ -53,44 +53,50 @@ jobs:
       - name: Check Faculty Cooldown Protection
         id: cooldown_check
         if: github.event_name == 'issue_comment'
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           # Check if workflow is in cooldown to prevent loops
           echo "🕐 Checking workflow cooldown protection..."
-          
-          ISSUE_NUMBER="${{ github.event.issue.number }}"
-          COMMENT_BODY="${{ github.event.comment.body }}"
-          
+
+          issue_number="$ISSUE_NUMBER"
+          comment_body="$COMMENT_BODY"
+
           # Use the cooldown system to check if we should skip
           cd "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty"
-          
+
           COOLDOWN_EXIT_CODE=0
           node shared/workflow-cooldown.js status cid-faculty "$ISSUE_NUMBER" || COOLDOWN_EXIT_CODE=$?
-          
+
           if [ $COOLDOWN_EXIT_CODE -eq 0 ]; then
             echo "cooldown_active=false" >> $GITHUB_OUTPUT
             echo "✅ No cooldown active, proceeding with faculty consultation"
           else
             echo "cooldown_active=true" >> $GITHUB_OUTPUT
             echo "🚫 Faculty workflow in cooldown, skipping execution to prevent loops"
-            
+
             # Show cooldown status for debugging
             echo "📊 Cooldown status:"
             node shared/workflow-cooldown.js status cid-faculty "$ISSUE_NUMBER" || true
           fi
 
-      - name: Initialize Faculty Infrastructure  
-        if: steps.cooldown_check.outputs.cooldown_active != 'true'  
+      - name: Initialize Faculty Infrastructure
+        if: steps.cooldown_check.outputs.cooldown_active != 'true'
         run: |
           mkdir -p "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty" out/cid/cache
           echo '{}' > out/cid/context.json
 
       - name: Parse Faculty Configuration
         if: steps.cooldown_check.outputs.cooldown_active != 'true'
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
         id: config
         run: |
           # Parse issue body for configuration
-          ISSUE_BODY="${{ github.event.issue.body }}"
-          
+          ISSUE_BODY="$ISSUE_BODY"
+
           # Check for faculty role selection
           if echo "$ISSUE_BODY" | grep -q "\[x\].*The Advisor"; then
             echo "advisor_enabled=true" >> $GITHUB_OUTPUT
@@ -102,8 +108,8 @@ jobs:
             echo "advisor_enabled=true" >> $GITHUB_OUTPUT
             echo "oracle_enabled=true" >> $GITHUB_OUTPUT
           fi
-          
-          # Check for budget configuration  
+
+          # Check for budget configuration
           if echo "$ISSUE_BODY" | grep -q "\[x\].*Quick assessment"; then
             echo "budget_minutes=3" >> $GITHUB_OUTPUT
           elif echo "$ISSUE_BODY" | grep -q "\[x\].*Deep dive"; then
@@ -111,16 +117,16 @@ jobs:
           else
             echo "budget_minutes=6" >> $GITHUB_OUTPUT
           fi
-          
+
           # Check for dry-run mode
           if echo "$ISSUE_BODY" | grep -q "\[x\].*Dry-run mode"; then
             echo "dry_run=true" >> $GITHUB_OUTPUT
           else
             echo "dry_run=false" >> $GITHUB_OUTPUT
           fi
-          
+
           # Check for escalation permission
-          LABELS="${{ join(github.event.issue.labels.*.name, ',') }}"
+          LABELS="${{ env.LABELS }}"
           if echo "$LABELS" | grep -q "faculty:proceed"; then
             echo "escalation_approved=true" >> $GITHUB_OUTPUT
           else
@@ -132,7 +138,7 @@ jobs:
         id: role_filter
         run: |
           FACULTY_ROLE="${{ matrix.faculty }}"
-          
+
           if [ "$FACULTY_ROLE" = "advisor" ] && [ "${{ steps.config.outputs.advisor_enabled }}" = "true" ]; then
             echo "should_run=true" >> $GITHUB_OUTPUT
           elif [ "$FACULTY_ROLE" = "oracle" ] && [ "${{ steps.config.outputs.oracle_enabled }}" = "true" ]; then
@@ -154,7 +160,7 @@ jobs:
         run: |
           BUDGET_MINUTES="${{ steps.config.outputs.budget_minutes }}"
           ESCALATION_APPROVED="${{ steps.config.outputs.escalation_approved }}"
-          
+
           if [ "$BUDGET_MINUTES" -gt 6 ] && [ "$ESCALATION_APPROVED" != "true" ]; then
             echo "needs_escalation=true" >> $GITHUB_OUTPUT
             echo "❌ Deep analysis requested but faculty:proceed label not found"
@@ -168,51 +174,54 @@ jobs:
         if: steps.role_filter.outputs.should_run == 'true' && steps.budget_check.outputs.needs_escalation == 'false' && steps.cooldown_check.outputs.cooldown_active != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           FACULTY_ROLE="${{ matrix.faculty }}"
           BUDGET_MINUTES="${{ steps.config.outputs.budget_minutes }}"
           DRY_RUN="${{ steps.config.outputs.dry_run }}"
-          
+
           # Use new enhanced faculty system
-          FACULTY_ARGS="--issue=${{ github.event.issue.number }} --budget=$BUDGET_MINUTES"
-          
+          FACULTY_ARGS="--issue=${{ env.ISSUE_NUMBER }} --budget=$BUDGET_MINUTES"
+
           if [ "$DRY_RUN" = "true" ]; then
             FACULTY_ARGS="$FACULTY_ARGS --dry-run"
           fi
-          
+
           if [ "$FACULTY_ROLE" = "advisor" ]; then
             FACULTY_ARGS="$FACULTY_ARGS --advisor-only"
           elif [ "$FACULTY_ROLE" = "oracle" ]; then
             FACULTY_ARGS="$FACULTY_ARGS --oracle-only"
           fi
-          
+
           # Execute the enhanced faculty consultation system
           echo "🎓 Executing ${{ matrix.role_name }} analysis via enhanced faculty system..."
           node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/index.js" $FACULTY_ARGS --out=out/cid/${FACULTY_ROLE}-report.json
 
       - name: Generate Faculty TLDL Entry
         if: steps.role_filter.outputs.should_run == 'true' && steps.budget_check.outputs.needs_escalation == 'false' && steps.cooldown_check.outputs.cooldown_active != 'true'
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           # Wait for all faculty roles to complete before generating combined TLDL
           # This step only runs once for the advisor role in the matrix
           if [ "${{ matrix.faculty }}" = "advisor" ]; then
             echo "📜 Generating combined faculty TLDL entry..."
-            
+
             ADVISOR_FILE=""
             ORACLE_FILE=""
-            
+
             if [ -f "out/cid/advisor-report.json" ]; then
               ADVISOR_FILE="--advisor=out/cid/advisor-report.json"
             fi
-            
+
             if [ -f "out/cid/oracle-report.json" ]; then
               ORACLE_FILE="--oracle=out/cid/oracle-report.json"
             fi
-            
+
             # Generate enhanced faculty TLDL entry
             node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/faculty-tldl.js" \
               $ADVISOR_FILE $ORACLE_FILE \
-              --issue=${{ github.event.issue.number }} \
+              --issue=${{ env.ISSUE_NUMBER }} \
               --out=/tmp/faculty-scroll-entry.json
           fi
 
@@ -220,7 +229,7 @@ jobs:
         if: steps.role_filter.outputs.should_run == 'true' && steps.budget_check.outputs.needs_escalation == 'false' && steps.cooldown_check.outputs.cooldown_active != 'true'
         run: |
           FACULTY_ROLE="${{ matrix.faculty }}"
-          
+
           if [ -f "/tmp/faculty-${FACULTY_ROLE}-scroll-entry.json" ]; then
             # Use Chronicle Keeper to write the TLDL entry
             "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/tldl-writer.sh" write "/tmp/faculty-${FACULTY_ROLE}-scroll-entry.json" --verbose --force
@@ -230,21 +239,22 @@ jobs:
         if: steps.role_filter.outputs.should_run == 'true' && steps.budget_check.outputs.needs_escalation == 'false' && steps.cooldown_check.outputs.cooldown_active != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           FACULTY_ROLE="${{ matrix.faculty }}"
           ROLE_NAME="${{ matrix.role_name }}"
-          
+
           if [ -f "out/cid/${FACULTY_ROLE}-report.json" ]; then
             echo "💬 Posting $ROLE_NAME consultation results..."
-            
+
             # Create a faculty comment poster
             node -e "
               const fs = require('fs');
               const report = JSON.parse(fs.readFileSync('out/cid/${FACULTY_ROLE}-report.json', 'utf8'));
-              
+
               let comment = '## $ROLE_NAME Consultation\\n\\n';
               comment += '> ' + report.summary.join('\\n> ') + '\\n\\n';
-              
+
               if (report.actionItems && report.actionItems.length > 0) {
                 comment += '### Present Wisdom - Prioritized Actions\\n\\n';
                 report.actionItems.forEach((item, index) => {
@@ -253,7 +263,7 @@ jobs:
                   comment += \`- Evidence: \${item.evidence}\\n\\n\`;
                 });
               }
-              
+
               if (report.scenarios && report.scenarios.length > 0) {
                 comment += '### Future Sight - Strategic Scenarios\\n\\n';
                 report.scenarios.forEach((scenario, index) => {
@@ -263,47 +273,44 @@ jobs:
                   comment += \`- Key Outcomes: \${scenario.outcomes.slice(0, 2).join(', ')}\\n\\n\`;
                 });
               }
-              
+
               // Add telemetry footer
               if (report.telemetry) {
                 comment += report.telemetry;
               }
-              
-              console.log(JSON.stringify({body: comment}));
-            " > /tmp/faculty-comment.json
-            
-            # Post the comment
-            curl -X POST \\
-              -H \"Authorization: token \$GITHUB_TOKEN\" \\
-              -H \"Content-Type: application/json\" \\
-              -d @/tmp/faculty-comment.json \\
-              \"https://api.github.com/repos/\${{ github.repository }}/issues/\${{ github.event.issue.number }}/comments\"
+
+              fs.writeFileSync('/tmp/faculty-comment.md', comment, 'utf8');
+            "
+
+            # Post the comment securely using the GitHub CLI
+            gh issue comment "$GITHUB_ISSUE_NUMBER" --body-file /tmp/faculty-comment.md
           fi
 
       - name: Award Faculty Badges
         if: steps.role_filter.outputs.should_run == 'true' && steps.budget_check.outputs.needs_escalation == 'false' && steps.cooldown_check.outputs.cooldown_active != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           # Only run for advisor role to avoid duplicate badge evaluations
           if [ "${{ matrix.faculty }}" = "advisor" ]; then
             echo "🏆 Evaluating faculty badges..."
-            
+
             ADVISOR_FILE=""
             ORACLE_FILE=""
-            
+
             if [ -f "out/cid/advisor-report.json" ]; then
               ADVISOR_FILE="--advisor=out/cid/advisor-report.json"
             fi
-            
+
             if [ -f "out/cid/oracle-report.json" ]; then
               ORACLE_FILE="--oracle=out/cid/oracle-report.json"
             fi
-            
+
             # Use enhanced faculty badge system
             node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/faculty-badges.js" \
               $ADVISOR_FILE $ORACLE_FILE \
-              --issue=${{ github.event.issue.number }}
+              --issue=${{ env.ISSUE_NUMBER }}
           fi
 
       - name: Upload Faculty Artifacts
@@ -321,6 +328,6 @@ jobs:
         run: |
           # Clean old cache files to prevent storage bloat
           node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/shared/context-cache.js" cleanup
-          
+
           # Also clean cooldown files to prevent storage bloat
           node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/shared/workflow-cooldown.js" cleanup

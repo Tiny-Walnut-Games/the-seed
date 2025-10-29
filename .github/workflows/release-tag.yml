@@ -62,11 +62,11 @@ jobs:
         
     - name: ✅ Validate templates
       run: |
-        node scripts/validate-warbler-pack.mjs packs/warbler-pack-core/pack/templates.json
-        node scripts/validate-warbler-pack.mjs packs/warbler-pack-faction-politics/pack/templates.json
+        node "packages/com.twg.the-seed/The Living Dev Agent/scripts/validate-warbler-pack.mjs" packs/warbler-pack-core/pack/templates.json
+        node "packages/com.twg.the-seed/The Living Dev Agent/scripts/validate-warbler-pack.mjs" packs/warbler-pack-faction-politics/pack/templates.json
         
     - name: 🎭 Run simulation
-      run: node scripts/simulate-warble.mjs
+      run: node "packages/com.twg.the-seed/The Living Dev Agent/scripts/simulate-warble.mjs"
 
   publish-core:
     name: 📦 Publish Warbler Core
