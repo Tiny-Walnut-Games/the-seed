@@ -27,6 +27,10 @@ on:
   schedule:
     - cron: '0 12 * * 0'  # Weekly Sunday validation at noon UTC
 
+concurrency:
+  group: mmo-load-test-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
   issues: write
@@ -309,18 +313,25 @@ jobs:
         except FileNotFoundError:
             metrics = {}
         
+        # Build report with safe string concatenation
+        test_status = '✅ PASSED' if metrics.get('all_thresholds_passed') else '❌ FAILED'
+        outcome_text = '**successfully**' if metrics.get('all_thresholds_passed') else '**did not meet**'
+        threshold_status = '✅' if metrics.get('all_thresholds_passed') else '❌'
+        threshold_result = 'were met' if metrics.get('all_thresholds_passed') else 'were not met'
+        run_link = f"{os.environ.get('GITHUB_SERVER_URL', '')}/{os.environ.get('GITHUB_REPOSITORY', '')}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}"
+        
         # Generate formal report
         report = f"""# MMO Backend Load Test - Formal Validation Report
-        
+
 ## Document Information
-        
+
 - **Report Version**: 1.0
 - **Test Date**: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}
 - **Infrastructure Provider**: GitHub Inc. (GitHub Actions)
 - **Test Platform**: ubuntu-latest (GitHub-hosted runner)
 - **Repository**: {os.environ.get('GITHUB_REPOSITORY', 'unknown')}
 - **Commit SHA**: {os.environ.get('GITHUB_SHA', 'unknown')[:8]}
-- **Workflow Run**: [{os.environ.get('GITHUB_RUN_ID', 'unknown')}]({os.environ.get('GITHUB_SERVER_URL', '')}/{os.environ.get('GITHUB_REPOSITORY', '')}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')})
+- **Workflow Run**: [{os.environ.get('GITHUB_RUN_ID', 'unknown')}]({run_link})
 
 ---
 
@@ -331,7 +342,7 @@ simulated load of 500 concurrent player connections. All tests were executed on
 **third-party infrastructure** (GitHub Actions) to ensure independent, reproducible 
 validation.
 
-**Test Status**: {'✅ PASSED' if metrics.get('all_thresholds_passed') else '❌ FAILED'}
+**Test Status**: {test_status}
 
 ---
 
@@ -467,7 +478,7 @@ Anyone can view:
 
 ### 7.1 Summary
 
-The Seed MMO backend {'**successfully**' if metrics.get('all_thresholds_passed') else '**did not meet**'} all validation criteria under 
+The Seed MMO backend {outcome_text} all validation criteria under 
 simulated load of 500 concurrent player connections on independent third-party 
 infrastructure.
 
@@ -479,7 +490,7 @@ This report certifies that:
 - ✅ Results are publicly accessible and timestamped
 - ✅ Test methodology is mathematically sound
 - ✅ Tests are reproducible by any third party
-- {'✅' if metrics.get('all_thresholds_passed') else '❌'} All performance thresholds {'were met' if metrics.get('all_thresholds_passed') else 'were not met'}
+- {threshold_status} All performance thresholds {threshold_result}
 
 ---
 
@@ -594,6 +605,7 @@ Download full test results and logs from the workflow run artifacts (retained fo
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
+        cache: 'pip'
     
     - name: 📦 Install Dependencies
       run: |
