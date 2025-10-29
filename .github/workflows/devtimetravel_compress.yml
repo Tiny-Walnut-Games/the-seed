@@ -62,7 +62,7 @@ jobs:
           fi
           
           # Run compression script
-          python3 scripts/devtimetravel/compress_snapshots.py \
+          python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/devtimetravel/compress_snapshots.py" \
             --root .devtimetravel \
             --report devtimetravel_compress_report.json \
             $VERBOSE_FLAG \

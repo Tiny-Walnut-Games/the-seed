@@ -41,7 +41,7 @@ jobs:
       
       - name: Install Dependencies
         run: |
-          pip install -r scripts/requirements.txt
+          pip install -r "packages/com.twg.the-seed/The Living Dev Agent/scripts/requirements.txt"
       
       - name: Configure Git
         run: |
@@ -77,7 +77,7 @@ jobs:
         if: steps.check_existing.outputs.exists == 'false'
         run: |
           echo "🧹 Generating monthly TLDL archive for ${{ steps.month.outputs.target_month }}"
-          scripts/tldl-monthly-generator.sh ${{ steps.month.outputs.target_month }}
+          "packages/com.twg.the-seed/The Living Dev Agent/scripts/tldl-monthly-generator.sh" ${{ steps.month.outputs.target_month }}
           
           # Verify archive was created
           archive_file="docs/TLDL-Monthly/${{ steps.month.outputs.target_month }}.md"
@@ -94,7 +94,7 @@ jobs:
         if: steps.check_existing.outputs.exists == 'false' && (github.event.inputs.archive_old_files == 'true' || github.event_name == 'schedule')
         run: |
           echo "📦 Archiving old TLDL files for ${{ steps.month.outputs.target_month }}"
-          scripts/tldl-monthly-generator.sh --archive-old ${{ steps.month.outputs.target_month }}
+          "packages/com.twg.the-seed/The Living Dev Agent/scripts/tldl-monthly-generator.sh" --archive-old ${{ steps.month.outputs.target_month }}
       
       - name: Update Documentation Indices
         if: steps.check_existing.outputs.exists == 'false'

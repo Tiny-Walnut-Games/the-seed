@@ -47,8 +47,8 @@ jobs:
           pip install PyYAML argparse
           
           # Install additional dependencies if requirements exist
-          if [ -f scripts/requirements.txt ]; then
-            pip install -r scripts/requirements.txt
+          if [ -f "packages/com.twg.the-seed/The Living Dev Agent/scripts/requirements.txt" ]; then
+            pip install -r "packages/com.twg.the-seed/The Living Dev Agent/scripts/requirements.txt"
           fi
       
       - name: 🎭 Generate Weekly Wisdom
@@ -60,11 +60,13 @@ jobs:
           echo "🎭 Generating $QUOTE_COUNT wisdom quotes..."
           
           # Make scripts executable
-          chmod +x scripts/weekly-wisdom-oracle.sh
-          chmod +x scripts/lda-quote
+          chmod +x "packages/com.twg.the-seed/The Living Dev Agent/scripts/weekly-wisdom-oracle.sh"
+          if [ -f "scripts/lda-quote" ]; then
+            chmod +x "scripts/lda-quote"
+          fi
           
           # Generate wisdom quotes
-          scripts/weekly-wisdom-oracle.sh generate "$QUOTE_COUNT"
+          "packages/com.twg.the-seed/The Living Dev Agent/scripts/weekly-wisdom-oracle.sh" generate "$QUOTE_COUNT"
           
           # Check if any files were modified
           if [ -n "$(git status --porcelain)" ]; then
@@ -268,7 +270,7 @@ jobs:
             You can manually trigger wisdom generation:
             
             \`\`\`bash
-            scripts/weekly-wisdom-oracle.sh generate 5
+            "packages/com.twg.the-seed/The Living Dev Agent/scripts/weekly-wisdom-oracle.sh" generate 5
             \`\`\`
             
             🎭 **Oracle Status**: Requires attention to restore the flow of wisdom.`;
