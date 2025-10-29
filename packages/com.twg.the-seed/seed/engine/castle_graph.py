@@ -8,6 +8,10 @@ import hashlib
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 import json
+import logging
+
+# Configure secure logging
+logger = logging.getLogger(__name__)
 
 @dataclass
 class ConceptExtractionResult:
@@ -885,9 +889,12 @@ class CastleGraph:
         return len(meaningful_words) / len(words)
 
     def _calculate_concept_novelty(self, concept: str) -> float:
-        """Calculate novelty score for a concept."""
-        # Check if concept has been seen before
-        concept_frequency = self.concept_statistics[concept]["frequency"]
+        """Calculate novelty score for a concept using the same key used in tracking (concept_id)."""
+        # Ensure we look up using the same key used in _track_concept_statistics (concept_id)
+        concept_key = concept if concept.startswith("concept_") else f"concept_{concept.replace(' ', '_')}"
+        
+        stats = self.concept_statistics.get(concept_key)
+        concept_frequency = stats["frequency"] if stats else 0
 
         if concept_frequency == 0:
             return 1.0  # Completely novel
@@ -1009,26 +1016,45 @@ class CastleGraph:
         return entropy / max_entropy if max_entropy > 0 else 0.0
 
     def _log_extraction_error(self, mist: Dict[str, Any], error: str):
-        """Log extraction errors for analysis."""
-        error_log = {
+        """Log extraction errors for analysis with PII redaction."""
+        # Redact sensitive information - only log non-sensitive metadata
+        safe_metadata = {
             "timestamp": int(time.time()),
             "mist_id": mist.get("id"),
-            "proto_thought": mist.get("proto_thought", "")[:100],
-            "error": error,
-            "mist_metadata": {k: v for k, v in mist.items() if k not in ["proto_thought", "id"]}
+            "error_type": type(error).__name__ if isinstance(error, Exception) else "string",
+            "error_message": str(error)[:50],  # Truncate error message
+            "has_proto_thought": bool(mist.get("proto_thought")),
+            "proto_length": len(mist.get("proto_thought", ""))
         }
-        # In production, this would log to a file or monitoring system
-        print(f"Concept extraction error: {error_log}")
+        # Use structured logging instead of print
+        logger.error(
+            "Concept extraction failed",
+            extra={
+                "event": "extraction_error",
+                "mist_id": safe_metadata["mist_id"],
+                "error_type": safe_metadata["error_type"]
+            }
+        )
 
     def _log_method_error(self, method: str, proto_thought: str, error: str):
-        """Log method-specific errors."""
-        error_log = {
+        """Log method-specific errors with secure redaction."""
+        # Do not log any portion of proto_thought to prevent PII exposure
+        safe_log = {
             "timestamp": int(time.time()),
             "method": method,
-            "proto_preview": proto_thought[:50],
-            "error": error
+            "error_type": type(error).__name__ if isinstance(error, Exception) else "string",
+            "proto_length": len(proto_thought),
+            "error_message": str(error)[:50]  # Truncate error
         }
-        print(f"Extraction method error ({method}): {error_log}")
+        # Use structured logging
+        logger.error(
+            f"Extraction method failed: {method}",
+            extra={
+                "event": "method_error",
+                "method": method,
+                "error_type": safe_log["error_type"]
+            }
+        )
 
     # Scientific analysis and reporting methods
     def get_extraction_statistics(self) -> Dict[str, Any]:

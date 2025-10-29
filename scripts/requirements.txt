@@ -1,0 +1,12 @@
+# Scripts Directory Requirements
+# Install with: pip install -r requirements.txt
+
+# File system monitoring (required for watch_index.py)
+watchdog>=2.1.0
+
+# Note: ingest.py uses standard library only (no external dependencies)
+
+# GPU acceleration dependencies are maintained separately in:
+#   ../requirements-gpu.txt
+# Visualization/WebSocket dependencies are maintained separately in:
+#   ../web/requirements-visualization.txt

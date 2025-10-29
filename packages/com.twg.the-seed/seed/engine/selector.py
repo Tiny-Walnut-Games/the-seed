@@ -3,7 +3,11 @@ from typing import List, Dict, Any, Optional
 import requests
 import json
 import time
+import logging
 from .audio import TTSProvider, TTSProviderFactory, VoiceConfig, VoiceCharacteristic, TTSRequest
+
+# Configure secure logging
+logger = logging.getLogger(__name__)
 
 
 class LLMClient:
@@ -36,14 +40,24 @@ class LLMClient:
             ] + ["http://localhost:11434/api"]
 
     def _test_endpoint(self, endpoint: str) -> bool:
-        """Test if an endpoint is available."""
+        """Test if an endpoint is available with proper error handling."""
         try:
+            # Validate endpoint is localhost for security
+            if not ("localhost" in endpoint or "127.0.0.1" in endpoint or "api.openai.com" in endpoint):
+                logger.warning(f"Rejecting non-localhost endpoint for security: {endpoint[:20]}...")
+                return False
+            
             if "/api" in endpoint:  # Ollama
                 response = requests.get(f"{endpoint}/tags", timeout=2)
             else:  # OpenAI-compatible (vLLM)
                 response = requests.get(f"{endpoint}/models", timeout=2)
             return response.status_code == 200
-        except:
+        except requests.exceptions.RequestException as e:
+            # Log specific exception type without exposing endpoint details
+            logger.debug(f"Endpoint test failed: {type(e).__name__}")
+            return False
+        except Exception as e:
+            logger.error(f"Unexpected error testing endpoint: {type(e).__name__}")
             return False
 
     def _get_available_endpoint(self) -> Optional[str]:
@@ -60,7 +74,7 @@ class LLMClient:
 
         endpoint = self._get_available_endpoint()
         if not endpoint:
-            print("⚠️ No LLM endpoints available")
+            logger.warning("No LLM endpoints available")
             return False
 
         self.current_endpoint = endpoint
@@ -73,9 +87,11 @@ class LLMClient:
                     models = response.json().get("models", [])
                     if models:
                         self.model_name = models[0]["name"]
-                        print(f"🤖 Connected to Ollama: {self.model_name}")
-            except:
-                pass
+                        logger.info(f"Connected to Ollama: {self.model_name}")
+            except requests.exceptions.RequestException as e:
+                logger.debug(f"Model detection failed: {type(e).__name__}")
+            except Exception as e:
+                logger.error(f"Unexpected error during model detection: {type(e).__name__}")
         else:  # OpenAI-compatible (vLLM)
             try:
                 response = requests.get(f"{endpoint}/models", timeout=5)
@@ -83,9 +99,11 @@ class LLMClient:
                     models = response.json().get("data", [])
                     if models:
                         self.model_name = models[0]["id"]
-                        print(f"🤖 Connected to vLLM: {self.model_name}")
-            except:
-                pass
+                        logger.info(f"Connected to vLLM: {self.model_name}")
+            except requests.exceptions.RequestException as e:
+                logger.debug(f"Model detection failed: {type(e).__name__}")
+            except Exception as e:
+                logger.error(f"Unexpected error during model detection: {type(e).__name__}")
 
         self._initialized = True
         return True
@@ -160,16 +178,28 @@ class LLMClient:
         }
 
         headers = {"Content-Type": "application/json"}
+        
+        # Validate authentication for remote endpoints
+        is_remote = not ("localhost" in self.current_endpoint or "127.0.0.1" in self.current_endpoint)
+        if is_remote and not self.config.get("api_key"):
+            error_msg = "API key required for remote endpoints"
+            logger.error(error_msg)
+            raise ValueError(error_msg)
+        
         if self.config.get("api_key"):
             headers["Authorization"] = f"Bearer {self.config['api_key']}"
 
-        response = requests.post(
-            f"{self.current_endpoint}/chat/completions",
-            json=data,
-            headers=headers,
-            timeout=30
-        )
-        response.raise_for_status()
+        try:
+            response = requests.post(
+                f"{self.current_endpoint}/chat/completions",
+                json=data,
+                headers=headers,
+                timeout=30
+            )
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            logger.error(f"LLM request failed: {type(e).__name__}")
+            raise
 
         result = response.json()
         return result["choices"][0]["message"]

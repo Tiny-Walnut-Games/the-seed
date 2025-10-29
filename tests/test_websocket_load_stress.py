@@ -268,7 +268,8 @@ async def _test_concurrent_clients(num_clients: int, num_events: int):
         if latencies:
             avg_latency = statistics.mean(latencies)
             p50_latency = statistics.median(latencies)
-            p99_latency = sorted(latencies)[int(len(latencies) * 0.99)]
+            p99_index = min(int(len(latencies) * 0.99), len(latencies) - 1)
+            p99_latency = sorted(latencies)[p99_index]
             max_latency = max(latencies)
         else:
             avg_latency = p50_latency = p99_latency = max_latency = 0
