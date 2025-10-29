@@ -45,7 +45,7 @@ jobs:
       - name: TLDL Documentation Validation
         run: |
           echo "📚 Validating TLDL documentation quality..."
-          python src/SymbolicLinter/validate_docs.py --tldl-path TLDL/entries/ --verbose
+          python "packages/com.twg.the-seed/The Living Dev Agent/src/SymbolicLinter/validate_docs.py" --tldl-path "packages/com.twg.the-seed/The Living Dev Agent/TLDL/entries/" --verbose
 
       - name: Documentation Structure Validation
         run: |

@@ -71,7 +71,7 @@ jobs:
         run: |
           echo "Generating manifest for issue #${{ needs.detect-gu-pot-stage.outputs.issue-number }}..."
           
-          python scripts/alchemist-faculty/generate_manifest.py \
+          python "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/generate_manifest.py" \
             --issue-number ${{ needs.detect-gu-pot-stage.outputs.issue-number }} \
             --repo ${{ github.repository }} \
             --output gu_pot/issue-${{ needs.detect-gu-pot-stage.outputs.issue-number }}/ \
@@ -320,7 +320,7 @@ jobs:
               
               You can manually generate the manifest using:
               \`\`\`bash
-              python scripts/alchemist-faculty/generate_manifest.py --issue-number ${issueNumber} --repo ${{ github.repository }}
+              python "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/generate_manifest.py" --issue-number ${issueNumber} --repo ${{ github.repository }}
               \`\`\`
               
               *Automated by Alchemist Faculty v0.1.0*`

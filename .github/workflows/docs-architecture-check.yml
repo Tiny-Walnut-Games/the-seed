@@ -26,7 +26,7 @@ jobs:
           
       - name: Run Directory Structure Lint
         run: |
-          python3 scripts/directory_lint.py
+          python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/directory_lint.py"
           
       - name: Architecture Compliance Check
         if: failure()
@@ -41,5 +41,5 @@ jobs:
           echo "🔧 To fix:"
           echo "  • Move TLDL entries: mv docs/TLDL-*.md TLDL/entries/"
           echo "  • Move templates: mv *.md templates/tldl/"
-          echo "  • Re-run: python3 scripts/directory_lint.py"
+          echo "  • Re-run: python3 \"packages/com.twg.the-seed/The Living Dev Agent/scripts/directory_lint.py\""
           exit 1

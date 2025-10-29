@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STAT7 Visualizer</title>
+  <style>
+    html, body { margin:0; padding:0; height:100%; background:#0b0e13; color:#cfd8dc; font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+    #app { position:relative; width:100%; height:100%; overflow:hidden; }
+    #hud { position:absolute; top:12px; left:12px; padding:10px 12px; background:rgba(10,14,19,0.7); border:1px solid rgba(255,255,255,0.08); border-radius:8px; backdrop-filter: blur(8px); }
+    #hud h1 { margin:0 0 6px 0; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:#e3f2fd; }
+    #hud .row { display:flex; gap:10px; align-items:center; margin:4px 0; }
+    #hud .pill { padding:2px 8px; border-radius:999px; font-size:12px; line-height:18px; border:1px solid rgba(255,255,255,0.08); }
+    #hud .ok { color:#a5d6a7; background:rgba(76,175,80,0.12); }
+    #hud .warn { color:#ffe082; background:rgba(255,193,7,0.12); }
+    #hud .err { color:#ef9a9a; background:rgba(244,67,54,0.12); }
+    #footer { position:absolute; bottom:10px; left:12px; right:12px; display:flex; justify-content:space-between; align-items:center; color:#90a4ae; font-size:12px; opacity:0.9; }
+    #controls { position:absolute; top:12px; right:12px; padding:10px 12px; background:rgba(10,14,19,0.7); border:1px solid rgba(255,255,255,0.08); border-radius:8px; display:flex; gap:8px; flex-wrap:wrap; }
+    #controls label { font-size:12px; opacity:0.9; }
+    #controls input[type="checkbox"] { transform: translateY(1px); }
+    a, a:visited { color:#80cbc4; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="hud">
+    <h1>STAT7 Visualizer</h1>
+    <div class="row">
+      <div id="conn-state" class="pill warn">Connecting...</div>
+      <div id="fps" class="pill">FPS: --</div>
+      <div id="throughput" class="pill">Msgs/s: --</div>
+      <div id="latency" class="pill">Latency: -- ms</div>
+    </div>
+    <div class="row" id="legend"></div>
+  </div>
+  <div id="controls">
+    <label><input type="checkbox" id="toggleParticles" checked /> Messages</label>
+    <label><input type="checkbox" id="toggleLabels" checked /> Labels</label>
+    <label><input type="checkbox" id="toggleAutoLayout" checked /> Auto Layout</label>
+    <label><input type="checkbox" id="toggleMock" /> Mock Mode</label>
+  </div>
+  <div id="footer">
+    <div>Services: API Gateway, Event Store, Tick Engine, Governance</div>
+    <div>Press H to toggle HUD · WASD/Drag to navigate</div>
+  </div>
+
+  <!-- Three.js via CDN (locked minor version) - MUST LOAD BEFORE modules -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script>
+    // Provide a minimal OrbitControls fallback for testing environments
+    // (The CDN version may fail in headless browser environments)
+    (function() {
+      if (!window.THREE) return;
+      
+      // Simple orbit controls implementation
+      class SimpleOrbitControls {
+        constructor(camera, domElement) {
+          this.camera = camera;
+          this.domElement = domElement;
+          this.enableDamping = true;
+          this.dampingFactor = 0.05;
+          this.zoomSpeed = 1.0;
+          this.autoRotate = false;
+          this.autoRotateSpeed = 0;
+        }
+        update() {
+          // Minimal implementation - just update damping
+          if (this.enableDamping) {
+            // Damping logic here if needed
+          }
+        }
+        dispose() {}
+      }
+      
+      window.THREE.OrbitControls = SimpleOrbitControls;
+    })();
+  </script>
+  <script>
+    // Try to load the full OrbitControls from CDN as a fallback
+    (function() {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js';
+      script.onerror = () => {
+        // Falls back to our simple implementation already set up
+        console.log('Using fallback OrbitControls implementation');
+      };
+      script.onload = () => {
+        if (window.OrbitControls) {
+          window.THREE.OrbitControls = window.OrbitControls;
+        }
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
+
+  <script type="module">
+    import { bootstrap } from './js/stat7-core.js';
+    import { Config } from './js/stat7-config.js';
+
+    // Wait for OrbitControls to be available
+    async function waitForOrbitControls(maxWait = 10000) {
+      const start = Date.now();
+      while (!window.THREE?.OrbitControls && Date.now() - start < maxWait) {
+        await new Promise(r => setTimeout(r, 50));
+      }
+      if (!window.THREE?.OrbitControls) {
+        console.error('OrbitControls failed to load');
+      }
+    }
+
+    await waitForOrbitControls();
+
+    // Expose for testing
+    window.Config = Config;
+
+    const appEl = document.getElementById('app');
+    const ui = {
+      conn: document.getElementById('conn-state'),
+      fps: document.getElementById('fps'),
+      tp: document.getElementById('throughput'),
+      lat: document.getElementById('latency'),
+      legend: document.getElementById('legend'),
+      toggles: {
+        particles: document.getElementById('toggleParticles'),
+        labels: document.getElementById('toggleLabels'),
+        autoLayout: document.getElementById('toggleAutoLayout'),
+        mock: document.getElementById('toggleMock'),
+      }
+    };
+
+    const app = await bootstrap(appEl, ui, Config);
+
+    // Expose for testing
+    window._stat7App = app;
+
+    // Wire basic controls
+    ui.toggles.particles.addEventListener('change', e => app.setParticlesEnabled(e.target.checked));
+    ui.toggles.labels.addEventListener('change', e => app.setLabelsEnabled(e.target.checked));
+    ui.toggles.autoLayout.addEventListener('change', e => app.setAutoLayout(e.target.checked));
+    ui.toggles.mock.addEventListener('change', e => app.setMockMode(e.target.checked));
+
+    // keyboard shortcuts
+    window.addEventListener('keydown', (ev) => {
+      if (ev.key === 'h' || ev.key === 'H') app.toggleHUD();
+      if (ev.key === 'p' || ev.key === 'P') app.pauseResume();
+    });
+  </script>
+</body>
+</html>

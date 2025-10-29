@@ -126,7 +126,7 @@ jobs:
           echo ""
           
           # Execute overlord evaluation
-          node scripts/cid-faculty/overlord-sentinel.js evaluate \
+          node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/overlord-sentinel.js" evaluate \
             --actor="${{ github.event.inputs.actor }}" \
             --repo="${{ github.event.inputs.repository }}" \
             --workflow="${{ github.event.inputs.workflow_name }}" \
@@ -151,21 +151,21 @@ jobs:
           # Parse consent commands
           if echo "$COMMENT_BODY" | grep -q "grant consent"; then
             echo "✅ Processing consent grant request..."
-            node scripts/cid-faculty/overlord-sentinel.js grant-consent --user="$ACTOR"
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/overlord-sentinel.js" grant-consent --user="$ACTOR"
             
           elif echo "$COMMENT_BODY" | grep -q "revoke consent"; then
             echo "🚨 Processing consent revoke request..."
-            node scripts/cid-faculty/overlord-sentinel.js revoke-consent --user="$ACTOR"
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/overlord-sentinel.js" revoke-consent --user="$ACTOR"
             
           elif echo "$COMMENT_BODY" | grep -q "overlord report"; then
             echo "📋 Generating overlord status report..."
-            node scripts/cid-faculty/overlord-sentinel.js report
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/overlord-sentinel.js" report
             
           elif echo "$COMMENT_BODY" | grep -q "approve workflow"; then
             echo "🎯 Processing workflow approval request from comment..."
             # Extract workflow name from comment if possible
             WORKFLOW_NAME=$(echo "$COMMENT_BODY" | sed -n 's/.*approve workflow[[:space:]]*\([^[:space:]]*\).*/\1/p' || echo "Unknown Workflow")
-            node scripts/cid-faculty/overlord-sentinel.js evaluate \
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/overlord-sentinel.js" evaluate \
               --actor="$ACTOR" \
               --repo="${{ github.repository }}" \
               --workflow="$WORKFLOW_NAME" \
@@ -196,7 +196,7 @@ jobs:
           echo "🎯 Processing approval for: $ACTOR/$REPO/$WORKFLOW ($BRANCH)"
           
           # Execute overlord evaluation
-          node scripts/cid-faculty/overlord-sentinel.js evaluate \
+          node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/overlord-sentinel.js" evaluate \
             --actor="$ACTOR" \
             --repo="$REPO" \
             --workflow="$WORKFLOW" \
@@ -210,7 +210,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "📊 Generating comprehensive overlord status report..."
-          node scripts/cid-faculty/overlord-sentinel.js report > overlord-report.json
+          node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/overlord-sentinel.js" report > overlord-report.json
           
           echo "📋 OVERLORD STATUS SUMMARY:"
           echo "=========================="
@@ -285,10 +285,10 @@ jobs:
           EOF
           
           # Run advisor analysis if available
-          if [ -f "scripts/cid-faculty/advisor.js" ]; then
+          if [ -f "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/advisor.js" ]; then
             echo "📊 Running Advisor analysis on Overlord authority patterns..."
             # Note: This would be enhanced to pass actual overlord metrics
-            node scripts/cid-faculty/advisor.js --context=advisor-context.json --focus=security
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/advisor.js" --context=advisor-context.json --focus=security
           else
             echo "ℹ️ Advisor consultation system not fully integrated yet"
           fi

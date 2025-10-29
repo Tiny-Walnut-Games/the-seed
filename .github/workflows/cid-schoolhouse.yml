@@ -41,33 +41,33 @@ jobs:
 
       - name: Initialize Schoolhouse
         run: |
-          mkdir -p scripts/cid-schoolhouse out/cid
+          mkdir -p "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse" out/cid
           echo '{}' > out/cid/context.json
 
       - name: Build project syllabus
-        run: node scripts/cid-schoolhouse/build-syllabus.js "${{ github.event.issue.number }}" || true
+        run: node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/build-syllabus.js" "${{ github.event.issue.number }}" || true
 
       - name: Learn repository (context pack)
-        run: node scripts/cid-schoolhouse/learn.js --out=out/cid/context.json
+        run: node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/learn.js" --out=out/cid/context.json
 
       - name: Critique and proposals
-        run: node scripts/cid-schoolhouse/critique.js --context=out/cid/context.json --out=out/cid/report.json
+        run: node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/critique.js" --context=out/cid/context.json --out=out/cid/report.json
 
       - name: Post comment with findings
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/cid-schoolhouse/post-comment.js --issue=${{ github.event.issue.number }} --report=out/cid/report.json
+        run: node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/post-comment.js" --issue=${{ github.event.issue.number }} --report=out/cid/report.json
 
       - name: Generate TLDL entry
-        run: node scripts/cid-schoolhouse/tldl.js --report=out/cid/report.json --out=/tmp/scroll-entry.json
+        run: node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/tldl.js" --report=out/cid/report.json --out=/tmp/scroll-entry.json
 
       - name: Write TLDL via Chronicle Keeper
-        run: ./scripts/chronicle-keeper/tldl-writer.sh write /tmp/scroll-entry.json --verbose --force
+        run: "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/tldl-writer.sh" write /tmp/scroll-entry.json --verbose --force
 
       - name: Stamp CID badges on issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/cid-schoolhouse/badges.js --issue=${{ github.event.issue.number }} --report=out/cid/report.json
+        run: node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/badges.js" --issue=${{ github.event.issue.number }} --report=out/cid/report.json
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

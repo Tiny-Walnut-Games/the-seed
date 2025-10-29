@@ -1,31 +1,15 @@
-# Living Dev Agent Template Requirements
-# Jerry's legendary Python dependencies for ultimate development power
+# Scripts Directory Requirements
+# Install with: pip install -r requirements.txt
 
-# Core dependencies for validation and linting
-PyYAML>=6.0
-argparse>=1.4.0
+# File system monitoring (required for watch_index.py)
+watchdog>=2.1.0
 
-# Optional but recommended for enhanced functionality
-# (These are typically pre-installed but listed for completeness)
+# Documentation validation (required for validate_docs.py)
+pyyaml>=6.0
 
-# For improved YAML processing
-ruamel.yaml>=0.17.0
+# Note: ingest.py uses standard library only (no external dependencies)
 
-# For advanced file operations and path handling
-pathlib2>=2.3.0; python_version<"3.4"
-
-# For colored terminal output (used in validation scripts)
-colorama>=0.4.0
-
-# For JSON schema validation (if needed for configuration files)
-jsonschema>=4.0.0
-
-# For markdown processing and validation
-markdown>=3.0.0
-
-# For regular expression utilities
-regex>=2022.0.0
-
-# Note: Most of these dependencies are optional and the template will work
-# with just PyYAML and argparse, which are typically pre-installed.
-# Install failures due to network timeouts are acceptable and expected.
+# GPU acceleration dependencies are maintained separately in:
+#   ../requirements-gpu.txt
+# Visualization/WebSocket dependencies are maintained separately in:
+#   ../web/requirements-visualization.txt

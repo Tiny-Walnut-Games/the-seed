@@ -6,7 +6,7 @@ on:
       - 'gu_pot/**/manifest*.yaml'
       - 'gu_pot/**/manifest*.json'
       - 'assets/experiments/**/*.yaml'
-      - 'scripts/alchemist-faculty/**'
+      - 'packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/**'
       - 'schemas/alchemist/**'
       - 'engine/experiment_harness.py'
   pull_request:
@@ -14,7 +14,7 @@ on:
       - 'gu_pot/**/manifest*.yaml'
       - 'gu_pot/**/manifest*.json'
       - 'assets/experiments/**/*.yaml'
-      - 'scripts/alchemist-faculty/**'
+      - 'packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/**'
       - 'schemas/alchemist/**'
       - 'engine/experiment_harness.py'
   schedule:
@@ -142,7 +142,7 @@ jobs:
           for i in $(seq 1 $iterations); do
             echo "Generation iteration $i..."
             
-            python scripts/alchemist-faculty/generate_manifest.py \
+            python "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/generate_manifest.py" \
               --issue-number "$issue_number" \
               --repo ${{ github.repository }} \
               --output "$temp_dir/iteration_$i/" \
@@ -164,7 +164,7 @@ jobs:
             compare_manifest="$temp_dir/iteration_$i/manifest_v1.yaml"
             
             # Compare excluding timestamp fields
-            if ! python scripts/alchemist-faculty/compare_manifests.py \
+            if ! python "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/compare_manifests.py" \
                 --reference "$reference_manifest" \
                 --compare "$compare_manifest" \
                 --ignore-timestamps; then
@@ -203,7 +203,7 @@ jobs:
           for i in $(seq 1 $iterations); do
             echo "Classification iteration $i..."
             
-            python scripts/alchemist-faculty/claims_classifier.py \
+            python "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/claims_classifier.py" \
               --claims-dir "$claims_dir" \
               --output-dir "$temp_dir/iteration_$i" \
               --reorganize || {
@@ -218,7 +218,7 @@ jobs:
           deterministic=true
           
           for i in $(seq 2 $iterations); do
-            if ! python scripts/alchemist-faculty/compare_classifications.py \
+            if ! python "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/compare_classifications.py" \
                 --reference "$temp_dir/iteration_1" \
                 --compare "$temp_dir/iteration_$i"; then
               echo "❌ Claims classification is not deterministic (iteration $i differs)"
@@ -260,7 +260,7 @@ jobs:
             # Run validation multiple times and capture outputs
             outputs=()
             for i in $(seq 1 $iterations); do
-              output=$(python scripts/alchemist-faculty/validate_baseline_set.py \
+              output=$(python "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/validate_baseline_set.py" \
                 --file "$baseline_file" 2>&1)
               outputs+=("$output")
             done
@@ -345,9 +345,9 @@ jobs:
         
       - name: Create Manifest Comparison Script
         run: |
-          mkdir -p scripts/alchemist-faculty/helpers
+          mkdir -p "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/helpers"
           
-          cat > scripts/alchemist-faculty/compare_manifests.py << 'EOF'
+          cat > "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/compare_manifests.py" << 'EOF'
           #!/usr/bin/env python3
           """
           Helper script to compare Alchemist manifests for determinism testing
@@ -416,11 +416,11 @@ jobs:
               sys.exit(main())
           EOF
           
-          chmod +x scripts/alchemist-faculty/compare_manifests.py
+          chmod +x "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/compare_manifests.py"
           
       - name: Create Classification Comparison Script
         run: |
-          cat > scripts/alchemist-faculty/compare_classifications.py << 'EOF'
+          cat > "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/compare_classifications.py" << 'EOF'
           #!/usr/bin/env python3
           """
           Helper script to compare claims classification results for determinism testing
@@ -490,7 +490,7 @@ jobs:
               sys.exit(main())
           EOF
           
-          chmod +x scripts/alchemist-faculty/compare_classifications.py
+          chmod +x "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/compare_classifications.py"
 
   summary-report:
     name: 'Generate Summary Report'

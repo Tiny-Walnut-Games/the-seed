@@ -1,0 +1,94 @@
+overlord:
+  identity:
+    name: LDA Overlord/Sentinel
+    role: Internal Workflow Guardian
+    authority_level: overlord
+    version: 1.0.0
+  security:
+    require_user_consent: true
+    max_daily_approvals: 50
+    sensitive_workflow_patterns:
+      - '*deploy*'
+      - '*prod*'
+      - '*release*'
+      - '*publish*'
+      - '*secret*'
+    validate_actor_identity: true
+    validate_repo_origin: true
+    validate_branch_trust: true
+  trusted_actors:
+    users:
+      # Add trusted GitHub users here
+      - your-github-username
+    service_accounts:
+      - github-actions[bot]
+      - dependabot[bot]
+    organizations: []
+  trusted_sources:
+    repositories:
+      # Add trusted repositories here
+      - owner/repository
+    trusted_branches:
+      - main
+      - develop
+      - copilot/*
+      - fix/*
+      - feature/*
+    untrusted_branches:
+      - external/*
+      - fork/*
+      - untrusted/*
+  workflow_scopes:
+    auto_approvable:
+      - Living Dev Agent CI
+      - Chronicle Keeper - TLDL Scribe System
+      - CID Faculty - Wisdom Consultation
+      - CID Schoolhouse - Educational Validation
+      - Validate Repository Structure
+    manual_approval_required:
+      - '*deploy*'
+      - '*release*'
+      - '*publish*'
+      - '*security*'
+  audit:
+    enabled: true
+    retention_days: 90
+    log_decision_factors: true
+    destinations:
+      - github_comments
+      - workflow_logs
+  integrations:
+    cid_faculty:
+      enabled: true
+      notify_advisor: true
+      notify_oracle: false
+    chronicle_keeper:
+      enabled: true
+      log_approvals: true
+      create_tldl_on_significant: true
+    guardian:
+      enabled: true
+      validate_against_purity_rules: true
+      escalate_violations: true
+  emergency:
+    emergency_stop: false
+    manual_override_enabled: false
+    override_require_justification: true
+    emergency_contacts:
+      - '@admin-user'
+
+# ============================================================================
+# 🔐 USER CONSENT SECTION - AUTOMATICALLY MANAGED
+# ============================================================================
+# DO NOT COMMIT THIS FILE WITH USER CONSENT DATA
+# This section is managed programmatically and should never be in version control
+# User consent tracking is persisted separately from this configuration template
+#
+# When initializing overlord-sentinel.yml in production:
+# 1. Copy this template to overlord-sentinel.yml
+# 2. Update trusted_actors, trusted_sources, and repository settings
+# 3. DO NOT add user_consent section - it will be generated programmatically
+# 4. Set overlord-sentinel.yml in .gitignore to prevent accidental commits
+# ============================================================================
+
+# user_consent: {}  # NEVER ADD USER CONSENT HERE IN VERSION CONTROL

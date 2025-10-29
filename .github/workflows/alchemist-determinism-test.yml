@@ -8,14 +8,14 @@ on:
     paths:
       - 'assets/experiments/**/*.yaml'
       - 'gu_pot/**/*.yaml'
-      - 'scripts/alchemist-faculty/**'
+      - 'packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/**'
       - 'engine/experiment_harness.py'
   pull_request:
     branches: [main]
     paths:
       - 'assets/experiments/**/*.yaml'
       - 'gu_pot/**/*.yaml'
-      - 'scripts/alchemist-faculty/**'
+      - 'packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/**'
       - 'engine/experiment_harness.py'
   schedule:
     # Run determinism tests weekly on Sundays at 6 AM UTC
@@ -63,19 +63,19 @@ jobs:
 
       - name: Make scripts executable
         run: |
-          chmod +x scripts/alchemist-faculty/determinism_smoke_test.py
+          chmod +x "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/determinism_smoke_test.py"
           chmod +x scripts/*.sh
 
       - name: Create test manifest
         run: |
           echo "🧪 Creating test manifest for determinism validation..."
-          python3 scripts/alchemist-faculty/determinism_smoke_test.py create-test-manifest \
+          python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/determinism_smoke_test.py" create-test-manifest \
             --output test_determinism_manifest.yaml
 
       - name: Test determinism script functionality
         run: |
           echo "🔍 Testing determinism script with synthetic manifest..."
-          python3 scripts/alchemist-faculty/determinism_smoke_test.py test \
+          python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/determinism_smoke_test.py" test \
             --manifest test_determinism_manifest.yaml \
             --run-count ${{ github.event.inputs.run_count || '3' }} \
             --variance-threshold ${{ github.event.inputs.variance_threshold || '0.01' }}
@@ -86,7 +86,7 @@ jobs:
           echo "📋 Discovering experiment manifests..."
           
           # Find experiment manifests in known locations
-          manifests=$(python3 scripts/alchemist-faculty/determinism_smoke_test.py find-manifests \
+          manifests=$(python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/determinism_smoke_test.py" find-manifests \
             --search-path . \
             --pattern "*.yaml" | grep -E "^\s*•" | sed 's/^\s*•\s*//' || echo "")
           
@@ -113,7 +113,7 @@ jobs:
           # Run determinism test suite on found manifests
           set +e  # Don't exit on test failures, we want to capture results
           
-          python3 scripts/alchemist-faculty/determinism_smoke_test.py suite \
+          python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/determinism_smoke_test.py" suite \
             --search-path . \
             --pattern "*.yaml" \
             --run-count ${{ github.event.inputs.run_count || '3' }} \

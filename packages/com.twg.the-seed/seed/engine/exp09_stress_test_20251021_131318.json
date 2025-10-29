@@ -1,0 +1,32 @@
+{
+  "start_time": "2025-10-21T13:13:18.931213",
+  "scenarios": [
+    {
+      "scenario": 0,
+      "queries": 10,
+      "successful": 10,
+      "failed": 0,
+      "avg_query_time_ms": 0.4287242889404297,
+      "batch_coherence": 0.0
+    },
+    {
+      "scenario": 1,
+      "queries": 10,
+      "successful": 10,
+      "failed": 0,
+      "avg_query_time_ms": 0.01647472381591797,
+      "batch_coherence": 0.0
+    },
+    {
+      "scenario": 2,
+      "queries": 10,
+      "successful": 10,
+      "failed": 0,
+      "avg_query_time_ms": 0.010704994201660156,
+      "batch_coherence": 0.0
+    }
+  ],
+  "total_coherence_score": 0.0,
+  "average_coherence": 0.0,
+  "end_time": "2025-10-21T13:13:19.090625"
+}
