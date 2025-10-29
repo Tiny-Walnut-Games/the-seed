@@ -3,7 +3,6 @@ from typing import List, Dict, Any, Optional
 import requests
 import json
 import time
-import logging
 from .audio import TTSProvider, TTSProviderFactory, VoiceConfig, VoiceCharacteristic, TTSRequest
 
 # Configure secure logging
@@ -40,13 +39,8 @@ class LLMClient:
             ] + ["http://localhost:11434/api"]
 
     def _test_endpoint(self, endpoint: str) -> bool:
-        """Test if an endpoint is available with proper error handling."""
+        """Test if an endpoint is available."""
         try:
-            # Validate endpoint is localhost for security
-            if not ("localhost" in endpoint or "127.0.0.1" in endpoint or "api.openai.com" in endpoint):
-                logger.warning(f"Rejecting non-localhost endpoint for security: {endpoint[:20]}...")
-                return False
-            
             if "/api" in endpoint:  # Ollama
                 response = requests.get(f"{endpoint}/tags", timeout=2)
             else:  # OpenAI-compatible (vLLM)
@@ -178,14 +172,14 @@ class LLMClient:
         }
 
         headers = {"Content-Type": "application/json"}
-        
+
         # Validate authentication for remote endpoints
         is_remote = not ("localhost" in self.current_endpoint or "127.0.0.1" in self.current_endpoint)
         if is_remote and not self.config.get("api_key"):
             error_msg = "API key required for remote endpoints"
             logger.error(error_msg)
             raise ValueError(error_msg)
-        
+
         if self.config.get("api_key"):
             headers["Authorization"] = f"Bearer {self.config['api_key']}"
 
