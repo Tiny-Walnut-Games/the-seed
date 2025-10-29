@@ -84,12 +84,12 @@ jobs:
           
           # Apply shield indicators if issue number provided
           if [ -n "${{ github.event.inputs.issue_number }}" ]; then
-            node scripts/cid-schoolhouse/shield-indicators.js \
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/shield-indicators.js" \
               --issue=${{ github.event.inputs.issue_number }} \
               --workflow-context=workflow-context.json
           else
             echo "ℹ️ No issue number provided, shield analysis only:"
-            node scripts/cid-schoolhouse/shield-indicators.js \
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/shield-indicators.js" \
               --issue=0 \
               --workflow-context=workflow-context.json || true
           fi
@@ -142,7 +142,7 @@ jobs:
           EOF
           
           if [ -n "${{ github.event.inputs.issue_number }}" ]; then
-            node scripts/cid-schoolhouse/shield-indicators.js \
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/shield-indicators.js" \
               --issue=${{ github.event.inputs.issue_number }} \
               --workflow-context=workflow-context.json
           fi
@@ -196,7 +196,7 @@ jobs:
           EOF
           
           if [ -n "${{ github.event.inputs.issue_number }}" ]; then
-            node scripts/cid-schoolhouse/shield-indicators.js \
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/shield-indicators.js" \
               --issue=${{ github.event.inputs.issue_number }} \
               --workflow-context=workflow-context.json
           fi

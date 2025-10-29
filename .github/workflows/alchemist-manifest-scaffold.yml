@@ -56,7 +56,7 @@ jobs:
           OUTPUT_DIR="experiments/gu_pot/issue-${{ github.event.issue.number }}"
 
           # Generate manifest using the existing Python script
-          python3 scripts/alchemist-faculty/generate_manifest.py \
+          python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/generate_manifest.py" \
             --issue-url "${{ github.event.issue.html_url }}" \
             --output "$OUTPUT_DIR" \
             --format yaml \
@@ -147,7 +147,7 @@ jobs:
             **Manual Generation:**
             You can manually generate the manifest using:
             \`\`\`bash
-            python3 scripts/alchemist-faculty/generate_manifest.py \\
+            python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/alchemist-faculty/generate_manifest.py" \\
               --issue-url ${{ github.event.issue.html_url }} \\
               --output experiments/gu_pot/issue-${{ github.event.issue.number }} \\
               --format yaml

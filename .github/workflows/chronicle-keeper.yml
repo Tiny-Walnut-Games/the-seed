@@ -109,7 +109,7 @@ jobs:
           EVENT_NAME="${{ github.event_name }}"
           
           # Check cooldown to prevent loops
-          cd scripts/chronicle-keeper
+          cd "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper"
           
           COOLDOWN_EXIT_CODE=0
           node cooldown-check.js --issue="$ISSUE_NUMBER" --event="$EVENT_NAME" --comment="$COMMENT_BODY" || COOLDOWN_EXIT_CODE=$?
@@ -313,7 +313,7 @@ jobs:
           # Test the scribe parser with actual content
           echo "🔍 Running Chronicle Keeper parser..."
           
-          cd scripts/chronicle-keeper
+          cd "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper"
           
           # Create a test script to use our JSON content
           cat > test-parse.js <<'EOF'
@@ -420,7 +420,7 @@ jobs:
         run: |
           echo "📜 Generating TLDL scroll..."
           
-          cd scripts/chronicle-keeper
+          cd "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper"
           
           # Create scroll generation script
           cat > generate-scroll.js <<'EOF'
@@ -460,7 +460,7 @@ jobs:
         run: |
           echo "🧠📜 Archive Wall detected! Generating Capsule Scroll..."
           
-          cd scripts/chronicle-keeper
+          cd "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper"
           
           # Create capsule scroll generation script
           cat > generate-capsule-scroll.js <<'EOF'
@@ -533,10 +533,10 @@ jobs:
           echo "✍️ Writing TLDL entry to chronicle..."
           
           # Use the TLDL writer to save the entry
-          ./scripts/chronicle-keeper/tldl-writer.sh write /tmp/scroll-entry.json --verbose
+          "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/tldl-writer.sh" write /tmp/scroll-entry.json --verbose
           
           echo "📊 Chronicle statistics:"
-          ./scripts/chronicle-keeper/tldl-writer.sh stats || true
+          "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/tldl-writer.sh" stats || true
 
       # 🧠 Daily Ledger Generator — Keeper‑plus Ritual
       # Generates a new ledger from /docs/daily-ledger/_TEMPLATE.md
@@ -585,8 +585,8 @@ jobs:
             echo "🎯 Final arc name: $ARC_NAME"
             
             # Generate today's ledger entry (will check if it already exists)
-            chmod +x scripts/chronicle-keeper/daily-ledger-generator.sh
-            if scripts/chronicle-keeper/daily-ledger-generator.sh today "$ARC_NAME" --verbose; then
+            chmod +x "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/daily-ledger-generator.sh"
+            if "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/daily-ledger-generator.sh" today "$ARC_NAME" --verbose; then
               echo "ledger-generated=true" >> $GITHUB_OUTPUT
               log_success "Daily Ledger entry generated successfully"
             else
@@ -627,21 +627,21 @@ jobs:
           echo "🎯 Using arc name: $ARC_NAME"
           
           # Generate today's ledger entry (will use --force to ensure creation for scheduled runs)
-          chmod +x scripts/chronicle-keeper/daily-ledger-generator.sh
-          if scripts/chronicle-keeper/daily-ledger-generator.sh today "$ARC_NAME" --verbose || \
-             scripts/chronicle-keeper/daily-ledger-generator.sh today "$ARC_NAME" --force --verbose; then
+          chmod +x "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/daily-ledger-generator.sh"
+          if "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/daily-ledger-generator.sh" today "$ARC_NAME" --verbose || \
+             "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/daily-ledger-generator.sh" today "$ARC_NAME" --force --verbose; then
             echo "scheduled-ledger-generated=true" >> $GITHUB_OUTPUT
             echo "✅ Scheduled Daily Ledger entry generated or updated"
           else
             echo "scheduled-ledger-generated=false" >> $GITHUB_OUTPUT
-          OUTPUT=$(scripts/chronicle-keeper/daily-ledger-generator.sh today "$ARC_NAME" --verbose 2>&1)
+          OUTPUT=$("packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/daily-ledger-generator.sh" today "$ARC_NAME" --verbose 2>&1)
           EXIT_CODE=$?
           if [ $EXIT_CODE -eq 0 ]; then
             echo "scheduled-ledger-generated=true" >> $GITHUB_OUTPUT
             echo "✅ Scheduled Daily Ledger entry generated or updated"
           elif echo "$OUTPUT" | grep -qi "already exists"; then
             # Only retry with --force if the error is about file existence
-            if scripts/chronicle-keeper/daily-ledger-generator.sh today "$ARC_NAME" --force --verbose; then
+            if "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/daily-ledger-generator.sh" today "$ARC_NAME" --force --verbose; then
               echo "scheduled-ledger-generated=true" >> $GITHUB_OUTPUT
               echo "✅ Scheduled Daily Ledger entry generated or updated (forced)"
             else
@@ -660,7 +660,7 @@ jobs:
           echo "🛡️ Validating TLDL chronicle..."
           
           # Run TLDL validation
-          ./scripts/chronicle-keeper/tldl-writer.sh validate --verbose || echo "⚠️ TLDL validation issues detected"
+          "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/tldl-writer.sh" validate --verbose || echo "⚠️ TLDL validation issues detected"
           
           # Run existing validation if available
           if [[ -f src/SymbolicLinter/validate_docs.py ]]; then
@@ -668,9 +668,9 @@ jobs:
           fi
           
           # 🔒 Validate MCP configuration for security compliance (addresses issue #50)
-          if [[ -f scripts/validate_mcp_config.py ]]; then
+          if [[ -f "packages/com.twg.the-seed/The Living Dev Agent/scripts/validate_mcp_config.py" ]]; then
             echo "🔒 Validating MCP security configuration..."
-            python3 scripts/validate_mcp_config.py || echo "⚠️ MCP configuration issues detected"
+            python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/validate_mcp_config.py" || echo "⚠️ MCP configuration issues detected"
           fi
 
       - name: 💸 Faculty Standards Auto-Refactoring Analysis
@@ -686,13 +686,13 @@ jobs:
             echo "📋 Analyzing: $LATEST_TLDL"
             
             # Run Faculty Standards analysis
-            if [[ -f scripts/chronicle-keeper/auto-refactoring.py ]]; then
+            if [[ -f "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/auto-refactoring.py" ]]; then
               echo "🔍 Running Faculty Standards analysis..."
               
               # Use Chronicle Keeper as the developer for auto-generated content
               ANALYSIS_OUTPUT="/tmp/refactoring-analysis.json"
               
-              python3 scripts/chronicle-keeper/auto-refactoring.py \
+              python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/auto-refactoring.py" \
                 --analyze "$LATEST_TLDL" \
                 --developer "chronicle-keeper" \
                 --output "$ANALYSIS_OUTPUT" || echo "⚠️ Faculty analysis encountered issues"
@@ -730,17 +730,17 @@ jobs:
                   if [[ "$AFFORDABLE" == "true" && $TOTAL_COST -le 100 ]]; then
                     echo "💡 **Recommendation**: Low-cost fixes detected! Consider automatic refactoring:" >> /tmp/refactoring-comment.md
                     echo "\`\`\`bash" >> /tmp/refactoring-comment.md
-                    echo "./scripts/chronicle-keeper/refactor-docs fix \"$LATEST_TLDL\" YourDeveloperName affordable" >> /tmp/refactoring-comment.md
+                    echo "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/refactor-docs fix \"$LATEST_TLDL\" YourDeveloperName affordable" >> /tmp/refactoring-comment.md
                     echo "\`\`\`" >> /tmp/refactoring-comment.md
                   elif [[ $TOTAL_COST -le 300 ]]; then
                     echo "⚠️ **Recommendation**: Moderate refactoring cost - strategic timing recommended:" >> /tmp/refactoring-comment.md
                     echo "\`\`\`bash" >> /tmp/refactoring-comment.md
-                    echo "./scripts/chronicle-keeper/refactor-docs analyze \"$LATEST_TLDL\" YourDeveloperName" >> /tmp/refactoring-comment.md
+                    echo "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/refactor-docs analyze \"$LATEST_TLDL\" YourDeveloperName" >> /tmp/refactoring-comment.md
                     echo "\`\`\`" >> /tmp/refactoring-comment.md
                   else
                     echo "🚨 **Recommendation**: High-cost refactoring detected - consider Faculty intervention:" >> /tmp/refactoring-comment.md
                     echo "\`\`\`bash" >> /tmp/refactoring-comment.md
-                    echo "./scripts/chronicle-keeper/refactor-docs emergency \"$LATEST_TLDL\" YourDeveloperName comprehensive" >> /tmp/refactoring-comment.md
+                    echo "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/refactor-docs emergency \"$LATEST_TLDL\" YourDeveloperName comprehensive" >> /tmp/refactoring-comment.md
                     echo "\`\`\`" >> /tmp/refactoring-comment.md
                   fi
                   

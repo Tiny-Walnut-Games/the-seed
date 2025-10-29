@@ -61,7 +61,7 @@ jobs:
           COMMENT_BODY="${{ github.event.comment.body }}"
           
           # Use the cooldown system to check if we should skip
-          cd scripts/cid-faculty
+          cd "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty"
           
           COOLDOWN_EXIT_CODE=0
           node shared/workflow-cooldown.js status cid-faculty "$ISSUE_NUMBER" || COOLDOWN_EXIT_CODE=$?
@@ -81,7 +81,7 @@ jobs:
       - name: Initialize Faculty Infrastructure  
         if: steps.cooldown_check.outputs.cooldown_active != 'true'  
         run: |
-          mkdir -p scripts/cid-faculty out/cid/cache
+          mkdir -p "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty" out/cid/cache
           echo '{}' > out/cid/context.json
 
       - name: Parse Faculty Configuration
@@ -188,7 +188,7 @@ jobs:
           
           # Execute the enhanced faculty consultation system
           echo "🎓 Executing ${{ matrix.role_name }} analysis via enhanced faculty system..."
-          node scripts/cid-faculty/index.js $FACULTY_ARGS --out=out/cid/${FACULTY_ROLE}-report.json
+          node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/index.js" $FACULTY_ARGS --out=out/cid/${FACULTY_ROLE}-report.json
 
       - name: Generate Faculty TLDL Entry
         if: steps.role_filter.outputs.should_run == 'true' && steps.budget_check.outputs.needs_escalation == 'false' && steps.cooldown_check.outputs.cooldown_active != 'true'
@@ -210,7 +210,7 @@ jobs:
             fi
             
             # Generate enhanced faculty TLDL entry
-            node scripts/cid-faculty/faculty-tldl.js \
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/faculty-tldl.js" \
               $ADVISOR_FILE $ORACLE_FILE \
               --issue=${{ github.event.issue.number }} \
               --out=/tmp/faculty-scroll-entry.json
@@ -223,7 +223,7 @@ jobs:
           
           if [ -f "/tmp/faculty-${FACULTY_ROLE}-scroll-entry.json" ]; then
             # Use Chronicle Keeper to write the TLDL entry
-            ./scripts/chronicle-keeper/tldl-writer.sh write "/tmp/faculty-${FACULTY_ROLE}-scroll-entry.json" --verbose --force
+            "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/tldl-writer.sh" write "/tmp/faculty-${FACULTY_ROLE}-scroll-entry.json" --verbose --force
           fi
 
       - name: Post Faculty Comment
@@ -301,7 +301,7 @@ jobs:
             fi
             
             # Use enhanced faculty badge system
-            node scripts/cid-faculty/faculty-badges.js \
+            node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/faculty-badges.js" \
               $ADVISOR_FILE $ORACLE_FILE \
               --issue=${{ github.event.issue.number }}
           fi
@@ -320,7 +320,7 @@ jobs:
         if: steps.role_filter.outputs.should_run == 'true' || steps.cooldown_check.outputs.cooldown_active == 'true'
         run: |
           # Clean old cache files to prevent storage bloat
-          node scripts/cid-faculty/shared/context-cache.js cleanup
+          node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/shared/context-cache.js" cleanup
           
           # Also clean cooldown files to prevent storage bloat
-          node scripts/cid-faculty/shared/workflow-cooldown.js cleanup
+          node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty/shared/workflow-cooldown.js" cleanup
