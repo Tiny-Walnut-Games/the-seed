@@ -27,7 +27,7 @@ def find_free_port(start_port=8000):
     for port in range(start_port, start_port + 20):
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.bind(('', port))
+                s.bind(('127.0.0.1', port))
                 return port
         except OSError:
             continue
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     print(f"Visit http://localhost:{port}/stat7threejs.html")
     
     try:
-        with socketserver.TCPServer(("", port), CustomHandler) as httpd:
+        with socketserver.TCPServer(("127.0.0.1", port), CustomHandler) as httpd:
             print(f"Server running on port {port}")
             httpd.serve_forever()
     except Exception as e:
