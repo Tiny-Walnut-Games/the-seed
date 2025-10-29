@@ -4,6 +4,9 @@
 # File system monitoring (required for watch_index.py)
 watchdog>=2.1.0
 
+# Documentation validation (required for validate_docs.py)
+pyyaml>=6.0
+
 # Note: ingest.py uses standard library only (no external dependencies)
 
 # GPU acceleration dependencies are maintained separately in:
