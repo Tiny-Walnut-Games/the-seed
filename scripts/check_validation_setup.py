@@ -178,6 +178,30 @@ def check_git_status():
         print("⚠️  Git command not found")
         return True
 
+def _sanitize_output(text, max_lines=10):
+    """Sanitize and truncate output to prevent secret leakage"""
+    if not text:
+        return "No output"
+    
+    lines = text.split('\n')[:max_lines]
+    
+    # Filter out potentially sensitive patterns
+    sensitive_patterns = [
+        'token', 'secret', 'password', 'api', 'key', 'auth',
+        'credentials', 'api_key', 'access_token'
+    ]
+    
+    filtered_lines = []
+    for line in lines:
+        # Check if line contains sensitive info
+        is_sensitive = any(pattern.lower() in line.lower() for pattern in sensitive_patterns)
+        if is_sensitive:
+            filtered_lines.append("[FILTERED: Potential sensitive data]")
+        else:
+            filtered_lines.append(line)
+    
+    return '\n'.join(filtered_lines)
+
 def try_run_quick_test():
     """Try to run a quick local test"""
     print_section("LOCAL TEST EXECUTION CHECK")
@@ -203,9 +227,13 @@ def try_run_quick_test():
         else:
             print("⚠️  Local test execution FAILED")
             print("   Tests may still work on GitHub Actions")
-            print("\n   Output:")
-            print(result.stdout[-500:] if result.stdout else "No output")
-            print(result.stderr[-500:] if result.stderr else "No errors")
+            print("\n   Output (last 10 lines):")
+            sanitized_stdout = _sanitize_output(result.stdout, max_lines=10)
+            print(sanitized_stdout)
+            if result.stderr:
+                print("\n   Errors (last 10 lines):")
+                sanitized_stderr = _sanitize_output(result.stderr, max_lines=10)
+                print(sanitized_stderr)
             return True  # Not blocking - might work on GitHub
     
     except FileNotFoundError:
@@ -217,7 +245,9 @@ def try_run_quick_test():
         print("   This might be normal for load tests")
         return True
     except Exception as e:
-        print(f"⚠️  Could not run test: {e}")
+        # Log the exception type but not the full error message (could contain sensitive info)
+        error_type = type(e).__name__
+        print(f"⚠️  Could not run test: {error_type}")
         print("   Tests will run on GitHub Actions")
         return True
 

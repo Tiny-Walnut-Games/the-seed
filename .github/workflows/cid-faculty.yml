@@ -60,8 +60,8 @@ jobs:
           # Check if workflow is in cooldown to prevent loops
           echo "🕐 Checking workflow cooldown protection..."
 
-          issue_number="${{ env.ISSUE_NUMBER }}"
-          comment_body="${{ env.COMMENT_BODY }}"
+          issue_number="$ISSUE_NUMBER"
+          comment_body="$COMMENT_BODY"
 
           # Use the cooldown system to check if we should skip
           cd "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-faculty"
@@ -95,7 +95,7 @@ jobs:
         id: config
         run: |
           # Parse issue body for configuration
-          ISSUE_BODY="${{ env.ISSUE_BODY }}"
+          ISSUE_BODY="$ISSUE_BODY"
 
           # Check for faculty role selection
           if echo "$ISSUE_BODY" | grep -q "\[x\].*The Advisor"; then
@@ -239,7 +239,6 @@ jobs:
         if: steps.role_filter.outputs.should_run == 'true' && steps.budget_check.outputs.needs_escalation == 'false' && steps.cooldown_check.outputs.cooldown_active != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           FACULTY_ROLE="${{ matrix.faculty }}"
@@ -280,15 +279,11 @@ jobs:
                 comment += report.telemetry;
               }
 
-              console.log(JSON.stringify({body: comment}));
-            " > /tmp/faculty-comment.json
+              fs.writeFileSync('/tmp/faculty-comment.md', comment, 'utf8');
+            "
 
-            # Post the comment
-            curl -X POST \\
-              -H \"Authorization: token \$GITHUB_TOKEN\" \\
-              -H \"Content-Type: application/json\" \\
-              -d @/tmp/faculty-comment.json \\
-              \"https://api.github.com/repos/\$GITHUB_REPOSITORY/issues/\$GITHUB_ISSUE_NUMBER/comments\"
+            # Post the comment securely using the GitHub CLI
+            gh issue comment "$GITHUB_ISSUE_NUMBER" --body-file /tmp/faculty-comment.md
           fi
 
       - name: Award Faculty Badges

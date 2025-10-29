@@ -95,11 +95,18 @@ def verify_mathematical_validity():
     # Median
     library_median = statistics.median(sample_data)
     sorted_data = sorted(sample_data)
-    manual_median = sorted_data[len(sorted_data) // 2]
-    median_reasonable = 0 < library_median < max(sample_data)
+    n = len(sorted_data)
+    if n % 2 == 0:
+        # Even number of elements: average of the two middle elements
+        manual_median = (sorted_data[n//2 - 1] + sorted_data[n//2]) / 2
+    else:
+        # Odd number of elements: middle element
+        manual_median = sorted_data[n//2]
+    
+    median_match = abs(manual_median - library_median) < 0.01
     checks_passed.append(print_check(
-        median_reasonable,
-        f"Median calculation correct: {library_median:.2f}"
+        median_match,
+        f"Median calculation correct: {library_median:.2f} == {manual_median:.2f}"
     ))
     
     # P99
