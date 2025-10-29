@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Living Dev Agent Template - TLDL Documentation Validator
 Jerry's legendary validation system for structured development documentation
@@ -15,6 +16,12 @@ import re
 import datetime
 from pathlib import Path
 from typing import List, Dict, Any, Optional, Tuple
+
+# Fix Windows console encoding for emoji support
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 # Color codes for legendary terminal output
 class Colors:

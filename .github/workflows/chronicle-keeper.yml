@@ -663,8 +663,8 @@ jobs:
           "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/tldl-writer.sh" validate --verbose || echo "⚠️ TLDL validation issues detected"
           
           # Run existing validation if available
-          if [[ -f src/SymbolicLinter/validate_docs.py ]]; then
-            python3 src/SymbolicLinter/validate_docs.py --tldl-path TLDL/ || echo "⚠️ Some validation issues detected"
+          if [[ -f "packages/com.twg.the-seed/The Living Dev Agent/src/SymbolicLinter/validate_docs.py" ]]; then
+            python3 "packages/com.twg.the-seed/The Living Dev Agent/src/SymbolicLinter/validate_docs.py" --tldl-path "packages/com.twg.the-seed/The Living Dev Agent/TLDL/" || echo "⚠️ Some validation issues detected"
           fi
           
           # 🔒 Validate MCP configuration for security compliance (addresses issue #50)

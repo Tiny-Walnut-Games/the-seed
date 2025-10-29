@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Directory lint: Enforce TLDL vs Docs architecture boundaries
 Ensures time-stamped TLDL entries stay in TLDL/entries/ and evergreen docs stay in docs/
@@ -8,6 +9,12 @@ import os
 import sys
 import re
 from pathlib import Path
+
+# Fix Windows console encoding for emoji support
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 def lint_directory_structure():
     """Lint the repository directory structure for architecture compliance"""
