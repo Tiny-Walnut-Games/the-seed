@@ -28,7 +28,7 @@ on:
     - cron: '0 12 * * 0'  # Weekly Sunday validation at noon UTC
 
 concurrency:
-  group: mmo-load-test-${{ github.ref }}
+  group: mmo-load-test-${{ github.repository }}-${{ github.workflow }}-${{ github.ref_name || github.run_id }}
   cancel-in-progress: true
 
 permissions:
@@ -43,16 +43,16 @@ jobs:
   validate-test-mathematics:
     runs-on: ubuntu-latest
     name: 📐 Validate Test Mathematics
-    
+
     steps:
     - name: 📥 Checkout Repository
       uses: actions/checkout@v4
-    
+
     - name: 🐍 Setup Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-    
+
     - name: 📊 Analyze Test Statistical Validity
       run: |
         python3 << 'EOF'
@@ -62,17 +62,17 @@ jobs:
         """
         import statistics
         import math
-        
+
         print("=" * 70)
         print("🔬 MATHEMATICAL VALIDATION OF LOAD TEST METRICS")
         print("=" * 70)
-        
+
         # Sample data simulation to verify our math
         sample_latencies = [0.045, 0.052, 0.048, 0.098, 0.125, 0.067, 0.089, 0.156, 0.234, 0.456]
-        
+
         print("\n📊 Statistical Measures Validation:")
         print("-" * 70)
-        
+
         # Mean calculation
         calculated_mean = sum(sample_latencies) / len(sample_latencies)
         library_mean = statistics.mean(sample_latencies)
@@ -80,7 +80,7 @@ jobs:
         print(f"  Manual: {calculated_mean:.6f}")
         print(f"  Library: {library_mean:.6f}")
         print(f"  Match: {'✅ YES' if abs(calculated_mean - library_mean) < 0.0001 else '❌ NO'}")
-        
+
         # Median calculation
         sorted_data = sorted(sample_latencies)
         n = len(sorted_data)
@@ -93,7 +93,7 @@ jobs:
         print(f"  Manual: {calculated_median:.6f}")
         print(f"  Library: {library_median:.6f}")
         print(f"  Match: {'✅ YES' if abs(calculated_median - library_median) < 0.0001 else '❌ NO'}")
-        
+
         # P99 calculation
         p99_index = min(int(len(sorted_data) * 0.99), len(sorted_data) - 1)
         calculated_p99 = sorted_data[p99_index]
@@ -101,7 +101,7 @@ jobs:
         print(f"  Index: {p99_index} out of {len(sorted_data)}")
         print(f"  Value: {calculated_p99:.6f}")
         print(f"  Mathematical validity: ✅ Correct (99th percentile)")
-        
+
         # Standard deviation
         variance = sum((x - calculated_mean) ** 2 for x in sample_latencies) / len(sample_latencies)
         calculated_std = math.sqrt(variance)
@@ -110,26 +110,26 @@ jobs:
         print(f"  Sample std: {library_std:.6f}")
         print(f"  Mathematical formula: σ = √(Σ(x-μ)²/n)")
         print(f"  Valid: ✅ YES")
-        
+
         print("\n" + "=" * 70)
         print("✅ ALL MATHEMATICAL FORMULAS VERIFIED CORRECT")
         print("=" * 70)
-        
+
         # Validate test thresholds are realistic
         print("\n📏 Threshold Validation:")
         print("-" * 70)
-        
+
         thresholds = {
             "Average Latency": ("< 500ms", "Industry standard for responsive real-time systems"),
             "P99 Latency": ("< 1000ms", "Acceptable for 99% of users in MMO context"),
             "Connection Success": ("> 99%", "Industry standard for production systems"),
             "Message Delivery": ("100%", "Critical for game state synchronization"),
         }
-        
+
         for metric, (threshold, reason) in thresholds.items():
             print(f"✅ {metric}: {threshold}")
             print(f"   Justification: {reason}")
-        
+
         print("\n" + "=" * 70)
         print("✅ ALL THRESHOLDS MATHEMATICALLY AND PRACTICALLY SOUND")
         print("=" * 70)
@@ -143,23 +143,23 @@ jobs:
     needs: validate-test-mathematics
     timeout-minutes: 45
     name: 🔥 500 Players - Ubuntu (GitHub Infrastructure)
-    
+
     steps:
     - name: 📥 Checkout Repository
       uses: actions/checkout@v4
-    
+
     - name: 🐍 Setup Python Environment
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
         cache: 'pip'
-    
+
     - name: 📦 Install Test Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pytest pytest-asyncio websockets statistics
         pip install -r web/requirements-visualization.txt || true
-    
+
     - name: 🔥 Execute 500 Concurrent Player Load Test
       id: load_test
       run: |
@@ -168,19 +168,19 @@ jobs:
         echo "⏰ Timestamp: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
         echo "🔗 Workflow Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         echo ""
-        
+
         mkdir -p test-results
-        
+
         # Run the load test with full output
         pytest tests/test_websocket_load_stress.py::test_concurrent_500_clients \
           -v \
           --tb=short \
           --junitxml=test-results/load-test-500-ubuntu.xml \
           2>&1 | tee test-results/load-test-output.log
-        
+
         TEST_EXIT_CODE=$?
         echo "test_exit_code=$TEST_EXIT_CODE" >> $GITHUB_OUTPUT
-        
+
         if [ $TEST_EXIT_CODE -eq 0 ]; then
           echo "✅ TEST PASSED"
           echo "test_status=PASSED" >> $GITHUB_OUTPUT
@@ -188,9 +188,9 @@ jobs:
           echo "❌ TEST FAILED"
           echo "test_status=FAILED" >> $GITHUB_OUTPUT
         fi
-        
+
         exit $TEST_EXIT_CODE
-    
+
     - name: 📊 Extract and Validate Performance Metrics
       id: metrics
       if: always()
@@ -200,25 +200,25 @@ jobs:
         import json
         import os
         from datetime import datetime
-        
+
         print("=" * 70)
         print("📊 EXTRACTING PERFORMANCE METRICS")
         print("=" * 70)
-        
+
         try:
             with open('test-results/load-test-output.log', 'r') as f:
                 content = f.read()
         except FileNotFoundError:
             print("❌ Test output file not found")
             content = ""
-        
+
         metrics = {
             'test_date': datetime.utcnow().isoformat() + 'Z',
             'infrastructure': 'GitHub Actions (ubuntu-latest)',
             'commit_sha': os.environ.get('GITHUB_SHA', 'unknown'),
             'workflow_run': os.environ.get('GITHUB_RUN_ID', 'unknown'),
         }
-        
+
         # Extract metrics using regex patterns
         patterns = {
             'avg_latency': r'Avg latency: ([\d.]+)ms',
@@ -228,7 +228,7 @@ jobs:
             'connection_time': r'Connection time: ([\d.]+)s',
             'broadcast_time': r'Broadcast time: ([\d.]+)s',
         }
-        
+
         for key, pattern in patterns.items():
             match = re.search(pattern, content)
             if match:
@@ -238,19 +238,19 @@ jobs:
             else:
                 metrics[key] = 'N/A'
                 print(f"⚠️  {key}: Not found")
-        
+
         # Validate against thresholds
         print("\n" + "=" * 70)
         print("🎯 THRESHOLD VALIDATION")
         print("=" * 70)
-        
+
         validations = {
             'avg_latency': (500, 'ms', 'Average latency should be <500ms'),
             'p50_latency': (500, 'ms', 'P50 latency should be <500ms'),
             'p99_latency': (1000, 'ms', 'P99 latency should be <1000ms'),
             'max_latency': (2000, 'ms', 'Max latency should be <2000ms'),
         }
-        
+
         all_passed = True
         for key, (threshold, unit, description) in validations.items():
             value_str = metrics.get(key, 'N/A')
@@ -269,26 +269,26 @@ jobs:
             else:
                 print(f"⚠️  {description}: No data")
                 metrics[f'{key}_passed'] = False
-        
+
         metrics['all_thresholds_passed'] = all_passed
-        
+
         # Save metrics
         with open('test-results/metrics.json', 'w') as f:
             json.dump(metrics, f, indent=2)
-        
+
         print("\n✅ Metrics saved to test-results/metrics.json")
-        
+
         # Set GitHub outputs for badge generation
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
             f.write(f"avg_latency={metrics.get('avg_latency', 'N/A')}\n")
             f.write(f"p99_latency={metrics.get('p99_latency', 'N/A')}\n")
             f.write(f"all_passed={'true' if all_passed else 'false'}\n")
-        
+
         print("=" * 70)
         print(f"{'✅ ALL THRESHOLDS PASSED' if all_passed else '❌ SOME THRESHOLDS FAILED'}")
         print("=" * 70)
         EOF
-    
+
     - name: 📈 Upload Test Results as Artifacts
       uses: actions/upload-artifact@v3
       if: always()
@@ -297,243 +297,19 @@ jobs:
         path: |
           test-results/
         retention-days: 90
-    
+
     - name: 📄 Generate Formal Validation Report
       if: always()
       run: |
-        python3 << 'EOF'
-        import json
-        import os
-        from datetime import datetime
-        
-        # Load metrics
-        try:
-            with open('test-results/metrics.json', 'r') as f:
-                metrics = json.load(f)
-        except FileNotFoundError:
-            metrics = {}
-        
-        # Build report with safe string concatenation
-        test_status = '✅ PASSED' if metrics.get('all_thresholds_passed') else '❌ FAILED'
-        outcome_text = '**successfully**' if metrics.get('all_thresholds_passed') else '**did not meet**'
-        threshold_status = '✅' if metrics.get('all_thresholds_passed') else '❌'
-        threshold_result = 'were met' if metrics.get('all_thresholds_passed') else 'were not met'
-        run_link = f"{os.environ.get('GITHUB_SERVER_URL', '')}/{os.environ.get('GITHUB_REPOSITORY', '')}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}"
-        
-        # Generate formal report
-        report = f"""# MMO Backend Load Test - Formal Validation Report
+        python3 .github/scripts/generate_mmo_load_test_report.py
 
-## Document Information
-
-- **Report Version**: 1.0
-- **Test Date**: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}
-- **Infrastructure Provider**: GitHub Inc. (GitHub Actions)
-- **Test Platform**: ubuntu-latest (GitHub-hosted runner)
-- **Repository**: {os.environ.get('GITHUB_REPOSITORY', 'unknown')}
-- **Commit SHA**: {os.environ.get('GITHUB_SHA', 'unknown')[:8]}
-- **Workflow Run**: [{os.environ.get('GITHUB_RUN_ID', 'unknown')}]({run_link})
-
----
-
-## Executive Summary
-
-This document provides formal validation of "The Seed" MMO backend system under 
-simulated load of 500 concurrent player connections. All tests were executed on 
-**third-party infrastructure** (GitHub Actions) to ensure independent, reproducible 
-validation.
-
-**Test Status**: {test_status}
-
----
-
-## 1. Test Methodology
-
-### 1.1 Test Environment
-
-- **Platform**: GitHub Actions (ubuntu-latest)
-- **Python Version**: 3.11
-- **Test Framework**: pytest 7.x with asyncio
-- **Network**: GitHub's cloud infrastructure
-- **Geographic Location**: GitHub's datacenter (varies by runner assignment)
-
-### 1.2 Test Scenario
-
-- **Concurrent Connections**: 500 simultaneous WebSocket connections
-- **Connection Protocol**: WebSocket (ws://)
-- **Test Duration**: ~5 minutes sustained load
-- **Message Pattern**: Server broadcasts events to all connected clients
-- **Client Behavior**: Each client maintains persistent connection and receives messages
-
-### 1.3 Validation Criteria
-
-1. **Connection Success Rate**: All 500 clients must connect successfully
-2. **Average Latency**: <500ms (responsive real-time interaction)
-3. **P50 Latency**: <500ms (median user experience)
-4. **P99 Latency**: <1000ms (99% of users have acceptable experience)
-5. **Message Delivery**: 100% delivery rate (critical for game state sync)
-
----
-
-## 2. Mathematical Validation
-
-### 2.1 Statistical Measures
-
-All statistical calculations use industry-standard formulas:
-
-- **Mean**: μ = Σx / n
-- **Median (P50)**: Middle value of sorted dataset
-- **P99**: 99th percentile of sorted dataset
-- **Standard Deviation**: σ = √(Σ(x-μ)² / n)
-
-### 2.2 Threshold Justification
-
-| Metric | Threshold | Justification |
-|--------|-----------|---------------|
-| Avg Latency | <500ms | Industry standard for responsive real-time systems (source: Google Web Vitals, RFC 2544) |
-| P50 Latency | <500ms | Median user should have responsive experience |
-| P99 Latency | <1000ms | 99% of users have acceptable experience (industry standard for MMOs) |
-| Max Latency | <2000ms | Outliers should not exceed 2 seconds (prevents timeout issues) |
-
----
-
-## 3. Test Results
-
-### 3.1 Performance Metrics
-
-| Metric | Value | Threshold | Status |
-|--------|-------|-----------|--------|
-| Average Latency | {metrics.get('avg_latency', 'N/A')} ms | <500 ms | {'✅ PASS' if metrics.get('avg_latency_passed') else '❌ FAIL' if 'avg_latency_passed' in metrics else '⚠️  N/A'} |
-| P50 Latency (Median) | {metrics.get('p50_latency', 'N/A')} ms | <500 ms | {'✅ PASS' if metrics.get('p50_latency_passed') else '❌ FAIL' if 'p50_latency_passed' in metrics else '⚠️  N/A'} |
-| P99 Latency | {metrics.get('p99_latency', 'N/A')} ms | <1000 ms | {'✅ PASS' if metrics.get('p99_latency_passed') else '❌ FAIL' if 'p99_latency_passed' in metrics else '⚠️  N/A'} |
-| Max Latency | {metrics.get('max_latency', 'N/A')} ms | <2000 ms | {'✅ PASS' if metrics.get('max_latency_passed') else '❌ FAIL' if 'max_latency_passed' in metrics else '⚠️  N/A'} |
-| Connection Time | {metrics.get('connection_time', 'N/A')} s | N/A | ℹ️  Info |
-| Broadcast Time | {metrics.get('broadcast_time', 'N/A')} s | N/A | ℹ️  Info |
-
-### 3.2 Connection Stability
-
-- **Connection Success Rate**: 100% (all 500 clients connected)
-- **Connection Drops**: 0 (no disconnections during test)
-- **Message Delivery Rate**: 100% (all broadcast messages received)
-
----
-
-## 4. Reproducibility
-
-This test is **fully reproducible** by any third party:
-
-### 4.1 Reproduction Steps
-
-1. Fork repository: `{os.environ.get('GITHUB_REPOSITORY', 'unknown')}`
-2. Navigate to: Actions → MMO Load Test - Third-Party Validation
-3. Click "Run workflow"
-4. Compare results with this report
-
-### 4.2 Test Artifacts
-
-All test artifacts are publicly accessible:
-
-- **Test Output Log**: Available in workflow artifacts
-- **Metrics JSON**: Available in workflow artifacts
-- **JUnit XML**: Available in workflow artifacts
-- **This Report**: Available in workflow artifacts
-
-**Artifact Retention**: 90 days
-
----
-
-## 5. Validation Statement
-
-### 5.1 Independence
-
-✅ **This test was executed on third-party infrastructure** (GitHub Actions, not developer's local machine)
-
-✅ **All results are publicly accessible** via GitHub's platform
-
-✅ **Test execution is reproducible** by any party with repository access
-
-### 5.2 Verification
-
-**Verification URL**: {os.environ.get('GITHUB_SERVER_URL', '')}/{os.environ.get('GITHUB_REPOSITORY', '')}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}
-
-Anyone can view:
-- Full test execution logs
-- Commit SHA that was tested
-- Timestamp of test execution
-- All output artifacts
-
----
-
-## 6. Comparison with Industry Standards
-
-| System Type | Typical P99 Latency | Source |
-|-------------|---------------------|--------|
-| Real-time MMO servers | 100-1500ms | Industry reports |
-| Discord (WebSocket) | 100-500ms | Public documentation |
-| Slack (WebSocket) | 200-800ms | Public documentation |
-| **The Seed (This Test)** | **{metrics.get('p99_latency', 'N/A')} ms** | **This validation** |
-
----
-
-## 7. Conclusion
-
-### 7.1 Summary
-
-The Seed MMO backend {outcome_text} all validation criteria under 
-simulated load of 500 concurrent player connections on independent third-party 
-infrastructure.
-
-### 7.2 Certification
-
-This report certifies that:
-
-- ✅ Tests were executed on GitHub's infrastructure (third-party)
-- ✅ Results are publicly accessible and timestamped
-- ✅ Test methodology is mathematically sound
-- ✅ Tests are reproducible by any third party
-- {threshold_status} All performance thresholds {threshold_result}
-
----
-
-## 8. Appendices
-
-### A. Test Source Code
-
-- **Test File**: `tests/test_websocket_load_stress.py`
-- **Test Function**: `test_concurrent_500_clients`
-- **Lines**: Available in repository
-
-### B. Mathematical Formulas
-
-See workflow job: `validate-test-mathematics` for detailed mathematical validation.
-
-### C. Reproducibility Checklist
-
-- [ ] Fork repository
-- [ ] Run workflow on your own GitHub Actions
-- [ ] Compare metrics with this report
-- [ ] Verify test passes on your infrastructure
-
----
-
-**Report Generated**: {datetime.utcnow().isoformat()}Z  
-**Generator**: GitHub Actions Workflow  
-**Infrastructure**: GitHub Inc.  
-**Public Verification**: Available at GitHub Actions workflow runs
-"""
-        
-        with open('test-results/VALIDATION_REPORT.md', 'w') as f:
-            f.write(report)
-        
-        print("✅ Formal validation report generated: test-results/VALIDATION_REPORT.md")
-        EOF
-    
     - name: 💬 Post Results as GitHub Issue
       uses: actions/github-script@v7
       if: always()
       with:
         script: |
           const fs = require('fs');
-          
+
           // Read metrics
           let metrics = {};
           try {
@@ -543,7 +319,7 @@ See workflow job: `validate-test-mathematics` for detailed mathematical validati
             console.log('Could not read metrics file:', e);
             metrics = { error: 'Metrics file not found' };
           }
-          
+
           // Read validation report
           let report = 'Report not generated';
           try {
@@ -551,12 +327,12 @@ See workflow job: `validate-test-mathematics` for detailed mathematical validati
           } catch (e) {
             console.log('Could not read report file:', e);
           }
-          
+
           const testStatus = '${{ steps.load_test.outputs.test_status }}' || 'UNKNOWN';
           const emoji = testStatus === 'PASSED' ? '✅' : '❌';
-          
+
           const issueTitle = `${emoji} MMO Load Test: 500 Players - ${testStatus} - ${new Date().toISOString().split('T')[0]}`;
-          
+
           const body = `${report}
 
 ---
@@ -573,10 +349,10 @@ Download full test results and logs from the workflow run artifacts (retained fo
 
 ---
 
-**🤖 This is an automated validation report generated by GitHub Actions.**  
+**🤖 This is an automated validation report generated by GitHub Actions.**
 **All results are independently verifiable by running the workflow on a forked repository.**
 `;
-          
+
           // Create issue
           await github.rest.issues.create({
             owner: context.repo.owner,
@@ -585,7 +361,7 @@ Download full test results and logs from the workflow run artifacts (retained fo
             body: body,
             labels: ['load-test', 'validation', 'automated', testStatus.toLowerCase()]
           });
-          
+
           console.log('✅ Results posted as GitHub issue');
 
   # ============================================================================
@@ -596,26 +372,26 @@ Download full test results and logs from the workflow run artifacts (retained fo
     needs: validate-test-mathematics
     timeout-minutes: 30
     name: 🔥 100 Players - Windows (Cross-Platform)
-    
+
     steps:
     - name: 📥 Checkout Repository
       uses: actions/checkout@v4
-    
+
     - name: 🐍 Setup Python Environment
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
         cache: 'pip'
-    
+
     - name: 📦 Install Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pytest pytest-asyncio websockets
-    
+
     - name: 🔥 Execute 100 Player Load Test
       run: |
         pytest tests/test_websocket_load_stress.py::test_concurrent_100_clients -v
-    
+
     - name: 📈 Upload Results
       uses: actions/upload-artifact@v3
       if: always()
