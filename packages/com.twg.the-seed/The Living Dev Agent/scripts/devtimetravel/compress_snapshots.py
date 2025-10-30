@@ -295,16 +295,7 @@ def main():
 
 
 if __name__ == '__main__':
-import hashlib
-import argparse
-import time
-from pathlib import Path
-from typing import Dict, List, Any, Optional
-from datetime import datetime, timedelta
-
-
-class DevTimeTravelCompressor:
-    """Core compression engine for DevTimeTravel snapshots"""
+    main()
     
     def __init__(self, root_path: str = ".devtimetravel", config_path: Optional[str] = None):
         self.root_path = Path(root_path)

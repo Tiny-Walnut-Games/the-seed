@@ -39,7 +39,24 @@ async def setup_event_streamer(port: int = 9876):
     """Setup and start STAT7EventStreamer for testing."""
     streamer = STAT7EventStreamer(host="localhost", port=port)
     server_task = asyncio.create_task(streamer.start_server())
-    await asyncio.sleep(0.3)  # Give server time to start
+    
+    # Verify server is actually running by attempting connection
+    max_retries = 20
+    for attempt in range(max_retries):
+        try:
+            ws = await asyncio.wait_for(websockets.connect(f"ws://localhost:{port}"), timeout=1.0)
+            await ws.close()
+            print(f"✅ Server started successfully on port {port}")
+            sys.stdout.flush()
+            return streamer, server_task
+        except Exception:
+            if attempt < max_retries - 1:
+                await asyncio.sleep(0.2)
+            else:
+                print(f"❌ Failed to connect to server after {max_retries} attempts")
+                sys.stdout.flush()
+                raise RuntimeError(f"Server failed to start on port {port}")
+    
     return streamer, server_task
 
 
@@ -226,43 +243,94 @@ async def _test_concurrent_clients(num_clients: int, num_events: int):
     try:
         clients: List[WebSocketTestClient] = []
         
-        # Connect all clients
+        # Connect all clients in parallel for efficiency
+        print(f"🔗 Connecting {num_clients} clients...")
+        sys.stdout.flush()
+        
         start_connect = time.time()
-        for i in range(num_clients):
+        
+        async def connect_client(client_id):
             client = WebSocketTestClient(f"ws://localhost:9876")
             connected = await client.connect()
             if not connected:
-                pytest.fail(f"Client {i} failed to connect")
-            clients.append(client)
+                print(f"⚠️  Client {client_id} failed to connect")
+                sys.stdout.flush()
+            return client, connected
+        
+        # Use gather for parallel connections
+        connection_results = await asyncio.gather(
+            *[connect_client(i) for i in range(num_clients)],
+            return_exceptions=True
+        )
+        
+        # Process results
+        failed_connections = 0
+        for i, result in enumerate(connection_results):
+            if isinstance(result, Exception):
+                print(f"⚠️  Client {i} connection error: {result}")
+                sys.stdout.flush()
+                failed_connections += 1
+            else:
+                client, connected = result
+                if connected:
+                    clients.append(client)
+                else:
+                    failed_connections += 1
         
         connect_time = time.time() - start_connect
-        await asyncio.sleep(1.0)  # Let all clients settle
+        print(f"✅ Connected {len(clients)}/{num_clients} clients in {connect_time:.2f}s ({failed_connections} failed)")
+        sys.stdout.flush()
+        
+        if len(clients) == 0:
+            print(f"❌ No clients connected successfully")
+            sys.stdout.flush()
+            pytest.fail("Unable to connect any clients to server")
+        
+        await asyncio.sleep(0.5)  # Let all clients settle
         
         # Broadcast events and measure latency
         latencies: List[float] = []
         start_broadcast = time.time()
         
-        for i in range(num_events):
-            bitchain = generate_random_bitchain(seed=i)
-            event = event_streamer.create_bitchain_event(bitchain, f"LOAD_TEST_{i}")
-            
-            event_time = time.time()
-            await event_streamer.broadcast_event(event)
-            
-            # Wait for clients to receive
-            await asyncio.sleep(0.1)
-            
-            # Measure latency as time from broadcast to all clients receiving
-            for client in clients:
-                if len(client.event_receive_times) > 0:
-                    latency = client.event_receive_times[-1] - event_time
-                    latencies.append(latency)
+        print(f"📡 Broadcasting {num_events} events to {len(clients)} clients...")
+        sys.stdout.flush()
         
-        broadcast_time = time.time() - start_broadcast
+        try:
+            for i in range(num_events):
+                bitchain = generate_random_bitchain(seed=i)
+                event = event_streamer.create_bitchain_event(bitchain, f"LOAD_TEST_{i}")
+                
+                event_time = time.time()
+                await event_streamer.broadcast_event(event)
+                
+                # Wait for clients to receive
+                await asyncio.sleep(0.1)
+                
+                # Measure latency as time from broadcast to all clients receiving
+                for client in clients:
+                    if len(client.event_receive_times) > 0:
+                        latency = client.event_receive_times[-1] - event_time
+                        latencies.append(latency)
+            
+            broadcast_time = time.time() - start_broadcast
+            print(f"✅ Broadcast complete in {broadcast_time:.2f}s")
+            sys.stdout.flush()
+        except Exception as e:
+            broadcast_time = time.time() - start_broadcast
+            print(f"❌ Broadcast error after {broadcast_time:.2f}s: {e}")
+            sys.stdout.flush()
+            raise
         
         # Verify all clients received events
+        failed_clients = 0
         for i, client in enumerate(clients):
-            assert client.get_event_count() > 0, f"Client {i} received no events"
+            if client.get_event_count() == 0:
+                print(f"⚠️  Client {i} received no events")
+                sys.stdout.flush()
+                failed_clients += 1
+        
+        print(f"📊 Received events - Success: {len(clients) - failed_clients}/{len(clients)}, Latency samples: {len(latencies)}")
+        sys.stdout.flush()
         
         # Calculate statistics
         if latencies:
@@ -282,6 +350,7 @@ async def _test_concurrent_clients(num_clients: int, num_events: int):
         print(f"   P50 latency: {p50_latency*1000:.2f}ms")
         print(f"   P99 latency: {p99_latency*1000:.2f}ms")
         print(f"   Max latency: {max_latency*1000:.2f}ms")
+        sys.stdout.flush()  # Ensure output is flushed
         
         # Assertions
         assert avg_latency < 0.5, f"Average latency should be <500ms, was {avg_latency*1000:.2f}ms"

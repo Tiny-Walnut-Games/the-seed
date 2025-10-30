@@ -47,7 +47,7 @@ jobs:
     - name: 🔍 Analyze Idea Implementation Streaks
       id: streak_analysis
       run: |
-        python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/analyze-streaks.py" \
+        python3 "${{ github.workspace }}/packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/analyze-streaks.py" \
           --tldl-path="TLDL/entries" \
           --charters-path="docs/charters" \
           --window="${{ github.event.inputs.evaluation_window || '14' }}" \
@@ -56,15 +56,14 @@ jobs:
     - name: 📊 Generate Streak Report
       id: generate_report
       run: |
-        python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/generate-report.py" \
+        python3 "${{ github.workspace }}/packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/generate-report.py" \
           --analysis-file="out/streak-analysis.json" \
-          --template="packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/templates/daily-report.md" \
           --output="out/streak-report.md"
     
     - name: 🎯 Check Streak Health Thresholds
       id: health_check
       run: |
-        python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/health-check.py" \
+        python3 "${{ github.workspace }}/packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/health-check.py" \
           --analysis-file="out/streak-analysis.json" \
           --config="pets/schema.yaml" \
           --alert-threshold="concerning"
@@ -139,36 +138,39 @@ jobs:
     
     - name: 📈 Update Pet Events Log
       run: |
-        python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/pet-events/record-streak-event.py" \
+        python3 "${{ github.workspace }}/packages/com.twg.the-seed/The Living Dev Agent/scripts/pet-events/record-streak-event.py" \
           --analysis-file="out/streak-analysis.json" \
-          --pet-events-log="metrics/pet_events.log"
+          --pet-events-log="metrics/pet_events.log" || true
     
     - name: 💬 Post Daily Streak Summary
       uses: actions/github-script@v7
       with:
         script: |
           const fs = require('fs');
-          const report = fs.readFileSync('out/streak-report.md', 'utf8');
-          
-          console.log('='.repeat(60));
-          console.log('🔥 DAILY IDEA IMPLEMENTATION STREAK SUMMARY');
-          console.log('='.repeat(60));
-          console.log(report);
-          console.log('='.repeat(60));
+          try {
+            const report = fs.readFileSync('out/streak-report.md', 'utf8');
+            console.log('='.repeat(60));
+            console.log('🔥 DAILY IDEA IMPLEMENTATION STREAK SUMMARY');
+            console.log('='.repeat(60));
+            console.log(report);
+            console.log('='.repeat(60));
+          } catch (e) {
+            console.log('📊 Streak report not yet available');
+          }
     
     - name: 🎯 Generate TLDL Entry (if significant)
       if: steps.health_check.outputs.tldl_worthy == 'true'
       run: |
-        python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/generate-tldl.py" \
+        python3 "${{ github.workspace }}/packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/generate-tldl.py" \
           --analysis-file="out/streak-analysis.json" \
           --template="docs/tldl_template.yaml" \
-          --output="TLDL/entries/TLDL-$(date +%Y-%m-%d)-StreakMonitorAlert.md"
+          --output="TLDL/entries/TLDL-$(date +%Y-%m-%d)-StreakMonitorAlert.md" || true
     
     - name: 📊 Create Streak Metrics Badge
       run: |
-        python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/generate-badge.py" \
+        python3 "${{ github.workspace }}/packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/generate-badge.py" \
           --analysis-file="out/streak-analysis.json" \
-          --output="out/streak-badge.json"
+          --output="out/streak-badge.json" || true
     
     - name: 🧠 Chronicle Keeper Auto-Trigger
       if: steps.health_check.outputs.chronicle_worthy == 'true'
@@ -221,6 +223,6 @@ jobs:
     - name: 📊 Generate Monthly Streak Trends
       if: github.event.schedule || github.event_name == 'workflow_dispatch'
       run: |
-        python3 "packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/monthly-trends.py" \
+        python3 "${{ github.workspace }}/packages/com.twg.the-seed/The Living Dev Agent/scripts/streak-monitor/monthly-trends.py" \
           --archive-path="data/streak-archives" \
-          --output="data/streak-trends/monthly-$(date +%Y-%m).json"
+          --output="data/streak-trends/monthly-$(date +%Y-%m).json" || true
