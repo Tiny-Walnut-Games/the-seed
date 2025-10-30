@@ -24,15 +24,20 @@ import logging
 import sys
 import os
 
-# Add the seed engine to Python path
-seed_path = os.path.join(os.path.dirname(__file__), 'Packages', 'com.twg.the-seed', 'seed', 'engine')
+# Add the seed engine to Python path (correct path with lowercase 'packages')
+# Find the project root by going up from web/server/ to the repo root
+current_dir = os.path.dirname(__file__)
+repo_root = os.path.abspath(os.path.join(current_dir, '../../'))
+seed_path = os.path.join(repo_root, 'packages', 'com.twg.the-seed', 'seed', 'engine')
+
 if seed_path not in sys.path:
     sys.path.insert(0, seed_path)
 
 try:
     from stat7_experiments import BitChain, Coordinates, generate_random_bitchain
-except ImportError:
-    print("Warning: stat7_experiments not found. Using mock implementations.")
+except ImportError as e:
+    print(f"Warning: stat7_experiments not found at {seed_path}. Using mock implementations.")
+    print(f"Import error: {e}")
 
     # Mock implementations for testing
     @dataclass

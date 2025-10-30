@@ -25,8 +25,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 import websockets
 
-# Add server to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../web/server'))
+# Add server to path and stat7_experiments engine to path
+test_dir = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(test_dir, '../web/server'))
+
+# Also add the seed engine path directly for test imports
+repo_root = os.path.abspath(os.path.join(test_dir, '../'))
+seed_engine_path = os.path.join(repo_root, 'packages', 'com.twg.the-seed', 'seed', 'engine')
+if seed_engine_path not in sys.path:
+    sys.path.insert(0, seed_engine_path)
 
 from stat7wsserve import STAT7EventStreamer, VisualizationEvent, generate_random_bitchain
 
