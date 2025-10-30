@@ -210,9 +210,9 @@ jobs:
             const fs = require('fs');
             
             const exitCode = '${{ steps.determinism_test.outputs.exit_code }}';
-            const successRate = '${{ steps.determinism_test.outputs.success_rate || "0" }}';
-            const deterministicCount = '${{ steps.determinism_test.outputs.deterministic_count || "0" }}';
-            const nonDeterministicCount = '${{ steps.determinism_test.outputs.non_deterministic_count || "0" }}';
+            const successRate = '${{ steps.determinism_test.outputs.success_rate || 0 }}';
+            const deterministicCount = '${{ steps.determinism_test.outputs.deterministic_count || 0 }}';
+            const nonDeterministicCount = '${{ steps.determinism_test.outputs.non_deterministic_count || 0 }}';
             const reportFile = '${{ steps.determinism_test.outputs.report_file }}';
             
             let status = exitCode === '0' ? '✅ PASS' : '❌ FAIL';
@@ -280,9 +280,9 @@ jobs:
         with:
           script: |
             const exitCode = '${{ steps.determinism_test.outputs.exit_code }}';
-            const successRate = '${{ steps.determinism_test.outputs.success_rate || "0" }}';
-            const deterministicCount = '${{ steps.determinism_test.outputs.deterministic_count || "0" }}';
-            const nonDeterministicCount = '${{ steps.determinism_test.outputs.non_deterministic_count || "0" }}';
+            const successRate = '${{ steps.determinism_test.outputs.success_rate || 0 }}';
+            const deterministicCount = '${{ steps.determinism_test.outputs.deterministic_count || 0 }}';
+            const nonDeterministicCount = '${{ steps.determinism_test.outputs.non_deterministic_count || 0 }}';
             
             const state = exitCode === '0' ? 'success' : 'failure';
             const description = exitCode === '0' ? 

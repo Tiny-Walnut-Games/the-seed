@@ -52,7 +52,7 @@ jobs:
         run: |
           echo "🔍 Running TruffleHog entropy-based secret detection..."
           # Use TruffleHog for entropy-based secret scanning
-          python3 -c "
+          python3 << 'PYTHON_HEREDOC'
 import subprocess
 import json
 import os
@@ -93,7 +93,7 @@ try:
         for finding in trufflehog_results:
             sarif_result = {
                 'ruleId': 'entropy-secret-detection',
-                'message': {'text': f'Potential secret detected: {finding.get(\"reason\", \"High entropy string\")}'},
+                'message': {'text': f'Potential secret detected: {finding.get("reason", "High entropy string")}'},
                 'level': 'error',
                 'locations': [{
                     'physicalLocation': {
@@ -125,7 +125,7 @@ except (subprocess.CalledProcessError, FileNotFoundError, IOError, json.JSONDeco
     # Create empty SARIF for consistency
     with open('trufflehog-results.sarif', 'w') as f:
         json.dump({'version': '2.1.0', 'runs': [{'tool': {'driver': {'name': 'TruffleHog'}}, 'results': []}]}, f)
-"
+PYTHON_HEREDOC
           echo "📊 Advanced secret scanning completed"
 
       - name: 🔍 Run Bandit (Python security)
@@ -135,57 +135,57 @@ except (subprocess.CalledProcessError, FileNotFoundError, IOError, json.JSONDeco
 
           # Convert JSON to basic SARIF format for GitHub Security tab
           if [ -f bandit-results.json ]; then
-            python3 -c "
-          import json, sys
+            python3 << 'BANDIT_HEREDOC'
+import json, sys
 
-          # Read Bandit JSON results
-          try:
-            with open('bandit-results.json', 'r') as f:
-              bandit_data = json.load(f)
-          except (json.JSONDecodeError, FileNotFoundError, IOError):
-            bandit_data = {'results': []}
+# Read Bandit JSON results
+try:
+  with open('bandit-results.json', 'r') as f:
+    bandit_data = json.load(f)
+except (json.JSONDecodeError, FileNotFoundError, IOError):
+  bandit_data = {'results': []}
 
-          # Convert to SARIF format
-          sarif = {
-            'version': '2.1.0',
-            'runs': [{
-              'tool': {
-                'driver': {
-                  'name': 'Bandit',
-                  'version': '1.8.6',
-                  'informationUri': 'https://bandit.readthedocs.io/',
-                  'shortDescription': {'text': 'Python security linter'}
-                }
-              },
-              'results': []
-            }]
-          }
+# Convert to SARIF format
+sarif = {
+  'version': '2.1.0',
+  'runs': [{
+    'tool': {
+      'driver': {
+        'name': 'Bandit',
+        'version': '1.8.6',
+        'informationUri': 'https://bandit.readthedocs.io/',
+        'shortDescription': {'text': 'Python security linter'}
+      }
+    },
+    'results': []
+  }]
+}
 
-          # Process Bandit results
-          severity_map = {'HIGH': 'error', 'MEDIUM': 'warning', 'LOW': 'note'}
-          for result in bandit_data.get('results', []):
-            severity = result.get('issue_severity', 'LOW').upper()
-            sarif_result = {
-              'ruleId': result.get('test_id', 'unknown'),
-              'message': {'text': result.get('issue_text', 'Security issue detected')},
-              'level': severity_map.get(severity, 'note'),
-              'locations': [{
-                'physicalLocation': {
-                  'artifactLocation': {
-                    'uri': result.get('filename', 'unknown')
-                  },
-                  'region': {
-                    'startLine': result.get('line_number', 1)
-                  }
-                }
-              }]
-            }
-            sarif['runs'][0]['results'].append(sarif_result)
+# Process Bandit results
+severity_map = {'HIGH': 'error', 'MEDIUM': 'warning', 'LOW': 'note'}
+for result in bandit_data.get('results', []):
+  severity = result.get('issue_severity', 'LOW').upper()
+  sarif_result = {
+    'ruleId': result.get('test_id', 'unknown'),
+    'message': {'text': result.get('issue_text', 'Security issue detected')},
+    'level': severity_map.get(severity, 'note'),
+    'locations': [{
+      'physicalLocation': {
+        'artifactLocation': {
+          'uri': result.get('filename', 'unknown')
+        },
+        'region': {
+          'startLine': result.get('line_number', 1)
+        }
+      }
+    }]
+  }
+  sarif['runs'][0]['results'].append(sarif_result)
 
-          # Write SARIF output
-          with open('bandit-results.sarif', 'w') as f:
-            json.dump(sarif, f, indent=2)
-          "
+# Write SARIF output
+with open('bandit-results.sarif', 'w') as f:
+  json.dump(sarif, f, indent=2)
+BANDIT_HEREDOC
           fi
           echo "📊 Bandit scan completed"
 
@@ -242,87 +242,87 @@ except (subprocess.CalledProcessError, FileNotFoundError, IOError, json.JSONDeco
           semgrep --config=auto --sarif --output semgrep-results.sarif scripts/ src/ 2>/dev/null || {
             echo "📊 Semgrep network access limited, creating basic security scan results..."
             # Create basic SARIF output when network is limited
-            python3 -c "
-          import json, os, re
+            python3 << 'SEMGREP_HEREDOC'
+import json, os, re
 
-          # Basic security pattern checks for common issues
-          issues = []
+# Basic security pattern checks for common issues
+issues = []
 
-          # Check Python files for basic security patterns
-          for root, dirs, files in os.walk('.'):
-            for file in files:
-              if file.endswith('.py'):
-                filepath = os.path.join(root, file)
-                try:
-                  with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
-                    content = f.read()
+# Check Python files for basic security patterns
+for root, dirs, files in os.walk('.'):
+  for file in files:
+    if file.endswith('.py'):
+      filepath = os.path.join(root, file)
+      try:
+        with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+          content = f.read()
 
-                  # Basic security pattern detection
-                  patterns = [
-                    (r'eval\s*\(', 'Potential code injection via eval()'),
-                    (r'exec\s*\(', 'Potential code injection via exec()'),
-                    (r'subprocess\.call\s*\(.*shell=True', 'Potential shell injection'),
-                    (r'os\.system\s*\(', 'Potentially unsafe system call'),
-                    (r'pickle\.loads?\s*\(', 'Potentially unsafe pickle deserialization'),
-                    (r'[\"\']\s*SELECT\s+.*\s+FROM\s+.*[\"\']\s*%', 'Potential SQL injection')
-                  ]
+        # Basic security pattern detection
+        patterns = [
+          (r'eval\s*\(', 'Potential code injection via eval()'),
+          (r'exec\s*\(', 'Potential code injection via exec()'),
+          (r'subprocess\.call\s*\(.*shell=True', 'Potential shell injection'),
+          (r'os\.system\s*\(', 'Potentially unsafe system call'),
+          (r'pickle\.loads?\s*\(', 'Potentially unsafe pickle deserialization'),
+          (r'["\']\\s*SELECT\\s+.*\\s+FROM\\s+.*["\']\\s*%', 'Potential SQL injection')
+        ]
 
-                  for line_num, line in enumerate(content.split('\n'), 1):
-                    for pattern, message in patterns:
-                      try:
-                        if re.search(pattern, line, re.IGNORECASE):
-                          issues.append({
-                            'file': filepath,
-                            'line': line_num,
-                            'pattern': pattern,
-                            'message': message,
-                            'code': line.strip()
-                          })
-                      except (re.error, TypeError):
-                        continue
-                except (IOError, UnicodeDecodeError, OSError):
-                  continue
+        for line_num, line in enumerate(content.split('\n'), 1):
+          for pattern, message in patterns:
+            try:
+              if re.search(pattern, line, re.IGNORECASE):
+                issues.append({
+                  'file': filepath,
+                  'line': line_num,
+                  'pattern': pattern,
+                  'message': message,
+                  'code': line.strip()
+                })
+            except (re.error, TypeError):
+              continue
+      except (IOError, UnicodeDecodeError, OSError):
+        continue
 
-          # Create SARIF format
-          sarif = {
-            'version': '2.1.0',
-            'runs': [{
-              'tool': {
-                'driver': {
-                  'name': 'Semgrep (offline fallback)',
-                  'version': '1.x',
-                  'informationUri': 'https://semgrep.dev/',
-                  'shortDescription': {'text': 'Multi-language security scanner (basic offline patterns)'}
-                }
-              },
-              'results': []
-            }]
-          }
+# Create SARIF format
+sarif = {
+  'version': '2.1.0',
+  'runs': [{
+    'tool': {
+      'driver': {
+        'name': 'Semgrep (offline fallback)',
+        'version': '1.x',
+        'informationUri': 'https://semgrep.dev/',
+        'shortDescription': {'text': 'Multi-language security scanner (basic offline patterns)'}
+      }
+    },
+    'results': []
+  }]
+}
 
-          # Convert issues to SARIF format
-          for issue in issues:
-            sarif_result = {
-              'ruleId': f'offline-security-{issue[\"pattern\"][:20]}',
-              'message': {'text': issue['message']},
-              'level': 'warning',
-              'locations': [{
-                'physicalLocation': {
-                  'artifactLocation': {
-                    'uri': issue['file']
-                  },
-                  'region': {
-                    'startLine': issue['line'],
-                    'snippet': {'text': issue['code']}
-                  }
-                }
-              }]
-            }
-            sarif['runs'][0]['results'].append(sarif_result)
+# Convert issues to SARIF format
+for issue in issues:
+  sarif_result = {
+    'ruleId': f'offline-security-{issue["pattern"][:20]}',
+    'message': {'text': issue['message']},
+    'level': 'warning',
+    'locations': [{
+      'physicalLocation': {
+        'artifactLocation': {
+          'uri': issue['file']
+        },
+        'region': {
+          'startLine': issue['line'],
+          'snippet': {'text': issue['code']}
+        }
+      }
+    }]
+  }
+  sarif['runs'][0]['results'].append(sarif_result)
 
-          # Write SARIF output
-          with open('semgrep-results.sarif', 'w') as f:
-            json.dump(sarif, f, indent=2)
-          "
+# Write SARIF output
+with open('semgrep-results.sarif', 'w') as f:
+  json.dump(sarif, f, indent=2)
+SEMGREP_HEREDOC
           }
           echo "📊 Semgrep scan completed"
 
@@ -333,53 +333,53 @@ except (subprocess.CalledProcessError, FileNotFoundError, IOError, json.JSONDeco
 
           # Convert JSON to SARIF format for GitHub Security tab
           if [ -f pip-audit-results.json ]; then
-            python3 -c "
-          import json, sys
+            python3 << 'PIPAUDIT_HEREDOC'
+import json, sys
 
-          # Read pip-audit JSON results
-          try:
-            with open('pip-audit-results.json', 'r') as f:
-              audit_data = json.load(f)
-          except (json.JSONDecodeError, FileNotFoundError, IOError):
-            audit_data = []
+# Read pip-audit JSON results
+try:
+  with open('pip-audit-results.json', 'r') as f:
+    audit_data = json.load(f)
+except (json.JSONDecodeError, FileNotFoundError, IOError):
+  audit_data = []
 
-          # Convert to SARIF format
-          sarif = {
-            'version': '2.1.0',
-            'runs': [{
-              'tool': {
-                'driver': {
-                  'name': 'pip-audit',
-                  'version': '2.x',
-                  'informationUri': 'https://github.com/pypa/pip-audit',
-                  'shortDescription': {'text': 'Python dependency vulnerability scanner'}
-                }
-              },
-              'results': []
-            }]
-          }
+# Convert to SARIF format
+sarif = {
+  'version': '2.1.0',
+  'runs': [{
+    'tool': {
+      'driver': {
+        'name': 'pip-audit',
+        'version': '2.x',
+        'informationUri': 'https://github.com/pypa/pip-audit',
+        'shortDescription': {'text': 'Python dependency vulnerability scanner'}
+      }
+    },
+    'results': []
+  }]
+}
 
-          # Process pip-audit results (format may vary)
-          vulnerabilities = audit_data if isinstance(audit_data, list) else audit_data.get('vulnerabilities', [])
+# Process pip-audit results (format may vary)
+vulnerabilities = audit_data if isinstance(audit_data, list) else audit_data.get('vulnerabilities', [])
 
-          for vuln in vulnerabilities:
-            sarif_result = {
-              'ruleId': vuln.get('id', 'unknown'),
-              'message': {'text': f\"Vulnerability in {vuln.get('package', 'unknown')}: {vuln.get('description', 'Security vulnerability detected')}\"},
-              'level': 'error' if vuln.get('fix_versions') else 'warning',
-              'locations': [{
-                'logicalLocations': [{
-                  'name': vuln.get('package', 'unknown'),
-                  'kind': 'package'
-                }]
-              }]
-            }
-            sarif['runs'][0]['results'].append(sarif_result)
+for vuln in vulnerabilities:
+  sarif_result = {
+    'ruleId': vuln.get('id', 'unknown'),
+    'message': {'text': f'Vulnerability in {vuln.get("package", "unknown")}: {vuln.get("description", "Security vulnerability detected")}'},
+    'level': 'error' if vuln.get('fix_versions') else 'warning',
+    'locations': [{
+      'logicalLocations': [{
+        'name': vuln.get('package', 'unknown'),
+        'kind': 'package'
+      }]
+    }]
+  }
+  sarif['runs'][0]['results'].append(sarif_result)
 
-          # Write SARIF output
-          with open('pip-audit-results.sarif', 'w') as f:
-            json.dump(sarif, f, indent=2)
-          "
+# Write SARIF output
+with open('pip-audit-results.sarif', 'w') as f:
+  json.dump(sarif, f, indent=2)
+PIPAUDIT_HEREDOC
           fi
           echo "📊 Python dependency audit completed"
 
@@ -399,7 +399,7 @@ except (subprocess.CalledProcessError, FileNotFoundError, IOError, json.JSONDeco
           cyclonedx-py -e -o sbom-current.json --format json || echo "Current environment SBOM generation failed"
 
           # Create SBOM analysis summary
-          python3 -c "
+          python3 << 'SBOM_HEREDOC'
 import json
 import os
 
@@ -418,7 +418,7 @@ for sbom_file in sbom_files:
             print(f'⚠️ Error analyzing {sbom_file}: {e}')
 
 print(f'📊 Total components tracked: {total_components}')
-"
+SBOM_HEREDOC
           echo "📋 SBOM generation completed"
 
       - name: 🔍 Container Security Baseline Check
@@ -430,7 +430,7 @@ print(f'📊 Total components tracked: {total_components}')
             echo "🐳 Dockerfile security analysis..."
 
             # Basic Dockerfile security checks
-            python3 -c "
+            python3 << 'DOCKERFILE_HEREDOC'
 import os
 import re
 
@@ -466,7 +466,7 @@ if os.path.exists('Dockerfile'):
         print('✅ Dockerfile follows basic security practices')
 else:
     print('📄 No Dockerfile found - container security check skipped')
-"
+DOCKERFILE_HEREDOC
           else
             echo "📄 No Dockerfile found - skipping container security analysis"
           fi
