@@ -1,7 +1,7 @@
 #!/bin/bash
 # Living Dev Agent Template - Professional Initialization Script
 # Jerry's "Actually Works" initialization that hooks into real development workflow
-# 
+#
 # Replaces InitMyBut.sh*t with something that integrates with Unity, IDEs, and team workflows
 
 set -e  # Exit on any error
@@ -32,13 +32,13 @@ echo ""
 if [ ! -d ".git" ]; then
     echo -e "${ERROR} Not a Git repository. Initializing..."
     git init
-    
+
     # Check for git config
     if ! git config user.name > /dev/null 2>&1; then
         echo -e "${WARNING} Git user.name not set. Please configure:"
         echo -e "  ${CYAN}git config --global user.name \"Your Name\"${NC}"
     fi
-    
+
     if ! git config user.email > /dev/null 2>&1; then
         echo -e "${WARNING} Git user.email not set. Please configure:"
         echo -e "  ${CYAN}git config --global user.email \"your.email@example.com\"${NC}"
@@ -101,13 +101,13 @@ echo -e "${BLUE}${TROPHY} Initializing XP system...${NC}"
 if [ -f "src/DeveloperExperience/dev_experience.py" ]; then
     # Get current user
     CURRENT_USER=${USER:-${USERNAME:-"Developer"}}
-    
+
     # Award setup achievement
     python3 src/DeveloperExperience/dev_experience.py --record "$CURRENT_USER" innovation legendary "Initialized Living Dev Agent Template with full integrations" --metrics "template_setup:1,integrations:4"
-    
+
     if [ $? -eq 0 ]; then
         echo -e "${CHECKMARK} XP system initialized - you earned your first achievement!"
-        
+
         # Show profile
         echo -e "${BLUE}${TROPHY} Your developer profile:${NC}"
         python3 src/DeveloperExperience/dev_experience.py --profile "$CURRENT_USER"
@@ -117,10 +117,10 @@ fi
 # Setup Unity integration (if Unity project detected)
 if [ -f "Assets" ] || [ -f "ProjectSettings/ProjectVersion.txt" ]; then
     echo -e "${BLUE}${ROCKET} Unity project detected - setting up Unity integration...${NC}"
-    
+
     # Create Unity integration directories
     mkdir -p Assets/Plugins/DeveloperExperience/Editor
-    
+
     # Unity integration is already created by dev_integration.py
     echo -e "${CHECKMARK} Unity XP integration ready"
     echo -e "${CYAN}  Menu: Tools > Developer Experience > XP Tracker${NC}"
@@ -129,7 +129,7 @@ fi
 # Setup GitHub Actions (if .github directory exists)
 if [ -d ".github" ]; then
     echo -e "${BLUE}${ROCKET} Setting up CI/CD integration...${NC}"
-    
+
     # Create basic CI workflow that includes XP tracking
     cat > .github/workflows/xp_system_ci.yml << 'EOF'
 name: XP System CI
@@ -140,7 +140,7 @@ jobs:
   validate_xp:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
@@ -160,7 +160,7 @@ jobs:
           python3 src/DeveloperExperience/dev_experience.py --leaderboard || true
         fi
 EOF
-    
+
     echo -e "${CHECKMARK} CI/CD integration setup"
 fi
 
