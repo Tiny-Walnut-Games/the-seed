@@ -212,8 +212,6 @@ jobs:
             test_pattern: "connection-spikes"
             timeout_minutes: 65
     
-    # Filter matrix based on input
-    runs-on: ubuntu-latest
     name: 🔥 ${{ matrix.test_name }}
     
     steps:
