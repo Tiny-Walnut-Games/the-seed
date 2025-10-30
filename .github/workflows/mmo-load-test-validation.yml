@@ -484,7 +484,7 @@ jobs:
         pytest tests/test_websocket_load_stress.py::test_concurrent_100_clients -v
 
     - name: 📈 Upload Results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: load-test-results-100-players-windows
