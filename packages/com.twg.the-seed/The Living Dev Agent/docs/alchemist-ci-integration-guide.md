@@ -106,7 +106,7 @@ jobs:
           done
           
       - name: Upload reports as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: alchemist-reports
           path: gu_pot/*/report/*.md
@@ -281,7 +281,7 @@ The CLI tool supports the following environment variables:
 ```yaml
 - name: Notify on report generation
   if: success()
-  uses: 8398a7/action-slack@v3
+  uses: 8398a7/action-slack@v4
   with:
     status: success
     text: '✅ Alchemist reports generated successfully'
@@ -290,7 +290,7 @@ The CLI tool supports the following environment variables:
 
 - name: Notify on validation failure
   if: failure()
-  uses: 8398a7/action-slack@v3
+  uses: 8398a7/action-slack@v4
   with:
     status: failure
     text: '❌ Alchemist evidence validation failed'
