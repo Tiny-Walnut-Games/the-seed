@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 SpriteForge Test Script - Integration with TLDA Fragment System
 

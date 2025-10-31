@@ -1,4 +1,4 @@
-"""
+﻿"""
 Debug script: Analyze score distribution across all pair types
 """
 

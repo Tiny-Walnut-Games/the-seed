@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test Suite for Alchemist Baseline Set Validation
@@ -49,6 +50,7 @@ def create_minimal_valid_baseline() -> Dict[str, Any]:
         }
     }
 
+@pytest.mark.integration
 def test_schema_loading():
     """Test schema loading functionality."""
     print("🧙‍♂️ Testing Schema Loading")
@@ -80,6 +82,7 @@ def test_schema_loading():
         print(f"❌ Schema loading test failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_valid_baseline_validation():
     """Test validation of valid baseline files."""
     print("✅ Testing Valid Baseline Validation")
@@ -122,6 +125,7 @@ def test_valid_baseline_validation():
         print(f"❌ Valid baseline validation test failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_invalid_baseline_detection():
     """Test detection of invalid baseline files."""
     print("❌ Testing Invalid Baseline Detection")
@@ -175,6 +179,7 @@ def test_invalid_baseline_detection():
         print(f"❌ Invalid baseline detection test failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_metric_validation():
     """Test metric-specific validation logic."""
     print("📊 Testing Metric Validation")
@@ -238,6 +243,7 @@ def test_metric_validation():
         print(f"❌ Metric validation test failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_provenance_validation():
     """Test provenance validation functionality."""
     print("🔗 Testing Provenance Validation")
@@ -304,6 +310,7 @@ def test_provenance_validation():
         print(f"❌ Provenance validation test failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_directory_validation():
     """Test directory validation functionality."""
     print("📁 Testing Directory Validation")
@@ -356,6 +363,7 @@ def test_directory_validation():
         print(f"❌ Directory validation test failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_cli_interface():
     """Test command-line interface functionality."""
     print("💻 Testing CLI Interface")

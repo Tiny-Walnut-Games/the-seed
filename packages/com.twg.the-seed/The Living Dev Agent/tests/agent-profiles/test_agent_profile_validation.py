@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Agent Profile System Tests
@@ -22,6 +23,7 @@ except ImportError:
     LDAConfig = None
     LDACLICommands = None
 
+@pytest.mark.integration
 class TestAgentProfileValidation(unittest.TestCase):
     """Test agent profile YAML validation"""
     
@@ -31,6 +33,7 @@ class TestAgentProfileValidation(unittest.TestCase):
         self.agent_profile_path = self.test_dir / ".agent-profile.yaml"
         self.legacy_profile_path = self.test_dir / "agent-profile.yaml"
         
+    @pytest.mark.integration
     def test_agent_profile_yaml_syntax(self):
         """Test that agent profile YAML files have valid syntax"""
         profiles_to_test = []
@@ -54,6 +57,7 @@ class TestAgentProfileValidation(unittest.TestCase):
                 except Exception as e:
                     self.fail(f"Error loading {profile_path.name}: {e}")
     
+    @pytest.mark.integration
     def test_required_profile_fields(self):
         """Test that agent profiles contain required fields"""
         if not self.agent_profile_path.exists():
@@ -73,6 +77,7 @@ class TestAgentProfileValidation(unittest.TestCase):
         workflow = profile.get('workflow_preferences', {})
         self.assertIn('mode', workflow, "workflow_preferences should specify mode")
         
+    @pytest.mark.integration
     def test_legacy_profile_compatibility(self):
         """Test that legacy agent-profile.yaml is compatible"""
         if not self.legacy_profile_path.exists():
@@ -99,6 +104,7 @@ class TestAgentProfileValidation(unittest.TestCase):
                 self.assertIn(pipeline, valid_pipelines, 
                              f"Unknown pipeline preference: {pipeline}")
                              
+    @pytest.mark.integration
     def test_tone_values(self):
         """Test that tone values are from expected set"""
         if not self.agent_profile_path.exists():
@@ -114,6 +120,7 @@ class TestAgentProfileValidation(unittest.TestCase):
             valid_tones = {'professional', 'friendly', 'dry_humor', 'sarcastic', 'enthusiastic'}
             self.assertIn(tone, valid_tones, f"Invalid tone value: {tone}")
             
+    @pytest.mark.integration
     def test_mode_values(self):
         """Test that workflow mode values are valid"""
         if not self.agent_profile_path.exists():
@@ -129,6 +136,7 @@ class TestAgentProfileValidation(unittest.TestCase):
             valid_modes = {'exploration', 'implementation', 'documentation', 'crisis', 'standard'}
             self.assertIn(mode, valid_modes, f"Invalid workflow mode: {mode}")
 
+@pytest.mark.e2e
 class TestLDACLITool(unittest.TestCase):
     """Test LDA CLI tool functionality"""
     
@@ -155,12 +163,14 @@ class TestLDACLITool(unittest.TestCase):
         os.chdir(self.original_cwd)
         shutil.rmtree(self.temp_dir, ignore_errors=True)
         
+    @pytest.mark.integration
     def test_lda_config_init(self):
         """Test LDA configuration initialization"""
         config = LDAConfig()
         self.assertIsInstance(config, LDAConfig)
         self.assertIsInstance(config.project_root, Path)
         
+    @pytest.mark.integration
     def test_default_profile_generation(self):
         """Test default profile generation"""
         config = LDAConfig()
@@ -172,6 +182,7 @@ class TestLDACLITool(unittest.TestCase):
         self.assertIn('behavior', default_profile)
         self.assertEqual(default_profile['name'], 'default')
         
+    @pytest.mark.integration
     def test_profile_loading_when_missing(self):
         """Test profile loading when file doesn't exist"""
         config = LDAConfig()
@@ -181,6 +192,7 @@ class TestLDACLITool(unittest.TestCase):
         self.assertIsInstance(profile, dict)
         self.assertEqual(profile['name'], 'default')
         
+    @pytest.mark.integration
     def test_profile_creation_and_loading(self):
         """Test creating and loading a profile"""
         config = LDAConfig()
@@ -203,12 +215,14 @@ class TestLDACLITool(unittest.TestCase):
         self.assertEqual(loaded_profile['name'], 'test_profile')
         self.assertEqual(loaded_profile['description'], 'Test profile for unit tests')
         
+    @pytest.mark.integration
     def test_lda_cli_commands_init(self):
         """Test LDA CLI commands initialization"""
         commands = LDACLICommands()
         self.assertIsInstance(commands, LDACLICommands)
         self.assertIsInstance(commands.config, LDAConfig)
 
+@pytest.mark.integration
 class TestAgentProfileStructures(unittest.TestCase):
     """Test specific agent profile configuration structures"""
     
@@ -216,6 +230,7 @@ class TestAgentProfileStructures(unittest.TestCase):
         """Set up test data"""
         self.test_dir = Path(__file__).parent.parent.parent
         
+    @pytest.mark.integration
     def test_cli_integration_commands(self):
         """Test CLI integration command definitions"""
         profile_path = self.test_dir / ".agent-profile.yaml"
@@ -235,6 +250,7 @@ class TestAgentProfileStructures(unittest.TestCase):
                 self.assertIsInstance(cmd, str, f"Command should be a string: {cmd}")
                 self.assertTrue(cmd.startswith('lda '), f"Command should start with 'lda ': {cmd}")
                 
+    @pytest.mark.integration
     def test_communication_patterns(self):
         """Test communication patterns configuration"""
         profile_path = self.test_dir / ".agent-profile.yaml"
@@ -257,6 +273,7 @@ class TestAgentProfileStructures(unittest.TestCase):
             self.assertTrue(len(pattern_values & expected_patterns) > 0,
                            "Should contain some expected communication patterns")
                            
+    @pytest.mark.integration
     def test_emergency_settings(self):
         """Test emergency settings configuration"""
         profile_path = self.test_dir / ".agent-profile.yaml"

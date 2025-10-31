@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 # Agent Profile System Test Runner
 # Validates agent profile configurations and LDA CLI functionality
 

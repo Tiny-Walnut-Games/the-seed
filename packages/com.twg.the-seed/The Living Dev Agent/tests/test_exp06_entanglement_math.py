@@ -1,4 +1,4 @@
-"""
+﻿"""
 EXP-06: Entanglement Detection — Mathematical Validation
 
 Tests that prove:
@@ -12,6 +12,7 @@ Tests that prove:
 Status: Mathematical proof phase (before full test harness)
 """
 
+import pytest
 import sys
 import time
 import json
@@ -39,6 +40,7 @@ from exp06_test_data import generate_test_dataset
 # MATHEMATICAL PROPERTIES TESTS
 # ============================================================================
 
+@pytest.mark.integration
 def test_determinism():
     """
     Test Claim 1: Score function is deterministic.
@@ -68,6 +70,7 @@ def test_determinism():
     assert is_deterministic, "Score function is not deterministic"
 
 
+@pytest.mark.integration
 def test_symmetry():
     """
     Test Claim 2: Score function is symmetric.
@@ -107,6 +110,7 @@ def test_symmetry():
     assert all_symmetric, f"Score function is not symmetric: {len(failures)} failures"
 
 
+@pytest.mark.integration
 def test_boundedness():
     """
     Test Claim 3: Score function is bounded [0, 1].
@@ -145,6 +149,7 @@ def test_boundedness():
     assert max_score <= 1.0, f"Max score {max_score} > 1.0"
 
 
+@pytest.mark.integration
 def test_component_boundedness():
     """
     Test: Each component function is bounded [0, 1].
@@ -184,6 +189,7 @@ def test_component_boundedness():
     assert all_ok, "Some component functions produced out-of-bounds values"
 
 
+@pytest.mark.integration
 def test_separation():
     """
     Test Claim 4: True pairs score higher than false pairs (on average).

@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test suite for Badge Pet System
@@ -14,6 +15,7 @@ from pathlib import Path
 # Add src to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
+@pytest.mark.integration
 def test_pet_system_initialization():
     """Test that pet system initializes correctly"""
     print("🧪 Testing pet system initialization...")
@@ -45,6 +47,7 @@ def test_pet_system_initialization():
             print(f"❌ Pet system initialization failed: {e}")
             return False
 
+@pytest.mark.integration
 def test_registry_structure():
     """Test that pet registry has correct structure"""
     print("🧪 Testing pet registry structure...")
@@ -91,6 +94,7 @@ def test_registry_structure():
         print(f"❌ Registry validation failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_pet_adoption():
     """Test pet adoption functionality"""
     print("🧪 Testing pet adoption...")
@@ -145,6 +149,7 @@ def test_pet_adoption():
             print(f"❌ Pet adoption test failed: {e}")
             return False
 
+@pytest.mark.integration
 def test_xp_awarding():
     """Test XP awarding and evolution"""
     print("🧪 Testing XP awarding and evolution...")
@@ -198,6 +203,7 @@ def test_xp_awarding():
             print(f"❌ XP awarding test failed: {e}")
             return False
 
+@pytest.mark.integration
 def test_governance_documents():
     """Test that governance documents exist and are valid"""
     print("🧪 Testing governance documents...")

@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 v0.6 Performance Optimization Test Suite
@@ -25,6 +26,7 @@ from engine.batch_evaluation import BatchEvaluationEngine, ReplayMode, batch_pro
 from engine.performance_profiles import PerformanceProfileManager, get_global_profile_manager
 
 
+@pytest.mark.integration
 def test_anchor_memory_pool():
     """Test anchor memory pool functionality."""
     print("🧠 Testing Anchor Memory Pool")
@@ -66,6 +68,7 @@ def test_anchor_memory_pool():
     print("✅ Anchor memory pool tests passed!\n")
     
     
+@pytest.mark.integration
 def test_incremental_state_diff():
     """Test incremental state diff functionality."""
     print("📊 Testing Incremental State Diff")
@@ -115,6 +118,7 @@ def test_incremental_state_diff():
     print("✅ Incremental state diff tests passed!\n")
     
 
+@pytest.mark.integration
 def test_streaming_ingestion_pipeline():
     """Test streaming ingestion pipeline."""
     print("🌊 Testing Streaming Ingestion Pipeline")
@@ -172,6 +176,7 @@ def test_streaming_ingestion_pipeline():
     print("✅ Streaming ingestion pipeline tests passed!\n")
     
 
+@pytest.mark.integration
 def test_batch_evaluation():
     """Test batch evaluation system."""
     print("📦 Testing Batch Evaluation")
@@ -212,6 +217,7 @@ def test_batch_evaluation():
     print("✅ Batch evaluation tests passed!\n")
     
 
+@pytest.mark.integration
 def test_performance_profiles():
     """Test performance profiles system."""
     print("⚙️ Testing Performance Profiles")
@@ -258,6 +264,7 @@ def test_performance_profiles():
     print("✅ Performance profiles tests passed!\n")
     
 
+@pytest.mark.integration
 def test_integration_scenario():
     """Test integrated scenario with all systems."""
     print("🎯 Testing Integration Scenario")

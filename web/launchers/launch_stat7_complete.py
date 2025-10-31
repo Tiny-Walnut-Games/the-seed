@@ -11,8 +11,14 @@ import threading
 import webbrowser
 import subprocess
 import asyncio
+import io
 from pathlib import Path
 import signal
+
+# Fix for Windows console encoding (emoji support)
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 def check_requirements():
     """Check if all requirements are met."""

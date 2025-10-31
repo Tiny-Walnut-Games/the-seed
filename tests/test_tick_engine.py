@@ -1,4 +1,4 @@
-"""
+﻿"""
 Test suite for the Tick Engine (Hybrid Model).
 
 Tick Engine executes the simulation heartbeat with deterministic cascades.
@@ -30,6 +30,7 @@ from tick_engine import TickEngine, ReactionPhase, ReactionRule, CascadeTrace
 # ============================================================================
 
 
+@pytest.mark.integration
 class TestTickEngineBasic:
     """
     Mental model test: Does the tick engine execute at the right frequency?
@@ -40,11 +41,13 @@ class TestTickEngineBasic:
         """Fresh tick engine."""
         return TickEngine(tick_interval_ms=100)
 
+    @pytest.mark.integration
     def test_tick_engine_initializes_at_zero(self, engine):
         """Engine starts with tick_count = 0."""
         assert engine.tick_count == 0
         assert engine.is_running == False
 
+    @pytest.mark.integration
     def test_execute_tick_increments_count(self, engine):
         """Executing a tick increments the tick counter."""
         result = engine.execute_tick()
@@ -53,6 +56,7 @@ class TestTickEngineBasic:
         result2 = engine.execute_tick()
         assert result2["tick_number"] == 2
 
+    @pytest.mark.integration
     def test_execute_tick_returns_metrics(self, engine):
         """Executing a tick returns performance metrics."""
         result = engine.execute_tick()
@@ -64,6 +68,7 @@ class TestTickEngineBasic:
         assert "elapsed_ms" in result
         assert isinstance(result["elapsed_ms"], float)
 
+    @pytest.mark.e2e
     def test_tick_interval_configuration(self):
         """Tick interval can be configured."""
         engine_50 = TickEngine(tick_interval_ms=50)
@@ -73,6 +78,7 @@ class TestTickEngineBasic:
         assert engine_200.tick_interval_ms == 200
 
 
+@pytest.mark.integration
 class TestTickEngineEventQueuing:
     """
     Mental model test: Does the engine queue events correctly?
@@ -82,6 +88,7 @@ class TestTickEngineEventQueuing:
     def engine(self):
         return TickEngine()
 
+    @pytest.mark.integration
     def test_queue_immediate_event(self, engine):
         """Immediate events are queued for this tick."""
         event = {"event_id": "evt_1", "event_type": "StateSet"}
@@ -90,6 +97,7 @@ class TestTickEngineEventQueuing:
         assert len(engine.immediate_queue) == 1
         assert engine.immediate_queue[0]["event_id"] == "evt_1"
 
+    @pytest.mark.integration
     def test_queue_scheduled_event(self, engine):
         """Scheduled events are queued for next tick."""
         event = {"event_id": "evt_1", "event_type": "Delayed"}
@@ -97,6 +105,7 @@ class TestTickEngineEventQueuing:
 
         assert len(engine.scheduled_queue) == 1
 
+    @pytest.mark.integration
     def test_queues_are_independent(self, engine):
         """Immediate and scheduled queues are separate."""
         immed = {"event_id": "immed_1", "event_type": "Immediate"}
@@ -108,6 +117,7 @@ class TestTickEngineEventQueuing:
         assert len(engine.immediate_queue) == 1
         assert len(engine.scheduled_queue) == 1
 
+    @pytest.mark.integration
     def test_queues_clear_after_tick(self, engine):
         """Queues are cleared and rotated after each tick."""
         engine.queue_immediate_event({"event_id": "evt_1"})
@@ -120,6 +130,7 @@ class TestTickEngineEventQueuing:
         assert len(engine.scheduled_queue) == 0
 
 
+@pytest.mark.integration
 class TestTickEngineReactionRules:
     """
     Mental model test: Do reaction rules cascade correctly?
@@ -129,6 +140,7 @@ class TestTickEngineReactionRules:
     def engine(self):
         return TickEngine()
 
+    @pytest.mark.integration
     def test_register_reaction_rule(self, engine):
         """Reaction rules can be registered."""
         rule = ReactionRule(
@@ -142,6 +154,7 @@ class TestTickEngineReactionRules:
         assert "on_state_set" in engine.reactions
         assert engine.reactions["on_state_set"].trigger_type == "StateSet"
 
+    @pytest.mark.integration
     def test_reaction_rule_fires_on_matching_event(self, engine):
         """A reaction rule fires when its trigger event arrives."""
         rule = ReactionRule(
@@ -157,6 +170,7 @@ class TestTickEngineReactionRules:
 
         assert result["reactions_fired"] == 1
 
+    @pytest.mark.integration
     def test_reaction_rule_ignores_non_matching_events(self, engine):
         """A reaction rule doesn't fire for non-matching events."""
         rule = ReactionRule(
@@ -172,6 +186,7 @@ class TestTickEngineReactionRules:
 
         assert result["reactions_fired"] == 0
 
+    @pytest.mark.integration
     def test_multiple_rules_can_fire_same_tick(self, engine):
         """Multiple reaction rules can fire in the same tick."""
         rule1 = ReactionRule(
@@ -194,6 +209,7 @@ class TestTickEngineReactionRules:
         assert result["reactions_fired"] == 2
 
 
+@pytest.mark.integration
 class TestTickEngineCascades:
     """
     Mental model test: Do cascades respect depth limiting?
@@ -203,6 +219,7 @@ class TestTickEngineCascades:
     def engine(self):
         return TickEngine()
 
+    @pytest.mark.integration
     def test_cascade_trace_recorded(self, engine):
         """Each cascade is traced for audit."""
         rule = ReactionRule(
@@ -221,6 +238,7 @@ class TestTickEngineCascades:
         assert trace.initial_event_id == "evt_1"
         assert len(trace.reactions) > 0
 
+    @pytest.mark.integration
     def test_cascade_chain_retrieval(self, engine):
         """Can retrieve cascade chain for specific event."""
         rule = ReactionRule(
@@ -241,6 +259,7 @@ class TestTickEngineCascades:
         assert len(chain_1) == 1
         assert len(chain_2) == 1
 
+    @pytest.mark.integration
     def test_depth_limit_stops_infinite_cascades(self, engine):
         """Depth limit prevents infinite cascade loops."""
         def infinite_handler(evt, depth):
@@ -264,6 +283,7 @@ class TestTickEngineCascades:
         assert trace.depth <= 2
 
 
+@pytest.mark.integration
 class TestTickEngineMetrics:
     """
     Mental model test: Do metrics correctly reflect activity?
@@ -273,6 +293,7 @@ class TestTickEngineMetrics:
     def engine(self):
         return TickEngine()
 
+    @pytest.mark.integration
     def test_empty_tick_returns_zeros(self, engine):
         """An empty tick returns zero events and reactions."""
         result = engine.execute_tick()
@@ -280,6 +301,7 @@ class TestTickEngineMetrics:
         assert result["events_processed"] == 0
         assert result["reactions_fired"] == 0
 
+    @pytest.mark.integration
     def test_metrics_accumulate_across_ticks(self, engine):
         """Metrics accumulate correctly across multiple ticks."""
         rule = ReactionRule(
@@ -303,6 +325,7 @@ class TestTickEngineMetrics:
         assert metrics["total_ticks"] == 2
         assert metrics["total_events"] == 3
 
+    @pytest.mark.integration
     def test_average_cascade_depth_computed(self, engine):
         """Average cascade depth is computed correctly."""
         rule = ReactionRule(
@@ -321,6 +344,7 @@ class TestTickEngineMetrics:
         assert metrics["avg_cascade_depth"] > 0
 
 
+@pytest.mark.integration
 class TestTickEngineDeterminism:
     """
     Mental model test: Are cascades deterministic and reproducible?
@@ -330,6 +354,7 @@ class TestTickEngineDeterminism:
     def engine(self):
         return TickEngine()
 
+    @pytest.mark.integration
     def test_same_input_produces_same_output(self, engine):
         """Identical inputs produce identical reactions (determinism)."""
         def handler(evt, depth):
@@ -360,6 +385,7 @@ class TestTickEngineDeterminism:
         assert len(trace1.reactions) == len(trace2.reactions)
         assert trace1.reactions[0]["value"] == trace2.reactions[0]["value"]
 
+    @pytest.mark.integration
     def test_causal_order_preserved(self, engine):
         """Events maintain causal ordering through cascades."""
         reactions_order = []
@@ -386,6 +412,7 @@ class TestTickEngineDeterminism:
         assert "rule1" in reactions_order
 
 
+@pytest.mark.integration
 class TestTickEngineHybridModel:
     """
     Mental model test: Does hybrid model work (fixed + immediate)?
@@ -395,6 +422,7 @@ class TestTickEngineHybridModel:
     def engine(self):
         return TickEngine()
 
+    @pytest.mark.integration
     def test_immediate_and_scheduled_processed_together(self, engine):
         """Both immediate and scheduled events are processed in same tick."""
         rule = ReactionRule(
@@ -412,6 +440,7 @@ class TestTickEngineHybridModel:
         # Both should be processed
         assert result["events_processed"] == 2
 
+    @pytest.mark.integration
     def test_scheduled_events_become_immediate_next_call(self, engine):
         """Events queued as scheduled can be promoted to immediate."""
         engine.queue_scheduled_event({"event_id": "evt_1", "event_type": "Event"})

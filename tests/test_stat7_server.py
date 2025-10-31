@@ -8,13 +8,26 @@ import asyncio
 import json
 from pathlib import Path
 
-# Add root to path for imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add root to path and ensure project paths
+root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, root_dir)
+
+# Use path_utils for consistent path resolution
+try:
+    from path_utils import ensure_project_paths
+    ensure_project_paths()
+except ImportError:
+    # Fallback if path_utils not available
+    web_server_dir = os.path.join(root_dir, 'web', 'server')
+    if web_server_dir not in sys.path:
+        sys.path.insert(0, web_server_dir)
 
 
+@pytest.mark.integration
 class TestStat7Server:
     """STAT7 server functionality tests."""
 
+    @pytest.mark.e2e
     def test_server_imports(self):
         """Test that server components can be imported."""
         try:
@@ -25,6 +38,7 @@ class TestStat7Server:
         except ImportError as e:
             pytest.fail(f"Server imports failed: {e}")
 
+    @pytest.mark.e2e
     def test_server_initialization(self):
         """Test server initialization."""
         from stat7wsserve import STAT7EventStreamer, ExperimentVisualizer
@@ -36,6 +50,7 @@ class TestStat7Server:
         assert streamer.port == 8765
         assert visualizer.streamer is streamer
 
+    @pytest.mark.integration
     def test_bitchain_generation(self):
         """Test BitChain generation."""
         from stat7wsserve import generate_random_bitchain
@@ -50,6 +65,7 @@ class TestStat7Server:
         assert hasattr(bitchain1, 'realm')
         assert hasattr(bitchain1, 'entity_type')
 
+    @pytest.mark.e2e
     def test_event_creation(self):
         """Test event creation from BitChain."""
         from stat7wsserve import STAT7EventStreamer, generate_random_bitchain
@@ -63,6 +79,7 @@ class TestStat7Server:
         assert event.experiment_id == "TEST_EXP"
         assert event.data is not None
 
+    @pytest.mark.e2e
     def test_event_serialization(self):
         """Test event JSON serialization."""
         from stat7wsserve import STAT7EventStreamer, generate_random_bitchain

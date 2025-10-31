@@ -1,4 +1,4 @@
-"""
+﻿"""
 End-to-End Scenario Tests (Layer 5: Full System Integration)
 
 This test suite defines complete user journeys that exercise all layers:
@@ -38,9 +38,11 @@ from e2e_simulation import (
 # TEST SCENARIOS
 # ============================================================================
 
+@pytest.mark.e2e
 class TestE2ESimpleCommandSubmission:
     """User submits a command; it updates state."""
     
+    @pytest.mark.e2e
     def test_single_command_updates_entity(self):
         """Single command updates entity state."""
         harness = E2ESimulationHarness()
@@ -63,6 +65,7 @@ class TestE2ESimpleCommandSubmission:
         assert state["points"] == 100
         assert state["name"] == "Alice"  # Unchanged
     
+    @pytest.mark.e2e
     def test_multiple_commands_update_state_sequentially(self):
         """Multiple commands update state in order."""
         harness = E2ESimulationHarness()
@@ -84,6 +87,7 @@ class TestE2ESimpleCommandSubmission:
         state = harness.get_entity_state("entity_1")
         assert state["count"] == 3
     
+    @pytest.mark.e2e
     def test_multiple_entities_maintain_independence(self):
         """Multiple entities maintain independent state."""
         harness = E2ESimulationHarness()
@@ -120,9 +124,11 @@ class TestE2ESimpleCommandSubmission:
         assert state2["value"] == 20
 
 
+@pytest.mark.e2e
 class TestE2ETemporalQueries:
     """System can answer "what was state at time T?" questions."""
     
+    @pytest.mark.e2e
     def test_state_as_of_timestamp(self):
         """Can retrieve state as it was at a past timestamp."""
         harness = E2ESimulationHarness()
@@ -167,9 +173,11 @@ class TestE2ETemporalQueries:
         assert state_at_t3 == {"value": 2}
 
 
+@pytest.mark.e2e
 class TestE2ESubscriptions:
     """Subscribers receive notifications of state changes."""
     
+    @pytest.mark.e2e
     def test_subscriber_receives_notifications(self):
         """Subscriber receives notifications for subscribed entity."""
         harness = E2ESimulationHarness()
@@ -193,6 +201,7 @@ class TestE2ESubscriptions:
         assert notifications[0].key == "value"
         assert notifications[0].new_value == 100
     
+    @pytest.mark.e2e
     def test_multiple_subscribers_receive_notifications(self):
         """Multiple subscribers receive same notification."""
         harness = E2ESimulationHarness()
@@ -219,6 +228,7 @@ class TestE2ESubscriptions:
         assert len(notif2) == 1
         assert notif1[0].new_value == notif2[0].new_value
     
+    @pytest.mark.e2e
     def test_unsubscriber_does_not_receive_notifications(self):
         """Unsubscribed entity does not receive notifications."""
         harness = E2ESimulationHarness()
@@ -242,9 +252,11 @@ class TestE2ESubscriptions:
         assert len(notifications) == 0
 
 
+@pytest.mark.e2e
 class TestE2ESnapshots:
     """Snapshots accelerate state replay."""
     
+    @pytest.mark.e2e
     def test_create_and_use_snapshot(self):
         """Snapshot preserves state for fast replay."""
         harness = E2ESimulationHarness()
@@ -270,6 +282,7 @@ class TestE2ESnapshots:
         assert snapshot.version == 3
         assert snapshot.state["value"] == 4  # Latest value
     
+    @pytest.mark.e2e
     def test_snapshot_allows_faster_replay(self):
         """Snapshot reduces number of events to replay."""
         harness = E2ESimulationHarness()
@@ -298,9 +311,11 @@ class TestE2ESnapshots:
         assert snapshot.state["value"] == 100
 
 
+@pytest.mark.e2e
 class TestE2EGovernanceRejection:
     """Governance policies prevent invalid commands from persisting."""
     
+    @pytest.mark.e2e
     def test_policy_rejects_command_prevents_state_update(self):
         """Rejected command does not update state."""
         harness = E2ESimulationHarness()
@@ -340,9 +355,11 @@ class TestE2EGovernanceRejection:
         assert state["value"] == 0  # Unchanged
 
 
+@pytest.mark.e2e
 class TestE2EMultiEntityCascade:
     """Commands cascade through related entities."""
     
+    @pytest.mark.e2e
     def test_parent_command_triggers_child_updates(self):
         """Parent entity update cascades to children."""
         harness = E2ESimulationHarness()
@@ -383,9 +400,11 @@ class TestE2EMultiEntityCascade:
         assert "UpdateFromParent" in cascade_trace
 
 
+@pytest.mark.e2e
 class TestE2ETickExecution:
     """System executes in discrete ticks."""
     
+    @pytest.mark.e2e
     def test_tick_increments_counter(self):
         """Each tick increments tick counter."""
         harness = E2ESimulationHarness()
@@ -394,6 +413,7 @@ class TestE2ETickExecution:
             metrics = harness.execute_tick()
             assert metrics["tick"] == i + 1
     
+    @pytest.mark.e2e
     def test_multiple_ticks_process_events(self):
         """Multiple ticks process multiple events."""
         harness = E2ESimulationHarness()
@@ -418,9 +438,11 @@ class TestE2ETickExecution:
         assert metrics["events_processed"] == 3
 
 
+@pytest.mark.e2e
 class TestE2ECompleteScenario:
     """Complex scenario with multiple entities, cascades, and governance."""
     
+    @pytest.mark.e2e
     def test_game_round_scenario(self):
         """
         Scenario: A game has players and a round.

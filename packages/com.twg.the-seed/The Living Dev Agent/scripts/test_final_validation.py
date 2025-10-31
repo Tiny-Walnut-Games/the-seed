@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Final Validation Test for Warbler AI Project Orchestration
 Tests all components including Unity C# integration simulation

@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test suite for Cognitive Geo-Thermal Lore Engine Scaffold
@@ -19,6 +20,7 @@ from pathlib import Path
 # Add parent directory to path for engine imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+@pytest.mark.integration
 def test_engine_imports():
     """Test that all engine modules import without error."""
     print("🧪 Testing engine module imports...")
@@ -38,6 +40,7 @@ def test_engine_imports():
         print(f"❌ Import failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_json_schemas():
     """Test that JSON schema stubs are valid JSON."""
     print("🧪 Testing JSON schema validity...")
@@ -63,6 +66,7 @@ def test_json_schemas():
         print(f"❌ Schema validation failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_cycle_execution():
     """Test that one complete cycle runs with dummy fragments."""
     print("🧪 Testing complete cycle execution...")
@@ -149,6 +153,7 @@ def test_cycle_execution():
         print(f"❌ Cycle execution failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_data_structure_mutations():
     """Test that structures mutate as expected during processing."""
     print("🧪 Testing data structure mutations...")
@@ -194,6 +199,7 @@ def test_data_structure_mutations():
         print(f"❌ Data structure mutation test failed: {e}")
         return False
 
+@pytest.mark.integration
 def test_run_cycle_script():
     """Test that run_cycle.py produces expected JSON output."""
     print("🧪 Testing run_cycle.py script execution...")

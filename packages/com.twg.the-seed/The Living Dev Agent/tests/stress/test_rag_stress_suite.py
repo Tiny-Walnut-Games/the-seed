@@ -1,4 +1,4 @@
-# tests/stress/test_rag_stress_suite.py
+﻿# tests/stress/test_rag_stress_suite.py
 """
 RAG System Stress Test Suite
 
@@ -203,6 +203,7 @@ def compute_latency_metrics(latencies_ms: List[float]) -> LatencyMetrics:
 # RAG Stress Test Suite
 # ========================================================================
 
+@pytest.mark.integration
 class TestRAGStress:
     """Comprehensive RAG system stress testing."""
 
@@ -272,6 +273,7 @@ class TestRAGStress:
         
         print(f"✅ Determinism verified: repeated embeddings match exactly")
 
+    @pytest.mark.integration
     def test_embedding_similarity_consistency(self):
         """
         PROOF: Similarity scoring is consistent and deterministic.
@@ -347,6 +349,7 @@ class TestRAGStress:
         assert len(set(anchor_ids)) == len(anchor_ids), "All anchor IDs should be unique"
         print(f"✅ Anchor uniqueness verified")
 
+    @pytest.mark.integration
     def test_anchor_deduplication_accuracy(self):
         """
         PROOF: Similar content correctly deduplicates.
@@ -426,6 +429,7 @@ class TestRAGStress:
         metrics = compute_latency_metrics(latencies)
         print(f"✅ Query latencies: mean={metrics.mean_ms:.2f}ms, p95={metrics.p95_ms:.2f}ms, max={metrics.max_ms:.2f}ms")
 
+    @pytest.mark.integration
     def test_retrieval_ranking_quality(self):
         """
         PROOF: Retrieval ranking is semantically sensible.
@@ -463,6 +467,7 @@ class TestRAGStress:
 
     # ========== TEST 4: Cache Performance ==========
 
+    @pytest.mark.integration
     def test_cache_hit_rate_repeated_queries(self):
         """
         PROOF: Caching improves performance on repeated queries.
@@ -556,6 +561,7 @@ class TestRAGStress:
 
     # ========== TEST 6: Memory & GC Pressure ==========
 
+    @pytest.mark.integration
     def test_gc_pressure_stability(self):
         """
         PROOF: System remains stable under memory pressure.
@@ -603,6 +609,7 @@ class TestRAGStress:
 
     # ========== TEST 7: Long-run Soak ==========
 
+    @pytest.mark.integration
     def test_soak_stability_5min(self):
         """
         PROOF: System remains stable under 5-minute sustained load.

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Governance Integration Tests (Layer 4: Policy Enforcement)
 
 This test suite defines the contract for governance policies that operate
@@ -42,9 +42,11 @@ from governance import (
 # TEST CLASSES
 # ============================================================================
 
+@pytest.mark.e2e
 class TestGovernancePolicyCreation:
     """Policies can be created, registered, and removed."""
     
+    @pytest.mark.e2e
     def test_add_policy_to_engine(self):
         """Policy is registered in engine."""
         engine = GovernanceEngine()
@@ -63,6 +65,7 @@ class TestGovernancePolicyCreation:
         assert "test_policy" in engine.policies
         assert engine.policies["test_policy"].name == "test_policy"
     
+    @pytest.mark.e2e
     def test_remove_policy_from_engine(self):
         """Policy is unregistered from engine."""
         engine = GovernanceEngine()
@@ -83,6 +86,7 @@ class TestGovernancePolicyCreation:
         engine.remove_policy("test_policy")
         assert "test_policy" not in engine.policies
     
+    @pytest.mark.e2e
     def test_policy_scope_indexing(self):
         """Policies are indexed by scope for fast lookup."""
         engine = GovernanceEngine()
@@ -111,9 +115,11 @@ class TestGovernancePolicyCreation:
         assert "entity_policy" in engine.scope_index["entity:entity_1"]
 
 
+@pytest.mark.e2e
 class TestGovernancePolicyEvaluation:
     """Policies can evaluate commands and permit/deny them."""
     
+    @pytest.mark.e2e
     def test_simple_permit_policy(self):
         """Policy permits command."""
         engine = GovernanceEngine()
@@ -142,6 +148,7 @@ class TestGovernancePolicyEvaluation:
         result = engine.evaluate_command(ctx)
         assert result.decision == PolicyDecision.PERMIT
     
+    @pytest.mark.e2e
     def test_simple_deny_policy(self):
         """Policy denies command."""
         engine = GovernanceEngine()
@@ -171,6 +178,7 @@ class TestGovernancePolicyEvaluation:
         assert result.decision == PolicyDecision.DENY
         assert result.reason == "forbidden"
     
+    @pytest.mark.e2e
     def test_role_based_policy(self):
         """Policy enforces role-based access."""
         engine = GovernanceEngine()
@@ -216,9 +224,11 @@ class TestGovernancePolicyEvaluation:
         assert result.decision == PolicyDecision.DENY
 
 
+@pytest.mark.e2e
 class TestGovernancePolicyMutation:
     """Policies can mutate commands before they are processed."""
     
+    @pytest.mark.e2e
     def test_simple_mutation_policy(self):
         """Policy can mutate payload."""
         engine = GovernanceEngine()
@@ -257,6 +267,7 @@ class TestGovernancePolicyMutation:
         assert result.mutated_payload["audit_required"] is True
         assert result.mutated_payload["key"] == "value"
     
+    @pytest.mark.e2e
     def test_mutation_chain(self):
         """Multiple policies mutate payload sequentially."""
         engine = GovernanceEngine()
@@ -315,9 +326,11 @@ class TestGovernancePolicyMutation:
         assert result.mutated_payload["actor_id_recorded"] == "user_1"
 
 
+@pytest.mark.e2e
 class TestGovernancePolicyScope:
     """Policies apply to the correct scope."""
     
+    @pytest.mark.e2e
     def test_global_policy_applies_to_all(self):
         """Global policy applies to all commands."""
         engine = GovernanceEngine()
@@ -351,6 +364,7 @@ class TestGovernancePolicyScope:
         assert len(evaluated_commands) == 3
         assert all(c in ["SetValue", "DeleteEntity", "AddChild"] for c in evaluated_commands)
     
+    @pytest.mark.e2e
     def test_entity_policy_applies_to_entity_only(self):
         """Entity-specific policy applies only to that entity."""
         engine = GovernanceEngine()
@@ -385,6 +399,7 @@ class TestGovernancePolicyScope:
         assert len(evaluated_entities) == 1
         assert evaluated_entities[0] == "entity_1"
     
+    @pytest.mark.e2e
     def test_command_type_policy_applies_to_command_only(self):
         """Command-type policy applies only to that command type."""
         engine = GovernanceEngine()
@@ -420,9 +435,11 @@ class TestGovernancePolicyScope:
         assert evaluated_commands[0] == "DeleteEntity"
 
 
+@pytest.mark.e2e
 class TestGovernancePolicyPriority:
     """Policies execute in priority order."""
     
+    @pytest.mark.e2e
     def test_priority_ordering(self):
         """Policies execute in priority order (lower number = higher priority)."""
         engine = GovernanceEngine()
@@ -460,6 +477,7 @@ class TestGovernancePolicyPriority:
         # Should execute in order: 10, 20, 30, 50
         assert execution_order == [10, 20, 30, 50]
     
+    @pytest.mark.e2e
     def test_deny_short_circuits_execution(self):
         """DENY result short-circuits remaining policies."""
         engine = GovernanceEngine()
@@ -498,9 +516,11 @@ class TestGovernancePolicyPriority:
         assert result.decision == PolicyDecision.DENY
 
 
+@pytest.mark.e2e
 class TestGovernanceAuditLog:
     """Policy evaluations are recorded in audit log."""
     
+    @pytest.mark.e2e
     def test_audit_log_records_permit(self):
         """Audit log records PERMIT decisions."""
         engine = GovernanceEngine()
@@ -538,6 +558,7 @@ class TestGovernanceAuditLog:
         assert entry.final_decision == PolicyDecision.PERMIT
         assert entry.correlation_id == correlation_id
     
+    @pytest.mark.e2e
     def test_audit_log_records_deny(self):
         """Audit log records DENY decisions."""
         engine = GovernanceEngine()
@@ -570,6 +591,7 @@ class TestGovernanceAuditLog:
         assert audit_log[0].final_decision == PolicyDecision.DENY
         assert audit_log[0].reason == "forbidden"
     
+    @pytest.mark.e2e
     def test_audit_log_filters_by_entity(self):
         """Audit log can filter by entity_id."""
         engine = GovernanceEngine()
@@ -604,6 +626,7 @@ class TestGovernanceAuditLog:
         assert len(entity_1_entries) == 2
         assert all(e.entity_id == "entity_1" for e in entity_1_entries)
     
+    @pytest.mark.e2e
     def test_audit_log_filters_by_actor(self):
         """Audit log can filter by actor_id."""
         engine = GovernanceEngine()
@@ -639,9 +662,11 @@ class TestGovernanceAuditLog:
         assert all(e.actor_id == "user_1" for e in user_1_entries)
 
 
+@pytest.mark.e2e
 class TestGovernanceIntegrationWithEventStore:
     """Governance policies integrate with Event Store operations."""
     
+    @pytest.mark.e2e
     def test_policy_can_prevent_event_persistence(self):
         """Policies can deny commands before they are persisted."""
         engine = GovernanceEngine()
@@ -690,9 +715,11 @@ class TestGovernanceIntegrationWithEventStore:
         assert result2.decision == PolicyDecision.DENY
 
 
+@pytest.mark.e2e
 class TestGovernanceIntegrationWithTickEngine:
     """Governance policies integrate with Tick Engine cascades."""
     
+    @pytest.mark.e2e
     def test_policy_can_prevent_cascade_reactions(self):
         """Policies can prevent reactions from cascading."""
         engine = GovernanceEngine()

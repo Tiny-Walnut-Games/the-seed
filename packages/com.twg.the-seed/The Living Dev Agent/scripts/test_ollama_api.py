@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Test Simplified Ollama Integration - No Docker Required
 Enhanced test suite for direct Ollama binary integration

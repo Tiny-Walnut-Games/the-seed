@@ -1,4 +1,4 @@
-"""
+﻿"""
 Analyze full score distribution across all pairs
 """
 

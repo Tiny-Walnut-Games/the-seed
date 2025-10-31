@@ -1,4 +1,4 @@
-"""
+﻿"""
 Phase 1 Security Tests: Recovery Gate Implementation
 
 Tests all four Story Test archetypes:
@@ -119,9 +119,11 @@ def sample_pii_bitchain():
 # TESTS: PHANTOM PROP ARCHETYPE
 # ============================================================================
 
+@pytest.mark.integration
 class TestPhantomProp:
     """Test PHANTOM PROP: Verify data is real (not fabricated)."""
 
+    @pytest.mark.integration
     def test_phantom_prop_bitchain_not_found(self, recovery_gate):
         """Should deny recovery if bitchain doesn't exist in ledger."""
         with pytest.raises(ValueError, match="not found in ledger"):
@@ -132,6 +134,7 @@ class TestPhantomProp:
                 intent={'request_id': 'req-1', 'resources': ['bc-1']}
             )
 
+    @pytest.mark.integration
     def test_phantom_prop_missing_signature(self, recovery_gate, sample_public_bitchain):
         """Should deny if bitchain has no signature in ledger."""
         # Store bitchain WITHOUT signature
@@ -146,6 +149,7 @@ class TestPhantomProp:
                 intent={'request_id': 'req-1', 'resources': [sample_public_bitchain.id]}
             )
 
+    @pytest.mark.integration
     def test_phantom_prop_invalid_signature(self, recovery_gate, sample_public_bitchain):
         """Should deny if signature doesn't match."""
         # Store bitchain with WRONG signature
@@ -162,6 +166,7 @@ class TestPhantomProp:
                 intent={'request_id': 'req-1', 'resources': [sample_public_bitchain.id]}
             )
 
+    @pytest.mark.integration
     def test_phantom_prop_valid_bitchain(self, recovery_gate, crypto_service, sample_public_bitchain):
         """Should accept valid bitchain with correct signature."""
         signature = crypto_service.sign_bitchain(sample_public_bitchain)
@@ -177,9 +182,11 @@ class TestPhantomProp:
 # TESTS: COLD METHOD ARCHETYPE
 # ============================================================================
 
+@pytest.mark.integration
 class TestColdMethod:
     """Test COLD METHOD: Verify authentication and identity."""
 
+    @pytest.mark.integration
     def test_cold_method_no_auth_token(self, recovery_gate, sample_public_bitchain, crypto_service):
         """Should deny recovery without auth token."""
         signature = crypto_service.sign_bitchain(sample_public_bitchain)
@@ -193,6 +200,7 @@ class TestColdMethod:
                 intent={'request_id': 'req-1', 'resources': [sample_public_bitchain.id]}
             )
 
+    @pytest.mark.integration
     def test_cold_method_invalid_token(self, recovery_gate, sample_public_bitchain, crypto_service):
         """Should deny recovery with invalid auth token."""
         signature = crypto_service.sign_bitchain(sample_public_bitchain)
@@ -206,6 +214,7 @@ class TestColdMethod:
                 intent={'request_id': 'req-1', 'resources': [sample_public_bitchain.id]}
             )
 
+    @pytest.mark.integration
     def test_cold_method_identity_mismatch(self, recovery_gate, sample_public_bitchain, crypto_service):
         """Should deny if token identity doesn't match requester_id."""
         signature = crypto_service.sign_bitchain(sample_public_bitchain)
@@ -220,6 +229,7 @@ class TestColdMethod:
                 intent={'request_id': 'req-1', 'resources': [sample_public_bitchain.id]}
             )
 
+    @pytest.mark.integration
     def test_cold_method_no_intent(self, recovery_gate, sample_public_bitchain, crypto_service):
         """Should deny if intent is not declared."""
         signature = crypto_service.sign_bitchain(sample_public_bitchain)
@@ -233,6 +243,7 @@ class TestColdMethod:
                 intent=None  # NO INTENT
             )
 
+    @pytest.mark.integration
     def test_cold_method_intent_missing_request_id(self, recovery_gate, sample_public_bitchain, crypto_service):
         """Should deny if intent has no request_id."""
         signature = crypto_service.sign_bitchain(sample_public_bitchain)
@@ -251,9 +262,11 @@ class TestColdMethod:
 # TESTS: HOLLOW ENUM ARCHETYPE
 # ============================================================================
 
+@pytest.mark.integration
 class TestHollowEnum:
     """Test HOLLOW ENUM: Verify policy is enforced (not just declared)."""
 
+    @pytest.mark.integration
     def test_hollow_enum_role_denied(self, recovery_gate, sample_sensitive_bitchain, crypto_service):
         """Should deny if user role not in allowed roles."""
         signature = crypto_service.sign_bitchain(sample_sensitive_bitchain)
@@ -268,6 +281,7 @@ class TestHollowEnum:
                 intent={'request_id': 'req-1', 'resources': [sample_sensitive_bitchain.id]}
             )
 
+    @pytest.mark.integration
     def test_hollow_enum_owner_only_denied(self, recovery_gate, sample_pii_bitchain, crypto_service):
         """Should deny if owner-only but requester is not owner."""
         signature = crypto_service.sign_bitchain(sample_pii_bitchain)
@@ -282,6 +296,7 @@ class TestHollowEnum:
                 intent={'request_id': 'req-1', 'resources': [sample_pii_bitchain.id]}
             )
 
+    @pytest.mark.integration
     def test_hollow_enum_second_factor_required(self, recovery_gate, sample_pii_bitchain, crypto_service):
         """Should deny PII recovery if second factor not verified."""
         signature = crypto_service.sign_bitchain(sample_pii_bitchain)
@@ -296,6 +311,7 @@ class TestHollowEnum:
                 intent={'request_id': 'req-1', 'resources': [sample_pii_bitchain.id]}
             )
 
+    @pytest.mark.integration
     def test_hollow_enum_second_factor_verified(self, recovery_gate, sample_pii_bitchain, crypto_service):
         """Should allow PII recovery if second factor is verified."""
         signature = crypto_service.sign_bitchain(sample_pii_bitchain)
@@ -313,6 +329,7 @@ class TestHollowEnum:
         )
         assert result is not None
 
+    @pytest.mark.integration
     def test_hollow_enum_rate_limit_exceeded(self, recovery_gate, sample_sensitive_bitchain, crypto_service):
         """Should deny if recovery rate limit exceeded."""
         signature = crypto_service.sign_bitchain(sample_sensitive_bitchain)
@@ -346,9 +363,11 @@ class TestHollowEnum:
 # TESTS: PREMATURE CELEBRATION ARCHETYPE
 # ============================================================================
 
+@pytest.mark.integration
 class TestPrematureCelebration:
     """Test PREMATURE CELEBRATION: Verify audit is logged BEFORE data returned."""
 
+    @pytest.mark.integration
     def test_premature_celebration_audit_logged_on_success(self, recovery_gate, sample_public_bitchain, crypto_service):
         """Should log audit event on successful recovery."""
         signature = crypto_service.sign_bitchain(sample_public_bitchain)
@@ -372,6 +391,7 @@ class TestPrematureCelebration:
         assert last_event.recovered_by == "alice"
         assert last_event.bitchain_id == sample_public_bitchain.id
 
+    @pytest.mark.integration
     def test_premature_celebration_audit_logged_on_denial(self, recovery_gate, sample_pii_bitchain, crypto_service):
         """Should log audit event even when recovery is denied."""
         signature = crypto_service.sign_bitchain(sample_pii_bitchain)
@@ -403,6 +423,7 @@ class TestPrematureCelebration:
         assert last_event.result == "DENIED"
         assert "owner" in last_event.reason.lower() or "denied" in last_event.reason.lower()
 
+    @pytest.mark.integration
     def test_premature_celebration_audit_immutable(self, recovery_gate, sample_public_bitchain, crypto_service):
         """Audit log should be immutable (signatures verify)."""
         signature = crypto_service.sign_bitchain(sample_public_bitchain)
@@ -423,9 +444,11 @@ class TestPrematureCelebration:
 # EAGLE-EYE ATTACK SCENARIO
 # ============================================================================
 
+@pytest.mark.integration
 class TestEagleEyeAttack:
     """Test the Eagle-Eye identity recovery attack from EXP-05-SECURITY-ASSESSMENT.md"""
 
+    @pytest.mark.integration
     def test_eagle_eye_attack_direct_recovery_denied(self, recovery_gate, crypto_service):
         """Eagle-Eye attack: Try to recover PII bitchain without auth."""
         # Create a bitchain with GitHub handle and achievement history
@@ -465,6 +488,7 @@ class TestEagleEyeAttack:
                 intent={'request_id': 'fake-req', 'resources': ['sarah-badge-001']}
             )
 
+    @pytest.mark.integration
     def test_eagle_eye_attack_fake_token(self, recovery_gate, crypto_service):
         """Eagle-Eye attack: Try with fake token."""
         sarah_badge = BitChain(
@@ -503,6 +527,7 @@ class TestEagleEyeAttack:
         assert denial_event.result == "DENIED"
         assert denial_event.action == "recovery_attempt"
 
+    @pytest.mark.integration
     def test_eagle_eye_attack_bulk_extraction_denied(self, recovery_gate, crypto_service):
         """Eagle-Eye attack: Try bulk extraction (multiple recoveries)."""
         # Create 15 bitchains
@@ -561,9 +586,11 @@ class TestEagleEyeAttack:
 # INTEGRATION TESTS
 # ============================================================================
 
+@pytest.mark.integration
 class TestIntegration:
     """Integration tests for complete recovery flow."""
 
+    @pytest.mark.integration
     def test_successful_public_recovery(self, recovery_gate, crypto_service):
         """Complete flow: Successfully recover PUBLIC bitchain."""
         bc = generate_random_bitchain()
@@ -583,6 +610,7 @@ class TestIntegration:
         assert result is not None
         assert 'id' in result or 'entity_type' in result
 
+    @pytest.mark.integration
     def test_successful_sensitive_recovery(self, recovery_gate, crypto_service):
         """Complete flow: Successfully recover SENSITIVE bitchain with admin role."""
         bc = generate_random_bitchain()
@@ -601,6 +629,7 @@ class TestIntegration:
 
         assert result is not None
 
+    @pytest.mark.integration
     def test_audit_trail_complete(self, recovery_gate, crypto_service):
         """Verify complete audit trail for multiple operations."""
         # Create 3 bitchains

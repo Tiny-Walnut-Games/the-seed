@@ -10,58 +10,101 @@ import subprocess
 import time
 import threading
 import webbrowser
+import io
 from pathlib import Path
+
+# Fix for Windows console encoding (emoji support)
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+def read_subprocess_output(process, label, timeout=3):
+    """
+    Read subprocess output without blocking.
+    Returns the output collected during the timeout period.
+    """
+    output = []
+    start_time = time.time()
+    
+    try:
+        while time.time() - start_time < timeout and process.poll() is None:
+            try:
+                # Non-blocking read with small timeout
+                line = process.stdout.readline()
+                if line:
+                    output.append(line.rstrip())
+                    print(f"  [{label}] {line.rstrip()}")
+                else:
+                    time.sleep(0.1)
+            except Exception as e:
+                print(f"  Error reading output: {e}")
+                break
+    except Exception as e:
+        print(f"  Error: {e}")
+    
+    return '\n'.join(output)
 
 def start_web_server():
     """Start the web server."""
-    web_dir = Path(__file__).parent / "web"
+    web_dir = Path(__file__).parent.parent  # web/launchers/.. = web/
     server_script = web_dir / "server" / "simple_web_server.py"
 
-    print("🌐 Starting web server...")
+    print("[SERVER] Starting web server...")
     process = subprocess.Popen([sys.executable, str(server_script)],
                              cwd=str(web_dir),
+                             stdin=subprocess.DEVNULL,  # Redirect stdin to avoid blocking
                              stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT,
-                             text=True)
+                             text=True,
+                             encoding='utf-8',  # Explicit UTF-8 encoding
+                             errors='replace',   # Replace undecodable bytes
+                             bufsize=1)  # Line buffered
 
-    # Wait a moment for server to start
-    time.sleep(2)
+    # Read startup output
+    output = read_subprocess_output(process, "WEB", timeout=2)
 
     # Check if server started successfully
     if process.poll() is None:
-        print("✅ Web server started successfully!")
+        print("[OK] Web server started successfully!")
         return process
     else:
-        print("❌ Web server failed to start")
+        print("[ERROR] Web server failed to start")
+        if output:
+            print(f"  Output: {output}")
         return None
 
 def start_websocket_server():
     """Start the WebSocket server."""
-    web_dir = Path(__file__).parent / "web"
+    web_dir = Path(__file__).parent.parent  # web/launchers/.. = web/
     server_script = web_dir / "server" / "stat7wsserve.py"
 
-    print("🔌 Starting WebSocket server...")
-    process = subprocess.Popen([sys.executable, str(server_script)],
+    print("[WEBSOCKET] Starting WebSocket server...")
+    process = subprocess.Popen([sys.executable, str(server_script), "--subprocess"],
                              cwd=str(web_dir),
-                             stdin=subprocess.PIPE,
+                             stdin=subprocess.DEVNULL,  # CRITICAL: Redirect stdin so server detects subprocess mode
                              stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT,
-                             text=True)
+                             text=True,
+                             encoding='utf-8',  # Explicit UTF-8 encoding
+                             errors='replace',   # Replace undecodable bytes
+                             bufsize=1)  # Line buffered
 
-    # Wait a moment for server to start
-    time.sleep(2)
+    # Read startup output
+    output = read_subprocess_output(process, "WEBSOCKET", timeout=3)
 
     # Check if server started successfully
     if process.poll() is None:
-        print("✅ WebSocket server started successfully!")
+        print("[OK] WebSocket server started successfully!")
         return process
     else:
-        print("❌ WebSocket server failed to start")
+        print("[ERROR] WebSocket server failed to start")
+        if output:
+            print(f"  Output:\n{output}")
         return None
 
 def main():
     """Main runner function."""
-    print("🚀 STAT7 Visualization System")
+    print("[STARTUP] STAT7 Visualization System")
     print("=" * 50)
 
     # Start web server
@@ -72,10 +115,10 @@ def main():
     # Open browser
     try:
         webbrowser.open("http://localhost:8001/stat7threejs.html")
-        print("🌐 Browser opened to visualization")
+        print("[BROWSER] Browser opened to visualization")
     except:
-        print("⚠️ Could not open browser automatically")
-        print("📊 Please open: http://localhost:8001/stat7threejs.html")
+        print("[WARN] Could not open browser automatically")
+        print("[URL] Please open: http://localhost:8001/stat7threejs.html")
 
     # Start WebSocket server
     ws_process = start_websocket_server()
@@ -84,11 +127,11 @@ def main():
         return 1
 
     print("\n" + "=" * 50)
-    print("🎮 STAT7 Visualization System Ready!")
-    print("📊 Web interface: http://localhost:8001/stat7threejs.html")
-    print("🔌 WebSocket server: ws://localhost:8765")
+    print("[READY] STAT7 Visualization System Ready!")
+    print("[URL] Web interface: http://localhost:8001/stat7threejs.html")
+    print("[WEBSOCKET] WebSocket server: ws://localhost:8765")
     print()
-    print("📋 Available Commands:")
+    print("[COMMANDS] Available Commands:")
     print("   - Type 'exp01' to run EXP-01 visualization")
     print("   - Type 'continuous' for continuous generation")
     print("   - Type 'quit' to stop the WebSocket server")
@@ -102,15 +145,15 @@ def main():
 
             # Check if servers are still running
             if web_process.poll() is not None:
-                print("❌ Web server stopped unexpectedly")
+                print("[ERROR] Web server stopped unexpectedly")
                 break
 
             if ws_process.poll() is not None:
-                print("❌ WebSocket server stopped unexpectedly")
+                print("[ERROR] WebSocket server stopped unexpectedly")
                 break
 
     except KeyboardInterrupt:
-        print("\n👋 Stopping servers...")
+        print("\n[SHUTDOWN] Stopping servers...")
 
     # Cleanup
     try:
@@ -121,7 +164,7 @@ def main():
     except:
         pass
 
-    print("✅ All servers stopped")
+    print("[OK] All servers stopped")
     return 0
 
 if __name__ == "__main__":

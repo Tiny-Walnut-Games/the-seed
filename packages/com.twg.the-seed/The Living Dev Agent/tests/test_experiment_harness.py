@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test Suite for Experiment Harness v0.7
@@ -38,6 +39,7 @@ except ImportError as e:
     print(f"Warning: Could not import experiment components: {e}")
 
 
+@pytest.mark.integration
 def test_experiment_manifest_loading():
     """Test experiment manifest loading and validation."""
     print("🧙‍♂️ Testing Experiment Manifest Loading")
@@ -135,6 +137,7 @@ def test_experiment_manifest_loading():
     return True
 
 
+@pytest.mark.integration
 def test_simple_experiment_execution():
     """Test basic experiment execution."""
     print("🧪 Testing Simple Experiment Execution")
@@ -203,6 +206,7 @@ def test_simple_experiment_execution():
     return True
 
 
+@pytest.mark.integration
 def test_benchmark_suite():
     """Test benchmark suite functionality."""
     print("📊 Testing Benchmark Suite")
@@ -276,6 +280,7 @@ def test_benchmark_suite():
     return True
 
 
+@pytest.mark.integration
 def test_ab_evaluator():
     """Test A/B evaluator functionality."""
     print("🔬 Testing A/B Evaluator")
@@ -370,6 +375,7 @@ def test_ab_evaluator():
     return True
 
 
+@pytest.mark.integration
 def test_integration_with_existing_systems():
     """Test integration with existing TWG-TLDA systems."""
     print("🔗 Testing Integration with Existing Systems")
@@ -439,6 +445,7 @@ def test_integration_with_existing_systems():
     return True
 
 
+@pytest.mark.integration
 def test_experiment_data_persistence():
     """Test experiment data saving and loading."""
     print("💾 Testing Experiment Data Persistence")
@@ -503,6 +510,7 @@ def test_experiment_data_persistence():
     return True
 
 
+@pytest.mark.integration
 def test_error_handling_and_robustness():
     """Test error handling and edge cases."""
     print("🛡️ Testing Error Handling and Robustness")

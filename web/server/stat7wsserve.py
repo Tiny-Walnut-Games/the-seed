@@ -23,6 +23,17 @@ import threading
 import logging
 import sys
 import os
+import io
+
+# Fix for Windows console encoding (emoji support)
+# Handle case where encoding is None (e.g., when stdout is redirected)
+if sys.stdout.encoding is None or sys.stdout.encoding != 'utf-8':
+    try:
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+    except:
+        # If this fails, just continue with whatever encoding we have
+        pass
 
 # Add the seed engine to Python path (correct path with lowercase 'packages')
 # Find the project root by going up from web/server/ to the repo root
@@ -158,15 +169,19 @@ class STAT7EventStreamer:
     async def register_client(self, websocket):
         """Register a new WebSocket client."""
         self.clients.add(websocket)
+        print(f"[WEBSOCKET] Client connected from {websocket.remote_address}. Total clients: {len(self.clients)}")
         self.logger.info(f"Client connected. Total clients: {len(self.clients)}")
 
         # Send buffered events to new client
         if self.event_buffer:
+            print(f"[WEBSOCKET] Sending {len(self.event_buffer)} buffered events to new client...")
             await self.send_buffered_events(websocket)
+            print(f"[WEBSOCKET] Buffered events sent")
 
     async def unregister_client(self, websocket):
         """Unregister a WebSocket client."""
         self.clients.discard(websocket)
+        print(f"[WEBSOCKET] Client disconnected. Total clients: {len(self.clients)}")
         self.logger.info(f"Client disconnected. Total clients: {len(self.clients)}")
 
     async def send_buffered_events(self, websocket):
@@ -187,7 +202,11 @@ class STAT7EventStreamer:
             self.event_buffer.pop(0)
 
         # Broadcast to all connected clients (if any)
+        client_count = len(self.clients)
+        print(f"[BROADCAST] event_type={event.event_type}, buffer_size={len(self.event_buffer)}, clients={client_count}")
+        
         if not self.clients:
+            print(f"[BROADCAST] No clients connected yet, event buffered")
             return
 
         disconnected = set()
@@ -266,6 +285,7 @@ class STAT7EventStreamer:
 
     async def start_server(self):
         """Start the WebSocket server."""
+        print(f"[SERVER-STARTUP] Starting WebSocket server on ws://{self.host}:{self.port}...")
         self.is_running = True
 
         async def handle_client(websocket):
@@ -284,9 +304,11 @@ class STAT7EventStreamer:
                 await self.unregister_client(websocket)
 
         self.server = await websockets.serve(handle_client, self.host, self.port)
+        print(f"[SERVER-STARTUP] WebSocket server is listening on ws://{self.host}:{self.port}")
         self.logger.info(f"STAT7 Visualization Server started on ws://{self.host}:{self.port}")
 
         # Keep server running
+        print(f"[SERVER-STARTUP] Server waiting for connections...")
         await self.server.wait_closed()
 
     def stop_server(self):
@@ -302,7 +324,7 @@ class STAT7EventStreamer:
 
         Creates entities with related narrative content and verifies they cluster together.
         """
-        self.logger.info("🧠 Starting Semantic Fidelity Proof...")
+        self.logger.info("[INFO] Starting Semantic Fidelity Proof...")
 
         # Create narrative clusters with semantic relationships
         narrative_themes = {
@@ -376,7 +398,7 @@ class STAT7EventStreamer:
         )
         await self.broadcast_event(analysis_event)
 
-        self.logger.info(f"✅ Semantic Fidelity Proof completed with {sample_size} entities")
+        self.logger.info(f"[OK] Semantic Fidelity Proof completed with {sample_size} entities")
 
     async def run_resilience_testing(self, sample_size: int = 150):
         """
@@ -384,7 +406,7 @@ class STAT7EventStreamer:
 
         Creates entities and then simulates various stressors to test system resilience.
         """
-        self.logger.info("🛡️ Starting Resilience Testing...")
+        self.logger.info("[INFO] Starting Resilience Testing...")
 
         # Phase 1: Create stable baseline entities
         baseline_entities = []
@@ -511,7 +533,7 @@ class STAT7EventStreamer:
         )
         await self.broadcast_event(resilience_event)
 
-        self.logger.info(f"✅ Resilience Testing completed with {sample_size + (sample_size // 4) + (sample_size // 6) + (sample_size // 8)} total entities")
+        self.logger.info(f"[OK] Resilience Testing completed with {sample_size + (sample_size // 4) + (sample_size // 6) + (sample_size // 8)} total entities")
 
     async def handle_client_message(self, data: Dict[str, Any], websocket):
         """Handle incoming messages from WebSocket clients."""
@@ -610,33 +632,43 @@ class ExperimentVisualizer:
     async def visualize_continuous_generation(self, duration_seconds: int = 60, rate_per_second: int = 10):
         """Continuous bit-chain generation for visualization testing."""
         experiment_id = f"CONTINUOUS-{uuid.uuid4().hex[:8]}"
+        print(f"[CONTINUOUS] Starting experiment_id={experiment_id}, duration={duration_seconds}s, rate={rate_per_second}/s")
 
         start_event = self.event_streamer.create_experiment_event(
             experiment_id, "start",
             {"name": "Continuous Generation", "duration": duration_seconds, "rate": rate_per_second}
         )
+        print(f"[CONTINUOUS] Broadcasting start event...")
         await self.event_streamer.broadcast_event(start_event)
+        print(f"[CONTINUOUS] Start event broadcast complete")
 
         start_time = time.time()
         generated_count = 0
+        batch_num = 0
 
         while time.time() - start_time < duration_seconds:
+            batch_num += 1
+            elapsed = time.time() - start_time
             # Generate batch of bit-chains
             batch_size = min(rate_per_second, 50)  # Max 50 at once
+            print(f"[CONTINUOUS] Batch {batch_num} - elapsed={elapsed:.1f}s, generating {batch_size} bitchains...")
             for i in range(batch_size):
                 bitchain = generate_random_bitchain()
                 event = self.event_streamer.create_bitchain_event(bitchain, experiment_id)
                 await self.event_streamer.broadcast_event(event)
                 generated_count += 1
 
+            print(f"[CONTINUOUS] Batch {batch_num} complete - total generated={generated_count}")
             # Wait for next batch
             await asyncio.sleep(1.0)
 
+        print(f"[CONTINUOUS] Duration complete, generating final event - total_generated={generated_count}")
         complete_event = self.event_streamer.create_experiment_event(
             experiment_id, "complete",
             {"total_generated": generated_count, "duration": duration_seconds}
         )
         await self.event_streamer.broadcast_event(complete_event)
+        print(f"[CONTINUOUS] Complete event broadcast, experiment_id={experiment_id} finished")
 
 
 # ============================================================================
@@ -645,19 +677,26 @@ class ExperimentVisualizer:
 
 async def main():
     """Main server startup function."""
+    print(f"[DEBUG] Main() starting at {datetime.now().isoformat()}")
+    print(f"[DEBUG] Interactive mode: {sys.stdin.isatty()}")
+    
     # Create event streamer
+    print("[DEBUG] Creating STAT7EventStreamer...")
     streamer = STAT7EventStreamer(host="localhost", port=8765)
+    print("[DEBUG] Creating ExperimentVisualizer...")
     visualizer = ExperimentVisualizer(streamer)
 
     # Start server in background
+    print("[DEBUG] Creating server task...")
     server_task = asyncio.create_task(streamer.start_server())
+    print("[DEBUG] Server task created, waiting for startup...")
 
     # Wait a moment for server to start
     await asyncio.sleep(1)
 
-    print("🚀 STAT7 Visualization Server started!")
-    print("📊 WebSocket: ws://localhost:8765")
-    print("🌐 Open visualization.html in your browser")
+    print("[READY] STAT7 Visualization Server started!")
+    print("[SERVER] WebSocket: ws://localhost:8765")
+    print("[INFO] Open visualization.html in your browser")
     print()
     print("Available commands:")
     print("  - Type 'exp01' to run EXP-01 visualization")
@@ -665,36 +704,68 @@ async def main():
     print("  - Type 'quit' to stop server")
     print()
 
-    # Interactive command loop
-    while streamer.is_running:
-        try:
-            command = input("stat7-viz> ").strip().lower()
-
-            if command == 'quit':
-                break
-            elif command == 'exp01':
-                print("🧪 Starting EXP-01 visualization...")
-                await visualizer.visualize_exp01_uniqueness(sample_size=500, iterations=3)
-                print("✅ EXP-01 visualization complete")
-            elif command == 'continuous':
-                print("🔄 Starting continuous generation (30 seconds)...")
+    # Check if running interactively or as a subprocess
+    # CRITICAL FIX: sys.stdin.isatty() is unreliable on Windows PowerShell in subprocess contexts
+    # Check for --subprocess flag to force non-interactive mode
+    force_subprocess = "--subprocess" in sys.argv
+    is_interactive = sys.stdin.isatty() and not force_subprocess
+    print(f"[DEBUG] Detected execution mode: {'INTERACTIVE' if is_interactive else 'SUBPROCESS'}")
+    if force_subprocess:
+        print(f"[DEBUG] --subprocess flag detected, forcing SUBPROCESS mode")
+    
+    if not is_interactive:
+        # Running as subprocess (from launcher): auto-start continuous generation
+        print("[SUBPROCESS-MODE] Auto-starting continuous generation...")
+        print(f"[SUBPROCESS-MODE] Streamer is_running={streamer.is_running}")
+        iteration = 0
+        while streamer.is_running:
+            iteration += 1
+            try:
+                print(f"\n[SUBPROCESS-MODE] Iteration {iteration} - Starting continuous generation at {datetime.now().isoformat()}")
                 await visualizer.visualize_continuous_generation(duration_seconds=30, rate_per_second=20)
-                print("✅ Continuous generation complete")
-            elif command == '':
-                continue
-            else:
-                print(f"Unknown command: {command}")
-                print("Available: exp01, continuous, quit")
+                print(f"[SUBPROCESS-MODE] Iteration {iteration} - Generation complete at {datetime.now().isoformat()}")
+                # Restart continuous generation loop
+            except KeyboardInterrupt:
+                print("[SUBPROCESS-MODE] Received KeyboardInterrupt")
+                break
+            except Exception as e:
+                print(f"[ERROR] Continuous generation error: {e}")
+                import traceback
+                traceback.print_exc()
+    else:
+        # Interactive console: use command loop
+        while streamer.is_running:
+            try:
+                command = input("stat7-viz> ").strip().lower()
 
-        except KeyboardInterrupt:
-            break
-        except Exception as e:
-            print(f"Error: {e}")
+                if command == 'quit':
+                    break
+                elif command == 'exp01':
+                    print("[RUNNING] Starting EXP-01 visualization...")
+                    await visualizer.visualize_exp01_uniqueness(sample_size=500, iterations=3)
+                    print("[OK] EXP-01 visualization complete")
+                elif command == 'continuous':
+                    print("[RUNNING] Starting continuous generation (30 seconds)...")
+                    await visualizer.visualize_continuous_generation(duration_seconds=30, rate_per_second=20)
+                    print("[OK] Continuous generation complete")
+                elif command == '':
+                    continue
+                else:
+                    print(f"Unknown command: {command}")
+                    print("Available: exp01, continuous, quit")
+
+            except KeyboardInterrupt:
+                break
+            except Exception as e:
+                print(f"Error: {e}")
 
     # Cleanup
+    print("[DEBUG] Starting cleanup...")
+    print("[DEBUG] Stopping streamer...")
     streamer.stop_server()
+    print("[DEBUG] Cancelling server task...")
     server_task.cancel()
-    print("\n👋 STAT7 Visualization Server stopped")
+    print("\n[STOP] STAT7 Visualization Server stopped")
 
 
 if __name__ == "__main__":

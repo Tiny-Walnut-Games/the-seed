@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Test Suite: Wave Function Collapse Firewall
 
@@ -129,6 +129,7 @@ def neutral_bitchain(neutral_coordinates):
 # TESTS: Julia Parameter Derivation
 # ============================================================================
 
+@pytest.mark.integration
 class TestJuliaParameterDerivation:
     """
     Test that Julia parameters are correctly derived from STAT7 coordinates.
@@ -137,6 +138,7 @@ class TestJuliaParameterDerivation:
     should produce different c values that reflect their coherence and stability.
     """
     
+    @pytest.mark.integration
     def test_high_resonance_positive_real(self, high_resonance_coordinates):
         """High resonance should produce positive real part."""
         c = WaveFormCollapseKernel.derive_julia_parameter(high_resonance_coordinates)
@@ -145,6 +147,7 @@ class TestJuliaParameterDerivation:
         assert c.real == pytest.approx(0.4)
         assert c.real > 0
     
+    @pytest.mark.integration
     def test_low_resonance_negative_real(self, low_resonance_coordinates):
         """Low resonance should produce negative real part."""
         c = WaveFormCollapseKernel.derive_julia_parameter(low_resonance_coordinates)
@@ -153,6 +156,7 @@ class TestJuliaParameterDerivation:
         assert c.real == pytest.approx(-0.35)
         assert c.real < 0
     
+    @pytest.mark.integration
     def test_neutral_resonance_zero_real(self, neutral_coordinates):
         """Neutral resonance should produce zero real part."""
         c = WaveFormCollapseKernel.derive_julia_parameter(neutral_coordinates)
@@ -160,6 +164,7 @@ class TestJuliaParameterDerivation:
         # resonance=0.0 * 0.5 = 0.0
         assert c.real == pytest.approx(0.0, abs=1e-10)
     
+    @pytest.mark.integration
     def test_velocity_density_product_imaginary(self, high_resonance_coordinates):
         """Imaginary part should be velocity * density."""
         c = WaveFormCollapseKernel.derive_julia_parameter(high_resonance_coordinates)
@@ -168,6 +173,7 @@ class TestJuliaParameterDerivation:
         expected_imag = 0.3 * 0.5
         assert c.imag == pytest.approx(expected_imag)
     
+    @pytest.mark.integration
     def test_different_coordinates_different_c(self, high_resonance_coordinates, low_resonance_coordinates):
         """Different coordinates should produce different Julia parameters."""
         c1 = WaveFormCollapseKernel.derive_julia_parameter(high_resonance_coordinates)
@@ -182,6 +188,7 @@ class TestJuliaParameterDerivation:
 # TESTS: Manifestation State Derivation
 # ============================================================================
 
+@pytest.mark.integration
 class TestManifestationStateDerivation:
     """
     Test deterministic derivation of manifestation state from identity.
@@ -190,6 +197,7 @@ class TestManifestationStateDerivation:
     from bitchain hash so same ID always produces same state.
     """
     
+    @pytest.mark.integration
     def test_deterministic_state(self, coherent_bitchain):
         """Same bitchain ID always produces same manifestation state."""
         addr = coherent_bitchain.compute_address()
@@ -198,6 +206,7 @@ class TestManifestationStateDerivation:
         
         assert z1 == z2
     
+    @pytest.mark.integration
     def test_different_ids_different_states(self, coherent_bitchain, chaotic_bitchain):
         """Different IDs should produce different states."""
         addr1 = coherent_bitchain.compute_address()
@@ -208,6 +217,7 @@ class TestManifestationStateDerivation:
         
         assert z1 != z2
     
+    @pytest.mark.integration
     def test_state_in_valid_range(self, coherent_bitchain):
         """Manifestation state should be in [-0.5, 0.5] × [-0.5, 0.5]."""
         addr = coherent_bitchain.compute_address()
@@ -221,6 +231,7 @@ class TestManifestationStateDerivation:
 # TESTS: Julia Iteration
 # ============================================================================
 
+@pytest.mark.integration
 class TestJuliaIteration:
     """
     Test the Julia Set iteration algorithm.
@@ -228,6 +239,7 @@ class TestJuliaIteration:
     Verifies that iteration correctly identifies bounded vs escaped points.
     """
     
+    @pytest.mark.integration
     def test_iterate_zero_parameter_zero_point(self):
         """z=0, c=0 should remain bounded at 0."""
         z = complex(0, 0)
@@ -238,6 +250,7 @@ class TestJuliaIteration:
         assert iterations is None  # Didn't escape
         assert magnitude == pytest.approx(0.0)
     
+    @pytest.mark.integration
     def test_iterate_escaping_point(self):
         """z=1+i, c=0 should escape."""
         z = complex(1, 1)
@@ -249,6 +262,7 @@ class TestJuliaIteration:
         assert iterations < 100  # Before max depth
         assert magnitude > WaveFormCollapseKernel.ESCAPE_RADIUS
     
+    @pytest.mark.integration
     def test_iterate_high_order_escape(self):
         """Some points take many iterations to escape."""
         z = complex(0.3, 0.5)
@@ -261,6 +275,7 @@ class TestJuliaIteration:
             assert iterations > 0
             assert magnitude > WaveFormCollapseKernel.ESCAPE_RADIUS
     
+    @pytest.mark.integration
     def test_iterate_respect_depth_limit(self):
         """Iteration should stop at max_depth if not escaped."""
         z = complex(0.2, 0.2)
@@ -277,6 +292,7 @@ class TestJuliaIteration:
 # TESTS: Collapse - Bound Manifestations
 # ============================================================================
 
+@pytest.mark.integration
 class TestCollapseExitsBound:
     """
     Test that well-formed, coherent manifestations pass through firewall.
@@ -284,6 +300,7 @@ class TestCollapseExitsBound:
     These should be BOUND, ready for routing to LUCA/Conservator.
     """
     
+    @pytest.mark.integration
     def test_coherent_bitchain_bound(self, coherent_bitchain):
         """Coherent bitchain with high resonance should BOUND."""
         report = WaveFormCollapseKernel.collapse(coherent_bitchain)
@@ -293,6 +310,7 @@ class TestCollapseExitsBound:
         assert report.escape_magnitude is not None
         assert report.escape_magnitude <= WaveFormCollapseKernel.ESCAPE_RADIUS
     
+    @pytest.mark.integration
     def test_bound_has_complete_trace(self, coherent_bitchain):
         """Bound report should have full trace information."""
         report = WaveFormCollapseKernel.collapse(coherent_bitchain)
@@ -303,6 +321,7 @@ class TestCollapseExitsBound:
         assert report.manifestation_state != complex(0, 0)
         assert report.depth == 7
     
+    @pytest.mark.integration
     def test_neutral_bitchain_bound(self, neutral_bitchain):
         """Neutral bitchain should pass through."""
         report = WaveFormCollapseKernel.collapse(neutral_bitchain)
@@ -316,6 +335,7 @@ class TestCollapseExitsBound:
 # TESTS: Collapse - Escaped Manifestations
 # ============================================================================
 
+@pytest.mark.integration
 class TestCollapseExitsEscaped:
     """
     Test that poorly-formed or misaligned manifestations are ESCAPED.
@@ -323,6 +343,7 @@ class TestCollapseExitsEscaped:
     These should be rejected at the firewall, routed to Conservator for repair.
     """
     
+    @pytest.mark.integration
     def test_chaotic_bitchain_may_escape(self, chaotic_bitchain):
         """Chaotic bitchain with low resonance may escape firewall."""
         report = WaveFormCollapseKernel.collapse(chaotic_bitchain)
@@ -332,6 +353,7 @@ class TestCollapseExitsEscaped:
         assert report.result in [CollapseResult.BOUND, CollapseResult.ESCAPED]
         assert report.stat7_address
     
+    @pytest.mark.integration
     def test_escaped_has_iteration_count(self, chaotic_bitchain):
         """Escaped manifestation should record which iteration it failed."""
         # Generate a bitchain that we know will escape
@@ -366,6 +388,7 @@ class TestCollapseExitsEscaped:
 # TESTS: Collapse - Malformed Input
 # ============================================================================
 
+@pytest.mark.integration
 class TestCollapseMalformed:
     """
     Test that malformed or invalid input is properly rejected.
@@ -373,6 +396,7 @@ class TestCollapseMalformed:
     These should return MALFORMED or ERROR, triggering escalation.
     """
     
+    @pytest.mark.integration
     def test_missing_coordinates(self, coherent_bitchain):
         """BitChain missing coordinates should be MALFORMED."""
         coherent_bitchain.coordinates = None
@@ -381,6 +405,7 @@ class TestCollapseMalformed:
         
         assert report.result == CollapseResult.MALFORMED
     
+    @pytest.mark.integration
     def test_missing_compute_address(self, coherent_bitchain):
         """BitChain missing compute_address should be MALFORMED."""
         # Create mock without compute_address
@@ -398,11 +423,13 @@ class TestCollapseMalformed:
 # TESTS: Batch Operations
 # ============================================================================
 
+@pytest.mark.integration
 class TestBatchOperations:
     """
     Test batch collapse operations and statistics.
     """
     
+    @pytest.mark.integration
     def test_collapse_batch_multiple(self, coherent_bitchain, chaotic_bitchain, neutral_bitchain):
         """Collapse multiple bitchains in batch."""
         bitchains = [coherent_bitchain, chaotic_bitchain, neutral_bitchain]
@@ -419,6 +446,7 @@ class TestBatchOperations:
             assert report.result in [CollapseResult.BOUND, CollapseResult.ESCAPED, 
                                     CollapseResult.ERROR, CollapseResult.MALFORMED]
     
+    @pytest.mark.integration
     def test_summary_stats_calculation(self, coherent_bitchain, chaotic_bitchain, neutral_bitchain):
         """Summary stats should correctly aggregate results."""
         bitchains = [coherent_bitchain, chaotic_bitchain, neutral_bitchain]
@@ -430,6 +458,7 @@ class TestBatchOperations:
         assert stats['bound'] + stats['escaped'] + stats['errors'] + stats['malformed'] == 3
         assert 0 <= stats['pass_rate'] <= 100
     
+    @pytest.mark.integration
     def test_batch_completeness(self):
         """Batch operation should process all entities."""
         bitchains = []
@@ -467,11 +496,13 @@ class TestBatchOperations:
 # TESTS: Physics Validation
 # ============================================================================
 
+@pytest.mark.integration
 class TestPhysicsProperties:
     """
     Test that the system maintains expected physical properties.
     """
     
+    @pytest.mark.integration
     def test_coherence_axis(self):
         """Entities on coherence axis (resonance) should have predictable behavior."""
         # High coherence
@@ -491,6 +522,7 @@ class TestPhysicsProperties:
         # Real parts should be opposite
         assert c_high.real == pytest.approx(-c_low.real)
     
+    @pytest.mark.integration
     def test_energy_axis(self):
         """Higher velocity * density should produce larger imaginary part."""
         coords_low_energy = Coordinates(
@@ -508,6 +540,7 @@ class TestPhysicsProperties:
         # High energy should have larger imaginary part
         assert c_high.imag > c_low.imag
     
+    @pytest.mark.integration
     def test_deterministic_reproducibility(self, coherent_bitchain):
         """Same input always produces same collapse result."""
         report1 = WaveFormCollapseKernel.collapse(coherent_bitchain)
@@ -522,6 +555,7 @@ class TestPhysicsProperties:
 # INTEGRATION TESTS
 # ============================================================================
 
+@pytest.mark.integration
 class TestIntegration:
     """
     End-to-end firewall tests.
@@ -531,6 +565,7 @@ class TestIntegration:
     with high resonance but wrong phase/energy might still escape.
     """
     
+    @pytest.mark.integration
     def test_firewall_flow_produces_result(self, coherent_bitchain):
         """Every entity entering firewall gets a clear result."""
         report = WaveFormCollapseKernel.collapse(coherent_bitchain)
@@ -544,6 +579,7 @@ class TestIntegration:
         assert report.julia_parameter
         assert report.manifestation_state
     
+    @pytest.mark.integration
     def test_firewall_traces_escape(self, chaotic_bitchain):
         """If entity escapes, firewall records where it failed."""
         report = WaveFormCollapseKernel.collapse(chaotic_bitchain)
@@ -556,6 +592,7 @@ class TestIntegration:
             assert report.iterations_to_escape is not None
             assert report.escape_magnitude > WaveFormCollapseKernel.ESCAPE_RADIUS
     
+    @pytest.mark.integration
     def test_firewall_passes_bound_to_conservator(self):
         """Bound entity has all data needed for Conservator routing."""
         # Create entity that we know will bound

@@ -1,4 +1,4 @@
-"""
+﻿"""
 STAT7-RAG Integration Validation & Stress Tests
 
 Phase 1: Prove hybrid (semantic + STAT7) scoring improves retrieval quality
@@ -128,6 +128,7 @@ def assert_equal_vectors(a: List[float], b: List[float]) -> None:
 # Test Class
 # ========================================================================
 
+@pytest.mark.integration
 class TestSTAT7RAGIntegration:
     """STAT7-RAG integration validation and stress testing."""
 
@@ -150,6 +151,7 @@ class TestSTAT7RAGIntegration:
 
     # ========== QUICK VALIDATION TEST ==========
 
+    @pytest.mark.e2e
     def test_quick_validation(self):
         """
         QUICK VALIDATION: 100 docs, basic correctness.
@@ -244,6 +246,7 @@ class TestSTAT7RAGIntegration:
 
     # ========== TIER 2 STRESS TEST ==========
 
+    @pytest.mark.e2e
     def test_tier2_stress(self):
         """
         TIER 2 STRESS: 10K docs with RANDOMIZED STAT7 dimensions.

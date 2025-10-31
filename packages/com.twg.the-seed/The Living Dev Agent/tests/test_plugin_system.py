@@ -1,9 +1,10 @@
-"""
+﻿"""
 Tests for Plugin System v0.9
 
 Tests the plugin architecture, sandboxing, and example plugins.
 """
 
+import pytest
 import unittest
 import time
 import tempfile
@@ -44,6 +45,7 @@ class SlowPlugin(BasePlugin):
         return {"processed": True}
 
 
+@pytest.mark.integration
 class TestPluginSystem(unittest.TestCase):
     """Test suite for the plugin system."""
     
@@ -63,6 +65,7 @@ class TestPluginSystem(unittest.TestCase):
             event_subscriptions={AudioEventType.ANCHOR_ACTIVATED}
         )
     
+    @pytest.mark.integration
     def test_plugin_metadata_creation(self):
         """Test plugin metadata creation and validation."""
         metadata = PluginMetadata(
@@ -77,6 +80,7 @@ class TestPluginSystem(unittest.TestCase):
         self.assertEqual(len(metadata.capabilities), 2)
         self.assertIn(PluginCapability.EVENT_LISTENER, metadata.capabilities)
     
+    @pytest.mark.unit
     def test_base_plugin_interface(self):
         """Test base plugin interface."""
         plugin = MockPlugin(self.sample_metadata)
@@ -96,6 +100,7 @@ class TestPluginSystem(unittest.TestCase):
         self.assertEqual(stats["events_processed"], 0)
         self.assertEqual(stats["errors"], 0)
     
+    @pytest.mark.unit
     def test_plugin_sandbox_basic_execution(self):
         """Test basic plugin sandbox execution."""
         sandbox = PluginSandbox(max_memory_mb=100, default_timeout_ms=500)
@@ -116,6 +121,7 @@ class TestPluginSystem(unittest.TestCase):
         self.assertTrue(result["processed"])
         self.assertEqual(result["event_type"], "anchor_activated")
     
+    @pytest.mark.integration
     def test_plugin_sandbox_timeout(self):
         """Test plugin sandbox timeout enforcement."""
         sandbox = PluginSandbox(default_timeout_ms=100)  # Very short timeout
@@ -143,6 +149,7 @@ class TestPluginSystem(unittest.TestCase):
         with self.assertRaises(TimeoutError):
             sandbox.execute_plugin_method(plugin, "process_event", event)
     
+    @pytest.mark.unit
     def test_safe_plugin_executor(self):
         """Test safe plugin executor error handling."""
         executor = SafePluginExecutor()
@@ -164,6 +171,7 @@ class TestPluginSystem(unittest.TestCase):
         self.assertIn("test_plugin", stats)
         self.assertEqual(stats["test_plugin"]["successful_executions"], 1)
     
+    @pytest.mark.integration
     def test_manifest_loader_valid_manifest(self):
         """Test manifest loader with valid manifest."""
         manifest_data = {
@@ -179,6 +187,7 @@ class TestPluginSystem(unittest.TestCase):
         # Should validate successfully
         self.assertTrue(self.manifest_loader.validate_manifest_data(manifest_data))
     
+    @pytest.mark.integration
     def test_manifest_loader_invalid_manifest(self):
         """Test manifest loader with invalid manifest."""
         invalid_manifest = {
@@ -192,6 +201,7 @@ class TestPluginSystem(unittest.TestCase):
         # Should fail validation
         self.assertFalse(self.manifest_loader.validate_manifest_data(invalid_manifest))
     
+    @pytest.mark.integration
     def test_manifest_loader_yaml_file(self):
         """Test manifest loader with YAML file."""
         # Create temporary YAML file
@@ -223,6 +233,7 @@ configuration:
         finally:
             os.unlink(temp_path)
     
+    @pytest.mark.unit
     def test_plugin_manager_registration(self):
         """Test plugin manager registration."""
         plugin = MockPlugin(self.sample_metadata)
@@ -257,6 +268,7 @@ configuration:
         plugin_stats = plugin.get_stats()
         self.assertGreater(plugin_stats["events_processed"], 0)
     
+    @pytest.mark.unit
     def test_plugin_manager_unregistration(self):
         """Test plugin unregistration."""
         plugin = MockPlugin(self.sample_metadata)
@@ -272,6 +284,7 @@ configuration:
         stats = self.plugin_manager.get_plugin_stats()
         self.assertEqual(stats["total_plugins"], 0)
     
+    @pytest.mark.integration
     def test_example_manifest_creation(self):
         """Test creation of example manifests."""
         example = self.manifest_loader.create_example_manifest("example_plugin")

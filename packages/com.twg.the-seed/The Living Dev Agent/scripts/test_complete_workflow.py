@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Complete Warbler AI Project Orchestration Workflow Test
 Tests the entire pipeline from request to generated Unity project

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Rapid-Fire Stress Test Runner for STAT7-RAG Integration
 

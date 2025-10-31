@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Modular Sprite System Test Suite
 Tests the new modular sprite generation features including:

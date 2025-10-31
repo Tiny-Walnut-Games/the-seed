@@ -8,13 +8,26 @@ import sys
 import os
 import pytest
 
-# Add root to path for imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add root to path and ensure project paths
+root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, root_dir)
+
+# Use path_utils for consistent path resolution
+try:
+    from path_utils import ensure_project_paths
+    ensure_project_paths()
+except ImportError:
+    # Fallback if path_utils not available
+    web_server_dir = os.path.join(root_dir, 'web', 'server')
+    if web_server_dir not in sys.path:
+        sys.path.insert(0, web_server_dir)
 
 
+@pytest.mark.integration
 class TestServerData:
     """WebSocket server data generation tests."""
 
+    @pytest.mark.e2e
     def test_server_components_creation(self):
         """Test server components can be created."""
         from stat7wsserve import STAT7EventStreamer, ExperimentVisualizer, generate_random_bitchain
@@ -25,6 +38,7 @@ class TestServerData:
         assert streamer is not None
         assert visualizer is not None
 
+    @pytest.mark.integration
     def test_bitchain_generation(self):
         """Test BitChain generation with seed."""
         from stat7wsserve import generate_random_bitchain
@@ -35,6 +49,7 @@ class TestServerData:
         assert hasattr(bitchain, 'id')
         assert bitchain.id is not None
 
+    @pytest.mark.e2e
     def test_event_creation(self):
         """Test event creation from BitChain."""
         from stat7wsserve import STAT7EventStreamer, generate_random_bitchain
@@ -49,6 +64,7 @@ class TestServerData:
         assert hasattr(event, 'experiment_id')
         assert hasattr(event, 'data')
 
+    @pytest.mark.e2e
     def test_event_data_structure(self):
         """Test event data structure completeness."""
         from stat7wsserve import STAT7EventStreamer, generate_random_bitchain

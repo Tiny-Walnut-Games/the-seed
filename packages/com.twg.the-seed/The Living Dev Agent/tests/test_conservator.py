@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Tests for The Conservator - Warbler Auto-Repair Module
@@ -28,6 +29,7 @@ from engine.conservator import (
 )
 
 
+@pytest.mark.integration
 class TestConservatorManifest(unittest.TestCase):
     """Test the ConservatorManifest class."""
     
@@ -46,11 +48,13 @@ class TestConservatorManifest(unittest.TestCase):
         """Clean up test environment."""
         shutil.rmtree(self.temp_dir)
     
+    @pytest.mark.integration
     def test_manifest_creation(self):
         """Test manifest creation and basic functionality."""
         self.assertTrue(self.manifest_path.parent.exists())
         self.assertEqual(len(self.manifest.registrations), 0)
     
+    @pytest.mark.integration
     def test_module_registration(self):
         """Test module registration."""
         registration = ModuleRegistration(
@@ -70,6 +74,7 @@ class TestConservatorManifest(unittest.TestCase):
         reg = self.manifest.registrations["test_module"]
         self.assertNotEqual(reg.last_known_good_hash, "")
     
+    @pytest.mark.integration
     def test_manifest_persistence(self):
         """Test manifest save and load functionality."""
         # Register a module
@@ -93,6 +98,7 @@ class TestConservatorManifest(unittest.TestCase):
         self.assertEqual(reg.backup_strategy, "file_copy")
         self.assertIn(RepairAction.RESTORE_FROM_SNAPSHOT, reg.repair_actions_enabled)
     
+    @pytest.mark.integration
     def test_module_unregistration(self):
         """Test module unregistration."""
         # Register a module first
@@ -118,6 +124,7 @@ class TestConservatorManifest(unittest.TestCase):
         self.assertFalse(success)
 
 
+@pytest.mark.e2e
 class TestTheConservator(unittest.TestCase):
     """Test The Conservator main class."""
     
@@ -158,12 +165,14 @@ class TestTheConservator(unittest.TestCase):
         """Clean up test environment."""
         shutil.rmtree(self.temp_dir)
     
+    @pytest.mark.integration
     def test_conservator_initialization(self):
         """Test Conservator initialization."""
         self.assertTrue(self.backup_path.exists())
         self.assertTrue(self.chronicle_path.exists())
         self.assertIn("test_module", self.conservator.manifest.registrations)
     
+    @pytest.mark.integration
     def test_snapshot_creation(self):
         """Test snapshot creation."""
         success = self.conservator.create_snapshot("test_module")
@@ -180,6 +189,7 @@ class TestTheConservator(unittest.TestCase):
         backup_file = backup_dirs[0] / self.test_module_path.name
         self.assertTrue(backup_file.exists())
     
+    @pytest.mark.integration
     def test_module_validation(self):
         """Test module validation."""
         success, results = self.conservator.validate_module("test_module")
@@ -189,6 +199,7 @@ class TestTheConservator(unittest.TestCase):
         self.assertIn("return_code", results)
         self.assertEqual(results["return_code"], 0)
     
+    @pytest.mark.integration
     def test_repair_operation(self):
         """Test repair operation."""
         # Create a snapshot first
@@ -206,6 +217,7 @@ class TestTheConservator(unittest.TestCase):
         self.assertIn(RepairAction.VALIDATE_AND_ROLLBACK, repair_op.actions_taken)
         self.assertEqual(repair_op.status, RepairStatus.SUCCESS)
     
+    @pytest.mark.integration
     def test_module_status(self):
         """Test module status retrieval."""
         status = self.conservator.get_module_status("test_module")
@@ -215,6 +227,7 @@ class TestTheConservator(unittest.TestCase):
         self.assertIn("current_hash", status)
         self.assertEqual(status["repair_count"], 0)
     
+    @pytest.mark.integration
     def test_system_health_check(self):
         """Test system health check."""
         health = self.conservator.repair_system_health_check()
@@ -225,11 +238,13 @@ class TestTheConservator(unittest.TestCase):
         self.assertTrue(health["chronicle_directory_accessible"])
         self.assertEqual(health["registered_modules_count"], 1)
     
+    @pytest.mark.integration
     def test_list_registered_modules(self):
         """Test listing registered modules."""
         modules = self.conservator.list_registered_modules()
         self.assertEqual(modules, ["test_module"])
     
+    @pytest.mark.integration
     def test_chronicle_keeper_integration(self):
         """Test Chronicle Keeper integration."""
         # Perform a repair operation that should create a chronicle entry
@@ -253,6 +268,7 @@ class TestTheConservator(unittest.TestCase):
         self.assertIn("explicit_human_command", content)
 
 
+@pytest.mark.e2e
 class TestRepairScenarios(unittest.TestCase):
     """Test various repair scenarios."""
     
@@ -296,6 +312,7 @@ class TestRepairScenarios(unittest.TestCase):
         """Clean up test environment."""
         shutil.rmtree(self.temp_dir)
     
+    @pytest.mark.integration
     def test_corruption_and_restore(self):
         """Test module corruption detection and restoration."""
         # Corrupt the module
@@ -323,6 +340,7 @@ class TestRepairScenarios(unittest.TestCase):
         self.assertIn("Original version", content)
         self.assertNotIn("Corrupted version", content)
     
+    @pytest.mark.integration
     def test_failed_validation_escalation(self):
         """Test escalation when validation fails."""
         # Register a module with a failing validation command
@@ -351,6 +369,7 @@ class TestRepairScenarios(unittest.TestCase):
         self.assertEqual(repair_op.status, RepairStatus.FAILED)
         self.assertTrue(repair_op.human_intervention_required)
     
+    @pytest.mark.integration
     def test_unregistered_module_repair(self):
         """Test repair attempt on unregistered module."""
         repair_op = self.conservator.repair_module(

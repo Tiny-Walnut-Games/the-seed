@@ -1,9 +1,10 @@
-"""
+﻿"""
 Integration Tests for Example Plugins
 
 Tests the sentiment lens and discourse tracker plugins with realistic scenarios.
 """
 
+import pytest
 import unittest
 import time
 import os
@@ -22,6 +23,7 @@ from engine.plugins.examples.discourse_tracker.plugin import DiscourseTrackerPlu
 from engine.plugins.base_plugin import PluginMetadata, PluginCapability
 
 
+@pytest.mark.integration
 class TestExamplePlugins(unittest.TestCase):
     """Test suite for example plugins."""
     
@@ -31,6 +33,7 @@ class TestExamplePlugins(unittest.TestCase):
         self.plugin_manager = PluginManager(self.audio_event_bus, plugin_dirs=[])
         self.manifest_loader = ManifestLoader()
     
+    @pytest.mark.integration
     def test_sentiment_lens_plugin_basic(self):
         """Test basic sentiment lens plugin functionality."""
         # Load manifest
@@ -74,6 +77,7 @@ class TestExamplePlugins(unittest.TestCase):
         sentiment_analysis = result["sentiment_analysis"]
         self.assertLess(sentiment_analysis["score"], -0.2)  # Should be negative
     
+    @pytest.mark.integration
     def test_discourse_tracker_plugin_basic(self):
         """Test basic discourse tracker plugin functionality."""
         # Load manifest
@@ -110,6 +114,7 @@ class TestExamplePlugins(unittest.TestCase):
         self.assertIn("transition", marker_categories)  # "however", "therefore"
         self.assertIn("summary", marker_categories)     # "in conclusion"
     
+    @pytest.mark.integration
     def test_plugin_integration_with_manager(self):
         """Test plugins working together through the plugin manager."""
         # Create and register sentiment lens plugin
@@ -159,6 +164,7 @@ class TestExamplePlugins(unittest.TestCase):
         self.assertIn("sentiment_analysis", sentiment_insights)
         self.assertIn("discourse_analysis", discourse_insights)
     
+    @pytest.mark.integration
     def test_plugin_error_handling(self):
         """Test plugin error handling and recovery."""
         # Create a plugin with invalid configuration
@@ -192,6 +198,7 @@ class TestExamplePlugins(unittest.TestCase):
         result = sentiment_plugin.process_event(large_event)
         # Should handle without crashing
     
+    @pytest.mark.integration
     def test_plugin_cognitive_insights(self):
         """Test cognitive insights generation from plugins."""
         # Create and initialize sentiment plugin

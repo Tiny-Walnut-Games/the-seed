@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Quick test for the fixed WebSocket server
 """
@@ -12,9 +12,11 @@ import pytest
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 
+@pytest.mark.integration
 class TestWebSocketFix:
     """WebSocket server fix validation tests."""
 
+    @pytest.mark.e2e
     def test_websocket_server_imports(self):
         """Test that WebSocket server imports work."""
         try:
@@ -23,6 +25,7 @@ class TestWebSocketFix:
         except ImportError as e:
             pytest.fail(f"Failed to import WebSocket components: {e}")
 
+    @pytest.mark.e2e
     def test_websocket_server_creation(self):
         """Test WebSocket server instance creation."""
         from stat7wsserve import STAT7EventStreamer, ExperimentVisualizer
@@ -33,6 +36,7 @@ class TestWebSocketFix:
         assert streamer is not None
         assert visualizer is not None
 
+    @pytest.mark.e2e
     def test_websocket_event_creation(self):
         """Test WebSocket event creation."""
         from stat7wsserve import STAT7EventStreamer, generate_random_bitchain

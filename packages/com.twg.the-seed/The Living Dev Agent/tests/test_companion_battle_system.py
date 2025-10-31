@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Companion Battle System Tests
@@ -28,6 +29,7 @@ except ImportError as e:
     print(f"⚠️ Import failed (expected in minimal environment): {e}")
     IMPORTS_AVAILABLE = False
 
+@pytest.mark.integration
 class TestCompanionBattleSystem(unittest.TestCase):
     """Test companion battle system integration"""
     
@@ -54,6 +56,7 @@ class TestCompanionBattleSystem(unittest.TestCase):
             bond_level=5
         )
     
+    @pytest.mark.integration
     def test_companion_battle_semantics(self):
         """Test companion battle semantic assignments"""
         if not IMPORTS_AVAILABLE:
@@ -73,6 +76,7 @@ class TestCompanionBattleSystem(unittest.TestCase):
         
         print(f"✅ Battle semantics correctly assigned: {self.test_companion.element.value}/{self.test_companion.archetype.value}/{self.test_companion.temperament.value}")
     
+    @pytest.mark.integration
     def test_elemental_effectiveness(self):
         """Test elemental effectiveness calculations"""
         if not IMPORTS_AVAILABLE:
@@ -119,6 +123,7 @@ class TestCompanionBattleSystem(unittest.TestCase):
         
         print(f"✅ Elemental effectiveness working: Strong={strong_effectiveness}x, Weak={weak_effectiveness}x, Neutral={neutral_effectiveness}x")
     
+    @pytest.mark.integration
     def test_battle_stats_scaling(self):
         """Test battle stats scaling with evolution and bond level"""
         if not IMPORTS_AVAILABLE:
@@ -157,6 +162,7 @@ class TestCompanionBattleSystem(unittest.TestCase):
         
         print(f"✅ Battle stats scaling working: Bond 5 Health={stats['health']}, Bond 1 Health={bond_1_stats['health']}")
     
+    @pytest.mark.integration
     def test_battle_experience_system(self):
         """Test battle experience awards and progression"""
         if not IMPORTS_AVAILABLE:
@@ -181,6 +187,7 @@ class TestCompanionBattleSystem(unittest.TestCase):
         
         print(f"✅ Battle experience system working: Victory XP={victory_xp}, Defeat XP={defeat_xp}")
     
+    @pytest.mark.integration
     def test_warbler_integration_context(self):
         """Test Warbler conversation context generation"""
         if not IMPORTS_AVAILABLE:
@@ -215,6 +222,7 @@ class TestCompanionBattleSystem(unittest.TestCase):
         
         print(f"✅ Warbler context generation working with {len(warbler_context)} fields")
     
+    @pytest.mark.integration
     def test_archetype_specializations(self):
         """Test different archetype specializations"""
         if not IMPORTS_AVAILABLE:
@@ -255,6 +263,7 @@ class TestCompanionBattleSystem(unittest.TestCase):
         
         print(f"✅ Archetype specializations working for {len(archetypes_to_test)} archetypes")
     
+    @pytest.mark.integration
     def test_nft_battle_metadata_generation(self):
         """Test NFT metadata generation for battle-proven companions"""
         if not IMPORTS_AVAILABLE:
@@ -289,6 +298,7 @@ class TestCompanionBattleSystem(unittest.TestCase):
         print(f"✅ NFT metadata generation working - Battle-proven companion with {battle_stats['battles_won']} victories")
 
 
+@pytest.mark.integration
 class TestCompanionEvolutionIntegration(unittest.TestCase):
     """Test companion evolution with battle progression"""
     
@@ -314,6 +324,7 @@ class TestCompanionEvolutionIntegration(unittest.TestCase):
             bond_level=1
         )
     
+    @pytest.mark.integration
     def test_evolution_readiness_with_battles(self):
         """Test evolution readiness based on battle performance"""
         if not IMPORTS_AVAILABLE:
