@@ -12,9 +12,12 @@ Features:
 """
 
 import json
+import logging
 from pathlib import Path
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Tuple
 from dataclasses import dataclass
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -45,16 +48,18 @@ class WarblerPackLoader:
     """
     Loads Warbler conversation templates from pack files.
     
-    Provides slot-filling and reputation-aware template filtering.
+    Provides slot-filling, reputation-aware template filtering, and
+    semantic similarity search using embeddings (Phase 3).
     """
     
-    def __init__(self, pack_root_path: Optional[Path] = None):
+    def __init__(self, pack_root_path: Optional[Path] = None, embedding_service: Optional[Any] = None):
         """
         Initialize pack loader.
         
         Args:
             pack_root_path: Root path to warbler packs directory.
                           If None, uses default: packages/com.twg.the-seed/The Living Dev Agent/packs/
+            embedding_service: Optional WarblerEmbeddingService for semantic search
         """
         if pack_root_path is None:
             # Default path from repo root
@@ -64,6 +69,8 @@ class WarblerPackLoader:
         self.pack_root = pack_root_path
         self.templates: Dict[str, ConversationTemplate] = {}
         self.templates_by_tag: Dict[str, List[str]] = {}  # tag -> list of template_ids
+        self.embedding_service = embedding_service  # Optional semantic search
+        self.jsonl_documents: Dict[str, Dict[str, Any]] = {}  # document_id -> document data
         self.reputation_tier_to_template_selector = {
             "revered": self._select_reverent_templates,
             "trusted": self._select_friendly_templates,
@@ -265,11 +272,143 @@ class WarblerPackLoader:
         """Get all farewell/dialogue close templates."""
         return self.get_templates_by_tag("farewell")
     
+    def load_jsonl_pack(self, pack_name: str) -> int:
+        """
+        Load JSONL documents from a pack (e.g., HuggingFace dataset pack).
+        
+        Args:
+            pack_name: Name of the pack (e.g., "warbler-pack-hf-npc-dialogue")
+            
+        Returns:
+            Number of documents loaded
+        """
+        pack_dir = self.pack_root / pack_name
+        if not pack_dir.exists():
+            logger.warning(f"Pack directory not found: {pack_dir}")
+            return 0
+        
+        # Find JSONL files
+        jsonl_files = list(pack_dir.glob("*.jsonl"))
+        if not jsonl_files:
+            logger.warning(f"No JSONL files found in {pack_dir}")
+            return 0
+        
+        count = 0
+        for jsonl_file in jsonl_files:
+            try:
+                with open(jsonl_file, 'r', encoding='utf-8') as f:
+                    for line in f:
+                        if line.strip():
+                            doc = json.loads(line)
+                            doc_id = doc.get("content_id", f"{pack_name}_{count}")
+                            self.jsonl_documents[doc_id] = doc
+                            count += 1
+                
+                logger.info(f"✓ Loaded {count} documents from {jsonl_file.name}")
+            except Exception as e:
+                logger.error(f"Error loading {jsonl_file}: {e}")
+        
+        return count
+    
+    def build_embeddings(self, embedding_service: Optional[Any] = None) -> bool:
+        """
+        Build embeddings for all loaded templates and documents.
+        
+        Args:
+            embedding_service: WarblerEmbeddingService instance
+            
+        Returns:
+            True if embeddings built successfully
+        """
+        if embedding_service:
+            self.embedding_service = embedding_service
+        
+        if not self.embedding_service:
+            logger.warning("No embedding service provided")
+            return False
+        
+        # Prepare template data for embedding
+        templates_to_embed = []
+        for template_id, template in self.templates.items():
+            templates_to_embed.append({
+                "template_id": template_id,
+                "content": template.content,
+                "metadata": {
+                    "title": template.title,
+                    "description": template.description,
+                    "pack": template.pack_name,
+                    "max_length": template.max_length
+                },
+                "tags": template.tags
+            })
+        
+        # Prepare JSONL documents for embedding
+        for doc_id, doc in self.jsonl_documents.items():
+            templates_to_embed.append({
+                "template_id": doc_id,
+                "content": doc.get("content", ""),
+                "metadata": doc.get("metadata", {}),
+                "tags": []
+            })
+        
+        if templates_to_embed:
+            try:
+                self.embedding_service.add_templates_batch(templates_to_embed)
+                logger.info(f"✓ Built embeddings for {len(templates_to_embed)} items")
+                return True
+            except Exception as e:
+                logger.error(f"Error building embeddings: {e}")
+                return False
+        
+        return True
+    
+    def search_semantic(
+        self,
+        query: str,
+        top_k: int = 5,
+        reputation_tier: Optional[str] = None
+    ) -> List[Tuple[str, float, Any]]:
+        """
+        Find semantically similar templates/documents.
+        
+        Args:
+            query: Query text (e.g., player input)
+            top_k: Number of results to return
+            reputation_tier: Optional reputation filter
+            
+        Returns:
+            List of (template_id, similarity_score, template/document)
+        """
+        if not self.embedding_service:
+            logger.warning("Embedding service not available for semantic search")
+            return []
+        
+        results = self.embedding_service.search_semantic(
+            query, top_k=top_k, reputation_tier=reputation_tier
+        )
+        
+        # Enrich results with template/document data
+        enriched = []
+        for template_id, similarity, embedded_template in results:
+            # Get template if it exists
+            if template_id in self.templates:
+                enriched.append((template_id, similarity, self.templates[template_id]))
+            elif template_id in self.jsonl_documents:
+                enriched.append((template_id, similarity, self.jsonl_documents[template_id]))
+        
+        return enriched
+    
     def get_stats(self) -> Dict[str, Any]:
         """Get loader statistics."""
-        return {
+        stats = {
             "total_templates": len(self.templates),
+            "jsonl_documents_loaded": len(self.jsonl_documents),
             "packs_loaded": len(set(t.pack_name for t in self.templates.values())),
             "tags": list(self.templates_by_tag.keys()),
             "tag_distribution": {tag: len(ids) for tag, ids in self.templates_by_tag.items()}
         }
+        
+        if self.embedding_service:
+            stats["embedding_service"] = self.embedding_service.get_stats()
+        
+        return stats

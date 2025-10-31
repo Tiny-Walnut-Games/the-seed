@@ -290,8 +290,8 @@ class WarblerQueryService:
         """
         Generate response using loaded Warbler pack templates.
         
-        Uses reputation tier to select appropriate templates, then fills slots
-        with dialogue context variables.
+        Phase 2: Reputation tier + keyword-based template selection
+        Phase 3: Semantic similarity search with FAISS + embeddings
         
         Args:
             dialogue_context: DialogueContext from bridge
@@ -315,6 +315,79 @@ class WarblerQueryService:
         
         reputation_tier = formality_to_tier.get(personality.dialogue_formality, "neutral")
         
+        # Phase 3: Try semantic search first if embeddings available
+        if self.pack_loader.embedding_service:
+            return self._generate_response_semantic(dialogue_context, user_input, npc_id, reputation_tier)
+        
+        # Phase 2: Fall back to keyword-based template selection
+        return self._generate_response_keyword_based(dialogue_context, user_input, npc_id, reputation_tier)
+    
+    def _generate_response_semantic(self, dialogue_context, user_input: str, npc_id: str, reputation_tier: str) -> str:
+        """
+        Generate response using semantic similarity search (Phase 3).
+        
+        Finds semantically similar templates/documents using FAISS embeddings
+        and reputation tier filtering.
+        """
+        # Search for semantically similar templates
+        search_results = self.pack_loader.search_semantic(
+            query=user_input,
+            top_k=5,
+            reputation_tier=reputation_tier
+        )
+        
+        if not search_results:
+            # Fall back to keyword-based if no semantic results
+            return self._generate_response_keyword_based(dialogue_context, user_input, npc_id, reputation_tier)
+        
+        # Get best match
+        template_id, similarity, template = search_results[0]
+        
+        npc_data = self.bridge.npc_registry.get(npc_id, {})
+        
+        # Extract location from player journey
+        location = "unknown lands"
+        if dialogue_context.player_journey:
+            journey_lower = dialogue_context.player_journey.lower()
+            for realm in ["sol_1", "sol_2", "sol_3", "realm", "kingdom"]:
+                if realm in journey_lower:
+                    location = realm.replace("_", " ").title()
+                    break
+        
+        # Build slot values from dialogue context
+        slot_values = {
+            "user_name": dialogue_context.player_name,
+            "user_title": self._get_player_title(dialogue_context),
+            "location": location,
+            "location_type": "realm",
+            "npc_name": dialogue_context.npc_name or npc_data.get("npc_name", "NPC"),
+            "npc_role": npc_data.get("npc_role", "traveler"),
+            "time_of_day": "day",
+            "item_types": "wondrous items",
+        }
+        
+        # Handle template object vs document dict
+        if hasattr(template, 'content'):
+            # ConversationTemplate object
+            response = self.pack_loader.fill_slots(template, slot_values)
+        else:
+            # JSONL document dict
+            content = template.get("content", "")
+            # Fill basic slots in content
+            for key, value in slot_values.items():
+                content = content.replace(f"{{{{{key}}}}}", str(value))
+            response = content
+        
+        self.pack_templates_used += 1
+        return response
+    
+    def _generate_response_keyword_based(self, dialogue_context, user_input: str, npc_id: str, reputation_tier: str) -> str:
+        """
+        Generate response using keyword-based template selection (Phase 2).
+        
+        Determines dialogue context tags from user input keywords and selects
+        templates based on reputation tier + tags.
+        """
         # Determine context tags (what kind of dialogue is this?)
         context_tags = self._determine_dialogue_tags(user_input, dialogue_context)
         
@@ -334,6 +407,8 @@ class WarblerQueryService:
                     if realm in journey_lower:
                         location = realm.replace("_", " ").title()
                         break
+            
+            npc_data = self.bridge.npc_registry.get(npc_id, {})
             
             # Build slot values from dialogue context
             slot_values = {
