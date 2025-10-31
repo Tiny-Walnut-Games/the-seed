@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """STAT7 file system and organization tests."""
 
 import pytest
@@ -10,9 +10,11 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
+@pytest.mark.integration
 class TestStat7Files:
     """STAT7 file system and organization tests."""
 
+    @pytest.mark.e2e
     def test_core_files_exist(self):
         """Test that core STAT7 files exist."""
         root_path = Path(__file__).parent.parent
@@ -31,6 +33,7 @@ class TestStat7Files:
         
         assert not missing_files, f"Missing core files: {missing_files}"
 
+    @pytest.mark.e2e
     def test_websocket_files_organized(self):
         """Test that websocket files are properly organized."""
         websocket_path = Path(__file__).parent.parent / "websocket"
@@ -47,6 +50,7 @@ class TestStat7Files:
             file_path = websocket_path / file
             assert file_path.exists(), f"websocket/{file} should exist"
 
+    @pytest.mark.integration
     def test_tests_folder_organized(self):
         """Test that tests folder is properly organized."""
         tests_path = Path(__file__).parent
@@ -62,6 +66,7 @@ class TestStat7Files:
             file_path = tests_path / file
             assert file_path.exists(), f"tests/{file} should exist"
 
+    @pytest.mark.e2e
     def test_websocket_tests_organized(self):
         """Test that websocket tests are organized."""
         websocket_tests_path = Path(__file__).parent / "websocket"
@@ -77,6 +82,7 @@ class TestStat7Files:
                 file_path = websocket_tests_path / file
                 assert file_path.exists(), f"tests/websocket/{file} should exist"
 
+    @pytest.mark.e2e
     def test_no_test_files_in_root(self):
         """Test that no test files remain in root directory."""
         root_path = Path(__file__).parent.parent
@@ -100,6 +106,7 @@ class TestStat7Files:
                 content = file_path.read_text().strip()
                 assert content.startswith("# MOVED TO"), f"{file} should be a stub file pointing to tests/ location"
 
+    @pytest.mark.e2e
     def test_all_test_files_in_tests_folder(self):
         """Test that all test files are properly located in tests folder."""
         tests_path = Path(__file__).parent

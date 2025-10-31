@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Test script to validate Warbler integration improvements
 Simulates the Unity workflow to ensure progress feedback works correctly

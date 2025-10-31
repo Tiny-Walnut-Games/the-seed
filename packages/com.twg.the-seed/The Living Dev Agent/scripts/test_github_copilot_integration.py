@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Test script for GitHub Copilot integration and multi-provider system
 This script validates the complete authentication and analysis workflow

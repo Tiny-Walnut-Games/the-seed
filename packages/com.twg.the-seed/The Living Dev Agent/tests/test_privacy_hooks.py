@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test Suite for PII Scrubbing & Privacy Hooks
@@ -66,6 +67,7 @@ class PrivacyHooksTestSuite:
             self.test_results.append((test_name, False, str(e)))
             return False
     
+    @pytest.mark.integration
     def test_privacy_hooks_basic_functionality(self):
         """Test basic privacy hooks functionality"""
         hooks = PrivacyHooks()
@@ -94,6 +96,7 @@ class PrivacyHooksTestSuite:
         assert metrics["pii_scrubs_applied"] >= 1
         assert metrics["privacy_policy_level"] == "standard"
     
+    @pytest.mark.integration
     def test_privacy_policy_levels(self):
         """Test different privacy policy levels"""
         test_content = "User ID: user123, works at Acme Corp"
@@ -121,6 +124,7 @@ class PrivacyHooksTestSuite:
         print(f"   Permissive compliant: {compliance_permissive}")
         print(f"   Strict compliant: {compliance_strict}, violations: {violations_strict}")
     
+    @pytest.mark.integration
     def test_semantic_anchor_pii_scrubbing_integration(self):
         """Test PII scrubbing integration with semantic anchor creation"""
         if not SEMANTIC_ANCHORS_AVAILABLE:
@@ -172,6 +176,7 @@ class PrivacyHooksTestSuite:
         assert privacy_metrics["privacy_hooks_enabled"] is not False
         assert privacy_metrics["pii_scrubs_applied"] >= 1
     
+    @pytest.mark.integration
     def test_encrypted_audit_log_backend(self):
         """Test optional encrypted audit log backend"""
         # Create safety system with encrypted audit enabled
@@ -205,6 +210,7 @@ class PrivacyHooksTestSuite:
             assert "encryption_metadata" in encrypted_content
             assert "test@example.com" not in encrypted_content  # Should be encrypted
     
+    @pytest.mark.integration
     def test_configurable_privacy_policies(self):
         """Test configurable privacy policies from configuration"""
         try:
@@ -239,6 +245,7 @@ class PrivacyHooksTestSuite:
             # Don't fail the test for configuration issues
             pass
     
+    @pytest.mark.integration
     def test_privacy_hooks_disabled_scenario(self):
         """Test behavior when privacy hooks are disabled"""
         if not SEMANTIC_ANCHORS_AVAILABLE:
@@ -270,6 +277,7 @@ class PrivacyHooksTestSuite:
         privacy_metrics = anchor_graph.get_privacy_metrics()
         assert privacy_metrics["privacy_hooks_enabled"] is False
     
+    @pytest.mark.integration
     def test_redaction_transforms_privacy_config(self):
         """Test redaction transforms with privacy-specific configuration"""
         # Test privacy configuration on redaction transforms

@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 🧪 Warbler Quote Engine Integration Test Suite
@@ -26,6 +27,7 @@ except ImportError as e:
     print(f"❌ Failed to import Warbler Quote Engine: {e}")
     sys.exit(1)
 
+@pytest.mark.integration
 class TestWarblerQuoteEngine(unittest.TestCase):
     """Test suite for the Warbler-powered quote engine"""
     
@@ -110,6 +112,7 @@ database_info:
         import shutil
         shutil.rmtree(self.test_dir, ignore_errors=True)
     
+    @pytest.mark.integration
     def test_static_quote_loading(self):
         """Test loading of static quotes database"""
         # Create engine with test database
@@ -128,6 +131,7 @@ database_info:
         self.assertTrue(general_quote.buttsafe_certified)
         self.assertFalse(general_quote.generated)
     
+    @pytest.mark.integration
     def test_quote_retrieval_by_category(self):
         """Test quote retrieval by category"""
         engine = WarblerPoweredScrollEngine(str(self.quotes_file))
@@ -141,6 +145,7 @@ database_info:
         quote = engine.get_quote(category='general')
         self.assertEqual(quote.text, "Test quote for general wisdom")
     
+    @pytest.mark.integration
     def test_context_aware_selection(self):
         """Test context-aware quote selection"""
         engine = WarblerPoweredScrollEngine(str(self.quotes_file))
@@ -153,6 +158,7 @@ database_info:
         quote = engine.get_quote_for_context('documentation')
         self.assertIsInstance(quote, WisdomQuote)
     
+    @pytest.mark.integration
     def test_quote_formatting(self):
         """Test different quote formatting options"""
         engine = WarblerPoweredScrollEngine(str(self.quotes_file))
@@ -175,6 +181,7 @@ database_info:
         self.assertIn(quote.text, plain_format)
         self.assertIn(quote.author, plain_format)
     
+    @pytest.mark.unit
     def test_generated_quote_cache(self):
         """Test generated quote caching functionality"""
         # Mock the engine to use test directories
@@ -215,6 +222,7 @@ database_info:
             self.assertTrue(loaded_quotes[0].generated)
     
     @patch('random.choice')
+    @pytest.mark.integration
     def test_template_slot_filling(self, mock_choice):
         """Test Warbler template slot filling"""
         # Set up predictable random choices
@@ -245,6 +253,7 @@ database_info:
             unknown_value = engine._get_slot_value('unknown_slot')
             self.assertEqual(unknown_value, '[unknown_slot]')
     
+    @pytest.mark.integration
     def test_statistics_generation(self):
         """Test statistics generation"""
         engine = WarblerPoweredScrollEngine(str(self.quotes_file))
@@ -261,6 +270,7 @@ database_info:
         self.assertEqual(stats['static_quotes'], 2)  # general + development
         self.assertEqual(stats['categories'], 2)
 
+@pytest.mark.integration
 class TestCLIIntegration(unittest.TestCase):
     """Test CLI script integration"""
     
@@ -269,10 +279,12 @@ class TestCLIIntegration(unittest.TestCase):
         self.project_root = Path(__file__).parent.parent
         self.lda_quote_script = self.project_root / "scripts" / "lda-quote"
     
+    @pytest.mark.integration
     def test_lda_quote_script_exists(self):
         """Test that the lda-quote script exists and is executable"""
         self.assertTrue(self.lda_quote_script.exists())
     
+    @pytest.mark.integration
     def test_warbler_pack_templates_exist(self):
         """Test that Warbler pack templates exist"""
         templates_file = self.project_root / "packs" / "warbler-pack-wisdom-scrolls" / "pack" / "templates.json"
@@ -292,11 +304,13 @@ class TestCLIIntegration(unittest.TestCase):
         for field in required_fields:
             self.assertIn(field, template)
     
+    @pytest.mark.integration
     def test_weekly_oracle_script_exists(self):
         """Test that weekly oracle script exists"""
         oracle_script = self.project_root / "scripts" / "weekly-wisdom-oracle.sh"
         self.assertTrue(oracle_script.exists())
 
+@pytest.mark.integration
 class TestWarblerPackValidation(unittest.TestCase):
     """Test Warbler pack validation"""
     
@@ -306,10 +320,12 @@ class TestWarblerPackValidation(unittest.TestCase):
         self.validator_script = self.project_root / "scripts" / "validate-warbler-pack.mjs"
         self.templates_file = self.project_root / "packs" / "warbler-pack-wisdom-scrolls" / "pack" / "templates.json"
     
+    @pytest.mark.integration
     def test_pack_validation_script_exists(self):
         """Test that pack validation script exists"""
         self.assertTrue(self.validator_script.exists())
     
+    @pytest.mark.integration
     def test_template_file_validation(self):
         """Test template file structure validation"""
         self.assertTrue(self.templates_file.exists())

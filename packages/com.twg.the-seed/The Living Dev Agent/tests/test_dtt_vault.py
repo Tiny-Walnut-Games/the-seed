@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test suite for Dev Time Travel (DTT) Vault System
@@ -13,6 +14,7 @@ import subprocess
 from pathlib import Path
 
 
+@pytest.mark.integration
 def test_dtt_vault_initialization():
     """Test DTT vault initialization"""
     print("🧪 Testing DTT vault initialization...")
@@ -52,6 +54,7 @@ def test_dtt_vault_initialization():
         print("✅ DTT vault initialization test passed")
 
 
+@pytest.mark.integration
 def test_dtt_snapshot_creation():
     """Test snapshot creation and content addressing"""
     print("🧪 Testing DTT snapshot creation...")
@@ -112,6 +115,7 @@ def test_dtt_snapshot_creation():
         print("✅ DTT snapshot creation test passed")
 
 
+@pytest.mark.integration
 def test_dtt_vault_verification():
     """Test vault verification"""
     print("🧪 Testing DTT vault verification...")

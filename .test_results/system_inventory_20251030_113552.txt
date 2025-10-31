@@ -1,0 +1,83 @@
+======================================================================
+SYSTEM VALIDATION DISCOVERY REPORT
+======================================================================
+Generated: 2025-10-30 11:35:52
+Root Directory: E:\Tiny_Walnut_Games\the-seed
+
+TEST INVENTORY:
+
+The Seed:
+  Location: E:\Tiny_Walnut_Games\the-seed\tests
+  Test Files: 16
+  Test Items: 201
+  Pytest Collected: 141
+
+  Individual Tests:
+
+    - test_api_contract.py
+      Functions: 23, Classes: 6
+    - test_complete_system.py
+      Functions: 5, Classes: 1
+    - test_e2e_scenarios.py
+      Functions: 14, Classes: 8
+    - test_enhanced_visualization.py
+      Functions: 5, Classes: 1
+    - test_event_store.py
+      Functions: 16, Classes: 7
+    - test_governance_integration.py
+      Functions: 19, Classes: 8
+    - test_server_data.py
+      Functions: 4, Classes: 1
+    - test_simple.py
+      Functions: 5, Classes: 1
+    - test_stat7_e2e.py
+      Functions: 12, Classes: 1
+    - test_stat7_e2e_optimized.py
+      Functions: 11, Classes: 2
+    - test_stat7_files.py
+      Functions: 6, Classes: 1
+    - test_stat7_server.py
+      Functions: 5, Classes: 1
+    - test_stat7_setup.py
+      Functions: 4, Classes: 1
+    - test_tick_engine.py
+      Functions: 22, Classes: 7
+    - __init__.py
+      Functions: 0, Classes: 0
+    - test_websocket_fix.py
+      Functions: 3, Classes: 1
+
+
+WARBLER:
+  Location: E:\Tiny_Walnut_Games\the-seed\packages\com.twg.the-seed\The Living Dev Agent\tests
+  Test Files: 10
+  Test Items: 143
+
+  Individual Tests:
+
+    - test_example_plugins.py
+      Functions: 5, Classes: 1
+    - test_exp06_debug_scores.py
+      Functions: 0, Classes: 0
+    - test_exp06_robustness.py
+      Functions: 6, Classes: 0
+    - test_exp06_score_histogram.py
+      Functions: 0, Classes: 0
+    - test_exp06_simple_validation.py
+      Functions: 0, Classes: 0
+    - test_phase2_stat7_integration.py
+      Functions: 19, Classes: 5
+    - test_plugin_system.py
+      Functions: 11, Classes: 1
+    - test_recovery_gate_phase1.py
+      Functions: 23, Classes: 6
+    - test_wfc_firewall.py
+      Functions: 28, Classes: 9
+    - test_wfc_integration.py
+      Functions: 20, Classes: 9
+
+
+======================================================================
+SUMMARY:
+  Total Test Files: 26
+  Total Test Items: 344

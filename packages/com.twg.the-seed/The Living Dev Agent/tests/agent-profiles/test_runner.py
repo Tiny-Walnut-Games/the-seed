@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Agent Profile System Test Runner
@@ -23,6 +24,7 @@ def run_test(test_name, test_func):
         print(f"   ❌ FAILED: {str(e)}")
         return False
 
+@pytest.mark.integration
 def test_agent_profile_yaml_syntax():
     """Test that agent profile YAML files have valid syntax"""
     # Test main profile
@@ -36,6 +38,7 @@ def test_agent_profile_yaml_syntax():
             legacy_profile = yaml.safe_load(f)
         assert isinstance(legacy_profile, dict), 'Legacy profile must be a dictionary'
 
+@pytest.mark.integration
 def test_required_profile_fields():
     """Test that agent profiles contain required fields"""
     with open('.agent-profile.yaml', 'r') as f:
@@ -51,6 +54,7 @@ def test_required_profile_fields():
     workflow = profile.get('workflow_preferences', {})
     assert 'mode' in workflow, 'workflow_preferences must specify mode'
 
+@pytest.mark.integration
 def test_valid_field_values():
     """Test that field values are from expected sets"""
     with open('.agent-profile.yaml', 'r') as f:
@@ -70,6 +74,7 @@ def test_valid_field_values():
         valid_modes = {'exploration', 'implementation', 'documentation', 'crisis', 'standard'}
         assert mode in valid_modes, f'Invalid mode: {mode}'
 
+@pytest.mark.integration
 def test_lda_cli_availability():
     """Test that LDA CLI tool is available and functional"""
     lda_path = Path('scripts/lda')
@@ -80,6 +85,7 @@ def test_lda_cli_availability():
                           capture_output=True, text=True)
     assert result.returncode == 0, f'LDA CLI help failed: {result.stderr}'
 
+@pytest.mark.integration
 def test_lda_cli_basic_commands():
     """Test basic LDA CLI commands"""
     original_cwd = Path.cwd()
@@ -110,6 +116,7 @@ def test_lda_cli_basic_commands():
     finally:
         os.chdir(original_cwd)
 
+@pytest.mark.integration
 def test_pipeline_preferences_validation():
     """Test pipeline preferences in legacy profile if present"""
     legacy_profile_path = Path('agent-profile.yaml')
@@ -127,6 +134,7 @@ def test_pipeline_preferences_validation():
         for pipeline in pipelines:
             assert pipeline in valid_pipelines, f'Invalid pipeline: {pipeline}'
 
+@pytest.mark.integration
 def test_cli_integration_commands():
     """Test CLI integration command definitions"""
     with open('.agent-profile.yaml', 'r') as f:
@@ -141,6 +149,7 @@ def test_cli_integration_commands():
             assert isinstance(cmd, str), f'Command must be string: {cmd}'
             assert cmd.startswith('lda '), f'Command must start with "lda ": {cmd}'
 
+@pytest.mark.integration
 def test_project_context_validation():
     """Test project context if present"""
     with open('.agent-profile.yaml', 'r') as f:

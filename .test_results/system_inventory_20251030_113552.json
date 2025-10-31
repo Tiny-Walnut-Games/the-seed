@@ -1,0 +1,269 @@
+{
+  "timestamp": "2025-10-30T11:35:48.133408",
+  "systems": {
+    "The Seed": {
+      "system": "The Seed",
+      "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests",
+      "tests": [
+        {
+          "name": "test_api_contract.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_api_contract.py",
+          "relative_path": "tests\\test_api_contract.py",
+          "test_functions": 23,
+          "test_classes": 6,
+          "total_tests": 29,
+          "size_bytes": 15909
+        },
+        {
+          "name": "test_complete_system.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_complete_system.py",
+          "relative_path": "tests\\test_complete_system.py",
+          "test_functions": 5,
+          "test_classes": 1,
+          "total_tests": 6,
+          "size_bytes": 3709
+        },
+        {
+          "name": "test_e2e_scenarios.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_e2e_scenarios.py",
+          "relative_path": "tests\\test_e2e_scenarios.py",
+          "test_functions": 14,
+          "test_classes": 8,
+          "total_tests": 22,
+          "size_bytes": 19825
+        },
+        {
+          "name": "test_enhanced_visualization.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_enhanced_visualization.py",
+          "relative_path": "tests\\test_enhanced_visualization.py",
+          "test_functions": 5,
+          "test_classes": 1,
+          "total_tests": 6,
+          "size_bytes": 3191
+        },
+        {
+          "name": "test_event_store.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_event_store.py",
+          "relative_path": "tests\\test_event_store.py",
+          "test_functions": 16,
+          "test_classes": 7,
+          "total_tests": 23,
+          "size_bytes": 12954
+        },
+        {
+          "name": "test_governance_integration.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_governance_integration.py",
+          "relative_path": "tests\\test_governance_integration.py",
+          "test_functions": 19,
+          "test_classes": 8,
+          "total_tests": 27,
+          "size_bytes": 26220
+        },
+        {
+          "name": "test_server_data.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_server_data.py",
+          "relative_path": "tests\\test_server_data.py",
+          "test_functions": 4,
+          "test_classes": 1,
+          "total_tests": 5,
+          "size_bytes": 2392
+        },
+        {
+          "name": "test_simple.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_simple.py",
+          "relative_path": "tests\\test_simple.py",
+          "test_functions": 5,
+          "test_classes": 1,
+          "total_tests": 6,
+          "size_bytes": 2295
+        },
+        {
+          "name": "test_stat7_e2e.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_stat7_e2e.py",
+          "relative_path": "tests\\test_stat7_e2e.py",
+          "test_functions": 12,
+          "test_classes": 1,
+          "total_tests": 13,
+          "size_bytes": 20151
+        },
+        {
+          "name": "test_stat7_e2e_optimized.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_stat7_e2e_optimized.py",
+          "relative_path": "tests\\test_stat7_e2e_optimized.py",
+          "test_functions": 11,
+          "test_classes": 2,
+          "total_tests": 13,
+          "size_bytes": 16325
+        },
+        {
+          "name": "test_stat7_files.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_stat7_files.py",
+          "relative_path": "tests\\test_stat7_files.py",
+          "test_functions": 6,
+          "test_classes": 1,
+          "total_tests": 7,
+          "size_bytes": 4615
+        },
+        {
+          "name": "test_stat7_server.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_stat7_server.py",
+          "relative_path": "tests\\test_stat7_server.py",
+          "test_functions": 5,
+          "test_classes": 1,
+          "total_tests": 6,
+          "size_bytes": 3183
+        },
+        {
+          "name": "test_stat7_setup.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_stat7_setup.py",
+          "relative_path": "tests\\test_stat7_setup.py",
+          "test_functions": 4,
+          "test_classes": 1,
+          "total_tests": 5,
+          "size_bytes": 2382
+        },
+        {
+          "name": "test_tick_engine.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\test_tick_engine.py",
+          "relative_path": "tests\\test_tick_engine.py",
+          "test_functions": 22,
+          "test_classes": 7,
+          "total_tests": 29,
+          "size_bytes": 15888
+        },
+        {
+          "name": "__init__.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\websocket\\__init__.py",
+          "relative_path": "tests\\websocket\\__init__.py",
+          "test_functions": 0,
+          "test_classes": 0,
+          "total_tests": 0,
+          "size_bytes": 39
+        },
+        {
+          "name": "test_websocket_fix.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\tests\\websocket\\test_websocket_fix.py",
+          "relative_path": "tests\\websocket\\test_websocket_fix.py",
+          "test_functions": 3,
+          "test_classes": 1,
+          "total_tests": 4,
+          "size_bytes": 1670
+        }
+      ],
+      "count": 16,
+      "total_test_items": 201,
+      "collection_details": {
+        "collected": 141,
+        "output": "============================= test session starts =============================\nplatform win32 -- Python 3.13.9, pytest-8.4.1, pluggy-1.6.0\nrootdir: E:\\Tiny_Walnut_Games\\the-seed\nconfigfile: pytest.ini\nplugins: anyio-4.11.0, asyncio-1.2.0, cov-7.0.0, xdist-3.8.0\nasyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function\ncollected 182 items\n\n<Dir the-seed>\n  <Package tests>\n    <Module test_api_contract.py>\n      <Class TestAPICommand"
+      }
+    },
+    "WARBLER": {
+      "system": "WARBLER",
+      "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests",
+      "tests": [
+        {
+          "name": "test_example_plugins.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_example_plugins.py",
+          "relative_path": "packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_example_plugins.py",
+          "test_functions": 5,
+          "test_classes": 1,
+          "total_tests": 6,
+          "size_bytes": 11708
+        },
+        {
+          "name": "test_exp06_debug_scores.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_exp06_debug_scores.py",
+          "relative_path": "packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_exp06_debug_scores.py",
+          "test_functions": 0,
+          "test_classes": 0,
+          "total_tests": 0,
+          "size_bytes": 3334
+        },
+        {
+          "name": "test_exp06_robustness.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_exp06_robustness.py",
+          "relative_path": "packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_exp06_robustness.py",
+          "test_functions": 6,
+          "test_classes": 0,
+          "total_tests": 6,
+          "size_bytes": 6684
+        },
+        {
+          "name": "test_exp06_score_histogram.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_exp06_score_histogram.py",
+          "relative_path": "packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_exp06_score_histogram.py",
+          "test_functions": 0,
+          "test_classes": 0,
+          "total_tests": 0,
+          "size_bytes": 2574
+        },
+        {
+          "name": "test_exp06_simple_validation.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_exp06_simple_validation.py",
+          "relative_path": "packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_exp06_simple_validation.py",
+          "test_functions": 0,
+          "test_classes": 0,
+          "total_tests": 0,
+          "size_bytes": 2084
+        },
+        {
+          "name": "test_phase2_stat7_integration.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_phase2_stat7_integration.py",
+          "relative_path": "packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_phase2_stat7_integration.py",
+          "test_functions": 19,
+          "test_classes": 5,
+          "total_tests": 24,
+          "size_bytes": 18214
+        },
+        {
+          "name": "test_plugin_system.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_plugin_system.py",
+          "relative_path": "packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_plugin_system.py",
+          "test_functions": 11,
+          "test_classes": 1,
+          "total_tests": 12,
+          "size_bytes": 10029
+        },
+        {
+          "name": "test_recovery_gate_phase1.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_recovery_gate_phase1.py",
+          "relative_path": "packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_recovery_gate_phase1.py",
+          "test_functions": 23,
+          "test_classes": 6,
+          "total_tests": 29,
+          "size_bytes": 25337
+        },
+        {
+          "name": "test_wfc_firewall.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_wfc_firewall.py",
+          "relative_path": "packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_wfc_firewall.py",
+          "test_functions": 28,
+          "test_classes": 9,
+          "total_tests": 37,
+          "size_bytes": 21813
+        },
+        {
+          "name": "test_wfc_integration.py",
+          "path": "E:\\Tiny_Walnut_Games\\the-seed\\packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_wfc_integration.py",
+          "relative_path": "packages\\com.twg.the-seed\\The Living Dev Agent\\tests\\test_wfc_integration.py",
+          "test_functions": 20,
+          "test_classes": 9,
+          "total_tests": 29,
+          "size_bytes": 20269
+        }
+      ],
+      "count": 10,
+      "total_test_items": 143,
+      "collection_details": {
+        "error": ""
+      }
+    }
+  },
+  "summary": {},
+  "pytest_config": {
+    "pytest.ini": "FOUND",
+    "pyproject.toml": "FOUND",
+    "setup.cfg": "MISSING",
+    "pytest": "INSTALLED"
+  }
+}

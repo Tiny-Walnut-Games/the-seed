@@ -1,4 +1,4 @@
-"""
+﻿"""
 EXP-06: Final Validation with Threshold Sweep
 
 Tests:
@@ -29,6 +29,7 @@ def audit_logger():
 
 
 @pytest.fixture(scope="module")
+@pytest.mark.integration
 def test_dataset(audit_logger):
     """Generate test dataset once per module"""
     print("\nGenerating dataset...")
@@ -103,6 +104,7 @@ def test_dataset(audit_logger):
     }
 
 
+@pytest.mark.integration
 def test_threshold_sweep(test_dataset, audit_logger):
     """
     Test: Threshold sweep across [0.30-0.95] to find optimal.
@@ -173,6 +175,7 @@ def test_threshold_sweep(test_dataset, audit_logger):
     print(f"\n*** TARGETS MET at threshold {best_threshold:.2f} ***")
 
 
+@pytest.mark.integration
 def test_confusion_matrix(test_dataset, audit_logger):
     """
     Test: Confusion matrix at optimal threshold (0.85).
@@ -234,6 +237,7 @@ def test_confusion_matrix(test_dataset, audit_logger):
     print(f"\n✓ Perfect separation achieved!")
 
 
+@pytest.mark.integration
 def test_score_distribution(test_dataset):
     """
     Test: Score distribution - true pairs vs false pairs.
@@ -303,6 +307,7 @@ def test_score_distribution(test_dataset):
         print(f"\nNote: Skipped distribution test (limited sample size)")
 
 
+@pytest.mark.integration
 def test_save_artifacts(test_dataset, audit_logger):
     """
     Final test: Save all audit logs and artifacts.

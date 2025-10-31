@@ -1,4 +1,4 @@
-"""
+﻿"""
 Phase 2 STAT7 Integration Tests
 
 Tests for STAT7 hybrid scoring integration with RetrievalAPI.
@@ -140,9 +140,11 @@ def retrieval_api_with_stat7(embedding_provider):
 # Test Cases: Backward Compatibility
 # ============================================================================
 
+@pytest.mark.integration
 class TestBackwardCompatibility:
     """Ensure existing queries still work without STAT7."""
     
+    @pytest.mark.e2e
     def test_retrieve_context_without_stat7(self, retrieval_api):
         """Basic retrieval should work without STAT7 enabled."""
         query = RetrievalQuery(
@@ -158,6 +160,7 @@ class TestBackwardCompatibility:
         assert assembly.assembly_id is not None
         assert assembly.query.query_id == query.query_id
     
+    @pytest.mark.e2e
     def test_query_from_dict_backward_compat(self, retrieval_api):
         """Dict-to-query conversion should work without STAT7 keys."""
         query_dict = {
@@ -172,6 +175,7 @@ class TestBackwardCompatibility:
         assert query.stat7_hybrid is False
         assert query.stat7_address is None
     
+    @pytest.mark.e2e
     def test_metrics_without_hybrid(self, retrieval_api):
         """Metrics should track non-hybrid queries."""
         query = RetrievalQuery(
@@ -196,6 +200,7 @@ class TestBackwardCompatibility:
 class TestSTAT7HybridSupport:
     """Test STAT7 hybrid scoring functionality."""
     
+    @pytest.mark.integration
     def test_query_with_stat7_hybrid_flag(self, retrieval_api_with_stat7):
         """Query can be created with stat7_hybrid flag."""
         query = RetrievalQuery(
@@ -212,6 +217,7 @@ class TestSTAT7HybridSupport:
         assert query.weight_semantic == 0.6
         assert query.weight_stat7 == 0.4
     
+    @pytest.mark.e2e
     def test_auto_assign_stat7_address(self, retrieval_api_with_stat7):
         """Auto-assign STAT7 to content from metadata."""
         metadata = {
@@ -232,6 +238,7 @@ class TestSTAT7HybridSupport:
         assert stat7_addr["adjacency"] == 0.5  # min(1.0, 5/10)
         assert stat7_addr["dimensionality"] == 4
     
+    @pytest.mark.integration
     def test_auto_assign_stat7_with_defaults(self, retrieval_api_with_stat7):
         """Auto-assign should use sensible defaults."""
         metadata = {}  # Empty metadata
@@ -242,6 +249,7 @@ class TestSTAT7HybridSupport:
         assert stat7_addr["lineage"] == 0
         assert stat7_addr["dimensionality"] >= 1  # Default thread_count maps to 1+, ours is 3
     
+    @pytest.mark.e2e
     def test_stat7_address_caching(self, retrieval_api_with_stat7):
         """STAT7 addresses should be cached."""
         metadata = {"realm_type": "system"}
@@ -255,6 +263,7 @@ class TestSTAT7HybridSupport:
         assert stat7_1 == stat7_2
         assert "doc_3" in retrieval_api_with_stat7.document_stat7_cache
     
+    @pytest.mark.integration
     def test_hybrid_query_retrieval(self, retrieval_api_with_stat7):
         """Hybrid query should work end-to-end."""
         query = RetrievalQuery(
@@ -269,6 +278,7 @@ class TestSTAT7HybridSupport:
         assembly = retrieval_api_with_stat7.retrieve_context(query)
         assert assembly is not None
     
+    @pytest.mark.integration
     def test_hybrid_query_metrics(self, retrieval_api_with_stat7):
         """Hybrid queries should be tracked in metrics."""
         query = RetrievalQuery(
@@ -289,9 +299,11 @@ class TestSTAT7HybridSupport:
 # Test Cases: Concurrency (EXP-09)
 # ============================================================================
 
+@pytest.mark.integration
 class TestConcurrency:
     """Concurrency tests for STAT7 hybrid scoring."""
     
+    @pytest.mark.integration
     def test_concurrent_semantic_queries(self, retrieval_api):
         """Multiple threads can execute semantic queries concurrently."""
         results = []
@@ -346,6 +358,7 @@ class TestConcurrency:
         assert len(errors) == 0
         assert retrieval_api_with_stat7.metrics["hybrid_queries"] == 10
     
+    @pytest.mark.integration
     def test_concurrent_cache_access(self, retrieval_api):
         """Cache should be thread-safe during concurrent access."""
         query_ids = []
@@ -401,24 +414,29 @@ class TestConcurrency:
 # Test Cases: Integration
 # ============================================================================
 
+@pytest.mark.integration
 class TestPhase2Integration:
     """End-to-end integration tests."""
     
+    @pytest.mark.e2e
     def test_config_default_stat7_disabled(self, retrieval_api):
         """STAT7 should be disabled by default."""
         assert retrieval_api.enable_stat7_hybrid is False
     
+    @pytest.mark.e2e
     def test_config_stat7_weights(self, retrieval_api_with_stat7):
         """STAT7 weights should be configurable."""
         assert retrieval_api_with_stat7.default_weight_semantic == 0.6
         assert retrieval_api_with_stat7.default_weight_stat7 == 0.4
     
+    @pytest.mark.e2e
     def test_component_availability_includes_stat7(self, retrieval_api_with_stat7):
         """Component availability check should include STAT7."""
         availability = retrieval_api_with_stat7._check_component_availability()
         assert "stat7_bridge" in availability
         assert availability["stat7_bridge"] is True
     
+    @pytest.mark.integration
     def test_mixed_semantic_and_hybrid_queries(self, retrieval_api_with_stat7):
         """API should handle mix of semantic and hybrid queries."""
         # Semantic query
@@ -457,9 +475,11 @@ class TestPhase2Integration:
 # Test Cases: Performance
 # ============================================================================
 
+@pytest.mark.integration
 class TestPhase2Performance:
     """Performance benchmarks for Phase 2."""
     
+    @pytest.mark.integration
     def test_hybrid_scoring_latency(self, retrieval_api_with_stat7):
         """Hybrid scoring should not significantly increase latency."""
         query = RetrievalQuery(
@@ -480,6 +500,7 @@ class TestPhase2Performance:
         metrics = retrieval_api_with_stat7.get_retrieval_metrics()
         assert metrics["retrieval_metrics"]["average_retrieval_time_ms"] < 1000
     
+    @pytest.mark.e2e
     def test_stat7_cache_performance(self, retrieval_api_with_stat7):
         """STAT7 cache should improve repeated assignment performance."""
         metadata = {"realm_type": "game"}

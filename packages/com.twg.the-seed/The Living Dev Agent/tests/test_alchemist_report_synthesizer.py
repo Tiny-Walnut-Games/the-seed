@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test suite for Alchemist Faculty Report Synthesis CLI Tool
@@ -24,6 +25,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "scripts" / "alchemist-fac
 
 from report_synthesizer import ReportSynthesizer, ClaimData, RunMetadata, ProvenanceBlock
 
+@pytest.mark.integration
 class TestReportSynthesizer(unittest.TestCase):
     """Test cases for the Report Synthesizer"""
     
@@ -162,6 +164,7 @@ class TestReportSynthesizer(unittest.TestCase):
         
         return claims_dir, runs_dir
     
+    @pytest.mark.integration
     def test_load_claims(self):
         """Test loading claims from directory structure"""
         claims_dir, _ = self.create_test_files()
@@ -173,6 +176,7 @@ class TestReportSynthesizer(unittest.TestCase):
         self.assertEqual(claims[1].ClaimType, "hypothesis")
         self.assertAlmostEqual(claims[0].ConfidenceScore, 0.85)
     
+    @pytest.mark.integration
     def test_load_run_metadata(self):
         """Test loading run metadata"""
         _, runs_dir = self.create_test_files()
@@ -183,6 +187,7 @@ class TestReportSynthesizer(unittest.TestCase):
         self.assertIn("run_001", metadata)
         self.assertEqual(metadata["run_001"].status, "completed")
     
+    @pytest.mark.integration
     def test_load_manifest(self):
         """Test loading manifest file"""
         self.create_test_files()
@@ -193,6 +198,7 @@ class TestReportSynthesizer(unittest.TestCase):
         self.assertEqual(manifest["metadata"]["name"], "Test Experiment")
         self.assertEqual(manifest["origin"]["issue_number"], 123)
     
+    @pytest.mark.integration
     def test_validate_evidence_paths(self):
         """Test evidence path validation"""
         claims_dir, runs_dir = self.create_test_files()
@@ -223,6 +229,7 @@ class TestReportSynthesizer(unittest.TestCase):
         self.assertFalse(valid)
         self.assertTrue(any("run_002" in path for path in missing))
     
+    @pytest.mark.integration
     def test_sort_claims_by_confidence(self):
         """Test confidence-based sorting"""
         sorted_claims = self.synthesizer.sort_claims_by_confidence(self.test_claims)
@@ -232,6 +239,7 @@ class TestReportSynthesizer(unittest.TestCase):
         self.assertEqual(sorted_claims[1].ConfidenceScore, 0.65)  
         self.assertEqual(sorted_claims[2].ConfidenceScore, 0.35)
     
+    @pytest.mark.integration
     def test_generate_confidence_bar(self):
         """Test confidence bar generation"""
         # Test various confidence levels
@@ -246,6 +254,7 @@ class TestReportSynthesizer(unittest.TestCase):
         self.assertIn("10%", bar_10)
         self.assertIn("░", bar_10)
     
+    @pytest.mark.integration
     def test_create_provenance_block(self):
         """Test provenance block creation"""
         provenance = self.synthesizer.create_provenance_block(
@@ -259,6 +268,7 @@ class TestReportSynthesizer(unittest.TestCase):
         self.assertIsNotNone(provenance.manifest_hash)
         self.assertEqual(provenance.alchemist_version, "0.1.0")
     
+    @pytest.mark.integration
     def test_generate_summary_table(self):
         """Test summary table generation"""
         table = self.synthesizer.generate_summary_table(self.test_claims)
@@ -274,6 +284,7 @@ class TestReportSynthesizer(unittest.TestCase):
         data_lines = [line for line in lines if line.startswith('|') and 'Claim ID' not in line and '---' not in line]
         self.assertTrue(data_lines[0].find("85.0%") > 0)  # First should be highest confidence
     
+    @pytest.mark.integration
     def test_generate_claims_section(self):
         """Test claims section generation"""
         validated_claims = [c for c in self.test_claims if c.ClaimType == "validated"]
@@ -291,6 +302,7 @@ class TestReportSynthesizer(unittest.TestCase):
         self.assertIn("**Confidence:**", section)
         self.assertIn("15% improvement", section)
     
+    @pytest.mark.integration
     def test_generate_markdown_report(self):
         """Test complete markdown report generation"""
         provenance = self.synthesizer.create_provenance_block(
@@ -321,6 +333,7 @@ class TestReportSynthesizer(unittest.TestCase):
         self.assertIn("65.0%", report)
         self.assertIn("35.0%", report)
     
+    @pytest.mark.integration
     def test_save_report(self):
         """Test report saving"""
         report_content = "# Test Report\n\nThis is a test report."
@@ -336,6 +349,7 @@ class TestReportSynthesizer(unittest.TestCase):
         
         self.assertEqual(content, report_content)
     
+    @pytest.mark.integration
     def test_full_synthesis_workflow(self):
         """Test the complete synthesis workflow"""
         claims_dir, runs_dir = self.create_test_files()
@@ -358,6 +372,7 @@ class TestReportSynthesizer(unittest.TestCase):
         self.assertIn("✅ **Validated Claims:** 1", content)
         self.assertIn("🔬 **Hypotheses:** 1", content)
     
+    @pytest.mark.integration
     def test_claim_deduplication(self):
         """Test that duplicate claims are removed"""
         # The deduplication happens in synthesize_report method, not in provenance creation
@@ -396,9 +411,11 @@ class TestReportSynthesizer(unittest.TestCase):
         high_confidence_sections = content.count("### test_experiment_high_confidence")
         self.assertEqual(high_confidence_sections, 1, "Duplicate claim not properly deduplicated")
 
+@pytest.mark.integration
 class TestClaimData(unittest.TestCase):
     """Test cases for ClaimData class"""
     
+    @pytest.mark.integration
     def test_from_dict(self):
         """Test ClaimData creation from dictionary"""
         data = {
@@ -421,6 +438,7 @@ class TestClaimData(unittest.TestCase):
         self.assertTrue(claim.Success)
         self.assertEqual(claim.origin["issue_number"], 123)
     
+    @pytest.mark.integration
     def test_from_dict_missing_fields(self):
         """Test ClaimData creation with missing fields"""
         data = {
@@ -435,9 +453,11 @@ class TestClaimData(unittest.TestCase):
         self.assertEqual(claim.ConfidenceScore, 0.0)
         self.assertFalse(claim.Success)
 
+@pytest.mark.integration
 class TestRunMetadata(unittest.TestCase):
     """Test cases for RunMetadata class"""
     
+    @pytest.mark.integration
     def test_from_dict(self):
         """Test RunMetadata creation from dictionary"""
         data = {

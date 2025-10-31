@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test Suite for Enhanced Claims Classification System
@@ -37,6 +38,7 @@ class MockRunMetadata:
         self.git_commit = kwargs.get('git_commit', 'abc123')
         self.git_branch = kwargs.get('git_branch', 'main')
 
+@pytest.mark.integration
 def test_basic_confidence_thresholds():
     """Test basic confidence-based classification thresholds."""
     print("🧙‍♂️ Testing Basic Confidence Thresholds")
@@ -66,6 +68,7 @@ def test_basic_confidence_thresholds():
     print(f"\nBasic Threshold Tests: {passed}/{len(test_cases)} passed")
     return passed == len(test_cases)
 
+@pytest.mark.integration
 def test_anomaly_detection_patterns():
     """Test anomaly detection for various execution patterns."""
     print("\n🔍 Testing Anomaly Detection Patterns")
@@ -124,6 +127,7 @@ def test_anomaly_detection_patterns():
     print(f"\nAnomaly Detection Tests: {passed}/{len(test_cases)} passed")
     return passed == len(test_cases)
 
+@pytest.mark.integration
 def test_improvement_detection():
     """Test improvement pattern detection."""
     print("\n📈 Testing Improvement Detection")
@@ -170,6 +174,7 @@ def test_improvement_detection():
     print(f"\nImprovement Detection Tests: {passed}/{len(test_cases)} passed")
     return passed == len(test_cases)
 
+@pytest.mark.integration
 def test_new_phenomenon_detection():
     """Test detection of new phenomena."""
     print("\n🆕 Testing New Phenomenon Detection")
@@ -218,6 +223,7 @@ def test_new_phenomenon_detection():
     print(f"\nNew Phenomenon Detection Tests: {passed}/{len(test_cases)} passed")
     return passed == len(test_cases)
 
+@pytest.mark.integration
 def test_edge_case_classification():
     """Test edge cases and borderline classification scenarios."""
     print("\n⚖️ Testing Edge Cases and Borderline Classifications")
@@ -345,6 +351,7 @@ def simulate_full_classification(case: Dict[str, Any]) -> str:
     else:
         return base_type
 
+@pytest.mark.integration
 def test_domain_specific_rules():
     """Test domain-specific classification rules."""
     print("\n🎯 Testing Domain-Specific Classification Rules")
@@ -389,6 +396,7 @@ def test_domain_specific_rules():
     print(f"\nDomain-Specific Tests: {passed}/{len(test_cases)} passed")
     return passed == len(test_cases)
 
+@pytest.mark.integration
 def test_classification_metadata_structure():
     """Test that classification metadata is properly structured."""
     print("\n📋 Testing Classification Metadata Structure")

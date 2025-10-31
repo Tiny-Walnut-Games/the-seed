@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Test script for enhanced STAT7 visualization features.
 
@@ -18,6 +18,7 @@ from datetime import datetime, timezone
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
+@pytest.mark.e2e
 class TestEnhancedVisualization:
     """Enhanced STAT7 visualization feature tests."""
 
@@ -34,6 +35,7 @@ class TestEnhancedVisualization:
         except (ConnectionRefusedError, asyncio.TimeoutError):
             pytest.skip("WebSocket server not running")
 
+    @pytest.mark.e2e
     def test_semantic_request_structure(self):
         """Test semantic fidelity proof request structure."""
         semantic_request = {
@@ -46,6 +48,7 @@ class TestEnhancedVisualization:
         assert semantic_request["type"] == "run_semantic_fidelity_proof"
         assert isinstance(semantic_request["sample_size"], int)
 
+    @pytest.mark.e2e
     def test_resilience_request_structure(self):
         """Test resilience testing request structure."""
         resilience_request = {
@@ -58,6 +61,7 @@ class TestEnhancedVisualization:
         assert resilience_request["type"] == "run_resilience_testing"
         assert isinstance(resilience_request["sample_size"], int)
 
+    @pytest.mark.e2e
     def test_experiment_request_structure(self):
         """Test experiment request structure."""
         exp_request = {

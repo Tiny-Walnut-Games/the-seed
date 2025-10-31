@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test Suite for v0.8 Safety & Policy Transparency Layer
@@ -55,6 +56,7 @@ class SafetySystemTestSuite:
             self.test_results.append({"test": test_name, "status": "FAIL", "error": str(e)})
             return False
     
+    @pytest.mark.integration
     def test_redaction_transforms(self):
         """Test PII redaction and content filtering"""
         redactor = RedactionTransforms()
@@ -74,6 +76,7 @@ class SafetySystemTestSuite:
         assert "redaction_summary" in report, "Should include redaction summary"
         assert "transparency_notes" in report, "Should include transparency notes"
     
+    @pytest.mark.integration
     def test_safety_event_creation(self):
         """Test tiered safety event system"""
         audit_path = self.temp_dir / "test_safety_audit.jsonl"
@@ -118,6 +121,7 @@ class SafetySystemTestSuite:
             assert entry["event_type"] == "safety_event", "Should be safety event"
             assert "transparency_metadata" in entry, "Should include transparency metadata"
     
+    @pytest.mark.integration
     def test_intervention_safety_integration(self):
         """Test integration between intervention system and safety layer"""
         metrics_path = self.temp_dir / "test_intervention_metrics.json"
@@ -147,6 +151,7 @@ class SafetySystemTestSuite:
         assert latest_intervention.redaction_applied, "Should have applied redaction"
         assert latest_intervention.audit_trail is not None, "Should have audit trail"
     
+    @pytest.mark.integration
     def test_policy_transparency_metadata(self):
         """Test policy transparency and metadata annotation"""
         audit_path = self.temp_dir / "test_transparency_audit.jsonl"
@@ -179,6 +184,7 @@ class SafetySystemTestSuite:
         assert transparency_meta["audit_trail_complete"], "Should confirm complete audit trail"
         assert transparency_meta["automated_action"] is True, "Should indicate automated action for BLOCK"
     
+    @pytest.mark.integration
     def test_audit_log_format(self):
         """Test JSONL audit log format and structure"""
         audit_path = self.temp_dir / "test_audit_format.jsonl"
@@ -215,6 +221,7 @@ class SafetySystemTestSuite:
             assert event_data["event_type"] == f"test_event_{i}", f"Should match event type {i}"
             assert event_data["user_id"] == f"user_{i}", f"Should match user {i}"
     
+    @pytest.mark.integration
     def test_safety_analytics(self):
         """Test safety analytics and reporting"""
         audit_path = self.temp_dir / "test_analytics_audit.jsonl"
@@ -252,6 +259,7 @@ class SafetySystemTestSuite:
         assert report["report_metadata"]["total_audit_entries"] == 5, "Should count 5 audit entries"
         assert report["safety_summary"]["total_safety_events"] == 5, "Should count 5 safety events"
     
+    @pytest.mark.integration
     def test_escalation_handling(self):
         """Test escalation process and human oversight"""
         audit_path = self.temp_dir / "test_escalation_audit.jsonl"

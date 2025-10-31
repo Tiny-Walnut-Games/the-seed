@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 TLDA/Warbler LLM Connection Test
 Tests connectivity to local LLM endpoints (Gemma3, Ollama, etc.)

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Evolution System Integration Test
 Tests the new SpriteForge evolution chain generation capabilities

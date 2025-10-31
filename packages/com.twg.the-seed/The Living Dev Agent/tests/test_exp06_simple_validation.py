@@ -1,4 +1,4 @@
-"""
+﻿"""
 Simple validation test without Unicode encoding issues
 """
 

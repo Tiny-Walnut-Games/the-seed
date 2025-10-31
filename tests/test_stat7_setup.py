@@ -11,13 +11,26 @@ import time
 import pytest
 from pathlib import Path
 
-# Add root to path for imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add root to path and ensure project paths
+root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, root_dir)
+
+# Use path_utils for consistent path resolution
+try:
+    from path_utils import ensure_project_paths
+    ensure_project_paths()
+except ImportError:
+    # Fallback if path_utils not available
+    web_server_dir = os.path.join(root_dir, 'web', 'server')
+    if web_server_dir not in sys.path:
+        sys.path.insert(0, web_server_dir)
 
 
+@pytest.mark.integration
 class TestStat7Setup:
     """STAT7 visualization setup tests."""
 
+    @pytest.mark.integration
     def test_required_files_exist(self):
         """Test if all required files are present."""
         root_path = Path(__file__).parent.parent
@@ -35,6 +48,7 @@ class TestStat7Setup:
 
         assert not missing_files, f"Missing files: {missing_files}"
 
+    @pytest.mark.e2e
     def test_python_dependencies_importable(self):
         """Test if required Python packages can be imported."""
         required_modules = [
@@ -50,6 +64,7 @@ class TestStat7Setup:
             except ImportError:
                 pytest.fail(f"Required module {module} not available")
 
+    @pytest.mark.e2e
     def test_websocket_server_importable(self):
         """Test if WebSocket server components can be imported."""
         try:
@@ -57,6 +72,7 @@ class TestStat7Setup:
         except ImportError as e:
             pytest.fail(f"Cannot import WebSocket server components: {e}")
 
+    @pytest.mark.integration
     def test_file_permissions(self):
         """Test file permissions for executable scripts."""
         root_path = Path(__file__).parent.parent

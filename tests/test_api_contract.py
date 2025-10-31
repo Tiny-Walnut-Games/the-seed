@@ -1,4 +1,4 @@
-"""
+﻿"""
 Test suite for the Unified Backend API Contract.
 
 API layer is the public surface. Tests define the contract that
@@ -88,6 +88,7 @@ class MockTickEngine:
         self.queue.append(event)
 
 
+@pytest.mark.integration
 class TestAPICommandSubmission:
     """
     Mental model test: Can commands be submitted and validated?
@@ -99,6 +100,7 @@ class TestAPICommandSubmission:
         tick_engine = MockTickEngine()
         return APIGateway(event_store, tick_engine)
 
+    @pytest.mark.integration
     def test_submit_command_succeeds(self, gateway):
         """A valid command is accepted."""
         cmd = CommandRequest(
@@ -113,6 +115,7 @@ class TestAPICommandSubmission:
         assert response.entity_id == "entity_1"
         assert response.applied_event_id is not None
 
+    @pytest.mark.integration
     def test_command_persisted_to_event_store(self, gateway):
         """Submitted command is persisted."""
         cmd = CommandRequest(
@@ -128,6 +131,7 @@ class TestAPICommandSubmission:
         assert len(events) == 1
         assert events[0]["event_type"] == "Command:SetState"
 
+    @pytest.mark.integration
     def test_command_queued_for_tick_engine(self, gateway):
         """Submitted command is queued for processing."""
         cmd = CommandRequest(
@@ -140,6 +144,7 @@ class TestAPICommandSubmission:
 
         assert len(gateway.tick_engine.queue) == 1
 
+    @pytest.mark.integration
     def test_command_rejected_by_governance(self, gateway):
         """A command violating governance policy is rejected."""
         def policy_reject_all(cmd):
@@ -158,6 +163,7 @@ class TestAPICommandSubmission:
         with pytest.raises(CommandValidationError):
             gateway.submit_command(cmd)
 
+    @pytest.mark.integration
     def test_command_includes_actor_metadata(self, gateway):
         """Command metadata includes the actor."""
         cmd = CommandRequest(
@@ -174,6 +180,7 @@ class TestAPICommandSubmission:
         assert events[0]["payload"]["name"] == "Alice"
 
 
+@pytest.mark.integration
 class TestAPIEntityRetrieval:
     """
     Mental model test: Can entities be queried?
@@ -195,6 +202,7 @@ class TestAPIEntityRetrieval:
 
         return gateway
 
+    @pytest.mark.integration
     def test_get_entity_returns_current_state(self, gateway):
         """Retrieving an entity returns its current state."""
         entity = gateway.get_entity("entity_1")
@@ -204,11 +212,13 @@ class TestAPIEntityRetrieval:
         assert entity.state["energy"] == 100
         assert entity.version == 1
 
+    @pytest.mark.integration
     def test_get_entity_raises_not_found(self, gateway):
         """Retrieving nonexistent entity raises error."""
         with pytest.raises(EntityNotFoundError):
             gateway.get_entity("nonexistent")
 
+    @pytest.mark.integration
     def test_get_entity_temporal_read(self, gateway):
         """Can query entity state as of a specific time."""
         entity = gateway.get_entity("entity_1", as_of="2025-10-28T00:00:00")
@@ -217,6 +227,7 @@ class TestAPIEntityRetrieval:
         assert entity.as_of == "2025-10-28T00:00:00"
 
 
+@pytest.mark.integration
 class TestAPIEventStreaming:
     """
     Mental model test: Can event streams be retrieved?
@@ -239,6 +250,7 @@ class TestAPIEventStreaming:
 
         return gateway
 
+    @pytest.mark.integration
     def test_get_events_returns_stream(self, gateway):
         """Event stream can be retrieved."""
         events = gateway.get_events("entity_1")
@@ -246,6 +258,7 @@ class TestAPIEventStreaming:
         assert len(events) == 5
         assert events[0]["event_type"] == "Command:Update"
 
+    @pytest.mark.integration
     def test_get_events_with_version_offset(self, gateway):
         """Events can be queried from a specific version."""
         events = gateway.get_events("entity_1", since_version=3)
@@ -253,12 +266,14 @@ class TestAPIEventStreaming:
         assert len(events) == 3  # versions 3, 4, 5
         assert events[0]["version"] == 3
 
+    @pytest.mark.integration
     def test_get_events_with_limit(self, gateway):
         """Event retrieval can be paginated."""
         events = gateway.get_events("entity_1", limit=2)
 
         assert len(events) == 2
 
+    @pytest.mark.integration
     def test_get_events_empty_stream(self, gateway):
         """Querying events for nonexistent entity returns empty."""
         events = gateway.get_events("nonexistent")
@@ -266,6 +281,7 @@ class TestAPIEventStreaming:
         assert events == []
 
 
+@pytest.mark.integration
 class TestAPISubscriptions:
     """
     Mental model test: Can clients subscribe to live updates?
@@ -277,6 +293,7 @@ class TestAPISubscriptions:
         tick_engine = MockTickEngine()
         return APIGateway(event_store, tick_engine)
 
+    @pytest.mark.integration
     def test_subscribe_returns_subscription_id(self, gateway):
         """Subscribing returns a subscription ID."""
         callback = lambda msg: None
@@ -285,6 +302,7 @@ class TestAPISubscriptions:
 
         assert sub_id.startswith("sub_")
 
+    @pytest.mark.integration
     def test_multiple_subscriptions_independent(self, gateway):
         """Multiple subscriptions are independent."""
         callback1 = lambda msg: None
@@ -295,6 +313,7 @@ class TestAPISubscriptions:
 
         assert sub_id_1 != sub_id_2
 
+    @pytest.mark.integration
     def test_subscribe_entity_tracked(self, gateway):
         """Subscription tracks subscribed entity IDs."""
         callback = lambda msg: None
@@ -303,6 +322,7 @@ class TestAPISubscriptions:
 
         assert "entity_1" in gateway.subscriptions[sub_id]["entity_ids"]
 
+    @pytest.mark.integration
     def test_unsubscribe_removes_subscription(self, gateway):
         """Unsubscribing removes the subscription."""
         callback = lambda msg: None
@@ -312,6 +332,7 @@ class TestAPISubscriptions:
 
         assert sub_id not in gateway.subscriptions
 
+    @pytest.mark.integration
     def test_publish_delta_calls_subscribers(self, gateway):
         """Publishing a delta calls all subscriber callbacks."""
         messages = []
@@ -326,6 +347,7 @@ class TestAPISubscriptions:
         assert messages[0]["entity_id"] == "entity_1"
         assert messages[0]["delta"]["energy"] == 50
 
+    @pytest.mark.integration
     def test_publish_delta_only_to_subscribers(self, gateway):
         """Delta is only published to subscribers of that entity."""
         messages_1 = []
@@ -346,6 +368,7 @@ class TestAPISubscriptions:
         assert len(messages_2) == 0
 
 
+@pytest.mark.integration
 class TestAPIGovernanceIntegration:
     """
     Mental model test: Does governance integrate with commands?
@@ -358,6 +381,7 @@ class TestAPIGovernanceIntegration:
         governance = GovernanceMiddleware()
         return APIGateway(event_store, tick_engine, governance)
 
+    @pytest.mark.integration
     def test_governance_policy_accepts_valid_commands(self, gateway):
         """Valid commands pass governance."""
         def policy_allow_setstate(cmd):
@@ -374,6 +398,7 @@ class TestAPIGovernanceIntegration:
         response = gateway.submit_command(cmd)
         assert response.status == "accepted"
 
+    @pytest.mark.integration
     def test_governance_policy_rejects_invalid_commands(self, gateway):
         """Invalid commands are rejected by governance."""
         def policy_allow_setstate(cmd):
@@ -390,6 +415,7 @@ class TestAPIGovernanceIntegration:
         with pytest.raises(CommandValidationError):
             gateway.submit_command(cmd)
 
+    @pytest.mark.integration
     def test_multiple_governance_policies_all_checked(self, gateway):
         """All policies must pass."""
         def policy_1(cmd):
@@ -420,6 +446,7 @@ class TestAPIGovernanceIntegration:
             gateway.submit_command(cmd2)
 
 
+@pytest.mark.integration
 class TestAPIErrorHandling:
     """
     Mental model test: Are errors handled gracefully?
@@ -431,11 +458,13 @@ class TestAPIErrorHandling:
         tick_engine = MockTickEngine()
         return APIGateway(event_store, tick_engine)
 
+    @pytest.mark.integration
     def test_get_events_missing_entity_returns_empty(self, gateway):
         """Querying events for missing entity returns empty, not error."""
         events = gateway.get_events("missing")
         assert events == []
 
+    @pytest.mark.integration
     def test_command_response_always_has_command_id(self, gateway):
         """Command responses always have a command ID."""
         cmd = CommandRequest(

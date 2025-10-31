@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test script for Semantic Anchor System with Provenance
@@ -16,6 +17,7 @@ from engine.semantic_anchors import SemanticAnchorGraph, SemanticAnchor, AnchorP
 from engine.embeddings import EmbeddingProviderFactory
 
 
+@pytest.mark.integration
 def test_embedding_providers():
     """Test different embedding providers."""
     print("🧠 Testing Embedding Providers")
@@ -46,6 +48,7 @@ def test_embedding_providers():
     print("✅ Embedding providers working!\n")
 
 
+@pytest.mark.integration
 def test_semantic_anchor_creation():
     """Test semantic anchor creation and updates."""
     print("⚓ Testing Semantic Anchor Creation")
@@ -83,6 +86,7 @@ def test_semantic_anchor_creation():
     return anchor_graph
 
 
+@pytest.mark.integration
 def test_semantic_clustering(anchor_graph):
     """Test semantic clustering of anchors."""
     print("🔗 Testing Semantic Clustering")
@@ -101,6 +105,7 @@ def test_semantic_clustering(anchor_graph):
     print("✅ Semantic clustering working!\n")
 
 
+@pytest.mark.integration
 def test_anchor_diff(anchor_graph):
     """Test anchor diff functionality."""
     print("📊 Testing Anchor Diff Engine")
@@ -140,6 +145,7 @@ def test_anchor_diff(anchor_graph):
     print("✅ Anchor diff working!\n")
 
 
+@pytest.mark.integration
 def test_lifecycle_policies(anchor_graph):
     """Test anchor lifecycle policies."""
     print("♻️ Testing Lifecycle Policies")
@@ -178,6 +184,7 @@ def test_lifecycle_policies(anchor_graph):
     print("✅ Lifecycle policies working!\n")
 
 
+@pytest.mark.integration
 def test_full_semantic_grounding_cycle():
     """Run complete semantic grounding test cycle."""
     print("🔥 Full Semantic Grounding & Anchor Provenance Test")

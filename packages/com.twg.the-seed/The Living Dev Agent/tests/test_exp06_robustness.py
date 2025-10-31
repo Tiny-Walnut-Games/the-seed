@@ -1,4 +1,4 @@
-import math
+﻿import math
 import random
 from typing import List, Tuple
 
@@ -59,6 +59,7 @@ def dataset():
     return bitchains, true_pairs, false_pairs
 
 
+@pytest.mark.integration
 def test_phase2a_cross_validation_variance(dataset):
     bitchains, true_pairs, false_pairs = dataset
     threshold = 0.85
@@ -90,6 +91,7 @@ def test_phase2a_cross_validation_variance(dataset):
     assert r_var <= 0.0004
 
 
+@pytest.mark.integration
 def test_phase2b_threshold_plateau(dataset):
     bitchains, true_pairs, false_pairs = dataset
     thresholds = [0.85, 0.90]
@@ -102,6 +104,7 @@ def test_phase2b_threshold_plateau(dataset):
     assert all(f >= 0.99 for f in f1s)
 
 
+@pytest.mark.integration
 def test_phase2c_adversarial_noise(dataset):
     bitchains, true_pairs, false_pairs = dataset
 
@@ -128,6 +131,7 @@ def test_phase2c_adversarial_noise(dataset):
     assert base['recall'] - pert['recall'] <= 0.01 + 1e-9
 
 
+@pytest.mark.integration
 def test_phase2d_stress_edge_cases():
     # Empty adjacency (both) -> jaccard 1.0
     bc_a = {'coordinates': {'adjacency': []}}
@@ -154,6 +158,7 @@ def test_phase2d_stress_edge_cases():
     assert 0.0 <= luminosity_proximity(u, v) <= 1.0
 
 
+@pytest.mark.integration
 def test_phase2e_label_leakage_audit(dataset):
     bitchains, true_pairs, false_pairs = dataset
 
@@ -188,6 +193,7 @@ def test_phase2e_label_leakage_audit(dataset):
     assert (base['f1'] - f1) >= 0.3
 
 
+@pytest.mark.integration
 def test_detector_threshold_and_distribution(dataset):
     # Extra sanity check on detector API used by reports
     bitchains, true_pairs, false_pairs = dataset

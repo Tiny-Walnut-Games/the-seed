@@ -1,4 +1,4 @@
-# tests/stress/test_stat7_reproducibility.py
+﻿# tests/stress/test_stat7_reproducibility.py
 # Paste-ready prototype: deterministic stress suite for STAT7 score function.
 # Validates that STAT7 remains deterministic under operational stress (waves, loads,
 # concurrency, memory pressure, realm changes, vector permutations, long-run soak).
@@ -274,9 +274,11 @@ def project_to_realm(a: dict, b: dict, realm: str) -> Tuple[dict, dict]:
 # Test Suite
 # ========================================================================
 
+@pytest.mark.integration
 class TestSTAT7Reproducibility:
     """Comprehensive reproducibility stress test suite for STAT7."""
 
+    @pytest.mark.integration
     def test_waves_temporal_stability(self):
         """
         Burst → idle cycles; ensure results remain identical across iterations under GC churn.
@@ -329,6 +331,7 @@ class TestSTAT7Reproducibility:
             assert vector_hash(current) == baseline_hash, \
                 f"Iteration {i} hash mismatch for batch_size={batch_size}"
 
+    @pytest.mark.integration
     def test_vector_permutations_symmetry_and_invariance(self):
         """
         Systematic permutation of polarity/resonance vectors while preserving logical identity.
@@ -407,6 +410,7 @@ class TestSTAT7Reproducibility:
         assert vector_hash(baseline) == vector_hash(proc_results), \
             f"Process pool (procs={procs}) changed hash"
 
+    @pytest.mark.integration
     def test_memory_pressure_gc_isolation(self):
         """
         GC cycles and memory pressure must not correlate with any score deviation.

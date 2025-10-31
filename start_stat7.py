@@ -7,6 +7,12 @@ Simply run this file from the project root to start the visualization system.
 import os
 import sys
 import subprocess
+import io
+
+# Fix for Windows console encoding (emoji support)
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 def main():
     """Launch the STAT7 visualization system."""

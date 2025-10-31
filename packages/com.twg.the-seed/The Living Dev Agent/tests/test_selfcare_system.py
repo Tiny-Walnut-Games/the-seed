@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Self-Care System Test Suite
@@ -13,6 +14,7 @@ import subprocess
 import json
 from pathlib import Path
 
+@pytest.mark.integration
 def test_idea_capture():
     """Test idea capture functionality"""
     print("🧪 Testing idea capture...")
@@ -32,6 +34,7 @@ def test_idea_capture():
     print("✅ Idea capture works")
     return True
 
+@pytest.mark.integration
 def test_sluice_functionality():
     """Test overflow sluice functionality"""
     print("🧪 Testing overflow sluice...")
@@ -61,6 +64,7 @@ def test_sluice_functionality():
     print("✅ Overflow sluice works")
     return True
 
+@pytest.mark.integration
 def test_governors():
     """Test cognitive safety governors"""
     print("🧪 Testing cognitive governors...")
@@ -90,6 +94,7 @@ def test_governors():
     print("✅ Cognitive governors work")
     return True
 
+@pytest.mark.integration
 def test_journal_creation():
     """Test private journal functionality"""
     print("🧪 Testing private journal...")
@@ -122,6 +127,7 @@ def test_journal_creation():
     print("✅ Private journal works")
     return True
 
+@pytest.mark.integration
 def test_telemetry():
     """Test development telemetry"""
     print("🧪 Testing development telemetry...")
@@ -150,6 +156,7 @@ def test_telemetry():
     print("✅ Development telemetry works")
     return True
 
+@pytest.mark.integration
 def test_integration_hooks():
     """Test self-care integration hooks"""
     print("🧪 Testing integration hooks...")
@@ -189,6 +196,7 @@ def test_integration_hooks():
     print("✅ Integration hooks work")
     return True
 
+@pytest.mark.integration
 def test_privacy_protection():
     """Test privacy protection for local journal"""
     print("🧪 Testing privacy protection...")
@@ -217,6 +225,7 @@ def test_privacy_protection():
     print("✅ Privacy protection works")
     return True
 
+@pytest.mark.integration
 def test_leak_detector():
     """Test leak detector catches staged stray journal files"""
     print("🧪 Testing leak detector...")

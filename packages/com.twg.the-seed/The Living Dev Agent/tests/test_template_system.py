@@ -1,3 +1,4 @@
+﻿import pytest
 #!/usr/bin/env python3
 """
 Test suite for Comment Template Engine
@@ -10,6 +11,7 @@ import tempfile
 import subprocess
 from pathlib import Path
 
+@pytest.mark.integration
 def test_template_listing():
     """Test that template listing works"""
     print("🧪 Testing template listing...")
@@ -29,6 +31,7 @@ def test_template_listing():
     print("✅ Template listing works")
     return True
 
+@pytest.mark.integration
 def test_template_generation():
     """Test template generation with defaults"""
     print("🧪 Testing template generation...")
@@ -54,6 +57,7 @@ def test_template_generation():
     print("✅ Template generation works")
     return True
 
+@pytest.mark.integration
 def test_chronicle_keeper_triggers():
     """Test that generated templates contain Chronicle Keeper triggers"""
     print("🧪 Testing Chronicle Keeper trigger integration...")
@@ -93,6 +97,7 @@ def test_chronicle_keeper_triggers():
     print("✅ All templates contain proper Chronicle Keeper triggers and TLDL structure")
     return True
 
+@pytest.mark.integration
 def test_lda_cli_integration():
     """Test LDA CLI template command integration"""
     print("🧪 Testing LDA CLI integration...")
@@ -112,6 +117,7 @@ def test_lda_cli_integration():
     print("✅ LDA CLI integration works")
     return True
 
+@pytest.mark.integration
 def test_template_search():
     """Test template search functionality"""
     print("🧪 Testing template search...")

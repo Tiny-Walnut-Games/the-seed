@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+﻿#!/usr/bin/env python3
 """
 EXP-08 RAG Integration - End-to-End Validation Test
 
@@ -43,6 +42,7 @@ except ImportError as e:
     IMPORTS_OK = False
 
 
+@pytest.mark.integration
 class TestRAGIntegration:
     """End-to-end RAG integration validation."""
 
@@ -99,6 +99,7 @@ class TestRAGIntegration:
 
     # ========== TEST 1: Embeddings Work ==========
 
+    @pytest.mark.integration
     def test_01_embedding_generation(self):
         """PROOF: Embeddings are generated correctly."""
         print("\n[TEST 1] Embedding Generation")
@@ -125,6 +126,7 @@ class TestRAGIntegration:
         assert len(batch_embeddings) == len(texts), "Should return one embedding per text"
         print(f"✅ Batch embedding: Generated {len(batch_embeddings)} embeddings")
 
+    @pytest.mark.integration
     def test_02_embedding_similarity(self):
         """PROOF: Similarity scoring works."""
         print("\n[TEST 2] Embedding Similarity")
@@ -148,6 +150,7 @@ class TestRAGIntegration:
 
     # ========== TEST 2: Semantic Anchors ==========
 
+    @pytest.mark.integration
     def test_03_anchor_creation(self):
         """PROOF: Anchors are created with full provenance."""
         print("\n[TEST 3] Anchor Creation")
@@ -183,6 +186,7 @@ class TestRAGIntegration:
             assert anchor.provenance.utterance_ids, "Provenance should track utterances"
             print(f"   Anchor {anchor_id}: {len(anchor.provenance.utterance_ids)} utterances tracked")
 
+    @pytest.mark.integration
     def test_04_anchor_deduplication(self):
         """PROOF: Similar content updates existing anchors."""
         print("\n[TEST 4] Anchor Deduplication")
@@ -220,6 +224,7 @@ class TestRAGIntegration:
 
     # ========== TEST 3: Retrieval ==========
 
+    @pytest.mark.integration
     def test_05_semantic_retrieval(self):
         """PROOF: Semantic retrieval works."""
         print("\n[TEST 5] Semantic Retrieval")
@@ -267,6 +272,7 @@ class TestRAGIntegration:
         for i, result in enumerate(results.results, 1):
             print(f"   {i}. [{result.relevance_score:.4f}] {result.content[:50]}...")
 
+    @pytest.mark.integration
     def test_06_temporal_retrieval(self):
         """PROOF: Temporal retrieval works."""
         print("\n[TEST 6] Temporal Retrieval")
@@ -305,6 +311,7 @@ class TestRAGIntegration:
         except NotImplementedError:
             print("   ⓘ Temporal retrieval backend not yet implemented")
 
+    @pytest.mark.integration
     def test_07_retrieval_caching(self):
         """PROOF: Query caching works."""
         print("\n[TEST 7] Retrieval Caching")
@@ -347,6 +354,7 @@ class TestRAGIntegration:
 
     # ========== TEST 4: End-to-End Flow ==========
 
+    @pytest.mark.integration
     def test_08_complete_rag_flow(self):
         """PROOF: Complete RAG flow works end-to-end."""
         print("\n[TEST 8] Complete RAG Flow (End-to-End)")

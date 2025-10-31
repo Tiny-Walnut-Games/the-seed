@@ -1,4 +1,4 @@
-"""
+﻿"""
 Pytest configuration and fixtures for The Seed project.
 
 This file:

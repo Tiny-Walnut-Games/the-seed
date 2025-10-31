@@ -1,4 +1,4 @@
-"""
+﻿"""
 Test suite for the canonical Event Store.
 
 Tests are the mental model. No implementation closure until all tests pass.
@@ -41,6 +41,7 @@ EventStoreContract = EventStore
 # ============================================================================
 
 
+@pytest.mark.integration
 class TestEventStoreAppend:
     """
     Mental model test: Can we durably append events to a stream?
@@ -53,6 +54,7 @@ class TestEventStoreAppend:
         yield EventStoreContract(tmpdir)
         shutil.rmtree(tmpdir)
 
+    @pytest.mark.integration
     def test_append_event_records_immutably(self, store):
         """An appended event is immutable and recorded with envelope."""
         stream_id = "stat7/entity_1"
@@ -71,6 +73,7 @@ class TestEventStoreAppend:
         assert "event_id" in event
         assert "correlation_id" in event
 
+    @pytest.mark.integration
     def test_append_multiple_events_increments_version(self, store):
         """Multiple appends increment version monotonically."""
         stream_id = "stat7/entity_1"
@@ -83,6 +86,7 @@ class TestEventStoreAppend:
         assert event2["version"] == 2
         assert event3["version"] == 3
 
+    @pytest.mark.integration
     def test_append_persists_to_file(self, store):
         """Appended events are persisted to file."""
         stream_id = "stat7/entity_1"
@@ -97,6 +101,7 @@ class TestEventStoreAppend:
             stored_event = json.loads(line)
             assert stored_event["payload"]["value"] == 42
 
+    @pytest.mark.integration
     def test_append_with_default_metadata(self, store):
         """Appended events receive default metadata if not provided."""
         stream_id = "stat7/entity_1"
@@ -106,6 +111,7 @@ class TestEventStoreAppend:
         assert "correlation_id" in event
 
 
+@pytest.mark.integration
 class TestEventStoreRead:
     """
     Mental model test: Can we read events back with correct ordering?
@@ -125,6 +131,7 @@ class TestEventStoreRead:
         yield store
         shutil.rmtree(tmpdir)
 
+    @pytest.mark.integration
     def test_read_stream_returns_events_in_order(self, store_with_events):
         """Events are returned in append order."""
         events = store_with_events.read_stream("stat7/entity_1")
@@ -134,6 +141,7 @@ class TestEventStoreRead:
         assert events[1]["event_type"] == "StateIncrement"
         assert events[2]["event_type"] == "StateIncrement"
 
+    @pytest.mark.integration
     def test_read_stream_from_version(self, store_with_events):
         """Can read events starting from a specific version."""
         events = store_with_events.read_stream("stat7/entity_1", from_version=2)
@@ -141,6 +149,7 @@ class TestEventStoreRead:
         assert len(events) == 2
         assert events[0]["version"] == 2
 
+    @pytest.mark.integration
     def test_read_nonexistent_stream_returns_empty(self, store_with_events):
         """Reading a nonexistent stream returns empty list."""
         events = store_with_events.read_stream("stat7/nonexistent")
@@ -148,6 +157,7 @@ class TestEventStoreRead:
         assert events == []
 
 
+@pytest.mark.integration
 class TestEventStoreReplay:
     """
     Mental model test: Can we reconstruct state by replaying events?
@@ -168,6 +178,7 @@ class TestEventStoreReplay:
         yield store
         shutil.rmtree(tmpdir)
 
+    @pytest.mark.integration
     def test_replay_reconstructs_final_state(self, store_with_events):
         """Replaying events yields final state."""
         state = store_with_events.replay_state("stat7/entity_1")
@@ -177,6 +188,7 @@ class TestEventStoreReplay:
         assert state["mood"] == "happy"
         assert state["_version"] == 4
 
+    @pytest.mark.integration
     def test_replay_with_snapshot_skips_earlier_events(self, store_with_events):
         """Replay with snapshot starts from snapshot version."""
         snapshot = {
@@ -192,6 +204,7 @@ class TestEventStoreReplay:
         assert state["energy"] == 115  # 110 + 5 (only last increment)
 
 
+@pytest.mark.integration
 class TestEventStoreTemporalQueries:
     """
     Mental model test: Can we query state "as of" a specific time?
@@ -219,6 +232,7 @@ class TestEventStoreTemporalQueries:
         yield store
         shutil.rmtree(tmpdir)
 
+    @pytest.mark.integration
     def test_read_as_of_filters_by_timestamp(self, store_with_timestamped_events):
         """Temporal read returns only events before timestamp."""
         now = datetime.utcnow()
@@ -230,6 +244,7 @@ class TestEventStoreTemporalQueries:
         assert len(events) > 0
 
 
+@pytest.mark.integration
 class TestEventStoreSnapshots:
     """
     Mental model test: Do snapshots accelerate replay?
@@ -241,6 +256,7 @@ class TestEventStoreSnapshots:
         yield EventStoreContract(tmpdir)
         shutil.rmtree(tmpdir)
 
+    @pytest.mark.integration
     def test_create_snapshot_persists_state(self, store):
         """Creating a snapshot saves state to file."""
         stream_id = "stat7/entity_1"
@@ -252,6 +268,7 @@ class TestEventStoreSnapshots:
         assert snapshot["state"]["name"] == "Alice"
         assert "snapshot_id" in snapshot
 
+    @pytest.mark.integration
     def test_get_latest_snapshot_retrieves_saved_state(self, store):
         """Retrieving snapshot returns previously saved state."""
         stream_id = "stat7/entity_1"
@@ -263,6 +280,7 @@ class TestEventStoreSnapshots:
         assert retrieved is not None
         assert retrieved["state"]["name"] == "Alice"
 
+    @pytest.mark.integration
     def test_get_latest_snapshot_returns_none_if_missing(self, store):
         """Getting snapshot for nonexistent stream returns None."""
         retrieved = store.get_latest_snapshot("stat7/nonexistent")
@@ -270,6 +288,7 @@ class TestEventStoreSnapshots:
         assert retrieved is None
 
 
+@pytest.mark.integration
 class TestEventStoreLinearizability:
     """
     Mental model test: Are events linearizable across streams?
@@ -281,6 +300,7 @@ class TestEventStoreLinearizability:
         yield EventStoreContract(tmpdir)
         shutil.rmtree(tmpdir)
 
+    @pytest.mark.integration
     def test_events_with_same_correlation_id_are_related(self, store):
         """Events sharing a correlation_id form a causal chain."""
         correlation_id = str(uuid.uuid4())
@@ -302,6 +322,7 @@ class TestEventStoreLinearizability:
         assert event1["event_id"] != event2["event_id"]
 
 
+@pytest.mark.integration
 class TestEventStoreMultiStream:
     """
     Mental model test: Can we manage multiple independent streams?
@@ -313,6 +334,7 @@ class TestEventStoreMultiStream:
         yield EventStoreContract(tmpdir)
         shutil.rmtree(tmpdir)
 
+    @pytest.mark.integration
     def test_list_streams_returns_all_stream_ids(self, store):
         """Listing streams returns all active streams."""
         store.append_event("stat7/entity_1", "StateSet", {})
@@ -324,6 +346,7 @@ class TestEventStoreMultiStream:
         assert len(streams) == 3
         assert "stat7/entity_1" in streams
 
+    @pytest.mark.integration
     def test_streams_are_independent(self, store):
         """Events in one stream don't affect another."""
         store.append_event("stat7/entity_1", "StateSet", {"value": 1})
