@@ -184,12 +184,13 @@ class CrossRealmQuestSystem:
     def create_quest(self,
                     quest_id: str,
                     title: str,
-                    description: str,
-                    giver_npc: str,
-                    starting_realm: str,
+                    giver_npc: str = None,
+                    description: str = None,
+                    starting_realm: str = "sol_1",
                     quest_type: str = "multi_realm_chain",
                     difficulty: str = "normal",
                     reward_xp: int = 1000,
+                    reward_reputation: int = 0,
                     repeatable: bool = False) -> Quest:
         """
         Create a new quest.
@@ -197,17 +198,24 @@ class CrossRealmQuestSystem:
         Args:
             quest_id: Unique quest identifier
             title: Quest title
-            description: Quest description
-            giver_npc: NPC who gives the quest
-            starting_realm: Starting realm
+            giver_npc: NPC who gives the quest (optional)
+            description: Quest description (optional, defaults to title)
+            starting_realm: Starting realm (default: "sol_1")
             quest_type: Type of quest
             difficulty: Difficulty level
             reward_xp: XP reward for completion
+            reward_reputation: Reputation reward for completion (generic value or faction dict)
             repeatable: Can player repeat this quest
             
         Returns:
             Quest object
         """
+        # Fill in defaults
+        if description is None:
+            description = f"Complete the {title} quest"
+        if giver_npc is None:
+            giver_npc = "quest_giver"
+        
         quest = Quest(
             quest_id=quest_id,
             title=title,
@@ -220,6 +228,14 @@ class CrossRealmQuestSystem:
             repeatable=repeatable,
             created_at=datetime.utcnow().isoformat(),
         )
+        
+        # Set reputation rewards if provided
+        if reward_reputation:
+            if isinstance(reward_reputation, dict):
+                quest.reward_reputation = reward_reputation
+            else:
+                # Generic reputation value - store as generic "reputation"
+                quest.reward_reputation = {"reputation": reward_reputation}
         
         self.quests[quest_id] = quest
         self.total_quests_created += 1

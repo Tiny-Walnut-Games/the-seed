@@ -132,6 +132,70 @@ class WarblerMultiverseBridge:
         }
         return True
     
+    def set_npc_mood(self, npc_id: str, mood: str) -> bool:
+        """
+        Set the emotional mood of an NPC.
+        
+        Moods affect dialogue formality and tone.
+        
+        Args:
+            npc_id: NPC identifier
+            mood: Mood state ("cheerful", "neutral", "grumpy", "excited", "thoughtful")
+            
+        Returns:
+            Success boolean
+        """
+        if npc_id not in self.npc_registry:
+            raise ValueError(f"NPC {npc_id} not registered")
+        
+        valid_moods = ["cheerful", "neutral", "grumpy", "excited", "thoughtful"]
+        if mood not in valid_moods:
+            raise ValueError(f"Invalid mood '{mood}'. Must be one of: {valid_moods}")
+        
+        self.npc_registry[npc_id]["mood"] = mood
+        self.npc_registry[npc_id]["mood_updated_at"] = datetime.utcnow().isoformat()
+        return True
+    
+    def record_npc_player_transaction(self,
+                                     npc_id: str,
+                                     player_id: str,
+                                     transaction_type: str,
+                                     items: List[str] = None) -> bool:
+        """
+        Record a transaction between NPC and player (sale, purchase, quest reward, etc.).
+        
+        Builds history for npc_history slot: "sold you 5 items, received 3 items"
+        
+        Args:
+            npc_id: NPC involved in transaction
+            player_id: Player involved in transaction
+            transaction_type: "sold", "bought", "gifted", "quest_reward"
+            items: List of item names/ids involved
+            
+        Returns:
+            Success boolean
+        """
+        if npc_id not in self.npc_registry:
+            raise ValueError(f"NPC {npc_id} not registered")
+        
+        # Initialize transaction history if not present
+        if "transactions" not in self.npc_registry[npc_id]:
+            self.npc_registry[npc_id]["transactions"] = {}
+        
+        if player_id not in self.npc_registry[npc_id]["transactions"]:
+            self.npc_registry[npc_id]["transactions"][player_id] = []
+        
+        # Record transaction
+        transaction = {
+            "type": transaction_type,
+            "items": items or [],
+            "timestamp": datetime.utcnow().isoformat(),
+            "item_count": len(items) if items else 0
+        }
+        
+        self.npc_registry[npc_id]["transactions"][player_id].append(transaction)
+        return True
+    
     def get_dialogue_context(self, 
                            player_id: str, 
                            npc_id: str,

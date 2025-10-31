@@ -83,7 +83,8 @@ class WarblerQueryService:
     """
     
     def __init__(self, player_router, warbler_bridge, enable_cache: bool = True, 
-                 pack_loader: Optional[WarblerPackLoader] = None):
+                 pack_loader: Optional[WarblerPackLoader] = None,
+                 embedding_service: Optional[Any] = None):
         """
         Initialize query service.
         
@@ -93,11 +94,14 @@ class WarblerQueryService:
             enable_cache: Whether to cache NPC responses
             pack_loader: Optional WarblerPackLoader for template-based dialogue.
                         If None, will use fallback template generation.
+            embedding_service: Optional embedding service for semantic search (Phase 3).
+                              If provided, enables semantic similarity matching.
         """
         self.router = player_router
         self.bridge = warbler_bridge
         self.enable_cache = enable_cache
         self.pack_loader = pack_loader
+        self.embedding_service = embedding_service
         
         # Storage
         self.queries: Dict[str, NPCQuery] = {}  # query_id -> NPCQuery
@@ -578,6 +582,263 @@ class WarblerQueryService:
         
         del self.sessions[session_id]
         return summary
+    
+    def create_conversation_session(self, player_id: str, npc_id: str, realm_id: str) -> str:
+        """
+        Create a new conversation session (Phase 4).
+        
+        Args:
+            player_id: Player ID
+            npc_id: NPC ID
+            realm_id: Realm ID
+            
+        Returns:
+            Session ID
+        """
+        session = self.start_conversation(player_id, npc_id, realm_id)
+        
+        # Extend session with Phase 4 metadata
+        session.conversation_history = []
+        session.turn_count = 0
+        session.created_at = datetime.utcnow().isoformat()
+        session.last_modified_at = session.created_at
+        
+        return session.session_id
+    
+    def get_conversation_session(self, session_id: str) -> Dict[str, Any]:
+        """
+        Retrieve conversation session by ID (Phase 4).
+        
+        Args:
+            session_id: Session ID
+            
+        Returns:
+            Session data dict
+        """
+        if session_id not in self.sessions:
+            raise KeyError(f"Session {session_id} not found")
+        
+        session = self.sessions[session_id]
+        
+        result = {
+            "session_id": session.session_id,
+            "player_id": session.player_id,
+            "npc_id": session.npc_id,
+            "realm_id": session.realm_id,
+            "created_at": getattr(session, "created_at", session.start_time),
+            "last_modified_at": getattr(session, "last_modified_at", session.last_activity),
+            "conversation_history": getattr(session, "conversation_history", []),
+            "turn_count": getattr(session, "turn_count", len(session.messages) // 2),
+            "messages": session.messages,
+        }
+        
+        # Include full history length if tracked
+        if hasattr(session, "full_history_count"):
+            result["full_history_length"] = session.full_history_count
+        
+        return result
+    
+    def query_npc_with_session(self, session_id: str, user_input: str, **kwargs) -> Dict[str, Any]:
+        """
+        Query NPC within a conversation session (Phase 4 multi-turn).
+        
+        Args:
+            session_id: Conversation session ID
+            user_input: Player message
+            **kwargs: Extended slot parameters (include_extended_slots, weather, location_type, etc.)
+            
+        Returns:
+            Response dict with turn_number, npc_response, context info
+        """
+        if session_id not in self.sessions:
+            raise KeyError(f"Session {session_id} not found")
+        
+        session = self.sessions[session_id]
+        turn_number = getattr(session, "turn_count", len(session.messages) // 2) + 1
+        
+        # Get context
+        dialogue_context = self.bridge.get_dialogue_context(session.player_id, session.npc_id)
+        
+        # Prepare extended slots if requested
+        extended_slots = {}
+        if kwargs.get("include_extended_slots"):
+            extended_slots = self._prepare_extended_slots(
+                session.player_id, session.npc_id, **kwargs
+            )
+        
+        # Generate NPC response
+        npc_response = self._generate_npc_response(
+            dialogue_context,
+            user_input,
+            session.npc_id
+        )
+        
+        # Fill extended slots in response if needed
+        if extended_slots:
+            for slot_name, slot_value in extended_slots.items():
+                placeholder = f"{{{{{slot_name}}}}}"
+                npc_response = npc_response.replace(placeholder, str(slot_value))
+        
+        # Update session
+        session.messages.append(("player", user_input))
+        session.messages.append(("npc", npc_response))
+        session.turn_count = turn_number
+        session.last_modified_at = datetime.utcnow().isoformat()
+        session.last_activity = session.last_modified_at
+        
+        # Build history from messages
+        if not hasattr(session, "conversation_history"):
+            session.conversation_history = []
+        
+        if not hasattr(session, "full_history_count"):
+            session.full_history_count = 0
+        
+        turn_data = {
+            "turn_number": turn_number,
+            "player_input": user_input,
+            "npc_response": npc_response,
+            "timestamp": session.last_modified_at,
+        }
+        
+        session.conversation_history.append(turn_data)
+        session.full_history_count += 1
+        
+        # Truncate history to last 10 turns for memory efficiency
+        # But keep full count for reference
+        MAX_HISTORY_LENGTH = 10
+        if len(session.conversation_history) > MAX_HISTORY_LENGTH:
+            session.conversation_history = session.conversation_history[-MAX_HISTORY_LENGTH:]
+        
+        # Prepare response
+        response = {
+            "turn_number": turn_number,
+            "npc_response": npc_response,
+            "session_id": session_id,
+            "context_history_length": max(0, turn_number - 1),
+            "context_messages": [msg for msg in session.messages if turn_number > 1],
+            "slots_used": list(extended_slots.keys()) if extended_slots else [],
+        }
+        
+        return response
+    
+    def _prepare_extended_slots(self, player_id: str, npc_id: str, **kwargs) -> Dict[str, Any]:
+        """
+        Prepare Phase 4 extended slots (inventory, faction, time, mood, etc.).
+        
+        Args:
+            player_id: Player ID
+            npc_id: NPC ID
+            **kwargs: Slot parameters
+            
+        Returns:
+            Dict of slot_name -> slot_value
+        """
+        slots = {}
+        player = self.router.get_player(player_id)
+        
+        if not player:
+            return slots
+        
+        # {{inventory_summary}} - categorized inventory
+        if "include_extended_slots" in kwargs:
+            inventory_items = player.inventory
+            if inventory_items:
+                categories = {}
+                for item in inventory_items:
+                    cat = item.item_type
+                    categories[cat] = categories.get(cat, 0) + item.quantity
+                
+                summary_parts = [f"{count} {cat}{'s' if count > 1 else ''}" 
+                                for cat, count in categories.items()]
+                slots["inventory_summary"] = ", ".join(summary_parts) if summary_parts else "No items"
+        
+        # {{faction_standing}} - reputation mapping
+        if "include_extended_slots" in kwargs and player.reputation:
+            primary_rep = player.reputation[0]  # Get primary reputation
+            standing_text = f"{primary_rep.standing.title()} with The {primary_rep.faction.value.replace('_', ' ').title()}"
+            slots["faction_standing"] = standing_text
+        
+        # {{time_of_day}} - from kwargs or default
+        if "time_of_day" in kwargs:
+            slots["time_of_day"] = kwargs["time_of_day"]
+        else:
+            slots["time_of_day"] = "day"
+        
+        # {{npc_mood}} - from kwargs
+        if "npc_mood" in kwargs:
+            slots["npc_mood"] = kwargs["npc_mood"]
+        else:
+            slots["npc_mood"] = "neutral"
+        
+        # {{quest_context}} - active quest
+        if player.active_quests:
+            first_quest = list(player.active_quests.values())[0]
+            slots["quest_context"] = first_quest.get("title", "Active Quest")
+        else:
+            slots["quest_context"] = "No active quest"
+        
+        # {{weather}} - from kwargs
+        if "weather" in kwargs:
+            slots["weather"] = kwargs["weather"]
+        else:
+            slots["weather"] = "clear"
+        
+        # {{location_type}} - from kwargs
+        if "location_type" in kwargs:
+            slots["location_type"] = kwargs["location_type"]
+        else:
+            slots["location_type"] = "unknown"
+        
+        # {{npc_history}} - transaction count
+        npc_memory = self.router.npc_memory_store.get(npc_id, [])
+        player_transactions = [m for m in npc_memory if m.get("player_id") == player_id]
+        if player_transactions:
+            slots["npc_history"] = f"Traded {len(player_transactions)} times"
+        else:
+            slots["npc_history"] = "We haven't traded yet"
+        
+        return slots
+    
+    def set_session_modified_time(self, session_id: str, timestamp):
+        """
+        Set session's last modified time (for testing/cleanup).
+        
+        Args:
+            session_id: Session ID
+            timestamp: New timestamp (datetime object)
+        """
+        if session_id in self.sessions:
+            session = self.sessions[session_id]
+            session.last_modified_at = timestamp.isoformat()
+            session.last_activity = session.last_modified_at
+    
+    def cleanup_stale_sessions(self, timeout_minutes: int = 60) -> int:
+        """
+        Clean up sessions older than timeout (Phase 4 state management).
+        
+        Args:
+            timeout_minutes: Sessions idle longer than this are archived
+            
+        Returns:
+            Number of sessions archived
+        """
+        from datetime import timedelta
+        
+        now = datetime.utcnow()
+        timeout_delta = timedelta(minutes=timeout_minutes)
+        archived_count = 0
+        
+        sessions_to_delete = []
+        for session_id, session in self.sessions.items():
+            last_activity = datetime.fromisoformat(session.last_activity)
+            if now - last_activity > timeout_delta:
+                sessions_to_delete.append(session_id)
+                archived_count += 1
+        
+        for session_id in sessions_to_delete:
+            del self.sessions[session_id]
+        
+        return archived_count
     
     def get_realm_npc_list(self, realm_id: str) -> List[Dict[str, str]]:
         """
