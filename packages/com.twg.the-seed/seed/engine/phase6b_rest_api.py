@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 import json
 
 try:
-    from fastapi import FastAPI, HTTPException, Path as PathParam, Body
+    from fastapi import FastAPI, HTTPException, Path as PathParam, Body, Query
     from fastapi.responses import JSONResponse
     from pydantic import BaseModel
     FASTAPI_AVAILABLE = True
@@ -198,12 +198,22 @@ class Phase6BAPIServer:
                 "orchestrator_initialized": self.orchestrator.universe is not None
             }
         
+        # Health check (API alias for CLI)
+        @self.app.get("/api/health", response_model=HealthResponse)
+        async def health_check_api():
+            """Health check endpoint (API alias)."""
+            return {
+                "status": "healthy",
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "orchestrator_initialized": self.orchestrator.universe is not None
+            }
+        
         # ====================================================================
         # REALM ENDPOINTS
         # ====================================================================
         
         @self.app.get("/api/realms", response_model=Dict[str, List[RealmSummary]])
-        async def list_realms():
+        async def list_realms(tier: Optional[str] = Query(None, description="Filter by tier classification")):
             """List all realms with tier classification."""
             if not self.orchestrator.universe:
                 raise HTTPException(status_code=503, detail="Universe not initialized")
@@ -219,12 +229,17 @@ class Phase6BAPIServer:
                 # Add tier info if available
                 if self.hierarchical_adapter:
                     try:
-                        tier_meta = await self.hierarchical_adapter.tier_registry.get_realm_tier(realm_id)
+                        tier_meta = await self.hierarchical_adapter.tier_registry.get_metadata(realm_id)
                         if tier_meta:
                             realm_summary["tier"] = tier_meta.tier.value
                             realm_summary["theme"] = tier_meta.theme.value
                     except:
                         pass
+                
+                # Filter by tier if specified
+                if tier:
+                    if realm_summary.get("tier", "").lower() != tier.lower():
+                        continue
                 
                 realms.append(realm_summary)
             
@@ -275,6 +290,39 @@ class Phase6BAPIServer:
         # ====================================================================
         # TIER QUERY ENDPOINTS
         # ====================================================================
+        
+        @self.app.get("/api/tiers/{tier}", response_model=Dict[str, Any])
+        async def get_tier_info(tier: str = PathParam(..., description="Tier classification")):
+            """Get information about a specific tier (simpler endpoint for CLI)."""
+            if not self.hierarchical_adapter:
+                raise HTTPException(status_code=503, detail="Hierarchical adapter not initialized")
+            
+            try:
+                tier_enum = TierClassification(tier.lower())
+            except ValueError:
+                raise HTTPException(status_code=400, detail={"error": f"Invalid tier: {tier}"})
+            
+            # Get realm IDs by tier
+            realm_ids = await self.hierarchical_adapter.tier_registry.get_realms_by_tier(tier_enum)
+            
+            realms = []
+            for realm_id in realm_ids:
+                realm_data = self.orchestrator.universe.realms.get(realm_id)
+                tier_meta = await self.hierarchical_adapter.tier_registry.get_metadata(realm_id)
+                if realm_data and tier_meta:
+                    realms.append({
+                        "realm_id": realm_id,
+                        "entity_count": len(realm_data.entities),
+                        "lineage": realm_data.lineage,
+                        "tier": tier_meta.tier.value,
+                        "theme": tier_meta.theme.value,
+                    })
+            
+            return {
+                "tier": tier.lower(),
+                "realm_count": len(realms),
+                "realms": realms
+            }
         
         @self.app.get("/api/realms/by-tier/{tier}", response_model=Dict[str, List[RealmSummary]])
         async def query_realms_by_tier(tier: str = PathParam(..., description="Tier classification")):
