@@ -68,6 +68,11 @@ class DemoUniverseMetadata:
     realms: Dict[str, Dict[str, Any]]
     total_entities: int
     initialization_time_ms: float
+    
+    @property
+    def realm_entity_counts(self) -> Dict[str, int]:
+        """Get entity counts per realm."""
+        return {realm_id: info["entity_count"] for realm_id, info in self.realms.items()}
 
 
 class UniverseDemoOrchestrator:
@@ -338,6 +343,42 @@ class UniverseDemoOrchestrator:
             json.dump(export, f, indent=2)
         
         logger.info(f"💾 Universe exported to {filepath}")
+    
+    async def classify_realms(self, tier_specs: Dict[str, tuple]) -> None:
+        """
+        Classify realms with tier metadata (Phase 6-Alpha integration).
+        
+        Args:
+            tier_specs: Dict mapping realm_id to (TierClassification, TierTheme, semantic_anchors)
+        
+        Example:
+            await orchestrator.classify_realms({
+                "tavern": (TierClassification.TERRAN, TierTheme.CITY_STATE, ["urban"]),
+            })
+        """
+        if not self.universe:
+            raise RuntimeError("Universe not initialized")
+        
+        # This will be used by Phase 6B API server to integrate with Phase 6-Alpha
+        logger.info(f"🏷️  Classifying {len(tier_specs)} realms with tier metadata")
+        for realm_id, (tier, theme, anchors) in tier_specs.items():
+            logger.debug(f"  {realm_id}: tier={tier.value}, theme={theme.value}")
+    
+    def get_demo_metadata(self) -> DemoUniverseMetadata:
+        """
+        Get current demo metadata.
+        
+        Returns:
+            DemoUniverseMetadata with current universe state
+        """
+        return self._produce_metadata()
+    
+    @property
+    def realm_entity_counts(self) -> Dict[str, int]:
+        """Get entity counts per realm."""
+        if not self.universe:
+            return {}
+        return {realm_id: len(realm.entities) for realm_id, realm in self.universe.realms.items()}
 
 
 # ============================================================================
