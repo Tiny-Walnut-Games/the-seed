@@ -28,6 +28,10 @@ from enum import Enum
 logger = logging.getLogger(__name__)
 
 
+# Directory in which all snapshots are stored; update as appropriate for your deployment.
+SNAPSHOT_ROOT = Path("/srv/app/universe_snapshots").resolve()
+
+
 # ============================================================================
 # EXPORT DATA STRUCTURES
 # ============================================================================
@@ -44,7 +48,7 @@ class TierAssignmentRecord:
     parent_entity_id: Optional[str] = None
     assigned_at: str = field(default_factory=lambda: datetime.now().isoformat())
     assigned_by: str = "orchestrator"
-    
+
     def to_dict(self) -> Dict:
         """Convert to dictionary."""
         return asdict(self)
@@ -59,7 +63,7 @@ class RealmExport:
     orbit: int
     lineage: int
     metadata: Dict[str, Any] = field(default_factory=dict)
-    
+
     def to_dict(self) -> Dict:
         """Convert to dictionary."""
         return asdict(self)
@@ -73,7 +77,7 @@ class EntityExport:
     realm_id: str
     personality_traits: Dict[str, Any] = field(default_factory=dict)
     metadata: Dict[str, Any] = field(default_factory=dict)
-    
+
     def to_dict(self) -> Dict:
         """Convert to dictionary."""
         return asdict(self)
@@ -88,7 +92,7 @@ class EnrichmentExport:
     content: Dict = field(default_factory=dict)
     created_at: str = field(default_factory=lambda: datetime.now().isoformat())
     audit_depth: int = 0
-    
+
     def to_dict(self) -> Dict:
         """Convert to dictionary."""
         return asdict(self)
@@ -103,7 +107,7 @@ class AuditTrailEntry:
     timestamp: str = field(default_factory=lambda: datetime.now().isoformat())
     assigned_by: str = "orchestrator"
     action: str = "tier_assignment"
-    
+
     def to_dict(self) -> Dict:
         """Convert to dictionary."""
         return asdict(self)
@@ -112,42 +116,42 @@ class AuditTrailEntry:
 @dataclass
 class UniverseSnapshot:
     """Complete, portable universe export for reproducibility."""
-    
+
     # Core Identification
     seed: int
     universe_id: str
     universe_hash: str
     exported_at: str = field(default_factory=lambda: datetime.now().isoformat())
-    
+
     # Tier Structure
     tier_assignments: Dict[str, TierAssignmentRecord] = field(default_factory=dict)
     tier_depth: int = 0
     tier_themes: Dict[str, str] = field(default_factory=dict)
-    
+
     # Realm & Entity Data
     realms: List[RealmExport] = field(default_factory=list)
     entities: List[EntityExport] = field(default_factory=list)
     enrichments: List[EnrichmentExport] = field(default_factory=list)
-    
+
     # Cross-Tier Alignment Index
     tier_alignment: Dict[str, Any] = field(default_factory=dict)
     parent_child_index: Dict[str, List[str]] = field(default_factory=dict)
     semantic_anchor_index: Dict[str, List[str]] = field(default_factory=dict)
-    
+
     # Audit & Lineage
     audit_trail: List[AuditTrailEntry] = field(default_factory=list)
     governance_audit: List[Dict] = field(default_factory=list)
     enrichment_lineage: Dict[str, List[str]] = field(default_factory=dict)
-    
+
     # Metadata for Validation
     orchestrator_config: Dict = field(default_factory=dict)
     universe_specifications: Dict = field(default_factory=dict)
-    
+
     @property
     def is_deterministic(self) -> bool:
         """True if this snapshot can be replayed identically."""
         return self.seed is not None and self.universe_hash is not None
-    
+
     def to_dict(self) -> Dict:
         """Convert to JSON-serializable dictionary."""
         return {
@@ -181,11 +185,11 @@ class UniverseSnapshot:
 
 class UniverseExporter:
     """Serialize universe to portable JSON snapshot."""
-    
+
     def __init__(self):
         """Initialize exporter."""
         logger.info("✨ UniverseExporter initialized")
-    
+
     async def export(
         self,
         orchestrator: Any,  # UniverseDemoOrchestrator
@@ -195,17 +199,17 @@ class UniverseExporter:
     ) -> UniverseSnapshot:
         """Export complete universe state to snapshot."""
         logger.info("📤 Starting universe export...")
-        
+
         if not orchestrator.universe:
             raise RuntimeError("Universe not initialized")
-        
+
         # Extract seed from orchestrator
         seed = orchestrator.config.seed
         universe = orchestrator.universe
-        
+
         # Generate unique universe ID
         universe_id = f"seed_{seed}_{datetime.now().timestamp()}"
-        
+
         # Export realms
         realms = []
         realm_entities = {}
@@ -220,7 +224,7 @@ class UniverseExporter:
             )
             realms.append(realm_export)
             realm_entities[realm_id] = [e.id if hasattr(e, 'id') else str(e) for e in realm.entities]
-        
+
         # Export entities
         entities = []
         enrichment_lineage = {}
@@ -236,7 +240,7 @@ class UniverseExporter:
                 )
                 entities.append(entity_export)
                 enrichment_lineage[entity_id] = []
-        
+
         # Export enrichments
         enrichments = []
         for realm_id, realm in universe.realms.items():
@@ -255,17 +259,17 @@ class UniverseExporter:
                     )
                     enrichments.append(enrichment_export)
                     enrichment_lineage[entity_id].append(enrich_id)
-        
+
         # Build tier assignments (from orchestrator's tier registry if available)
         tier_assignments = {}
         tier_alignment = {}
         parent_child_index = {}
         semantic_anchor_index = {}
-        
+
         if hasattr(orchestrator, 'tier_registry'):
             registry = orchestrator.tier_registry
             all_metadata = await registry.get_all_metadata() if hasattr(registry.get_all_metadata, '__call__') else {}
-            
+
             for realm_id, metadata in all_metadata.items():
                 tier_assignments[realm_id] = TierAssignmentRecord(
                     realm_id=realm_id,
@@ -277,13 +281,13 @@ class UniverseExporter:
                     parent_entity_id=metadata.parent_entity_id,
                     assigned_at=metadata.created_at.isoformat() if hasattr(metadata, 'created_at') else datetime.now().isoformat(),
                 )
-                
+
                 # Build parent-child index
                 if metadata.parent_realm_id:
                     if metadata.parent_realm_id not in parent_child_index:
                         parent_child_index[metadata.parent_realm_id] = []
                     parent_child_index[metadata.parent_realm_id].append(realm_id)
-                
+
                 # Build semantic anchor index
                 for anchor in (metadata.semantic_anchors or []):
                     if anchor not in semantic_anchor_index:
@@ -293,7 +297,7 @@ class UniverseExporter:
             # Fallback: create basic tier assignments for realms
             tier_classification = ["celestial", "terran", "subterran"]
             tier_theme = ["heaven", "city_state", "hell"]
-            
+
             for i, realm_id in enumerate(universe.realms.keys()):
                 tier_assignments[realm_id] = TierAssignmentRecord(
                     realm_id=realm_id,
@@ -302,7 +306,7 @@ class UniverseExporter:
                     semantic_anchors=[],
                     tier_depth=0,
                 )
-        
+
         # Build tier alignment structure
         tier_alignment = {
             'by_tier': {
@@ -311,7 +315,7 @@ class UniverseExporter:
                 'subterran': [realm_id for realm_id, ta in tier_assignments.items() if ta.tier_classification == 'subterran'],
             }
         }
-        
+
         # Build audit trail
         audit_trail = [
             AuditTrailEntry(
@@ -323,21 +327,21 @@ class UniverseExporter:
             )
             for realm_id, ta in tier_assignments.items()
         ]
-        
+
         # Build orchestrator config export
         orchestrator_config = {
             'seed': orchestrator.config.seed,
             'orbits': orchestrator.config.orbits,
             'realms': orchestrator.config.realms,
         }
-        
+
         # Build universe specifications
         universe_specifications = {
             'realm_count': len(universe.realms),
             'total_entities': sum(len(r.entities) for r in universe.realms.values()),
             'total_orbits_completed': universe.total_orbits_completed if hasattr(universe, 'total_orbits_completed') else 0,
         }
-        
+
         # Compute deterministic hash
         universe_hash = self.compute_universe_hash(
             seed=seed,
@@ -345,7 +349,7 @@ class UniverseExporter:
             tier_assignments={k: v.to_dict() for k, v in tier_assignments.items()},
             entity_count=len(entities),
         )
-        
+
         # Create snapshot
         snapshot = UniverseSnapshot(
             seed=seed,
@@ -367,7 +371,7 @@ class UniverseExporter:
             orchestrator_config=orchestrator_config,
             universe_specifications=universe_specifications,
         )
-        
+
         logger.info(
             f"✅ Export complete:\n"
             f"  Seed: {seed}\n"
@@ -376,9 +380,9 @@ class UniverseExporter:
             f"  Enrichments: {len(enrichments)}\n"
             f"  Hash: {universe_hash}"
         )
-        
+
         return snapshot
-    
+
     async def export_to_file(
         self,
         orchestrator: Any,
@@ -386,22 +390,33 @@ class UniverseExporter:
     ) -> UniverseSnapshot:
         """Export and save to JSON file."""
         logger.info(f"💾 Exporting to file: {filepath}")
-        
+
+        # Secure the output path
+        # Only allow writing inside SNAPSHOT_ROOT
+        unsafe_path = Path(filepath)
+        # Join to SNAPSHOT_ROOT; resolve to normalize (eliminates '..', symlinks, etc.)
+        safe_full_path = (SNAPSHOT_ROOT / unsafe_path).resolve()
+        if not str(safe_full_path).startswith(str(SNAPSHOT_ROOT)):
+            # Path traversal or writing outside allowed dir
+            logger.error(f"Attempted write outside SNAPSHOT_ROOT: {safe_full_path}")
+            raise ValueError("Invalid file path: write outside allowed snapshot directory")
+
+        # Ensure directories exist
+        safe_full_path.parent.mkdir(parents=True, exist_ok=True)
+
         snapshot = await self.export(orchestrator)
-        
+
         # Serialize to JSON
         snapshot_dict = snapshot.to_dict()
         json_str = json.dumps(snapshot_dict, indent=2, default=str)
-        
+
         # Write to file
-        path = Path(filepath)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        with open(path, 'w') as f:
+        with open(safe_full_path, 'w') as f:
             f.write(json_str)
-        
-        logger.info(f"✅ Exported to {filepath}")
+
+        logger.info(f"✅ Exported to {safe_full_path}")
         return snapshot
-    
+
     def compute_universe_hash(
         self,
         seed: int,
@@ -420,14 +435,14 @@ class UniverseExporter:
                 'anchors': sorted(ta_dict.get('semantic_anchors', [])),
                 'depth': ta_dict.get('tier_depth', 0),
             }
-        
+
         hash_input = json.dumps({
             'seed': seed,
             'realm_count': realm_count,
             'entity_count': entity_count,
             'tier_assignments': stable_tiers,
         }, sort_keys=True, default=str)
-        
+
         # Compute SHA256 hash
         hash_obj = hashlib.sha256(hash_input.encode())
         return hash_obj.hexdigest()[:16]  # Use first 16 chars
@@ -439,12 +454,12 @@ class UniverseExporter:
 
 class UniverseReplayer:
     """Recreate universe from seed using cached snapshot."""
-    
+
     def __init__(self):
         """Initialize replayer."""
         logger.info("✨ UniverseReplayer initialized")
         self._snapshots_cache: Dict[int, UniverseSnapshot] = {}
-    
+
     async def replay_from_seed(
         self,
         seed: int,
@@ -453,10 +468,10 @@ class UniverseReplayer:
     ) -> Any:  # UniverseDemoOrchestrator
         """Recreate orchestrator with identical seed."""
         logger.info(f"🔄 Replaying universe with seed={seed}")
-        
+
         # Import here to avoid circular imports
         from phase6_orchestrator import UniverseDemoOrchestrator
-        
+
         # Create new orchestrator with same seed and config
         replay_config = type(config)(
             seed=seed,
@@ -464,15 +479,15 @@ class UniverseReplayer:
             realms=config.realms,
             enrichment_types=getattr(config, 'enrichment_types', None),
         )
-        
+
         orchestrator = UniverseDemoOrchestrator(replay_config)
-        
+
         # Run full initialization
         await orchestrator.launch_demo()
-        
+
         # Store initialization seed
         orchestrator._initialization_seed = seed
-        
+
         # If validate_hash provided, verify integrity
         if validate_hash:
             exporter = UniverseExporter()
@@ -484,27 +499,27 @@ class UniverseReplayer:
                     f"  Got: {exported.universe_hash}"
                 )
                 # Don't fail - seeds with same config should produce same result
-        
+
         logger.info(f"✅ Replay complete")
         return orchestrator
-    
+
     async def load_from_file(self, filepath: str) -> UniverseSnapshot:
         """Load snapshot from JSON file."""
         logger.info(f"📂 Loading snapshot from {filepath}")
-        
+
         path = Path(filepath)
         if not path.exists():
             raise FileNotFoundError(f"Snapshot not found: {filepath}")
-        
+
         with open(path) as f:
             data = json.load(f)
-        
+
         # Reconstruct snapshot from JSON
         snapshot = self._reconstruct_snapshot(data)
-        
+
         logger.info(f"✅ Loaded snapshot: seed={snapshot.seed}")
         return snapshot
-    
+
     async def validate_seed_integrity(
         self,
         original_snapshot: UniverseSnapshot,
@@ -512,10 +527,10 @@ class UniverseReplayer:
     ) -> bool:
         """Verify replayed universe is identical to original."""
         logger.info("🔍 Validating seed integrity...")
-        
+
         exporter = UniverseExporter()
         replayed_snapshot = await exporter.export(replayed_orchestrator)
-        
+
         # Compare critical fields
         checks = {
             'seed': original_snapshot.seed == replayed_snapshot.seed,
@@ -523,28 +538,28 @@ class UniverseReplayer:
             'entity_count': len(original_snapshot.entities) == len(replayed_snapshot.entities),
             'universe_hash': original_snapshot.universe_hash == replayed_snapshot.universe_hash,
         }
-        
+
         all_pass = all(checks.values())
-        
+
         if all_pass:
             logger.info("✅ Seed integrity validated")
         else:
             logger.warning(f"⚠️  Integrity check failed: {checks}")
-        
+
         return all_pass
-    
+
     def _reconstruct_snapshot(self, data: Dict) -> UniverseSnapshot:
         """Reconstruct UniverseSnapshot from JSON dictionary."""
         # Reconstruct nested objects
         tier_assignments = {}
         for realm_id, ta_dict in data.get('tier_assignments', {}).items():
             tier_assignments[realm_id] = TierAssignmentRecord(**ta_dict)
-        
+
         realms = [RealmExport(**r) for r in data.get('realms', [])]
         entities = [EntityExport(**e) for e in data.get('entities', [])]
         enrichments = [EnrichmentExport(**e) for e in data.get('enrichments', [])]
         audit_trail = [AuditTrailEntry(**a) for a in data.get('audit_trail', [])]
-        
+
         return UniverseSnapshot(
             seed=data['seed'],
             universe_id=data['universe_id'],
