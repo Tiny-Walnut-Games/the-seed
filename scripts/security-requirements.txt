@@ -1,0 +1,23 @@
+# Security Scanning Tools for GitHub Workflows
+# Install with: pip install -r security-requirements.txt
+# Used by: .github/workflows/overlord-sentinel-security.yml
+
+# Python Security Linter
+bandit==1.7.5
+
+# Dependency vulnerability auditor
+pip-audit==2.6.1
+
+# Legacy security database checker
+safety==3.0.1
+
+# Secret detection and entropy scanning
+# Note: Version constraint is flexible due to PyPI availability variance
+trufflehog>=3.0.0,<4.0.0
+
+# Software Bill of Materials (SBOM) generation
+cyclonedx-bom==1.10.0
+cyclonedx-py==1.10.0
+
+# Pattern-based security scanner (optional, used as fallback)
+semgrep>=1.45.0

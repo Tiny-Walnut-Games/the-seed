@@ -40,15 +40,9 @@ jobs:
 
       - name: 📦 Install Python security tools
         run: |
-          # Install with pinned versions for reproducibility and security
-          pip install \
-            bandit==1.7.5 \
-            pip-audit==2.6.1 \
-            safety==3.0.1 \
-            trufflehog==3.9.0 \
-            cyclonedx-bom==1.10.0 \
-            cyclonedx-py==1.10.0 \
-            && pip check | grep -q 'No broken dependencies found.' && echo "✅ Python packages are valid." || exit 1
+          # Install security tools from dedicated requirements file
+          pip install -r scripts/security-requirements.txt
+          pip check && echo "✅ Python packages are valid." || exit 1
           echo "✅ Python security tools installed"
 
       - name: 🔍 Advanced Secret Scanning (TruffleHog)
