@@ -698,4 +698,47 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    import sys
+    
+    # Support auto-start mode
+    auto_start = "--auto-start" in sys.argv or "--continuous" in sys.argv
+    exp01_mode = "--exp01" in sys.argv
+    
+    if auto_start or exp01_mode:
+        # Auto-start mode - run visualization without waiting for input
+        async def auto_run():
+            streamer = STAT7EventStreamer(host="localhost", port=8765)
+            visualizer = ExperimentVisualizer(streamer)
+            
+            # Start server
+            server_task = asyncio.create_task(streamer.start_server())
+            
+            print("[STAT7] Auto-Start Mode")
+            print("=" * 40)
+            
+            try:
+                if exp01_mode:
+                    print("[STAT7] Starting EXP-01 visualization...")
+                    await visualizer.visualize_exp01_uniqueness(sample_size=500, iterations=3)
+                    print("[STAT7] EXP-01 visualization complete")
+                else:
+                    print("[STAT7] Starting continuous generation...")
+                    await visualizer.visualize_continuous_generation(duration_seconds=120, rate_per_second=20)
+                    print("[STAT7] Continuous generation complete")
+                    
+                    # Loop continuously
+                    while streamer.is_running:
+                        await asyncio.sleep(30)
+                        print("[STAT7] Restarting continuous generation...")
+                        await visualizer.visualize_continuous_generation(duration_seconds=120, rate_per_second=20)
+                        
+            except KeyboardInterrupt:
+                print("\n[STAT7] Shutting down...")
+            finally:
+                streamer.stop_server()
+                server_task.cancel()
+                
+        asyncio.run(auto_run())
+    else:
+        # Interactive mode
+        asyncio.run(main())

@@ -812,6 +812,182 @@ class Phase6BAPIServer:
                 "total_count": total,
                 "filters_applied": filters_applied
             }
+        
+        # ====================================================================
+        # PHASE 6D: REPRODUCIBILITY & EXPORT ENDPOINTS
+        # ====================================================================
+        
+        @self.app.post("/api/universe/export")
+        async def export_universe(
+            include_enrichments: bool = Query(True),
+            include_audit_trail: bool = Query(True),
+            include_governance: bool = Query(True),
+        ):
+            """
+            Export entire universe as portable JSON snapshot.
+            
+            Returns snapshot with:
+            - Universe seed (for reproducibility)
+            - All realms with tier metadata
+            - All entities with personality traits
+            - Enrichment audit trail
+            - Cross-tier alignment index
+            - Deterministic universe hash
+            """
+            try:
+                from phase6d_reproducibility import UniverseExporter
+                
+                exporter = UniverseExporter()
+                snapshot = await exporter.export(
+                    self.orchestrator,
+                    include_enrichments=include_enrichments,
+                    include_audit_trail=include_audit_trail,
+                    include_governance=include_governance
+                )
+                
+                response_dict = snapshot.to_dict()
+                
+                logger.info(f"✅ Universe exported: seed={snapshot.seed}, hash={snapshot.universe_hash}")
+                
+                return JSONResponse(
+                    content=response_dict,
+                    status_code=200,
+                    headers={
+                        "X-Universe-Seed": str(snapshot.seed),
+                        "X-Universe-Hash": snapshot.universe_hash,
+                        "X-Tier-Depth": str(snapshot.tier_depth),
+                    }
+                )
+            except Exception as e:
+                logger.error(f"Error exporting universe: {e}")
+                raise HTTPException(status_code=500, detail=f"Export failed: {str(e)}")
+        
+        @self.app.get("/api/universe/replay")
+        async def replay_universe(
+            seed: int = Query(..., description="Universe seed to replay"),
+            validate_hash: Optional[str] = Query(None, description="Expected hash for validation"),
+            orbits: int = Query(1, description="Number of enrichment orbits"),
+        ):
+            """
+            Replay universe from seed to recreate identical simulation.
+            
+            Returns recreated orchestrator state with:
+            - Same entities, realms, and tier assignments
+            - Deterministic hash (if validate_hash provided, checks match)
+            - Full enrichment history
+            """
+            try:
+                from phase6d_reproducibility import UniverseReplayer
+                
+                replayer = UniverseReplayer()
+                replay_config = OrchestratorConfig(
+                    seed=seed,
+                    orbits=orbits,
+                    realms=self.orchestrator.config.realms
+                )
+                
+                replayed_orch = await replayer.replay_from_seed(
+                    seed,
+                    replay_config,
+                    validate_hash=validate_hash
+                )
+                
+                # Export replayed universe to return as snapshot
+                from phase6d_reproducibility import UniverseExporter
+                exporter = UniverseExporter()
+                snapshot = await exporter.export(replayed_orch)
+                
+                logger.info(f"✅ Universe replayed: seed={seed}, hash={snapshot.universe_hash}")
+                
+                return {
+                    "status": "replayed",
+                    "seed": seed,
+                    "universe_hash": snapshot.universe_hash,
+                    "realms": len(snapshot.realms),
+                    "entities": len(snapshot.entities),
+                    "validation_passed": validate_hash is None or snapshot.universe_hash == validate_hash
+                }
+            except Exception as e:
+                logger.error(f"Error replaying universe: {e}")
+                raise HTTPException(status_code=500, detail=f"Replay failed: {str(e)}")
+        
+        @self.app.post("/api/universe/snapshot/save")
+        async def save_snapshot(
+            filepath: str = Query(..., description="File path to save snapshot"),
+            include_enrichments: bool = Query(True),
+            include_audit_trail: bool = Query(True),
+        ):
+            """
+            Export universe snapshot and save to JSON file.
+            
+            Returns: File path and snapshot metadata
+            """
+            try:
+                from phase6d_reproducibility import UniverseExporter
+                
+                exporter = UniverseExporter()
+                snapshot = await exporter.export_to_file(
+                    self.orchestrator,
+                    filepath
+                )
+                
+                logger.info(f"✅ Snapshot saved to {filepath}")
+                
+                return {
+                    "status": "saved",
+                    "filepath": filepath,
+                    "seed": snapshot.seed,
+                    "universe_hash": snapshot.universe_hash,
+                    "exported_at": snapshot.exported_at
+                }
+            except Exception as e:
+                logger.error(f"Error saving snapshot: {e}")
+                raise HTTPException(status_code=500, detail=f"Save failed: {str(e)}")
+        
+        @self.app.post("/api/universe/validate-seed")
+        async def validate_seed(
+            seed: int = Query(..., description="Seed to validate"),
+            expected_hash: str = Query(..., description="Expected universe hash"),
+        ):
+            """
+            Validate that a seed produces expected universe hash.
+            
+            Useful for verifying reproducibility and detecting divergence.
+            """
+            try:
+                from phase6d_reproducibility import UniverseReplayer, UniverseExporter
+                
+                # Replay universe
+                replayer = UniverseReplayer()
+                replay_config = OrchestratorConfig(
+                    seed=seed,
+                    orbits=self.orchestrator.config.orbits,
+                    realms=self.orchestrator.config.realms
+                )
+                replayed_orch = await replayer.replay_from_seed(seed, replay_config)
+                
+                # Export and compute hash
+                exporter = UniverseExporter()
+                snapshot = await exporter.export(replayed_orch)
+                
+                matches = snapshot.universe_hash == expected_hash
+                
+                logger.info(
+                    f"🔍 Seed validation: seed={seed}, "
+                    f"expected={expected_hash}, got={snapshot.universe_hash}, "
+                    f"matches={matches}"
+                )
+                
+                return {
+                    "seed": seed,
+                    "expected_hash": expected_hash,
+                    "actual_hash": snapshot.universe_hash,
+                    "validation_passed": matches,
+                    "validation_status": "PASS" if matches else "FAIL"
+                }
+            except Exception as e:
+                logger.error(f"Error validating seed: {e}")
+                raise HTTPException(status_code=500, detail=f"Validation failed: {str(e)}")
     
     def _entity_to_dict(self, entity: Entity) -> Dict[str, Any]:
         """Convert Entity to dictionary."""

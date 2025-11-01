@@ -45,7 +45,7 @@ jobs:
             bandit==1.7.5 \
             pip-audit==2.6.1 \
             safety==3.0.1 \
-            trufflehog==5.0.0
+            trufflehog==3.9.0 \
           echo "✅ Python security tools installed"
 
       - name: 🔍 Advanced Secret Scanning (TruffleHog)
