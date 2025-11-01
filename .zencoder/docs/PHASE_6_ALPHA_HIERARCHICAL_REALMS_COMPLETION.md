@@ -35,18 +35,18 @@ Located: `tests/test_phase6_hierarchical_realms.py`
 
 **Test Coverage** (32 tests across 8 test classes):
 
-| Test Class | Count | Focus |
-|-----------|-------|-------|
-| `TestTierClassification` | 3 | Enum structure, serialization |
-| `TestTierAwareRealmGeneration` | 3 | Realm spec integration |
-| `TestSubRealmTraversal` | 3 | Zoom mechanics, bitchain paths |
-| `TestTierAwareSemanticEnrichment` | 3 | Tier context in enrichments |
-| `TestNPCGenerationTierAware` | 2 | Tier-aware NPC traits & dialogue |
-| `TestTierIntegrationWithPhase5And6A` | 2 | Phase 5 orchestrator integration |
-| `TestTierRegistryIntegration` | 4 | Registry queries & statistics |
-| `TestZoomNavigatorIntegration` | 3 | Zoom mechanics validation |
-| `TestTierPersonalityGenerator` | 5 | Trait & dialogue generation |
-| `TestHierarchicalUniverseAdapter` | 4 | Full integration tests |
+| Test Class                           | Count | Focus                            |
+|--------------------------------------|-------|----------------------------------|
+| `TestTierClassification`             | 3     | Enum structure, serialization    |
+| `TestTierAwareRealmGeneration`       | 3     | Realm spec integration           |
+| `TestSubRealmTraversal`              | 3     | Zoom mechanics, bitchain paths   |
+| `TestTierAwareSemanticEnrichment`    | 3     | Tier context in enrichments      |
+| `TestNPCGenerationTierAware`         | 2     | Tier-aware NPC traits & dialogue |
+| `TestTierIntegrationWithPhase5And6A` | 2     | Phase 5 orchestrator integration |
+| `TestTierRegistryIntegration`        | 4     | Registry queries & statistics    |
+| `TestZoomNavigatorIntegration`       | 3     | Zoom mechanics validation        |
+| `TestTierPersonalityGenerator`       | 5     | Trait & dialogue generation      |
+| `TestHierarchicalUniverseAdapter`    | 4     | Full integration tests           |
 
 ---
 
@@ -220,36 +220,36 @@ export = await adapter.export_tier_structure()
 
 ## 📊 Test Coverage Analysis
 
-| Category | Tests | Pass | Coverage |
-|----------|-------|------|----------|
-| **Tier System** | 8 | 8/8 | Enums, serialization, themes |
-| **Registry** | 4 | 4/4 | Query, index, statistics |
-| **Zoom Navigation** | 6 | 6/6 | Sub-realm creation, tracking |
-| **Personality Gen** | 5 | 5/5 | Traits, dialogue, NPC meta |
-| **Universe Adapter** | 4 | 4/4 | Full integration tests |
-| **Phase 5 Integration** | 2 | 2/2 | Orchestrator, tier queries |
-| **Phase 5 Bridge** | 11 | 11/11 | Backward compatibility |
-| **TOTAL** | **43** | **43/43** | **100%** ✅ |
+| Category                | Tests  | Pass      | Coverage                     |
+|-------------------------|--------|-----------|------------------------------|
+| **Tier System**         | 8      | 8/8       | Enums, serialization, themes |
+| **Registry**            | 4      | 4/4       | Query, index, statistics     |
+| **Zoom Navigation**     | 6      | 6/6       | Sub-realm creation, tracking |
+| **Personality Gen**     | 5      | 5/5       | Traits, dialogue, NPC meta   |
+| **Universe Adapter**    | 4      | 4/4       | Full integration tests       |
+| **Phase 5 Integration** | 2      | 2/2       | Orchestrator, tier queries   |
+| **Phase 5 Bridge**      | 11     | 11/11     | Backward compatibility       |
+| **TOTAL**               | **43** | **43/43** | **100%** ✅                   |
 
 ---
 
 ## 🚀 Next Steps (Phase 6B-6D)
 
 ### Phase 6B: REST API Endpoints
-- [ ] `GET /api/realms` - List realms with tier classification
-- [ ] `GET /api/realms/{realm_id}/tier` - Get tier metadata
-- [ ] `GET /api/realms/by-tier/{tier}` - Query by tier
-- [ ] `GET /api/realms/by-theme/{theme}` - Query by theme
-- [ ] `POST /api/realms/{realm_id}/zoom` - Create sub-realm
-- [ ] `GET /api/npcs/{npc_id}/personality` - Get tier-aware personality
+- ✅ `GET /api/realms` - List realms with tier classification
+- ✅ `GET /api/realms/{realm_id}/tier` - Get tier metadata
+- ✅ `GET /api/realms/by-tier/{tier}` - Query by tier
+- ✅ `GET /api/realms/by-theme/{theme}` - Query by theme
+- ✅ `POST /api/realms/{realm_id}/zoom` - Create sub-realm
+- ✅ `GET /api/npcs/{npc_id}/personality` - Get tier-aware personality
 
 ### Phase 6C: Interactive Dashboard
-- [ ] Tier selector dropdown (Celestial/Terran/Subterran)
-- [ ] Theme browser within each tier
-- [ ] Realm list with tier badges
-- [ ] NPC personality viewer (tier-aware traits)
-- [ ] Sub-realm zoom visualization
-- [ ] Semantic anchor search
+- ✅ Tier selector dropdown (Celestial/Terran/Subterran)
+- ✅ Theme browser within each tier
+- ✅ Realm list with tier badges
+- ✅ NPC personality viewer (tier-aware traits)
+- ✅ Sub-realm zoom visualization
+- ✅ Semantic anchor search
 
 ### Phase 6D: Reproducibility & Export
 - [ ] Universe seed in response headers

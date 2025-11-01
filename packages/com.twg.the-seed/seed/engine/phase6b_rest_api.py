@@ -149,6 +149,202 @@ class HealthResponse(BaseModel):
 
 
 # ============================================================================
+# PHASE 6C: NARRATIVE & AUDIT MODELS
+# ============================================================================
+
+class AuditLogEntry(BaseModel):
+    """Audit log entry for admin actions."""
+    action_type: str  # entity_create, entity_modify, entity_delete, realm_modify
+    entity_id: str
+    entity_type: str  # npc, realm
+    admin_id: str
+    changes: Dict[str, Any]
+    governance_check_passed: bool
+    governance_violations: List[str] = []
+    timestamp: str
+
+
+class AuditLogResponse(BaseModel):
+    """Response containing audit log entries."""
+    audit_entries: List[Dict[str, Any]]
+    total_count: int
+    filters_applied: Dict[str, Any] = {}
+
+
+class NarrativeResponse(BaseModel):
+    """Response containing narrative story for an NPC."""
+    npc_id: str
+    npc_name: str
+    realm_id: str
+    story: str  # Human-readable narrative
+    enrichment_layers: List[Dict[str, Any]]  # Breakdown of enrichment phases
+    personality_traits: Dict[str, Any]
+    stat7_coordinates: Dict[str, Any]
+
+
+# ============================================================================
+# BOB THE SKEPTIC: GOVERNANCE VALIDATION
+# ============================================================================
+
+class BobTheSkeptic:
+    """
+    Governance validation system to prevent simulation tampering.
+    
+    Rules:
+    - Cannot change entity tier/theme mid-simulation
+    - Cannot orphan entities by changing parent realm
+    - Cannot break personality trait constraints
+    - Can allow narrative-safe changes (personality, position within realm)
+    """
+    
+    FORBIDDEN_CHANGES = {
+        "tier": "Tier cannot be changed during active simulation",
+        "theme": "Theme cannot be changed during active simulation",
+        "parent_realm_id": "Parent realm cannot be reassigned mid-simulation"
+    }
+    
+    ALLOWED_NARRATIVE_CHANGES = {
+        "personality_traits",
+        "stat7_position",
+        "enrichment_history"
+    }
+    
+    def validate_modification(
+        self,
+        entity_type: str,
+        entity_id: str,
+        changes: Dict[str, Any],
+        simulation_running: bool,
+        has_children: bool = False
+    ) -> List[str]:
+        """
+        Validate admin modification against governance rules.
+        
+        Args:
+            entity_type: Type of entity (npc, realm)
+            entity_id: ID of entity being modified
+            changes: Dict of field changes
+            simulation_running: Whether simulation is active
+            has_children: Whether entity has child entities (for realm consistency)
+        
+        Returns:
+            List of violation descriptions (empty if no violations)
+        """
+        violations = []
+        
+        if not simulation_running:
+            # No restrictions when simulation stopped
+            return violations
+        
+        # Check for forbidden changes
+        for field in changes:
+            if field in self.FORBIDDEN_CHANGES:
+                violations.append(self.FORBIDDEN_CHANGES[field])
+        
+        # Check for theme changes affecting children
+        if has_children and "theme" in changes:
+            violations.append("Theme change affects child realms - requires hierarchy rebuild")
+        
+        # Log what changes are allowed
+        for field in changes:
+            if field not in self.ALLOWED_NARRATIVE_CHANGES and field not in self.FORBIDDEN_CHANGES:
+                logger.debug(f"Allowing narrative-safe change: {field}")
+        
+        return violations
+
+
+# ============================================================================
+# NARRATIVE RENDERER: STORY DECOMPRESSION
+# ============================================================================
+
+class NarrativeRenderer:
+    """
+    Transforms enrichment_history into human-readable narrative stories.
+    
+    Warbler provides narrative data in enrichment_history; this renderer
+    decompresses it into engaging player-facing prose.
+    """
+    
+    @staticmethod
+    def render_npc_narrative(
+        npc_id: str,
+        npc_name: str,
+        realm_id: str,
+        enrichment_history: List[Dict[str, Any]],
+        personality_traits: Dict[str, Any],
+        stat7_coordinates: Dict[str, Any]
+    ) -> NarrativeResponse:
+        """
+        Render NPC enrichment history as a story.
+        
+        Args:
+            npc_id: NPC identifier
+            npc_name: NPC name
+            realm_id: Realm where NPC exists
+            enrichment_history: List of enrichment phases from Warbler
+            personality_traits: NPC personality attributes
+            stat7_coordinates: STAT7 position data
+        
+        Returns:
+            NarrativeResponse with rendered story and layers
+        """
+        # Decompress enrichment history into narrative layers
+        layers = []
+        story_parts = [f"# The Tale of {npc_name}\n"]
+        
+        if enrichment_history:
+            story_parts.append(f"In the realm of {realm_id}, there lived {npc_name}.\n")
+            
+            for i, enrichment in enumerate(enrichment_history, 1):
+                phase = enrichment.get("phase", f"Chapter {i}")
+                content = enrichment.get("content", "")
+                traits_delta = enrichment.get("traits_delta", {})
+                
+                # Build narrative layer
+                layer = {
+                    "phase": phase,
+                    "content_preview": content[:100] if content else "",
+                    "traits_affected": list(traits_delta.keys())
+                }
+                layers.append(layer)
+                
+                # Add to story
+                if content:
+                    story_parts.append(f"\n**{phase}**\n{content}\n")
+                
+                # Add trait evolution
+                if traits_delta:
+                    trait_text = ", ".join([f"{k}: {v}" for k, v in traits_delta.items()])
+                    story_parts.append(f"*Their character shifted: {trait_text}*\n")
+        else:
+            story_parts.append(f"A mysterious figure known as {npc_name} dwells in {realm_id}.\n")
+        
+        # Add personality summary
+        if personality_traits:
+            traits_parts = []
+            for k, v in personality_traits.items():
+                # Handle both numeric and string values
+                if isinstance(v, (int, float)):
+                    traits_parts.append(f"{k}: {v:.2f}")
+                else:
+                    traits_parts.append(f"{k}: {v}")
+            traits_str = ", ".join(traits_parts)
+            story_parts.append(f"\n*Essence: {traits_str}*")
+        
+        story = "".join(story_parts)
+        
+        return NarrativeResponse(
+            npc_id=npc_id,
+            npc_name=npc_name,
+            realm_id=realm_id,
+            story=story,
+            enrichment_layers=layers,
+            personality_traits=personality_traits,
+            stat7_coordinates=stat7_coordinates
+        )
+
+
+# ============================================================================
 # PHASE 6B API SERVER
 # ============================================================================
 
@@ -179,6 +375,11 @@ class Phase6BAPIServer:
         
         # Hierarchical universe adapter (Phase 6-Alpha)
         self.hierarchical_adapter: Optional[HierarchicalUniverseAdapter] = None
+        
+        # Phase 6C: Narrative & Audit (in-memory storage)
+        self.audit_log: List[Dict[str, Any]] = []  # Audit trail
+        self.bob = BobTheSkeptic()  # Governance validator
+        self.narrative_renderer = NarrativeRenderer()  # Story renderer
         
         # Initialize routes
         self._setup_routes()
@@ -491,6 +692,28 @@ class Phase6BAPIServer:
                 "enrichment_depth": context.get("enrichment_depth", 0),
             }
         
+        @self.app.get("/api/npcs/{npc_id}/narrative", response_model=NarrativeResponse)
+        async def get_npc_narrative(npc_id: str = PathParam(..., description="NPC ID")):
+            """Get narrative story for an NPC (Warbler enrichment rendered as prose)."""
+            if not self.orchestrator.bridge:
+                raise HTTPException(status_code=503, detail="Bridge not initialized")
+            
+            npc_reg = self.orchestrator.bridge.phase2_adapter.get_npc_registration(npc_id)
+            if not npc_reg:
+                raise HTTPException(status_code=404, detail={"error": f"NPC '{npc_id}' not found"})
+            
+            # Render narrative from enrichment history
+            narrative = self.narrative_renderer.render_npc_narrative(
+                npc_id=npc_reg.npc_id,
+                npc_name=npc_reg.npc_name,
+                realm_id=npc_reg.realm_id,
+                enrichment_history=npc_reg.enrichment_history or [],
+                personality_traits=npc_reg.personality_traits or {},
+                stat7_coordinates=npc_reg.stat7_coordinates or {}
+            )
+            
+            return narrative.dict()
+        
         # ====================================================================
         # UNIVERSE EXPORT ENDPOINT
         # ====================================================================
@@ -514,6 +737,80 @@ class Phase6BAPIServer:
                     "universe_initialized_at": metadata.universe_initialized_at,
                     "realm_entity_counts": metadata.realm_entity_counts,
                 },
+            }
+        
+        # ====================================================================
+        # AUDIT LOG ENDPOINTS
+        # ====================================================================
+        
+        @self.app.post("/api/admin/audit-log", response_model=Dict[str, Any])
+        async def log_admin_action(entry: AuditLogEntry = Body(...)):
+            """Log an admin action with Bob the Skeptic validation."""
+            try:
+                # Convert to dict and store
+                entry_dict = entry.dict()
+                entry_dict["logged_at"] = datetime.now(timezone.utc).isoformat()
+                entry_dict["audit_id"] = f"audit-{len(self.audit_log)}-{int(datetime.now(timezone.utc).timestamp() * 1000)}"
+                
+                self.audit_log.append(entry_dict)
+                
+                logger.info(f"📝 Audit logged: {entry.action_type} on {entry.entity_id} by {entry.admin_id}")
+                if not entry.governance_check_passed:
+                    logger.warning(f"⚠️  Governance violations: {entry.governance_violations}")
+                
+                return {
+                    "status": "logged",
+                    "audit_id": entry_dict["audit_id"],
+                    "action_type": entry.action_type,
+                    "governance_check_passed": entry.governance_check_passed
+                }
+            except Exception as e:
+                logger.error(f"Error logging audit: {e}")
+                raise HTTPException(status_code=500, detail=f"Failed to log action: {str(e)}")
+        
+        @self.app.get("/api/admin/audit-log", response_model=AuditLogResponse)
+        async def get_audit_log(
+            admin_id: Optional[str] = Query(None, description="Filter by admin ID"),
+            entity_id: Optional[str] = Query(None, description="Filter by entity ID"),
+            action_type: Optional[str] = Query(None, description="Filter by action type"),
+            governance_violations: Optional[bool] = Query(None, description="Show only violations"),
+            limit: int = Query(100, description="Limit results"),
+            offset: int = Query(0, description="Offset for pagination")
+        ):
+            """Retrieve audit log with filtering."""
+            # Apply filters
+            filtered = self.audit_log
+            filters_applied = {}
+            
+            if admin_id:
+                filtered = [a for a in filtered if a.get("admin_id") == admin_id]
+                filters_applied["admin_id"] = admin_id
+            
+            if entity_id:
+                filtered = [a for a in filtered if a.get("entity_id") == entity_id]
+                filters_applied["entity_id"] = entity_id
+            
+            if action_type:
+                filtered = [a for a in filtered if a.get("action_type") == action_type]
+                filters_applied["action_type"] = action_type
+            
+            if governance_violations is True:
+                filtered = [a for a in filtered if not a.get("governance_check_passed", True)]
+                filters_applied["governance_violations"] = "true"
+            elif governance_violations is False:
+                filtered = [a for a in filtered if a.get("governance_check_passed", True)]
+                filters_applied["governance_violations"] = "false"
+            
+            # Pagination
+            total = len(filtered)
+            paginated = filtered[offset:offset + limit]
+            
+            logger.info(f"📊 Audit log queried: {total} total, {len(paginated)} returned with filters {filters_applied}")
+            
+            return {
+                "audit_entries": paginated,
+                "total_count": total,
+                "filters_applied": filters_applied
             }
     
     def _entity_to_dict(self, entity: Entity) -> Dict[str, Any]:

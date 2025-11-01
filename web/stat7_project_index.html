@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAT7 Project Index Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .stat7-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .stat7-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .realm-faculty { border-left-color: #f39c12; }
+        .realm-pattern { border-left-color: #2ecc71; }
+        .realm-companion { border-left-color: #e74c3c; }
+        .realm-achievement { border-left-color: #3498db; }
+        .realm-sponsor_ring { border-left-color: #9b59b6; }
+        .realm-void { border-left-color: #34495e; }
+
+        .complexity-low { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .complexity-medium { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .complexity-high { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+        .search-highlight {
+            background-color: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">🌌 STAT7 Project Index</h1>
+            <p class="text-gray-600">Living project visualization with intent tracking and STAT7 coordinates</p>
+        </header>
+
+        <!-- Controls -->
+        <section class="mb-8 bg-white rounded-lg shadow p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Search -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Search Files</label>
+                    <input type="text" id="searchInput" placeholder="Search by intent, purpose, or filename..."
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Filter by Category -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Category</label>
+                    <select id="categoryFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">All Categories</option>
+                        <option value="code">Code</option>
+                        <option value="config">Configuration</option>
+                        <option value="documentation">Documentation</option>
+                        <option value="test">Tests</option>
+                        <option value="asset">Assets</option>
+                    </select>
+                </div>
+
+                <!-- Filter by Realm -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Filter by STAT7 Realm</label>
+                    <select id="realmFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">All Realms</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="pattern">Pattern</option>
+                        <option value="companion">Companion</option>
+                        <option value="achievement">Achievement</option>
+                        <option value="sponsor_ring">Sponsor Ring</option>
+                        <option value="void">Void</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4 flex gap-2">
+                <button id="refreshBtn" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+                    🔄 Refresh Index
+                </button>
+                <button id="watchBtn" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
+                    👁️ Start Watching
+                </button>
+                <button id="exportBtn" class="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition">
+                    📊 Export Stats
+                </button>
+            </div>
+        </section>
+
+        <!-- Statistics Overview -->
+        <section class="mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">📁 Total Files</h3>
+                    <p id="totalFiles" class="text-3xl font-bold text-blue-600">0</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">🎯 With Intent</h3>
+                    <p id="filesWithIntent" class="text-3xl font-bold text-green-600">0</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">🔗 Connections</h3>
+                    <p id="totalConnections" class="text-3xl font-bold text-purple-600">0</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">🧠 Avg Complexity</h3>
+                    <p id="avgComplexity" class="text-3xl font-bold text-orange-600">0.0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts -->
+        <section class="mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Files by Category</h3>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Files by STAT7 Realm</h3>
+                    <canvas id="realmChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- File List -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">📄 File Index</h2>
+            <div id="fileList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- File cards will be inserted here -->
+            </div>
+        </section>
+
+        <!-- File Details Modal -->
+        <div id="fileModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+            <div class="flex items-center justify-center min-h-screen p-4">
+                <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 id="modalTitle" class="text-xl font-bold text-gray-800"></h3>
+                            <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                        </div>
+                        <div id="modalContent">
+                            <!-- Modal content will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let projectData = {
+            files: [],
+            stats: {},
+            isWatching: false
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProjectData();
+            setupEventListeners();
+            updateVisualization();
+        });
+
+        // Load project data from backend
+        async function loadProjectData() {
+            try {
+                const response = await fetch('/api/project/stats');
+                if (response.ok) {
+                    projectData = await response.json();
+                } else {
+                    // Fallback to demo data
+                    projectData = generateDemoData();
+                }
+            } catch (error) {
+                console.error('Error loading project data:', error);
+                projectData = generateDemoData();
+            }
+        }
+
+        // Generate demo data for testing
+        function generateDemoData() {
+            return {
+                files: [
+                    {
+                        entity_id: '1',
+                        file_path: 'src/main.py',
+                        file_category: 'code',
+                        stat7: {
+                            address: 'STAT7-F-001-50-E-75-L-2',
+                            realm: 'faculty',
+                            horizon: 'emergence',
+                            luminosity: 75,
+                            polarity: 'logic',
+                            dimensionality: 2
+                        },
+                        intent: {
+                            primary_intent: 'Main application entry point',
+                            purpose: 'Initialize and start the application',
+                            complexity_score: 0.6
+                        },
+                        metrics: {
+                            line_count: 150,
+                            function_count: 8,
+                            class_count: 2
+                        },
+                        imports_files: ['src/config.py', 'src/database.py'],
+                        imported_by_files: []
+                    },
+                    {
+                        entity_id: '2',
+                        file_path: 'src/config.py',
+                        file_category: 'config',
+                        stat7: {
+                            address: 'STAT7-P-002-45-G-60-O-1',
+                            realm: 'pattern',
+                            horizon: 'genesis',
+                            luminosity: 60,
+                            polarity: 'order',
+                            dimensionality: 1
+                        },
+                        intent: {
+                            primary_intent: 'Configuration management',
+                            purpose: 'Load and manage application configuration',
+                            complexity_score: 0.3
+                        },
+                        metrics: {
+                            line_count: 80,
+                            function_count: 4,
+                            class_count: 1
+                        },
+                        imports_files: [],
+                        imported_by_files: ['src/main.py', 'src/database.py']
+                    },
+                    {
+                        entity_id: '3',
+                        file_path: 'tests/test_main.py',
+                        file_category: 'test',
+                        stat7: {
+                            address: 'STAT7-A-003-70-E-55-A-3',
+                            realm: 'achievement',
+                            horizon: 'emergence',
+                            luminosity: 55,
+                            polarity: 'achievement',
+                            dimensionality: 3
+                        },
+                        intent: {
+                            primary_intent: 'Test main application functionality',
+                            purpose: 'Unit tests for core application features',
+                            complexity_score: 0.4
+                        },
+                        metrics: {
+                            line_count: 120,
+                            function_count: 6,
+                            class_count: 1
+                        },
+                        imports_files: ['src/main.py'],
+                        imported_by_files: []
+                    }
+                ],
+                stats: {
+                    total_files: 3,
+                    by_category: { code: 1, config: 1, test: 1 },
+                    by_realm: { faculty: 1, pattern: 1, achievement: 1 },
+                    avg_complexity: 0.43
+                }
+            };
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search
+            document.getElementById('searchInput').addEventListener('input', filterFiles);
+
+            // Filters
+            document.getElementById('categoryFilter').addEventListener('change', filterFiles);
+            document.getElementById('realmFilter').addEventListener('change', filterFiles);
+
+            // Buttons
+            document.getElementById('refreshBtn').addEventListener('click', refreshIndex);
+            document.getElementById('watchBtn').addEventListener('click', toggleWatching);
+            document.getElementById('exportBtn').addEventListener('click', exportStats);
+
+            // Modal
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            document.getElementById('fileModal').addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+        }
+
+        // Update visualization
+        function updateVisualization() {
+            updateStatistics();
+            updateCharts();
+            renderFileList();
+        }
+
+        // Update statistics cards
+        function updateStatistics() {
+            const stats = projectData.stats;
+            document.getElementById('totalFiles').textContent = stats.total_files || 0;
+
+            const filesWithIntent = projectData.files.filter(f => f.intent && f.intent.primary_intent).length;
+            document.getElementById('filesWithIntent').textContent = filesWithIntent;
+
+            const totalConnections = projectData.files.reduce((sum, f) =>
+                sum + (f.imports_files?.length || 0) + (f.imported_by_files?.length || 0), 0);
+            document.getElementById('totalConnections').textContent = totalConnections;
+
+            const avgComplexity = stats.avg_complexity || 0;
+            document.getElementById('avgComplexity').textContent = avgComplexity.toFixed(2);
+        }
+
+        // Update charts
+        function updateCharts() {
+            // Category chart
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(projectData.stats.by_category || {}),
+                    datasets: [{
+                        data: Object.values(projectData.stats.by_category || {}),
+                        backgroundColor: [
+                            '#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#6B7280'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Realm chart
+            const realmCtx = document.getElementById('realmChart').getContext('2d');
+            new Chart(realmCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(projectData.stats.by_realm || {}),
+                    datasets: [{
+                        data: Object.values(projectData.stats.by_realm || {}),
+                        backgroundColor: [
+                            '#F59E0B', '#10B981', '#EF4444', '#3B82F6', '#8B5CF6', '#6B7280'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        // Render file list
+        function renderFileList() {
+            const fileList = document.getElementById('fileList');
+            const filteredFiles = getFilteredFiles();
+
+            fileList.innerHTML = '';
+
+            filteredFiles.forEach(file => {
+                const card = createFileCard(file);
+                fileList.appendChild(card);
+            });
+        }
+
+        // Create file card element
+        function createFileCard(file) {
+            const card = document.createElement('div');
+            card.className = `stat7-card bg-white rounded-lg shadow p-4 cursor-pointer realm-${file.stat7.realm}`;
+
+            const complexityClass = file.intent.complexity_score < 0.3 ? 'complexity-low' :
+                                 file.intent.complexity_score < 0.7 ? 'complexity-medium' : 'complexity-high';
+
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-semibold text-gray-800 truncate">${file.file_path.split('/').pop()}</h4>
+                    <span class="text-xs px-2 py-1 rounded-full text-white ${complexityClass}">
+                        ${(file.intent.complexity_score * 100).toFixed(0)}%
+                    </span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2 truncate">${file.file_path}</p>
+                <div class="text-xs text-gray-500 mb-2">
+                    <span class="mr-2">📁 ${file.file_category}</span>
+                    <span>🌌 ${file.stat7.realm}</span>
+                </div>
+                <div class="text-xs text-gray-700 bg-gray-100 rounded p-2">
+                    ${file.intent.primary_intent || 'No intent specified'}
+                </div>
+                <div class="mt-2 text-xs text-gray-500">
+                    <code class="bg-gray-200 px-1 rounded">${file.stat7.address}</code>
+                </div>
+            `;
+
+            card.addEventListener('click', () => showFileDetails(file));
+            return card;
+        }
+
+        // Filter files based on search and filters
+        function getFilteredFiles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const realmFilter = document.getElementById('realmFilter').value;
+
+            return projectData.files.filter(file => {
+                // Search filter
+                if (searchTerm && !matchesSearch(file, searchTerm)) {
+                    return false;
+                }
+
+                // Category filter
+                if (categoryFilter && file.file_category !== categoryFilter) {
+                    return false;
+                }
+
+                // Realm filter
+                if (realmFilter && file.stat7.realm !== realmFilter) {
+                    return false;
+                }
+
+                return true;
+            });
+        }
+
+        // Check if file matches search term
+        function matchesSearch(file, searchTerm) {
+            return file.file_path.toLowerCase().includes(searchTerm) ||
+                   (file.intent.primary_intent && file.intent.primary_intent.toLowerCase().includes(searchTerm)) ||
+                   (file.intent.purpose && file.intent.purpose.toLowerCase().includes(searchTerm));
+        }
+
+        // Filter files
+        function filterFiles() {
+            renderFileList();
+        }
+
+        // Show file details modal
+        function showFileDetails(file) {
+            const modal = document.getElementById('fileModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+
+            modalTitle.textContent = file.file_path;
+
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <!-- Basic Info -->
+                    <div>
+                        <h4 class="font-semibold text-gray-700 mb-2">📋 Basic Information</h4>
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div><strong>Path:</strong> ${file.file_path}</div>
+                            <div><strong>Category:</strong> ${file.file_category}</div>
+                            <div><strong>Lines:</strong> ${file.metrics.line_count}</div>
+                            <div><strong>Functions:</strong> ${file.metrics.function_count}</div>
+                        </div>
+                    </div>
+
+                    <!-- STAT7 Coordinates -->
+                    <div>
+                        <h4 class="font-semibold text-gray-700 mb-2">🌌 STAT7 Coordinates</h4>
+                        <div class="bg-gray-100 rounded p-3 text-sm">
+                            <div><strong>Address:</strong> <code>${file.stat7.address}</code></div>
+                            <div><strong>Realm:</strong> ${file.stat7.realm}</div>
+                            <div><strong>Horizon:</strong> ${file.stat7.horizon}</div>
+                            <div><strong>Luminosity:</strong> ${file.stat7.luminosity}</div>
+                            <div><strong>Polarity:</strong> ${file.stat7.polarity}</div>
+                            <div><strong>Dimensionality:</strong> ${file.stat7.dimensionality}</div>
+                        </div>
+                    </div>
+
+                    <!-- Intent -->
+                    <div>
+                        <h4 class="font-semibold text-gray-700 mb-2">🎯 Intent & Purpose</h4>
+                        <div class="bg-blue-50 rounded p-3 text-sm">
+                            <div><strong>Primary Intent:</strong> ${file.intent.primary_intent || 'Not specified'}</div>
+                            <div><strong>Purpose:</strong> ${file.intent.purpose || 'Not specified'}</div>
+                            <div><strong>Complexity Score:</strong> ${file.intent.complexity_score.toFixed(2)}</div>
+                        </div>
+                    </div>
+
+                    <!-- Relationships -->
+                    <div>
+                        <h4 class="font-semibold text-gray-700 mb-2">🔗 Relationships</h4>
+                        <div class="text-sm">
+                            <div><strong>Imports:</strong> ${file.imports_files?.join(', ') || 'None'}</div>
+                            <div><strong>Imported By:</strong> ${file.imported_by_files?.join(', ') || 'None'}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('fileModal').classList.add('hidden');
+        }
+
+        // Refresh index
+        async function refreshIndex() {
+            const btn = document.getElementById('refreshBtn');
+            btn.disabled = true;
+            btn.textContent = '🔄 Refreshing...';
+
+            try {
+                await loadProjectData();
+                updateVisualization();
+            } catch (error) {
+                console.error('Error refreshing index:', error);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🔄 Refresh Index';
+            }
+        }
+
+        // Toggle watching
+        function toggleWatching() {
+            const btn = document.getElementById('watchBtn');
+            projectData.isWatching = !projectData.isWatching;
+
+            if (projectData.isWatching) {
+                btn.textContent = '⏹️ Stop Watching';
+                btn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                btn.classList.add('bg-red-500', 'hover:bg-red-600');
+            } else {
+                btn.textContent = '👁️ Start Watching';
+                btn.classList.remove('bg-red-500', 'hover:bg-red-600');
+                btn.classList.add('bg-green-500', 'hover:bg-green-600');
+            }
+        }
+
+        // Export statistics
+        function exportStats() {
+            const stats = projectData.stats;
+            const dataStr = JSON.stringify(stats, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'stat7_project_stats.json';
+            link.click();
+
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
