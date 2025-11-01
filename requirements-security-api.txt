@@ -1,0 +1,79 @@
+# Phase 6B REST API Security Requirements
+# Install with: pip install -r requirements-security-api.txt
+# Last updated: 2025-11-01
+
+# ============================================================================
+# FastAPI & Web Framework
+# ============================================================================
+
+fastapi>=0.100.0          # Modern async web framework
+uvicorn[standard]>=0.22.0 # ASGI server
+pydantic>=2.0             # Data validation
+
+# ============================================================================
+# Authentication & Security
+# ============================================================================
+
+PyJWT>=2.8.0              # JWT token creation/verification
+python-jose[cryptography]>=3.3.0  # JWT handling with cryptography
+cryptography>=41.0.0      # Cryptographic recipes and primitives
+bcrypt>=4.0.0             # Password hashing (for future user auth DB)
+
+# ============================================================================
+# CORS & Security Headers
+# ============================================================================
+
+python-cors>=1.4.0        # CORS middleware
+# Note: CORS and TrustedHost middleware are built into FastAPI
+
+# ============================================================================
+# Testing & Quality Assurance
+# ============================================================================
+
+pytest>=7.0               # Testing framework
+pytest-asyncio>=0.21.0    # Async test support
+pytest-cov>=4.0           # Coverage reporting
+httpx>=0.24.0             # Async HTTP client for testing
+pytest-json-report>=1.5.0 # JSON test reports
+
+# ============================================================================
+# Static Analysis & Security Scanning
+# ============================================================================
+
+bandit[toml]>=1.7.5       # Python security linter
+semgrep>=1.60.0           # Multi-language security scanner
+pip-audit>=2.9.0          # Python dependency audit
+
+# ============================================================================
+# Logging & Monitoring (Optional - for production)
+# ============================================================================
+
+# python-json-logger>=2.0   # JSON structured logging
+# sentry-sdk>=1.30.0        # Error tracking
+# prometheus-client>=0.17.0 # Metrics collection
+
+# ============================================================================
+# Environment & Configuration
+# ============================================================================
+
+python-dotenv>=1.0.0      # Load environment variables from .env
+PyYAML>=6.0               # YAML parsing (for config files)
+
+# ============================================================================
+# Development Tools (Optional)
+# ============================================================================
+
+black>=23.0               # Code formatter
+isort>=5.12.0             # Import sorter
+pylint>=2.17.0            # Code linter
+mypy>=1.0                 # Static type checker
+
+# ============================================================================
+# Production ONLY Dependencies
+# ============================================================================
+# Uncomment these for production deployment:
+
+# gunicorn>=20.1.0         # Production WSGI server
+# python-multipart>=0.0.6  # Multipart form support
+# slowapi>=0.1.8           # Rate limiting
+# sqlalchemy>=2.0          # Database ORM (when using persistent storage)
