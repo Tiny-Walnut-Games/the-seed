@@ -47,7 +47,7 @@ def find_free_port(start_port=8000):
 
 def main():
     """Simple launcher."""
-    print("🚀 STAT7 Visualization Launcher")
+    print("[STAT7] Visualization Launcher")
     print("=" * 40)
 
     # Change to web directory for file checks
@@ -58,33 +58,33 @@ def main():
     required_files = ['stat7threejs.html', 'server/stat7wsserve.py']
     for file in required_files:
         if not os.path.exists(file):
-            print(f"❌ Required file not found: {file}")
+            print(f"[ERROR] Required file not found: {file}")
             return
 
     # Find free port
     port = find_free_port()
     if not port:
-        print("❌ Could not find a free port")
+        print("[ERROR] Could not find a free port")
         return
 
-    print(f"🌐 Starting web server on port {port}...")
+    print(f"[STAT7] Starting web server on port {port}...")
 
     # Start HTTP server
     try:
         with socketserver.TCPServer(("", port), CustomHandler) as httpd:
             url = f"http://localhost:{port}/stat7threejs.html"
-            print(f"✅ Web server started!")
-            print(f"📊 Open your browser to: {url}")
+            print(f"[OK] Web server started!")
+            print(f"[INFO] Open your browser to: {url}")
 
             # Open browser
             try:
                 webbrowser.open(url)
-                print("🌐 Opening browser automatically...")
+                print("[STAT7] Opening browser automatically...")
             except:
-                print("⚠️ Could not open browser automatically")
+                print("[WARN] Could not open browser automatically")
 
             print("\n" + "=" * 40)
-            print("📋 Next Steps:")
+            print("[INFO] Next Steps:")
             print(f"1. Your browser should open to: {url}")
             print("2. In a SEPARATE terminal, run:")
             print("   python stat7wsserve.py")
@@ -96,9 +96,9 @@ def main():
             httpd.serve_forever()
 
     except KeyboardInterrupt:
-        print("\n👋 Web server stopped")
+        print("\n[OK] Web server stopped")
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"[ERROR] Error: {e}")
 
 if __name__ == "__main__":
     main()

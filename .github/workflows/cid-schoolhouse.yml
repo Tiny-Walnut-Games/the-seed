@@ -62,7 +62,8 @@ jobs:
         run: node "packages/com.twg.the-seed/The Living Dev Agent/scripts/cid-schoolhouse/tldl.js" --report=out/cid/report.json --out=/tmp/scroll-entry.json
 
       - name: Write TLDL via Chronicle Keeper
-        run: "./packages/com.twg.the-seed/The Living Dev Agent/scripts/chronicle-keeper/tldl-writer.sh" write /tmp/scroll-entry.json --verbose --force
+        run: |
+          ./packages/com.twg.the-seed/The\ Living\ Dev\ Agent/scripts/chronicle-keeper/tldl-writer.sh write /tmp/scroll-entry.json --verbose --force
 
       - name: Stamp CID badges on issue
         env:

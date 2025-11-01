@@ -1,0 +1,35 @@
+# Security Testing Environment
+# Includes all system dependencies required for security scanning tools
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Install system dependencies required by lxml and other security tools
+RUN apt-get update && apt-get install -y \
+    libxml2-dev \
+    libxslt1-dev \
+    python3-dev \
+    build-essential \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy security requirements
+COPY scripts/security-requirements.txt .
+
+# Install Python security tools
+RUN pip install --no-cache-dir -r security-requirements.txt && \
+    pip check && \
+    echo "✅ All security tools installed successfully"
+
+# Verify tool versions
+RUN bandit --version && \
+    pip-audit --version && \
+    safety --version && \
+    trufflehog --version && \
+    semgrep --version
+
+# Set working directory
+WORKDIR /code
+
+# Default command
+CMD ["bash"]

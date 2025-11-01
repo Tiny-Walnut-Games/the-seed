@@ -1,48 +1,53 @@
-## 🎭 Warbler Impact Classification
+## 🎭 Change Impact Classification
 
 <!-- Please check one box to indicate the impact of your changes -->
 
-- [ ] **Engine Changes** - Modifications to warbler-core runtime (types, algorithms, APIs)
-- [ ] **Content-Only Changes** - Template additions/modifications in content packs
-- [ ] **Tooling Changes** - Updates to validation or simulation scripts
+- [ ] **TLDA (Unity) Changes** - Unity game engine components, editor tools, or mechanics
+- [ ] **Seed (Python) Changes** - STAT7 backend, AI components, or Python infrastructure
+- [ ] **Bridge Changes** - WebSocket protocols, Unity↔Python communication, or data bridges
 - [ ] **Documentation** - README, comments, or guides updates only
 - [ ] **CI/CD Changes** - Workflow, automation, or build configuration
 - [ ] **Other** - Please describe: _______________
 
-## 📋 Warbler Validation Checklist
+## 📋 Validation Checklist
 
-<!-- Check all items that apply to ensure Dependabot + RitualBot flows remain consistent -->
+<!-- Check all items that apply to ensure quality and consistency -->
 
-### For Engine Changes (warbler-core)
-- [ ] All existing unit tests pass
-- [ ] New functionality includes appropriate tests
+### For TLDA (Unity) Changes
+- [ ] Unity Test Runner passes all relevant tests
+- [ ] New components include appropriate unit tests
 - [ ] API changes maintain backward compatibility (or are marked as breaking)
-- [ ] TypeScript types are properly exported and documented
-- [ ] README reflects any API changes
+- [ ] Unity console shows no errors or warnings
+- [ ] Build process completes successfully for target platforms
 
-### For Content Pack Changes
-- [ ] Templates validate successfully with `npm run pack:validate`
-- [ ] All required slots are properly documented
-- [ ] Template IDs are unique within the pack
-- [ ] Content length limits are respected (≤400 chars recommended)
-- [ ] Semantic versioning follows content-specific conventions:
-  - Major: Breaking template contract changes
-  - Minor: New templates (additive)
-  - Patch: Content improvements, typo fixes
+### For Seed (Python) Changes
+- [ ] All existing pytest tests pass
+- [ ] New functionality includes appropriate tests
+- [ ] Code follows Python PEP 8 style guidelines
+- [ ] Dependencies are properly declared in requirements files
+- [ ] STAT7 experiments validate successfully
+
+### For Bridge Changes
+- [ ] WebSocket communication protocols work correctly
+- [ ] Unity↔Python data bridges pass integration tests
+- [ ] JSON schema contracts are maintained
+- [ ] Real-time event streaming functions properly
+- [ ] Cross-system compatibility verified
 
 ### For All Changes
-- [ ] Warbler simulation runs successfully (`npm run warbler:simulate`)
-- [ ] Build process completes without errors (`npm run build`)
-- [ ] No TypeScript compilation errors
+- [ ] Build process completes without errors
+- [ ] No compilation errors in any affected system
 - [ ] Changes follow existing code style and conventions
+- [ ] Documentation is updated where necessary
 
 ## 🔄 Dependency Impact
 
-<!-- Check if this PR affects dependency management or auto-merge flows -->
+<!-- Check if this PR affects dependency management -->
 
-- [ ] Changes affect package.json dependencies
-- [ ] Updates require Dependabot configuration changes
-- [ ] Changes may impact auto-merge criteria for RitualBot Phase 0
+- [ ] Changes affect Unity package dependencies
+- [ ] Changes affect Python pip/conda dependencies
+- [ ] Updates require CI/CD configuration changes
+- [ ] Changes may affect cross-system compatibility
 - [ ] None of the above
 
 ## 📝 Description
@@ -72,20 +77,20 @@ Related to #
 
 <!-- Describe the testing you performed -->
 
-- [ ] Manual testing of conversation flows
-- [ ] Template validation scripts
-- [ ] Unit test coverage
-- [ ] Integration testing with sample contexts
+- [ ] Unity Test Runner validation
+- [ ] Python pytest test coverage
+- [ ] Integration testing across systems
+- [ ] Manual testing of workflows
 - [ ] Performance/memory impact testing
+- [ ] Cross-system compatibility testing
 
 ## 📸 Screenshots/Examples
 
-<!-- For UI changes or new templates, include examples -->
+<!-- For UI changes, new features, or system integrations, include examples -->
 
 ```
-Example conversation output:
-User: "Hello there!"
-NPC: "Hello there, Traveler! Welcome to the bustling marketplace..."
+Example output:
+[Add relevant examples for your changes here]
 ```
 
 ## 🌟 Additional Notes
@@ -94,12 +99,13 @@ NPC: "Hello there, Traveler! Welcome to the bustling marketplace..."
 
 ---
 
-<!-- 
-This template helps maintain consistency in Warbler development and ensures 
-Dependabot + RitualBot automation flows work correctly. Thank you for contributing!
+<!--
+This template helps maintain consistency in The Seed development and ensures
+quality across all three systems (TLDA, Seed, and Bridges). Thank you for contributing!
 -->
 
 **Reviewer Notes:**
-- Content-only changes can typically be auto-merged after validation
-- Engine changes require careful review for backward compatibility
-- All changes should pass the warbler-validate workflow before merge
+- TLDA changes should focus on Unity-specific functionality
+- Seed changes should focus on Python backend and STAT7 functionality
+- Bridge changes require careful review for cross-system compatibility
+- All changes should pass appropriate validation workflows before merge

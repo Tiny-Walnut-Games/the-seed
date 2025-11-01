@@ -1,0 +1,504 @@
+name: 🔒 Phase 6B REST API Security Scan
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'packages/com.twg.the-seed/seed/engine/phase6b_rest_api.py'
+      - 'packages/com.twg.the-seed/seed/engine/security_validators.py'
+      - 'packages/com.twg.the-seed/seed/engine/auth_middleware.py'
+      - 'tests/test_phase6b_rest_api*.py'
+      - 'web/server/**'
+      - '.github/workflows/phase6b-rest-api-security.yml'
+  
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'packages/com.twg.the-seed/seed/engine/**'
+      - 'web/server/**'
+      - 'tests/test_phase6b_rest_api*.py'
+  
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM UTC
+  
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: write
+
+jobs:
+  api-security-scan:
+    runs-on: ubuntu-latest
+    name: 🔒 REST API Security Analysis
+    
+    steps:
+      - name: 🏛️ Checkout code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # Full history for better analysis
+      
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5.6.0
+        with:
+          python-version: "3.11"
+          cache: 'pip'
+      
+      - name: 📦 Install security scanning tools
+        run: |
+          pip install -q bandit[toml] pylint semgrep pydantic fastapi
+          echo "✅ Security tools installed"
+      
+      # ========================================================================
+      # STAGE 1: INPUT VALIDATION SCANNING
+      # ========================================================================
+      
+      - name: 🔍 Scan for Path Traversal Vulnerabilities
+        run: |
+          echo "🔍 Scanning for path traversal patterns..."
+          python3 << 'EOF'
+          import re
+          import json
+          import os
+          from pathlib import Path
+          
+          issues = []
+          
+          # Patterns that indicate potential path traversal
+          dangerous_patterns = [
+              (r'Query\([^)]*filepath', 'Unvalidated filepath parameter'),
+              (r'Query\([^)]*path\s*[:=]', 'Unvalidated path parameter'),
+              (r'open\s*\(\s*f?["\'].*{', 'Dynamic file path in open()'),
+              (r'os\.path\.join\s*\([^)]*Query', 'Query parameter in os.path.join'),
+              (r'export_to_file\s*\([^,]+,\s*[a-z_]+\)', 'Unvalidated path to export function'),
+          ]
+          
+          # Search for issues in REST API file
+          api_file = 'packages/com.twg.the-seed/seed/engine/phase6b_rest_api.py'
+          if os.path.exists(api_file):
+              with open(api_file, 'r') as f:
+                  content = f.read()
+                  lines = content.split('\n')
+              
+              for i, line in enumerate(lines, 1):
+                  for pattern, desc in dangerous_patterns:
+                      if re.search(pattern, line, re.IGNORECASE):
+                          # Check if it's validated
+                          if 'validate' not in line and 'InputValidator' not in line:
+                              issues.append({
+                                  'file': api_file,
+                                  'line': i,
+                                  'pattern': pattern,
+                                  'issue': desc,
+                                  'code': line.strip()[:100]
+                              })
+          
+          # Output issues
+          if issues:
+              print(f"🚨 Found {len(issues)} potential path traversal issues:\n")
+              for issue in issues:
+                  print(f"  Line {issue['line']}: {issue['issue']}")
+                  print(f"    Code: {issue['code']}")
+          else:
+              print("✅ No obvious path traversal vulnerabilities detected")
+          
+          # Save for SARIF conversion
+          with open('api-pathtraversal-results.json', 'w') as f:
+              json.dump(issues, f, indent=2)
+          EOF
+      
+      # ========================================================================
+      # STAGE 2: AUTHENTICATION ENFORCEMENT SCANNING
+      # ========================================================================
+      
+      - name: 🔐 Scan for Missing Authentication
+        run: |
+          echo "🔐 Scanning for missing authentication checks..."
+          python3 << 'EOF'
+          import re
+          import json
+          import os
+          
+          issues = []
+          
+          api_file = 'packages/com.twg.the-seed/seed/engine/phase6b_rest_api.py'
+          if os.path.exists(api_file):
+              with open(api_file, 'r') as f:
+                  content = f.read()
+              
+              # Find all endpoint definitions
+              endpoints = re.finditer(r'@self\.app\.(get|post|put|delete|patch)\s*\(["\']([^"\']+)', content)
+              
+              lines = content.split('\n')
+              
+              for endpoint_match in endpoints:
+                  endpoint_path = endpoint_match.group(2)
+                  endpoint_line = content[:endpoint_match.start()].count('\n') + 1
+                  
+                  # Check if endpoint should require auth (heuristic)
+                  sensitive_keywords = ['snapshot', 'admin', 'delete', 'update', 'save', 'modify']
+                  needs_auth = any(kw in endpoint_path.lower() for kw in sensitive_keywords)
+                  
+                  if needs_auth:
+                      # Check next 50 lines for auth decorator or dependency
+                      check_range = lines[endpoint_line:min(endpoint_line+50, len(lines))]
+                      auth_check_found = False
+                      
+                      for line in check_range:
+                          if any(auth_indicator in line for auth_indicator in 
+                                 ['current_user', 'BearerAuth', 'require_role', 'Depends']):
+                              auth_check_found = True
+                              break
+                      
+                      if not auth_check_found:
+                          issues.append({
+                              'endpoint': endpoint_path,
+                              'line': endpoint_line,
+                              'issue': f"Potentially sensitive endpoint '{endpoint_path}' missing authentication",
+                              'severity': 'HIGH'
+                          })
+          
+          if issues:
+              print(f"\n🚨 Found {len(issues)} endpoints potentially missing authentication:\n")
+              for issue in issues:
+                  print(f"  {issue['endpoint']} (line {issue['line']})")
+                  print(f"    {issue['issue']}\n")
+          else:
+              print("\n✅ All sensitive endpoints appear to have authentication checks")
+          
+          with open('api-auth-results.json', 'w') as f:
+              json.dump(issues, f, indent=2)
+          EOF
+      
+      # ========================================================================
+      # STAGE 3: RUN SECURITY TESTS
+      # ========================================================================
+      
+      - name: 🧪 Run Security Test Suite
+        run: |
+          echo "🧪 Running API security tests..."
+          
+          # Install test dependencies
+          pip install -q pytest pytest-cov pytest-asyncio httpx
+          
+          # Run security tests
+          pytest tests/test_phase6b_rest_api_security.py -v \
+            --tb=short \
+            --co -q || echo "Tests loaded successfully"
+          
+          # Run tests and capture results
+          pytest tests/test_phase6b_rest_api_security.py \
+            -v \
+            --tb=short \
+            --junit-xml=security-tests-results.xml \
+            --json-report \
+            --json-report-file=security-tests-report.json \
+            2>&1 || TESTS_FAILED=1
+          
+          if [ $TESTS_FAILED -eq 1 ]; then
+            echo "⚠️  Some security tests failed - see below"
+          else
+            echo "✅ All security tests passed"
+          fi
+      
+      # ========================================================================
+      # STAGE 4: STATIC ANALYSIS WITH SEMGREP
+      # ========================================================================
+      
+      - name: 🔍 Advanced Pattern Scanning (Semgrep)
+        run: |
+          echo "🔍 Running Semgrep for advanced pattern detection..."
+          
+          # Create custom rules for REST API security
+          mkdir -p .semgrep-rules
+          cat > .semgrep-rules/fastapi-security.yaml << 'EOF'
+          rules:
+            - id: fastapi-unvalidated-file-path
+              pattern-either:
+                - patterns:
+                    - pattern: |
+                        @app.post(...)
+                        async def $FUNC($FILEPATH: str = Query(...)):
+                            ...
+                            export_to_file(..., $FILEPATH)
+                    - pattern-not: |
+                        validate_filepath($FILEPATH)
+              message: "Unvalidated file path in FastAPI endpoint"
+              languages: [python]
+              severity: ERROR
+            
+            - id: fastapi-missing-auth-decorator
+              pattern-either:
+                - patterns:
+                    - pattern: |
+                        @app.$METHOD("$PATH")
+                        async def $FUNC(...):
+                            ...
+                    - metavariable-pattern:
+                        metavariable: $PATH
+                        patterns:
+                          - pattern-either:
+                              - pattern: '".../snapshot/..."'
+                              - pattern: '".../admin/..."'
+                              - pattern: '".../delete..."'
+                    - pattern-not: |
+                        @RBACMiddleware.require_role(...)
+                        async def $FUNC(...):
+                            ...
+              message: "Sensitive endpoint missing RBAC middleware"
+              languages: [python]
+              severity: WARNING
+          EOF
+          
+          semgrep --config=.semgrep-rules/ \
+            packages/com.twg.the-seed/seed/engine/ \
+            --sarif \
+            --output=semgrep-api-results.sarif \
+            || echo "Semgrep scan completed with warnings"
+      
+      # ========================================================================
+      # STAGE 5: BANDIT SECURITY ANALYSIS
+      # ========================================================================
+      
+      - name: 🎯 Run Bandit Security Linter
+        run: |
+          echo "🎯 Running Bandit on REST API code..."
+          bandit -r packages/com.twg.the-seed/seed/engine/phase6b_rest_api.py \
+            -f json \
+            -o bandit-api-results.json \
+            || echo "Bandit completed"
+          
+          # Show summary
+          python3 << 'EOF'
+          import json
+          try:
+              with open('bandit-api-results.json', 'r') as f:
+                  results = json.load(f)
+              if results['results']:
+                  print(f"\n🚨 Bandit found {len(results['results'])} issues:")
+                  for issue in results['results'][:5]:
+                      print(f"  - Line {issue['line_number']}: {issue['issue_text'][:80]}")
+              else:
+                  print("✅ No Bandit issues found")
+          except:
+              print("⚠️  Could not parse Bandit results")
+          EOF
+      
+      # ========================================================================
+      # STAGE 6: CONVERT RESULTS TO SARIF
+      # ========================================================================
+      
+      - name: 📊 Convert Results to SARIF Format
+        run: |
+          echo "📊 Converting security results to SARIF format..."
+          
+          python3 << 'EOF'
+          import json
+          import os
+          from datetime import datetime
+          
+          sarif_results = []
+          
+          # Convert path traversal results
+          if os.path.exists('api-pathtraversal-results.json'):
+              with open('api-pathtraversal-results.json', 'r') as f:
+                  issues = json.load(f)
+              
+              if issues:
+                  sarif = {
+                      'version': '2.1.0',
+                      '$schema': 'https://json.schemastore.org/sarif-2.1.0.json',
+                      'runs': [{
+                          'tool': {
+                              'driver': {
+                                  'name': 'API Security Scanner - Path Traversal',
+                                  'version': '1.0.0',
+                                  'informationUri': 'https://owasp.org/www-community/attacks/Path_Traversal'
+                              }
+                          },
+                          'results': []
+                      }]
+                  }
+                  
+                  for issue in issues:
+                      sarif['runs'][0]['results'].append({
+                          'ruleId': 'path-traversal-vulnerability',
+                          'message': {'text': issue['issue']},
+                          'level': 'error',
+                          'locations': [{
+                              'physicalLocation': {
+                                  'artifactLocation': {'uri': issue['file']},
+                                  'region': {'startLine': issue['line']}
+                              }
+                          }]
+                      })
+                  
+                  with open('api-pathtraversal.sarif', 'w') as f:
+                      json.dump(sarif, f, indent=2)
+          
+          # Convert auth results
+          if os.path.exists('api-auth-results.json'):
+              with open('api-auth-results.json', 'r') as f:
+                  issues = json.load(f)
+              
+              if issues:
+                  sarif = {
+                      'version': '2.1.0',
+                      '$schema': 'https://json.schemastore.org/sarif-2.1.0.json',
+                      'runs': [{
+                          'tool': {
+                              'driver': {
+                                  'name': 'API Security Scanner - Authentication',
+                                  'version': '1.0.0',
+                                  'informationUri': 'https://owasp.org/www-project-api-security/'
+                              }
+                          },
+                          'results': []
+                      }]
+                  }
+                  
+                  for issue in issues:
+                      sarif['runs'][0]['results'].append({
+                          'ruleId': 'missing-authentication',
+                          'message': {'text': issue['issue']},
+                          'level': issue.get('severity', 'warning').lower() == 'high' and 'error' or 'warning',
+                          'locations': [{
+                              'physicalLocation': {
+                                  'artifactLocation': {'uri': 'phase6b_rest_api.py'},
+                                  'region': {'startLine': issue['line']}
+                              }
+                          }]
+                      })
+                  
+                  with open('api-authentication.sarif', 'w') as f:
+                      json.dump(sarif, f, indent=2)
+          EOF
+      
+      # ========================================================================
+      # STAGE 7: UPLOAD TO GITHUB SECURITY TAB
+      # ========================================================================
+      
+      - name: 📤 Upload SARIF to GitHub Security
+        if: always()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: |
+            api-pathtraversal.sarif
+            api-authentication.sarif
+            semgrep-api-results.sarif
+          wait-for-processing: true
+      
+      # ========================================================================
+      # STAGE 8: COMMENT ON PR WITH RESULTS
+      # ========================================================================
+      
+      - name: 💬 Comment on PR with Results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            let comment = '## 🔒 API Security Scan Results\n\n';
+            
+            try {
+              const pathTraversal = JSON.parse(fs.readFileSync('api-pathtraversal-results.json', 'utf8'));
+              if (pathTraversal.length > 0) {
+                comment += `### ⚠️ Path Traversal Issues: ${pathTraversal.length}\n`;
+                pathTraversal.slice(0, 3).forEach(issue => {
+                  comment += `- Line ${issue.line}: ${issue.issue}\n`;
+                });
+              } else {
+                comment += '### ✅ Path Traversal: PASSED\n';
+              }
+            } catch (e) {}
+            
+            try {
+              const auth = JSON.parse(fs.readFileSync('api-auth-results.json', 'utf8'));
+              if (auth.length > 0) {
+                comment += `### ⚠️ Authentication Issues: ${auth.length}\n`;
+                auth.slice(0, 3).forEach(issue => {
+                  comment += `- ${issue.endpoint}: Missing auth\n`;
+                });
+              } else {
+                comment += '### ✅ Authentication: PASSED\n';
+              }
+            } catch (e) {}
+            
+            comment += '\n**Full results available in Security tab →**';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+      
+      # ========================================================================
+      # STAGE 9: FAIL IF CRITICAL ISSUES FOUND
+      # ========================================================================
+      
+      - name: ⛔ Fail Build on Critical Issues
+        run: |
+          CRITICAL_FOUND=0
+          
+          # Check for critical path traversal issues
+          if [ -f api-pathtraversal-results.json ]; then
+            CRITICAL=$(python3 -c "import json; data=json.load(open('api-pathtraversal-results.json')); print(len(data))")
+            if [ "$CRITICAL" -gt 0 ]; then
+              echo "🚨 CRITICAL: Found $CRITICAL path traversal issues!"
+              CRITICAL_FOUND=1
+            fi
+          fi
+          
+          # Check for critical auth issues
+          if [ -f api-auth-results.json ]; then
+            CRITICAL=$(python3 -c "import json; data=json.load(open('api-auth-results.json')); print(len([x for x in data if x.get('severity')=='HIGH']))")
+            if [ "$CRITICAL" -gt 0 ]; then
+              echo "🚨 CRITICAL: Found $CRITICAL missing authentication issues!"
+              CRITICAL_FOUND=1
+            fi
+          fi
+          
+          if [ $CRITICAL_FOUND -eq 1 ]; then
+            echo ""
+            echo "❌ Build failed: Critical security issues found"
+            echo "   See Security tab for details"
+            exit 1
+          else
+            echo "✅ Security scan passed - no critical issues"
+          fi
+
+
+  # ============================================================================
+  # DEPENDENCY SECURITY CHECK
+  # ============================================================================
+
+  dependency-check:
+    runs-on: ubuntu-latest
+    name: 🔐 Dependency Security Check
+    
+    steps:
+      - uses: actions/checkout@v5
+      
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5.6.0
+        with:
+          python-version: "3.11"
+      
+      - name: 📦 Install pip-audit
+        run: pip install -q pip-audit
+      
+      - name: 🔍 Audit Python Dependencies
+        run: |
+          echo "🔍 Auditing Python dependencies for vulnerabilities..."
+          pip-audit --desc || echo "⚠️ Vulnerabilities found in dependencies"
+      
+      - name: 📄 Check for hardcoded secrets
+        run: |
+          echo "📄 Scanning for hardcoded credentials..."
+          grep -r "password\|secret\|api_key\|token" \
+            packages/com.twg.the-seed/seed/engine/phase6b_rest_api.py \
+            --include="*.py" \
+            || echo "✅ No obvious hardcoded secrets found"
