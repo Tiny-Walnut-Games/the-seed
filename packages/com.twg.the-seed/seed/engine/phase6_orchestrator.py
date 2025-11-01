@@ -92,6 +92,7 @@ class UniverseDemoOrchestrator:
         self.universe: Optional[Universe] = None
         self.bridge: Optional[Phase5Phase2Phase3Phase4Bridge] = None
         self.setup_complete = False
+        self._initialization_seed: Optional[int] = None  # Tracked for reproducibility
         logger.info(f"🎯 Orchestrator initialized with seed={config.seed}, orbits={config.orbits}")
     
     async def launch_demo(self) -> DemoUniverseMetadata:
@@ -101,6 +102,9 @@ class UniverseDemoOrchestrator:
         Returns reproducible metadata for full system.
         """
         logger.info("🚀 LAUNCHING UNIVERSITY DEMO...")
+        
+        # Store initialization seed for reproducibility (Phase 6D)
+        self._initialization_seed = self.config.seed
         
         try:
             # Step 1: Create Phase 5 universe
@@ -343,6 +347,12 @@ class UniverseDemoOrchestrator:
             json.dump(export, f, indent=2)
         
         logger.info(f"💾 Universe exported to {filepath}")
+    
+    def get_initialization_seed(self) -> int:
+        """Get the initialization seed used for this orchestrator (Phase 6D reproducibility)."""
+        if self._initialization_seed is None:
+            return self.config.seed
+        return self._initialization_seed
     
     async def classify_realms(self, tier_specs: Dict[str, tuple]) -> None:
         """
