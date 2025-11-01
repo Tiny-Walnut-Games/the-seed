@@ -12,8 +12,9 @@ pip-audit==2.6.1
 safety==3.0.1
 
 # Secret detection and entropy scanning
-# Note: Version constraint is flexible due to PyPI availability variance
-trufflehog>=3.0.0,<4.0.0
+# NOTE: TruffleHog v3+ is only available as a standalone binary via GitHub Releases
+# PyPI only has v2.2.1 as the latest version. For the CLI tool, use the GitHub binary instead.
+trufflehog==2.2.1
 
 # Software Bill of Materials (SBOM) generation
 cyclonedx-bom==1.10.0
