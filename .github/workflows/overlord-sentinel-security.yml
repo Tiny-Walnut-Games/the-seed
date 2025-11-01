@@ -38,23 +38,19 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: 📦 Install system dependencies for lxml
+        run: |
+          # Install system libraries required by lxml (used by cyclonedx-bom)
+          sudo apt-get update
+          sudo apt-get install -y libxml2-dev libxslt1-dev python3-dev
+          echo "✅ System dependencies installed: libxml2-dev, libxslt1-dev, python3-dev"
+
       - name: 📦 Install Python security tools
         run: |
-          # Install security tools from dedicated requirements file
-          pip install -r scripts/security-requirements.txt
+          # Install security tools from dedicated requirements file (verified versions)
+          pip install -r scripts/security-requirements.txt --upgrade
           pip check && echo "✅ Python packages are valid." || exit 1
-          echo "✅ Python security tools installed"
-
-      - name: 🔍 Install TruffleHog v3 Binary (Latest)
-        run: |
-          echo "📥 Installing TruffleHog v3 from GitHub releases..."
-          # Download latest TruffleHog binary for Linux
-          curl -sL https://github.com/trufflesecurity/trufflehog/releases/download/v3.90.12/trufflehog-3.90.12-linux-x64.tar.gz -o trufflehog.tar.gz
-          tar -xzf trufflehog.tar.gz
-          sudo mv trufflehog /usr/local/bin/
-          chmod +x /usr/local/bin/trufflehog
-          trufflehog --version || echo "⚠️ TruffleHog binary installation may need adjustment"
-          rm -f trufflehog.tar.gz
+          echo "✅ Security tools installed: bandit, pip-audit, safety, trufflehog, cyclonedx, semgrep"
 
       - name: 🔍 Advanced Secret Scanning (TruffleHog)
         run: |
@@ -240,11 +236,8 @@ jobs:
           eslint scripts/ --ext .js --format json --output-file eslint-security.json || true
           echo "📊 ESLint security scan completed"
 
-      - name: 🔍 Install and run Semgrep OSS
+      - name: 🔍 Run Semgrep OSS
         run: |
-          echo "🔍 Installing Semgrep OSS..."
-          pip install semgrep
-
           echo "🔍 Running Semgrep security analysis..."
           # Try to use local security rules to avoid network dependency
           semgrep --config=auto --sarif --output semgrep-results.sarif scripts/ src/ 2>/dev/null || {

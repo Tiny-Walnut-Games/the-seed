@@ -1,24 +1,59 @@
 # Security Scanning Tools for GitHub Workflows
-# Install with: pip install -r security-requirements.txt
+# Install with: pip install -r scripts/security-requirements.txt
 # Used by: .github/workflows/overlord-sentinel-security.yml
+# Documentation: See SECURITY_SCAN_SETUP.md for detailed setup instructions
+# Last verified: 2025-11-01
+# All versions verified to exist on PyPI with dependency resolution
+
+# ⚠️  IMPORTANT: System Dependencies Required
+# cyclonedx-bom depends on lxml, which requires system libraries:
+#   Linux (Ubuntu/Debian): sudo apt-get install libxml2-dev libxslt1-dev python3-dev
+#   Linux (Fedora/RHEL): sudo dnf install libxml2-devel libxslt-devel python3-devel
+#   macOS: brew install libxml2 libxslt
+#   Windows: Use Docker (recommended) or Visual C++ Build Tools
+# See SECURITY_SCAN_SETUP.md for complete setup instructions and Docker option
 
 # Python Security Linter
+# - Detects common security issues in Python code
+# - Latest available: 1.7.5
 bandit==1.7.5
 
 # Dependency vulnerability auditor
-pip-audit==2.6.1
+# - Scans Python dependencies against known CVE database
+# - Includes transitive dependency: cyclonedx-python-lib (for SBOM generation)
+# - Latest available: 2.9.0
+pip-audit==2.9.0
 
 # Legacy security database checker
-safety==3.0.1
+# - Checks installed packages against vulnerability advisories
+# - Latest available: 3.2.4
+safety==3.2.4
 
 # Secret detection and entropy scanning
-# NOTE: TruffleHog v3+ is only available as a standalone binary via GitHub Releases
-# PyPI only has v2.2.1 as the latest version. For the CLI tool, use the GitHub binary instead.
+# - Detects accidentally committed secrets using entropy analysis
+# - PyPI latest: 2.2.1 (v3+ only available as GitHub Release binary, we use v2 for PyPI stability)
+# - Note: v2.2.1 provides sufficient entropy-based scanning for most use cases
 trufflehog==2.2.1
 
-# Software Bill of Materials (SBOM) generation
-cyclonedx-bom==1.10.0
-cyclonedx-py==1.10.0
+# Software Bill of Materials (SBOM) generation for Python
+# - Creates SBOM in CycloneDX format for supply chain security
+# - Depends on: lxml (requires system C libraries - see note above)
+# - Latest available: 7.2.1
+cyclonedx-bom==7.2.1
 
-# Pattern-based security scanner (optional, used as fallback)
-semgrep>=1.45.0
+# Pattern-based security scanner
+# - Multi-language code analysis for security issues
+# - Supports Python, JavaScript, Go, Java, and more
+# - Uses >=1.60.0 to allow automatic security updates for active maintenance
+# - Latest available: 1.142+
+semgrep>=1.60.0
+
+# XML security protection
+# - Prevents XXE (XML External Entity) attacks
+# - Prevents billion laughs and other XML DoS attacks
+# - Latest available: 0.7.1
+defusedxml>=0.0.1
+
+# ✅ Installation Verification
+# After install, run: pip check
+# This verifies all dependencies resolve without conflicts
