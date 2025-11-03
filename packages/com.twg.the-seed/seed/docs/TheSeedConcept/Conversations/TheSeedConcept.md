@@ -36,20 +36,20 @@ Distributed architectures—such as data sharding and in-memory vector search—
 
 Table: **Comparison of Traditional vs. Multidimensional Storage Approaches**
 
-| Feature              | Traditional Vector Storage         | Multidimensional (Fractal/Psychedelic) Architecture     |
-|----------------------|-----------------------------------|--------------------------------------------------------|
-| Dimensionality       | Fixed (768–3072)                  | Variable, fractal, or entangled dimensions             |
-| Indexing Method      | Flat/hierarchical vector index    | Entanglement, magneto-fractal, fractal coordinates     |
-| Visualization        | 2D/3D scatter plots               | CGI dynamic, VR/AR, agent-based simulation             |
-| Data Representation  | Plain embeddings                  | Agentic, consciousness-mapped, recursive fractal nodes |
-| Scalability          | Limited by vector size/model      | Efficient via fractal/recursive bundling; scalable     |
-| Input Data           | Text, static features             | Multimodal, simulation/agent state, sensor/historic    |
-| Use Cases            | Search, Q&A, RAG                  | Psychedelic AI, consciousness mapping, simulation      |
-| Performance Metrics  | Recall, latency, resource usage   | Simulation fidelity, agent behavior, visual coherence  |
-| Reproducibility      | High                              | Variable (esp. with simulation/human-in-loop)          |
-| Hardware Optimization| GPU/TPU                           | Neuromorphic, in-memory analog, VR/AR hardware         |
-| Sequence Representation | Positional Embeddings          | Permutation, dynamic fractal orderings                 |
-| Robustness           | Moderate                          | High error tolerance (with fractal/HDC methods)        |
+| Feature                 | Traditional Vector Storage      | Multidimensional (Fractal/Psychedelic) Architecture    |
+|-------------------------|---------------------------------|--------------------------------------------------------|
+| Dimensionality          | Fixed (768–3072)                | Variable, fractal, or entangled dimensions             |
+| Indexing Method         | Flat/hierarchical vector index  | Entanglement, magneto-fractal, fractal coordinates     |
+| Visualization           | 2D/3D scatter plots             | CGI dynamic, VR/AR, agent-based simulation             |
+| Data Representation     | Plain embeddings                | Agentic, consciousness-mapped, recursive fractal nodes |
+| Scalability             | Limited by vector size/model    | Efficient via fractal/recursive bundling; scalable     |
+| Input Data              | Text, static features           | Multimodal, simulation/agent state, sensor/historic    |
+| Use Cases               | Search, Q&A, RAG                | Psychedelic AI, consciousness mapping, simulation      |
+| Performance Metrics     | Recall, latency, resource usage | Simulation fidelity, agent behavior, visual coherence  |
+| Reproducibility         | High                            | Variable (esp. with simulation/human-in-loop)          |
+| Hardware Optimization   | GPU/TPU                         | Neuromorphic, in-memory analog, VR/AR hardware         |
+| Sequence Representation | Positional Embeddings           | Permutation, dynamic fractal orderings                 |
+| Robustness              | Moderate                        | High error tolerance (with fractal/HDC methods)        |
 
 The above comparison distills the shift proposed by a more multidimensional, psychedelic data architecture: moving from rigid, static storage to dynamic, self-similar, and recursive information structures inspired by physical, mathematical, and cybernetic phenomena.
 
@@ -168,12 +168,12 @@ By interleaving semantic configuration, multi-stage retrieval, re-ranking, and a
 
 **Traditional Vector Stores—Summary Table**
 
-| Platform   | Open Source | Cloud/Managed | Max Dimensions | Scaling      | Semantic Rank | Use Cases           | Unique Features                |
-|------------|-------------|---------------|----------------|--------------|---------------|---------------------|--------------------------------|
-| FAISS      | Yes         | No            | ~20,000+       | Local/On-prem| No            | NLP, image search   | Ultra-high-perf CPU/GPU search |
-| Pinecone   | No          | Yes           | ~4,096         | Cloud-native | Yes           | Semantic search, RAG| Managed infra, hybrid search   |
-| Weaviate   | Yes         | Yes           | ~n             | Cloud/OSS    | Yes           | Hybrid, KG, RAG     | Knowledge-graph, hybrid API    |
-| Milvus     | Yes         | Yes           | ~65,536        | Containerized| No            | Massive ingest      | GPU opt., rich plugins         |
+| Platform | Open Source | Cloud/Managed | Max Dimensions | Scaling       | Semantic Rank | Use Cases            | Unique Features                |
+|----------|-------------|---------------|----------------|---------------|---------------|----------------------|--------------------------------|
+| FAISS    | Yes         | No            | ~20,000+       | Local/On-prem | No            | NLP, image search    | Ultra-high-perf CPU/GPU search |
+| Pinecone | No          | Yes           | ~4,096         | Cloud-native  | Yes           | Semantic search, RAG | Managed infra, hybrid search   |
+| Weaviate | Yes         | Yes           | ~n             | Cloud/OSS     | Yes           | Hybrid, KG, RAG      | Knowledge-graph, hybrid API    |
+| Milvus   | Yes         | Yes           | ~65,536        | Containerized | No            | Massive ingest       | GPU opt., rich plugins         |
 
 All these systems excel at dense vector search, efficient similarity lookup, and integration with popular LLM toolchains (LangChain, Haystack, OpenAI, et al.). However, none fully embraces the recursive, entangled, or fractal data structures proposed in this report; their architectures can be emulated or extended, but not fundamentally transformed, by multi-dimensional, psychedelic theory alone.
 

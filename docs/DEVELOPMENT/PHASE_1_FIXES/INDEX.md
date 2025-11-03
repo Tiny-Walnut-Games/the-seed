@@ -273,7 +273,7 @@ When ready to deploy to production:
 - See: `docs/ORGANIZATION_SUMMARY.md`
 
 ### API Documentation
-- See: `docs/API/`
+- See: `docs/Shared/API/`
 
 ### Getting Started
 - See: `docs/GETTING_STARTED.md`

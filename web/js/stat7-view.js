@@ -1,4 +1,5 @@
 // View: builds and updates Three.js meshes for nodes/edges and optional labels
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 import { clamp } from './stat7-utils.js';
 
 export class View {

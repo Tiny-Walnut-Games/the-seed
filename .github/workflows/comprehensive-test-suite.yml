@@ -1,0 +1,546 @@
+name: 🧪 Comprehensive Test Suite - Complete Validation
+
+# Runs EVERY test across the entire codebase with proper discovery
+# Prevents mock implementations from hiding real issues
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'tests/**'
+      - 'packages/com.twg.the-seed/**'
+      - 'web/server/**'
+      - '.github/workflows/comprehensive-test-suite.yml'
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      test_category:
+        description: 'Which tests to run'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - 'all'              # Run everything
+          - 'unit'             # Fast unit tests only
+          - 'integration'      # Integration tests
+          - 'experiments'      # EXP-01 through EXP-10
+          - 'load'             # Load and stress tests
+          - 'quick'            # Quick smoke tests (~5 min)
+  schedule:
+    # Run full suite daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  issues: write
+  checks: write
+  pull-requests: write
+
+jobs:
+  # ============================================================================
+  # DISCOVERY: Find all tests and categorize them
+  # ============================================================================
+  discover-tests:
+    runs-on: ubuntu-latest
+    name: 🔍 Test Discovery
+    outputs:
+      unit_tests: ${{ steps.discover.outputs.unit_tests }}
+      integration_tests: ${{ steps.discover.outputs.integration_tests }}
+      experiment_tests: ${{ steps.discover.outputs.experiment_tests }}
+      load_tests: ${{ steps.discover.outputs.load_tests }}
+      total_test_count: ${{ steps.discover.outputs.total_count }}
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4.3.0
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4.9.0
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 📦 Install pytest
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov
+      
+      - name: 🔍 Discover and Categorize Tests
+        id: discover
+        run: |
+          python3 << 'EOF'
+          import json
+          import subprocess
+          import sys
+          import re
+          from pathlib import Path
+          
+          print("=" * 80)
+          print("🔍 TEST DISCOVERY & CATEGORIZATION")
+          print("=" * 80)
+          
+          # Collect all tests with pytest
+          result = subprocess.run(
+              ['python', '-m', 'pytest', '--collect-only', '-q'],
+              capture_output=True,
+              text=True
+          )
+          
+          all_tests = result.stdout.split('\n')
+          all_tests = [t.strip() for t in all_tests if t.strip() and '::test_' in t]
+          
+          print(f"\n✅ Discovered {len(all_tests)} total tests\n")
+          
+          # Categorize tests
+          categories = {
+              'unit': [],
+              'integration': [],
+              'experiment': [],
+              'load': []
+          }
+          
+          for test in all_tests:
+              # Determine category based on markers and filename
+              if 'test_websocket_load_stress.py' in test:
+                  categories['load'].append(test)
+              elif any(f'test_exp0{i}' in test for i in range(1, 11)):
+                  categories['experiment'].append(test)
+              elif any(marker in test for marker in ['integration', 'e2e', '_server', '_system']):
+                  categories['integration'].append(test)
+              else:
+                  categories['unit'].append(test)
+          
+          # Output summary
+          print("📊 Test Categorization:")
+          print("-" * 80)
+          for category, tests in categories.items():
+              print(f"\n{category.upper()}: {len(tests)} tests")
+              for test in sorted(tests)[:5]:  # Show first 5
+                  print(f"  ✓ {test}")
+              if len(tests) > 5:
+                  print(f"  ... and {len(tests) - 5} more")
+          
+          # Write outputs
+          with open('test_discovery.json', 'w') as f:
+              json.dump(categories, f, indent=2)
+          
+          print(f"\n📝 Total tests discovered: {len(all_tests)}")
+          
+          # Set GitHub outputs
+          print("\n::group::Setting GitHub Outputs")
+          print(f"unit_tests={json.dumps(categories['unit'])}")
+          print(f"integration_tests={json.dumps(categories['integration'])}")
+          print(f"experiment_tests={json.dumps(categories['experiment'])}")
+          print(f"load_tests={json.dumps(categories['load'])}")
+          print(f"total_count={len(all_tests)}")
+          print("::endgroup::")
+          
+          with open('$GITHUB_OUTPUT', 'a') as f:
+              f.write(f"unit_tests={json.dumps(categories['unit'])}\n")
+              f.write(f"integration_tests={json.dumps(categories['integration'])}\n")
+              f.write(f"experiment_tests={json.dumps(categories['experiment'])}\n")
+              f.write(f"load_tests={json.dumps(categories['load'])}\n")
+              f.write(f"total_count={len(all_tests)}\n")
+          EOF
+      
+      - name: 📊 Upload Discovery Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-discovery-report
+          path: test_discovery.json
+          retention-days: 30
+
+  # ============================================================================
+  # UNIT TESTS: Fast, isolated tests
+  # ============================================================================
+  unit-tests:
+    runs-on: ubuntu-latest
+    name: 🧪 Unit Tests
+    needs: discover-tests
+    if: |
+      github.event_name != 'workflow_dispatch' ||
+      contains(fromJson('["all", "unit", "quick"]'), github.event.inputs.test_category)
+    timeout-minutes: 15
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4.3.0
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4.9.0
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov pytest-xdist
+          pip install -r requirements.txt 2>/dev/null || true
+          pip install -r web/requirements-visualization.txt 2>/dev/null || true
+      
+      - name: 🧪 Run Unit Tests (Parallel)
+        id: test
+        run: |
+          python -m pytest tests/ \
+            -k "not (slow or load or stress or e2e)" \
+            -m "not slow" \
+            -n auto \
+            --tb=short \
+            --junitxml=test-results/unit-tests.xml \
+            --cov=seed \
+            --cov=web/server \
+            --cov-report=xml:coverage-unit.xml \
+            --cov-report=html:coverage-unit-html \
+            -v || true
+      
+      - name: 📈 Upload Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage-unit.xml
+          flags: unit-tests
+          name: unit-tests-coverage
+      
+      - name: 📊 Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-results
+          path: |
+            test-results/
+            coverage-unit-html/
+          retention-days: 30
+
+  # ============================================================================
+  # INTEGRATION TESTS: Cross-module tests
+  # ============================================================================
+  integration-tests:
+    runs-on: ubuntu-latest
+    name: 🔗 Integration Tests
+    needs: discover-tests
+    if: |
+      github.event_name != 'workflow_dispatch' ||
+      contains(fromJson('["all", "integration"]'), github.event.inputs.test_category)
+    timeout-minutes: 30
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4.3.0
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4.9.0
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov pytest-asyncio
+          pip install -r requirements.txt 2>/dev/null || true
+          pip install -r web/requirements-visualization.txt 2>/dev/null || true
+      
+      - name: 🔗 Run Integration Tests
+        id: test
+        run: |
+          python -m pytest tests/ \
+            -k "integration or e2e or server or system" \
+            --tb=short \
+            --junitxml=test-results/integration-tests.xml \
+            --cov=seed \
+            --cov=web/server \
+            --cov-report=xml:coverage-integration.xml \
+            -v || true
+      
+      - name: 📈 Upload Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage-integration.xml
+          flags: integration-tests
+          name: integration-tests-coverage
+      
+      - name: 📊 Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-results
+          path: test-results/
+          retention-days: 30
+
+  # ============================================================================
+  # EXPERIMENT TESTS: EXP-01 through EXP-10 validation
+  # ============================================================================
+  experiment-tests:
+    runs-on: ubuntu-latest
+    name: 🔬 Experiment Tests
+    needs: discover-tests
+    if: |
+      github.event_name != 'workflow_dispatch' ||
+      contains(fromJson('["all", "experiments"]'), github.event.inputs.test_category)
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        experiment: [exp01, exp02, exp03, exp04, exp05, exp06, exp07, exp08, exp09, exp10]
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4.3.0
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4.9.0
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov
+          pip install -r packages/com.twg.the-seed/requirements.txt 2>/dev/null || true
+      
+      - name: 🔬 Run ${{ matrix.experiment }} Tests
+        id: test
+        run: |
+          python -m pytest \
+            packages/com.twg.the-seed/The\ Living\ Dev\ Agent/tests/ \
+            -m ${{ matrix.experiment }} \
+            --tb=short \
+            --junitxml=test-results/${{ matrix.experiment }}-tests.xml \
+            --cov-report=xml:coverage-${{ matrix.experiment }}.xml \
+            -v || true
+        continue-on-error: true
+      
+      - name: 📊 Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: experiment-test-results-${{ matrix.experiment }}
+          path: test-results/
+          retention-days: 30
+
+  # ============================================================================
+  # LOAD TESTS: Performance and stress testing
+  # ============================================================================
+  load-tests:
+    runs-on: ubuntu-latest
+    name: 🔥 Load Tests
+    needs: discover-tests
+    if: |
+      github.event_name != 'workflow_dispatch' ||
+      contains(fromJson('["all", "load"]'), github.event.inputs.test_category)
+    timeout-minutes: 120
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4.3.0
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4.9.0
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-asyncio websockets
+          pip install -r web/requirements-visualization.txt 2>/dev/null || true
+      
+      - name: 🔥 Run Load Tests
+        id: test
+        run: |
+          python -m pytest tests/test_websocket_load_stress.py \
+            --tb=short \
+            --junitxml=test-results/load-tests.xml \
+            -v --capture=no || true
+      
+      - name: 📊 Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: load-test-results
+          path: test-results/
+          retention-days: 30
+
+  # ============================================================================
+  # AGGREGATION: Combine all results and create report
+  # ============================================================================
+  test-aggregation:
+    runs-on: ubuntu-latest
+    name: 📊 Test Results Aggregation
+    needs: [discover-tests, unit-tests, integration-tests, experiment-tests, load-tests]
+    if: always()
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4.3.0
+      
+      - name: 📊 Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-results
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4.9.0
+        with:
+          python-version: '3.11'
+      
+      - name: 📈 Generate Comprehensive Report
+        run: |
+          python3 << 'EOF'
+          import xml.etree.ElementTree as ET
+          import json
+          from pathlib import Path
+          from datetime import datetime
+          
+          print("=" * 80)
+          print("📊 COMPREHENSIVE TEST AGGREGATION REPORT")
+          print("=" * 80)
+          
+          results = {
+              'timestamp': datetime.utcnow().isoformat() + 'Z',
+              'summary': {},
+              'details': {}
+          }
+          
+          # Find and process all JUnit XML files
+          xml_files = list(Path('all-results').rglob('*.xml'))
+          
+          total_passed = 0
+          total_failed = 0
+          total_skipped = 0
+          total_errors = 0
+          
+          for xml_file in xml_files:
+              try:
+                  tree = ET.parse(xml_file)
+                  root = tree.getroot()
+                  
+                  if root.tag == 'testsuites':
+                      suites = root.findall('testsuite')
+                  else:
+                      suites = [root]
+                  
+                  for suite in suites:
+                      tests = int(suite.get('tests', 0))
+                      failures = int(suite.get('failures', 0))
+                      errors = int(suite.get('errors', 0))
+                      skipped = int(suite.get('skipped', 0))
+                      passed = tests - failures - errors - skipped
+                      
+                      suite_name = suite.get('name', xml_file.stem)
+                      
+                      results['details'][suite_name] = {
+                          'tests': tests,
+                          'passed': passed,
+                          'failed': failures,
+                          'errors': errors,
+                          'skipped': skipped,
+                          'time': suite.get('time', 'N/A')
+                      }
+                      
+                      total_passed += passed
+                      total_failed += failures
+                      total_skipped += skipped
+                      total_errors += errors
+              
+              except Exception as e:
+                  print(f"⚠️  Error processing {xml_file}: {e}")
+          
+          results['summary'] = {
+              'total_tests': total_passed + total_failed + total_errors + total_skipped,
+              'passed': total_passed,
+              'failed': total_failed,
+              'errors': total_errors,
+              'skipped': total_skipped,
+              'success_rate': f"{(total_passed / max(total_passed + total_failed + total_errors, 1) * 100):.1f}%"
+          }
+          
+          # Print summary
+          print("\n📋 TEST SUMMARY")
+          print("-" * 80)
+          print(f"Total Tests:    {results['summary']['total_tests']}")
+          print(f"✅ Passed:      {results['summary']['passed']}")
+          print(f"❌ Failed:      {results['summary']['failed']}")
+          print(f"⚠️  Errors:      {results['summary']['errors']}")
+          print(f"⊘ Skipped:      {results['summary']['skipped']}")
+          print(f"📊 Success Rate: {results['summary']['success_rate']}")
+          
+          print("\n🔍 BREAKDOWN BY SUITE")
+          print("-" * 80)
+          for suite, detail in results['details'].items():
+              status = "✅" if detail['failed'] == 0 and detail['errors'] == 0 else "❌"
+              print(f"{status} {suite}")
+              print(f"   Tests: {detail['tests']} | Passed: {detail['passed']} | Failed: {detail['failed']} | Errors: {detail['errors']} | Skipped: {detail['skipped']}")
+          
+          # Save report
+          with open('test-aggregation-report.json', 'w') as f:
+              json.dump(results, f, indent=2)
+          
+          print("\n" + "=" * 80)
+          print("✅ AGGREGATION COMPLETE - Report saved to test-aggregation-report.json")
+          print("=" * 80)
+          EOF
+      
+      - name: 📊 Upload Aggregation Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-aggregation-report
+          path: test-aggregation-report.json
+          retention-days: 90
+      
+      - name: 💬 Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync('test-aggregation-report.json', 'utf8'));
+            
+            const comment = `## 📊 Test Results Summary
+            
+            | Metric | Value |
+            |--------|-------|
+            | **Total Tests** | ${report.summary.total_tests} |
+            | **✅ Passed** | ${report.summary.passed} |
+            | **❌ Failed** | ${report.summary.failed} |
+            | **⚠️ Errors** | ${report.summary.errors} |
+            | **⊘ Skipped** | ${report.summary.skipped} |
+            | **Success Rate** | ${report.summary.success_rate} |
+            
+            ### 🔍 Suite Breakdown
+            ${Object.entries(report.details).map(([suite, detail]) => 
+              `- **${suite}**: ${detail.passed}/${detail.tests} passed`
+            ).join('\n')}
+            `;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+      
+      - name: 🚨 Fail if tests failed
+        run: |
+          python3 << 'EOF'
+          import json
+          
+          with open('test-aggregation-report.json', 'r') as f:
+              report = json.load(f)
+          
+          total_failures = report['summary']['failed'] + report['summary']['errors']
+          
+          if total_failures > 0:
+              print(f"❌ {total_failures} tests failed!")
+              exit(1)
+          else:
+              print("✅ All tests passed!")
+          EOF

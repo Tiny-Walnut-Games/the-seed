@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.12-slim
+FROM python:alpine3.22
 
 # Set the working directory in the container
 WORKDIR /app
@@ -30,6 +30,6 @@ CMD ["python", "scripts/warbler_gemma3_bridge.py"]
 # ---
 # Build: docker build -t twg-tlda-ai .
 # Run: docker run --rm -p 8080:8080 twg-tlda-ai
-# 
+#
 # For development with shell access:
 # docker run -it --rm -p 8080:8080 twg-tlda-ai bash

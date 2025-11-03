@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mmo-orchestrator:
+    # Run the MMO Orchestrator with TEST MODE enabled for E2E testing
+    # This integrates multi-game orchestration with authentication endpoints
+    # Pre-seeded test accounts:
+    #   - test-admin-001 (full admin privileges)
+    #   - test-public-001 (read-only access)
+    #   - test-demo-001 (sandbox admin, simulation control)
+    environment:
+      STAT7_TEST_MODE: "true"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

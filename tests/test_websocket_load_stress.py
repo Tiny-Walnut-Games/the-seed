@@ -25,8 +25,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 import websockets
 
-# Add server to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../web/server'))
+# Add server to path and stat7_experiments engine to path
+test_dir = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(test_dir, '../web/server'))
+
+# Also add the seed engine path directly for test imports
+repo_root = os.path.abspath(os.path.join(test_dir, '../'))
+seed_engine_path = os.path.join(repo_root, 'packages', 'com.twg.the-seed', 'seed', 'engine')
+if seed_engine_path not in sys.path:
+    sys.path.insert(0, seed_engine_path)
 
 from stat7wsserve import STAT7EventStreamer, VisualizationEvent, generate_random_bitchain
 
@@ -236,6 +243,70 @@ async def test_concurrent_500_clients():
     await _test_concurrent_clients(num_clients=500, num_events=5)
 
 
+# ============================================================================
+# SOFT-CAP DISCOVERY TESTS - Find virtual limits
+# ============================================================================
+
+@pytest.mark.asyncio
+@pytest.mark.slow
+async def test_concurrent_250_clients():
+    """Test 250 concurrent clients (high load - soft-cap exploration)."""
+    await _test_concurrent_clients(num_clients=250, num_events=5)
+
+
+@pytest.mark.asyncio
+@pytest.mark.slow
+async def test_concurrent_1000_clients():
+    """Test 1000 concurrent clients (extreme load - soft-cap boundary)."""
+    await _test_concurrent_clients(num_clients=1000, num_events=3)
+
+
+@pytest.mark.asyncio
+@pytest.mark.slow
+async def test_concurrent_2500_clients():
+    """Test 2500 concurrent clients (ultra-extreme load - soft-cap push)."""
+    await _test_concurrent_clients(num_clients=2500, num_events=2)
+
+
+@pytest.mark.asyncio
+@pytest.mark.slow
+async def test_concurrent_5000_clients():
+    """Test 5000 concurrent clients (absolute stress - breaking point discovery)."""
+    await _test_concurrent_clients(num_clients=5000, num_events=1)
+
+
+# ============================================================================
+# HARDCORE STRESS PATTERNS - Multi-layered degradation testing
+# ============================================================================
+
+@pytest.mark.asyncio
+@pytest.mark.slow
+async def test_message_flood_500_clients():
+    """Sustained high-frequency message flooding with 500 clients."""
+    await _test_concurrent_clients_message_flood(num_clients=500, messages_per_sec=100)
+
+
+@pytest.mark.asyncio
+@pytest.mark.slow
+async def test_message_flood_1000_clients():
+    """Sustained high-frequency message flooding with 1000 clients."""
+    await _test_concurrent_clients_message_flood(num_clients=1000, messages_per_sec=50)
+
+
+@pytest.mark.asyncio
+@pytest.mark.slow
+async def test_connection_spike_500_clients():
+    """Rapid connection spikes (gradual ramp-up under load)."""
+    await _test_concurrent_clients_spike_pattern(num_clients=500, spike_batch=50)
+
+
+@pytest.mark.asyncio
+@pytest.mark.slow
+async def test_connection_spike_1000_clients():
+    """Rapid connection spikes with 1000 clients."""
+    await _test_concurrent_clients_spike_pattern(num_clients=1000, spike_batch=100)
+
+
 async def _test_concurrent_clients(num_clients: int, num_events: int):
     """Helper to test N concurrent clients."""
     
@@ -355,6 +426,189 @@ async def _test_concurrent_clients(num_clients: int, num_events: int):
         # Assertions
         assert avg_latency < 0.5, f"Average latency should be <500ms, was {avg_latency*1000:.2f}ms"
         assert p99_latency < 1.0, f"P99 latency should be <1s, was {p99_latency*1000:.2f}ms"
+        
+        # Cleanup
+        for client in clients:
+            await client.disconnect()
+    finally:
+        await cleanup_event_streamer(event_streamer, server_task)
+
+
+async def _test_concurrent_clients_message_flood(num_clients: int, messages_per_sec: int):
+    """Hardcore stress: Sustained high-frequency message flooding."""
+    
+    event_streamer, server_task = await setup_event_streamer()
+    try:
+        clients: List[WebSocketTestClient] = []
+        
+        # Connect all clients
+        print(f"🔗 Connecting {num_clients} clients for message flood test...")
+        sys.stdout.flush()
+        
+        start_connect = time.time()
+        async def connect_client(client_id):
+            client = WebSocketTestClient(f"ws://localhost:9876")
+            connected = await client.connect()
+            return client, connected
+        
+        connection_results = await asyncio.gather(
+            *[connect_client(i) for i in range(num_clients)],
+            return_exceptions=True
+        )
+        
+        # Process results
+        for result in connection_results:
+            if not isinstance(result, Exception):
+                client, connected = result
+                if connected:
+                    clients.append(client)
+        
+        connect_time = time.time() - start_connect
+        print(f"✅ Connected {len(clients)}/{num_clients} clients in {connect_time:.2f}s")
+        sys.stdout.flush()
+        
+        # Message flood: Send high-frequency events for 10 seconds
+        print(f"🌊 Starting message flood: {messages_per_sec} messages/sec for 10 seconds...")
+        sys.stdout.flush()
+        
+        start_flood = time.time()
+        message_count = 0
+        flood_duration = 10.0
+        latencies = []
+        
+        while time.time() - start_flood < flood_duration:
+            try:
+                # Send message
+                bitchain = generate_random_bitchain()
+                event = event_streamer.create_bitchain_event(bitchain, "FLOOD_TEST")
+                send_time = time.time()
+                await event_streamer.broadcast_event(event)
+                message_count += 1
+                
+                # Calculate rate and sleep accordingly
+                elapsed = time.time() - start_flood
+                expected_messages = (elapsed / flood_duration) * (messages_per_sec * flood_duration)
+                if message_count < expected_messages:
+                    await asyncio.sleep(1.0 / messages_per_sec)
+                else:
+                    await asyncio.sleep(0.001)  # Minimal sleep for rate control
+                    
+            except Exception as e:
+                print(f"⚠️  Message flood error: {e}")
+                sys.stdout.flush()
+                break
+        
+        flood_time = time.time() - start_flood
+        print(f"✅ Flood complete: {message_count} messages sent in {flood_time:.2f}s ({message_count/flood_time:.0f} msg/sec)")
+        sys.stdout.flush()
+        
+        # Wait for clients to receive
+        await asyncio.sleep(2.0)
+        
+        # Analyze degradation
+        print(f"\n📊 Message Flood Results ({num_clients} clients):")
+        client_msg_counts = [client.get_event_count() for client in clients]
+        avg_received = statistics.mean(client_msg_counts) if client_msg_counts else 0
+        min_received = min(client_msg_counts) if client_msg_counts else 0
+        max_received = max(client_msg_counts) if client_msg_counts else 0
+        
+        print(f"   Messages sent: {message_count}")
+        print(f"   Avg received per client: {avg_received:.0f}")
+        print(f"   Min received: {min_received}")
+        print(f"   Max received: {max_received}")
+        print(f"   Reception rate: {(avg_received/message_count*100):.1f}%")
+        sys.stdout.flush()
+        
+        # Cleanup
+        for client in clients:
+            await client.disconnect()
+    finally:
+        await cleanup_event_streamer(event_streamer, server_task)
+
+
+async def _test_concurrent_clients_spike_pattern(num_clients: int, spike_batch: int):
+    """Hardcore stress: Rapid connection spikes (gradual ramp-up under load)."""
+    
+    event_streamer, server_task = await setup_event_streamer()
+    try:
+        # Phase 1: Initial rapid connection
+        print(f"📈 Phase 1: Rapid connection spike - {spike_batch} clients at a time")
+        sys.stdout.flush()
+        
+        clients: List[WebSocketTestClient] = []
+        spike_count = 0
+        
+        # Connect in spikes
+        for spike_num in range(0, num_clients, spike_batch):
+            batch_size = min(spike_batch, num_clients - spike_num)
+            print(f"   Spike {spike_num//spike_batch + 1}: Connecting {batch_size} clients...")
+            sys.stdout.flush()
+            
+            start_spike = time.time()
+            
+            async def connect_client(client_id):
+                client = WebSocketTestClient(f"ws://localhost:9876")
+                connected = await client.connect()
+                return client, connected
+            
+            connection_results = await asyncio.gather(
+                *[connect_client(i) for i in range(batch_size)],
+                return_exceptions=True
+            )
+            
+            for result in connection_results:
+                if not isinstance(result, Exception):
+                    client, connected = result
+                    if connected:
+                        clients.append(client)
+            
+            spike_time = time.time() - start_spike
+            print(f"   ✅ Spike {spike_num//spike_batch + 1} complete in {spike_time:.2f}s")
+            sys.stdout.flush()
+            
+            await asyncio.sleep(0.5)  # Brief pause between spikes
+        
+        print(f"\n✅ All {len(clients)} clients connected via spike pattern")
+        sys.stdout.flush()
+        
+        # Phase 2: Sustained load with spike pattern
+        print(f"\n📊 Phase 2: Sustained messaging under spike load")
+        sys.stdout.flush()
+        
+        latencies = []
+        start_messaging = time.time()
+        message_duration = 5.0
+        message_count = 0
+        
+        while time.time() - start_messaging < message_duration:
+            try:
+                # Send event
+                bitchain = generate_random_bitchain()
+                event = event_streamer.create_bitchain_event(bitchain, "SPIKE_TEST")
+                await event_streamer.broadcast_event(event)
+                message_count += 1
+                await asyncio.sleep(0.05)  # ~20 msg/sec
+            except Exception as e:
+                print(f"⚠️  Messaging error: {e}")
+                sys.stdout.flush()
+                break
+        
+        messaging_time = time.time() - start_messaging
+        print(f"✅ Sent {message_count} messages in {messaging_time:.2f}s under spike load")
+        sys.stdout.flush()
+        
+        # Wait for delivery
+        await asyncio.sleep(1.0)
+        
+        # Analyze results
+        print(f"\n📊 Spike Pattern Results ({num_clients} clients):")
+        client_msg_counts = [client.get_event_count() for client in clients]
+        avg_received = statistics.mean(client_msg_counts) if client_msg_counts else 0
+        
+        print(f"   Messages sent: {message_count}")
+        print(f"   Avg received per client: {avg_received:.0f}")
+        print(f"   Reception rate: {(avg_received/message_count*100):.1f}%")
+        sys.stdout.flush()
         
         # Cleanup
         for client in clients:

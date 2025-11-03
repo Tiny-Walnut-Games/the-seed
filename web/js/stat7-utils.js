@@ -1,4 +1,6 @@
 // Utility helpers for STAT7 visualizer
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
 export const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 export const lerp = (a, b, t) => a + (b - a) * t;
 export const smoothstep = (edge0, edge1, x) => {
