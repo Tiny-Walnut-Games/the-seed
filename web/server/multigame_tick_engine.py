@@ -141,7 +141,7 @@ class MultiGameTickEngine:
         
         self.games[realm_id] = (tick_engine, realm_coord)
         self.game_states[realm_id] = GameInstanceState.BOOTING
-        print(f"✅ Registered realm: {realm_id} at {realm_coord.to_stat7_key()}")
+        print(f"[OK] Registered realm: {realm_id} at {realm_coord.to_stat7_key()}")
     
     def unregister_game(self, realm_id: str) -> None:
         """Unregister a game instance."""
@@ -211,7 +211,7 @@ class MultiGameTickEngine:
         )
         
         # Phase 1: Sync all games to control-tick
-        print(f"\n⏰ CONTROL-TICK {self.control_tick_count} Starting...")
+        print(f"\n[TICK] CONTROL-TICK {self.control_tick_count} Starting...")
         synced_games = []
         
         for realm_id, (tick_engine, realm_coord) in self.games.items():
@@ -228,7 +228,7 @@ class MultiGameTickEngine:
                 
             except Exception as e:
                 self.game_states[realm_id] = GameInstanceState.ERROR
-                print(f"  ❌ {realm_id}: Sync error: {e}")
+                print(f"  [ERR] {realm_id}: Sync error: {e}")
         
         # Phase 2: Propagate cross-game events
         events_propagated = self._propagate_cross_game_events()
@@ -240,9 +240,9 @@ class MultiGameTickEngine:
         self.sync_times_ms.append(elapsed)
         self.control_tick_traces.append(trace)
         
-        print(f"  ✅ Synced {len(synced_games)} games")
-        print(f"  📡 Propagated {events_propagated} cross-game events")
-        print(f"  ⏱️  Control-tick took {elapsed:.2f}ms\n")
+        print(f"  [OK] Synced {len(synced_games)} games")
+        print(f"  [NET] Propagated {events_propagated} cross-game events")
+        print(f"  [TIME] Control-tick took {elapsed:.2f}ms\n")
         
         return {
             "control_tick_id": self.control_tick_count,

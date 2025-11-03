@@ -862,6 +862,100 @@ class WarblerQueryService:
         ]
         return npcs
     
+    def query_entity_narration(self, 
+                              entity_id: str,
+                              entity_type: str = "unknown",
+                              realm: str = "void",
+                              coordinates: Optional[Dict[str, Any]] = None) -> str:
+        """
+        Generate narrative description for a STAT7 entity.
+        
+        This method creates thematic narration that describes an entity based on:
+        - Its type (node, nexus, beacon, echo, probe)
+        - Its realm (data, narrative, system, faculty, event, pattern, void)
+        - Its STAT7 coordinates (if available)
+        
+        Args:
+            entity_id: Unique identifier of the entity
+            entity_type: Type of entity (node, nexus, beacon, echo, probe, etc.)
+            realm: STAT7 realm of the entity
+            coordinates: Optional STAT7 coordinates dict
+            
+        Returns:
+            A narrative string describing the entity
+        """
+        # Entity type narratives
+        entity_narratives = {
+            'node': "a junction point, where paths converge and possibilities branch",
+            'nexus': "a convergence of forces, drawing together disparate elements",
+            'beacon': "a luminous marker, shining with purpose and clarity through the void",
+            'echo': "a reverberating remnant, carrying echoes of creation and consequence",
+            'probe': "an explorer, searching and questioning the fabric of existence",
+            'concept': "an abstract form, holding meaning and pattern",
+            'artifact': "an object of power, imbued with significance",
+            'agent': "an entity of agency, bearing will and intention",
+            'lineage': "a chain of descent, carrying history and connection",
+            'adjacency': "a bond between entities, a thread in the greater web",
+            'horizon': "a boundary of perception, marking the edge of known territory",
+            'fragment': "a shard of something greater, incomplete yet meaningful",
+        }
+        
+        # Realm narratives
+        realm_narratives = {
+            'data': f"Within the data realm, {entity_id}",
+            'narrative': f"In the narrative realm, {entity_id}",
+            'system': f"Throughout the system realm, {entity_id}",
+            'faculty': f"In the faculty realm of cognition, {entity_id}",
+            'event': f"At the moment of event, {entity_id}",
+            'pattern': f"Woven into patterns, {entity_id}",
+            'void': f"Drifting in the void, {entity_id}",
+        }
+        
+        # Build base narrative
+        entity_desc = entity_narratives.get(entity_type, f"{entity_id}")
+        realm_desc = realm_narratives.get(realm, f"In unknown realms, {entity_id}")
+        
+        # Combine with realm-specific flavor
+        if realm == 'data':
+            narrative = f"{realm_desc} manifests as {entity_desc}, holding patterns of information and structure."
+        elif realm == 'narrative':
+            narrative = f"{realm_desc} echoes as {entity_desc}, weaving threads of story through time."
+        elif realm == 'system':
+            narrative = f"{realm_desc} persists as {entity_desc}, bearing the weight of interconnection."
+        elif realm == 'faculty':
+            narrative = f"{realm_desc} resonates as {entity_desc}, channeling cognition and judgment."
+        elif realm == 'event':
+            narrative = f"{realm_desc}, {entity_desc} erupts with causality and transformation."
+        elif realm == 'pattern':
+            narrative = f"{realm_desc}, {entity_desc} traces itself as a recurring motif in the fabric of order."
+        else:  # void
+            narrative = f"{realm_desc} drifts as {entity_desc}, brimming with unrealized potential."
+        
+        # Add coordinate-based details if available
+        if coordinates:
+            resonance = coordinates.get('resonance', 0.5)
+            velocity = coordinates.get('velocity', 0)
+            horizon = coordinates.get('horizon', 'unknown')
+            
+            if resonance > 0.7:
+                narrative += " Its resonance is strong, vibrant with presence."
+            elif resonance < 0.3:
+                narrative += " Its resonance is faint, barely perceptible."
+            else:
+                narrative += " Its resonance is balanced, stable in manifestation."
+            
+            if velocity > 0.5:
+                narrative += " It moves with purpose and momentum."
+            elif velocity < -0.5:
+                narrative += " It moves in retreat, withdrawing from manifestation."
+            elif velocity != 0:
+                narrative += " It drifts gently through its realm."
+            
+            if horizon:
+                narrative += f" It exists at the horizon of {horizon}."
+        
+        return narrative
+    
     def get_service_stats(self) -> Dict[str, Any]:
         """
         Get query service statistics.

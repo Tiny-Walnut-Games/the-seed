@@ -169,14 +169,14 @@ docs/
 
 ### **📝 Canonical Documentation Files & Their Maintainers**
 
-| File | Purpose | Scope | Update Frequency |
-|------|---------|-------|------------------|
-| `docs/GETTING_STARTED.md` | Developer onboarding | All systems | As projects/setup changes |
-| `docs/API/SECURITY.md` | Security policies & fixes | All APIs | On security findings |
-| `docs/SEED/STAT7_VALIDATION_RESULTS.md` | Current system validation status | Seed system | After validation runs |
-| `docs/SEED/STAT7_ADDRESSING.md` | STAT7 specification & theory | Seed system | On design changes |
-| `docs/DEVELOPMENT/TESTING.md` | Test frameworks & practices | All systems | When test approach changes |
-| `docs/DEVELOPMENT/CI_CD.md` | CI/CD pipeline documentation | Infrastructure | On workflow changes |
+| File                                    | Purpose                          | Scope          | Update Frequency           |
+|-----------------------------------------|----------------------------------|----------------|----------------------------|
+| `docs/GETTING_STARTED.md`               | Developer onboarding             | All systems    | As projects/setup changes  |
+| `docs/API/SECURITY.md`                  | Security policies & fixes        | All APIs       | On security findings       |
+| `docs/SEED/STAT7_VALIDATION_RESULTS.md` | Current system validation status | Seed system    | After validation runs      |
+| `docs/SEED/STAT7_ADDRESSING.md`         | STAT7 specification & theory     | Seed system    | On design changes          |
+| `docs/DEVELOPMENT/TESTING.md`           | Test frameworks & practices      | All systems    | When test approach changes |
+| `docs/DEVELOPMENT/CI_CD.md`             | CI/CD pipeline documentation     | Infrastructure | On workflow changes        |
 
 ### **🚫 WHAT NOT TO DO**
 

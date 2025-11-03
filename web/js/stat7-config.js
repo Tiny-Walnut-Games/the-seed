@@ -1,7 +1,7 @@
 // Configuration for STAT7 Visualizer
 export const Config = {
   title: 'STAT7 Visualizer',
-  websocketUrl: (location.protocol === 'https:' ? 'wss://' : 'ws://') + (location.hostname || 'localhost') + ':8765',
+  websocketUrl: (location.protocol === 'https:' ? 'wss://' : 'ws://') + (location.hostname || 'localhost') + ':8000/ws',
   tickIntervalMs: 100,
   mockEventIntervalMs: 150,
   maxReconnectAttempts: 5,

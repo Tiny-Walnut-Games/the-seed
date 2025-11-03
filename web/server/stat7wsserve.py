@@ -655,9 +655,9 @@ async def main():
     # Wait a moment for server to start
     await asyncio.sleep(1)
 
-    print("🚀 STAT7 Visualization Server started!")
-    print("📊 WebSocket: ws://localhost:8765")
-    print("🌐 Open visualization.html in your browser")
+    print("[STAT7] Visualization Server started!")
+    print("[STAT7] WebSocket: ws://localhost:8765")
+    print("[STAT7] Open visualization.html in your browser")
     print()
     print("Available commands:")
     print("  - Type 'exp01' to run EXP-01 visualization")
@@ -673,13 +673,13 @@ async def main():
             if command == 'quit':
                 break
             elif command == 'exp01':
-                print("🧪 Starting EXP-01 visualization...")
+                print("[STAT7] Starting EXP-01 visualization...")
                 await visualizer.visualize_exp01_uniqueness(sample_size=500, iterations=3)
-                print("✅ EXP-01 visualization complete")
+                print("[STAT7] EXP-01 visualization complete")
             elif command == 'continuous':
-                print("🔄 Starting continuous generation (30 seconds)...")
+                print("[STAT7] Starting continuous generation (30 seconds)...")
                 await visualizer.visualize_continuous_generation(duration_seconds=30, rate_per_second=20)
-                print("✅ Continuous generation complete")
+                print("[STAT7] Continuous generation complete")
             elif command == '':
                 continue
             else:
@@ -694,7 +694,7 @@ async def main():
     # Cleanup
     streamer.stop_server()
     server_task.cancel()
-    print("\n👋 STAT7 Visualization Server stopped")
+    print("\n[STAT7] Visualization Server stopped")
 
 
 if __name__ == "__main__":

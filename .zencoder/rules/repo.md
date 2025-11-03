@@ -10,7 +10,8 @@ alwaysApply: true
 **The Seed** is an open-source multiverse simulation framework providing STAT7 (7-dimensional addressing) for interconnected virtual worlds. It integrates three main systems: TLDA (Unity game engine), Seed (Python backend), and Bridge components. Targets seamless player interaction across different game universes with narrative latency optimization and decentralized architecture.
 
 **Type**: Multi-project hybrid (Unity C# + Python + JavaScript/Node)  
-**License**: MIT
+**License**: MIT  
+**targetFramework**: Playwright (frontend E2E testing)
 
 ## Repository Structure
 
@@ -154,24 +155,53 @@ alwaysApply: true
 
 ## Build & Test Commands
 
-\\\ash
-# Python - STAT7 system
-pytest tests/                                    # Run all 46+ tests
-pytest tests/test_websocket_load_stress.py -v   # Load stress tests
-python run_stat7.py                              # Launch STAT7 system
-python web/launchers/run_stat7_visualization.py  # Launch visualization
+### PowerShell (Windows - Recommended)
 
-# Node/npm
+```powershell
+# Setup (one time)
+Set-Location "E:\Tiny_Walnut_Games\the-seed"
+pip install -r requirements.txt
+
+# HTTP Auth Server with TEST MODE (start in one PowerShell tab)
+$env:STAT7_TEST_MODE = "true"
+python web/server/run_server.py
+
+# Run E2E tests (in another PowerShell tab while server is running)
+python -m pytest tests/test_stat7_auth_http_endpoints.py::TestTestModeAdminAccess -v
+python -m pytest tests/test_stat7_auth_http_endpoints.py -k TestTestMode -v
+
+# Python - STAT7 system (optional)
+python -m pytest tests/ -v
+python -m pytest tests/test_websocket_load_stress.py -v
+python run_stat7.py
+python web/launchers/run_stat7_visualization.py
+
+# Node/npm (if needed)
 npm run build --workspaces
 npm run test --workspaces
+```
 
-# Docker
+### Docker (Optional - not required for initial setup)
+
+```bash
+# Build Docker image
 docker build -t twg-tlda-ai .
-docker run -p 8080:8080 -p 9998:9998 twg-tlda-ai
 
-# Unity
-# Open the-seed.sln in Visual Studio or Unity Editor
-\\\
+# Run with TEST MODE enabled (for E2E testing)
+STAT7_TEST_MODE=true docker-compose up -d
+
+# Run without TEST MODE (production)
+STAT7_TEST_MODE=false docker-compose up -d
+
+# Check logs
+docker-compose logs mmo-orchestrator | grep "TEST MODE"
+```
+
+### Unity
+
+```
+Open the-seed.sln in Visual Studio or Unity Editor
+```
 
 ---
 
@@ -196,4 +226,3 @@ docker run -p 8080:8080 -p 9998:9998 twg-tlda-ai
 **Documentation Fragmentation**: Reduced from 54 scattered files to ~15 canonical locations (72% reduction).
 
 **Truth Status**: All information validated against current code implementation.
-

@@ -1,4 +1,5 @@
 // Domain model for STAT7 services, nodes, edges, and events
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 
 export class Node {
   constructor({ id, role, name }) {

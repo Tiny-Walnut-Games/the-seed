@@ -26,6 +26,16 @@ markdown>=3.0.0
 # For regular expression utilities
 regex>=2022.0.0
 
+# For command-line interface enhancements
+click>=8.0.0
+
+# For docker-related tasks if using Dockerfile or docker-compose.yml
+docker>=5.0.0
+
+# For Token authentication with our APIs, jq and requests is used for API calls
+jq>=1.6
+requests>=2.25.0
+
 # Note: Most of these dependencies are optional and the template will work
 # with just PyYAML and argparse, which are typically pre-installed.
 # Install failures due to network timeouts are acceptable and expected.

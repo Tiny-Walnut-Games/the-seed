@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  mmo-orchestrator:
+    build:
+      context: .
+      dockerfile: Dockerfile.mmo
+    container_name: twg-mmo-orchestrator
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount web directory for live code changes
+      - ./web:/app/web
+      # Mount packages/seed for backend changes
+      - ./packages/com.twg.the-seed/seed:/app/packages/com.twg.the-seed/seed
+    environment:
+      - PYTHONUNBUFFERED=1
+      - STAT7_TEST_MODE=true
+    networks:
+      - twg-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  twg-network:
+    driver: bridge
