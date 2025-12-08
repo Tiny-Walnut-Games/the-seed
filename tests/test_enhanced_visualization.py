@@ -36,11 +36,8 @@ class TestEnhancedVisualization:
 
     def test_semantic_request_structure(self):
         """Test semantic fidelity proof request structure."""
-        semantic_request = {
-            "type": "run_semantic_fidelity_proof", 
-            "sample_size": 50
-        }
-        
+        semantic_request = {"type": "run_semantic_fidelity_proof", "sample_size": 50}
+
         assert "type" in semantic_request
         assert "sample_size" in semantic_request
         assert semantic_request["type"] == "run_semantic_fidelity_proof"
@@ -48,11 +45,8 @@ class TestEnhancedVisualization:
 
     def test_resilience_request_structure(self):
         """Test resilience testing request structure."""
-        resilience_request = {
-            "type": "run_resilience_testing",
-            "sample_size": 25
-        }
-        
+        resilience_request = {"type": "run_resilience_testing", "sample_size": 25}
+
         assert "type" in resilience_request
         assert "sample_size" in resilience_request
         assert resilience_request["type"] == "run_resilience_testing"
@@ -60,12 +54,8 @@ class TestEnhancedVisualization:
 
     def test_experiment_request_structure(self):
         """Test experiment request structure."""
-        exp_request = {
-            "type": "start_experiment",
-            "experiment_id": "EXP01",
-            "duration": 30
-        }
-        
+        exp_request = {"type": "start_experiment", "experiment_id": "EXP01", "duration": 30}
+
         assert "type" in exp_request
         assert "experiment_id" in exp_request
         assert "duration" in exp_request
@@ -78,16 +68,12 @@ class TestEnhancedVisualization:
         test_message = {
             "event_type": "bitchain_created",
             "timestamp": datetime.now(timezone.utc).isoformat(),
-            "data": {
-                "id": "test_123",
-                "entity_type": "test_entity",
-                "realm": "test_realm"
-            }
+            "data": {"id": "test_123", "entity_type": "test_entity", "realm": "test_realm"},
         }
-        
+
         json_str = json.dumps(test_message)
         parsed = json.loads(json_str)
-        
+
         assert parsed["event_type"] == "bitchain_created"
         assert "timestamp" in parsed
         assert "data" in parsed

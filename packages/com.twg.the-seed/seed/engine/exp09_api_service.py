@@ -18,6 +18,14 @@ import time
 
 from retrieval_api import RetrievalAPI, RetrievalQuery, RetrievalMode
 from stat7_rag_bridge import STAT7RAGBridge
+from embedding_provider import SentenceTransformerEmbeddingProvider
+
+try:
+    embedding_provider = SentenceTransformerEmbeddingProvider(use_gpu=True)
+    logger.info("✓ GPU-accelerated SentenceTransformer embeddings initialized")
+except Exception as e:
+    logger.warning(f"SentenceTransformer initialization failed: {e}. Documents will use keyword search.")
+    embedding_provider = None
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -101,21 +109,21 @@ class HealthResponse(BaseModel):
 
 
 def _init_api():
-    """Initialize the RetrievalAPI instance"""
+    """Initialize the RetrievalAPI instance with GPU-accelerated embeddings"""
     global _api_instance
     if _api_instance is None:
-        logger.info("Initializing RetrievalAPI with STAT7 support...")
-        # Initialize with STAT7 bridge
+        logger.info("Initializing RetrievalAPI with STAT7 support and GPU embeddings...")
         stat7_bridge = STAT7RAGBridge()
         _api_instance = RetrievalAPI(
             stat7_bridge=stat7_bridge,
+            embedding_provider=embedding_provider,
             config={
                 "enable_stat7_hybrid": True,
                 "default_weight_semantic": 0.6,
                 "default_weight_stat7": 0.4
             }
         )
-        logger.info("RetrievalAPI initialized successfully")
+        logger.info("RetrievalAPI initialized successfully with embedding provider")
     return _api_instance
 
 
@@ -584,7 +592,7 @@ async def bulk_concurrent_queries(request: BulkQueryRequest):
 
 @app.post("/ingest")
 async def ingest_documents(request: Dict[str, Any]):
-    """Ingest documents into the RetrievalAPI"""
+    """Ingest documents into the RetrievalAPI with optional embeddings and STAT7 coordinates"""
     api = _init_api()
     
     documents = request.get("documents", [])
@@ -594,38 +602,47 @@ async def ingest_documents(request: Dict[str, Any]):
     try:
         ingested = 0
         failed = []
+        embedded_count = 0
         
         for doc in documents:
             content_id = doc.get("content_id")
             content = doc.get("content", "")
             metadata = doc.get("metadata", {})
+            embedding = doc.get("embedding")
+            stat7_coordinates = doc.get("stat7_coordinates")
             
             if not content_id:
                 failed.append({"doc": doc, "error": "Missing content_id"})
                 continue
             
-            # Use the new add_document method
             success = api.add_document(
                 doc_id=content_id,
                 content=content,
-                metadata=metadata
+                metadata=metadata,
+                embedding=embedding,
+                stat7_coordinates=stat7_coordinates
             )
             
             if success:
                 ingested += 1
-                logger.info(f"✓ Ingested: {content_id}")
+                if embedding:
+                    embedded_count += 1
+                logger.info(f"✓ Ingested: {content_id} {'(with embedding)' if embedding else ''}")
             else:
                 failed.append({"doc_id": content_id, "error": "Document already exists"})
                 logger.warning(f"Document already exists: {content_id}")
         
-        logger.info(f"Ingested {ingested}/{len(documents)} documents (context store now has {api.get_context_store_size()} total)")
+        logger.info(f"Ingested {ingested}/{len(documents)} documents with {embedded_count} embeddings "
+                   f"(context store now has {api.get_context_store_size()} total)")
         
         response = {
             "status": "success",
             "ingested": ingested,
+            "embedded": embedded_count,
             "total_requested": len(documents),
             "failed": len(failed),
             "context_store_size": api.get_context_store_size(),
+            "embedding_provider": "SentenceTransformer" if embedding_provider else "None",
             "timestamp": datetime.now().isoformat()
         }
         

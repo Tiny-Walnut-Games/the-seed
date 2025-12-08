@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Data
+data/
+results/
+*.db
+
+# HuggingFace language packs (downloaded on-demand)
+# Exclude all HF packs to keep deployment size under 1GB
+packs/warbler-pack-hf-arxiv/
+packs/warbler-pack-hf-enterprise/
+packs/warbler-pack-hf-edustories/
+packs/warbler-pack-hf-manuals/
+packs/warbler-pack-hf-novels/
+packs/warbler-pack-hf-portuguese-edu/
+packs/warbler-pack-hf-prompt-report/
+packs/debug-*/
+packs/test-*/
+packs/ingestion_report_*.json
+
+# Keep only Warbler's own packs (these stay in repo)
+# packs/warbler-pack-core/
+# packs/warbler-pack-faction-politics/
+# packs/warbler-pack-wisdom-scrolls/
+
+# Allow pack structure files but not data
+packs/**/*.pyc
+packs/**/__pycache__/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# HuggingFace cache
+.cache/
+models/

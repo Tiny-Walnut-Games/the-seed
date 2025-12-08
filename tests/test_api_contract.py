@@ -142,6 +142,7 @@ class TestAPICommandSubmission:
 
     def test_command_rejected_by_governance(self, gateway):
         """A command violating governance policy is rejected."""
+
         def policy_reject_all(cmd):
             return False
 
@@ -360,6 +361,7 @@ class TestAPIGovernanceIntegration:
 
     def test_governance_policy_accepts_valid_commands(self, gateway):
         """Valid commands pass governance."""
+
         def policy_allow_setstate(cmd):
             return cmd.command_type == "SetState"
 
@@ -376,6 +378,7 @@ class TestAPIGovernanceIntegration:
 
     def test_governance_policy_rejects_invalid_commands(self, gateway):
         """Invalid commands are rejected by governance."""
+
         def policy_allow_setstate(cmd):
             return cmd.command_type == "SetState"
 
@@ -392,6 +395,7 @@ class TestAPIGovernanceIntegration:
 
     def test_multiple_governance_policies_all_checked(self, gateway):
         """All policies must pass."""
+
         def policy_1(cmd):
             return cmd.entity_id == "entity_1"
 

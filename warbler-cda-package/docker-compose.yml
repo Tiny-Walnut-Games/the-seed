@@ -1,0 +1,16 @@
+
+# Docker setup (has Windows networking issues)
+# Alternative: Use direct Python execution below
+
+services:
+  warbler-cda-api:
+    build: .
+    command: ["python", "-m", "warbler_cda.api.service"]
+    ports:
+      - "8000:8000"
+    environment:
+      - FRACTALSTAT_TESTING=true
+      - PYTHONPATH=/app
+    volumes:
+      - ./data:/app/data:rw
+    restart: unless-stopped

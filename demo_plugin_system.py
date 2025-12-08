@@ -56,16 +56,16 @@ def create_metadata_from_manifest(manifest_loader, manifest_path):
         min_engine_version=manifest_data.get("min_engine_version", "0.9.0"),
         max_memory_mb=manifest_data.get("max_memory_mb", 50),
         max_execution_time_ms=manifest_data.get("max_execution_time_ms", 1000),
-        event_subscriptions=event_subscriptions
+        event_subscriptions=event_subscriptions,
     )
 
 
 def print_separator(title=""):
     """Print a decorative separator."""
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     if title:
         print(f"  {title}")
-        print("="*60)
+        print("=" * 60)
     print()
 
 
@@ -85,8 +85,12 @@ def demo_plugin_loading():
 
     # Load and register sentiment lens plugin
     print("\n📊 Loading Sentiment Lens Plugin...")
-    sentiment_manifest = manifest_loader.load_manifest("engine/plugins/examples/sentiment_lens/plugin.yaml")
-    sentiment_metadata = create_metadata_from_manifest(manifest_loader, "engine/plugins/examples/sentiment_lens/plugin.yaml")
+    sentiment_manifest = manifest_loader.load_manifest(
+        "engine/plugins/examples/sentiment_lens/plugin.yaml"
+    )
+    sentiment_metadata = create_metadata_from_manifest(
+        manifest_loader, "engine/plugins/examples/sentiment_lens/plugin.yaml"
+    )
     sentiment_plugin = SentimentLensPlugin(sentiment_metadata)
 
     success = plugin_manager.register_plugin(sentiment_plugin)
@@ -95,8 +99,12 @@ def demo_plugin_loading():
 
     # Load and register discourse tracker plugin
     print("\n💬 Loading Discourse Tracker Plugin...")
-    discourse_manifest = manifest_loader.load_manifest("engine/plugins/examples/discourse_tracker/plugin.yaml")
-    discourse_metadata = create_metadata_from_manifest(manifest_loader, "engine/plugins/examples/discourse_tracker/plugin.yaml")
+    discourse_manifest = manifest_loader.load_manifest(
+        "engine/plugins/examples/discourse_tracker/plugin.yaml"
+    )
+    discourse_metadata = create_metadata_from_manifest(
+        manifest_loader, "engine/plugins/examples/discourse_tracker/plugin.yaml"
+    )
     discourse_plugin = DiscourseTrackerPlugin(discourse_metadata)
 
     success = plugin_manager.register_plugin(discourse_plugin)
@@ -123,29 +131,29 @@ def demo_cognitive_event_processing(audio_event_bus, sentiment_plugin, discourse
             "data": {
                 "anchor_text": "This breakthrough discovery is absolutely amazing! The solution works brilliantly and I'm excited about the fantastic results."
             },
-            "description": "Positive learning moment"
+            "description": "Positive learning moment",
         },
         {
             "type": AudioEventType.CONFLICT_DETECTED,
             "data": {
                 "conflict_description": "However, this approach has serious problems. The implementation is terrible and frustrating to work with."
             },
-            "description": "Negative conflict with discourse markers"
+            "description": "Negative conflict with discourse markers",
         },
         {
             "type": AudioEventType.SUMMARY_GENERATED,
             "data": {
                 "summary": "In conclusion, we need to balance innovation with stability. Therefore, the recommended approach combines proven methods with new techniques. Specifically, we should focus on incremental improvements."
             },
-            "description": "Summary with rich discourse structure"
+            "description": "Summary with rich discourse structure",
         },
         {
             "type": AudioEventType.ANCHOR_REINFORCED,
             "data": {
                 "anchor_text": "The pattern recognition system is working effectively. Furthermore, the accuracy improvements are significant and noteworthy."
             },
-            "description": "Neutral technical update with transitions"
-        }
+            "description": "Neutral technical update with transitions",
+        },
     ]
 
     print("🔄 Processing cognitive events through plugin system...\n")
@@ -156,31 +164,29 @@ def demo_cognitive_event_processing(audio_event_bus, sentiment_plugin, discourse
 
         # Create and publish event
         event_data = event_info["data"]
-        audio_event_bus.publish(
-            event_info["type"],
-            event_data,
-            intensity=0.7
-        )
+        audio_event_bus.publish(event_info["type"], event_data, intensity=0.7)
 
         # Brief pause for processing
         time.sleep(0.1)
 
         # Get immediate plugin results for demonstration
         test_event = AudioEvent(
-            event_type=event_info["type"],
-            timestamp=time.time(),
-            data=event_data
+            event_type=event_info["type"], timestamp=time.time(), data=event_data
         )
 
         # Process with sentiment plugin
         sentiment_result = sentiment_plugin.process_event(test_event)
         if sentiment_result and "sentiment_analysis" in sentiment_result:
             sentiment_score = sentiment_result["sentiment_analysis"]["score"]
-            sentiment_icon = "😊" if sentiment_score > 0.2 else "😞" if sentiment_score < -0.2 else "😐"
+            sentiment_icon = (
+                "😊" if sentiment_score > 0.2 else "😞" if sentiment_score < -0.2 else "😐"
+            )
             print(f"   Sentiment: {sentiment_score:.2f} {sentiment_icon}")
 
             if sentiment_result["sentiment_analysis"]["insights"]:
-                for insight in sentiment_result["sentiment_analysis"]["insights"][:1]:  # Show first insight
+                for insight in sentiment_result["sentiment_analysis"]["insights"][
+                    :1
+                ]:  # Show first insight
                     print(f"   💡 {insight}")
 
         # Process with discourse plugin
@@ -250,7 +256,9 @@ def demo_plugin_insights(sentiment_plugin, discourse_plugin):
         if "communication_quality" in analysis:
             quality = analysis["communication_quality"]
             print(f"   Discourse Richness: {quality.get('discourse_richness', 0)} unique markers")
-            print(f"   Flow Quality: {quality.get('flow_assessment', {}).get('quality', 'unknown')}")
+            print(
+                f"   Flow Quality: {quality.get('flow_assessment', {}).get('quality', 'unknown')}"
+            )
 
 
 def demo_plugin_stats(plugin_manager, sentiment_plugin, discourse_plugin):
@@ -292,7 +300,7 @@ def demo_manifest_validation():
     print("✅ Testing Valid Manifests:")
     valid_manifests = [
         "engine/plugins/examples/sentiment_lens/plugin.yaml",
-        "engine/plugins/examples/discourse_tracker/plugin.yaml"
+        "engine/plugins/examples/discourse_tracker/plugin.yaml",
     ]
 
     for manifest_path in valid_manifests:
@@ -350,6 +358,7 @@ def main():
     except Exception as e:
         print(f"❌ Demo failed with error: {e}")
         import traceback
+
         traceback.print_exc()
         return 1
 

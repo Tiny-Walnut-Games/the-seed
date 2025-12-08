@@ -25,7 +25,7 @@ class TestStat7Setup:
             "stat7wsserve.py",
             "stat7threejs.html",
             "start_stat7_visualization.py",
-            "requirements-visualization.txt"
+            "requirements-visualization.txt",
         ]
 
         missing_files = []
@@ -37,12 +37,7 @@ class TestStat7Setup:
 
     def test_python_dependencies_importable(self):
         """Test if required Python packages can be imported."""
-        required_modules = [
-            'asyncio',
-            'websockets', 
-            'json',
-            'pathlib'
-        ]
+        required_modules = ["asyncio", "websockets", "json", "pathlib"]
 
         for module in required_modules:
             try:
@@ -60,17 +55,14 @@ class TestStat7Setup:
     def test_file_permissions(self):
         """Test file permissions for executable scripts."""
         root_path = Path(__file__).parent.parent
-        executable_files = [
-            "stat7wsserve.py",
-            "start_stat7_visualization.py"
-        ]
+        executable_files = ["stat7wsserve.py", "start_stat7_visualization.py"]
 
         for file in executable_files:
             file_path = root_path / file
             if file_path.exists():
                 assert file_path.is_file(), f"{file} is not a regular file"
                 # On Windows, checking execution permission is different
-                if os.name != 'nt':
+                if os.name != "nt":
                     assert os.access(file_path, os.X_OK), f"{file} is not executable"
 
 

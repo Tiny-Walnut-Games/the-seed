@@ -4,6 +4,8 @@ Load Warbler Pack Data into EXP-09 API Service
 
 Ingests game wisdom, lore, and faction data into the STAT7-enabled RetrievalAPI
 for end-to-end testing with real Warbler content.
+
+Now with GPU-accelerated SentenceTransformer embeddings for semantic search!
 """
 
 import json
@@ -15,6 +17,13 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+try:
+    from embedding_provider import SentenceTransformerEmbeddingProvider
+    EMBEDDINGS_AVAILABLE = True
+except ImportError:
+    EMBEDDINGS_AVAILABLE = False
+    logger.warning("SentenceTransformer not available. Install with: pip install sentence-transformers")
 
 # Warbler pack locations
 BASE_DIR = Path(__file__).resolve().parent
@@ -32,13 +41,22 @@ WARBLER_PACKS = [
 
 
 class WarblerPackLoader:
-    """Load Warbler pack data into the API"""
+    """Load Warbler pack data into the API with GPU-accelerated embeddings"""
 
-    def __init__(self, api_url: str = "http://localhost:8000"):
+    def __init__(self, api_url: str = "http://localhost:8000", use_gpu: bool = True):
         self.api_url = api_url.rstrip("/")
         self.session = requests.Session()
         self.loaded_count = 0
         self.error_count = 0
+        self.embedding_provider = None
+        
+        if EMBEDDINGS_AVAILABLE:
+            try:
+                self.embedding_provider = SentenceTransformerEmbeddingProvider(use_gpu=use_gpu)
+                logger.info(f"✓ SentenceTransformer embedding provider initialized")
+            except Exception as e:
+                logger.error(f"Failed to initialize embedding provider: {e}")
+                logger.warning("Documents will be loaded without embeddings")
 
     def discover_documents(self, pack_name: str) -> List[Dict[str, Any]]:
         """Discover all documents in a pack"""
@@ -114,16 +132,33 @@ class WarblerPackLoader:
             return None
 
     def ingest_document(self, doc: Dict[str, Any]) -> bool:
-        """Send document to API for ingestion"""
+        """Send document to API for ingestion with embeddings"""
         try:
-            # For now, we'll store in local context
-            # The API service will need an /ingest endpoint
             logger.info(f"Ingesting: {doc['content_id']}")
-
-            # Check if API has ingest endpoint
+            
+            enriched_doc = doc.copy()
+            
+            if self.embedding_provider:
+                try:
+                    content = doc.get("content", "")
+                    if content:
+                        embedding = self.embedding_provider.embed_text(content)
+                        enriched_doc["embedding"] = embedding
+                        
+                        stat7_coords = self.embedding_provider.compute_stat7_coordinates_from_embedding(
+                            embedding,
+                            realm=doc.get("metadata", {}).get("realm_type", "narrative"),
+                            content_metadata=doc.get("metadata", {})
+                        )
+                        enriched_doc["stat7_coordinates"] = stat7_coords
+                        
+                        logger.info(f"  ✓ Computed embedding ({len(embedding)}D) and STAT7 coordinates")
+                except Exception as e:
+                    logger.warning(f"  ⚠️ Failed to embed document: {e}")
+            
             response = self.session.post(
                 f"{self.api_url}/ingest",
-                json={"documents": [doc]},
+                json={"documents": [enriched_doc]},
                 timeout=10
             )
 
@@ -143,9 +178,16 @@ class WarblerPackLoader:
             return False
 
     def load_all_packs(self) -> int:
-        """Load all Warbler packs"""
+        """Load all Warbler packs with embeddings"""
         click.echo("\n" + "="*60)
         click.echo("Loading Warbler Pack Data into EXP-09 API")
+        if self.embedding_provider:
+            click.secho("✓ GPU-Accelerated Embeddings ENABLED", fg="green")
+            info = self.embedding_provider.get_model_info()
+            click.echo(f"  Model: {info['model_name']} ({info['embedding_dimension']}D)")
+            click.echo(f"  Device: {info['device']}")
+        else:
+            click.secho("⚠️  Embeddings DISABLED - documents will not be searchable", fg="yellow")
         click.echo("="*60 + "\n")
 
         total_docs = 0
@@ -164,6 +206,11 @@ class WarblerPackLoader:
         click.secho(f"✓ Load Complete: {self.loaded_count} docs ingested", fg="green")
         if self.error_count > 0:
             click.secho(f"✗ Errors: {self.error_count}", fg="yellow")
+        
+        if self.embedding_provider:
+            cache_info = self.embedding_provider.get_model_info()
+            click.echo(f"\n📊 Embedding Cache: {cache_info['cached_embeddings']} cached")
+        
         click.echo("="*60 + "\n")
 
         return self.loaded_count

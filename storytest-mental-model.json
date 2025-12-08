@@ -1,0 +1,131 @@
+{
+    "project": {
+        "name": "The Seed",
+        "description": "STAT7 multidimensional addressing system for infinitely extensible data and narrative storage",
+        "version": "0.1.0",
+        "mental_model": "7-dimensional addressing with comprehensive validation experiments and production-ready components",
+    },
+    "claimed_capabilities": {
+        "stat7_addressing": [
+            "7-dimensional coordinate system (Realm, Lineage, Adjacency, Horizon, Resonance, Velocity, Density)",
+            "Deterministic hash generation with canonical serialization",
+            "Immutable dimensions (Realm, Lineage)",
+            "Append-only adjacency with supersede markers",
+            "Rolling chain integrity hash",
+            "LUCA bootstrap entity (Last Universal Common Ancestor)",
+        ],
+        "validation_experiments": [
+            "EXP-01: Address Uniqueness - 10,000+ entity collision testing",
+            "EXP-02: Retrieval Efficiency - <1ms lookup target",
+            "EXP-03: Dimension Necessity - Validates all 7 dimensions required",
+            "EXP-04: Fractal Scaling - Bit-chain consistency across scales",
+            "EXP-05: Compression/Expansion - Lossless bit-chain operations",
+            "EXP-06: Entanglement Detection - 100% precision/recall at 0.85 threshold",
+            "EXP-07: LUCA Bootstrap - System reconstruction from primordial entity",
+            "EXP-08: RAG Integration - Warbler pack ingestion and retrieval",
+            "EXP-09: Concurrency - Thread-safe concurrent queries",
+        ],
+        "visualization_system": [
+            "Real-time WebSocket streaming",
+            "Three.js GPU-accelerated rendering",
+            "7D→3D projection algorithms",
+            "Interactive Jupyter notebook demos",
+            "Realm-based filtering and animation",
+        ],
+        "production_components": [
+            "FastAPI service with concurrent query support",
+            "CLI interface for STAT7 operations",
+            "GPU-accelerated variant (CUDA 12.x)",
+            "Docker containerization",
+            "HuggingFace dataset integration",
+        ],
+        "documentation": [
+            "Phase 1 Doctrine (locked and validated)",
+            "Quick start guides",
+            "Plain English explanations",
+            "Experiment results and artifacts",
+            "Security hardening documentation",
+        ],
+    },
+    "required_artifacts": [
+        {
+            "path": "packages/com.twg.the-seed/seed/README.md",
+            "required": true,
+            "description": "Seed project documentation",
+        },
+        {"path": "pyproject.toml", "required": true, "description": "Python project configuration"},
+        {"path": "requirements-gpu.txt", "required": true, "description": "GPU dependencies"},
+        {
+            "path": "packages/com.twg.the-seed/seed/engine/stat7_entity.py",
+            "required": true,
+            "description": "STAT7 entity system",
+        },
+        {
+            "path": "packages/com.twg.the-seed/seed/engine/stat7_rag_bridge.py",
+            "required": true,
+            "description": "RAG integration bridge",
+        },
+        {
+            "path": "packages/com.twg.the-seed/seed/engine/retrieval_api.py",
+            "required": true,
+            "description": "Retrieval API",
+        },
+        {
+            "path": "packages/com.twg.the-seed/seed/engine/stat7_experiments.py",
+            "required": true,
+            "description": "Phase 1 experiments",
+        },
+        {
+            "path": "packages/com.twg.the-seed/seed/engine/exp04_fractal_scaling.py",
+            "required": true,
+            "description": "EXP-04 implementation",
+        },
+        {
+            "path": "packages/com.twg.the-seed/seed/engine/exp06_entanglement_detection.py",
+            "required": true,
+            "description": "EXP-06 implementation",
+        },
+        {
+            "path": "packages/com.twg.the-seed/seed/engine/exp09_api_service.py",
+            "required": true,
+            "description": "FastAPI service",
+        },
+        {
+            "path": "packages/com.twg.the-seed/seed/engine/exp09_cli.py",
+            "required": true,
+            "description": "CLI interface",
+        },
+        {"path": "tests/test_stat7.py", "required": true, "description": "STAT7 core tests"},
+    ],
+    "quality_gates": [
+        {
+            "gate": "stat7_experiments_complete",
+            "description": "All 9 STAT7 validation experiments implemented",
+            "required_experiments": 9,
+            "critical": true,
+        },
+        {
+            "gate": "stat7_core_complete",
+            "description": "All core STAT7 components present",
+            "critical": true,
+        },
+        {
+            "gate": "test_coverage",
+            "description": "Comprehensive test coverage for STAT7 system",
+            "minimum_test_files": 5,
+            "critical": true,
+        },
+        {
+            "gate": "documentation_complete",
+            "description": "README and documentation present",
+            "critical": false,
+        },
+    ],
+    "architecture_principles": [
+        "7-dimensional addressing for infinite scalability",
+        "Deterministic hash generation with canonical serialization",
+        "Immutability for critical dimensions (Realm, Lineage)",
+        "Comprehensive validation through 9 experiments",
+        "Production-ready with FastAPI, CLI, and Docker support",
+    ],
+}

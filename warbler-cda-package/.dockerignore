@@ -1,0 +1,111 @@
+# Version control and logs
+.git
+.gitignore
+.coverage
+*.log
+
+# Python cache and virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Testing and coverage
+.pytest_cache/
+.benchmarks/
+.coverage
+htmlcov/
+htmlcov_final/
+test-output.xml
+.mypy_cache/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node modules (if any)
+node_modules/
+
+# Build artifacts
+*.egg-info/
+build/
+dist/
+*.tar.gz
+
+# Temporary and cache directories
+.benchmarks/
+.embedding_cache/
+temp/
+logs/
+data/
+experiments/
+
+# Documentation build
+docs/_build/
+.clinerules/
+
+# Large pack directories (these are optional for testing)
+packs/
+*.jsonl
+*.gz
+*.zip
+*.tar
+*.tar.gz
+
+# Experiment outputs and large data files
+exp*.json
+results/
+.benchmarks/
+test-results/
+profiling/
+
+# Docker and container files
+Dockerfile*
+docker-compose*.yml
+DOCKER_BUILD_PERFORMANCE.md
+*.log
+*.xml
+
+# Documentation (large markdown files)
+*.md
+
+# All data and model files
+data/
+models/
+weights/
+cache/
+
+# Additional exclusions
+.ipynb_checkpoints/
+*.egg-info/
+*/__pycache__/
+*.so
+*.pkl
+*.h5
+*.pb
+*.tf
+*.pth
+*.pt
+*.bin
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp

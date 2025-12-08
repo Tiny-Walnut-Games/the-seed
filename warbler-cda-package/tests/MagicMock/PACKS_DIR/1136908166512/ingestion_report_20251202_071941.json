@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-12-02T07:19:41.521240",
+  "results": {
+    "arxiv": {
+      "documents": 10,
+      "pack_path": "MagicMock\\PACKS_DIR\\1136908166512\\warbler-pack-hf-arxiv"
+    }
+  },
+  "total_documents": 10,
+  "packs_created": 1
+}

@@ -264,7 +264,8 @@ class RetrievalAPI:
         
         return self.retrieve_context(query)
     
-    def add_document(self, doc_id: str, content: str, metadata: Dict[str, Any] = None) -> bool:
+    def add_document(self, doc_id: str, content: str, metadata: Dict[str, Any] = None, 
+                    embedding: List[float] = None, stat7_coordinates: Dict[str, Any] = None) -> bool:
         """
         Add a document to the context store for retrieval.
         
@@ -272,6 +273,8 @@ class RetrievalAPI:
             doc_id: Unique document identifier
             content: Document content
             metadata: Optional metadata (realm, type, etc.)
+            embedding: Optional pre-computed embedding vector (e.g., from SentenceTransformer)
+            stat7_coordinates: Optional STAT7 coordinates for the document
             
         Returns:
             True if added successfully
@@ -279,13 +282,21 @@ class RetrievalAPI:
         if doc_id in self._context_store:
             return False  # Document already exists
         
-        self._context_store[doc_id] = {
+        doc_entry = {
             "content": content,
             "metadata": metadata or {},
             "added_at": time.time(),
             "length": len(content),
             "content_hash": hashlib.sha256(content.encode()).hexdigest()
         }
+        
+        if embedding:
+            doc_entry["embedding"] = embedding
+        
+        if stat7_coordinates:
+            doc_entry["stat7_coordinates"] = stat7_coordinates
+        
+        self._context_store[doc_id] = doc_entry
         return True
     
     def get_context_store_size(self) -> int:
@@ -406,55 +417,79 @@ class RetrievalAPI:
                         )
                         results.append(result)
         
-        # Fallback: Search context store using keyword matching if no embeddings
-        if not self.embedding_provider and not results:
-            results.extend(self._search_context_store(query))
+        # Always search context store (documents from Warbler packs with embeddings)
+        context_results = self._search_context_store(query)
+        results.extend(context_results)
         
-        return results
+        # Remove duplicates and sort by relevance
+        seen = set()
+        unique_results = []
+        for result in results:
+            if result.content_id not in seen:
+                seen.add(result.content_id)
+                unique_results.append(result)
+        
+        unique_results.sort(key=lambda x: x.relevance_score, reverse=True)
+        return unique_results[:query.max_results]
     
     def _search_context_store(self, query: RetrievalQuery) -> List[RetrievalResult]:
         """
-        Simple keyword-based search of context store.
-        Used as fallback when embedding provider is not available.
+        Search context store using embeddings if available, otherwise fall back to keyword search.
+        This is the primary search method for documents loaded from Warbler packs.
         """
         results = []
         
         if not query.semantic_query or not self._context_store:
             return results
         
-        # Lowercase query terms for case-insensitive matching
-        query_terms = query.semantic_query.lower().split()
-        
-        # Score each document by keyword matches
         scored_docs = []
-        for doc_id, doc_data in self._context_store.items():
-            content = doc_data.get("content", "").lower()
-            
-            # Count keyword matches
-            matches = sum(1 for term in query_terms if term in content)
-            if matches > 0:
-                # Calculate relevance score based on match ratio
-                relevance_score = min(1.0, matches / len(query_terms))
-                scored_docs.append((doc_id, doc_data, relevance_score))
         
-        # Sort by relevance score (descending)
+        if self.embedding_provider:
+            try:
+                query_embedding = self.embedding_provider.embed_text(query.semantic_query)
+                
+                for doc_id, doc_data in self._context_store.items():
+                    doc_embedding = doc_data.get("embedding")
+                    
+                    if doc_embedding:
+                        relevance_score = self.embedding_provider.calculate_similarity(
+                            query_embedding, doc_embedding
+                        )
+                        scored_docs.append((doc_id, doc_data, relevance_score, "embedding"))
+            except Exception as e:
+                import sys
+                print(f"DEBUG: Embedding search failed: {e}", file=sys.stderr)
+        
+        if not scored_docs:
+            query_terms = query.semantic_query.lower().split()
+            
+            for doc_id, doc_data in self._context_store.items():
+                content = doc_data.get("content", "").lower()
+                
+                matches = sum(1 for term in query_terms if term in content)
+                if matches > 0:
+                    relevance_score = min(1.0, matches / len(query_terms))
+                    scored_docs.append((doc_id, doc_data, relevance_score, "keyword"))
+        
         scored_docs.sort(key=lambda x: x[2], reverse=True)
         
-        # Create results
-        for doc_id, doc_data, relevance_score in scored_docs[:query.max_results]:
+        for doc_id, doc_data, relevance_score, search_method in scored_docs[:query.max_results]:
             if relevance_score >= query.confidence_threshold:
+                stat7_coords = doc_data.get("stat7_coordinates", {})
+                
                 result = RetrievalResult(
                     result_id=f"ctx_{doc_id}",
                     content_type="context_store",
                     content_id=doc_id,
-                    content=doc_data.get("content", "")[:500],  # Truncate to 500 chars
+                    content=doc_data.get("content", "")[:500],
                     relevance_score=relevance_score,
                     temporal_distance=0.0,
                     anchor_connections=[],
                     provenance_depth=1,
                     conflict_flags=[],
-                    metadata=doc_data.get("metadata", {}),
-                    semantic_similarity=relevance_score
+                    metadata=dict(doc_data.get("metadata", {}), search_method=search_method),
+                    semantic_similarity=relevance_score,
+                    stat7_resonance=stat7_coords.get("luminosity", 0.5) if stat7_coords else 0.5
                 )
                 results.append(result)
         

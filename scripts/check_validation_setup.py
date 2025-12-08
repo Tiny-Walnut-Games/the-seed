@@ -18,10 +18,12 @@ import sys
 from pathlib import Path
 import subprocess
 
+
 def print_section(title):
     print("\n" + "=" * 70)
     print(f"  {title}")
     print("=" * 70)
+
 
 def check_item(condition, success_msg, failure_msg, fix_msg=None):
     if condition:
@@ -32,6 +34,7 @@ def check_item(condition, success_msg, failure_msg, fix_msg=None):
         if fix_msg:
             print(f"   Fix: {fix_msg}")
         return False
+
 
 def check_files_exist():
     """Check all required files exist"""
@@ -51,10 +54,11 @@ def check_files_exist():
             path.exists(),
             f"{description} exists: {file_path}",
             f"{description} missing: {file_path}",
-            f"Create the file at {file_path}"
+            f"Create the file at {file_path}",
         )
 
     return all_good
+
 
 def check_test_file_content():
     """Check test file has required content"""
@@ -78,13 +82,10 @@ def check_test_file_content():
 
     all_good = True
     for condition, description in checks:
-        all_good &= check_item(
-            condition,
-            description,
-            f"{description} - NOT FOUND"
-        )
+        all_good &= check_item(condition, description, f"{description} - NOT FOUND")
 
     return all_good
+
 
 def check_workflow_configuration():
     """Check workflow file is properly configured"""
@@ -95,7 +96,7 @@ def check_workflow_configuration():
         print("❌ Workflow file doesn't exist, skipping configuration check")
         return False
 
-    content = workflow_file.read_text(encoding='utf-8')
+    content = workflow_file.read_text(encoding="utf-8")
 
     checks = [
         ("test_concurrent_500_clients" in content, "Workflow runs 500-player test"),
@@ -108,13 +109,10 @@ def check_workflow_configuration():
 
     all_good = True
     for condition, description in checks:
-        all_good &= check_item(
-            condition,
-            description,
-            f"{description} - NOT FOUND"
-        )
+        all_good &= check_item(condition, description, f"{description} - NOT FOUND")
 
     return all_good
+
 
 def check_dependencies():
     """Check Python dependencies are available"""
@@ -132,13 +130,11 @@ def check_dependencies():
             check_item(True, f"{description} ({package}) installed", "")
         except ImportError:
             all_good &= check_item(
-                False,
-                "",
-                f"{description} ({package}) NOT installed",
-                f"Run: pip install {package}"
+                False, "", f"{description} ({package}) NOT installed", f"Run: pip install {package}"
             )
 
     return all_good
+
 
 def check_git_status():
     """Check git status"""
@@ -156,10 +152,7 @@ def check_git_status():
     # Check if there are uncommitted changes
     try:
         result = subprocess.run(
-            ["git", "status", "--porcelain"],
-            capture_output=True,
-            text=True,
-            check=True
+            ["git", "status", "--porcelain"], capture_output=True, text=True, check=True
         )
 
         uncommitted = result.stdout.strip()
@@ -178,17 +171,25 @@ def check_git_status():
         print("⚠️  Git command not found")
         return True
 
+
 def _sanitize_output(text, max_lines=10):
     """Sanitize and truncate output to prevent secret leakage"""
     if not text:
         return "No output"
 
-    lines = text.split('\n')[:max_lines]
+    lines = text.split("\n")[:max_lines]
 
     # Filter out potentially sensitive patterns
     sensitive_patterns = [
-        'token', 'secret', 'password', 'api', 'key', 'auth',
-        'credentials', 'api_key', 'access_token'
+        "token",
+        "secret",
+        "password",
+        "api",
+        "key",
+        "auth",
+        "credentials",
+        "api_key",
+        "access_token",
     ]
 
     filtered_lines = []
@@ -200,7 +201,8 @@ def _sanitize_output(text, max_lines=10):
         else:
             filtered_lines.append(line)
 
-    return '\n'.join(filtered_lines)
+    return "\n".join(filtered_lines)
+
 
 def try_run_quick_test():
     """Try to run a quick local test"""
@@ -212,12 +214,17 @@ def try_run_quick_test():
     try:
         # Try to run a quick test
         result = subprocess.run(
-            ["python", "-m", "pytest",
-             "tests/test_websocket_load_stress.py::test_connection_lifecycle",
-             "-v", "--tb=short"],
+            [
+                "python",
+                "-m",
+                "pytest",
+                "tests/test_websocket_load_stress.py::test_connection_lifecycle",
+                "-v",
+                "--tb=short",
+            ],
             capture_output=True,
             text=True,
-            timeout=60  # 60 second timeout
+            timeout=60,  # 60 second timeout
         )
 
         if result.returncode == 0:
@@ -250,6 +257,7 @@ def try_run_quick_test():
         print(f"⚠️  Could not run test: {error_type}")
         print("   Tests will run on GitHub Actions")
         return True
+
 
 def show_next_steps(all_passed):
     """Show what to do next"""
@@ -292,6 +300,7 @@ def show_next_steps(all_passed):
         print("   - Check: Workflow file exists and is configured")
         print("   - Check: Dependencies are installed (pip install pytest websockets)")
 
+
 def main():
     print("\n" + "=" * 70)
     print("  🔬 VALIDATION SETUP PRE-FLIGHT CHECK")
@@ -318,6 +327,7 @@ def main():
     print("=" * 70 + "\n")
 
     return 0 if all_passed else 1
+
 
 if __name__ == "__main__":
     sys.exit(main())

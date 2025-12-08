@@ -24,20 +24,15 @@ import logging
 import sys
 import os
 
-# Add the seed engine to Python path (correct path with lowercase 'packages')
-# Find the project root by going up from web/server/ to the repo root
-current_dir = os.path.dirname(__file__)
-repo_root = os.path.abspath(os.path.join(current_dir, '../../'))
-seed_path = os.path.join(repo_root, 'packages', 'com.twg.the-seed', 'seed', 'engine')
-
+# Add the seed engine to Python path
+seed_path = os.path.join(os.path.dirname(__file__), 'Packages', 'com.twg.the-seed', 'seed', 'engine')
 if seed_path not in sys.path:
     sys.path.insert(0, seed_path)
 
 try:
     from stat7_experiments import BitChain, Coordinates, generate_random_bitchain
-except ImportError as e:
-    print(f"Warning: stat7_experiments not found at {seed_path}. Using mock implementations.")
-    print(f"Import error: {e}")
+except ImportError:
+    print("Warning: stat7_experiments not found. Using mock implementations.")
 
     # Mock implementations for testing
     @dataclass
@@ -655,9 +650,9 @@ async def main():
     # Wait a moment for server to start
     await asyncio.sleep(1)
 
-    print("[STAT7] Visualization Server started!")
-    print("[STAT7] WebSocket: ws://localhost:8765")
-    print("[STAT7] Open visualization.html in your browser")
+    print("🚀 STAT7 Visualization Server started!")
+    print("📊 WebSocket: ws://localhost:8765")
+    print("🌐 Open visualization.html in your browser")
     print()
     print("Available commands:")
     print("  - Type 'exp01' to run EXP-01 visualization")
@@ -673,13 +668,13 @@ async def main():
             if command == 'quit':
                 break
             elif command == 'exp01':
-                print("[STAT7] Starting EXP-01 visualization...")
+                print("🧪 Starting EXP-01 visualization...")
                 await visualizer.visualize_exp01_uniqueness(sample_size=500, iterations=3)
-                print("[STAT7] EXP-01 visualization complete")
+                print("✅ EXP-01 visualization complete")
             elif command == 'continuous':
-                print("[STAT7] Starting continuous generation (30 seconds)...")
+                print("🔄 Starting continuous generation (30 seconds)...")
                 await visualizer.visualize_continuous_generation(duration_seconds=30, rate_per_second=20)
-                print("[STAT7] Continuous generation complete")
+                print("✅ Continuous generation complete")
             elif command == '':
                 continue
             else:
@@ -694,51 +689,8 @@ async def main():
     # Cleanup
     streamer.stop_server()
     server_task.cancel()
-    print("\n[STAT7] Visualization Server stopped")
+    print("\n👋 STAT7 Visualization Server stopped")
 
 
 if __name__ == "__main__":
-    import sys
-    
-    # Support auto-start mode
-    auto_start = "--auto-start" in sys.argv or "--continuous" in sys.argv
-    exp01_mode = "--exp01" in sys.argv
-    
-    if auto_start or exp01_mode:
-        # Auto-start mode - run visualization without waiting for input
-        async def auto_run():
-            streamer = STAT7EventStreamer(host="localhost", port=8765)
-            visualizer = ExperimentVisualizer(streamer)
-            
-            # Start server
-            server_task = asyncio.create_task(streamer.start_server())
-            
-            print("[STAT7] Auto-Start Mode")
-            print("=" * 40)
-            
-            try:
-                if exp01_mode:
-                    print("[STAT7] Starting EXP-01 visualization...")
-                    await visualizer.visualize_exp01_uniqueness(sample_size=500, iterations=3)
-                    print("[STAT7] EXP-01 visualization complete")
-                else:
-                    print("[STAT7] Starting continuous generation...")
-                    await visualizer.visualize_continuous_generation(duration_seconds=120, rate_per_second=20)
-                    print("[STAT7] Continuous generation complete")
-                    
-                    # Loop continuously
-                    while streamer.is_running:
-                        await asyncio.sleep(30)
-                        print("[STAT7] Restarting continuous generation...")
-                        await visualizer.visualize_continuous_generation(duration_seconds=120, rate_per_second=20)
-                        
-            except KeyboardInterrupt:
-                print("\n[STAT7] Shutting down...")
-            finally:
-                streamer.stop_server()
-                server_task.cancel()
-                
-        asyncio.run(auto_run())
-    else:
-        # Interactive mode
-        asyncio.run(main())
+    asyncio.run(main())

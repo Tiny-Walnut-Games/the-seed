@@ -504,3 +504,6 @@ Unity.*.csproj
 
 # Local AI index artifacts (generated)
 .ai-index/
+warbler-cda-package/.clinerules/cline-rules.md
+warbler-cda-package/.clinerules/workflows/wf-cline.md
+warbler-cda-package/packs/chunked-arxiv/*.jsonl

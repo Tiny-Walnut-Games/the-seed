@@ -65,11 +65,43 @@ python exp09_cli.py query --query-id "test_npc" --semantic "bounty hunter charac
 python exp09_cli.py query --query-id "test_hybrid" --semantic "character background" --hybrid
 ```
 
-## 📊 Dataset Details
+## 📊 MIT-Licensed Dataset Details
 
-### NPC Dialogue (`amaydle/npc-dialogue`)
-- **Size**: 1,915 entries
-- **Format**: Name, Biography, Query, Response, Emotion
+### ⚠️ REMOVED: NPC Dialogue (`amaydle/npc-dialogue`)
+**This dataset has been REMOVED due to licensing issues and copyrighted material.**
+
+### New MIT-Licensed Datasets
+
+#### arXiv Papers (`nick007x/arxiv-papers`)
+- **Size**: 2.55M papers
+- **License**: MIT
+- **Format**: Title, Authors, Abstract, Categories
+- **Use Case**: Scholarly corpus for retrieval depth and technical summarization
+
+#### Prompt Engineering Report (`PromptSystematicReview/ThePromptReport`)
+- **Size**: 83 docs, 1.09K interactions
+- **License**: MIT
+- **Use Case**: Prompt engineering and AI discourse retrieval
+
+#### Generated Novels (`GOAT-AI/generated-novels`)
+- **Size**: 20 novels
+- **License**: MIT
+- **Use Case**: Long-form narrative retrieval and creative text
+
+#### Portuguese Education (`Solshine/Portuguese_Language_Education_Texts`)
+- **Size**: 21 documents
+- **License**: MIT
+- **Use Case**: Multilingual retrieval experiments
+
+#### ANAC Manuals (`nlasso/anac-manuals-23`)
+- **Size**: 52 manuals
+- **License**: MIT
+- **Use Case**: Technical procedural text and "find the right section" retrieval
+
+#### Enterprise Benchmark (`AST-FRI/EnterpriseBench`)
+- **Size**: 283 entries
+- **License**: MIT
+- **Use Case**: Business/organizational retrieval scenarios
 - **Use Case**: Character personality training
 - **Example**: Bounty hunters, clerics, vampires, werewolves
 

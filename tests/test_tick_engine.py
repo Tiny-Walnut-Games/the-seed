@@ -243,6 +243,7 @@ class TestTickEngineCascades:
 
     def test_depth_limit_stops_infinite_cascades(self, engine):
         """Depth limit prevents infinite cascade loops."""
+
         def infinite_handler(evt, depth):
             if depth < 3:
                 return [{"event_type": "CascadeEvent", "depth": depth + 1}]
@@ -332,10 +333,9 @@ class TestTickEngineDeterminism:
 
     def test_same_input_produces_same_output(self, engine):
         """Identical inputs produce identical reactions (determinism)."""
+
         def handler(evt, depth):
-            return [
-                {"event_type": "Reaction", "value": evt.get("value", 0) * 2}
-            ]
+            return [{"event_type": "Reaction", "value": evt.get("value", 0) * 2}]
 
         rule = ReactionRule(
             name="double",

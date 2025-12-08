@@ -29,12 +29,12 @@ class TestSimple:
             "web/server/stat7wsserve.py",
             "web/stat7threejs.html",
         ]
-        
+
         missing_files = []
         for file in required_files:
             if not (root_path / file).exists():
                 missing_files.append(file)
-        
+
         assert not missing_files, f"Missing required files: {missing_files}"
 
     def test_module_imports(self):
@@ -43,6 +43,7 @@ class TestSimple:
             import asyncio
             import json
             import pathlib
+
             assert True  # All imports successful
         except ImportError as e:
             pytest.fail(f"Basic module import failed: {e}")
@@ -55,8 +56,9 @@ class TestSimple:
             server_path = str(root_path / "web" / "server")
             if server_path not in sys.path:
                 sys.path.insert(0, server_path)
-            
+
             from stat7wsserve import STAT7EventStreamer
+
             assert STAT7EventStreamer is not None
         except ImportError as e:
             pytest.fail(f"STAT7 server import failed: {e}")
@@ -66,8 +68,8 @@ class TestSimple:
         test_path = Path(__file__)
         assert test_path.exists()
         assert test_path.is_file()
-        assert test_path.suffix == '.py'
-        assert test_path.parent.name == 'tests'
+        assert test_path.suffix == ".py"
+        assert test_path.parent.name == "tests"
 
 
 if __name__ == "__main__":

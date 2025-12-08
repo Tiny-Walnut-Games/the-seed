@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: warbler-cda
+  labels:
+    name: warbler-cda
+    app: warbler-cda

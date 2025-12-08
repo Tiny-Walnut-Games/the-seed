@@ -15,6 +15,7 @@ import subprocess
 import argparse
 from pathlib import Path
 
+
 def run_command(cmd, description):
     """Run command and handle errors"""
     print(f"🚀 {description}")
@@ -31,14 +32,20 @@ def run_command(cmd, description):
         print(f"❌ Command not found: {cmd[0]}")
         return False
 
+
 def main():
     parser = argparse.ArgumentParser(description="Quick Test Runner")
     parser.add_argument("--full", action="store_true", help="Run complete test suite")
     parser.add_argument("--gui", action="store_true", help="Run in PyTest mode (GUI compatible)")
-    parser.add_argument("--report", choices=["json", "html", "markdown"],
-                       default="json", help="Report format")
+    parser.add_argument(
+        "--report", choices=["json", "html", "markdown"], default="json", help="Report format"
+    )
     parser.add_argument("--quick", action="store_true", help="Quick validation only")
-    parser.add_argument("--include-api", action="store_true", help="Include EXP-09/EXP-10 API tests even in quick mode (Bob's method)")
+    parser.add_argument(
+        "--include-api",
+        action="store_true",
+        help="Include EXP-09/EXP-10 API tests even in quick mode (Bob's method)",
+    )
 
     args = parser.parse_args()
 
@@ -88,6 +95,7 @@ def main():
     else:
         print("\n💥 Tests failed!")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

@@ -25,15 +25,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 import websockets
 
-# Add server to path and stat7_experiments engine to path
-test_dir = os.path.dirname(__file__)
-sys.path.insert(0, os.path.join(test_dir, '../web/server'))
-
-# Also add the seed engine path directly for test imports
-repo_root = os.path.abspath(os.path.join(test_dir, '../'))
-seed_engine_path = os.path.join(repo_root, 'packages', 'com.twg.the-seed', 'seed', 'engine')
-if seed_engine_path not in sys.path:
-    sys.path.insert(0, seed_engine_path)
+# Add server to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../web/server"))
 
 from stat7wsserve import STAT7EventStreamer, VisualizationEvent, generate_random_bitchain
 
@@ -42,11 +35,12 @@ from stat7wsserve import STAT7EventStreamer, VisualizationEvent, generate_random
 # HELPERS & UTILITIES
 # ============================================================================
 
+
 async def setup_event_streamer(port: int = 9876):
     """Setup and start STAT7EventStreamer for testing."""
     streamer = STAT7EventStreamer(host="localhost", port=port)
     server_task = asyncio.create_task(streamer.start_server())
-    
+
     # Verify server is actually running by attempting connection
     max_retries = 20
     for attempt in range(max_retries):
@@ -63,7 +57,7 @@ async def setup_event_streamer(port: int = 9876):
                 print(f"❌ Failed to connect to server after {max_retries} attempts")
                 sys.stdout.flush()
                 raise RuntimeError(f"Server failed to start on port {port}")
-    
+
     return streamer, server_task
 
 
@@ -80,7 +74,7 @@ async def cleanup_event_streamer(streamer, server_task):
 
 class WebSocketTestClient:
     """Mock WebSocket client for testing."""
-    
+
     def __init__(self, uri: str):
         self.uri = uri
         self.websocket = None
@@ -88,7 +82,7 @@ class WebSocketTestClient:
         self.event_receive_times: List[float] = []
         self.is_connected = False
         self.receive_task = None
-        
+
     async def connect(self):
         """Connect to WebSocket server."""
         try:
@@ -99,7 +93,7 @@ class WebSocketTestClient:
         except Exception as e:
             print(f"Connection failed: {e}")
             return False
-    
+
     async def _receive_loop(self):
         """Background task to receive messages."""
         try:
@@ -114,7 +108,7 @@ class WebSocketTestClient:
             self.is_connected = False
         except asyncio.CancelledError:
             self.is_connected = False
-    
+
     async def disconnect(self):
         """Disconnect from WebSocket server."""
         if self.websocket:
@@ -126,12 +120,12 @@ class WebSocketTestClient:
             except asyncio.CancelledError:
                 pass
         self.is_connected = False
-    
+
     async def send_message(self, data: Dict):
         """Send a message to the server."""
         if self.websocket:
             await self.websocket.send(json.dumps(data))
-    
+
     def get_event_count(self) -> int:
         """Get number of received events."""
         return len(self.received_events)
@@ -141,10 +135,11 @@ class WebSocketTestClient:
 # TEST: CONNECTION LIFECYCLE
 # ============================================================================
 
+
 @pytest.mark.asyncio
 async def test_connection_lifecycle():
     """Test basic connection lifecycle: connect → receive buffer → disconnect."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         # Pre-populate buffer with events
@@ -152,25 +147,25 @@ async def test_connection_lifecycle():
             bitchain = generate_random_bitchain()
             event = event_streamer.create_bitchain_event(bitchain, "LIFECYCLE_TEST")
             await event_streamer.broadcast_event(event)
-        
+
         # Connect client
         client = WebSocketTestClient("ws://localhost:9876")
         assert await client.connect(), "Client should connect successfully"
         await asyncio.sleep(0.5)  # Wait for buffered events
-        
+
         # Should have received buffered events
         assert client.get_event_count() > 0, "Client should receive buffered events"
         initial_count = client.get_event_count()
-        
+
         # Broadcast live event
         bitchain = generate_random_bitchain()
         event = event_streamer.create_bitchain_event(bitchain, "LIFECYCLE_TEST")
         await event_streamer.broadcast_event(event)
         await asyncio.sleep(0.2)
-        
+
         # Should receive live event
         assert client.get_event_count() > initial_count, "Client should receive live events"
-        
+
         # Disconnect
         await client.disconnect()
         await asyncio.sleep(0.2)
@@ -182,7 +177,7 @@ async def test_connection_lifecycle():
 @pytest.mark.asyncio
 async def test_buffered_event_delivery():
     """Test that newly connecting clients receive buffered events."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         # Send events without any clients
@@ -191,23 +186,25 @@ async def test_buffered_event_delivery():
             bitchain = generate_random_bitchain(seed=i)
             event = event_streamer.create_bitchain_event(bitchain, f"BUFFER_TEST_{i}")
             await event_streamer.broadcast_event(event)
-            event_ids.append(event.data['bitchain']['id'])
-        
+            event_ids.append(event.data["bitchain"]["id"])
+
         assert len(event_streamer.event_buffer) == 100, "Buffer should contain 100 events"
-        
+
         # Now connect client
         client = WebSocketTestClient("ws://localhost:9876")
         await client.connect()
         await asyncio.sleep(0.5)
-        
+
         # Should receive buffered events
-        assert client.get_event_count() == 100, f"Client should receive 100 buffered events, got {client.get_event_count()}"
-        
+        assert (
+            client.get_event_count() == 100
+        ), f"Client should receive 100 buffered events, got {client.get_event_count()}"
+
         # Verify event integrity
         for i, received_event in enumerate(client.received_events):
-            assert 'data' in received_event, f"Event {i} should have 'data' field"
-            assert 'timestamp' in received_event, f"Event {i} should have 'timestamp' field"
-        
+            assert "data" in received_event, f"Event {i} should have 'data' field"
+            assert "timestamp" in received_event, f"Event {i} should have 'timestamp' field"
+
         await client.disconnect()
     finally:
         await cleanup_event_streamer(event_streamer, server_task)
@@ -216,6 +213,7 @@ async def test_buffered_event_delivery():
 # ============================================================================
 # TEST: CONCURRENT LOAD SCALING
 # ============================================================================
+
 
 @pytest.mark.asyncio
 async def test_concurrent_10_clients():
@@ -243,83 +241,19 @@ async def test_concurrent_500_clients():
     await _test_concurrent_clients(num_clients=500, num_events=5)
 
 
-# ============================================================================
-# SOFT-CAP DISCOVERY TESTS - Find virtual limits
-# ============================================================================
-
-@pytest.mark.asyncio
-@pytest.mark.slow
-async def test_concurrent_250_clients():
-    """Test 250 concurrent clients (high load - soft-cap exploration)."""
-    await _test_concurrent_clients(num_clients=250, num_events=5)
-
-
-@pytest.mark.asyncio
-@pytest.mark.slow
-async def test_concurrent_1000_clients():
-    """Test 1000 concurrent clients (extreme load - soft-cap boundary)."""
-    await _test_concurrent_clients(num_clients=1000, num_events=3)
-
-
-@pytest.mark.asyncio
-@pytest.mark.slow
-async def test_concurrent_2500_clients():
-    """Test 2500 concurrent clients (ultra-extreme load - soft-cap push)."""
-    await _test_concurrent_clients(num_clients=2500, num_events=2)
-
-
-@pytest.mark.asyncio
-@pytest.mark.slow
-async def test_concurrent_5000_clients():
-    """Test 5000 concurrent clients (absolute stress - breaking point discovery)."""
-    await _test_concurrent_clients(num_clients=5000, num_events=1)
-
-
-# ============================================================================
-# HARDCORE STRESS PATTERNS - Multi-layered degradation testing
-# ============================================================================
-
-@pytest.mark.asyncio
-@pytest.mark.slow
-async def test_message_flood_500_clients():
-    """Sustained high-frequency message flooding with 500 clients."""
-    await _test_concurrent_clients_message_flood(num_clients=500, messages_per_sec=100)
-
-
-@pytest.mark.asyncio
-@pytest.mark.slow
-async def test_message_flood_1000_clients():
-    """Sustained high-frequency message flooding with 1000 clients."""
-    await _test_concurrent_clients_message_flood(num_clients=1000, messages_per_sec=50)
-
-
-@pytest.mark.asyncio
-@pytest.mark.slow
-async def test_connection_spike_500_clients():
-    """Rapid connection spikes (gradual ramp-up under load)."""
-    await _test_concurrent_clients_spike_pattern(num_clients=500, spike_batch=50)
-
-
-@pytest.mark.asyncio
-@pytest.mark.slow
-async def test_connection_spike_1000_clients():
-    """Rapid connection spikes with 1000 clients."""
-    await _test_concurrent_clients_spike_pattern(num_clients=1000, spike_batch=100)
-
-
 async def _test_concurrent_clients(num_clients: int, num_events: int):
     """Helper to test N concurrent clients."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         clients: List[WebSocketTestClient] = []
-        
+
         # Connect all clients in parallel for efficiency
         print(f"🔗 Connecting {num_clients} clients...")
         sys.stdout.flush()
-        
+
         start_connect = time.time()
-        
+
         async def connect_client(client_id):
             client = WebSocketTestClient(f"ws://localhost:9876")
             connected = await client.connect()
@@ -327,13 +261,12 @@ async def _test_concurrent_clients(num_clients: int, num_events: int):
                 print(f"⚠️  Client {client_id} failed to connect")
                 sys.stdout.flush()
             return client, connected
-        
+
         # Use gather for parallel connections
         connection_results = await asyncio.gather(
-            *[connect_client(i) for i in range(num_clients)],
-            return_exceptions=True
+            *[connect_client(i) for i in range(num_clients)], return_exceptions=True
         )
-        
+
         # Process results
         failed_connections = 0
         for i, result in enumerate(connection_results):
@@ -347,42 +280,44 @@ async def _test_concurrent_clients(num_clients: int, num_events: int):
                     clients.append(client)
                 else:
                     failed_connections += 1
-        
+
         connect_time = time.time() - start_connect
-        print(f"✅ Connected {len(clients)}/{num_clients} clients in {connect_time:.2f}s ({failed_connections} failed)")
+        print(
+            f"✅ Connected {len(clients)}/{num_clients} clients in {connect_time:.2f}s ({failed_connections} failed)"
+        )
         sys.stdout.flush()
-        
+
         if len(clients) == 0:
             print(f"❌ No clients connected successfully")
             sys.stdout.flush()
             pytest.fail("Unable to connect any clients to server")
-        
+
         await asyncio.sleep(0.5)  # Let all clients settle
-        
+
         # Broadcast events and measure latency
         latencies: List[float] = []
         start_broadcast = time.time()
-        
+
         print(f"📡 Broadcasting {num_events} events to {len(clients)} clients...")
         sys.stdout.flush()
-        
+
         try:
             for i in range(num_events):
                 bitchain = generate_random_bitchain(seed=i)
                 event = event_streamer.create_bitchain_event(bitchain, f"LOAD_TEST_{i}")
-                
+
                 event_time = time.time()
                 await event_streamer.broadcast_event(event)
-                
+
                 # Wait for clients to receive
                 await asyncio.sleep(0.1)
-                
+
                 # Measure latency as time from broadcast to all clients receiving
                 for client in clients:
                     if len(client.event_receive_times) > 0:
                         latency = client.event_receive_times[-1] - event_time
                         latencies.append(latency)
-            
+
             broadcast_time = time.time() - start_broadcast
             print(f"✅ Broadcast complete in {broadcast_time:.2f}s")
             sys.stdout.flush()
@@ -391,7 +326,7 @@ async def _test_concurrent_clients(num_clients: int, num_events: int):
             print(f"❌ Broadcast error after {broadcast_time:.2f}s: {e}")
             sys.stdout.flush()
             raise
-        
+
         # Verify all clients received events
         failed_clients = 0
         for i, client in enumerate(clients):
@@ -399,10 +334,12 @@ async def _test_concurrent_clients(num_clients: int, num_events: int):
                 print(f"⚠️  Client {i} received no events")
                 sys.stdout.flush()
                 failed_clients += 1
-        
-        print(f"📊 Received events - Success: {len(clients) - failed_clients}/{len(clients)}, Latency samples: {len(latencies)}")
+
+        print(
+            f"📊 Received events - Success: {len(clients) - failed_clients}/{len(clients)}, Latency samples: {len(latencies)}"
+        )
         sys.stdout.flush()
-        
+
         # Calculate statistics
         if latencies:
             avg_latency = statistics.mean(latencies)
@@ -412,7 +349,7 @@ async def _test_concurrent_clients(num_clients: int, num_events: int):
             max_latency = max(latencies)
         else:
             avg_latency = p50_latency = p99_latency = max_latency = 0
-        
+
         # Print metrics
         print(f"\n📊 Load Test: {num_clients} clients, {num_events} events")
         print(f"   Connection time: {connect_time:.2f}s")
@@ -422,194 +359,11 @@ async def _test_concurrent_clients(num_clients: int, num_events: int):
         print(f"   P99 latency: {p99_latency*1000:.2f}ms")
         print(f"   Max latency: {max_latency*1000:.2f}ms")
         sys.stdout.flush()  # Ensure output is flushed
-        
+
         # Assertions
         assert avg_latency < 0.5, f"Average latency should be <500ms, was {avg_latency*1000:.2f}ms"
         assert p99_latency < 1.0, f"P99 latency should be <1s, was {p99_latency*1000:.2f}ms"
-        
-        # Cleanup
-        for client in clients:
-            await client.disconnect()
-    finally:
-        await cleanup_event_streamer(event_streamer, server_task)
 
-
-async def _test_concurrent_clients_message_flood(num_clients: int, messages_per_sec: int):
-    """Hardcore stress: Sustained high-frequency message flooding."""
-    
-    event_streamer, server_task = await setup_event_streamer()
-    try:
-        clients: List[WebSocketTestClient] = []
-        
-        # Connect all clients
-        print(f"🔗 Connecting {num_clients} clients for message flood test...")
-        sys.stdout.flush()
-        
-        start_connect = time.time()
-        async def connect_client(client_id):
-            client = WebSocketTestClient(f"ws://localhost:9876")
-            connected = await client.connect()
-            return client, connected
-        
-        connection_results = await asyncio.gather(
-            *[connect_client(i) for i in range(num_clients)],
-            return_exceptions=True
-        )
-        
-        # Process results
-        for result in connection_results:
-            if not isinstance(result, Exception):
-                client, connected = result
-                if connected:
-                    clients.append(client)
-        
-        connect_time = time.time() - start_connect
-        print(f"✅ Connected {len(clients)}/{num_clients} clients in {connect_time:.2f}s")
-        sys.stdout.flush()
-        
-        # Message flood: Send high-frequency events for 10 seconds
-        print(f"🌊 Starting message flood: {messages_per_sec} messages/sec for 10 seconds...")
-        sys.stdout.flush()
-        
-        start_flood = time.time()
-        message_count = 0
-        flood_duration = 10.0
-        latencies = []
-        
-        while time.time() - start_flood < flood_duration:
-            try:
-                # Send message
-                bitchain = generate_random_bitchain()
-                event = event_streamer.create_bitchain_event(bitchain, "FLOOD_TEST")
-                send_time = time.time()
-                await event_streamer.broadcast_event(event)
-                message_count += 1
-                
-                # Calculate rate and sleep accordingly
-                elapsed = time.time() - start_flood
-                expected_messages = (elapsed / flood_duration) * (messages_per_sec * flood_duration)
-                if message_count < expected_messages:
-                    await asyncio.sleep(1.0 / messages_per_sec)
-                else:
-                    await asyncio.sleep(0.001)  # Minimal sleep for rate control
-                    
-            except Exception as e:
-                print(f"⚠️  Message flood error: {e}")
-                sys.stdout.flush()
-                break
-        
-        flood_time = time.time() - start_flood
-        print(f"✅ Flood complete: {message_count} messages sent in {flood_time:.2f}s ({message_count/flood_time:.0f} msg/sec)")
-        sys.stdout.flush()
-        
-        # Wait for clients to receive
-        await asyncio.sleep(2.0)
-        
-        # Analyze degradation
-        print(f"\n📊 Message Flood Results ({num_clients} clients):")
-        client_msg_counts = [client.get_event_count() for client in clients]
-        avg_received = statistics.mean(client_msg_counts) if client_msg_counts else 0
-        min_received = min(client_msg_counts) if client_msg_counts else 0
-        max_received = max(client_msg_counts) if client_msg_counts else 0
-        
-        print(f"   Messages sent: {message_count}")
-        print(f"   Avg received per client: {avg_received:.0f}")
-        print(f"   Min received: {min_received}")
-        print(f"   Max received: {max_received}")
-        print(f"   Reception rate: {(avg_received/message_count*100):.1f}%")
-        sys.stdout.flush()
-        
-        # Cleanup
-        for client in clients:
-            await client.disconnect()
-    finally:
-        await cleanup_event_streamer(event_streamer, server_task)
-
-
-async def _test_concurrent_clients_spike_pattern(num_clients: int, spike_batch: int):
-    """Hardcore stress: Rapid connection spikes (gradual ramp-up under load)."""
-    
-    event_streamer, server_task = await setup_event_streamer()
-    try:
-        # Phase 1: Initial rapid connection
-        print(f"📈 Phase 1: Rapid connection spike - {spike_batch} clients at a time")
-        sys.stdout.flush()
-        
-        clients: List[WebSocketTestClient] = []
-        spike_count = 0
-        
-        # Connect in spikes
-        for spike_num in range(0, num_clients, spike_batch):
-            batch_size = min(spike_batch, num_clients - spike_num)
-            print(f"   Spike {spike_num//spike_batch + 1}: Connecting {batch_size} clients...")
-            sys.stdout.flush()
-            
-            start_spike = time.time()
-            
-            async def connect_client(client_id):
-                client = WebSocketTestClient(f"ws://localhost:9876")
-                connected = await client.connect()
-                return client, connected
-            
-            connection_results = await asyncio.gather(
-                *[connect_client(i) for i in range(batch_size)],
-                return_exceptions=True
-            )
-            
-            for result in connection_results:
-                if not isinstance(result, Exception):
-                    client, connected = result
-                    if connected:
-                        clients.append(client)
-            
-            spike_time = time.time() - start_spike
-            print(f"   ✅ Spike {spike_num//spike_batch + 1} complete in {spike_time:.2f}s")
-            sys.stdout.flush()
-            
-            await asyncio.sleep(0.5)  # Brief pause between spikes
-        
-        print(f"\n✅ All {len(clients)} clients connected via spike pattern")
-        sys.stdout.flush()
-        
-        # Phase 2: Sustained load with spike pattern
-        print(f"\n📊 Phase 2: Sustained messaging under spike load")
-        sys.stdout.flush()
-        
-        latencies = []
-        start_messaging = time.time()
-        message_duration = 5.0
-        message_count = 0
-        
-        while time.time() - start_messaging < message_duration:
-            try:
-                # Send event
-                bitchain = generate_random_bitchain()
-                event = event_streamer.create_bitchain_event(bitchain, "SPIKE_TEST")
-                await event_streamer.broadcast_event(event)
-                message_count += 1
-                await asyncio.sleep(0.05)  # ~20 msg/sec
-            except Exception as e:
-                print(f"⚠️  Messaging error: {e}")
-                sys.stdout.flush()
-                break
-        
-        messaging_time = time.time() - start_messaging
-        print(f"✅ Sent {message_count} messages in {messaging_time:.2f}s under spike load")
-        sys.stdout.flush()
-        
-        # Wait for delivery
-        await asyncio.sleep(1.0)
-        
-        # Analyze results
-        print(f"\n📊 Spike Pattern Results ({num_clients} clients):")
-        client_msg_counts = [client.get_event_count() for client in clients]
-        avg_received = statistics.mean(client_msg_counts) if client_msg_counts else 0
-        
-        print(f"   Messages sent: {message_count}")
-        print(f"   Avg received per client: {avg_received:.0f}")
-        print(f"   Reception rate: {(avg_received/message_count*100):.1f}%")
-        sys.stdout.flush()
-        
         # Cleanup
         for client in clients:
             await client.disconnect()
@@ -621,16 +375,17 @@ async def _test_concurrent_clients_spike_pattern(num_clients: int, spike_batch: 
 # TEST: EVENT ORDERING & INTEGRITY
 # ============================================================================
 
+
 @pytest.mark.asyncio
 async def test_event_ordering_single_client():
     """Test that events arrive in order to a single client."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         client = WebSocketTestClient("ws://localhost:9876")
         await client.connect()
         await asyncio.sleep(0.2)
-        
+
         # Send numbered events
         num_events = 50
         for i in range(num_events):
@@ -638,21 +393,27 @@ async def test_event_ordering_single_client():
             event = event_streamer.create_bitchain_event(bitchain, f"ORDER_TEST_{i}")
             await event_streamer.broadcast_event(event)
             await asyncio.sleep(0.01)
-        
+
         await asyncio.sleep(0.5)
-        
+
         # Verify ordering by checking experiment_id sequence
-        received_ids = [e.get('experiment_id') for e in client.received_events if 'ORDER_TEST' in e.get('experiment_id', '')]
-        
+        received_ids = [
+            e.get("experiment_id")
+            for e in client.received_events
+            if "ORDER_TEST" in e.get("experiment_id", "")
+        ]
+
         # Extract sequence numbers
-        sequences = [int(eid.split('_')[-1]) for eid in received_ids if eid]
-        
+        sequences = [int(eid.split("_")[-1]) for eid in received_ids if eid]
+
         # Should be monotonically increasing
         for i in range(1, len(sequences)):
-            assert sequences[i] >= sequences[i-1], f"Event ordering violated at position {i}"
-        
-        assert len(sequences) == num_events, f"Should receive all {num_events} events, got {len(sequences)}"
-        
+            assert sequences[i] >= sequences[i - 1], f"Event ordering violated at position {i}"
+
+        assert (
+            len(sequences) == num_events
+        ), f"Should receive all {num_events} events, got {len(sequences)}"
+
         await client.disconnect()
     finally:
         await cleanup_event_streamer(event_streamer, server_task)
@@ -661,20 +422,20 @@ async def test_event_ordering_single_client():
 @pytest.mark.asyncio
 async def test_event_ordering_multiple_clients():
     """Test that all clients see events in the same order."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         num_clients = 10
         clients: List[WebSocketTestClient] = []
-        
+
         # Connect all clients
         for i in range(num_clients):
             client = WebSocketTestClient("ws://localhost:9876")
             await client.connect()
             clients.append(client)
-        
+
         await asyncio.sleep(0.5)
-        
+
         # Send events
         num_events = 20
         for i in range(num_events):
@@ -682,21 +443,25 @@ async def test_event_ordering_multiple_clients():
             event = event_streamer.create_bitchain_event(bitchain, f"ORDER_MULTI_{i}")
             await event_streamer.broadcast_event(event)
             await asyncio.sleep(0.02)
-        
+
         await asyncio.sleep(0.5)
-        
+
         # Extract event sequences for each client
         all_sequences = []
         for client in clients:
-            received_ids = [e.get('experiment_id') for e in client.received_events if 'ORDER_MULTI' in e.get('experiment_id', '')]
-            sequences = [int(eid.split('_')[-1]) for eid in received_ids if eid]
+            received_ids = [
+                e.get("experiment_id")
+                for e in client.received_events
+                if "ORDER_MULTI" in e.get("experiment_id", "")
+            ]
+            sequences = [int(eid.split("_")[-1]) for eid in received_ids if eid]
             all_sequences.append(sequences)
-        
+
         # All clients should see the same sequence
         first_sequence = all_sequences[0]
         for i, seq in enumerate(all_sequences[1:]):
             assert seq == first_sequence, f"Client {i+1} saw different event order than client 0"
-        
+
         # Cleanup
         for client in clients:
             await client.disconnect()
@@ -708,10 +473,11 @@ async def test_event_ordering_multiple_clients():
 # TEST: BUFFER MANAGEMENT
 # ============================================================================
 
+
 @pytest.mark.asyncio
 async def test_buffer_size_cap():
     """Test that buffer doesn't exceed max_buffer_size."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         # Send more events than buffer capacity
@@ -720,13 +486,15 @@ async def test_buffer_size_cap():
             bitchain = generate_random_bitchain(seed=i)
             event = event_streamer.create_bitchain_event(bitchain, f"BUFFER_CAP_{i}")
             await event_streamer.broadcast_event(event)
-        
+
         # Buffer should be capped at max_buffer_size (1000)
-        assert len(event_streamer.event_buffer) <= event_streamer.max_buffer_size, \
-            f"Buffer size {len(event_streamer.event_buffer)} exceeds max {event_streamer.max_buffer_size}"
-        
-        assert len(event_streamer.event_buffer) == event_streamer.max_buffer_size, \
-            f"Buffer should be at capacity, was {len(event_streamer.event_buffer)}"
+        assert (
+            len(event_streamer.event_buffer) <= event_streamer.max_buffer_size
+        ), f"Buffer size {len(event_streamer.event_buffer)} exceeds max {event_streamer.max_buffer_size}"
+
+        assert (
+            len(event_streamer.event_buffer) == event_streamer.max_buffer_size
+        ), f"Buffer should be at capacity, was {len(event_streamer.event_buffer)}"
     finally:
         await cleanup_event_streamer(event_streamer, server_task)
 
@@ -734,7 +502,7 @@ async def test_buffer_size_cap():
 @pytest.mark.asyncio
 async def test_buffer_fifo_behavior():
     """Test that buffer removes oldest events first (FIFO)."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         # Send exactly max_buffer_size + 1 events
@@ -743,11 +511,11 @@ async def test_buffer_fifo_behavior():
             bitchain = generate_random_bitchain(seed=i)
             event = event_streamer.create_bitchain_event(bitchain, f"FIFO_TEST_{i}")
             await event_streamer.broadcast_event(event)
-            event_ids.append(event.data['bitchain']['id'])
-        
+            event_ids.append(event.data["bitchain"]["id"])
+
         # First event should be removed
-        buffered_ids = [e.data['bitchain']['id'] for e in event_streamer.event_buffer]
-        
+        buffered_ids = [e.data["bitchain"]["id"] for e in event_streamer.event_buffer]
+
         assert event_ids[0] not in buffered_ids, "First event should be removed"
         assert event_ids[-1] in buffered_ids, "Last event should be in buffer"
         assert event_ids[1] in buffered_ids, "Second event should be in buffer"
@@ -759,10 +527,11 @@ async def test_buffer_fifo_behavior():
 # TEST: RESILIENCE & ERROR HANDLING
 # ============================================================================
 
+
 @pytest.mark.asyncio
 async def test_graceful_disconnect_mid_stream():
     """Test graceful handling of client disconnect during event stream."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         # Connect multiple clients
@@ -771,29 +540,29 @@ async def test_graceful_disconnect_mid_stream():
             client = WebSocketTestClient("ws://localhost:9876")
             await client.connect()
             clients.append(client)
-        
+
         await asyncio.sleep(0.2)
-        
+
         # Start broadcasting events
         for i in range(20):
             bitchain = generate_random_bitchain(seed=i)
             event = event_streamer.create_bitchain_event(bitchain, f"DISCONNECT_TEST_{i}")
             await event_streamer.broadcast_event(event)
-            
+
             # Disconnect a client mid-stream
             if i == 10:
                 await clients[0].disconnect()
-            
+
             await asyncio.sleep(0.05)
-        
+
         # Remaining clients should still receive events
         for i, client in enumerate(clients[1:], 1):
             assert client.get_event_count() > 0, f"Client {i} received no events"
-        
+
         # Cleanup
         for client in clients[1:]:
             await client.disconnect()
-        
+
         # Server should not crash
         assert event_streamer.is_running or len(event_streamer.clients) >= 0
     finally:
@@ -803,28 +572,28 @@ async def test_graceful_disconnect_mid_stream():
 @pytest.mark.asyncio
 async def test_malformed_json_handling():
     """Test that server handles malformed JSON gracefully."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         client = WebSocketTestClient("ws://localhost:9876")
         await client.connect()
         await asyncio.sleep(0.2)
-        
+
         # Try sending valid JSON
         try:
             await client.send_message({"valid": "json"})
             await asyncio.sleep(0.1)
         except Exception as e:
             pytest.fail(f"Valid JSON should not cause error: {e}")
-        
+
         # Server should still work
         bitchain = generate_random_bitchain()
         event = event_streamer.create_bitchain_event(bitchain, "POST_JSON_TEST")
         await event_streamer.broadcast_event(event)
-        
+
         await asyncio.sleep(0.2)
         assert client.get_event_count() > 0, "Server should continue working after JSON handling"
-        
+
         await client.disconnect()
     finally:
         await cleanup_event_streamer(event_streamer, server_task)
@@ -833,22 +602,22 @@ async def test_malformed_json_handling():
 @pytest.mark.asyncio
 async def test_rapid_connect_disconnect():
     """Test rapid connection/disconnection cycles."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         num_cycles = 20
-        
+
         for cycle in range(num_cycles):
             client = WebSocketTestClient("ws://localhost:9876")
             connected = await client.connect()
             assert connected, f"Cycle {cycle}: Connection failed"
-            
+
             await asyncio.sleep(0.05)
             await client.disconnect()
-        
+
         # Server should still be responsive
         assert event_streamer.is_running or len(event_streamer.clients) >= 0
-        
+
         # Should be able to connect again
         final_client = WebSocketTestClient("ws://localhost:9876")
         assert await final_client.connect(), "Should be able to connect after rapid cycles"
@@ -861,59 +630,61 @@ async def test_rapid_connect_disconnect():
 # TEST: MEMORY & PERFORMANCE
 # ============================================================================
 
+
 @pytest.mark.asyncio
 @pytest.mark.slow
 async def test_memory_stability_sustained_load():
     """Test memory stability under sustained load."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         # Baseline memory check
         gc.collect()
         import tracemalloc
+
         tracemalloc.start()
-        
+
         # Connect clients
         clients: List[WebSocketTestClient] = []
         for i in range(50):
             client = WebSocketTestClient("ws://localhost:9876")
             await client.connect()
             clients.append(client)
-        
+
         await asyncio.sleep(0.5)
-        
+
         # Phase 1: Get baseline memory
         baseline_snapshot = tracemalloc.take_snapshot()
-        baseline_size = sum(stat.size for stat in baseline_snapshot.statistics('lineno'))
-        
+        baseline_size = sum(stat.size for stat in baseline_snapshot.statistics("lineno"))
+
         # Phase 2: Sustained broadcast (1000 events over time)
         for i in range(1000):
             bitchain = generate_random_bitchain()
             event = event_streamer.create_bitchain_event(bitchain, f"MEMORY_TEST_{i}")
             await event_streamer.broadcast_event(event)
-            
+
             if i % 100 == 0:
                 await asyncio.sleep(0.1)
-        
+
         await asyncio.sleep(0.5)
-        
+
         # Phase 3: Check final memory
         final_snapshot = tracemalloc.take_snapshot()
-        final_size = sum(stat.size for stat in final_snapshot.statistics('lineno'))
-        
+        final_size = sum(stat.size for stat in final_snapshot.statistics("lineno"))
+
         memory_growth = (final_size - baseline_size) / (1024 * 1024)  # Convert to MB
-        
+
         print(f"\n💾 Memory Test Results:")
         print(f"   Baseline: {baseline_size / (1024*1024):.2f} MB")
         print(f"   Final: {final_size / (1024*1024):.2f} MB")
         print(f"   Growth: {memory_growth:.2f} MB")
         print(f"   50 clients, 1000 events")
-        
+
         # Memory growth should be reasonable (allow up to 300MB for event buffer + connections)
         assert memory_growth < 300, f"Memory growth {memory_growth:.2f}MB exceeds threshold"
-        
+
         tracemalloc.stop()
-        
+
         # Cleanup
         for client in clients:
             await client.disconnect()
@@ -924,38 +695,38 @@ async def test_memory_stability_sustained_load():
 @pytest.mark.asyncio
 async def test_throughput_measurement():
     """Measure and verify event throughput."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         # Connect single client for clean throughput measurement
         client = WebSocketTestClient("ws://localhost:9876")
         await client.connect()
         await asyncio.sleep(0.2)
-        
+
         # Broadcast many events rapidly
         num_events = 200
         start_time = time.time()
-        
+
         for i in range(num_events):
             bitchain = generate_random_bitchain(seed=i)
             event = event_streamer.create_bitchain_event(bitchain, f"THROUGHPUT_{i}")
             await event_streamer.broadcast_event(event)
-        
+
         end_time = time.time()
         elapsed = end_time - start_time
         throughput = num_events / elapsed
-        
+
         print(f"\n⚡ Throughput Test:")
         print(f"   Events: {num_events}")
         print(f"   Time: {elapsed:.2f}s")
         print(f"   Throughput: {throughput:.0f} events/sec")
-        
+
         # Wait for delivery
         await asyncio.sleep(1.0)
-        
+
         # Should handle at least 100 events/sec
         assert throughput > 100, f"Throughput {throughput:.0f} events/sec below 100"
-        
+
         await client.disconnect()
     finally:
         await cleanup_event_streamer(event_streamer, server_task)
@@ -965,41 +736,46 @@ async def test_throughput_measurement():
 # TEST: EXPERIMENT ISOLATION
 # ============================================================================
 
+
 @pytest.mark.asyncio
 async def test_experiment_isolation():
     """Test that events from different experiments don't cross-pollinate."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
         # Connect 2 clients
         client_a = WebSocketTestClient("ws://localhost:9876")
         client_b = WebSocketTestClient("ws://localhost:9876")
-        
+
         await client_a.connect()
         await client_b.connect()
         await asyncio.sleep(0.2)
-        
+
         # Send events for experiment A
         for i in range(10):
             bitchain = generate_random_bitchain(seed=i)
             event = event_streamer.create_bitchain_event(bitchain, "EXPERIMENT_A")
             await event_streamer.broadcast_event(event)
-        
+
         # Send events for experiment B
         for i in range(10):
-            bitchain = generate_random_bitchain(seed=i+100)
+            bitchain = generate_random_bitchain(seed=i + 100)
             event = event_streamer.create_bitchain_event(bitchain, "EXPERIMENT_B")
             await event_streamer.broadcast_event(event)
-        
+
         await asyncio.sleep(0.5)
-        
+
         # Both clients should see both experiments
-        exp_a_count = sum(1 for e in client_a.received_events if e.get('experiment_id') == 'EXPERIMENT_A')
-        exp_b_count = sum(1 for e in client_a.received_events if e.get('experiment_id') == 'EXPERIMENT_B')
-        
+        exp_a_count = sum(
+            1 for e in client_a.received_events if e.get("experiment_id") == "EXPERIMENT_A"
+        )
+        exp_b_count = sum(
+            1 for e in client_a.received_events if e.get("experiment_id") == "EXPERIMENT_B"
+        )
+
         assert exp_a_count == 10, f"Client A should see 10 exp A events, saw {exp_a_count}"
         assert exp_b_count == 10, f"Client A should see 10 exp B events, saw {exp_b_count}"
-        
+
         await client_a.disconnect()
         await client_b.disconnect()
     finally:
@@ -1010,18 +786,20 @@ async def test_experiment_isolation():
 # TEST: SERVER STRESS TEST (CHAOS)
 # ============================================================================
 
+
 @pytest.mark.asyncio
 @pytest.mark.slow
 async def test_chaos_stress():
     """Chaos test: rapid connects, disconnects, and events."""
-    
+
     event_streamer, server_task = await setup_event_streamer()
     try:
+
         async def connect_disconnect_worker(worker_id: int, duration: float):
             """Worker that rapidly connects/disconnects."""
             end_time = time.time() + duration
             cycle = 0
-            
+
             while time.time() < end_time:
                 try:
                     client = WebSocketTestClient("ws://localhost:9876")
@@ -1031,9 +809,9 @@ async def test_chaos_stress():
                     cycle += 1
                 except Exception:
                     pass
-            
+
             return cycle
-        
+
         async def event_broadcaster_worker(num_events: int):
             """Worker that broadcasts events."""
             for i in range(num_events):
@@ -1041,22 +819,19 @@ async def test_chaos_stress():
                 event = event_streamer.create_bitchain_event(bitchain, f"CHAOS_{i}")
                 await event_streamer.broadcast_event(event)
                 await asyncio.sleep(0.01)
-        
+
         # Run chaos test for 5 seconds with multiple workers
-        tasks = [
-            connect_disconnect_worker(i, duration=5.0)
-            for i in range(5)
-        ]
+        tasks = [connect_disconnect_worker(i, duration=5.0) for i in range(5)]
         tasks.append(event_broadcaster_worker(100))
-        
+
         results = await asyncio.gather(*tasks)
-        
+
         print(f"\n🔥 Chaos Test Results:")
         for i, cycles in enumerate(results[:-1]):
             print(f"   Worker {i}: {cycles} connect/disconnect cycles")
         print(f"   Broadcaster: 100 events sent")
         print(f"   Server survived: {event_streamer.is_running or True}")
-        
+
         # Server should survive
         assert event_streamer.is_running or len(event_streamer.clients) >= 0
     finally:

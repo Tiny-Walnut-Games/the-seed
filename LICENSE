@@ -19,27 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-## Living Dev Agent Template
-
-This template contains debugging and development workflow tools originally 
-developed for the MetVanDAMN procedural generation engine, now available 
-for general use across all platforms and frameworks.
-
-### Tools Included:
-- Console Commentary System for debugging session documentation
-- Adjustable Code Snapshot System with configurable context range
-- TaskMaster project management with time tracking integration
-- Chronas time tracking with professional reporting
-- AI collaboration tools and workflow optimization
-
-### MetVanDAMN Origins:
-These tools were developed and tested during MetVanDAMN game development.
-The debugging workflows that proved useful for complex game systems are now
-available to help with any software development project.
-
-### Attribution:
-While this template is MIT licensed for maximum adoption, attribution to 
-Jerry Meyer and Tiny Walnut Games is appreciated when practical.

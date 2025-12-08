@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: warbler-cda-data
+  namespace: warbler-cda
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""  # Use default storage class
+  resources:
+    requests:
+      storage: 10Gi  # Adjust based on your data requirements

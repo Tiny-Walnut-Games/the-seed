@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: warbler-cda
+  namespace: warbler-cda
+  labels:
+    app: warbler-cda
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: warbler-cda
+  template:
+    metadata:
+      labels:
+        app: warbler-cda
+    spec:
+      containers:
+      - name: warbler-cda
+        image: warbler-cda:latest  # For Docker Desktop K8s, use local image name
+        # For production, replace with: your-registry/warbler-cda:v1.0.0
+        ports:
+        - containerPort: 8000
+          name: http
+        env:
+        - name: PYTHONPATH
+          value: "/app"
+        envFrom:
+        - configMapRef:
+            name: warbler-cda-config
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        # Start the API service
+        command: ["python", "-m", "warbler_cda.api.service"]
+        # For testing if image works: command: ["python", "-c", "print('Container started successfully!'); import time; time.sleep(3600)"]
+      volumes:
+      - name: data
+        emptyDir: {}  # For local development, use in-memory storage
+        # For production with persistence: persistentVolumeClaim:
+        #   claimName: warbler-cda-data

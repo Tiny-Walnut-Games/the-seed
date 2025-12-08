@@ -201,20 +201,7 @@ class MassiveWarblerIngestor:
         }
 
         # Handle different dataset structures
-        if dataset_name == "amaydle/npc-dialogue":
-            content = f"Character: {item.get('Name', 'Unknown')}\n"
-            content += f"Biography: {item.get('Biography', '')}\n"
-            content += f"Query: {item.get('Query', '')}\n"
-            content += f"Response: {item.get('Response', '')}\n"
-            content += f"Emotion: {item.get('Emotion', '')}"
-
-            metadata.update({
-                "character_name": item.get('Name', 'Unknown'),
-                "emotion": item.get('Emotion', 'unknown'),
-                "dialogue_type": "npc_character_interaction"
-            })
-
-        elif "conversation" in str(item):
+        if "conversation" in str(item):
             # Handle conversation-based datasets
             if isinstance(item.get('conversation'), list):
                 conversation_text = "\n".join([

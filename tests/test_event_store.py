@@ -222,9 +222,7 @@ class TestEventStoreTemporalQueries:
     def test_read_as_of_filters_by_timestamp(self, store_with_timestamped_events):
         """Temporal read returns only events before timestamp."""
         now = datetime.utcnow()
-        events = store_with_timestamped_events.read_as_of(
-            "stat7/entity_1", now.isoformat()
-        )
+        events = store_with_timestamped_events.read_as_of("stat7/entity_1", now.isoformat())
 
         # All events should be returned (they're all before now)
         assert len(events) > 0

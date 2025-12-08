@@ -12,6 +12,7 @@ import os
 # Add root to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
+
 async def test_websocket_data():
     """Connect to WebSocket server and print received data."""
     print("🔍 Connecting to WebSocket server...")
@@ -31,18 +32,18 @@ async def test_websocket_data():
                     print(f"Event Type: {data.get('event_type', 'Unknown')}")
                     print(f"Timestamp: {data.get('timestamp', 'Unknown')}")
 
-                    if data.get('event_type') == 'bitchain_created':
+                    if data.get("event_type") == "bitchain_created":
                         print("BitChain Data:")
-                        bitchain_data = data.get('data', {})
+                        bitchain_data = data.get("data", {})
                         print(f"  - ID: {bitchain_data.get('id', 'Unknown')}")
                         print(f"  - Entity Type: {bitchain_data.get('entity_type', 'Unknown')}")
                         print(f"  - Realm: {bitchain_data.get('realm', 'Unknown')}")
 
-                        coords = bitchain_data.get('stat7_coordinates', {})
+                        coords = bitchain_data.get("stat7_coordinates", {})
                         if coords:
                             print(f"  - Coordinates: {coords}")
 
-                        metadata = data.get('metadata', {})
+                        metadata = data.get("metadata", {})
                         if metadata:
                             print(f"  - Metadata: {metadata}")
 
@@ -62,6 +63,7 @@ async def test_websocket_data():
         print("   python stat7wsserve.py")
     except Exception as e:
         print(f"❌ Error: {e}")
+
 
 if __name__ == "__main__":
     print("🧪 WebSocket Data Debug Tool")

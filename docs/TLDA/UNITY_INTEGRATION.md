@@ -173,7 +173,7 @@ Every TLDA term explained in plain language that a curious teenager could unders
 ### **🎯 v1.0 Reference Documentation**
 - [📚 **v1.0 Documentation Index**](docs/v1.0-documentation-index.md) - **Complete v1.0 reference documentation**
 - [🏗️ **System Architecture**](docs/architecture/system-overview.md) - **Complete system architecture with diagrams**
-- [🔌 **API Contracts v1.0**](docs/Shared/API/contracts-v1.md) - **Versioned API contracts for integrations**
+- [🔌 **API Contracts v1.0**](docs/api/contracts-v1.md) - **Versioned API contracts for integrations**
 - [📊 **Formal Evaluation Results**](docs/evaluation/formal-evaluation-results.md) - **Comprehensive v1.0 evaluation report**
 - [🔄 **Migration Guide**](docs/migration/v1.0-migration-guide.md) - **Complete upgrade instructions**
 - [🧪 **Alchemist Baseline Schema**](docs/alchemist-baseline-set-schema.md) - **JSON schema for experimental baselines**
@@ -319,4 +319,3 @@ While attribution isn't required, we encourage recognizing Jerry Meyer and Tiny 
 **🌟 Star this repository to join the adventure and help other developers discover these quest-worthy debugging tools!**
 
 **Adventure tools created by [Jerry Meyer](https://github.com/jmeyer1980) (Tiny Walnut Games) | Template by GitHub Copilot**
-

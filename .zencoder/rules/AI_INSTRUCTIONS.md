@@ -1,4 +1,4 @@
-﻿# 🤖 AI Assistant Instructions Profile
+# 🤖 AI Assistant Instructions Profile
 ## For The Seed Project - STAT7 Multiverse Simulation
 
 ---
@@ -82,16 +82,16 @@ The root directory should ONLY contain:
 
 ---
 
-## 📚 **DOCUMENTATION ARCHITECTURE & SINGLE SOURCE OF TRUTH**
+## 📚 **DOCUMENTATION REQUIREMENTS**
 
 ### **🎯 MANDATORY: GitBook-Style Documentation Directory**
 **Location:** `docs/` (project root)
 
 **Required Structure:**
-\`\`\`
+```
 docs/
 ├── README.md                    # Main project overview
-├── GETTING_STARTED.md           # Quick start guide (CANONICAL)
+├── GETTING_STARTED.md           # Quick start guide
 ├── ARCHITECTURE.md              # System architecture overview
 ├── TLDA/                        # Unity system documentation
 │   ├── README.md
@@ -101,7 +101,6 @@ docs/
 ├── SEED/                        # Python backend documentation
 │   ├── README.md
 │   ├── STAT7_ADDRESSING.md
-│   ├── STAT7_VALIDATION_RESULTS.md  # Current validation status
 │   ├── LIVING_DEV_AGENT.md
 │   └── EXPERIMENTS.md
 ├── BRIDGES/                     # Communication layer documentation
@@ -110,132 +109,21 @@ docs/
 │   ├── 7D_PROJECTION.md
 │   └── DATA_SCHEMAS.md
 ├── DEVELOPMENT/                 # Development guidelines
-│   ├── README.md
-│   ├── SECURITY.md              # Security policies & implementation (CANONICAL)
+│   ├── CODING_STANDARDS.md
 │   ├── TESTING.md
-│   ├── CI_CD.md
 │   └── CONTRIBUTING.md
-├── API/                         # API references
-│   ├── README.md
-│   ├── SECURITY.md              # CANONICAL security reference (from Phase 1)
-│   ├── PYTHON_API.md
-│   ├── JAVASCRIPT_API.md
-│   └── UNITY_API.md
-└── ARCHIVE/                     # Historical documentation (read-only reference)
-└── SCATTERED/
-├── README.md            # Links to canonical versions
-└── ...other old docs
-\`\`\`
+└── API/                         # API references
+    ├── UNITY_API.md
+    ├── PYTHON_API.md
+    └── JAVASCRIPT_API.md
+```
 
----
-
-## ✏️ **DOCUMENTATION MAINTENANCE & EDITING PRACTICES**
-
-### **🔑 FUNDAMENTAL PRINCIPLE: SINGLE SOURCE OF TRUTH**
-- ✅ **One canonical location per concept** - Do NOT duplicate across multiple files
-- ✅ **Direct editing of existing docs** - Update in place; commit history preserves all changes
-- ❌ **Never create new .md files for updates** - This creates fragmentation and bloat
-- ✅ **Archive outdated docs** - Move old versions to `docs/ARCHIVE/` with links to canonical versions
-
-### **📖 How to Update Documentation**
-
-**WHEN YOU NEED TO DOCUMENT SOMETHING:**
-
-1. **Identify the canonical location:**
-  - Feature in TLDA → `docs/TLDA/`
-  - Feature in Seed → `docs/SEED/`
-  - Bridge/WebSocket → `docs/BRIDGES/`
-  - Development process → `docs/DEVELOPMENT/`
-  - API reference → `docs/API/`
-  - Getting started → `docs/GETTING_STARTED.md`
-
-2. **Edit the canonical file directly:**
-   \`\`\`bash
-   # ✅ DO THIS:
-   # Edit: docs/SEED/STAT7_ADDRESSING.md
-   # Make your changes
-   # Commit with: "docs(seed): Update STAT7 addressing clarification"
-
-   # ❌ NEVER DO THIS:
-   # Create: STAT7_ADDRESSING_NEW.md
-   # Create: STAT7_UPDATES.md
-   # Create: STAT7_REVISION_2.md
-   \`\`\`
-
-3. **Preserve version history:**
-  - Changes automatically tracked in Git
-  - No need to create new files for tracking changes
-  - Use commit messages to document what changed and why
-
-### **📝 Canonical Documentation Files & Their Maintainers**
-
-| File                                    | Purpose                          | Scope          | Update Frequency           |
-|-----------------------------------------|----------------------------------|----------------|----------------------------|
-| `docs/GETTING_STARTED.md`               | Developer onboarding             | All systems    | As projects/setup changes  |
-| `docs/API/SECURITY.md`                  | Security policies & fixes        | All APIs       | On security findings       |
-| `docs/SEED/STAT7_VALIDATION_RESULTS.md` | Current system validation status | Seed system    | After validation runs      |
-| `docs/SEED/STAT7_ADDRESSING.md`         | STAT7 specification & theory     | Seed system    | On design changes          |
-| `docs/DEVELOPMENT/TESTING.md`           | Test frameworks & practices      | All systems    | When test approach changes |
-| `docs/DEVELOPMENT/CI_CD.md`             | CI/CD pipeline documentation     | Infrastructure | On workflow changes        |
-
-### **🚫 WHAT NOT TO DO**
-
-**These create documentation bloat and will be consolidated:**
-- ❌ Creating root-level `.md` files (except allowed config: `README.md`, `CHANGELOG.md`, `SECURITY.md`)
-- ❌ Creating scattered docs in package subdirectories (except auto-generated API docs)
-- ❌ Creating new docs when you could update existing ones
-- ❌ Creating "QUICK_REFERENCE.md", "UPDATE_*.md", "NOTES_*.md" files
-- ❌ One .md file per day/session (consolidate into canonical locations)
-- ❌ Leaving outdated docs in place without archiving
-
-**These WILL be cleaned up regularly:**
-- Scattered documentation in `packages/com.twg.the-seed/seed/docs/`
-- Scattered documentation in `packages/com.twg.the-seed/seed/engine/`
-- Root-level documentation files (except allowed config)
-- Outdated validation/results documents
-
-### **✅ WHAT TO DO INSTEAD**
-
-**For documentation changes:**
-1. Find the canonical file in `docs/`
-2. Edit it directly
-3. Commit with descriptive message: `docs(section): What changed and why`
-4. Outdated docs get archived to `docs/ARCHIVE/SCATTERED/` periodically
-
-**For experimental/temporary documentation:**
-- Use code comments for experimental features
-- Use Git branches for parallel documentation development
-- Merge into canonical locations when ready
-- Do NOT create separate .md files
-
-### **🔄 Documentation Review Checklist**
-
-Before committing ANY documentation change:
-- [ ] **Is this editing an existing canonical doc?**
-- [ ] **Does this new content belong in one of the canonical locations?**
-- [ ] **Am I NOT creating a new .md file as a workaround?**
-- [ ] **Are cross-references up to date?**
-- [ ] **Have I linked to actual code locations (when applicable)?**
-- [ ] **Does this reflect current reality (truth-first)?**
-
----
-
-## 📋 **DOCUMENTATION STANDARDS**
-
-### **Every Major Component Must Have Documentation**
-1. **Every major component** has corresponding documentation in `docs/`
+### **📝 Documentation Standards:**
+1. **Every major component** must have corresponding documentation in `docs/`
 2. **Cross-reference** between systems (TLDA ↔ Seed ↔ Bridges)
 3. **Include examples** and usage patterns
 4. **Maintain API references** for all public interfaces
-5. **Update documentation** BEFORE changing code (truth-first approach)
-
-### **Documentation Content Guidelines**
-- **Start with WHY** - Explain purpose before implementation
-- **Include examples** - Show real usage from the codebase
-- **Link to code** - Reference actual files where logic lives
-- **Date validation** - Note when documentation was last verified against code
-- **Status indicator** - Mark if MAINTAINED, OUTDATED, or EXPERIMENTAL
-- **Use tables** - For structured comparisons and overviews
+5. **Update documentation** BEFORE changing code
 
 ---
 
@@ -275,12 +163,11 @@ Before committing ANY documentation change:
 - **Use proper package directories**
 - **Keep web components in `web/`**
 
-### **Documentation (NO MORE BLOAT):**
-- **`docs/` is ONLY canonical reference**
-- **ONE location per concept** - no duplicates
-- **Edit existing docs directly** - Git tracks changes
-- **Archive old docs** - don't leave them scattered
-- **Root directory = config files only** (no .md bloat)
+### **Documentation:**
+- **`docs/` is canonical reference**
+- **GitBook-style organization**
+- **Update docs BEFORE code**
+- **Cross-reference everything**
 
 ### **Communication:**
 - **WebSocket for real-time data**
@@ -306,14 +193,11 @@ When working on any component:
 
 - [ ] **System boundary identified** (TLDA/Seed/Bridge)?
 - [ ] **Proper directory selected** (no root files)?
-- [ ] **Documentation location planned** in \`docs/\`?
-- [ ] **Editing existing doc, NOT creating new one?**
-- [ ] **Cross-system impacts considered?**
-- [ ] **File organization verified?**
-- [ ] **API boundaries respected?**
+- [ ] **Documentation location planned** in `docs/`?
+- [ ] **Cross-system impacts considered**?
+- [ ] **File organization verified**?
+- [ ] **API boundaries respected**?
 
 ---
 
 **This profile is your guide to maintaining clean, organized, and well-documented code that serves the multiverse vision. Always reference these rules before making any changes to the project structure.**
-
-**DOCUMENTATION IS A COMMITMENT: Edit it directly, keep it current, archive the old. No bloat, no fragmentation—just truth.**
